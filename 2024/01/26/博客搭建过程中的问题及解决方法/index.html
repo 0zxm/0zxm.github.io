@@ -214,10 +214,23 @@
         </header>
 
         <div class="post-content">
-            <h1 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h1><p>1.这是我搭建的时候对照的视频链接[<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Eg41157tL/">教程]Hexo &amp; Github搭建自己的专属博客_哔哩哔哩_bilibili</a></p>
+            <h1 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h1><h2 id="安装Git-和-NodeJs"><a href="#安装Git-和-NodeJs" class="headerlink" title="安装Git 和 NodeJs"></a>安装Git 和 NodeJs</h2><p>1.这是我搭建的时候对照的视频链接[<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Eg41157tL/">教程]Hexo &amp; Github搭建自己的专属博客_哔哩哔哩_bilibili</a></p>
 <ul>
 <li><p>首先要安装</p>
-<p>和</p>
+<ul>
+<li><p>在Windows上使用Git，可以从Git官网直接<a target="_blank" rel="noopener" href="https://git-scm.com/downloads%EF%BC%8C%E7%84%B6%E5%90%8E%E6%8C%89%E9%BB%98%E8%AE%A4%E9%80%89%E9%A1%B9%E5%AE%89">https://git-scm.com/downloads，然后按默认选项安</a> 装即可。安装完成后，在开始菜单里找到“Git”-&gt;“Git Bash”，蹦出一个类似命令行窗口的东西，就 说明Git安装成功！</p>
+</li>
+<li><p>在Git中绑定Github账号，打开“Git Bash”，在命令框中依次输入两行命令：</p>
+</li>
+<li><pre><code class="powershell">  git config --global user.name “Your Name”
+  git config --global user.email email@example.com
+  # 其中Your Name和email@example.com替换成上面注册时的账户名和邮箱
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">和</span><br><span class="line"></span><br><span class="line">[NodeJs]:https://git-scm.com/downloads</span><br><span class="line"></span><br><span class="line">- 由于 Hexo 是基于 Node.js 驱动的一款博客框架，所以安装NodeJs https://nodejs.org/en/downl</span><br><span class="line"></span><br><span class="line">- 安装之后可以输入以下命令查看是否安装成功:</span><br><span class="line"></span><br><span class="line">	&gt; ```pow</span><br><span class="line">	&gt; git version</span><br><span class="line">	&gt; node -v</span><br><span class="line">	&gt; npm -v</span><br><span class="line">	&gt; </span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+<p>出现版本号则安装配置成功</p>
+<p>![image-20240126185511681](..&#x2F;..&#x2F;..&#x2F;Develop software&#x2F;Typora&#x2F;MyNote&#x2F;c++基础配套图片&#x2F;image-20240126185511681.png)</p>
 </li>
 </ul>
 <h2 id="SSH无法添加信任的主机列表"><a href="#SSH无法添加信任的主机列表" class="headerlink" title="!!!SSH无法添加信任的主机列表"></a>!!!SSH无法添加信任的主机列表</h2><blockquote>
@@ -231,13 +244,13 @@
 <blockquote>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh <span class="literal">-T</span> git@github.com</span><br><span class="line"></span><br><span class="line">&gt; Hi USERNAME! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.&#x27;</span></span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>如果不行,尝试一下命令:   ssh -T -p 443ssh:&#x2F;&#x2F;<a href="mailto:&#103;&#105;&#116;&#x40;&#115;&#x73;&#x68;&#x2e;&#x67;&#105;&#116;&#104;&#117;&#98;&#x2e;&#99;&#111;&#109;">&#103;&#105;&#116;&#x40;&#115;&#x73;&#x68;&#x2e;&#x67;&#105;&#116;&#104;&#117;&#98;&#x2e;&#99;&#111;&#109;</a>,这个可以按照提示建立许可连接</p>
+<p>如果不行,尝试一下命令:   ssh -T -p 443ssh:&#x2F;&#x2F;<a href="mailto:&#103;&#105;&#116;&#x40;&#x73;&#115;&#104;&#46;&#x67;&#105;&#x74;&#104;&#117;&#98;&#x2e;&#99;&#111;&#x6d;">&#103;&#105;&#116;&#x40;&#x73;&#115;&#104;&#46;&#x67;&#105;&#x74;&#104;&#117;&#98;&#x2e;&#99;&#111;&#x6d;</a>,这个可以按照提示建立许可连接</p>
 <blockquote>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh <span class="literal">-T</span> <span class="literal">-p</span> <span class="number">443</span> git@ssh.github.com</span><br><span class="line">&gt; Hi <span class="string">&#x27;你的id&#x27;</span>! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.&#x27;</span></span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>如果你能在端口 443 上通过 SSH 连接到 <code>git@ssh.github.com</code>，则可覆盖你的 SSH 设置来强制与 GitHub.com 的任何连接均通过该服务器和端口运行。</p>
 <p>到此为止,问题解决得差不多了</p>
-<p>在输入命令 git clone ssh:&#x2F;&#x2F;<a href="mailto:&#x67;&#105;&#116;&#64;&#115;&#115;&#x68;&#46;&#103;&#105;&#x74;&#104;&#x75;&#98;&#x2e;&#99;&#x6f;&#x6d;">&#x67;&#105;&#116;&#64;&#115;&#115;&#x68;&#46;&#103;&#105;&#x74;&#104;&#x75;&#98;&#x2e;&#99;&#x6f;&#x6d;</a>:443&#x2F;0zxm&#x2F;0zxm.github.io时就能够正常clone仓库, 但是每次都输入更长的url难免繁琐,所以可以在你生成密钥的文件夹内新建一个config文件,输入以下内容保存:</p>
+<p>在输入命令 git clone ssh:&#x2F;&#x2F;<a href="mailto:&#103;&#105;&#x74;&#64;&#x73;&#x73;&#104;&#x2e;&#x67;&#x69;&#x74;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#109;">&#103;&#105;&#x74;&#64;&#x73;&#x73;&#104;&#x2e;&#x67;&#x69;&#x74;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#109;</a>:443&#x2F;0zxm&#x2F;0zxm.github.io时就能够正常clone仓库, 但是每次都输入更长的url难免繁琐,所以可以在你生成密钥的文件夹内新建一个config文件,输入以下内容保存:</p>
 <blockquote>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">    Hostname ssh.github.com</span><br><span class="line">    Port 443</span><br><span class="line">    User git</span><br></pre></td></tr></table></figure>
 </blockquote>
