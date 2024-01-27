@@ -282,13 +282,13 @@
 <blockquote>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh <span class="literal">-T</span> git@github.com</span><br><span class="line"></span><br><span class="line">&gt; Hi USERNAME! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.&#x27;</span></span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>如果不行,尝试一下命令:   ssh -T -p 443ssh:&#x2F;&#x2F;<a href="mailto:&#103;&#105;&#x74;&#x40;&#x73;&#115;&#x68;&#46;&#x67;&#x69;&#x74;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#109;">&#103;&#105;&#x74;&#x40;&#x73;&#115;&#x68;&#46;&#x67;&#x69;&#x74;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#109;</a>,这个可以按照提示建立许可连接</p>
+<p>如果不行,尝试一下命令:   ssh -T -p 443ssh:&#x2F;&#x2F;<a href="mailto:&#x67;&#105;&#x74;&#64;&#115;&#x73;&#x68;&#46;&#x67;&#105;&#x74;&#104;&#117;&#98;&#46;&#99;&#x6f;&#x6d;">&#x67;&#105;&#x74;&#64;&#115;&#x73;&#x68;&#46;&#x67;&#105;&#x74;&#104;&#117;&#98;&#46;&#99;&#x6f;&#x6d;</a>,这个可以按照提示建立许可连接</p>
 <blockquote>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh <span class="literal">-T</span> <span class="literal">-p</span> <span class="number">443</span> git@ssh.github.com</span><br><span class="line">&gt; Hi <span class="string">&#x27;你的id&#x27;</span>! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.&#x27;</span></span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>如果你能在端口 443 上通过 SSH 连接到 <code>git@ssh.github.com</code>，则可覆盖你的 SSH 设置来强制与 GitHub.com 的任何连接均通过该服务器和端口运行。</p>
 <p>到此为止,问题解决得差不多了</p>
-<p>在输入命令 git clone ssh:&#x2F;&#x2F;<a href="mailto:&#x67;&#105;&#116;&#64;&#115;&#x73;&#x68;&#x2e;&#x67;&#x69;&#116;&#x68;&#117;&#98;&#x2e;&#x63;&#x6f;&#x6d;">&#x67;&#105;&#116;&#64;&#115;&#x73;&#x68;&#x2e;&#x67;&#x69;&#116;&#x68;&#117;&#98;&#x2e;&#x63;&#x6f;&#x6d;</a>:443&#x2F;0zxm&#x2F;0zxm.github.io时就能够正常clone仓库, 但是每次都输入更长的url难免繁琐,所以可以在你生成密钥的文件夹内新建一个config文件,输入以下内容保存:</p>
+<p>在输入命令 git clone ssh:&#x2F;&#x2F;<a href="mailto:&#103;&#x69;&#x74;&#64;&#115;&#x73;&#104;&#x2e;&#x67;&#x69;&#x74;&#x68;&#x75;&#98;&#46;&#x63;&#x6f;&#109;">&#103;&#x69;&#x74;&#64;&#115;&#x73;&#104;&#x2e;&#x67;&#x69;&#x74;&#x68;&#x75;&#98;&#46;&#x63;&#x6f;&#109;</a>:443&#x2F;0zxm&#x2F;0zxm.github.io时就能够正常clone仓库, 但是每次都输入更长的url难免繁琐,所以可以在你生成密钥的文件夹内新建一个config文件,输入以下内容保存:</p>
 <blockquote>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">    Hostname ssh.github.com</span><br><span class="line">    Port 443</span><br><span class="line">    User git</span><br></pre></td></tr></table></figure>
 </blockquote>
@@ -309,6 +309,17 @@
 <li>hexo sever 使用本地服务器构建网页 一般地址是localhost:4000&#x2F;</li>
 <li>hexo deploy 上传到github项目</li>
 </ul>
+<h4 id="清除空白categorys和tags"><a href="#清除空白categorys和tags" class="headerlink" title="清除空白categorys和tags"></a>清除空白categorys和tags</h4><p>在发布文章后，有时候会发现标签或分类的描述不够准确，需要修改tags或者categories的内容。</p>
+<p>但是，当某个标签被完全替代，没有文章使用这个标签之后，会发现在标签列表里还是会出现这个标签，点击进去却并没有内容，这非常影响使用体验。</p>
+<p>如何清除无用的标签索引呢，可以使用<code>hexo clean</code>命令。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hexo clean</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hexo d -g</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>命令<code>hexo s -g</code>执行中时，命令<code>hexo clean</code>会没有效果，需要先终止 hexo server服务</p>
+</blockquote>
+<h4 id="写带有图片的文章"><a href="#写带有图片的文章" class="headerlink" title="写带有图片的文章"></a>写带有图片的文章</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41907806/article/details/109064385">hexo博客中如何插入图片-CSDN博客</a></p>
+<p><img src="/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/image-20240127141305597.png" alt="image-20240127141305597"></p>
+<p>然后记得在hexo的source文件夹下找到该.md文件,删除每一个图片路径的文章名</p>
 
         </div>
 
@@ -363,7 +374,7 @@
                 <a class="prev" rel="prev" href="/2024/01/27/%E7%88%AC%E5%8F%96%E7%95%AA%E8%8C%84%E5%B0%8F%E8%AF%B4/">爬取番茄小说</a>
             
             
-            <a class="next" rel="next" href="/2024/01/26/page/">page</a>
+            <a class="next" rel="next" href="/2024/01/26/test01/">test01</a>
             
         </section>
 
