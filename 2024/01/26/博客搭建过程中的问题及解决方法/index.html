@@ -280,26 +280,30 @@
 <p>这是我搭建博客中遇到的最大的问题,一开始我以为是公钥添加问题,中途尝试了许多方法</p>
 <ol>
 <li>运行npm install 时，卡在sill idealTree buildDeps没有反应，内心OS:明明早就配过淘宝镜像源，果然没用<br>检查node和npm，发现版本不匹配，按官网匹配表，npm版本太高，于是升级node，还是不行,npm失灵<br>删除.npmrc<br>清理缓存npm cache clean –force</li>
+<li>都不行,最后排查才发现,忘记把github主机添加到本机ssh可信列表</li>
 </ol>
 </blockquote>
-<p>最终解决方法<a target="_blank" rel="noopener" href="https://docs.github.com/zh/authentication/troubleshooting-ssh/using-ssh-over-the-https-port">HTTPS 端口使用 SSH</a></p>
+<p>第一次使用要把github主机添加到本机ssh可信列表,</p>
+<p>但是添加的时候有可能会失败,这是官方文档中的原文</p>
+<p>“有时，防火墙会完全拒绝允许 SSH 连接。 如果无法选择使用<a target="_blank" rel="noopener" href="https://docs.github.com/zh/github/getting-started-with-github/caching-your-github-credentials-in-git">具有凭据缓存的 HTTPS 克隆</a>，可以尝试使用通过 HTTPS 端口建立的 SSH 连接克隆”</p>
+<p>那么怎么解决呢,对照官方文档就能解决,大致步骤如下,建议对照详细官方文档<br>最终解决方法<a target="_blank" rel="noopener" href="https://docs.github.com/zh/authentication/troubleshooting-ssh/using-ssh-over-the-https-port">HTTPS 端口使用 SSH</a></p>
 <p>1.在控制台输入以下命令查看是否能连接到github,如果回复为Hi xxxxx! 表示连接成功,已加入可信列表</p>
 <blockquote>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh <span class="literal">-T</span> git@github.com</span><br><span class="line"></span><br><span class="line">&gt; Hi USERNAME! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.&#x27;</span></span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>如果不行,尝试一下命令:   ssh -T -p 443ssh:&#x2F;&#x2F;<a href="mailto:&#x67;&#x69;&#116;&#64;&#115;&#115;&#104;&#46;&#x67;&#x69;&#116;&#x68;&#117;&#x62;&#x2e;&#99;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#64;&#115;&#115;&#104;&#46;&#x67;&#x69;&#116;&#x68;&#117;&#x62;&#x2e;&#99;&#x6f;&#x6d;</a>,这个可以按照提示建立许可连接</p>
+<p>如果不行,尝试一下命令:   ssh -T -p 443ssh:&#x2F;&#x2F;<a href="mailto:&#103;&#105;&#x74;&#x40;&#x73;&#x73;&#x68;&#x2e;&#103;&#105;&#x74;&#104;&#117;&#98;&#x2e;&#x63;&#111;&#x6d;">&#103;&#105;&#x74;&#x40;&#x73;&#x73;&#x68;&#x2e;&#103;&#105;&#x74;&#104;&#117;&#98;&#x2e;&#x63;&#111;&#x6d;</a>,这个可以按照提示建立许可连接</p>
 <blockquote>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh <span class="literal">-T</span> <span class="literal">-p</span> <span class="number">443</span> git@ssh.github.com</span><br><span class="line">&gt; Hi <span class="string">&#x27;你的id&#x27;</span>! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.&#x27;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh <span class="literal">-T</span> <span class="literal">-p</span> <span class="number">443</span> git@ssh.github.com</span><br><span class="line">&gt; Hi <span class="string">&#x27;你的id&#x27;</span>!<span class="string">&quot; You&#x27;ve successfully authenticated, but GitHub does not provide shell access.&quot;</span></span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>如果你能在端口 443 上通过 SSH 连接到 <code>git@ssh.github.com</code>，则可覆盖你的 SSH 设置来强制与 GitHub.com 的任何连接均通过该服务器和端口运行。</p>
 <p>到此为止,问题解决得差不多了</p>
-<p>在输入命令 git clone ssh:&#x2F;&#x2F;<a href="mailto:&#103;&#105;&#x74;&#64;&#x73;&#115;&#104;&#x2e;&#103;&#x69;&#116;&#104;&#x75;&#98;&#46;&#x63;&#111;&#109;">&#103;&#105;&#x74;&#64;&#x73;&#115;&#104;&#x2e;&#103;&#x69;&#116;&#104;&#x75;&#98;&#46;&#x63;&#111;&#109;</a>:443&#x2F;0zxm&#x2F;0zxm.github.io时就能够正常clone仓库, 但是每次都输入更长的url难免繁琐,所以可以在你生成密钥的文件夹内新建一个config文件,输入以下内容保存:</p>
+<p>在输入命令 git clone ssh:&#x2F;&#x2F;<a href="mailto:&#103;&#105;&#116;&#64;&#x73;&#115;&#104;&#46;&#x67;&#x69;&#x74;&#x68;&#x75;&#98;&#x2e;&#x63;&#111;&#109;">&#103;&#105;&#116;&#64;&#x73;&#115;&#104;&#46;&#x67;&#x69;&#x74;&#x68;&#x75;&#98;&#x2e;&#x63;&#111;&#109;</a>:443&#x2F;0zxm&#x2F;0zxm.github.io时就能够正常clone仓库, 但是每次都输入更长的url难免繁琐,所以可以在你生成密钥的文件夹内新建一个config文件,输入以下内容保存:</p>
 <blockquote>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line"> Hostname ssh.github.com</span><br><span class="line"> Port 443</span><br><span class="line"> User git</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>你可以通过再次连接到 GitHub.com 来测试这是否有效：</p>
 <blockquote>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh <span class="literal">-T</span> git@github.com</span><br><span class="line">&gt; Hi USERNAME! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not&#x27;</span></span><br><span class="line">&gt; provide shell access.</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh <span class="literal">-T</span> git@github.com</span><br><span class="line">&gt; Hi USERNAME!<span class="string">&quot; You&#x27;ve successfully authenticated, but GitHub does not&quot;</span></span><br><span class="line">&gt; provide shell access.</span><br></pre></td></tr></table></figure>
 </blockquote>
 <ul>
 <li><p>此时，本地和Github的工作做得差不了，是时候把它们两个链接起来了。你也能够查看官网的部署教程。</p>
