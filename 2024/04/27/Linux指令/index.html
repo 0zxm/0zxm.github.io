@@ -228,8 +228,7 @@
 <p><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/image-20240314232303614.png" alt="image-20240314232303614"></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">修改PS1环境变量---shell提示符样式</span><br><span class="line">PS1=&#x27;HAPPY: \u $ &#x27;</span><br><span class="line">\u是特殊参数,表示用户名</span><br></pre></td></tr></table></figure>
 
-<pre><code>![image-20240314232634341](image-20240314232634341.png)
-</code></pre>
+<p>​	<img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/image-20240314232634341.png" alt="image-20240314232634341"></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">添加当前目录(.)到PATH变量</span><br><span class="line">注意:PATH变量以冒号分割(:),修改PATH环境变量只对本次生效,想要永久生效,可以修改.profile文件</span><br><span class="line">PATH=$PATH:.</span><br></pre></td></tr></table></figure>
 
 <p><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/image-20240314232909211.png" alt="image-20240314232909211"></p>
@@ -277,7 +276,7 @@
 <p>  <img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/image-20240315000404594.png" alt="image-20240315000404594"></p>
 </li>
 <li><p>!!直接执行上条命令,!加编号执行history里的第几条记录</p>
-<p>  <img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/image-20240315000542358.png" alt="image-20240315000542358"></p>
+<p>  <img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/image-20240315000542358.png"></p>
 </li>
 <li><p><code>su</code> 和 <code>sudo</code>超级用户(管理员)<br><code>su</code> : 把身份切换到超级用户(su之后就切换到root用户,要求输入的是root用户口令)<br><code>su 用户名</code> : 切换到其他用户<br><code>sudo</code> : 以超级用户的身份执行某条命令(sudo要求输入口令时,输入的是当前用户的口令)<br>值得注意的是,只有被指定的用户才能使用sudo命令,在&#x2F;etc&#x2F;sudoers文件里的才被允许<br><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/sudoers.png" alt="alt text"></p>
 </li>
@@ -348,27 +347,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="10-输出重定向"><a href="#10-输出重定向" class="headerlink" title="10.输出重定向"></a>10.输出重定向</h3><p>重定向也称为输出重定向，把在终端执行命令的结果保存到目标文件。</p>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>&gt;</td>
-<td>如果文件存在，会覆盖原有文件内容，相当于文件操作中的’w’模式</td>
-</tr>
-<tr>
-<td>&gt;&gt;</td>
-<td>如果文件存在，会追加写入文件末尾，相当于文件操作中的’a’模式</td>
-</tr>
-</tbody></table>
-<p><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/%E9%87%8D%E5%AE%9A%E5%90%91.png" alt="alt text"></p>
-<h3 id="11-管道命令"><a href="#11-管道命令" class="headerlink" title="11.管道命令"></a>11.管道命令</h3><p>管道<code>|</code>相当于一个容器,可以把命令执行的结果存储到里面,在释放出来</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tree /bin/ | more</span><br></pre></td></tr></table></figure>
-<h3 id="12-链接命令"><a href="#12-链接命令" class="headerlink" title="12.链接命令"></a>12.链接命令</h3><ol>
+<h3 id="10-链接命令"><a href="#10-链接命令" class="headerlink" title="10.链接命令"></a>10.链接命令</h3><ol>
 <li>软链接<br>类似于Windows下的快捷方式，当一个源文件的目录层级比较深，我们想要方便使用它可以给源文件创建一个软链接,方便文件操作<br><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/link.png" alt="alt text"></li>
 </ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s 源文件路径 软链接名字</span><br></pre></td></tr></table></figure>
@@ -384,7 +363,7 @@
 <td>创建软链接</td>
 </tr>
 </tbody></table>
-<h3 id="13-解压缩命令"><a href="#13-解压缩命令" class="headerlink" title="13.解压缩命令"></a>13.解压缩命令</h3><ul>
+<h3 id="11-解压缩命令"><a href="#11-解压缩命令" class="headerlink" title="11.解压缩命令"></a>11.解压缩命令</h3><ul>
 <li>.gz和.bz2的压缩包需要使用<code>tar</code>命令来压缩和解压缩</li>
 <li>不加z参数，就没有压缩，只是打包成一个文件</li>
 </ul>
@@ -443,7 +422,7 @@
 <td>解压缩到指定目录</td>
 </tr>
 </tbody></table>
-<h3 id="14-关机和重启命令的使用"><a href="#14-关机和重启命令的使用" class="headerlink" title="14.关机和重启命令的使用"></a>14.关机和重启命令的使用</h3><table>
+<h3 id="12-关机和重启命令的使用"><a href="#12-关机和重启命令的使用" class="headerlink" title="12.关机和重启命令的使用"></a>12.关机和重启命令的使用</h3><table>
 <thead>
 <tr>
 <th align="center">命令</th>
@@ -459,8 +438,8 @@
 <td align="center">重启。这个命令会重新启动系统，相当于按下计算机的重启按钮。</td>
 </tr>
 </tbody></table>
-<h3 id="15-远程登陆，远程拷贝命令"><a href="#15-远程登陆，远程拷贝命令" class="headerlink" title="15.远程登陆，远程拷贝命令"></a>15.远程登陆，远程拷贝命令</h3><h4 id="15-1-ssh命令的使用"><a href="#15-1-ssh命令的使用" class="headerlink" title="15.1 ssh命令的使用"></a>15.1 ssh命令的使用</h4><p>安装步骤:<br>① 假如Ubuntu作为服务端,需要安装ssh服务端软件,执行命令: sudo apt-get install openssh-server<br>② 客户端电脑如果是macOS系统则不需要安装ssh客户端软件，默认已经安装过了，直接可以使用ssh命令<br>③ 客户端电脑如果是Windows系统则需要安装OpenSSH for Windows这个软件</p>
-<h4 id="15-2-scp命令的使用"><a href="#15-2-scp命令的使用" class="headerlink" title="15.2 scp命令的使用"></a>15.2 scp命令的使用</h4><p><code>scp</code> 是基于 SSH 进行安全的远程文件拷贝的命令，也就是说需要保证服务端和客户端电脑安装了相应的 SSH 软件。</p>
+<h3 id="13-远程登陆，远程拷贝命令"><a href="#13-远程登陆，远程拷贝命令" class="headerlink" title="13.远程登陆，远程拷贝命令"></a>13.远程登陆，远程拷贝命令</h3><h4 id="13-1-ssh命令的使用"><a href="#13-1-ssh命令的使用" class="headerlink" title="13.1 ssh命令的使用"></a>13.1 ssh命令的使用</h4><p>安装步骤:<br>① 假如Ubuntu作为服务端,需要安装ssh服务端软件,执行命令: sudo apt-get install openssh-server<br>② 客户端电脑如果是macOS系统则不需要安装ssh客户端软件，默认已经安装过了，直接可以使用ssh命令<br>③ 客户端电脑如果是Windows系统则需要安装OpenSSH for Windows这个软件</p>
+<h4 id="13-2-scp命令的使用"><a href="#13-2-scp命令的使用" class="headerlink" title="13.2 scp命令的使用"></a>13.2 scp命令的使用</h4><p><code>scp</code> 是基于 SSH 进行安全的远程文件拷贝的命令，也就是说需要保证服务端和客户端电脑安装了相应的 SSH 软件。</p>
 <p><strong>scp命令格式:</strong></p>
 <ol>
 <li><p>远程拷贝文件:</p>
@@ -678,7 +657,7 @@
 </ol>
 </li>
 </ul>
-<h3 id="比较两个文本文件"><a href="#比较两个文本文件" class="headerlink" title="比较两个文本文件"></a>比较两个文本文件</h3><ul>
+<h4 id="比较两个文本文件"><a href="#比较两个文本文件" class="headerlink" title="比较两个文本文件"></a>比较两个文本文件</h4><ul>
 <li><code>diff</code>命令<br>diff [options] [file1] [file2]</li>
 </ul>
 <h3 id="查找文件命令"><a href="#查找文件命令" class="headerlink" title="查找文件命令"></a>查找文件命令</h3><h4 id="普通文件"><a href="#普通文件" class="headerlink" title="普通文件"></a>普通文件</h4><ul>
@@ -799,15 +778,59 @@
 </thead>
 <tbody><tr>
 <td>^</td>
-<td>以指定字符串开头</td>
+<td>(行)以指定字符开头</td>
 </tr>
 <tr>
 <td>$</td>
-<td>以指定字符串结尾</td>
+<td>(行)以指定字符结尾</td>
 </tr>
 <tr>
 <td>.</td>
 <td>匹配任意一个非换行符的字符</td>
+</tr>
+<tr>
+<td>*</td>
+<td>代表前一个字符可以出现一次或者任意多次</td>
+</tr>
+<tr>
+<td>[]</td>
+<td>代表集合的意思,eg. [Hh]ello</td>
+</tr>
+<tr>
+<td><code>[^]</code></td>
+<td>方括号里上箭头表示取反,匹配除了括号里的其他所有字符</td>
+</tr>
+<tr>
+<td><code>\&lt;</code></td>
+<td>表示一个单词的开头,或者可以用grep的参数<code>-w</code></td>
+</tr>
+<tr>
+<td><code>\&gt;</code></td>
+<td>表示一个单词的结束</td>
+</tr>
+<tr>
+<td><code>\&#123;a,b\&#125;</code></td>
+<td>表示前一个字符出现a到b次,a为0表示至多出现b次,b不填表示至少出现a次以上</td>
+</tr>
+<tr>
+<td><code>| </code></td>
+<td>表示或,要用grep的升级版egrep</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>出现一次或者不出现</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>表示前一个字符至少出现一次</td>
+</tr>
+<tr>
+<td><code>()</code></td>
+<td>Grouping</td>
+</tr>
+<tr>
+<td><code>\</code></td>
+<td>转义斜杠</td>
 </tr>
 </tbody></table>
 <p><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/re.png" alt="alt text"></p>
@@ -815,6 +838,68 @@
 <ul>
 <li>通过 grep 命令可以在指定文件中查找指定搜索内容，这里扩展一下，grep 还可以查找管道中的内容<br>比如:ls&#x2F;| grep ‘lib’</li>
 <li>在使用 grep 命令时，还可以省略查找内容的引号比如:ls&#x2F;| grep lib , grep hello 1.txt</li>
+</ul>
+<h4 id="对文本批量修改"><a href="#对文本批量修改" class="headerlink" title="对文本批量修改"></a>对文本批量修改</h4><ul>
+<li><p><code>sed</code>流处理<br> 对文件流水线处理,读一行处理一行sed ‘[address]command’ filename(s)</p>
+<ul>
+<li>根据行号选中行处理<ol>
+<li><code>d</code> 删除操作对1到3行进行删除操作<code>sed &#39;1,3d&#39; filename</code></li>
+</ol>
+</li>
+<li>根据正则表达式选中包含匹配项的行处理,<code>sed &#39;/正则表达式/&#39; file</code><ol>
+<li><code>s</code>替换操作 对计算机系CS的学生替换成EECS<code>sed &#39;s/&lt;CS/EECS/&#39; file</code></li>
+<li><code>s///g</code>全局替换操作 把数字替换成*屏蔽成绩<code>sed &#39;s/[0-9]/*/g&#39; file</code></li>
+<li><code>p</code>打印前三行<code>sed &#39;1,3p&#39; file</code></li>
+<li><code>a</code>在匹配行后加一行内容<code>sed &#39;/\&lt;CS/a =====High Salary=====&#39; file</code></li>
+<li><code>i</code>在匹配后前加一行内容<code>sed &#39;/\&lt;CS/i =====High Salary=====&#39; file</code></li>
+<li><code>!</code>否定</li>
+</ol>
+</li>
+<li><code>-n</code>参数 表示只执行操作,不默认输出缓冲区</li>
+<li><code>-i</code>参数（或 <code>--in-place</code>）是一个非常重要的选项，它允许你直接修改输入文件，而不是仅仅将结果发送到标准输出。</li>
+</ul>
+<ul>
+<li><code>sed</code>格式<br>  <code>sed &#39;/正则表达式/s#原文#替换文本#&#39;</code><br>  <code>sed &#39;/^[[:space:]]*$/d&#39; output_sort.txt</code>严格删除所有空行<code>[[:space:]]</code>这是sed中的一个字符类，表示空白字符。它匹配任何空白字符，如空格、制表符、换行符、回车符等</li>
+</ul>
+</li>
+<li><p><code>awk</code>命令</p>
+<ul>
+<li><code>awk</code>命令里的正则表达式格式为<code>awk &#39;/re/ filename</code><br> <img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/awk01.png" alt="alt text"></li>
+<li>在awk命令中,美元符号表示字段的意思<code>$</code><br> <img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/awk_$.png" alt="alt text"></li>
+<li><code>F</code>参数指定分割符<ul>
+<li>默认情况下，awk 使用空格或制表符作为字段分隔符</li>
+<li>如果你有一个以逗号, 分隔的文件，并希望使用 awk 来处理它，你可以这样指定分隔符:<code>awk -F, &#39;&#123;print $1, $2&#125;&#39; filename</code></li>
+<li>如果有都多个分隔符,用<code>[]</code>括起来,例如<code>-F&#39;[ab]&#39;</code></li>
+</ul>
+</li>
+<li><code>$1~</code>字段匹配<ul>
+<li><code>awk &#39;$2~/^D/&#123;print $1,$2&#125;&#39;</code>表示对字段2进行匹配,如果是以D开头的,就打印字段1,字段2</li>
+<li><code>awk &#39;$2!~/^D/&#123;print $1,$2&#125;&#39;</code>表示对字段2不进行匹配以D开头的,就打印字段1,字段2</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>tr</code>命令(映射替换)</p>
+<ul>
+<li>tr 被映射域 映射域(可用区间表示)<br> <img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/tr.png" alt="alt text"><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">awk &#x27;/\&lt;CS/&#123;print $1,$2&#125;&#x27; /tmp/student_record</span><br><span class="line"></span><br><span class="line">awk &#x27;$2~/^D/&#123;print $1,$2&#125;&#x27;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="variable">$2</span>~/^D/：这是一个条件，它检查第二列（由字段分隔符分隔，默认为空格或制表符）是否以字母 <span class="string">&quot;D&quot;</span> 开头,~ 是 awk 中用于模式匹配的操作符</span></span><br><span class="line"></span><br><span class="line">awk -F: &#x27;$2 !~ /916/ &#123;print $1&#125;&#x27; /tmp/donors</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">这条命令将根据冒号分隔符(:)来解析文件中的内容，并打印出第二个字段中不包含916区号的人的名字。</span></span><br><span class="line"></span><br><span class="line">awk &#x27;&#123;print NR &quot;: &quot; $0&#125;&#x27; /tmp/donors</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">请将<span class="string">&quot;文件名&quot;</span>替换为您要处理的文件名。这条命令将打印出每条记录的行号（记录号）后面跟着记录的内容。记录号由NR内置变量提供，表示当前处理的记录的序号。</span></span><br><span class="line"></span><br><span class="line"> awk  -F&#x27;[: ]&#x27; &#x27;$7 &lt;= 85 &#123;print $1,$2,$4&#125;&#x27; /tmp/donors</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="文件解压缩"><a href="#文件解压缩" class="headerlink" title="文件解压缩"></a>文件解压缩</h3><ul>
+<li><p><code>gzip</code> 只能保留压缩或者未压缩二选一</p>
+<ul>
+<li>压缩命令格式<code>gzip filename</code></li>
+<li>解压格式<code>gzip -d ziped_filename</code></li>
+</ul>
+</li>
+<li><p><code>bzip2</code> .bz2后缀</p>
+<ul>
+<li>压缩命令格式<code>bzip2 filename</code></li>
+<li>解压格式<code>bzip2 -d ziped_filename</code></li>
+</ul>
+</li>
+<li><p><code>Linux</code>下文本文件和<code>Windows</code>下文本文件不同:<br> <code>Windows</code>下文本文件会每行包含一个<code>\r</code><br> <img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/linuxtxt_dif_windows.png" alt="alt text"></p>
+</li>
 </ul>
 <h2 id="第七章-vim的使用"><a href="#第七章-vim的使用" class="headerlink" title="第七章 vim的使用"></a>第七章 vim的使用</h2><h3 id="7-1-vim的三种模式"><a href="#7-1-vim的三种模式" class="headerlink" title="7.1 vim的三种模式"></a>7.1 vim的三种模式</h3><ol>
 <li>命令模式<br>命令模式下按i进入编辑模式（插入模式）</li>
@@ -850,7 +935,7 @@
 </tr>
 <tr>
 <td>ctrl+r</td>
-<td>重做</td>
+<td>重做,反撤销</td>
 </tr>
 <tr>
 <td>g</td>
@@ -869,6 +954,10 @@
 <td>向下查找关键词</td>
 </tr>
 <tr>
+<td>:&#x2F;搜索的内容</td>
+<td>搜索指定内容</td>
+</tr>
+<tr>
 <td>?关键词</td>
 <td>向上查找关键词</td>
 </tr>
@@ -885,6 +974,10 @@
 <td>全局替换</td>
 </tr>
 <tr>
+<td>:开始行数,结束行数s&#x2F;原字符串&#x2F;新字符串&#x2F;g</td>
+<td>局部替换</td>
+</tr>
+<tr>
 <td>快捷键</td>
 <td>功能</td>
 </tr>
@@ -894,7 +987,7 @@
 </tr>
 <tr>
 <td><code>.</code></td>
-<td>跳至下一个突变作</td>
+<td>重复上一次命令操作</td>
 </tr>
 <tr>
 <td><code>&gt;</code></td>
@@ -917,7 +1010,72 @@
 <td>上传一屏</td>
 </tr>
 </tbody></table>
-
+<h2 id="第九章-重定向和管道"><a href="#第九章-重定向和管道" class="headerlink" title="第九章 重定向和管道"></a>第九章 重定向和管道</h2><h3 id="1-文件描述符表"><a href="#1-文件描述符表" class="headerlink" title="1.文件描述符表"></a>1.文件描述符表</h3><p><strong>文件描述符表</strong>（File Descriptor Table）是操作系统中用于管理打开的文件、套接字、管道等文件类型对象的一种数据结构。在Unix和类Unix系统（如Linux）中，每一个进程都有一个与之关联的文件描述符表。</p>
+<ol>
+<li><strong>文件描述符</strong>：这是一个非负整数，用于在进程中唯一地标识一个打开的文件或套接字。例如，当你使用<code>open()</code>函数打开一个文件时，系统会返回一个文件描述符。</li>
+<li><strong>文件描述符表</strong>：这个表是一个数组，其索引是文件描述符，数组的元素是指向打开文件的指针（在更底层，这通常是一个指向文件表项的指针）。</li>
+<li><strong>文件表</strong>：每个打开的文件在内核中都有一个对应的文件表项（也称为v-node或inode）。这个表项包含了文件的详细信息，如文件的大小、访问权限、偏移量等。</li>
+<li><strong>关系</strong>：文件描述符表是进程级别的，而文件表是系统级别的。一个文件表项可以被多个进程共享（通过不同的文件描述符），但每个进程都有自己的文件描述符表。</li>
+<li><strong>操作</strong>：当进程执行如<code>read()</code>、<code>write()</code>等系统调用时，它会使用文件描述符作为参数。系统会根据文件描述符在文件描述符表中查找对应的文件表项，并执行相应的操作。</li>
+<li><strong>关闭文件</strong>：当进程使用<code>close()</code>系统调用关闭一个文件时，它实际上是在文件描述符表中删除对应的条目，而不是删除文件表项。只有当所有引用该文件的进程都关闭了该文件时，文件表项才会被释放。</li>
+</ol>
+<p><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/file_desc_specl.png" alt="alt text"></p>
+<ul>
+<li>有三个特殊的文件描述符,是系统自动打开的<ol>
+<li>标准输入描述符<code>stdin</code> 0</li>
+<li>标准输出描述符<code>stdout</code> 1</li>
+<li>标准错误输出描述符<code>stderr</code> 2</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-重定向"><a href="#2-重定向" class="headerlink" title="2.重定向"></a>2.重定向</h3><h4 id="2-1标准输出重定向"><a href="#2-1标准输出重定向" class="headerlink" title="2.1标准输出重定向"></a>2.1标准输出重定向</h4><ul>
+<li>格式: <code>command &lt; input_file</code></li>
+<li>例子 把&#x2F;tmp&#x2F;studnet_record 里的所有小写字母变成大写<br><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/input_rediect.png" alt="alt text"></li>
+</ul>
+<h4 id="2-2标准输出重定向"><a href="#2-2标准输出重定向" class="headerlink" title="2.2标准输出重定向"></a>2.2标准输出重定向</h4><p>重定向也称为输出重定向，把在终端执行命令的结果保存到目标文件。</p>
+<ul>
+<li>格式: <code>command &gt; output_file</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&gt;</td>
+<td>如果文件存在，会覆盖原有文件内容，相当于文件操作中的’w’模式</td>
+</tr>
+<tr>
+<td>&gt;&gt;</td>
+<td>如果文件存在，会追加写入文件末尾，相当于文件操作中的’a’模式</td>
+</tr>
+</tbody></table>
+<p><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/%E9%87%8D%E5%AE%9A%E5%90%91.png" alt="alt text"></p>
+<ul>
+<li>可以使用输出重定向合并文件<ol>
+<li>按列合并 cat filea fileb &gt; newfile</li>
+<li>按行合并 paste filea fileb &gt; newfile</li>
+</ol>
+</li>
+</ul>
+<h4 id="2-2标准错误输出重定向"><a href="#2-2标准错误输出重定向" class="headerlink" title="2.2标准错误输出重定向"></a>2.2标准错误输出重定向</h4><ul>
+<li>格式: <code>2 &gt; output_file</code><br> <code>2</code>表示标准错误输出</li>
+</ul>
+<p><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/stderr.png" alt="alt text"></p>
+<ul>
+<li><code>/dev/null</code> 空设备,一般不关心的错误输出就丢到空设备文件中</li>
+</ul>
+<h4 id="多种重定向结合"><a href="#多种重定向结合" class="headerlink" title="多种重定向结合"></a>多种重定向结合</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">find /tmp -name &quot;*.cpp&quot; 2&gt;/dev/null &gt;result </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">即丢弃结果也保存正常输出文件</span></span><br><span class="line"></span><br><span class="line">find /tmp -name &quot;*.cpp&quot; &gt;&amp;result </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">把标准输出和标准错误输出都保存到文件result中</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Redirecting stdin and stdout in OneCommand<br> Command <input-file > out-file</p>
+</li>
+<li><p>Redirecting stdout and stderr in OneCommand<br> Command &gt;out-file 2&gt;err-file<br> Command &gt;out-file 2&gt;&amp;1<br> Command &gt;&amp; out-file</p>
+</li>
+</ul>
+<h3 id="11-管道命令"><a href="#11-管道命令" class="headerlink" title="11.管道命令"></a>11.管道命令</h3><p>管道<code>|</code>相当于一个容器,可以把命令执行的结果存储到里面,在释放出来</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tree /bin/ | more</span><br></pre></td></tr></table></figure>
         </div>
 
         
