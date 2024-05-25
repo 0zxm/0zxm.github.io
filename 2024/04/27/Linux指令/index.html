@@ -214,7 +214,8 @@
         </header>
 
         <div class="post-content">
-            <h1 id="Linux学习"><a href="#Linux学习" class="headerlink" title="Linux学习"></a>Linux学习</h1><h2 id="第一章-linux基本命令"><a href="#第一章-linux基本命令" class="headerlink" title="第一章 linux基本命令"></a>第一章 linux基本命令</h2><h3 id="1-连接到学校主机10-188-2-251的帐号密码"><a href="#1-连接到学校主机10-188-2-251的帐号密码" class="headerlink" title="1.连接到学校主机10.188.2.251的帐号密码"></a>1.连接到学校主机10.188.2.251的帐号密码</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">账号:s223174</span><br><span class="line">密码:welcome</span><br></pre></td></tr></table></figure>
+            <h1 id="Linux学习"><a href="#Linux学习" class="headerlink" title="Linux学习"></a>Linux学习</h1><h2 id="第一章-linux基本命令"><a href="#第一章-linux基本命令" class="headerlink" title="第一章 linux基本命令"></a>第一章 linux基本命令</h2><h3 id="期末考试方式"><a href="#期末考试方式" class="headerlink" title="期末考试方式"></a>期末考试方式</h3><p>使用<code>exam</code>命令,输入数字选择选项或题目,答案默认保存,若想修改之前的答案,输入对应题号就行</p>
+<h3 id="1-连接到学校主机10-188-2-251的帐号密码"><a href="#1-连接到学校主机10-188-2-251的帐号密码" class="headerlink" title="1.连接到学校主机10.188.2.251的帐号密码"></a>1.连接到学校主机10.188.2.251的帐号密码</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">账号:s223174</span><br><span class="line">密码:welcome</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-nano指令操作文件"><a href="#2-nano指令操作文件" class="headerlink" title="2.nano指令操作文件"></a>2.nano指令操作文件</h3><p>查看和编辑文件</p>
 <h3 id="3-环境变量"><a href="#3-环境变量" class="headerlink" title="3.环境变量"></a>3.环境变量</h3><ol>
@@ -269,6 +270,9 @@
 </li>
 <li><p>ls指令(参数 -l等)</p>
 <p>  例: ls -l hello</p>
+<ul>
+<li><code>-i</code>参数,显示更详细信息</li>
+</ul>
 <p>  <img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/image-20240314234557355.png" alt="image-20240314234557355"></p>
 </li>
 <li><p>history命令</p>
@@ -539,7 +543,7 @@
 <li><code>mkdir</code>命令  创建目录<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p dira/dirb</span><br><span class="line">参数p表示创建路径上的所有目录</span><br></pre></td></tr></table></figure></li>
 <li><code>rmdir</code>命令  只能删除空目录<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir dira</span><br><span class="line">rmdir dira</span><br></pre></td></tr></table></figure></li>
 <li><code>ls</code>命令 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls -a 目录或文件名</span><br><span class="line">参数a表示显示出所有以.开头的隐藏文件</span><br><span class="line">ls -l 目录或文件名</span><br><span class="line">参数p表示以列表的形式列出详细信息</span><br></pre></td></tr></table></figure>
-<img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/ls-l.png" alt="alt text"><br>第一个字段第一个字符表示文件类型,<code>-</code>表示普通文件<br>第二个字段: 链接数<br>第三个字段:所属用户<br>第四个字段:所属组<br>第五个字段:大小(以字节为单位)<br>第六个字段:文件最后修改时间<br>第七个字段:文件名<br><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/Determining_File_Attributes.png" alt="alt text"></li>
+<img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/ls-l.png" alt="alt text"><br>第一个字段第一个字符表示文件类型,<code>-</code>表示普通文件<br>第二个字段: 链接数,有多少个条目指向了这个文件的索引节点<br>第三个字段:所属用户<br>第四个字段:所属组<br>第五个字段:大小(以字节为单位)<br>第六个字段:文件最后修改时间<br>第七个字段:文件名<br><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/Determining_File_Attributes.png" alt="alt text"></li>
 <li><code>touch</code>命令  创建文件或修改文件最后修改时间<br>如果文件不存在,则创建文件,否则修改最后修改时间</li>
 <li><code>rm</code>命令  删除文件或目录<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rm -i file1</span><br><span class="line">参数i表示交互式的</span><br><span class="line">rm -rf dirb</span><br><span class="line">参数r表示递归删除子目录在删除所有文件</span><br><span class="line">参数f表示强制删除</span><br></pre></td></tr></table></figure></li>
 <li><code>mv</code>命令  移动文件或者文件重命名</li>
@@ -624,6 +628,7 @@
 <h2 id="第六章-File-Processing"><a href="#第六章-File-Processing" class="headerlink" title="第六章 File Processing"></a>第六章 File Processing</h2><h3 id="view-complete-file"><a href="#view-complete-file" class="headerlink" title="view complete file"></a>view complete file</h3><h4 id="显示文件全部内容"><a href="#显示文件全部内容" class="headerlink" title="显示文件全部内容"></a>显示文件全部内容</h4><ul>
 <li><code>cat</code>命令 <ol>
 <li>参数<code>n</code>: 显示行号</li>
+<li><code>cat</code>命令不加文件时,默认从标准输入中读取数据(等待键盘输入)</li>
 </ol>
 </li>
 <li><code>nl</code>命令</li>
@@ -642,7 +647,7 @@
 </ul>
 <h4 id="Viewing-the-head-or-tail-of-a-file"><a href="#Viewing-the-head-or-tail-of-a-file" class="headerlink" title="Viewing the head or tail of a file"></a>Viewing the head or tail of a file</h4><ul>
 <li><code>head</code>默认显示文件前五行<ol>
-<li>参数<code>-5</code>表示显示文件开头前5行,数字可任意改</li>
+<li>参数<code>-n5</code>表示显示文件开头前5行,数字可任意改,<code>n</code>可以不写</li>
 </ol>
 </li>
 <li><code>tail</code>默认显示文件最后五行<ol>
@@ -700,7 +705,7 @@
 <li><code>uniq</code>命令<br>uniq命令只能除去中间没有其他行的重复行</li>
 <li>参数<ol>
 <li><code>-c</code> 统计连续重复出现的次数</li>
-<li><code>-d</code> 显示重复的行\</li>
+<li><code>-d</code> 显示重复的行</li>
 <li><code>uniq 源文件名a 文件名b</code>表示把去重结果输出到文件中<br><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/uniq.png" alt="alt text"></li>
 </ol>
 </li>
@@ -722,7 +727,7 @@
 <li>cut -flist [-dchar][-s][file-list]</li>
 <li>参数<ul>
 <li><code>-f参数1,参数2...</code>  表示切割出第（参数）列字段</li>
-<li><code>-d&quot;分隔符&quot;</code> <code>cat</code>命令默认使用<code>TAB制表符</code>来作为分隔符，加<code>-d</code>参数可以修改分隔符<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cut -d&quot;:&quot; -f2 /etc/passwd | head -3</span><br></pre></td></tr></table></figure></li>
+<li><code>-d&quot;分隔符&quot;</code> <code>cut</code>命令默认使用<code>TAB制表符</code>来作为分隔符，加<code>-d</code>参数可以修改分隔符<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cut -d&quot;:&quot; -f2 /etc/passwd | head -3</span><br></pre></td></tr></table></figure></li>
 <li><code>-c参数1,参数2</code> 表示切割出第（参数）列字符</li>
 </ul>
 </li>
@@ -864,7 +869,7 @@
 </li>
 <li><p><code>awk</code>命令</p>
 <ul>
-<li><code>awk</code>命令里的正则表达式格式为<code>awk &#39;/re/ filename</code><br> <img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/awk01.png" alt="alt text"></li>
+<li><code>awk</code>命令里的正则表达式格式为<code>awk &#39;/re/&#39; filename</code><br> <img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/awk01.png" alt="alt text"></li>
 <li>在awk命令中,美元符号表示字段的意思<code>$</code><br> <img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/awk_$.png" alt="alt text"></li>
 <li><code>F</code>参数指定分割符<ul>
 <li>默认情况下，awk 使用空格或制表符作为字段分隔符</li>
@@ -1010,6 +1015,17 @@
 <td>上传一屏</td>
 </tr>
 </tbody></table>
+<h2 id="第八章-File-Share"><a href="#第八章-File-Share" class="headerlink" title="第八章 File Share"></a>第八章 File Share</h2><h3 id="硬链接"><a href="#硬链接" class="headerlink" title="硬链接"></a>硬链接</h3><ul>
+<li><p><code>ln 源文件名  链接文件名</code><br> 修改链接文件的内容,原文件也会改变</p>
+</li>
+<li><p>不能跨文件系统(设备)创建链接,也不能对目录创建硬链接</p>
+</li>
+<li><p>创建硬链接文件,链接文件与原文件分配同样的索引节点号(文件系统)</p>
+</li>
+</ul>
+<h3 id="软链接"><a href="#软链接" class="headerlink" title="软链接"></a>软链接</h3><ul>
+<li><code>ln -s 源文件名  链接文件名</code><br> 分配<strong>不同于源文件的索引节点</strong>,当访问链接文件时,先去根据索引节点号找到链接文件所在硬盘位置,访问<strong>链接文件内容(源文件路径信息等)<strong>找到源文件,在根据源文件的文件名和索引节点号找到源文件索引节点,从而找到</strong>源文件路径,对源文件进行访问</strong>。<code>要访问两次硬盘</code></li>
+</ul>
 <h2 id="第九章-重定向和管道"><a href="#第九章-重定向和管道" class="headerlink" title="第九章 重定向和管道"></a>第九章 重定向和管道</h2><h3 id="1-文件描述符表"><a href="#1-文件描述符表" class="headerlink" title="1.文件描述符表"></a>1.文件描述符表</h3><p><strong>文件描述符表</strong>（File Descriptor Table）是操作系统中用于管理打开的文件、套接字、管道等文件类型对象的一种数据结构。在Unix和类Unix系统（如Linux）中，每一个进程都有一个与之关联的文件描述符表。</p>
 <ol>
 <li><strong>文件描述符</strong>：这是一个非负整数，用于在进程中唯一地标识一个打开的文件或套接字。例如，当你使用<code>open()</code>函数打开一个文件时，系统会返回一个文件描述符。</li>
@@ -1062,6 +1078,7 @@
 </ul>
 <h4 id="2-2标准错误输出重定向"><a href="#2-2标准错误输出重定向" class="headerlink" title="2.2标准错误输出重定向"></a>2.2标准错误输出重定向</h4><ul>
 <li>格式: <code>2 &gt; output_file</code><br> <code>2</code>表示标准错误输出</li>
+<li>使用pipe出现错误输出时,<code>2&gt;/dev/null</code>放在出现错误命令的后面</li>
 </ul>
 <p><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/stderr.png" alt="alt text"></p>
 <ul>
@@ -1074,8 +1091,36 @@
 <li><p>Redirecting stdout and stderr in OneCommand<br> Command &gt;out-file 2&gt;err-file<br> Command &gt;out-file 2&gt;&amp;1<br> Command &gt;&amp; out-file</p>
 </li>
 </ul>
-<h3 id="11-管道命令"><a href="#11-管道命令" class="headerlink" title="11.管道命令"></a>11.管道命令</h3><p>管道<code>|</code>相当于一个容器,可以把命令执行的结果存储到里面,在释放出来</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tree /bin/ | more</span><br></pre></td></tr></table></figure>
+<h3 id="进程间通信的方式"><a href="#进程间通信的方式" class="headerlink" title="进程间通信的方式"></a>进程间通信的方式</h3><ul>
+<li>匿名管道：是一种半双工的通信方式，只能在有亲缘关系的进程之间使用。管道可以实现在一个进程中生成输出，而在另一个进程中读取该输出</li>
+<li>命名管道：是一种有名的FIFO文件，在文件系统中以文件形式存在，可以在不相关的进程之间进行通信</li>
+<li>消息队列：是一种进程间通信的方式，一方发送消息到队列，而另一方则从队列中接收消息</li>
+<li>信号量：用于进程间的同步与互斥，可以实现进程对临界资源的访问控制</li>
+<li>信号：是一种异步的通知机制，用于通知进程发生了某种事件，比如接收到了某种信号或者错误</li>
+<li>共享内存：是一种高效的进程间通信方式，多个进程可以共享同一块内存区域，以实现数据的共享</li>
+<li>socket：是一种网络编程的通信方式，通过网络套接字实现不同主机的进程间通信</li>
+</ul>
+<h3 id="KISS原则"><a href="#KISS原则" class="headerlink" title="KISS原则"></a><code>KISS</code>原则</h3><p>Linux设计时,遵循<code>KISS(Keep It Simple Stupid)</code>原则</p>
+<h3 id="匿名-管道命令"><a href="#匿名-管道命令" class="headerlink" title="(匿名)管道命令"></a>(匿名)管道命令</h3><p>管道<code>|</code>相当于一个容器,可以把命令执行的结果存储到里面,在释放出来</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tree /bin/ | more</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">统计当前登陆主机人数</span></span><br><span class="line">who | wc -l </span><br><span class="line"></span><br><span class="line">du /tmp/* 2&gt; /dev/null | sort -n -k1 | tail -3| awk &#x27;&#123;print$2&#125;&#x27;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>tee</code>命令<br> 接收上一条命令的输出,拷贝保存到一个文件中,并把输出传入下一个管道命令的输入<br> <img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/tee.png" alt="alt text"></li>
+</ul>
+<h3 id="命名管道FIFOs"><a href="#命名管道FIFOs" class="headerlink" title="命名管道FIFOs"></a>命名管道FIFOs</h3><ul>
+<li><p>FIFOs（命名管道）可用于系统上两个进程之间的通信。它们允许两个进程在系统上独立执行时进行通信，而不像普通管道那样只能在同一个进程内进行通信。</p>
+</li>
+<li><p>FIFOs（命名管道）是在磁盘上创建的，并且有一个类似文件名的名称。这意味着像操作文件一样，必须先创建并打开 FIFOs（命名管道）才能用于进程间通信。</p>
+</li>
+<li><p>可以在独立执行的程序之间使用 FIFOs（命名管道），这使得它成为进程间跨应用程序通信的一种有效方式。</p>
+</li>
+</ul>
+<h4 id="FIFOs的使用"><a href="#FIFOs的使用" class="headerlink" title="FIFOs的使用"></a>FIFOs的使用</h4><ul>
+<li><code>mkfifo [option] file-list</code>创建命名管道命令<ul>
+<li><code>-m 八进制权限数</code> 参数用来设定管道文件的权限<br><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/fifo.png" alt="alt text"></li>
+</ul>
+</li>
+</ul>
+
         </div>
 
         
