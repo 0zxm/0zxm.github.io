@@ -310,7 +310,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;这是一条消息&quot; | wall</span><br></pre></td></tr></table></figure>
 <p>这将向所有登录用户显示消息“这是一条消息”。请注意，您需要具有适当的权限才能向所有用户发送消息。</p>
 <ul>
-<li><code>w</code>查看所有当前登陆用户<br><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/who.png" alt="alt text"></li>
+<li><code>w</code>或<code>who</code>查看所有当前登陆用户<br><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/who.png" alt="alt text"></li>
 </ul>
 <h3 id="8-shell命令执行的优先级"><a href="#8-shell命令执行的优先级" class="headerlink" title="8.shell命令执行的优先级"></a>8.shell命令执行的优先级</h3><ol>
 <li>alias别名</li>
@@ -1402,6 +1402,240 @@
 <li>拦截信号并执行用户定义的操作。</li>
 </ol>
 <p>由进程内部事件引起的信号被称为内部信号或陷阱（trap）。由进程外部事件引起的信号被称为外部信号。</p>
+<h2 id="第十一章-Shell脚本编程"><a href="#第十一章-Shell脚本编程" class="headerlink" title="第十一章 Shell脚本编程"></a>第十一章 Shell脚本编程</h2><ol>
+<li><p><strong>Shell Script (Shell 程序)</strong>:</p>
+<ul>
+<li>一个Shell脚本是一个包含一系列Shell命令的文本文件。这些命令可以由Shell（如bash, zsh, sh等）解释并执行。</li>
+<li>Shell脚本通常用于自动化任务和简化复杂的命令序列。</li>
+</ul>
+</li>
+<li><p><strong>Shell Variable (Shell 变量)</strong>:</p>
+<ul>
+<li>Shell变量是用户或程序员在Shell环境中用于存储和引用数据的机制。</li>
+<li>变量可以存储字符串、数字或其他数据类型（取决于Shell）。</li>
+<li>Shell变量通常用于在脚本中传递和存储数据，以及动态地构建命令。</li>
+</ul>
+</li>
+<li><p><strong>Program Control Flow Commands (程序控制流命令)</strong>:</p>
+<ul>
+<li>这些命令允许在Shell脚本中执行非顺序的命令，以及重复执行命令块。</li>
+<li>常见的控制流命令包括<code>if</code>、<code>for</code>、<code>while</code>、<code>until</code>、<code>case</code>等。</li>
+<li>这些命令使得脚本能够基于条件执行不同的命令序列，或者重复执行某个命令块，直到满足某个条件为止。</li>
+</ul>
+</li>
+</ol>
+<p>总结：Shell脚本是包含一系列Shell命令的文本文件，用于自动化任务和简化命令序列。Shell变量用于存储和引用数据，而程序控制流命令则允许在脚本中执行非顺序的命令和重复执行命令块。</p>
+<p>Shell脚本也是一种编程语言(解释型)<br>编程语言分为两种</p>
+<ul>
+<li>编译型: 如C++这种,通过g++先生成可执行文件</li>
+<li>解释型: python或java,读一行命令,解释执行一行</li>
+</ul>
+<p><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/shellscript.png" alt="alt text"></p>
+<h3 id="编写shell脚本"><a href="#编写shell脚本" class="headerlink" title="编写shell脚本"></a>编写shell脚本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim first.sh</span><br><span class="line"></span><br><span class="line">date</span><br><span class="line">echo &quot;Hello world&quot;</span><br></pre></td></tr></table></figure>
+<p>shell脚本有三种执行方式</p>
+<ol>
+<li><code>bash first.sh</code> 指定运行shell来执行脚本</li>
+<li><code>first.sh</code> 直接执行shell脚本</li>
+<li><code>. first.sh</code>或<code>source first.sh</code></li>
+</ol>
+<ul>
+<li>在脚本文件第一行指定shell环境<code>#! /bin/bash</code>表示把<code>/bin/bash</code>程序加载进来,由它来解释执行脚本文件<br><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/%E6%8C%87%E5%AE%9A%E8%84%9A%E6%9C%AC%E8%A7%A3%E9%87%8A%E5%99%A8.png" alt="alt text"></li>
+</ul>
+<h3 id="shell变量分类及操作"><a href="#shell变量分类及操作" class="headerlink" title="shell变量分类及操作"></a>shell变量分类及操作</h3><ul>
+<li>环境变量(子进程无法修改父进程的环境变量)<br> 使用<code>env</code>命令直接显示环境变量</li>
+<li>用户自定义变量</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">! /usr/bin/bash</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">定义变量,不能加空格</span></span><br><span class="line">nam=&quot;Jack&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">不能使用双引号</span></span><br><span class="line">echo &quot;Hello, $nam&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>readonly</code>: 把一个变量变成只读</li>
+<li><code>export</code>: 把一个用户定义变量变成环境变量</li>
+<li><code>source</code>: 允许脚本修改环境变量值(使用<code>source</code>或者<code>.</code>执行脚本文件时,不会再创建子进程来执行,使用当前shell进程来解释执行脚本)<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">! /usr/bin/bash</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置父(当前)进程环境变量值</span></span><br><span class="line">PS1=&#x27;Study Hard/$&#x27;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">执行时使用 . first.sh  或者 <span class="built_in">source</span> first.sh</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="内置的环境变量"><a href="#内置的环境变量" class="headerlink" title="内置的环境变量"></a>内置的环境变量</h3><ol>
+<li><p><code>PATH</code></p>
+<ul>
+<li><strong>Purpose</strong>: 包含目录名称的列表，shell在查找外部命令或程序时会搜索这些目录。</li>
+<li><strong>Default</strong>: 通常包括<code>/usr/bin</code>, <code>/bin</code>, <code>/usr/local/bin</code>等目录。</li>
+</ul>
+</li>
+<li><p><code>EDITOR</code></p>
+<ul>
+<li><strong>Purpose</strong>: 指定默认文本编辑器，如<code>vi</code>, <code>nano</code>, <code>emacs</code>等。</li>
+<li><strong>Default</strong>: 根据系统配置和用户偏好而定。</li>
+</ul>
+</li>
+<li><p><code>ENV</code></p>
+<ul>
+<li><strong>Purpose</strong>: 指定shell启动时要读取的初始化文件。在某些shell中，如<code>ksh</code>，它可能用于指定环境设置文件。</li>
+<li><strong>Default</strong>: 通常不设置，但在某些shell配置中可能使用。</li>
+</ul>
+</li>
+<li><p><code>HOME</code></p>
+<ul>
+<li><strong>Purpose</strong>: 用户的主目录路径。当用户首次登录时，shell通常会切换到这个目录。</li>
+<li><strong>Default</strong>: <code>/home/username</code>（其中<code>username</code>是用户的登录名）。</li>
+</ul>
+</li>
+<li><p><code>MAIL</code></p>
+<ul>
+<li><strong>Purpose</strong>: 用户的系统邮箱文件的路径。当有新邮件时，某些shell会显示通知。</li>
+<li><strong>Default</strong>: <code>/var/spool/mail/username</code>（其中<code>username</code>是用户的登录名）。</li>
+</ul>
+</li>
+<li><p><code>MAILCHECK</code></p>
+<ul>
+<li><strong>Purpose</strong>: 指定shell检查用户邮箱以查找新邮件的频率（以秒为单位）。</li>
+<li><strong>Default</strong>: 通常设置为60秒，但可能因系统而异。</li>
+</ul>
+</li>
+<li><p><code>PPID</code></p>
+<ul>
+<li><strong>Purpose</strong>: 当前进程的父进程ID（PID）。这不是一个通常设置的环境变量，而是可以通过shell命令（如<code>$!</code>或<code>$PPID</code>在某些shell中）或程序内部API获取的。</li>
+<li><strong>Default</strong>: 由操作系统在进程创建时设置。</li>
+</ul>
+</li>
+<li><p><code>PS1</code></p>
+<ul>
+<li><strong>Purpose</strong>: 主shell提示符，显示在命令行上。</li>
+<li><strong>Default</strong>: 通常设置为类似<code>$</code>或<code>#</code>（对于root用户）的字符，但用户可以通过修改<code>.bashrc</code>、<code>.bash_profile</code>等文件来定制它。</li>
+</ul>
+</li>
+<li><p><code>PWD</code></p>
+<ul>
+<li><strong>Purpose</strong>: 当前工作目录的路径。</li>
+<li><strong>Default</strong>: 由shell在每次更改目录时设置。</li>
+</ul>
+</li>
+<li><p><code>TERM</code></p>
+<ul>
+<li><strong>Purpose</strong>: 终端类型。它告诉应用程序（如文本编辑器、终端仿真器等）关于终端的功能和特性。</li>
+<li><strong>Default</strong>: 根据用户使用的终端仿真器而定，如<code>xterm</code>, <code>vt100</code>, <code>linux</code>等。</li>
+</ul>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>$0</code></td>
+<td>程序的名称</td>
+</tr>
+<tr>
+<td><code>$1 - $9</code></td>
+<td>命令行参数1到9的值</td>
+</tr>
+<tr>
+<td><code>$@</code></td>
+<td>所有命令行参数的值</td>
+</tr>
+<tr>
+<td><code>$*</code></td>
+<td>所有命令行参数的值,单一字符串<code>&quot;a b c d&quot;</code></td>
+</tr>
+<tr>
+<td><code>&quot;$@&quot;</code></td>
+<td>所有命令行参数的值；每个参数都单独引用 <code>&quot;a&quot; &quot;b&quot; &quot;c&quot; &#39;d&quot;</code></td>
+</tr>
+<tr>
+<td><code>$#</code></td>
+<td>命令行参数的总数</td>
+</tr>
+<tr>
+<td><code>$$</code></td>
+<td>当前进程的进程ID（PID）</td>
+</tr>
+<tr>
+<td><code>$?</code></td>
+<td>最近命令的退出状态,执行成功返回值0</td>
+</tr>
+<tr>
+<td><code>$!</code></td>
+<td>最近后台进程的PID</td>
+</tr>
+</tbody></table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Study Hard:$cat first.sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">echo $0</span><br><span class="line">echo $1</span><br><span class="line">echo $2</span><br><span class="line"></span><br><span class="line">Study Hard:$first.sh a b c</span><br><span class="line"></span><br><span class="line">./first.sh</span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line"></span><br><span class="line">Study Hard:$vim first.sh</span><br><span class="line">Study Hard:$cat first.sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bashecho <span class="variable">$1</span></span></span><br><span class="line"></span><br><span class="line">Study Hard:$first.sh Tom</span><br><span class="line">Tom</span><br></pre></td></tr></table></figure>
+<h3 id="shell变量的数据类型"><a href="#shell变量的数据类型" class="headerlink" title="shell变量的数据类型"></a>shell变量的数据类型</h3><p><strong>变量声明</strong></p>
+<p><strong>语法：</strong></p>
+<ul>
+<li><code>declare [选项][名称[=值]]</code></li>
+<li><code>typeset [选项][名称[=值]]</code></li>
+</ul>
+<p><strong>目的：</strong><br>声明变量并初始化它们，设置它们的属性。在函数内部，会创建新的变量副本。使用<code>+</code>代替<code>-</code>关闭属性。</p>
+<p><strong>输出：</strong></p>
+<ul>
+<li>没有名称和选项时，在当前shell环境中显示所有shell变量的名称和值。</li>
+<li>使用选项时，显示具有特定属性的变量名称和其值。</li>
+</ul>
+<p><strong>常用选项&#x2F;特性：</strong></p>
+<ul>
+<li><code>-a</code>：将每个“名称”标记为数组</li>
+<li><code>-f</code>：将每个“名称”标记为函数</li>
+<li><code>-i</code>：将“名称”标记为整数</li>
+<li><code>-r</code>：将“名称”标记为只读（无法通过<code>+x</code>关闭）</li>
+<li><code>-x</code>：将“名称”标记为环境变量</li>
+</ul>
+<p>shell变量被默认为是字符串类型</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Input: a=1</span><br><span class="line">Input: b=2</span><br><span class="line">Input: c=$a+$b</span><br><span class="line">Input: echo $c</span><br><span class="line"></span><br><span class="line">Output: 1+2</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">正确输出加法公式</span></span><br><span class="line">Input: declare -i z</span><br><span class="line">Input: z=a+b</span><br><span class="line">Iuput: echo $z</span><br><span class="line">Output: 3</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="命令替换-把命令结果存储成变量"><a href="#命令替换-把命令结果存储成变量" class="headerlink" title="命令替换(把命令结果存储成变量)"></a>命令替换(把命令结果存储成变量)</h3><ul>
+<li><strong>变量名&#x3D;`cmd`</strong></li>
+</ul>
+<p><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/%E5%91%BD%E4%BB%A4%E6%9B%BF%E6%8D%A2.png" alt="alt text"></p>
+<h3 id="变量的输入输出"><a href="#变量的输入输出" class="headerlink" title="变量的输入输出"></a>变量的输入输出</h3><h4 id="变量的输入"><a href="#变量的输入" class="headerlink" title="变量的输入"></a>变量的输入</h4><p><code>read</code> 是一个在Linux中常用的命令，用于从标准输入或其他文件描述符中读取输入并赋值给变量。它的基本语法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">read</span> [选项] 变量名(列表)</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li><code>选项</code> 是可选的，可以用来指定read命令的特定行为。</li>
+<li><code>变量名</code> 是要将输入赋值给的变量。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Please enter your name:&quot;</span></span><br><span class="line"><span class="built_in">read</span> name</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Hello, <span class="variable">$name</span>. Welcome!&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个示例中，当用户输入其名字并按下回车后，<code>read</code> 命令将输入的内容赋值给变量 <code>name</code>，然后 <code>echo</code> 命令使用这个变量进行输出。</p>
+<p>常用选项包括：</p>
+<ul>
+<li><code>-p</code> ：用于显示提示信息而不是使用<code>echo</code>命令来显示。</li>
+<li><code>-a</code> ：将输入分配到数组而不是普通变量。</li>
+<li><code>-n</code> ：限制输入的字符数。</li>
+<li><code>-s</code> ：用于静默模式，输入时不显示在屏幕上。</li>
+<li><code>-t</code> ：设置等待时间，如果超过指定秒数没有输入，则读取终止。</li>
+</ul>
+<p><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/read.png" alt="alt text"></p>
+<h4 id="变量的输出-echo"><a href="#变量的输出-echo" class="headerlink" title="变量的输出-&gt;echo"></a>变量的输出-&gt;<code>echo</code></h4><p><code>echo</code> 命令用于在终端中显示文本或变量的内容。它的基本语法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> [选项] [字符串或变量]</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li><code>[选项]</code> 是可选的，可以用来指定特定行为，比如 <code>-e</code> 用于解释转义字符。</li>
+<li><code>[字符串或变量]</code> 是要显示的文本或变量的内容。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Hello, World!&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个示例中，<code>echo</code> 命令会在终端中显示 “Hello, World!”。</p>
+<p>常用选项包括：</p>
+<ul>
+<li><code>-e</code> ：允许使用反斜杠转义字符。</li>
+<li><code>-n</code> ：不在结尾添加换行符。</li>
+<li><code>-E</code> ：关闭反斜杠转义功能，将反斜杠字符输出为原始字符。</li>
+<li><code>&gt;&gt; 文件</code> ：将输出追加到指定文件。</li>
+<li><code>-E</code> ：关闭 <code>-e</code> 选项开启的转义字符解释功能。</li>
+</ul>
+<h3 id="对数值进行处理"><a href="#对数值进行处理" class="headerlink" title="对数值进行处理"></a>对数值进行处理</h3><p>因为shell变量被默认为是字符串类型</p>
+<h4 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h4><ul>
+<li><code>declare</code></li>
+<li><code>expr 表达式</code></li>
+<li><code>let</code>命令<br><img src="/2024/04/27/Linux%E6%8C%87%E4%BB%A4/expr&let.png" alt="alt text"></li>
+</ul>
+<h4 id="小数"><a href="#小数" class="headerlink" title="小数"></a>小数</h4><ul>
+<li><code>bc</code>命令: 默认从标准输入读取小数<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a=1.1</span><br><span class="line">b=2.1</span><br><span class="line">echo $a + $b | bc</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">从标准输出中通过管道变成标准输入在交给bc命令</span></span><br><span class="line"></span><br><span class="line">Output: 3.2</span><br></pre></td></tr></table></figure></li>
+</ul>
 
         </div>
 
