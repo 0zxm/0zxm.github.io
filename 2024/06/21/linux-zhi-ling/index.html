@@ -525,19 +525,19 @@
 </ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">locale -a 指令</span><br><span class="line">列出所有系统安装的语言</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/image-20240314232303614.png" alt="image-20240314232303614"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/image-20240314232303614.png" alt="image-20240314232303614"></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">修改PS1环境变量---shell提示符样式</span><br><span class="line">PS1=&#x27;HAPPY: \u $ &#x27;</span><br><span class="line">\u是特殊参数,表示用户名</span><br></pre></td></tr></table></figure>
 
-<p>​	<img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/image-20240314232634341.png" alt="image-20240314232634341"></p>
+<p>​	<img src="/2024/06/21/linux-zhi-ling/image-20240314232634341.png" alt="image-20240314232634341"></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">添加当前目录(.)到PATH变量</span><br><span class="line">注意:PATH变量以冒号分割(:),修改PATH环境变量只对本次生效,想要永久生效,可以修改.profile文件</span><br><span class="line">PATH=$PATH:.</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/image-20240314232909211.png" alt="image-20240314232909211"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/image-20240314232909211.png" alt="image-20240314232909211"></p>
 <h3 id="4-echo命令"><a href="#4-echo命令" class="headerlink" title="4.echo命令"></a>4.echo命令</h3><p>类似于打印命令</p>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/image-20240314233218047.png" alt="image-20240314233218047"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/image-20240314233218047.png" alt="image-20240314233218047"></p>
 <h3 id="5-alias命令"><a href="#5-alias命令" class="headerlink" title="5.alias命令"></a>5.alias命令</h3><p>alias可以起别名或者修改命令默认的执方式</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">alias 别名=源名</span><br><span class="line">例子alias list=ls</span><br><span class="line"></span><br><span class="line">alias命令展示所有已取(默认)别名</span><br><span class="line"></span><br><span class="line">unalias取消别名</span><br><span class="line">unalias list</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/image-20240314233930938.png" alt="image-20240314233930938"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/image-20240314233930938.png" alt="image-20240314233930938"></p>
 <h3 id="6-Linux中的源字符"><a href="#6-Linux中的源字符" class="headerlink" title="6.Linux中的源字符"></a>6.Linux中的源字符</h3><ul>
 <li>$美元符: 表示取值</li>
 <li>双引号: 对引号里面的源字符进行处理</li>
@@ -549,39 +549,39 @@
 <li>^或者!: 表示否定negative</li>
 <li>~字符: 表示工作目录,等价于<code>echo $HOME</code></li>
 </ul>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/image-20240315000305427.png" alt="image-20240315000305427"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/image-20240315000305427.png" alt="image-20240315000305427"></p>
 <h3 id="7-基本命令"><a href="#7-基本命令" class="headerlink" title="7.基本命令"></a>7.基本命令</h3><ul>
 <li><p>clear清屏命令</p>
 </li>
 <li><p>cp 源文件路径 目的路径</p>
 <p>  例: cp hello hi</p>
-<p>  <img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/image-20240314234136513.png" alt="image-20240314234136513"><br> <img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/cp.jpg" alt="alt text"></p>
+<p>  <img src="/2024/06/21/linux-zhi-ling/image-20240314234136513.png" alt="image-20240314234136513"><br> <img src="/2024/06/21/linux-zhi-ling/cp.jpg" alt="alt text"></p>
 </li>
 <li><p>type xxx命令</p>
 <p>  查看指令类型</p>
 </li>
 </ul>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/image-20240314234306905.png" alt="image-20240314234306905"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/image-20240314234306905.png" alt="image-20240314234306905"></p>
 <ul>
 <li><p>rm 文件路径</p>
 <p>  例: rm hi  (hi文件已经存在)</p>
-<p>  <img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/image-20240314234422632.png" alt="image-20240314234422632"></p>
+<p>  <img src="/2024/06/21/linux-zhi-ling/image-20240314234422632.png" alt="image-20240314234422632"></p>
 </li>
 <li><p>ls指令(参数 -l等)</p>
 <p>  例: ls -l hello</p>
 <ul>
 <li><code>-i</code>参数,显示更详细信息</li>
 </ul>
-<p>  <img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/image-20240314234557355.png" alt="image-20240314234557355"></p>
+<p>  <img src="/2024/06/21/linux-zhi-ling/image-20240314234557355.png" alt="image-20240314234557355"></p>
 </li>
 <li><p>history命令</p>
 <p>  显示shell命令的历史记录</p>
-<p>  <img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/image-20240315000404594.png" alt="image-20240315000404594"></p>
+<p>  <img src="/2024/06/21/linux-zhi-ling/image-20240315000404594.png" alt="image-20240315000404594"></p>
 </li>
 <li><p>!!直接执行上条命令,!加编号执行history里的第几条记录</p>
-<p>  <img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/image-20240315000542358.png" alt="alt text"></p>
+<p>  <img src="/2024/06/21/linux-zhi-ling/image-20240315000542358.png" alt="alt text"></p>
 </li>
-<li><p><code>su</code> 和 <code>sudo</code>超级用户(管理员)<br><code>su</code> : 把身份切换到超级用户(su之后就切换到root用户,要求输入的是root用户口令)<br><code>su 用户名</code> : 切换到其他用户<br><code>sudo</code> : 以超级用户的身份执行某条命令(sudo要求输入口令时,输入的是当前用户的口令)<br>值得注意的是,只有被指定的用户才能使用sudo命令,在&#x2F;etc&#x2F;sudoers文件里的才被允许<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/sudoers.png" alt="alt text"></p>
+<li><p><code>su</code> 和 <code>sudo</code>超级用户(管理员)<br><code>su</code> : 把身份切换到超级用户(su之后就切换到root用户,要求输入的是root用户口令)<br><code>su 用户名</code> : 切换到其他用户<br><code>sudo</code> : 以超级用户的身份执行某条命令(sudo要求输入口令时,输入的是当前用户的口令)<br>值得注意的是,只有被指定的用户才能使用sudo命令,在&#x2F;etc&#x2F;sudoers文件里的才被允许<br><img src="/2024/06/21/linux-zhi-ling/sudoers.png" alt="alt text"></p>
 </li>
 <li><p><code>whoami</code>查看当前用户</p>
 </li>
@@ -593,13 +593,13 @@
 <li><code>hostname 想要修改的主机名</code></li>
 </ol>
 </li>
-<li><p><code>uname</code>查看操作系统内核<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/uname.png" alt="alt text"></p>
+<li><p><code>uname</code>查看操作系统内核<br><img src="/2024/06/21/linux-zhi-ling/uname.png" alt="alt text"></p>
 </li>
-<li><p><code>free</code>查看内存<br><code>free -h</code>参数表示human readable 便于人类阅读的<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/free.png" alt="alt text"></p>
+<li><p><code>free</code>查看内存<br><code>free -h</code>参数表示human readable 便于人类阅读的<br><img src="/2024/06/21/linux-zhi-ling/free.png" alt="alt text"></p>
 </li>
-<li><p><code>date</code>显示当前系统时间<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/date.png" alt="alt text"></p>
+<li><p><code>date</code>显示当前系统时间<br><img src="/2024/06/21/linux-zhi-ling/date.png" alt="alt text"></p>
 </li>
-<li><p><code>vi</code>命令查看<code>/proc</code>系统信息文件夹下文件<br>vi &#x2F;proc&#x2F;cpuinfo<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/proc.png" alt="alt text"></p>
+<li><p><code>vi</code>命令查看<code>/proc</code>系统信息文件夹下文件<br>vi &#x2F;proc&#x2F;cpuinfo<br><img src="/2024/06/21/linux-zhi-ling/proc.png" alt="alt text"></p>
 </li>
 <li><p><code>passwd</code>修改口令命令<br>以前存放在&#x2F;etc&#x2F;passwd下,现在存放在&#x2F;etc&#x2F;shadow文件</p>
 </li>
@@ -609,9 +609,9 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;这是一条消息&quot; | wall</span><br></pre></td></tr></table></figure>
 <p>这将向所有登录用户显示消息“这是一条消息”。请注意，您需要具有适当的权限才能向所有用户发送消息。</p>
 <ul>
-<li><p><code>w</code>或<code>who</code>查看所有当前登陆用户<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/who.png" alt="alt text"></p>
+<li><p><code>w</code>或<code>who</code>查看所有当前登陆用户<br><img src="/2024/06/21/linux-zhi-ling/who.png" alt="alt text"></p>
 </li>
-<li><p><code>seq</code>生成数字序列<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/seq.png" alt="alt text"></p>
+<li><p><code>seq</code>生成数字序列<br><img src="/2024/06/21/linux-zhi-ling/seq.png" alt="alt text"></p>
 </li>
 </ul>
 <h3 id="8-shell命令执行的优先级"><a href="#8-shell命令执行的优先级" class="headerlink" title="8.shell命令执行的优先级"></a>8.shell命令执行的优先级</h3><ol>
@@ -654,7 +654,7 @@
 </li>
 </ol>
 <h3 id="10-链接命令"><a href="#10-链接命令" class="headerlink" title="10.链接命令"></a>10.链接命令</h3><ol>
-<li>软链接<br>类似于Windows下的快捷方式，当一个源文件的目录层级比较深，我们想要方便使用它可以给源文件创建一个软链接,方便文件操作<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/link.png" alt="alt text"></li>
+<li>软链接<br>类似于Windows下的快捷方式，当一个源文件的目录层级比较深，我们想要方便使用它可以给源文件创建一个软链接,方便文件操作<br><img src="/2024/06/21/linux-zhi-ling/link.png" alt="alt text"></li>
 </ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s 源文件路径 软链接名字</span><br></pre></td></tr></table></figure>
 <table>
@@ -758,7 +758,7 @@
 <ul>
 <li><code>scp -r 本地目录 远程服务器用户名@远程服务器ip地址:指定拷贝到远程服务器的路径</code></li>
 <li><code>scp -r 远程服务器用户名@远程服务器ip地址:远程服务器目录 指定拷贝到本地的路径</code></li>
-<li><code>-r</code> 表示递归拷贝整个目录<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/scp.png" alt="alt text"></li>
+<li><code>-r</code> 表示递归拷贝整个目录<br><img src="/2024/06/21/linux-zhi-ling/scp.png" alt="alt text"></li>
 </ul>
 </li>
 <li><p><code>ssh</code>命令是远程登录主机电脑，相当于直接操作的是远程电脑。</p>
@@ -793,7 +793,7 @@
 <ul>
 <li>Linux系统中把一切可以用字节流传输的都看作一个文件</li>
 <li>Linux系统里面的文件系统类型ext2 xfs jfs ext3 ext4</li>
-<li>Windows系统里的文件系统类型: ntfs fat32<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/unix_device.png" alt="alt text"><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第一块SATA硬盘./dev/sda</span><br><span class="line">第二块SATA硬盘 /dev/sdb</span><br><span class="line">fdisk /dev/sdb  分区指令</span><br><span class="line">mkfs -t  ext4 /dev/sdb  格式化指令,-t参数表示要创建什么样的文件系统</span><br></pre></td></tr></table></figure></li>
+<li>Windows系统里的文件系统类型: ntfs fat32<br><img src="/2024/06/21/linux-zhi-ling/unix_device.png" alt="alt text"><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第一块SATA硬盘./dev/sda</span><br><span class="line">第二块SATA硬盘 /dev/sdb</span><br><span class="line">fdisk /dev/sdb  分区指令</span><br><span class="line">mkfs -t  ext4 /dev/sdb  格式化指令,-t参数表示要创建什么样的文件系统</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="Linux系统下的重要文件"><a href="#Linux系统下的重要文件" class="headerlink" title="Linux系统下的重要文件"></a>Linux系统下的重要文件</h3><ul>
 <li><code>/etc/passwd</code>: 每个用户在该文件中都有一行记录，其中包含了用户的登录名、密码（通常是一个指向加密密码的指针）、用户ID、组ID、用户信息、用户主目录和默认shell等信息<ol>
@@ -811,11 +811,11 @@
 <h3 id="mount挂载命令"><a href="#mount挂载命令" class="headerlink" title="mount挂载命令"></a><code>mount</code>挂载命令</h3><ul>
 <li>mount [-t vfstype][-o options] device dir</li>
 <li>vfstype :vfat(window fat32 format)、ext3、ext4、iso9660(cdrom format)<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/sdc1 /mnt</span><br><span class="line">umount .mnt</span><br><span class="line">umount /dev/sdc1</span><br></pre></td></tr></table></figure>
-<img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/mount.png" alt="alt text"></li>
+<img src="/2024/06/21/linux-zhi-ling/mount.png" alt="alt text"></li>
 </ul>
 <h3 id="Types-of-Files文件种类"><a href="#Types-of-Files文件种类" class="headerlink" title="Types of Files文件种类"></a>Types of Files文件种类</h3><ul>
 <li><code>Simple/ordinary Files(普通文件)</code></li>
-<li><code>Directory Files(目录文件)</code><br> 目录文件只包含两个字段:一个包含目录下的所有文件名,另一个是索引节点号<br> <img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/direct.png" alt="alt text"></li>
+<li><code>Directory Files(目录文件)</code><br> 目录文件只包含两个字段:一个包含目录下的所有文件名,另一个是索引节点号<br> <img src="/2024/06/21/linux-zhi-ling/direct.png" alt="alt text"></li>
 <li><code>Link Files(链接文件)</code><br>A Link File is created by the system when a symbolic linkin created to an existing file.</li>
 <li><code>Special(Device) Files(设备文件)</code><br>A special File is a means of accessinghardware devicesincluding the keyboard, hard disk, Cb-ROM drive, tapedrive andprinter.<ol>
 <li>character special files(字符设备)</li>
@@ -839,19 +839,19 @@
 <li>动态.so</li>
 <li>静态.a</li>
 </ol>
-<h3 id="Linux下的目录结构"><a href="#Linux下的目录结构" class="headerlink" title="Linux下的目录结构"></a>Linux下的目录结构</h3><p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/directory_struct.jpg" alt="alt text"></p>
+<h3 id="Linux下的目录结构"><a href="#Linux下的目录结构" class="headerlink" title="Linux下的目录结构"></a>Linux下的目录结构</h3><p><img src="/2024/06/21/linux-zhi-ling/directory_struct.jpg" alt="alt text"></p>
 <h3 id="和文件操作相关的命令"><a href="#和文件操作相关的命令" class="headerlink" title="和文件操作相关的命令"></a>和文件操作相关的命令</h3><ul>
-<li><code>df</code>命令  显示分区使用情况(挂载)<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/df.png" alt="alt text"></li>
-<li><code>du</code>命令  查看文件分配的存储空间大小<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/du.png" alt="alt text"><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">du -s /etc</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看目录占用空间</span></span><br></pre></td></tr></table></figure></li>
+<li><code>df</code>命令  显示分区使用情况(挂载)<br><img src="/2024/06/21/linux-zhi-ling/df.png" alt="alt text"></li>
+<li><code>du</code>命令  查看文件分配的存储空间大小<br><img src="/2024/06/21/linux-zhi-ling/du.png" alt="alt text"><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">du -s /etc</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看目录占用空间</span></span><br></pre></td></tr></table></figure></li>
 <li><code>mkdir</code>命令  创建目录<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p dira/dirb</span><br><span class="line">参数p表示创建路径上的所有目录</span><br></pre></td></tr></table></figure></li>
 <li><code>rmdir</code>命令  只能删除空目录<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir dira</span><br><span class="line">rmdir dira</span><br></pre></td></tr></table></figure></li>
 <li><code>ls</code>命令 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls -a 目录或文件名</span><br><span class="line">参数a表示显示出所有以.开头的隐藏文件</span><br><span class="line">ls -l 目录或文件名</span><br><span class="line">参数p表示以列表的形式列出详细信息</span><br></pre></td></tr></table></figure>
-<img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/ls-l.png" alt="alt text"><br>第一个字段第一个字符表示文件类型,<code>-</code>表示普通文件<br>第二个字段: 链接数,有多少个条目指向了这个文件的索引节点<br>第三个字段:所属用户<br>第四个字段:所属组<br>第五个字段:大小(以字节为单位)<br>第六个字段:文件最后修改时间<br>第七个字段:文件名<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/Determining_File_Attributes.png" alt="alt text"></li>
+<img src="/2024/06/21/linux-zhi-ling/ls-l.png" alt="alt text"><br>第一个字段第一个字符表示文件类型,<code>-</code>表示普通文件<br>第二个字段: 链接数,有多少个条目指向了这个文件的索引节点<br>第三个字段:所属用户<br>第四个字段:所属组<br>第五个字段:大小(以字节为单位)<br>第六个字段:文件最后修改时间<br>第七个字段:文件名<br><img src="/2024/06/21/linux-zhi-ling/Determining_File_Attributes.png" alt="alt text"></li>
 <li><code>touch</code>命令  创建文件或修改文件最后修改时间<br>如果文件不存在,则创建文件,否则修改最后修改时间</li>
 <li><code>rm</code>命令  删除文件或目录<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rm -i file1</span><br><span class="line">参数i表示交互式的</span><br><span class="line">rm -rf dirb</span><br><span class="line">参数r表示递归删除子目录在删除所有文件</span><br><span class="line">参数f表示强制删除</span><br></pre></td></tr></table></figure></li>
 <li><code>mv</code>命令  移动文件或者文件重命名</li>
 <li><code>file</code>命令  查看文件详细信息</li>
-<li><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/file.png" alt="alt text"></li>
+<li><img src="/2024/06/21/linux-zhi-ling/file.png" alt="alt text"></li>
 </ul>
 <h3 id="逻辑卷管理-好处-可以动态扩充"><a href="#逻辑卷管理-好处-可以动态扩充" class="headerlink" title="逻辑卷管理(好处:可以动态扩充)"></a>逻辑卷管理(好处:可以动态扩充)</h3><ul>
 <li>挂载: 把一个硬件设备和对应的目录关联起来</li>
@@ -889,11 +889,11 @@
 </ul>
 </li>
 </ul>
-<p>所以,对于每个文件,三个身份和三种权限组成九个权限位<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/file_permission.png" alt="alt text"></p>
+<p>所以,对于每个文件,三个身份和三种权限组成九个权限位<br><img src="/2024/06/21/linux-zhi-ling/file_permission.png" alt="alt text"></p>
 <ul>
 <li>目录也有权限<ol>
 <li>目录的x执行权限:所有要进入到目录里的操作,包括(<code>cd</code>命令,<code>touch</code>命令,删除目录里的文件)<br>目录文件只包含两个字段:一个包含目录下的所有文件名,另一个是索引节点号<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">想要查看目录权限要加参数d</span></span><br><span class="line">ls -ld dira</span><br></pre></td></tr></table></figure>
-<img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/ls_view_dir.png" alt="alt text"></li>
+<img src="/2024/06/21/linux-zhi-ling/ls_view_dir.png" alt="alt text"></li>
 </ol>
 </li>
 </ul>
@@ -905,22 +905,22 @@
 </ul>
 <h3 id="3-Changing-File-Access-Privileges"><a href="#3-Changing-File-Access-Privileges" class="headerlink" title="3.Changing File Access Privileges"></a>3.Changing File Access Privileges</h3><p><code>chmod  权限语句 文件或目录对象</code>命令:改变文件权限位<br>权限语句由三部分组成:</p>
 <ul>
-<li>例如 <code>u-x</code><br>第一部分是要修改谁的权限:a表示所有,u表示owner,g表示group,o表示others,ugo也表示所有<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/chmod.png" alt="alt text"></li>
+<li>例如 <code>u-x</code><br>第一部分是要修改谁的权限:a表示所有,u表示owner,g表示group,o表示others,ugo也表示所有<br><img src="/2024/06/21/linux-zhi-ling/chmod.png" alt="alt text"></li>
 <li>也可以用八进制数来代替权限语句,能够一次性设定所有文件权限位<br>如要给一个文件设置rwxr-x—权限,每三位(111 101 000)转化成八进制数就是750,所以命令就是<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 750 hello</span><br></pre></td></tr></table></figure>
-<img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/rm_file_withoutpermisn.png" alt="alt text"></li>
+<img src="/2024/06/21/linux-zhi-ling/rm_file_withoutpermisn.png" alt="alt text"></li>
 </ul>
 <h3 id="Default-file-access-privileges-默认文件权限"><a href="#Default-file-access-privileges-默认文件权限" class="headerlink" title="Default file access privileges 默认文件权限"></a>Default file access privileges 默认文件权限</h3><ul>
 <li>通过掩码值umask来设定默认访问权限</li>
 <li><code>umask</code>命令  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示掩码值</span></span><br><span class="line">input: umask</span><br><span class="line">ouput: 0022</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置掩码值</span></span><br><span class="line">input: umask 077</span><br></pre></td></tr></table></figure></li>
 <li>umask怎么决定文件访问权限<ol>
 <li>The access permission value onexecutable file or directory iscomputed by(针对目录或者可执行文件): <code>file access permission=777-mask</code></li>
-<li>The access permission value on otherfile is computed by(对于普通文件):<code>file access permission = 666-mask</code><br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/umask01.png" alt="alt text"></li>
+<li>The access permission value on otherfile is computed by(对于普通文件):<code>file access permission = 666-mask</code><br><img src="/2024/06/21/linux-zhi-ling/umask01.png" alt="alt text"></li>
 </ol>
 </li>
 </ul>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/umask02.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/umask02.png" alt="alt text"></p>
 <h3 id="三个特殊权限位"><a href="#三个特殊权限位" class="headerlink" title="三个特殊权限位"></a>三个特殊权限位</h3><ul>
-<li><p><code>SUID</code>位<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/suid.png" alt="alt text"><br>If this bit is set for a file containing an executable program for a command,the command takes on the privileges of the owner of the file when it executes.</p>
+<li><p><code>SUID</code>位<br><img src="/2024/06/21/linux-zhi-ling/suid.png" alt="alt text"><br>If this bit is set for a file containing an executable program for a command,the command takes on the privileges of the owner of the file when it executes.</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 设置suid位 --&gt;</span><br><span class="line">sudo chmod u+s /usr/bin/passwd</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>SGID</code>位<br>执行命令时,会把身份临时切换成同组成员(groups)</p>
@@ -942,7 +942,7 @@
 <li>按Q退出</li>
 </ol>
 </li>
-<li><code>od</code>命令 显示不可见字符<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/od.png" alt="alt text"><ol>
+<li><code>od</code>命令 显示不可见字符<br><img src="/2024/06/21/linux-zhi-ling/od.png" alt="alt text"><ol>
 <li>参数<code>-c</code>表示以字符形式显示,例如空行会变成<code>\n</code></li>
 <li><code>-h</code>以十六进制显示</li>
 </ol>
@@ -958,7 +958,7 @@
 <li>参数<code>-f</code>实时刷新 ctrl+c退出</li>
 </ol>
 </li>
-<li><code>wc</code> 查看文件大小的命令(Determining file size)<br> <img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/wc.png" alt="alt text"><ol>
+<li><code>wc</code> 查看文件大小的命令(Determining file size)<br> <img src="/2024/06/21/linux-zhi-ling/wc.png" alt="alt text"><ol>
 <li>参数<code>-l</code>表示只显示行数</li>
 <li><code>-w</code>只显示单词数</li>
 <li><code>-c</code>表示只显示字符数<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wc -l /tmp/hello.cpp</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看系统里有多少个用户</span></span><br><span class="line">wc -l /etc/passwd</span><br></pre></td></tr></table></figure></li>
@@ -975,7 +975,7 @@
 <li><code>-name</code> pattern</li>
 <li><code>-size</code> +&#x2F;-N  加号&#x2F;减号表示 大小&#x2F;小于 大于N的文件</li>
 <li><code>-exec</code> or <code>-ok</code> CMD 表示对find找到的结果每一个都执行一条命令CMD,exec和ok的区别在于ok每一次都要询问 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /tmp  \( -name &quot;*.txt&quot; -a -size 0 \) -exec ls -l &#123;&#125; \; 2&gt;/dev/null</span><br></pre></td></tr></table></figure>
- <img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/find_exec.png" alt="alt text"></li>
+ <img src="/2024/06/21/linux-zhi-ling/find_exec.png" alt="alt text"></li>
 <li><code>\( 组合 \)</code> 使用括号来把多个条件组合在一起 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /tmp  \( -name &quot;*.txt&quot; -a -size 0 \) 2&gt;/dev/null</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
@@ -999,7 +999,7 @@
 <td>代表任意一个字符</td>
 </tr>
 </tbody></table>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/find.png" alt="alt text"><br>通配符不仅能结合 find 命令使用，还可以结合其它命令使用,比如: ls、mv、cp 等，这里需要注意只有find命令使用通配符需要加上引号。<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/dev_null.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/find.png" alt="alt text"><br>通配符不仅能结合 find 命令使用，还可以结合其它命令使用,比如: ls、mv、cp 等，这里需要注意只有find命令使用通配符需要加上引号。<br><img src="/2024/06/21/linux-zhi-ling/dev_null.png" alt="alt text"></p>
 <h4 id="命令文件"><a href="#命令文件" class="headerlink" title="命令文件"></a>命令文件</h4><ul>
 <li><code>whereis</code> 查找命令文件，会找出可执行文件的位置和帮助文档的位置</li>
 <li><code>which</code> 查找命令文件</li>
@@ -1009,7 +1009,7 @@
 <li>参数<ol>
 <li><code>-c</code> 统计连续重复出现的次数</li>
 <li><code>-d</code> 显示重复的行</li>
-<li><code>uniq 源文件名a 文件名b</code>表示把去重结果输出到文件中<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/uniq.png" alt="alt text"></li>
+<li><code>uniq 源文件名a 文件名b</code>表示把去重结果输出到文件中<br><img src="/2024/06/21/linux-zhi-ling/uniq.png" alt="alt text"></li>
 </ol>
 </li>
 </ul>
@@ -1141,8 +1141,8 @@
 <td>转义斜杠</td>
 </tr>
 </tbody></table>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/re.png" alt="alt text"></p>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/grep.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/re.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/grep.png" alt="alt text"></p>
 <ul>
 <li>通过 grep 命令可以在指定文件中查找指定搜索内容，这里扩展一下，grep 还可以查找管道中的内容<br>比如:ls&#x2F;| grep ‘lib’</li>
 <li>在使用 grep 命令时，还可以省略查找内容的引号比如:ls&#x2F;| grep lib , grep hello 1.txt</li>
@@ -1172,8 +1172,8 @@
 </li>
 <li><p><code>awk</code>命令</p>
 <ul>
-<li><code>awk</code>命令里的正则表达式格式为<code>awk &#39;/re/&#39; filename</code><br> <img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/awk01.png" alt="alt text"></li>
-<li>在awk命令中,美元符号表示字段的意思<code>$</code><br> <img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/awk_$.png" alt="alt text"></li>
+<li><code>awk</code>命令里的正则表达式格式为<code>awk &#39;/re/&#39; filename</code><br> <img src="/2024/06/21/linux-zhi-ling/awk01.png" alt="alt text"></li>
+<li>在awk命令中,美元符号表示字段的意思<code>$</code><br> <img src="/2024/06/21/linux-zhi-ling/awk_$.png" alt="alt text"></li>
 <li><code>F</code>参数指定分割符<ul>
 <li>默认情况下，awk 使用空格或制表符作为字段分隔符</li>
 <li>如果你有一个以逗号, 分隔的文件，并希望使用 awk 来处理它，你可以这样指定分隔符:<code>awk -F, &#39;&#123;print $1, $2&#125;&#39; filename</code></li>
@@ -1189,7 +1189,7 @@
 </li>
 <li><p><code>tr</code>命令(映射替换)</p>
 <ul>
-<li>tr 被映射域 映射域(可用区间表示)<br> <img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/tr.png" alt="alt text"><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">awk &#x27;/\&lt;CS/&#123;print $1,$2&#125;&#x27; /tmp/student_record</span><br><span class="line"></span><br><span class="line">awk &#x27;$2~/^D/&#123;print $1,$2&#125;&#x27;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="variable">$2</span>~/^D/：这是一个条件，它检查第二列（由字段分隔符分隔，默认为空格或制表符）是否以字母 <span class="string">&quot;D&quot;</span> 开头,~ 是 awk 中用于模式匹配的操作符</span></span><br><span class="line"></span><br><span class="line">awk -F: &#x27;$2 !~ /916/ &#123;print $1&#125;&#x27; /tmp/donors</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">这条命令将根据冒号分隔符(:)来解析文件中的内容，并打印出第二个字段中不包含916区号的人的名字。</span></span><br><span class="line"></span><br><span class="line">awk &#x27;&#123;print NR &quot;: &quot; $0&#125;&#x27; /tmp/donors</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">请将<span class="string">&quot;文件名&quot;</span>替换为您要处理的文件名。这条命令将打印出每条记录的行号（记录号）后面跟着记录的内容。记录号由NR内置变量提供，表示当前处理的记录的序号。</span></span><br><span class="line"></span><br><span class="line"> awk  -F&#x27;[: ]&#x27; &#x27;$7 &lt;= 85 &#123;print $1,$2,$4&#125;&#x27; /tmp/donors</span><br></pre></td></tr></table></figure></li>
+<li>tr 被映射域 映射域(可用区间表示)<br> <img src="/2024/06/21/linux-zhi-ling/tr.png" alt="alt text"><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">awk &#x27;/\&lt;CS/&#123;print $1,$2&#125;&#x27; /tmp/student_record</span><br><span class="line"></span><br><span class="line">awk &#x27;$2~/^D/&#123;print $1,$2&#125;&#x27;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="variable">$2</span>~/^D/：这是一个条件，它检查第二列（由字段分隔符分隔，默认为空格或制表符）是否以字母 <span class="string">&quot;D&quot;</span> 开头,~ 是 awk 中用于模式匹配的操作符</span></span><br><span class="line"></span><br><span class="line">awk -F: &#x27;$2 !~ /916/ &#123;print $1&#125;&#x27; /tmp/donors</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">这条命令将根据冒号分隔符(:)来解析文件中的内容，并打印出第二个字段中不包含916区号的人的名字。</span></span><br><span class="line"></span><br><span class="line">awk &#x27;&#123;print NR &quot;: &quot; $0&#125;&#x27; /tmp/donors</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">请将<span class="string">&quot;文件名&quot;</span>替换为您要处理的文件名。这条命令将打印出每条记录的行号（记录号）后面跟着记录的内容。记录号由NR内置变量提供，表示当前处理的记录的序号。</span></span><br><span class="line"></span><br><span class="line"> awk  -F&#x27;[: ]&#x27; &#x27;$7 &lt;= 85 &#123;print $1,$2,$4&#125;&#x27; /tmp/donors</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
@@ -1206,7 +1206,7 @@
 <li>解压格式<code>bzip2 -d ziped_filename</code></li>
 </ul>
 </li>
-<li><p><code>Linux</code>下文本文件和<code>Windows</code>下文本文件不同:<br> <code>Windows</code>下文本文件会每行包含一个<code>\r</code><br> <img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/linuxtxt_dif_windows.png" alt="alt text"></p>
+<li><p><code>Linux</code>下文本文件和<code>Windows</code>下文本文件不同:<br> <code>Windows</code>下文本文件会每行包含一个<code>\r</code><br> <img src="/2024/06/21/linux-zhi-ling/linuxtxt_dif_windows.png" alt="alt text"></p>
 </li>
 </ul>
 <h2 id="第七章-vim的使用"><a href="#第七章-vim的使用" class="headerlink" title="第七章 vim的使用"></a>第七章 vim的使用</h2><h3 id="7-1-vim的三种模式"><a href="#7-1-vim的三种模式" class="headerlink" title="7.1 vim的三种模式"></a>7.1 vim的三种模式</h3><ol>
@@ -1338,7 +1338,7 @@
 <li><strong>操作</strong>：当进程执行如<code>read()</code>、<code>write()</code>等系统调用时，它会使用文件描述符作为参数。系统会根据文件描述符在文件描述符表中查找对应的文件表项，并执行相应的操作。</li>
 <li><strong>关闭文件</strong>：当进程使用<code>close()</code>系统调用关闭一个文件时，它实际上是在文件描述符表中删除对应的条目，而不是删除文件表项。只有当所有引用该文件的进程都关闭了该文件时，文件表项才会被释放。</li>
 </ol>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/file_desc_specl.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/file_desc_specl.png" alt="alt text"></p>
 <ul>
 <li>有三个特殊的文件描述符,是系统自动打开的<ol>
 <li>标准输入描述符<code>stdin</code> 0</li>
@@ -1349,7 +1349,7 @@
 </ul>
 <h3 id="2-重定向"><a href="#2-重定向" class="headerlink" title="2.重定向"></a>2.重定向</h3><h4 id="2-1标准输出重定向"><a href="#2-1标准输出重定向" class="headerlink" title="2.1标准输出重定向"></a>2.1标准输出重定向</h4><ul>
 <li>格式: <code>command &lt; input_file</code></li>
-<li>例子 把&#x2F;tmp&#x2F;studnet_record 里的所有小写字母变成大写<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/input_rediect.png" alt="alt text"></li>
+<li>例子 把&#x2F;tmp&#x2F;studnet_record 里的所有小写字母变成大写<br><img src="/2024/06/21/linux-zhi-ling/input_rediect.png" alt="alt text"></li>
 </ul>
 <h4 id="2-2标准输出重定向"><a href="#2-2标准输出重定向" class="headerlink" title="2.2标准输出重定向"></a>2.2标准输出重定向</h4><p>重定向也称为输出重定向，把在终端执行命令的结果保存到目标文件。</p>
 <ul>
@@ -1371,7 +1371,7 @@
 <td>如果文件存在，会追加写入文件末尾，相当于文件操作中的’a’模式</td>
 </tr>
 </tbody></table>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/%E9%87%8D%E5%AE%9A%E5%90%91.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/%E9%87%8D%E5%AE%9A%E5%90%91.png" alt="alt text"></p>
 <ul>
 <li>可以使用输出重定向合并文件<ol>
 <li>按列合并 cat filea fileb &gt; newfile</li>
@@ -1383,7 +1383,7 @@
 <li>格式: <code>2 &gt; output_file</code><br> <code>2</code>表示标准错误输出</li>
 <li>使用pipe出现错误输出时,<code>2&gt;/dev/null</code>放在出现错误命令的后面</li>
 </ul>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/stderr.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/stderr.png" alt="alt text"></p>
 <ul>
 <li><code>/dev/null</code> 空设备,一般不关心的错误输出就丢到空设备文件中</li>
 </ul>
@@ -1407,7 +1407,7 @@
 <h3 id="匿名-管道命令"><a href="#匿名-管道命令" class="headerlink" title="(匿名)管道命令"></a>(匿名)管道命令</h3><p>管道<code>|</code>相当于一个容器,可以把命令执行的结果存储到里面,在释放出来</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tree /bin/ | more</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">统计当前登陆主机人数</span></span><br><span class="line">who | wc -l </span><br><span class="line"></span><br><span class="line">du /tmp/* 2&gt; /dev/null | sort -n -k1 | tail -3| awk &#x27;&#123;print$2&#125;&#x27;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><code>tee</code>命令<br> 接收上一条命令的输出,拷贝保存到一个文件中,并把输出传入下一个管道命令的输入<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/tee.png" alt="alt text"></li>
+<li><code>tee</code>命令<br> 接收上一条命令的输出,拷贝保存到一个文件中,并把输出传入下一个管道命令的输入<br><img src="/2024/06/21/linux-zhi-ling/tee.png" alt="alt text"></li>
 </ul>
 <h3 id="命名管道FIFOs"><a href="#命名管道FIFOs" class="headerlink" title="命名管道FIFOs"></a>命名管道FIFOs</h3><ul>
 <li><p>FIFOs（命名管道）可用于系统上两个进程之间的通信。它们允许两个进程在系统上独立执行时进行通信，而不像普通管道那样只能在同一个进程内进行通信。</p>
@@ -1419,7 +1419,7 @@
 </ul>
 <h4 id="FIFOs的使用"><a href="#FIFOs的使用" class="headerlink" title="FIFOs的使用"></a>FIFOs的使用</h4><ul>
 <li><code>mkfifo [option] file-list</code>创建命名管道命令<ul>
-<li><code>-m 八进制权限数</code> 参数用来设定管道文件的权限<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/fifo.png" alt="alt text"></li>
+<li><code>-m 八进制权限数</code> 参数用来设定管道文件的权限<br><img src="/2024/06/21/linux-zhi-ling/fifo.png" alt="alt text"></li>
 </ul>
 </li>
 </ul>
@@ -1512,9 +1512,9 @@
 </ul>
 </li>
 </ul>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/ps.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/ps.png" alt="alt text"></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">修改进程优先级(普通用户只能降低优先级---&gt;给nice_value赋正值)</span></span><br><span class="line">nice -n -20 ps -l </span><br></pre></td></tr></table></figure>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6.png" alt="alt text"></p>
 <p><strong>Shell命令</strong>可以是内部的（内建的）或外部的。</p>
 <ul>
 <li><p><strong>内部（内建）命令</strong>：这些命令的代码是shell进程的一部分。内部命令直接由shell解释和执行，不需要创建新的进程。您列举的内部命令包括<code>bg</code>（将后台暂停的任务继续执行）、<code>cd</code>（更改目录）、<code>continue</code>（在循环中跳过当前迭代的剩余部分）、<code>echo</code>（在终端显示文本或将文本写入文件）、<code>exec</code>（替换当前shell进程为新的进程）。</p>
@@ -1531,7 +1531,7 @@
 <ul>
 <li><code>type</code>命令</li>
 </ul>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/type.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/type.png" alt="alt text"></p>
 <h3 id="shell环境下执行命令"><a href="#shell环境下执行命令" class="headerlink" title="shell环境下执行命令"></a>shell环境下执行命令</h3><ul>
 <li>命令执行</li>
 </ul>
@@ -1581,9 +1581,9 @@
 </li>
 </ol>
 <ul>
-<li><p>脚本文件执行<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/script.png" alt="alt text"></p>
+<li><p>脚本文件执行<br><img src="/2024/06/21/linux-zhi-ling/script.png" alt="alt text"></p>
 </li>
-<li><p><code>top</code>命令<br>动态实时的显示系统中进程变化<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/top.png" alt="alt text"></p>
+<li><p><code>top</code>命令<br>动态实时的显示系统中进程变化<br><img src="/2024/06/21/linux-zhi-ling/top.png" alt="alt text"></p>
 <ul>
 <li><code>d</code>: 按D键切换刷新时间</li>
 <li><code>h</code>: 显示可选项</li>
@@ -1647,7 +1647,7 @@
 </ul>
 </li>
 </ol>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/loop.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/loop.png" alt="alt text"></p>
 <ul>
 <li><code>fg</code><br>   把后台进程变成前台进程<ul>
 <li>默认把带<code>+</code>的进程调到前台</li>
@@ -1655,7 +1655,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/fg.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/fg.png" alt="alt text"></p>
 <ul>
 <li><code>bg</code><br>   挂起前台任务使用<code>CTRL+Z</code>，<code>bg</code>命令来把后台挂起的任务唤醒</li>
 </ul>
@@ -1663,14 +1663,14 @@
 <li>串行: cmd1 ; cmd2</li>
 <li>并行: cmd1 &amp; cmd2</li>
 </ul>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/%E5%91%BD%E4%BB%A4%E4%B8%B2%E5%B9%B6%E8%A1%8C.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/%E5%91%BD%E4%BB%A4%E4%B8%B2%E5%B9%B6%E8%A1%8C.png" alt="alt text"></p>
 <h3 id="如何终止进程"><a href="#如何终止进程" class="headerlink" title="如何终止进程"></a>如何终止进程</h3><ul>
 <li>终止前台进程<ul>
 <li>CTRL+C</li>
 </ul>
 </li>
 <li>终止后台进程<ul>
-<li><code>kill</code>命令<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/kill.png" alt="alt text"></li>
+<li><code>kill</code>命令<br><img src="/2024/06/21/linux-zhi-ling/kill.png" alt="alt text"></li>
 </ul>
 </li>
 </ul>
@@ -1733,7 +1733,7 @@
 <li>编译型: 如C++这种,通过g++先生成可执行文件</li>
 <li>解释型: python或java,读一行命令,解释执行一行</li>
 </ul>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/shellscript.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/shellscript.png" alt="alt text"></p>
 <h3 id="编写shell脚本"><a href="#编写shell脚本" class="headerlink" title="编写shell脚本"></a>编写shell脚本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim first.sh</span><br><span class="line"></span><br><span class="line">date</span><br><span class="line">echo &quot;Hello world&quot;</span><br></pre></td></tr></table></figure>
 <p>shell脚本有三种执行方式</p>
 <ol>
@@ -1742,7 +1742,7 @@
 <li><code>. first.sh</code>或<code>source first.sh</code></li>
 </ol>
 <ul>
-<li>在脚本文件第一行指定shell环境<code>#! /bin/bash</code>表示把<code>/bin/bash</code>程序加载进来,由它来解释执行脚本文件<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/%E6%8C%87%E5%AE%9A%E8%84%9A%E6%9C%AC%E8%A7%A3%E9%87%8A%E5%99%A8.png" alt="alt text"></li>
+<li>在脚本文件第一行指定shell环境<code>#! /bin/bash</code>表示把<code>/bin/bash</code>程序加载进来,由它来解释执行脚本文件<br><img src="/2024/06/21/linux-zhi-ling/%E6%8C%87%E5%AE%9A%E8%84%9A%E6%9C%AC%E8%A7%A3%E9%87%8A%E5%99%A8.png" alt="alt text"></li>
 </ul>
 <h3 id="shell变量分类及操作"><a href="#shell变量分类及操作" class="headerlink" title="shell变量分类及操作"></a>shell变量分类及操作</h3><ul>
 <li>环境变量(子进程无法修改父进程的环境变量)<br> 使用<code>env</code>命令直接显示环境变量</li>
@@ -1904,7 +1904,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/%E5%91%BD%E4%BB%A4%E6%9B%BF%E6%8D%A2.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/%E5%91%BD%E4%BB%A4%E6%9B%BF%E6%8D%A2.png" alt="alt text"></p>
 <h3 id="变量的输入输出"><a href="#变量的输入输出" class="headerlink" title="变量的输入输出"></a>变量的输入输出</h3><h4 id="变量的输入"><a href="#变量的输入" class="headerlink" title="变量的输入"></a>变量的输入</h4><p><code>read</code> 是一个在Linux中常用的命令，用于从标准输入或其他文件描述符中读取输入并赋值给变量。它的基本语法如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">read</span> [选项] 变量名(列表)</span><br></pre></td></tr></table></figure>
 
@@ -1925,7 +1925,7 @@
 <li><code>-s</code> ：用于静默模式，输入时不显示在屏幕上。</li>
 <li><code>-t</code> ：设置等待时间，如果超过指定秒数没有输入，则读取终止。</li>
 </ul>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/read.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/read.png" alt="alt text"></p>
 <h4 id="变量的输出-echo"><a href="#变量的输出-echo" class="headerlink" title="变量的输出-&gt;echo"></a>变量的输出-&gt;<code>echo</code></h4><p><code>echo</code> 命令用于在终端中显示文本或变量的内容。它的基本语法如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> [选项] [字符串或变量]</span><br></pre></td></tr></table></figure>
 
@@ -1950,7 +1950,7 @@
 <h4 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h4><ul>
 <li><code>declare</code></li>
 <li><code>expr 表达式</code></li>
-<li><code>let</code>命令<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/expr&let.png" alt="alt text"></li>
+<li><code>let</code>命令<br><img src="/2024/06/21/linux-zhi-ling/expr&let.png" alt="alt text"></li>
 </ul>
 <h4 id="小数"><a href="#小数" class="headerlink" title="小数"></a>小数</h4><ul>
 <li><code>bc</code>命令: 默认从标准输入读取小数<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a=1.1</span><br><span class="line">b=2.1</span><br><span class="line">echo $a + $b | bc</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">从标准输出中通过管道变成标准输入在交给bc命令</span></span><br><span class="line"></span><br><span class="line">Output: 3.2</span><br></pre></td></tr></table></figure></li>
@@ -1960,7 +1960,7 @@
 <li>Write a script that read a text filename from the keybard, sort the file and display it with the line number(2.sh)<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">read -p &quot;Please input a file name:&quot; filename</span><br><span class="line">sort $filename | nl</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="shell脚本的注释"><a href="#shell脚本的注释" class="headerlink" title="shell脚本的注释"></a>shell脚本的注释</h3><p><code>#</code>用来注释一行,类似于python(除第一行外)</p>
-<h3 id="编写shell脚本-1"><a href="#编写shell脚本-1" class="headerlink" title="编写shell脚本"></a>编写shell脚本</h3><h4 id="shell表达式"><a href="#shell表达式" class="headerlink" title="shell表达式"></a>shell表达式</h4><p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/shell%E8%A1%A8%E8%BE%BE%E5%BC%8F.png" alt="alt text"></p>
+<h3 id="编写shell脚本-1"><a href="#编写shell脚本-1" class="headerlink" title="编写shell脚本"></a>编写shell脚本</h3><h4 id="shell表达式"><a href="#shell表达式" class="headerlink" title="shell表达式"></a>shell表达式</h4><p><img src="/2024/06/21/linux-zhi-ling/shell%E8%A1%A8%E8%BE%BE%E5%BC%8F.png" alt="alt text"></p>
 <ul>
 <li><p><code>-eq</code>: 两个整数相等</p>
 </li>
@@ -1984,8 +1984,8 @@
 
 <h4 id="if结构"><a href="#if结构" class="headerlink" title="if结构"></a>if结构</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">! /usr/bin/bash</span></span><br><span class="line">read a</span><br><span class="line">if [ $a -eq 0 ]</span><br><span class="line">then echo &#x27;zero&#x27;</span><br><span class="line">elif [ $a -gt 0 ]</span><br><span class="line">then echo &quot;is Postive&quot;</span><br><span class="line">elif [ $a -lt 0 ]</span><br><span class="line">then echo &quot; is Negative&quot;</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">if.sh</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h4><p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/%E5%BE%AA%E7%8E%AF%E8%AF%BB%E5%8F%96.png" alt="alt text"></p>
-<h5 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h5><p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/if%E7%BB%93%E6%9E%84.png" alt="alt text"></p>
+<h4 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h4><p><img src="/2024/06/21/linux-zhi-ling/%E5%BE%AA%E7%8E%AF%E8%AF%BB%E5%8F%96.png" alt="alt text"></p>
+<h5 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h5><p><img src="/2024/06/21/linux-zhi-ling/if%E7%BB%93%E6%9E%84.png" alt="alt text"></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="keyword">for</span>循环格式 <span class="keyword">in</span>可以不写,表示从命令行取参数列表</span></span><br><span class="line">for variable [in argument-list]</span><br><span class="line">do</span><br><span class="line">   command-list</span><br><span class="line">done</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">实例</span></span><br><span class="line">for name in tom jack marry</span><br><span class="line">do</span><br><span class="line">   echo &quot;hello $name&quot;</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -1996,36 +1996,36 @@
 
 <ul>
 <li>题目: 输入密码检验<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">/bin/bash</span></span><br><span class="line">passwd=&quot;007&quot;</span><br><span class="line">read -p &quot;Please input your password&quot; password</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">变量要加双引号,防止用户输入出现空格导致异常</span></span><br><span class="line">while [ &quot;$password&quot; != &quot;$passwd&quot; ]</span><br><span class="line">do</span><br><span class="line">        read -p &quot;Please input your password&quot; password</span><br><span class="line">done</span><br><span class="line">echo &quot;Congradulations!&quot;</span><br></pre></td></tr></table></figure></li>
-<li>while循环中的break和continue<br><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/break_continue.png" alt="alt text"></li>
+<li>while循环中的break和continue<br><img src="/2024/06/21/linux-zhi-ling/break_continue.png" alt="alt text"></li>
 </ul>
 <h4 id="case分支语句"><a href="#case分支语句" class="headerlink" title="case分支语句"></a>case分支语句</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">格式</span></span><br><span class="line">case test-string in</span><br><span class="line">pattern1)   command-list1</span><br><span class="line">            ;;</span><br><span class="line"></span><br><span class="line">pattern2)   command-list2</span><br><span class="line">            ;;</span><br><span class="line">patternN)   command-listN</span><br><span class="line">            ;;</span><br></pre></td></tr></table></figure>
 
 
-<h2 id="PTA习题"><a href="#PTA习题" class="headerlink" title="PTA习题"></a>PTA习题</h2><p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/%E4%B9%A0%E9%A2%9801.png" alt="alt text"></p>
+<h2 id="PTA习题"><a href="#PTA习题" class="headerlink" title="PTA习题"></a>PTA习题</h2><p><img src="/2024/06/21/linux-zhi-ling/%E4%B9%A0%E9%A2%9801.png" alt="alt text"></p>
 <ul>
 <li><code>解答</code><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">read a b other  </span><br><span class="line">sum=$((a + b))  </span><br><span class="line">echo $sum</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">解法2</span></span><br><span class="line">read a b other  </span><br><span class="line">sum=`expr $a + $b`  </span><br><span class="line">echo $sum</span><br></pre></td></tr></table></figure></li>
 </ul>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/%E4%B9%A0%E9%A2%9802.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/%E4%B9%A0%E9%A2%9802.png" alt="alt text"></p>
 <ul>
 <li><code>解答</code><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span>  </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">提示用户输入密码</span>  </span><br><span class="line">echo -n &quot;输入密码password: &quot;  </span><br><span class="line">read -s password  # -s 选项使输入不回显到屏幕上  </span><br><span class="line">echo  # 打印一个空行以分隔密码输入和后续输出  </span><br><span class="line"><span class="meta prompt_">  </span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查密码是否正确</span>  </span><br><span class="line">if [ &quot;$password&quot; = &quot;pta12345&quot; ]; then  </span><br><span class="line">    echo &quot;密码正确&quot;  </span><br><span class="line">else  </span><br><span class="line">    echo &quot;密码错误&quot;  </span><br><span class="line">fi</span><br></pre></td></tr></table></figure></li>
 </ul>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/%E4%B9%A0%E9%A2%9803.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/%E4%B9%A0%E9%A2%9803.png" alt="alt text"></p>
 <ul>
 <li><code>解答</code><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">read n</span><br><span class="line">if [ $n -eq 0 -o $n -eq 1 ]</span><br><span class="line">then </span><br><span class="line">    echo &quot;$n indian boy.&quot;</span><br><span class="line">elif [ $n -gt 1 ]; then </span><br><span class="line">    echo &quot;$n indian boys.&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure></li>
 </ul>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/%E4%B9%A0%E9%A2%9804.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/%E4%B9%A0%E9%A2%9804.png" alt="alt text"></p>
 <ul>
 <li><code>解答</code><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">read n</span><br><span class="line">if [ $n -lt 0 -o $n -gt 100 ]; then</span><br><span class="line">    echo &quot;输入整数小于0或大于100&quot;</span><br><span class="line">else</span><br><span class="line">    echo &quot;输入整数在0到100之间（含）&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure></li>
 </ul>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/%E4%B9%A0%E9%A2%9805.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/%E4%B9%A0%E9%A2%9805.png" alt="alt text"></p>
 <ul>
 <li><code>解答</code><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">read a</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">算数拓展</span></span><br><span class="line">if [ $(($a % 2)) -eq 0 ]; then</span><br><span class="line">    echo &quot;$a是偶数&quot;</span><br><span class="line">else</span><br><span class="line">    echo &quot;$a是奇数&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure></li>
 </ul>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/%E4%B9%A0%E9%A2%9806.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/%E4%B9%A0%E9%A2%9806.png" alt="alt text"></p>
 <ul>
 <li><code>解答</code><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">读取用户输入的文件名</span></span><br><span class="line">read -p &quot;请输入文件名：&quot; filename</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">判断文件是否为目录</span></span><br><span class="line">if [ -d &quot;$filename&quot; ]; then</span><br><span class="line">    echo &quot;Yes&quot;</span><br><span class="line">else</span><br><span class="line">    echo &quot;No&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure></li>
 </ul>
-<p><img src="/2024/06/21/Linux%E6%8C%87%E4%BB%A4/%E4%B9%A0%E9%A2%9807.png" alt="alt text"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/%E4%B9%A0%E9%A2%9807.png" alt="alt text"></p>
 <ul>
 <li><code>解答</code><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line">![alt text](习题08.png)</span><br><span class="line">* `解答`</span><br><span class="line">```shell</span><br><span class="line">chance=3</span><br><span class="line">while [ $chance -gt 0 ]; do</span><br><span class="line">    read -p &quot;Enter password: &quot; passwd</span><br><span class="line">    if [ &quot;$passwd&quot; = &quot;zust&quot; ]; then</span><br><span class="line">        echo &quot;Success&quot;</span><br><span class="line">        exit</span><br><span class="line">    else</span><br><span class="line">        echo &quot;Password error&quot;</span><br><span class="line">        chance=$((chance - 1))</span><br><span class="line">        continue</span><br><span class="line">    fi</span><br><span class="line">done</span><br><span class="line">echo &quot;Login failed&quot;</span><br><span class="line">exit</span><br></pre></td></tr></table></figure></li>
 </ul>
