@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="qt做一个表白小程序, 0zxm">
+    <meta name="keywords" content="hexo搭建博客, 0zxm">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>qt做一个表白小程序 | 0zxm</title>
+    <title>hexo搭建博客 | 0zxm</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -323,12 +323,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">qt做一个表白小程序</h1>
+                    <h1 class="description center-align post-title">hexo搭建博客</h1>
                 </div>
             </div>
         </div>
@@ -444,8 +444,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Qt/">
-                                <span class="chip bg-color">Qt</span>
+                            <a href="/tags/Hexo/">
+                                <span class="chip bg-color">Hexo</span>
                             </a>
                         
                     </div>
@@ -456,8 +456,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/GUI%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/" class="post-category">
-                                GUI程序开发
+                            <a href="/categories/%E5%8D%9A%E5%AE%A2/" class="post-category">
+                                博客
                             </a>
                         
                     </div>
@@ -478,14 +478,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.6k
+                    2.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    9 分
                 </div>
                 
 
@@ -513,51 +513,144 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Qt实战01"><a href="#Qt实战01" class="headerlink" title="Qt实战01"></a>Qt实战01</h1><ul>
-<li><p>刷视频看到大家学了图形化界面编程后的第一件事,一定是写出一个表白小程序用来对自己心爱的人用来表白,而且一定要让他接受,所以我写了一个qt小程序,能够把窗口置于顶层,让她一直烂到你的爱意,而且怎么关也关不掉,正好适合对不怎么会使用电脑的人使用</p>
+                <h1 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h1><h2 id="安装Git-和-NodeJs"><a href="#安装Git-和-NodeJs" class="headerlink" title="安装Git 和 NodeJs"></a>安装Git 和 NodeJs</h2><p>这是我搭建的时候对照的视频链接<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Eg41157tL/">教程]Hexo &amp; Github搭建自己的专属博客_哔哩哔哩_bilibili</a></p>
+<ul>
+<li><p>首先要安装</p>
+<ul>
+<li><p>在Windows上使用Git，可以从Git官网直接<a target="_blank" rel="noopener" href="https://git-scm.com/downloads%EF%BC%8C%E7%84%B6%E5%90%8E%E6%8C%89%E9%BB%98%E8%AE%A4%E9%80%89%E9%A1%B9%E5%AE%89">https://git-scm.com/downloads，然后按默认选项安</a> 装即可。安装完成后，在开始菜单里找到“Git”-&gt;“Git Bash”，蹦出一个类似命令行窗口的东西，就 说明Git安装成功！</p>
 </li>
-<li><p>当然,关掉的方法还是有很多的,包括但不限于调出任务管理器kill掉等方法</p>
+<li><p>在Git中绑定Github账号，打开“Git Bash”，在命令框中依次输入两行命令：</p>
+<blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config <span class="literal">--global</span> user.name “Your Name”</span><br><span class="line">git config <span class="literal">--global</span> user.email email@example.com</span><br><span class="line"><span class="comment"># 其中Your Name和email@example.com替换成上面注册时的账户名和邮箱</span></span><br></pre></td></tr></table></figure></blockquote>
 </li>
 </ul>
-<h3 id="成品展示"><a href="#成品展示" class="headerlink" title="成品展示"></a>成品展示</h3><p>这是点击不接受的窗口,右侧是马里奥的gif动画</p>
-<p>若是不接受,会一直置于顶层</p>
-<p><img src="/2024/06/21/qt%E5%81%9A%E4%B8%80%E4%B8%AA%E8%A1%A8%E7%99%BD%E5%B0%8F%E7%A8%8B%E5%BA%8F/image-20240128090249459.png" alt="image-20240128090249459"></p>
-<p>这是接受后弹出的窗口,可以拖拽</p>
-<p><img src="/2024/06/21/qt%E5%81%9A%E4%B8%80%E4%B8%AA%E8%A1%A8%E7%99%BD%E5%B0%8F%E7%A8%8B%E5%BA%8F/image-20240128090322689.png" alt="image-20240128090322689"></p>
-<h3 id="关键部分讲解"><a href="#关键部分讲解" class="headerlink" title="关键部分讲解"></a>关键部分讲解</h3><h4 id="添加动画"><a href="#添加动画" class="headerlink" title="添加动画"></a>添加动画</h4><p>使用了qt写好的qmovie类,创建时指定动画资源,设置好播放速度,窗口创建就会开始播放,默认循环播放</p>
+<p>和</p>
+<ul>
+<li><p>由于 Hexo 是基于 Node.js 驱动的一款博客框架，所以安装NodeJs <a target="_blank" rel="noopener" href="https://nodejs.org/en/downl">https://nodejs.org/en/downl</a></p>
+</li>
+<li><p>安装之后可以输入以下命令查看是否安装成功:</p>
 <blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加马里奥动画</span></span><br><span class="line">QMovie * mario = <span class="keyword">new</span> <span class="built_in">QMovie</span>(<span class="string">&quot;:/mario.gif&quot;</span>);</span><br><span class="line">ui-&gt;marioLabel-&gt;<span class="built_in">setMovie</span>(mario);</span><br><span class="line">ui-&gt;marioLabel-&gt;<span class="built_in">setScaledContents</span>(<span class="literal">true</span>); <span class="comment">// 将内容缩放以适应控件大小</span></span><br><span class="line"><span class="comment">//设置播放速度</span></span><br><span class="line">mario-&gt;<span class="built_in">setSpeed</span>(<span class="number">150</span>);</span><br><span class="line">mario-&gt;<span class="built_in">start</span>();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</blockquote>
-<h4 id="循环逻辑"><a href="#循环逻辑" class="headerlink" title="循环逻辑"></a>循环逻辑</h4><p>这里使用connect链接按钮的点击事件,若是接受了,会弹出一个自定义的yes_next窗口,里面是我写好的从多处收集来的情诗和句子,背景我使用了爱心图片填充</p>
-<p>如果用户点击了不接受,就会创建一个循环对话框,一直监听信号,直到用户点击yes,在弹出yes_next对话框</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git version</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure></blockquote>
+</li>
+</ul>
+<p>出现版本号则安装配置成功</p>
+<p><img src="/2024/06/21/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/image-20240126185511681.png" alt="image-20240126185511681"></p>
+</li>
+</ul>
+<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p>以上环境准备好了就可使用 npm 开始安装 Hexo 了，在命令行输入执行如下命令</p>
 <blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 连接按钮的点击事件</span></span><br><span class="line"> QObject::<span class="built_in">connect</span>(ui-&gt;pushButton_Yes, &amp;QPushButton::clicked, [=]()&#123;</span><br><span class="line">     Yes_Next *y = <span class="keyword">new</span> Yes_Next;</span><br><span class="line">     y-&gt;<span class="built_in">setVisible</span>(<span class="literal">true</span>);</span><br><span class="line">     y-&gt;<span class="built_in">setWindowFlag</span>(Qt::WindowStaysOnTopHint);</span><br><span class="line">     <span class="comment">//y-&gt;setGeometry(100, 100, 400, 400); // 设置窗口位置和大小</span></span><br><span class="line">     y-&gt;<span class="built_in">setGeometry</span>(<span class="number">600</span>,<span class="number">150</span>,<span class="number">400</span>,<span class="number">600</span>);</span><br><span class="line">     y-&gt;<span class="built_in">show</span>();</span><br><span class="line">     y-&gt;<span class="built_in">raise</span>();</span><br><span class="line">     <span class="keyword">this</span>-&gt;<span class="built_in">close</span>();</span><br><span class="line">     <span class="comment">//exit(0);</span></span><br><span class="line"> &#125;);</span><br><span class="line"> QObject::<span class="built_in">connect</span>(ui-&gt;pushButton_No, &amp;QPushButton::clicked, [=]()&#123;</span><br><span class="line"></span><br><span class="line">     <span class="comment">// 用户点击了 &quot;No&quot; 按钮，继续循环</span></span><br><span class="line">     <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">         QDialog loopDialog;</span><br><span class="line">         loopDialog.<span class="built_in">setWindowTitle</span>(<span class="string">&quot;循环对话框&quot;</span>);</span><br><span class="line">         loopDialog.<span class="built_in">setWindowFlag</span>(Qt::WindowStaysOnTopHint);</span><br><span class="line">         loopDialog.<span class="built_in">setModal</span>(<span class="literal">true</span>);</span><br><span class="line">         loopDialog.<span class="built_in">setFixedSize</span>(<span class="number">350</span>, <span class="number">100</span>); <span class="comment">// 设置固定大小</span></span><br><span class="line"></span><br><span class="line">         QLabel *label = <span class="keyword">new</span> <span class="built_in">QLabel</span>(&amp;loopDialog);</span><br><span class="line">         label-&gt;<span class="built_in">setText</span>(<span class="string">&quot;你在考虑下,接不接受&quot;</span>); <span class="comment">// 确保文本正确设置</span></span><br><span class="line">         label-&gt;<span class="built_in">show</span>();</span><br><span class="line">         label-&gt;<span class="built_in">setGeometry</span>(<span class="number">120</span>, <span class="number">10</span>, <span class="number">150</span>, <span class="number">35</span>); <span class="comment">// 设置位置和大小</span></span><br><span class="line">         <span class="comment">//label-&gt;setStyleSheet(&quot;border: 1px solid black&quot;); // 添加边框以显示位置</span></span><br><span class="line">         QPalette palette = label-&gt;<span class="built_in">palette</span>();</span><br><span class="line">         palette.<span class="built_in">setColor</span>(QPalette::Text, <span class="built_in">QColor</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>)); <span class="comment">// 设置文本颜色为蓝色</span></span><br><span class="line">         label-&gt;<span class="built_in">setPalette</span>(palette);</span><br><span class="line"></span><br><span class="line">         QPushButton *btnYesLoop = <span class="keyword">new</span> <span class="built_in">QPushButton</span>(<span class="string">&quot;Yes&quot;</span>, &amp;loopDialog);</span><br><span class="line">         QPushButton *btnNoLoop = <span class="keyword">new</span> <span class="built_in">QPushButton</span>(<span class="string">&quot;No&quot;</span>, &amp;loopDialog);</span><br><span class="line">         btnYesLoop-&gt;<span class="built_in">setGeometry</span>(<span class="number">50</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">30</span>);</span><br><span class="line">         btnNoLoop-&gt;<span class="built_in">setGeometry</span>(<span class="number">200</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">         <span class="comment">// 设置父子关系</span></span><br><span class="line">         btnYesLoop-&gt;<span class="built_in">setParent</span>(&amp;loopDialog);</span><br><span class="line">         btnNoLoop-&gt;<span class="built_in">setParent</span>(&amp;loopDialog);</span><br><span class="line"></span><br><span class="line">         <span class="comment">// 连接按钮的点击事件</span></span><br><span class="line">         QObject::<span class="built_in">connect</span>(btnYesLoop, &amp;QPushButton::clicked, &amp;loopDialog, &amp;QDialog::accept);</span><br><span class="line">         QObject::<span class="built_in">connect</span>(btnNoLoop, &amp;QPushButton::clicked, &amp;loopDialog, &amp;QDialog::reject);</span><br><span class="line"></span><br><span class="line">         <span class="comment">// 显示循环对话框</span></span><br><span class="line">         <span class="keyword">if</span> (loopDialog.<span class="built_in">exec</span>() == QDialog::Accepted) &#123;</span><br><span class="line">             <span class="comment">// 用户点击了 &quot;Yes&quot; 按钮，退出循环</span></span><br><span class="line">             Yes_Next *y = <span class="keyword">new</span> Yes_Next;</span><br><span class="line">             y-&gt;<span class="built_in">setGeometry</span>(<span class="number">600</span>, <span class="number">150</span>, <span class="number">400</span>, <span class="number">400</span>); <span class="comment">// 设置窗口位置和大小</span></span><br><span class="line">             y-&gt;<span class="built_in">show</span>();</span><br><span class="line">             y-&gt;<span class="built_in">raise</span>();</span><br><span class="line">             <span class="keyword">this</span>-&gt;<span class="built_in">close</span>();</span><br><span class="line">             <span class="comment">//exit(0);</span></span><br><span class="line">             <span class="keyword">break</span>;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install <span class="literal">-g</span> hexo<span class="literal">-cli</span></span><br></pre></td></tr></table></figure>
 </blockquote>
-<h4 id="yes-next窗口"><a href="#yes-next窗口" class="headerlink" title="yes_next窗口"></a>yes_next窗口</h4><blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;yes_next.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ui_yes_next.h&quot;</span></span></span><br><span class="line"></span><br><span class="line">Yes_Next::<span class="built_in">Yes_Next</span>(QWidget *parent)</span><br><span class="line"> : <span class="built_in">QWidget</span>(parent)</span><br><span class="line"> , <span class="built_in">ui</span>(<span class="keyword">new</span> Ui::Yes_Next)</span><br><span class="line">&#123;</span><br><span class="line"> ui-&gt;<span class="built_in">setupUi</span>(<span class="keyword">this</span>);</span><br><span class="line"> <span class="keyword">this</span>-&gt;<span class="built_in">setWindowTitle</span>(<span class="string">&quot;poems&quot;</span>);</span><br><span class="line"></span><br><span class="line"> <span class="comment">/*使用HTML标记：你可以使用HTML标记来在QLabel中显示换行文字。例如，你可以使用&lt;br&gt;标记来表示换行。示例代码如下：</span></span><br><span class="line"><span class="comment">     ui-&gt;label-&gt;setText(&quot;第一行文字&lt;br&gt;第二行文字&quot;);</span></span><br><span class="line"><span class="comment"> 使用QLabel的setWordWrap方法：你可以使用setWordWrap方法来启用QLabel的自动换行功能。示例代码如下：</span></span><br><span class="line"><span class="comment">     ui-&gt;label-&gt;setText(&quot;这是一段很长的文字，当文字超出label的大小时会自动换行&quot;);</span></span><br><span class="line"><span class="comment">     ui-&gt;label-&gt;setWordWrap(true);</span></span><br><span class="line"><span class="comment"> 这两种方法都可以用来在QLabel中显示换行文字。你可以根据你的需求选择其中一种方法*/</span></span><br><span class="line"></span><br><span class="line"> QString poem = <span class="string">&quot;&lt;br&gt;莎士比亚的《十四行诗》：&lt;br&gt;“我能否将你比作夏日？&lt;br&gt;但你比夏日更可爱也更温柔。”&lt;br&gt;&quot;</span></span><br><span class="line">                <span class="string">&quot;&lt;br&gt;杰拉尔德的《未与你共度一切》：&lt;br&gt;“我曾遇到过无数生灵，曾看过无数美景，&lt;br&gt;这一切却未与你共度，&lt;br&gt;这都会是我的损失；&lt;br&gt;这些事情我都想与你共度，&quot;</span></span><br><span class="line">                <span class="string">&quot;&lt;br&gt;这一切才会是我的收获。”&lt;br&gt;&lt;br&gt;波伏娃的《越洋情书》：&lt;br&gt;“唯有你也想见我的时候，我们的见面才有意义。”&lt;br&gt;&lt;br&gt;“犹如飞蛾扑向星星，又如黑夜追求黎明。”&lt;br&gt;&lt;br&gt;“见你第一眼我就沦陷了。”&lt;br&gt;&lt;br&gt;“他是我的南北，&quot;</span></span><br><span class="line">                <span class="string">&quot;我的西东，我的工作日，我的礼拜天，我的正午，我的深夜，我的言语，我的歌声。我认为爱可以不朽。”&quot;</span>;</span><br><span class="line"></span><br><span class="line"> ui-&gt;label-&gt;<span class="built_in">setText</span>(poem);</span><br><span class="line"> ui-&gt;label-&gt;<span class="built_in">setStyleSheet</span>(<span class="string">&quot;background-color: pink; font-style: italic; font-family: 华文楷体;&quot;</span>);</span><br><span class="line"> QFont font = ui-&gt;label-&gt;<span class="built_in">font</span>(); <span class="comment">// 获取label的当前字体</span></span><br><span class="line"> font.<span class="built_in">setPointSize</span>(<span class="number">16</span>); <span class="comment">// 设置字体大小为16</span></span><br><span class="line"> ui-&gt;label-&gt;<span class="built_in">setFont</span>(font); <span class="comment">// 应用新的字体</span></span><br><span class="line"> ui-&gt;label-&gt;<span class="built_in">setWordWrap</span>(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 设置背景图片</span></span><br><span class="line"> QString imagePath = <span class="string">&quot;url(:/loveheart.jfif)&quot;</span>; <span class="comment">// 替换成你的图片路径</span></span><br><span class="line"> <span class="keyword">this</span>-&gt;<span class="built_in">setStyleSheet</span>(<span class="string">&quot;background-image: &quot;</span>+ imagePath + <span class="string">&quot;; background-position: center; background-attachment: fixed;&quot;</span>);</span><br><span class="line"> <span class="comment">/*使用background-size属性来指定背景图片的大小和填充方式。例如，你可以设置为background-size: cover;</span></span><br><span class="line"><span class="comment">     * 来让背景图片覆盖整个窗口，或者设置为background-size: contain;来让背景图片完整显示在窗口内，不进行裁剪。*/</span></span><br><span class="line">    <span class="comment">//background-repeat: no-repeat不重复</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Yes_Next::~<span class="built_in">Yes_Next</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">delete</span> ui;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>这个窗口里面有使用到一些html和qss之类的知识,我都在注释中写了,看注释就可以</p>
-<h4 id="Qt打包成品"><a href="#Qt打包成品" class="headerlink" title="Qt打包成品"></a>Qt打包成品</h4><p>如果不打包的话,这个程序只能在qt框架中使用,到别人的电脑上不一定能用(缺少依赖环境),所以最好把成品打包,再发给别人</p>
-<h5 id="release"><a href="#release" class="headerlink" title="release"></a>release</h5><p><img src="/2024/06/21/qt%E5%81%9A%E4%B8%80%E4%B8%AA%E8%A1%A8%E7%99%BD%E5%B0%8F%E7%A8%8B%E5%BA%8F/image-20240128091709599.png" alt="image-20240128091709599"></p>
-<ol>
-<li><p>箭头处切换成release版本在编译运行</p>
-</li>
-<li><p>找到release的生成文件夹,一般就在项目的同级目录下</p>
-</li>
-</ol>
-<p>  <img src="/2024/06/21/qt%E5%81%9A%E4%B8%80%E4%B8%AA%E8%A1%A8%E7%99%BD%E5%B0%8F%E7%A8%8B%E5%BA%8F/image-20240128091957364.png" alt="image-20240128091957364"></p>
-<ol start="3">
-<li><p>找到.exe文件,复制到任意一个空文件夹</p>
-</li>
-<li><p>右键在终端中打开<br> <img src="/2024/06/21/qt%E5%81%9A%E4%B8%80%E4%B8%AA%E8%A1%A8%E7%99%BD%E5%B0%8F%E7%A8%8B%E5%BA%8F/image-20240128092221532.png" alt="image-20240128092221532"></p>
-</li>
-<li><p>输入windeployqt “你的exe程序名字”,就会帮你自动打包需要的资源文件,最后放在此文件夹中,然后你就可以把这个文件夹发给别人开心的玩耍了!</p>
-<p> <img src="/2024/06/21/qt%E5%81%9A%E4%B8%80%E4%B8%AA%E8%A1%A8%E7%99%BD%E5%B0%8F%E7%A8%8B%E5%BA%8F/image-20240128092456774.png" alt="image-20240128092456774"></p>
-</li>
-</ol>
-<img src="image-20240128092516992.png" alt="image-20240128092516992" style="zoom:80%;" />
+<p>安装 Hexo 完成后，在指定文件夹下打开”Git Bash”，再执行下列命令，Hexo 将会在指定文件夹中新建所须要的文件:</p>
+<blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init myBlog</span><br><span class="line"><span class="built_in">cd</span> myBlog</span><br><span class="line">npm install </span><br></pre></td></tr></table></figure>
 
-<h3 id="获取成品"><a href="#获取成品" class="headerlink" title="获取成品"></a>获取成品</h3><p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1dNQ9S1uWGD7fw-RxlXoIRA?pwd=1234">https://pan.baidu.com/s/1dNQ9S1uWGD7fw-RxlXoIRA?pwd=1234</a><br>提取码：1234</p>
+<p>若是上面的命令都没报错的话，就恭喜了，运行hexo s命令，其中s是server 的缩写，在浏览器中输入 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 回车就能够预览效果了。</p>
+</blockquote>
+<p><img src="/2024/06/21/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240126193709.png"></p>
+<h2 id="加载主题"><a href="#加载主题" class="headerlink" title="加载主题"></a>加载主题</h2><p>大家可以去官网上找自己喜欢的主题下载<a target="_blank" rel="noopener" href="https://hexo.io/themes/%EF%BC%8C%E8%87%AA%E5%B7%B1%E9%87%87%E7%94%A8%E7%9A%84%E4%B8%BB%E9%A2%98%E6%98%AFhttps://github.com/Siricee/hexo-theme-Chic%EF%BC%8C%E8%BF%99%E6%AC%BE%E6%9C%89%E6%98%8E%E6%9A%97%E4%B8%A4%E7%A7%8D%E9%A2%9C%E8%89%B2%E3%80%82">https://hexo.io/themes/，自己采用的主题是https://github.com/Siricee/hexo-theme-Chic，这款有明暗两种颜色。</a></p>
+<p><img src="/2024/06/21/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240126193855.png"></p>
+<h2 id="修改主题配置"><a href="#修改主题配置" class="headerlink" title="修改主题配置"></a>修改主题配置</h2><p>修改在主题文件夹下的_config.ym1文件，完成自己个人的配置，</p>
+<blockquote>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"># Header 主页面标题</span><br><span class="line">navname: Bentham&#x27;s Blog</span><br><span class="line"># navigatior items 四个文件归类</span><br><span class="line">nav:</span><br><span class="line">Posts: /archives</span><br><span class="line">Categories: /category</span><br><span class="line">Tags: /tag</span><br><span class="line">About: /about</span><br><span class="line"># favicon 图标</span><br><span class="line">favicon: /favicon.ico</span><br><span class="line"># Profile 中间显示名字</span><br><span class="line">nickname: Jeremy Bentham</span><br><span class="line">### this variable is MarkDown form.</span><br><span class="line"># 个人描述，可以修改成自己要显示的句子</span><br><span class="line">description: Lorem ipsum dolor sit amet, **consectetur adipiscing elit.**</span><br><span class="line">&lt;br&gt;Fusce eget urna vitae velit *eleifend interdum at ac* nisi.</span><br><span class="line"># 个人头像图片</span><br><span class="line">avatar: /image/avatar.jpeg</span><br><span class="line"># main menu navigation</span><br><span class="line">## links key words should not be changed.</span><br><span class="line">## Complete url after key words.</span><br><span class="line">## Unused key can be commented out.</span><br><span class="line"># 下方超链接</span><br><span class="line">links:</span><br><span class="line">Blog: /archives</span><br><span class="line"># Category:</span><br><span class="line"># Tags:</span><br><span class="line"># Link:</span><br><span class="line"># Resume:</span><br><span class="line"># Publish:</span><br><span class="line"># Trophy:</span><br><span class="line"># Gallery:</span><br><span class="line"># RSS:</span><br><span class="line"># AliPay:</span><br><span class="line">ZhiHu: https://www.zhihu.com/people/sirice</span><br><span class="line"># LinkedIn:</span><br><span class="line"># FaceBook:</span><br><span class="line"># Twitter:</span><br><span class="line"># Skype:</span><br><span class="line"># CodeSandBox:</span><br><span class="line"># CodePen:</span><br><span class="line"># Sketch:</span><br><span class="line"># Gitlab:</span><br><span class="line"># Dribbble:</span><br><span class="line">Instagram:</span><br><span class="line">Reddit:</span><br><span class="line"># YouTube:</span><br><span class="line"># QQ:</span><br><span class="line"># Weibo:</span><br><span class="line"># WeChat:</span><br><span class="line">Github: https://github.com/Siricee</span><br><span class="line"># how links show: you have 2 choice--text or icon. 图标 or 文字</span><br><span class="line">links_text_enable: false</span><br><span class="line">links_icon_enable: true</span><br><span class="line"># Post page</span><br><span class="line">## Post_meta</span><br><span class="line">post_meta_enable: true</span><br><span class="line">post_author_enable: true</span><br><span class="line">post_date_enable: true</span><br><span class="line">post_category_enable: true</span><br><span class="line">## Post copyright</span><br><span class="line">post_copyright_enable: true</span><br><span class="line">post_copyright_author_enable: true</span><br><span class="line">post_copyright_permalink_enable: true</span><br><span class="line">post_copyright_license_enable: true</span><br><span class="line">post_copyright_license_text: Copyright (c) 2019 &lt;a</span><br><span class="line">href=&quot;http://creativecommons.org/licenses/by-nc/4.0/&quot;&gt;CC-BY-NC-4.0&lt;/a&gt;</span><br><span class="line">LICENSE</span><br><span class="line">post_copyright_slogan_enable: true</span><br><span class="line">post_copyright_slogan_text: Do you believe in &lt;strong&gt;DESTINY&lt;/strong&gt;?</span><br><span class="line">## toc</span><br><span class="line">post_toc_enable: true</span><br><span class="line"># Page</span><br><span class="line">page_title_enable: true</span><br><span class="line"># Date / Time format</span><br><span class="line">## Hexo uses Moment.js to parse and display date</span><br><span class="line">## You can customize the date format as defined in</span><br><span class="line">## http://momentjs.com/docs/#/displaying/format/</span><br><span class="line">date_format: MMMM D, YYYY</span><br><span class="line">time_format: H:mm:ss</span><br><span class="line"># stylesheets loaded in the &lt;head&gt;</span><br><span class="line">stylesheets:</span><br><span class="line">- /css/style.css</span><br><span class="line"># scripts loaded in the end of the body</span><br><span class="line">scripts:</span><br><span class="line">- /js/script.js</span><br><span class="line">- /js/tocbot.min.js</span><br><span class="line"># tscanlin/tocbot: Build a table of contents from headings in an HTML</span><br><span class="line">document.</span><br><span class="line"># https://github.com/tscanlin/tocbot</span><br><span class="line"></span><br><span class="line"># plugin functions</span><br><span class="line">## Mathjax: Math Formula Support</span><br><span class="line">## https://www.mathjax.org</span><br><span class="line"># 数学公式</span><br><span class="line">mathjax:</span><br><span class="line">enable: true</span><br><span class="line">import: demand # global or demand</span><br><span class="line">## global: all pages will load mathjax,this will degrade performance and</span><br><span class="line">some grammers may be parsed wrong.</span><br><span class="line">## demand: Recommend option,if your post need fomula, you can declare</span><br><span class="line">&#x27;mathjax: true&#x27; in Front-matter</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="将博客部署在GitHub上"><a href="#将博客部署在GitHub上" class="headerlink" title="将博客部署在GitHub上"></a>将博客部署在GitHub上</h2><ol>
+<li>点击 Start project 或者下面的 new repository 建立一个新的仓库，注意Github 仅能使用一个同 名仓库的代码托管一个静态站点，这里. 注意仓库名一定要是： 用户名.github.io    </li>
+<li>配置 SSH key ，要使用 git 工具首先要配置一下SSH key，为部署本地博客到 Github 作准备。</li>
+</ol>
+<blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config <span class="literal">--global</span> user.name <span class="string">&quot;用户名&quot;</span></span><br><span class="line">git config <span class="literal">--global</span> user.email <span class="string">&quot;邮箱地址&quot;</span></span><br><span class="line">ssh<span class="literal">-keygen</span> <span class="literal">-t</span> rsa <span class="literal">-C</span> <span class="string">&#x27;上面的邮箱&#x27;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>按照提示完成三次回车，便可生成 ssh key，采用以下指令也可以查看自己的ssh：</p>
+<blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<p> 首次使用还须要确认并添加主机到本机SSH可信列表。若返回 Hi xxx! You’ve successfully authenticated, but GitHub does not provide shell access. 内容，则证实添加成功。 </p>
+<blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh <span class="literal">-T</span> git@github.com</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<p>登陆 Github 上添加刚刚生成的SSH key，按如下步骤添加，右上角点击头像-&gt; settings -&gt; SSH and GPG keys，建立一个新的 SSH key, 标题随便，key 就填刚才生成那个，确认建立，这样在你 的 SSH keys 列表里就会看到你刚刚添加的密钥。</p>
+<p><img src="/2024/06/21/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/image-20240126194544764.png" alt="image-20240126194544764"></p>
+<h2 id="SSH无法添加信任的主机列表"><a href="#SSH无法添加信任的主机列表" class="headerlink" title="!!!SSH无法添加信任的主机列表"></a>!!!SSH无法添加信任的主机列表</h2><blockquote>
+<p>这是我搭建博客中遇到的最大的问题,一开始我以为是公钥添加问题,中途尝试了许多方法</p>
+<ol>
+<li>运行npm install 时，卡在sill idealTree buildDeps没有反应，内心OS:明明早就配过淘宝镜像源，果然没用<br>检查node和npm，发现版本不匹配，按官网匹配表，npm版本太高，于是升级node，还是不行,npm失灵<br>删除.npmrc<br>清理缓存npm cache clean –force</li>
+<li>都不行,最后排查才发现,忘记把github主机添加到本机ssh可信列表</li>
+</ol>
+</blockquote>
+<p>第一次使用要把github主机添加到本机ssh可信列表,</p>
+<p>但是添加的时候有可能会失败,这是官方文档中的原文</p>
+<p>“有时，防火墙会完全拒绝允许 SSH 连接。 如果无法选择使用<a target="_blank" rel="noopener" href="https://docs.github.com/zh/github/getting-started-with-github/caching-your-github-credentials-in-git">具有凭据缓存的 HTTPS 克隆</a>，可以尝试使用通过 HTTPS 端口建立的 SSH 连接克隆”</p>
+<p>那么怎么解决呢,对照官方文档就能解决,大致步骤如下,建议对照详细官方文档<br>最终解决方法<a target="_blank" rel="noopener" href="https://docs.github.com/zh/authentication/troubleshooting-ssh/using-ssh-over-the-https-port">HTTPS 端口使用 SSH</a></p>
+<p>1.在控制台输入以下命令查看是否能连接到github,如果回复为Hi xxxxx! 表示连接成功,已加入可信列表</p>
+<blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh <span class="literal">-T</span> git@github.com</span><br><span class="line"></span><br><span class="line">&gt; Hi USERNAME! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.&#x27;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>如果不行,尝试一下命令:   ssh -T -p 443ssh:&#x2F;&#x2F;<a href="mailto:&#103;&#105;&#x74;&#x40;&#x73;&#x73;&#104;&#46;&#x67;&#x69;&#x74;&#x68;&#117;&#x62;&#46;&#x63;&#111;&#109;">&#103;&#105;&#x74;&#x40;&#x73;&#x73;&#104;&#46;&#x67;&#x69;&#x74;&#x68;&#117;&#x62;&#46;&#x63;&#111;&#109;</a>,这个可以按照提示建立许可连接</p>
+<blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh <span class="literal">-T</span> <span class="literal">-p</span> <span class="number">443</span> git@ssh.github.com</span><br><span class="line">&gt; Hi <span class="string">&#x27;你的id&#x27;</span>!<span class="string">&quot; You&#x27;ve successfully authenticated, but GitHub does not provide shell access.&quot;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>如果你能在端口 443 上通过 SSH 连接到 <code>git@ssh.github.com</code>，则可覆盖你的 SSH 设置来强制与 GitHub.com 的任何连接均通过该服务器和端口运行。</p>
+<p>到此为止,问题解决得差不多了</p>
+<p>在输入命令 git clone ssh:&#x2F;&#x2F;<a href="mailto:&#103;&#x69;&#116;&#64;&#x73;&#115;&#x68;&#46;&#x67;&#105;&#x74;&#x68;&#x75;&#98;&#46;&#x63;&#111;&#x6d;">&#103;&#x69;&#116;&#64;&#x73;&#115;&#x68;&#46;&#x67;&#105;&#x74;&#x68;&#x75;&#98;&#46;&#x63;&#111;&#x6d;</a>:443&#x2F;0zxm&#x2F;0zxm.github.io时就能够正常clone仓库, 但是每次都输入更长的url难免繁琐,所以可以在你生成密钥的文件夹内新建一个config文件,输入以下内容保存:</p>
+<blockquote>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line"> Hostname ssh.github.com</span><br><span class="line"> Port 443</span><br><span class="line"> User git</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>你可以通过再次连接到 GitHub.com 来测试这是否有效：</p>
+<blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh <span class="literal">-T</span> git@github.com</span><br><span class="line">&gt; Hi USERNAME!<span class="string">&quot; You&#x27;ve successfully authenticated, but GitHub does not&quot;</span></span><br><span class="line">&gt; provide shell access.</span><br></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li><p>此时，本地和Github的工作做得差不了，是时候把它们两个链接起来了。你也能够查看官网的部署教程。</p>
+</li>
+<li><p>先不着急，部署以前还须要修改配置和安装部署插件。</p>
+</li>
+<li><p>第一：打开项目根目录下的 _config.yml 配置文件配置参数。拉到文件末尾，填上以下配置。 </p>
+</li>
+<li><p>第二要安装一个部署插件 hexo-deployer-git，打开“Git Bach”，输如以下指令：</p>
+<blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo<span class="literal">-deployer-git</span> <span class="literal">--save</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>最后执行如下两条命令就能够部署上传啦，如下</p>
+<blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g <span class="comment"># 先生成</span></span><br><span class="line">hexo d <span class="comment"># 部署到Github上</span></span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+</li>
+<li><p>g 是 generate 缩写，d 是 deploy 缩写 这时用浏览器输入 用户名.github.io 就可以访问刚才的网站</p>
+</li>
+</ul>
+<h2 id="博客-Git常用指令"><a href="#博客-Git常用指令" class="headerlink" title="博客   Git常用指令"></a>博客   Git常用指令</h2><ul>
+<li><p>npm cache clean –force  清理缓存</p>
+</li>
+<li><p>hexo g 生成</p>
+</li>
+<li><p>hexo sever 使用本地服务器构建网页 一般地址是localhost:4000&#x2F;</p>
+</li>
+<li><p>hexo deploy 上传到github项目</p>
+</li>
+<li><p>hexo clean</p>
+</li>
+</ul>
+<h4 id="清除空白categorys和tags"><a href="#清除空白categorys和tags" class="headerlink" title="清除空白categorys和tags"></a>清除空白categorys和tags</h4><p>在发布文章后，有时候会发现标签或分类的描述不够准确，需要修改tags或者categories的内容。</p>
+<p>但是，当某个标签被完全替代，没有文章使用这个标签之后，会发现在标签列表里还是会出现这个标签，点击进去却并没有内容，这非常影响使用体验。</p>
+<p>如何清除无用的标签索引呢，可以使用<code>hexo clean</code>命令。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hexo clean</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hexo d -g</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>命令<code>hexo s -g</code>执行中时，命令<code>hexo clean</code>会没有效果，需要先终止 hexo server服务</p>
+</blockquote>
+<h4 id="写带有图片的文章"><a href="#写带有图片的文章" class="headerlink" title="写带有图片的文章"></a>写带有图片的文章</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41907806/article/details/109064385">hexo博客中如何插入图片-CSDN博客</a></p>
+<p><img src="/2024/06/21/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/image-20240127141305597-1706432584388-1.png" alt="image-20240127141305597"></p>
+<p>然后记得在hexo的source文件夹下找到该.md文件,删除每一个图片路径的文章名</p>
+<h4 id="注释bug"><a href="#注释bug" class="headerlink" title="注释bug"></a>注释bug</h4><p><img src="/2024/06/21/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/%E6%B3%A8%E9%87%8Abug.png" alt="alt text"></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39698985/article/details/115448040">解决方法</a></p>
 
                 
             </div>
@@ -584,7 +677,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://0zxm.github.io/2024/06/21/qt%E5%81%9A%E4%B8%80%E4%B8%AA%E8%A1%A8%E7%99%BD%E5%B0%8F%E7%A8%8B%E5%BA%8F/">https://0zxm.github.io/2024/06/21/qt%E5%81%9A%E4%B8%80%E4%B8%AA%E8%A1%A8%E7%99%BD%E5%B0%8F%E7%A8%8B%E5%BA%8F/</a>
+                    <a href="https://0zxm.github.io/2024/06/21/hexo-da-jian-bo-ke/">https://0zxm.github.io/2024/06/21/hexo-da-jian-bo-ke/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -622,8 +715,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Qt/">
-                                    <span class="chip bg-color">Qt</span>
+                                <a href="/tags/Hexo/">
+                                    <span class="chip bg-color">Hexo</span>
                                 </a>
                             
                         </div>
@@ -797,56 +890,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2024/06/21/Algorithm/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Algorithm">
-                        
-                        <span class="card-title">Algorithm</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            算法课笔记
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-06-21
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/c/">
-                        <span class="chip bg-color">c++</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2024/06/21/%E7%88%AC%E5%8F%96%E7%95%AA%E8%8C%84%E5%B0%8F%E8%AF%B4/">
+                <a href="/2024/06/21/pa-qu-fan-qie-xiao-shuo/">
                     <div class="card-image">
                         
                         
@@ -862,9 +906,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-21
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-06-21
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -888,6 +932,43 @@
                         <span class="chip bg-color">python</span>
                     </a>
                     
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/06/21/test/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="test">
+                        
+                        <span class="card-title">test</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-21
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            0zxm
+                            
+                        </span>
+                    </div>
                 </div>
                 
             </div>
@@ -1057,7 +1138,7 @@
         <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
                    server="netease"
                    type="playlist"
-                   id="503838841"
+                   id="3177534452"
                    fixed='true'
                    autoplay='false'
                    theme='#42b983'
