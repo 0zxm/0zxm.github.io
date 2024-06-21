@@ -478,7 +478,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.4k
+                    5.3k
                 </div>
                 
 
@@ -504,6 +504,11 @@
         <link rel="stylesheet" href="/libs/prism/prism.css">
         
 
+        
+        <!-- 代码块折行 -->
+        <style type="text/css">
+            code[class*="language-"], pre[class*="language-"] { white-space: pre-wrap !important; }
+        </style>
         
 
         <div class="card-content article-card-content">
@@ -555,9 +560,128 @@
 3.有些特殊的标签必须是单个标签(极少情况),例如`&lt;br/&gt;`我们称为单标签。
 </code></pre>
 <h3 id="1-2-标签关系"><a href="#1-2-标签关系" class="headerlink" title="1.2 标签关系"></a>1.2 标签关系</h3><p>双标签关系可以分为两类:包含关系和并列关系。</p>
-<h3 id="2-1-文档类型声明标签"><a href="#2-1-文档类型声明标签" class="headerlink" title="2.1 文档类型声明标签"></a>2.1 文档类型声明标签</h3><blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line">&gt;这句代码的意思是: 当前页面采取的是 HTML5 版本来显示网页</span><br><span class="line">&gt;注意:</span><br><span class="line">&gt;1.<span class="meta">&lt;!DOCTYPE&gt;</span>声明位于文档中的最前面的位置,处于<span class="tag">&lt;<span class="name">html</span>&gt;</span>标签之前。</span><br><span class="line">&gt;2.<span class="meta">&lt;!DOCTYPE&gt;</span>不是一个HTML标签,它就是文档类型声明标签</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 2.2 lang 语言种类</span><br><span class="line"></span><br><span class="line">用来定义当前文档显示的语言。</span><br><span class="line">1.en定义语言为英语</span><br><span class="line">2.zh-CN定义语言为中文</span><br><span class="line">简单来说,定义为en 就是英文网页,定义为 zh-CN 就是中文网页</span><br><span class="line"></span><br><span class="line">其实对于文档显示来说,定义成en的文档也可以显示中文,定义成zh-CN的文档也可以显示英文</span><br><span class="line"></span><br><span class="line">### 2.3 charset编码</span><br><span class="line"></span><br><span class="line">`<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span>`</span><br><span class="line">### 3.1 html语义标签</span><br><span class="line"></span><br><span class="line">学习标签是有技巧的,重点是记住每个标签的语义。简单理解就是指标签的含义,即这个标签是用来干嘛的</span><br><span class="line"></span><br><span class="line">### 3.2 标题标签`<span class="tag">&lt;<span class="name">h1</span>&gt;</span>-<span class="tag">&lt;<span class="name">h6</span>&gt;</span>`(重要 )</span><br><span class="line"></span><br><span class="line">为了使网页更具有语义化,我们经常会在页面中用到标题标签。HTML提供了6个等级的网页标题即`<span class="tag">&lt;<span class="name">h1</span>&gt;</span>-<span class="tag">&lt;<span class="name">h6</span>&gt;</span>`</span><br><span class="line"></span><br><span class="line">标签语义:作为标题使用,并且依据重要性递减</span><br><span class="line"></span><br><span class="line">&gt;特点:</span><br><span class="line">&gt;1.加了标题的文字会变的加粗,字号也会依次变大</span><br><span class="line">&gt;2.一个标题独占一行</span><br><span class="line"></span><br><span class="line">### 3.3 段落和换行标签(重要 )</span><br><span class="line"></span><br><span class="line">在 HTML中,一个段落中的文字会从左到右依次排列,直到浏览器窗口的右端,然后才自动换行。如果希望某段文本强制换行显示,就需要使用换行标签`<span class="tag">&lt;<span class="name">br</span>/&gt;</span>`</span><br><span class="line"></span><br><span class="line">### 3.4 文本格式化标签</span><br><span class="line"></span><br><span class="line">在网页中,有时需要为文字设置粗体、斜体或下划线等效果,这时就需要用到HTML中的文本格式化标签,使文字以特殊的方式显示。</span><br><span class="line">标签语义:突出重要性,比普通文字更重要</span><br><span class="line"></span><br><span class="line">|  功能  |             HTML标签             |                         Markdown语法                         |                  说明                   |      推荐使用       |</span><br><span class="line">| :----: | :------------------------------: | :----------------------------------------------------------: | :-------------------------------------: | :-----------------: |</span><br><span class="line">|  加粗  | `<span class="tag">&lt;<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">strong</span>&gt;</span>` 或 `<span class="tag">&lt;<span class="name">b</span>&gt;</span><span class="tag">&lt;/<span class="name">b</span>&gt;</span>` |                         **加粗文本**                         | 更推荐使用`<span class="tag">&lt;<span class="name">strong</span>&gt;</span>`标签,因为语义更强烈 | `<span class="tag">&lt;<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">strong</span>&gt;</span>` |</span><br><span class="line">|  倾斜  |     `<span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span>` 或 `<span class="tag">&lt;<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span>`     |                          *倾斜文本*                          |   更推荐使用`<span class="tag">&lt;<span class="name">em</span>&gt;</span>`标签,因为语义更强烈   |     `<span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span>`     |</span><br><span class="line">| 删除线 |    `<span class="tag">&lt;<span class="name">del</span>&gt;</span><span class="tag">&lt;/<span class="name">del</span>&gt;</span>` 或 `<span class="tag">&lt;<span class="name">s</span>&gt;</span><span class="tag">&lt;/<span class="name">s</span>&gt;</span>`    |                        ~~删除线文本~~                        |  更推荐使用`<span class="tag">&lt;<span class="name">del</span>&gt;</span>`标签,因为语义更强烈   |    `<span class="tag">&lt;<span class="name">del</span>&gt;</span><span class="tag">&lt;/<span class="name">del</span>&gt;</span>`    |</span><br><span class="line">| 下划线 |    `<span class="tag">&lt;<span class="name">ins</span>&gt;</span><span class="tag">&lt;/<span class="name">ins</span>&gt;</span>` 或 `<span class="tag">&lt;<span class="name">u</span>&gt;</span><span class="tag">&lt;/<span class="name">u</span>&gt;</span>`    | ++下划线文本++ (注意：Markdown本身不支持下划线,此处仅为示意) |  更推荐使用`<span class="tag">&lt;<span class="name">ins</span>&gt;</span>`标签,因为语义更强烈   |    `<span class="tag">&lt;<span class="name">ins</span>&gt;</span><span class="tag">&lt;/<span class="name">ins</span>&gt;</span>`    |</span><br><span class="line"></span><br><span class="line">### 3.5 <span class="tag">&lt;<span class="name">div</span>&gt;</span>容器<span class="tag">&lt;<span class="name">span</span>&gt;</span>标签</span><br><span class="line"></span><br><span class="line">&gt;```html</span><br><span class="line">&gt;<span class="tag">&lt;<span class="name">div</span>&gt;</span>和<span class="tag">&lt;<span class="name">span</span>&gt;</span>是没有语义的,它们就是一个盒子,用来装内容的。</span><br><span class="line">&gt;<span class="tag">&lt;<span class="name">div</span>&gt;</span>这是头部<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&gt;<span class="tag">&lt;<span class="name">span</span>&gt;</span>今日价格<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">&gt;div 是 division 的缩写,表示分割、分区。span 意为跨度、跨距</span><br><span class="line">&gt;特点:</span><br><span class="line">&gt;1.<span class="tag">&lt;<span class="name">div</span>&gt;</span>标签用来布局,但是现在一行只能放一个<span class="tag">&lt;<span class="name">div</span>&gt;</span>。大盒子</span><br><span class="line">&gt;2.<span class="tag">&lt;<span class="name">span</span>&gt;</span>标签用来布局,一行能放多个<span class="tag">&lt;<span class="name">span</span>&gt;</span>。小盒子</span><br><span class="line">### 3.6 图像标签和路径(重点)</span><br><span class="line"></span><br><span class="line">1.图像标签</span><br><span class="line"></span><br><span class="line">在 HTML标签中 ,`<span class="tag">&lt;<span class="name">img</span>&gt;</span>`标签用于定义HTML页面中的图像。</span><br><span class="line"></span><br><span class="line">`<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;图像URL&quot;</span>/&gt;</span>`</span><br><span class="line">单词 imae的缩写,意为图像。</span><br><span class="line"></span><br><span class="line">src 是`<span class="tag">&lt;<span class="name">img</span>&gt;</span>`标签的必须属性,它用于指定图像文件的路径和文件名</span><br><span class="line"></span><br><span class="line">### 4.1 图像标签和路径 (重点)</span><br><span class="line"></span><br><span class="line">#### (1) 图像标签</span><br><span class="line"></span><br><span class="line">##### 图像标签的其他属性</span><br><span class="line"></span><br><span class="line">|  属性  |  属性值  |                说明                 |</span><br><span class="line">| :----: | :------: | :---------------------------------: |</span><br><span class="line">|  src   | 图片路径 |              必须属性               |</span><br><span class="line">|  alt   |   文本   |    替换文本。图像不能显示的文字     |</span><br><span class="line">| title  |   文本   | 提示文本。鼠标放到图像上,显示的文字 |</span><br><span class="line">| width  |   像素   |           设置图像的宽度            |</span><br><span class="line">| height |   像素   |           设置图像的高度            |</span><br><span class="line">| border |   像素   |         设置图像的边框粗细          |</span><br><span class="line"></span><br><span class="line">##### 图像标签属性注意点</span><br><span class="line"></span><br><span class="line">1. 图像标签可以拥有多个属性,必须写在标签名的后面</span><br><span class="line">2. 属性之间不分先后顺序,标签名与属性、属性与属性之间均以空格分开</span><br><span class="line">3. 属性采取键值对的格式,即key=“value&quot;的格式,属性=“属性值</span><br><span class="line">#### (2)路径</span><br><span class="line"></span><br><span class="line">##### (a)目录文件夹和根目录:</span><br><span class="line"></span><br><span class="line"> 	1. 目录文件夹:就是普通文件夹,里面只不过存放了我们做页面所需要的相关素材,比如html文件、图片等</span><br><span class="line"> 	2. 根目录:打开目录文件夹的第一层就是根目录</span><br><span class="line">##### (b)相对路径和绝对路径</span><br><span class="line"></span><br><span class="line">1. 相对路径:相对于文件做参考</span><br><span class="line">2. 绝对路径:是指目录下的绝对位置,直接到达目标位置,通常是从盘符开始的路径。</span><br><span class="line">  当然,我可以帮你创建一个.md文件,其中包含你要求的Markdown格式内容。以下是一个简单的.md文件示例,它包含了有关超链接标签的信息以及Markdown格式的链接语法：</span><br><span class="line"></span><br><span class="line">markdown</span><br><span class="line"></span><br><span class="line">## 5. 超链接标签</span><br><span class="line"></span><br><span class="line">### (1).链接的语法格式</span><br><span class="line"></span><br><span class="line">在Markdown中,创建超链接的语法格式如下：  </span><br><span class="line"></span><br><span class="line">[链接文本](链接地址 &quot;链接标题&quot;)</span><br><span class="line">如果不需要链接标题,则可以省略该部分,如下所示：</span><br><span class="line"></span><br><span class="line">[链接文本](链接地址)</span><br><span class="line">HTML中的超链接标签</span><br><span class="line">虽然Markdown不支持直接插入HTML标签,但你可以了解HTML中的超链接标签<span class="tag">&lt;<span class="name">a</span>&gt;</span>的语法：</span><br><span class="line"></span><br><span class="line">html</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;链接地址&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span>链接文本<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">在这里,href属性用于指定链接目标的URL地址,而target属性用于指定链接页面的打开方式。_blank值意味着链接将在新的浏览器窗口中打开。</span><br><span class="line"></span><br><span class="line">示例</span><br><span class="line">以下是一个Markdown格式的示例,展示了如何使用Markdown语法创建超链接：</span><br><span class="line"></span><br><span class="line">markdown</span><br><span class="line">这是一个[指向示例网站的链接](https://example.com)。  </span><br><span class="line"></span><br><span class="line">你也可以选择在新窗口中打开链接,像这样：[在新窗口中打开链接](https://example.com &quot;新窗口打开&quot;)。</span><br><span class="line">请注意,Markdown渲染器需要支持上述链接语法才能正确显示链接。</span><br><span class="line"></span><br><span class="line">如果你希望在Markdown中显示HTML标签而不创建链接,你可以使用代码块,如下所示：</span><br><span class="line"></span><br><span class="line">```markdown</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;链接地址&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span>链接文本<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">或者,你可以使用转义字符来显示HTML标签文本,例如：  </span><br><span class="line"> </span><br><span class="line">\`<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;链接地址&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span>链接文本<span class="tag">&lt;/<span class="name">a</span>&gt;</span>\`</span><br><span class="line">请记住,在Markdown文件中,上述代码块将显示为HTML标签的文本,而不是实际的超链接。</span><br><span class="line"></span><br><span class="line">实际使用</span><br><span class="line">要在Markdown文件中创建实际的超链接,请使用以下格式：</span><br><span class="line"></span><br><span class="line">markdown</span><br><span class="line">[链接文本](链接地址)</span><br><span class="line">例如：</span><br><span class="line"></span><br><span class="line">markdown</span><br><span class="line">[访问GitHub](https://github.com)</span><br><span class="line">以上就是在Markdown中创建和管理超链接的基本方法。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="2-1-文档类型声明标签"><a href="#2-1-文档类型声明标签" class="headerlink" title="2.1 文档类型声明标签"></a>2.1 文档类型声明标签</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line">这句代码的意思是: 当前页面采取的是 HTML5 版本来显示网页</span><br><span class="line">注意:</span><br><span class="line">1.<span class="meta">&lt;!DOCTYPE&gt;</span>声明位于文档中的最前面的位置,处于<span class="tag">&lt;<span class="name">html</span>&gt;</span>标签之前。</span><br><span class="line">2.<span class="meta">&lt;!DOCTYPE&gt;</span>不是一个HTML标签,它就是文档类型声明标签</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2-2-lang-语言种类"><a href="#2-2-lang-语言种类" class="headerlink" title="2.2 lang 语言种类"></a>2.2 lang 语言种类</h3><blockquote>
+<p>用来定义当前文档显示的语言。<br>1.en定义语言为英语<br>2.zh-CN定义语言为中文<br>简单来说,定义为en 就是英文网页,定义为 zh-CN 就是中文网页</p>
 </blockquote>
+<p>其实对于文档显示来说,定义成en的文档也可以显示中文,定义成zh-CN的文档也可以显示英文</p>
+<h3 id="2-3-charset编码"><a href="#2-3-charset编码" class="headerlink" title="2.3 charset编码"></a>2.3 charset编码</h3><p><code>&lt;meta charset=&quot;UTF-8&quot;&gt;</code></p>
+<h3 id="3-1-html语义标签"><a href="#3-1-html语义标签" class="headerlink" title="3.1 html语义标签"></a>3.1 html语义标签</h3><p>学习标签是有技巧的,重点是记住每个标签的语义。简单理解就是指标签的含义,即这个标签是用来干嘛的</p>
+<h3 id="3-2-标题标签-重要"><a href="#3-2-标题标签-重要" class="headerlink" title="3.2 标题标签&lt;h1&gt;-&lt;h6&gt;(重要 )"></a>3.2 标题标签<code>&lt;h1&gt;-&lt;h6&gt;</code>(重要 )</h3><p>为了使网页更具有语义化,我们经常会在页面中用到标题标签。HTML提供了6个等级的网页标题即<code>&lt;h1&gt;-&lt;h6&gt;</code></p>
+<p>标签语义:作为标题使用,并且依据重要性递减</p>
+<blockquote>
+<p>特点:<br>1.加了标题的文字会变的加粗,字号也会依次变大<br>2.一个标题独占一行</p>
+</blockquote>
+<h3 id="3-3-段落和换行标签-重要"><a href="#3-3-段落和换行标签-重要" class="headerlink" title="3.3 段落和换行标签(重要 )"></a>3.3 段落和换行标签(重要 )</h3><p>在 HTML中,一个段落中的文字会从左到右依次排列,直到浏览器窗口的右端,然后才自动换行。如果希望某段文本强制换行显示,就需要使用换行标签<code>&lt;br/&gt;</code></p>
+<h3 id="3-4-文本格式化标签"><a href="#3-4-文本格式化标签" class="headerlink" title="3.4 文本格式化标签"></a>3.4 文本格式化标签</h3><p>在网页中,有时需要为文字设置粗体、斜体或下划线等效果,这时就需要用到HTML中的文本格式化标签,使文字以特殊的方式显示。<br>标签语义:突出重要性,比普通文字更重要</p>
+<table>
+<thead>
+<tr>
+<th align="center">功能</th>
+<th align="center">HTML标签</th>
+<th align="center">Markdown语法</th>
+<th align="center">说明</th>
+<th align="center">推荐使用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">加粗</td>
+<td align="center"><code>&lt;strong&gt;&lt;/strong&gt;</code> 或 <code>&lt;b&gt;&lt;/b&gt;</code></td>
+<td align="center"><strong>加粗文本</strong></td>
+<td align="center">更推荐使用<code>&lt;strong&gt;</code>标签,因为语义更强烈</td>
+<td align="center"><code>&lt;strong&gt;&lt;/strong&gt;</code></td>
+</tr>
+<tr>
+<td align="center">倾斜</td>
+<td align="center"><code>&lt;em&gt;&lt;/em&gt;</code> 或 <code>&lt;i&gt;&lt;/i&gt;</code></td>
+<td align="center"><em>倾斜文本</em></td>
+<td align="center">更推荐使用<code>&lt;em&gt;</code>标签,因为语义更强烈</td>
+<td align="center"><code>&lt;em&gt;&lt;/em&gt;</code></td>
+</tr>
+<tr>
+<td align="center">删除线</td>
+<td align="center"><code>&lt;del&gt;&lt;/del&gt;</code> 或 <code>&lt;s&gt;&lt;/s&gt;</code></td>
+<td align="center"><del>删除线文本</del></td>
+<td align="center">更推荐使用<code>&lt;del&gt;</code>标签,因为语义更强烈</td>
+<td align="center"><code>&lt;del&gt;&lt;/del&gt;</code></td>
+</tr>
+<tr>
+<td align="center">下划线</td>
+<td align="center"><code>&lt;ins&gt;&lt;/ins&gt;</code> 或 <code>&lt;u&gt;&lt;/u&gt;</code></td>
+<td align="center">++下划线文本++ (注意：Markdown本身不支持下划线,此处仅为示意)</td>
+<td align="center">更推荐使用<code>&lt;ins&gt;</code>标签,因为语义更强烈</td>
+<td align="center"><code>&lt;ins&gt;&lt;/ins&gt;</code></td>
+</tr>
+</tbody></table>
+<h3 id="3-5-容器标签"><a href="#3-5-容器标签" class="headerlink" title="3.5 容器标签"></a>3.5 <div>容器<span>标签</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>和<span class="tag">&lt;<span class="name">span</span>&gt;</span>是没有语义的,它们就是一个盒子,用来装内容的。</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>这是头部<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>今日价格<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">div 是 division 的缩写,表示分割、分区。span 意为跨度、跨距</span><br><span class="line">特点:</span><br><span class="line">1.<span class="tag">&lt;<span class="name">div</span>&gt;</span>标签用来布局,但是现在一行只能放一个<span class="tag">&lt;<span class="name">div</span>&gt;</span>。大盒子</span><br><span class="line">2.<span class="tag">&lt;<span class="name">span</span>&gt;</span>标签用来布局,一行能放多个<span class="tag">&lt;<span class="name">span</span>&gt;</span>。小盒子</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-6-图像标签和路径-重点"><a href="#3-6-图像标签和路径-重点" class="headerlink" title="3.6 图像标签和路径(重点)"></a>3.6 图像标签和路径(重点)</h3><p>1.图像标签</p>
+<p>在 HTML标签中 ,<code>&lt;img&gt;</code>标签用于定义HTML页面中的图像。</p>
+<p><code>&lt;img src=&quot;图像URL&quot;/&gt;</code><br>单词 imae的缩写,意为图像。</p>
+<p>src 是<code>&lt;img&gt;</code>标签的必须属性,它用于指定图像文件的路径和文件名</p>
+<h3 id="4-1-图像标签和路径-重点"><a href="#4-1-图像标签和路径-重点" class="headerlink" title="4.1 图像标签和路径 (重点)"></a>4.1 图像标签和路径 (重点)</h3><h4 id="1-图像标签"><a href="#1-图像标签" class="headerlink" title="(1) 图像标签"></a>(1) 图像标签</h4><h5 id="图像标签的其他属性"><a href="#图像标签的其他属性" class="headerlink" title="图像标签的其他属性"></a>图像标签的其他属性</h5><table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">属性值</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">src</td>
+<td align="center">图片路径</td>
+<td align="center">必须属性</td>
+</tr>
+<tr>
+<td align="center">alt</td>
+<td align="center">文本</td>
+<td align="center">替换文本。图像不能显示的文字</td>
+</tr>
+<tr>
+<td align="center">title</td>
+<td align="center">文本</td>
+<td align="center">提示文本。鼠标放到图像上,显示的文字</td>
+</tr>
+<tr>
+<td align="center">width</td>
+<td align="center">像素</td>
+<td align="center">设置图像的宽度</td>
+</tr>
+<tr>
+<td align="center">height</td>
+<td align="center">像素</td>
+<td align="center">设置图像的高度</td>
+</tr>
+<tr>
+<td align="center">border</td>
+<td align="center">像素</td>
+<td align="center">设置图像的边框粗细</td>
+</tr>
+</tbody></table>
+<h5 id="图像标签属性注意点"><a href="#图像标签属性注意点" class="headerlink" title="图像标签属性注意点"></a>图像标签属性注意点</h5><pre><code>1. 图像标签可以拥有多个属性,必须写在标签名的后面
+2. 属性之间不分先后顺序,标签名与属性、属性与属性之间均以空格分开
+3. 属性采取键值对的格式,即key=“value&quot;的格式,属性=“属性值
+</code></pre>
+<h4 id="2-路径"><a href="#2-路径" class="headerlink" title="(2)路径"></a>(2)路径</h4><h5 id="a-目录文件夹和根目录"><a href="#a-目录文件夹和根目录" class="headerlink" title="(a)目录文件夹和根目录:"></a>(a)目录文件夹和根目录:</h5><pre><code>  1. 目录文件夹:就是普通文件夹,里面只不过存放了我们做页面所需要的相关素材,比如html文件、图片等
+  2. 根目录:打开目录文件夹的第一层就是根目录
+</code></pre>
+<h5 id="b-相对路径和绝对路径"><a href="#b-相对路径和绝对路径" class="headerlink" title="(b)相对路径和绝对路径"></a>(b)相对路径和绝对路径</h5><pre><code>1. 相对路径:相对于文件做参考
+2. 绝对路径:是指目录下的绝对位置,直接到达目标位置,通常是从盘符开始的路径。
+</code></pre>
+<p>   当然,我可以帮你创建一个.md文件,其中包含你要求的Markdown格式内容。以下是一个简单的.md文件示例,它包含了有关超链接标签的信息以及Markdown格式的链接语法：</p>
+<p>markdown</p>
+<h2 id="5-超链接标签"><a href="#5-超链接标签" class="headerlink" title="5. 超链接标签"></a>5. 超链接标签</h2><h3 id="1-链接的语法格式"><a href="#1-链接的语法格式" class="headerlink" title="(1).链接的语法格式"></a>(1).链接的语法格式</h3><p>在Markdown中,创建超链接的语法格式如下：  </p>
+<p><a href="%E9%93%BE%E6%8E%A5%E5%9C%B0%E5%9D%80" title="链接标题">链接文本</a><br>如果不需要链接标题,则可以省略该部分,如下所示：</p>
+<p><a href="%E9%93%BE%E6%8E%A5%E5%9C%B0%E5%9D%80">链接文本</a><br>HTML中的超链接标签<br>虽然Markdown不支持直接插入HTML标签,但你可以了解HTML中的超链接标签<a>的语法：</p>
+<p>html<br><a href="链接地址" target="_blank">链接文本</a><br>在这里,href属性用于指定链接目标的URL地址,而target属性用于指定链接页面的打开方式。_blank值意味着链接将在新的浏览器窗口中打开。</p>
+<p>示例<br>以下是一个Markdown格式的示例,展示了如何使用Markdown语法创建超链接：</p>
+<p>markdown<br>这是一个<a target="_blank" rel="noopener" href="https://example.com/">指向示例网站的链接</a>。  </p>
+<p>你也可以选择在新窗口中打开链接,像这样：<a target="_blank" rel="noopener" href="https://example.com/" title="新窗口打开">在新窗口中打开链接</a>。<br>请注意,Markdown渲染器需要支持上述链接语法才能正确显示链接。</p>
+<p>如果你希望在Markdown中显示HTML标签而不创建链接,你可以使用代码块,如下所示：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;链接地址&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span></span>链接文本<span class="language-xml"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line">或者,你可以使用转义字符来显示HTML标签文本,例如：  </span><br><span class="line">  </span><br><span class="line">\<span class="code">`&lt;a href=&quot;链接地址&quot; target=&quot;_blank&quot;&gt;链接文本&lt;/a&gt;\`</span></span><br><span class="line">请记住,在Markdown文件中,上述代码块将显示为HTML标签的文本,而不是实际的超链接。</span><br><span class="line"></span><br><span class="line">实际使用</span><br><span class="line">要在Markdown文件中创建实际的超链接,请使用以下格式：</span><br><span class="line"></span><br><span class="line">markdown</span><br><span class="line">[<span class="string">链接文本</span>](<span class="link">链接地址</span>)</span><br><span class="line">例如：</span><br><span class="line"></span><br><span class="line">markdown</span><br><span class="line">[<span class="string">访问GitHub</span>](<span class="link">https://github.com</span>)</span><br><span class="line">以上就是在Markdown中创建和管理超链接的基本方法。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <h3 id="2-链接的语法格式"><a href="#2-链接的语法格式" class="headerlink" title="(2).链接的语法格式"></a>(2).链接的语法格式</h3><p><a href="#">文本或图像</a> <code>&lt;a&gt;</code> 单词 anchor[‘ænke(r)]的缩写,意为:锚。两个属性的作用如下:</p>
 <table>
 <thead>
@@ -1263,7 +1387,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">66k</span>&nbsp;字
+                class="white-color">65.9k</span>&nbsp;字
             
             
             
