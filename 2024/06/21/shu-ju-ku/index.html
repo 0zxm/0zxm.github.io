@@ -482,14 +482,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    8.6k
+                    9.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    32 分
+                    35 分
                 </div>
                 
 
@@ -1107,6 +1107,55 @@
 <li>一对多(1-n)</li>
 <li>多对多(m-n)<br><img src="/2024/06/21/shu-ju-ku/E_R.png" alt="alt text"></li>
 </ul>
+<h1 id="数据库安全性"><a href="#数据库安全性" class="headerlink" title="数据库安全性"></a>数据库安全性</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
+<li>不安全因素<ol>
+<li>非授权对数据库的恶意存取和破坏</li>
+<li>数据库中重要的数据泄露</li>
+<li>安全环境的脆弱性</li>
+</ol>
+</li>
+</ul>
+<p>自主存取控制方法</p>
+<ol>
+<li>grant revoke<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> <span class="operator">&lt;</span>权限<span class="operator">&gt;</span> <span class="keyword">on</span> <span class="keyword">table</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span> <span class="keyword">to</span> <span class="operator">&lt;</span>用户<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">revoke</span><span class="operator">&lt;</span>权限<span class="operator">&gt;</span> <span class="keyword">on</span> <span class="keyword">table</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span> <span class="keyword">from</span> <span class="operator">&lt;</span>用户<span class="operator">&gt;</span></span><br><span class="line"></span><br><span class="line">用户、角色</span><br><span class="line"></span><br><span class="line">创建用户</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="operator">&lt;</span>username<span class="operator">&gt;</span> <span class="keyword">with</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="安全性控制"><a href="#安全性控制" class="headerlink" title="安全性控制"></a>安全性控制</h2><ul>
+<li>数据库安全性控制<ul>
+<li>用户身份鉴别<ul>
+<li>静态口令鉴别</li>
+<li>动态口令鉴别</li>
+<li>生物特征鉴别</li>
+<li>智能卡鉴别</li>
+</ul>
+</li>
+<li>存取控制</li>
+<li>自主存取控制方法(重点讲解)；字面意思就是我们用户可以自定义和分配其他用户的操作权限<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">主要通过grant  revoke来进行控制</span><br><span class="line">由两个元素构成:  数据库对象 和 操作权限</span><br><span class="line">我们定义用户的存取权限 成为授权</span><br><span class="line"></span><br><span class="line">主要存取权限</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Reference权限代表是否允许创建外键</span><br><span class="line"></span><br><span class="line">4、授权 Grant</span><br><span class="line">Grant单词翻译:</span><br><span class="line">vt.承认;同意;准许;授予</span><br><span class="line">n.拨款;补助金;授给物(如财产、授地、专有权、补助、拨款等)</span><br><span class="line"></span><br><span class="line">Grant &lt;权限&gt; on 表名[(列名)] to 用户 With grant option</span><br><span class="line">授权命令是由数据库管理员使用的，若给用户分配权限时带 Withgrant option 子句，则普通用户获权后,可把自己的权限授予其他用户。</span><br><span class="line"></span><br><span class="line">grant all privilege on 视图或者表 to usr1;</span><br><span class="line"></span><br><span class="line">5回收权限 revoke </span><br><span class="line">REVOKE &lt;权限&gt; 0N &lt;数据对象&gt; FR0M &lt;数据库用户名&gt; cascade(级联)</span><br><span class="line"></span><br><span class="line">revoke翻译:</span><br><span class="line">vt.撤销，取消;废除</span><br></pre></td></tr></table></figure>
+<p><img src="/2024/06/21/shu-ju-ku/%E8%B5%8B%E4%BA%88%E6%9F%A5%E8%AF%A2%E6%9D%83%E9%99%90.png" alt="alt text"></p>
+<h2 id="数据库角色"><a href="#数据库角色" class="headerlink" title="数据库角色"></a>数据库角色</h2><p>数据库角色（Role）是数据库管理系统（DBMS）中用于管理权限的一种机制。通过角色，数据库管理员（DBA）可以为一组用户分配相同的权限，而无需单独为每个用户设置权限。这大大简化了权限管理过程，提高了安全性和可管理性。</p>
+<h3 id="角色的基本概念"><a href="#角色的基本概念" class="headerlink" title="角色的基本概念"></a>角色的基本概念</h3><ul>
+<li><strong>角色</strong>：代表了一类用户，如CEO、总监、普通职员等。通过角色，可以为这些用户组分配相同的权限。</li>
+</ul>
+<h3 id="角色的操作"><a href="#角色的操作" class="headerlink" title="角色的操作"></a>角色的操作</h3><h4 id="1-角色的创建"><a href="#1-角色的创建" class="headerlink" title="1. 角色的创建"></a>1. 角色的创建</h4><p>使用<code>CREATE ROLE</code>语句创建角色。例如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> ROLE CEO;</span><br></pre></td></tr></table></figure>
+<h4 id="2-角色授权"><a href="#2-角色授权" class="headerlink" title="2. 角色授权"></a>2. 角色授权</h4><p>使用<code>GRANT</code>语句为角色分配权限。例如，为<code>CEO</code>角色授予<code>Student</code>表上的<code>SELECT</code>权限：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">SELECT</span> <span class="keyword">ON</span> Student <span class="keyword">TO</span> CEO;</span><br></pre></td></tr></table></figure>
+<p>如果要为多个角色分配权限，可以在<code>TO</code>子句后列出这些角色，用逗号分隔：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">SELECT</span> <span class="keyword">ON</span> Student <span class="keyword">TO</span> CEO, Director;</span><br></pre></td></tr></table></figure>
+<h4 id="3-把角色授权给其他用户或角色"><a href="#3-把角色授权给其他用户或角色" class="headerlink" title="3. 把角色授权给其他用户或角色"></a>3. 把角色授权给其他用户或角色</h4><p>使用<code>GRANT</code>语句将角色授权给其他用户或角色。如果加上<code>WITH ADMIN OPTION</code>，则意味着被授权的用户或角色还可以将这个角色及其权限进一步授予其他用户或角色。例如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> CEO <span class="keyword">TO</span> User1 <span class="keyword">WITH</span> ADMIN OPTION;</span><br></pre></td></tr></table></figure>
+<h4 id="4-角色权限的收回"><a href="#4-角色权限的收回" class="headerlink" title="4. 角色权限的收回"></a>4. 角色权限的收回</h4><p>使用<code>REVOKE</code>语句收回角色的权限。例如，从<code>CEO</code>角色中收回<code>Student</code>表上的<code>SELECT</code>权限：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> <span class="keyword">SELECT</span> <span class="keyword">ON</span> Student <span class="keyword">FROM</span> CEO;</span><br></pre></td></tr></table></figure>
+<p>如果要从用户或角色中收回角色本身，也需要使用<code>REVOKE</code>语句：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> CEO <span class="keyword">FROM</span> User1;</span><br></pre></td></tr></table></figure>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>在使用角色时，要确保遵循数据库的安全策略和最佳实践。</li>
+<li>不要为不必要的角色分配过多的权限，以减少潜在的安全风险。</li>
+<li>定期审查和更新角色的权限设置，以确保其与组织的需求和策略保持一致。</li>
+</ul>
 <h1 id="Python数据库编程"><a href="#Python数据库编程" class="headerlink" title="Python数据库编程"></a>Python数据库编程</h1><h2 id="1-Python连接MySQL"><a href="#1-Python连接MySQL" class="headerlink" title="1.Python连接MySQL"></a>1.Python连接MySQL</h2><h3 id="1-1-PyMysql模块"><a href="#1-1-PyMysql模块" class="headerlink" title="1.1 PyMysql模块"></a>1.1 PyMysql模块</h3><p>如果使用之前学习的MySQL客户端来完成这个操作，那么这个工作量无疑是巨大的</p>
 <p>我们可以通过使用程序代码的方式去连接MySQL数据库，然后对MySQL数据库进行增删改查的方式，实现10000条数据的插入，像这样使用代码的方式操作数据库就称为<strong>数据库编程</strong></p>
 <p>安装pymysql第三方包:<code>sudo pip3 install pymysql</code></p>
@@ -1711,7 +1760,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">65.9k</span>&nbsp;字
+                class="white-color">66.8k</span>&nbsp;字
             
             
             
