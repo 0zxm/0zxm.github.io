@@ -478,14 +478,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    11.2k
+                    13.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    39 分
+                    48 分
                 </div>
                 
 
@@ -797,6 +797,8 @@
 <li>延迟后发  发生冲突延迟一个<code>随机数×征用期</code>的时间在发送</li>
 </ol>
 </li>
+<li><code>τ</code>：念tao，单程的”端到端”传播时延，记住:电磁波在1km电缆的传播时延约为5μs &#x3D; 5*10^(-6)s</li>
+<li>争用期：停止等待，退避检测到冲突要等r倍的征用期时间才重新开始发送数据</li>
 </ul>
 <h3 id="PPP协议（单播）"><a href="#PPP协议（单播）" class="headerlink" title="PPP协议（单播）"></a>PPP协议（单播）</h3><ul>
 <li>概念: 点对点通信是一对一信道，因此不会发生碰撞因此比较简单，采用PPP协议:其中PPP协议就是用户计算机和ISP(互联网服务提供商)进行通信时使用的数据链路层的协议，将数据封住成帧（开始和结束的表示 - 帧定界）</li>
@@ -970,6 +972,36 @@
 </ul>
 </li>
 </ul>
+<h4 id="RIP和OSPF的区别"><a href="#RIP和OSPF的区别" class="headerlink" title="RIP和OSPF的区别"></a><code>RIP和OSPF的区别</code></h4><ul>
+<li><code>RIP协议</code>采用距离向量算法</li>
+<li>RIP使用<code>UDP</code>：只和邻站交换信息，UDP虽不保证可靠性，但UDP开销小。<code>RIP</code>使用不可靠的UDP，因此需要周期性地和邻站交换路由信息，而<code>BGP</code>不需要。</li>
+</ul>
+<p>其特点是：</p>
+<ol>
+<li><p>仅和相邻路由器交换信息。如果两个路由器之间的通信不需要经过另一个路由器，那么这两个路由器就是相邻的。RIP协议规定，不相邻的路由器不交换信息。</p>
+</li>
+<li><p>路由器交换的信息是当前本路由器所知道的全部信息，即自己的路由表。也就是说，交换的信息是：“我到本自治系统中所有网络的（最短）距离，以及到每个网络应经过的下一跳路由器”。</p>
+</li>
+<li><p>按固定的时间间隔交换路由信息，例如，每隔30秒。然后路由器根据收到的路由信息更新路由表。当网络拓扑发生变化时，路由器也及时向相邻路由器通告拓扑变化后的路由信息。</p>
+</li>
+</ol>
+<ul>
+<li><p><code>OSPF协议</code>采用链路状态算法</p>
+</li>
+<li><p>OSPF使用IP：OSPF使用可靠的洪泛法，并直接使用IP，好处是灵活和开销小。</p>
+</li>
+</ul>
+<p>其特点是：</p>
+<ol>
+<li><p>向本自治系统中所有路由器发送信息。这里使用的方法是洪泛法(flooding)，这就是路由器通过所有输出端口向所有相邻的路由器发送信息。而每一个相邻路由器又再将此信息发往其所有的相邻路由器（但不再发送给刚刚发来信息的那个路由器）。这样，最终整个区域中所有的路由器都得到了这个信息的一个副本。</p>
+</li>
+<li><p>发送的信息就是与本路由器相邻的所有路由器的链路状态，但这只是路由器所知道的部分信息。所谓 “链路状态”就是说明本路由器都和哪些路由器相邻，以及该链路的“度量”(metric)。OSPF将这个“度量”用来表示费用、距离、时延、带宽，等等。这些都由网络管理人员来决定，因此较为灵活。为了方便就称这个度量为“代价”。</p>
+</li>
+<li><p>只有当链路状态发生变化时，路由器才向所有路由器用洪泛法发送此信息。而不像RIP那样，不管网络拓扑有无发生变化，路由器之间都要定期交换路由表的信息。</p>
+</li>
+<li><p>对于规模很大的网络，OSPF可以把一个自治系统再划分为若干个更小范围的区域(area)，实现层次路由<br><img src="/2024/06/21/ji-suan-ji-wang-luo/%E8%B7%AF%E7%94%B1%E7%AE%97%E6%B3%95%E5%8C%BA%E5%88%AB.png" alt="alt text"></p>
+</li>
+</ol>
 <h2 id="运输-传输-层"><a href="#运输-传输-层" class="headerlink" title="运输(传输)层"></a>运输(传输)层</h2><h3 id="传输层概论"><a href="#传输层概论" class="headerlink" title="传输层概论"></a>传输层概论</h3><h4 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h4><ol>
 <li>传输层提供<strong>端到端</strong>服务</li>
 <li>从通信和信息处理的角度看，传输层向上层应用层提供通信服务。</li>
@@ -1206,6 +1238,24 @@
 <li>发送窗口大小是由接收方在TCP三次握手过程中通过接收窗口（Receive Window，简称RWND）字段来告知发送方的。</li>
 <li>在理论上，如果序列号长度为4位，并且我们假设TCP不使用任何序列号回绕（这在实际中是不可能的，因为序列号空间远大于4位），那么发送方最多只能连续发送15个字节的数据，而无需等待确认。但这并不意味着发送窗口大小就是15。发送窗口大小可以根据网络条件和应用程序需求进行动态调整。</li>
 </ul>
+<h3 id="发送时延和传播时延"><a href="#发送时延和传播时延" class="headerlink" title="发送时延和传播时延"></a><code>发送时延和传播时延</code></h3><ul>
+<li>发送时延 &#x3D; 数据帧长度（bit）&#x2F; 发送速率（bit&#x2F;s）</li>
+<li>传播时延 &#x3D; 信道长度（m）&#x2F; 电磁波在信道上的传播速率（m&#x2F;s）</li>
+</ul>
+<h4 id="其他细节知识点选择记忆"><a href="#其他细节知识点选择记忆" class="headerlink" title="其他细节知识点选择记忆"></a>其他细节知识点选择记忆</h4><ul>
+<li><p><strong>集线器（Hub）</strong>：集线器在网络中作为一个多端口的中继器，它接收到一个端口的信号后，会将该信号转发到所有其他端口。工作在 OSI 模型的第一层（物理层）。</p>
+</li>
+<li><p><strong>交换机（Switch）</strong>：交换机能够根据设备的 MAC 地址存储并传输数据帧到目标设备，减少数据碰撞。工作在 OSI 模型的第二层（数据链路层）。</p>
+</li>
+<li><p><strong>路由器（Router）</strong>：路由器用于连接不同网络，并根据 IP 地址进行数据包转发，处理复杂的网络任务。工作在 OSI 模型的第三层（网络层）。</p>
+</li>
+<li><p><strong>路由器构成与工作原理</strong>：由处理器、内存、输入输出接口和路由处理器等部分组成，根据目标 IP 地址和路由表决定数据包转发。还负责网络地址转换、防火墙、VPN等任务。</p>
+</li>
+<li><p><strong>VPN（Virtual Private Network）</strong>：包括远程访问 VPN 和站点到站点 VPN，通过建立加密通道保证数据安全。用于远程办公、公共 Wi-Fi 的安全访问等场景。</p>
+</li>
+<li><p><strong>NAT（PAT）的应用和原理</strong>：NAT用于将内网 IP 地址转换为公网 IP 地址，PAT是NAT的一种变体，通过端口转换实现多个内网设备共享一个公网 IP 地址。</p>
+</li>
+</ul>
 <h2 id="习题-1"><a href="#习题-1" class="headerlink" title="习题"></a>习题</h2><ul>
 <li>码分多址</li>
 </ul>
@@ -1217,7 +1267,8 @@
 <p><strong>PS：一般来说，我们默认将 0 写成 -1，1 写成 +1 的形式</strong></p>
 <p>那么在多个站通过同一信道传输数据的时候，如何保证这些数据的独立性呢（不打架），要求数据之间能够内积得零（就是数学上向量内积得零）<br>比如，A，B 站向 C 站发送数据（这里用 4 位来计算）<br>如果 A（1，-1，1，-1），那么 B（-1，-1，-1，-1），这样 A，B 内积除以 4 位就得零，使得数据不会干扰。</p>
 <p>那么在传播的过程中，如何组合这些数据呢，利用线性相加<br>还是上面的数据，那么线性相加，组合的结果就是（0，-2，0，-2）</p>
-<p>那么在终点站如何分离出各自的数据呢，利用源站与终点站数据内积<br>还是上面的数据，分离 A 的数据，(0，-2，0，-2)*（1,-1,1,-1）&#x2F; 4 &#x3D; 1，所以 A 站发送的是 1 比特<br><img src="/2024/06/21/ji-suan-ji-wang-luo/%E7%A0%81%E5%88%86%E5%A4%9A%E5%9D%80%E8%AE%A1%E7%AE%97%E9%A2%98.png" alt="alt text"></p>
+<p>那么在终点站如何分离出各自的数据呢，利用源站与终点站数据内积<br>还是上面的数据，分离 A 的数据，(0，-2，0，-2)*（1,-1,1,-1）&#x2F; 4 &#x3D; 1，所以 A 站发送的是 1 比特</p>
+<p><img src="/2024/06/21/ji-suan-ji-wang-luo/%E7%A0%81%E5%88%86%E5%A4%9A%E5%9D%80%E8%AE%A1%E7%AE%97%E9%A2%98.png" alt="alt text"></p>
 <ul>
 <li><p>TCP&#x2F;IP网络模型<br><code>问</code>: TCP&#x2F;IP 参考模型中的主机-网络层对应于 0SI中的(D)<br>A.网络层  B.物理层   C.数据链路层  D.物理层与数据链路层</p>
 </li>
@@ -1243,7 +1294,43 @@
 </li>
 <li><p>子网划分<br><img src="/2024/06/21/ji-suan-ji-wang-luo/%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86.jpg" alt="alt text"></p>
 </li>
+<li><p>碰撞检测计算<br><img src="/2024/06/21/ji-suan-ji-wang-luo/%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B%E9%97%AE.png" alt="alt text"><br><img src="/2024/06/21/ji-suan-ji-wang-luo/%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B%E8%A7%A3.png" alt="alt text"></p>
+</li>
+<li><p><code>大题</code>: 有两台主机A和B接在800m长的电缆线的两端，并在t&#x3D;0时各自向对方发送一个帧，长度为1500bit(包括首部和前同步码)。假定在A和B之间有4个转发器，在转发帧时会产生20比特的时延。设传输速率为100Mbit&#x2F;s，而CSMA&#x2F;CD的退避时间是随机数r倍的争用期，争用期为512bit，在发生第一次碰撞后，在退避时A选择r&#x3D;0而B选择r&#x3D;1。忽略发生碰撞后的人为干扰信号和帧间最小间隔。</p>
+<ul>
+<li>（1）设信号的传播速率是2x10^8 (m&#x2F;s)。试计算从A到B(包括4个转发器)的传播时延。</li>
+<li>（2）在什么时间(以秒为单位)B完全收到了A发送的帧?</li>
+<li>（3）现在假定只有A发送帧，帧长仍为1500bit，但4个转发器都用交换机来代替。交换机在进行存储转发时还要产生额外的20bit的处理时延。在什么时间(以秒为单位)B完全收到了A发送的帧?</li>
 </ul>
+</li>
+</ul>
+<p><img src="/2024/06/21/ji-suan-ji-wang-luo/800%E7%B1%B3%E5%81%9C%E6%AD%A2%E7%AD%89%E5%BE%85%E9%A2%98%E7%9B%AE.png" alt="alt text"></p>
+<ul>
+<li><p><code>TCP确认机制</code><br><img src="/2024/06/21/ji-suan-ji-wang-luo/tcp%E7%A1%AE%E8%AE%A4%E6%9C%BA%E5%88%B6%E9%A2%98.png" alt="alt text"></p>
+</li>
+<li><p>样题<br><img src="/2024/06/21/ji-suan-ji-wang-luo/%E6%A0%B7%E9%A2%981.png" alt="alt text"><br><img src="/2024/06/21/ji-suan-ji-wang-luo/%E6%A0%B7%E9%A2%982.png" alt="alt text"></p>
+</li>
+</ul>
+<h2 id="实验题命令"><a href="#实验题命令" class="headerlink" title="实验题命令"></a>实验题命令</h2><h3 id="rip路由配置"><a href="#rip路由配置" class="headerlink" title="rip路由配置"></a>rip路由配置</h3><p>RIP (Routing Information Protocol) 是一种基于距离向量的路由选择协议。<br>其工作原理是：每个路由器都维护一个到所有可能目的地的路由表，包括下一跳路由器和到目的地的跳数。RIP路由器会周期性地或者当网络拓扑变化时向其所有邻接路由器发送自己的路由表。配置示例：</p>
+<ul>
+<li>配置rip路由：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">Router&gt;</span><span class="language-bash"><span class="built_in">enable</span></span></span><br><span class="line"><span class="meta prompt_">Router#</span><span class="language-bash">configure terminal</span></span><br><span class="line"><span class="meta prompt_">Router(config)#</span><span class="language-bash">router rip</span></span><br><span class="line"><span class="meta prompt_">Router(config-router)#</span><span class="language-bash">network 192.168.1.0</span></span><br><span class="line"><span class="meta prompt_">Router(config-router)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br><span class="line"><span class="meta prompt_">Router(config)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol>
+<li><strong>如何构建交换转发表</strong> 交换机使用 MAC 地址表（也被称为转发表或者 CAM 表）进行帧的转发或者过滤。当交换机接收到一个帧，<strong>它会记录源 MAC 地址和接口</strong>，并将其添加到 <strong>MAC 地址表</strong>中。如果目的 MAC 地址在表中，<strong>交换机就可以直接转发帧到对应的接口</strong>。如果没有，交换机将帧发送到所有的接口（除了源接口）。</li>
+</ol>
+<p><code>VLAN</code> 和<strong>配置</strong>VLAN（Virtual Local Area Network）是一种在物理网络中创建独立广播域的技术。同一个 VLAN 中的主机可以相互通信，但是不同 VLAN 中的主机默认是无法相互通信的。配置示例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">Switch&gt;</span><span class="language-bash"><span class="built_in">enable</span> 从用户执行模式（User EXEC mode）进入到特权执行</span></span><br><span class="line"><span class="meta prompt_">Switch#</span><span class="language-bash">configure terminal  特权执行模式进入到全局配置模式</span></span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash">vlan 10 <span class="comment">#在交换机上创建一个编号为10的VLAN</span></span></span><br><span class="line"><span class="meta prompt_">Switch(config-vlan)#</span><span class="language-bash">name VLAN10 <span class="comment">#这个命令为VLAN 10设置一个名字（VLAN10）。</span></span></span><br><span class="line"><span class="meta prompt_">Switch(config-vlan)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash">interface fa0/1</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash">switchport mode access <span class="comment">#设置FastEthernet0/1接口为接入模式。接入模式意味着这个接口只能属于一个VLAN。</span></span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash">switchport access vlan 10 <span class="comment">#这个命令将FastEthernet0/1接口分配到VLAN 10。</span></span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash"><span class="built_in">exit</span></span> </span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br></pre></td></tr></table></figure>
+<ol>
+<li><p><strong>跨 VLAN 转发</strong> 默认情况下，VLAN 是隔离的，也就是说，不同的 VLAN 之间是不能通信的。但是，我们可以通过使用<strong>三层交换机</strong>来实现跨 VLAN 的通信。实际上，这就是在进行路由操作，因为不同的 VLAN 相当于不同的子网。</p>
+</li>
+<li><p><strong>启用三层交换</strong> 三层交换机除了可以执行二层交换（通过 MAC 地址进行转发）之外，还可以执行<strong>三层路由（通过 IP 地址进行转发）</strong>。启用三层交换的命令通常是 ip routing。当启用了三层交换后，三层交换机就可以配置 <code>RIP</code> 或者 <code>OSPF</code> 等路由协议，并且可以进行跨 VLAN 的路由。</p>
+</li>
+</ol>
+<p>启用三层交换实现跨vlan转发实验：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">Switch&gt;</span><span class="language-bash"><span class="built_in">enable</span></span></span><br><span class="line"><span class="meta prompt_">Switch#</span><span class="language-bash">configure terminal</span></span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash">ip routing <span class="comment">#启用路由功能</span></span></span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">配置vlan10</span></span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash">vlan 10</span></span><br><span class="line"><span class="meta prompt_">Switch(config-vlan)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">配置vlan20</span></span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash">vlan 20</span></span><br><span class="line"><span class="meta prompt_">Switch(config-vlan)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br><span class="line"> </span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash">interface vlan 10</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash">ip address 192.168.10.1 255.255.255.0  <span class="comment"># 为VLAN10配置SVI</span></span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash">no shutdown <span class="comment">#启动接口</span></span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash">interface vlan 20</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash">ip address 192.168.20.1 255.255.255.0</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash">no shutdown</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash">interface fa0/1</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash">switchport mode access</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash">switchport access vlan 10</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash">interface fa0/2</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash">switchport mode access</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash">switchport access vlan 20</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br></pre></td></tr></table></figure>
+<p>简单来说，交换机通过 VLAN 10 和 VLAN 20 分别在 fa0&#x2F;1 和 fa0&#x2F;2 端口上接收到的数据包，会基于数据包的目标 IP 地址，通过配置的 SVI（交换机虚拟接口，即<strong>各 VLAN 的默认网关</strong>）进行路由。</p>
+<p>例如，如果一个数据包在 VLAN 10 （通过 fa0&#x2F;1 端口）进入，目标 IP 是 VLAN 20 中的一个 IP，那么交换机会把这个数据包路由到 VLAN 20（通过 fa0&#x2F;2 端口）去。</p>
+<p>需要注意的是，虽然现在 VLAN 10 和 VLAN 20 可以互相通信，但是这还不意味着 VLAN 内部的主机已经配置好了。主机需要设置正确的 IP 地址、子网掩码、以及<strong>默认网关（对应所在 VLAN 的 默认网关！）</strong>。否则，主机还是无法跨 VLAN 通信。</p>
 
                 
             </div>
@@ -1765,7 +1852,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">66.8k</span>&nbsp;字
+                class="white-color">69.3k</span>&nbsp;字
             
             
             
