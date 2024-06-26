@@ -478,14 +478,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    15.4k
+                    15.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    60 分
+                    61 分
                 </div>
                 
 
@@ -513,7 +513,11 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Linux学习"><a href="#Linux学习" class="headerlink" title="Linux学习"></a>Linux学习</h1><h2 id="第一章-linux基本命令"><a href="#第一章-linux基本命令" class="headerlink" title="第一章 linux基本命令"></a>第一章 linux基本命令</h2><h3 id="期末考试方式"><a href="#期末考试方式" class="headerlink" title="期末考试方式"></a>期末考试方式</h3><p>使用<code>exam</code>命令,输入数字选择选项或题目,答案默认保存,若想修改之前的答案,输入对应题号就行</p>
+                <h1 id="Linux学习"><a href="#Linux学习" class="headerlink" title="Linux学习"></a>Linux学习</h1><h2 id="第一章-Linux的由来"><a href="#第一章-Linux的由来" class="headerlink" title="第一章 Linux的由来"></a>第一章 Linux的由来</h2><ul>
+<li>开源协议<br><img src="/2024/06/21/linux-zhi-ling/GPL%E5%8D%8F%E8%AE%AE.png" alt="alt text"></li>
+<li>POSIX接口规范<br>POSIX接口规范，全称为“可移植操作系统接口”（Portable Operating System Interface），是由IEEE（电气和电子工程师协会）和ISO&#x2F;IEC联合制定的一组操作系统接口规范。其主要目的在于实现不同操作系统之间的兼容性和互操作性，使得开发人员能够跨平台编写和运行应用程序，而无需进行大量的代码修改。</li>
+</ul>
+<h2 id="第二章-linux基本命令"><a href="#第二章-linux基本命令" class="headerlink" title="第二章 linux基本命令"></a>第二章 linux基本命令</h2><h3 id="期末考试方式"><a href="#期末考试方式" class="headerlink" title="期末考试方式"></a>期末考试方式</h3><p>使用<code>exam</code>命令,输入数字选择选项或题目,答案默认保存,若想修改之前的答案,输入对应题号就行</p>
 <h3 id="1-连接到学校主机10-188-2-251的帐号密码"><a href="#1-连接到学校主机10-188-2-251的帐号密码" class="headerlink" title="1.连接到学校主机10.188.2.251的帐号密码"></a>1.连接到学校主机10.188.2.251的帐号密码</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">账号:s223174</span><br><span class="line">密码:welcome</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-nano指令操作文件"><a href="#2-nano指令操作文件" class="headerlink" title="2.nano指令操作文件"></a>2.nano指令操作文件</h3><p>查看和编辑文件</p>
@@ -1148,8 +1152,7 @@
 <li>在使用 grep 命令时，还可以省略查找内容的引号比如:ls&#x2F;| grep lib , grep hello 1.txt</li>
 </ul>
 <h4 id="对文本批量修改"><a href="#对文本批量修改" class="headerlink" title="对文本批量修改"></a>对文本批量修改</h4><ul>
-<li><p><code>sed</code>流处理<br> 对文件流水线处理,读一行处理一行sed ‘[address]command’ filename(s)</p>
-<ul>
+<li><code>sed</code>流处理<br> 对文件流水线处理,读一行处理一行sed ‘[address]command’ filename(s)<ul>
 <li>根据行号选中行处理<ol>
 <li><code>d</code> 删除操作对1到3行进行删除操作<code>sed &#39;1,3d&#39; filename</code></li>
 </ol>
@@ -1170,8 +1173,7 @@
 <li><code>sed</code>格式<br>  <code>sed &#39;/正则表达式/s#原文#替换文本#&#39;</code><br>  <code>sed &#39;/^[[:space:]]*$/d&#39; output_sort.txt</code>严格删除所有空行<code>[[:space:]]</code>这是sed中的一个字符类，表示空白字符。它匹配任何空白字符，如空格、制表符、换行符、回车符等</li>
 </ul>
 </li>
-<li><p><code>awk</code>命令</p>
-<ul>
+<li><code>awk</code>命令<ul>
 <li><code>awk</code>命令里的正则表达式格式为<code>awk &#39;/re/&#39; filename</code><br> <img src="/2024/06/21/linux-zhi-ling/awk01.png" alt="alt text"></li>
 <li>在awk命令中,美元符号表示字段的意思<code>$</code><br> <img src="/2024/06/21/linux-zhi-ling/awk_$.png" alt="alt text"></li>
 <li><code>F</code>参数指定分割符<ul>
@@ -1185,11 +1187,18 @@
 <li><code>awk &#39;$2!~/^D/&#123;print $1,$2&#125;&#39;</code>表示对字段2不进行匹配以D开头的,就打印字段1,字段2</li>
 </ul>
 </li>
+<li><code>过滤</code>条件<ul>
+<li><code>awk -F: &#39;$3 &gt;= 1000 &amp;&amp; $3 &lt;= 2000 &#123;print $1, $3&#125;&#39; /etc/passwd</code>要显示用户ID在1000到2000之间的用户名，您可以使用awk来过滤&#x2F;etc&#x2F;passwd文件。$3 &gt;&#x3D; 1000 &amp;&amp; $3 &lt;&#x3D; 2000 是一个条件，它检查第三个字段（用户ID）是否在1000到2000之间（包括1000和2000）。</li>
 </ul>
 </li>
-<li><p><code>tr</code>命令(映射替换)</p>
+</ul>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">awk &#x27;/\&lt;CS/&#123;print $1,$2&#125;&#x27; /tmp/student_record</span><br><span class="line"></span><br><span class="line">awk &#x27;$2~/^D/&#123;print $1,$2&#125;&#x27;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="variable">$2</span>~/^D/：这是一个条件，它检查第二列（由字段分隔符分隔，默认为空格或制表符）是否以字母 <span class="string">&quot;D&quot;</span> 开头,~ 是 awk 中用于模式匹配的操作符</span></span><br><span class="line"></span><br><span class="line">awk -F: &#x27;$2 !~ /916/ &#123;print $1&#125;&#x27; /tmp/donors</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">这条命令将根据冒号分隔符(:)来解析文件中的内容，并打印出第二个字段中不包含916区号的人的名字。</span></span><br><span class="line"></span><br><span class="line">awk &#x27;&#123;print NR &quot;: &quot; $0&#125;&#x27; /tmp/donors</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">请将<span class="string">&quot;文件名&quot;</span>替换为您要处理的文件名。这条命令将打印出每条记录的行号（记录号）后面跟着记录的内容。记录号由NR内置变量提供，表示当前处理的记录的序号。</span></span><br><span class="line"></span><br><span class="line"> awk  -F&#x27;[: ]&#x27; &#x27;$7 &lt;= 85 &#123;print $1,$2,$4&#125;&#x27; /tmp/donors</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>tr 被映射域 映射域(可用区间表示)<br> <img src="/2024/06/21/linux-zhi-ling/tr.png" alt="alt text"><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">awk &#x27;/\&lt;CS/&#123;print $1,$2&#125;&#x27; /tmp/student_record</span><br><span class="line"></span><br><span class="line">awk &#x27;$2~/^D/&#123;print $1,$2&#125;&#x27;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="variable">$2</span>~/^D/：这是一个条件，它检查第二列（由字段分隔符分隔，默认为空格或制表符）是否以字母 <span class="string">&quot;D&quot;</span> 开头,~ 是 awk 中用于模式匹配的操作符</span></span><br><span class="line"></span><br><span class="line">awk -F: &#x27;$2 !~ /916/ &#123;print $1&#125;&#x27; /tmp/donors</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">这条命令将根据冒号分隔符(:)来解析文件中的内容，并打印出第二个字段中不包含916区号的人的名字。</span></span><br><span class="line"></span><br><span class="line">awk &#x27;&#123;print NR &quot;: &quot; $0&#125;&#x27; /tmp/donors</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">请将<span class="string">&quot;文件名&quot;</span>替换为您要处理的文件名。这条命令将打印出每条记录的行号（记录号）后面跟着记录的内容。记录号由NR内置变量提供，表示当前处理的记录的序号。</span></span><br><span class="line"></span><br><span class="line"> awk  -F&#x27;[: ]&#x27; &#x27;$7 &lt;= 85 &#123;print $1,$2,$4&#125;&#x27; /tmp/donors</span><br></pre></td></tr></table></figure></li>
+<li><code>tr</code>命令(映射替换)<ul>
+<li>tr 被映射域 映射域(可用区间表示)<br> <img src="/2024/06/21/linux-zhi-ling/tr.png" alt="alt text"></li>
 </ul>
 </li>
 </ul>
@@ -1982,15 +1991,20 @@
 <p>对表达式求值有两种方式</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if test $a -eq $b</span><br><span class="line"></span><br><span class="line">if [ $a -eq $b ]</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">要有空格</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="if结构"><a href="#if结构" class="headerlink" title="if结构"></a>if结构</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">! /usr/bin/bash</span></span><br><span class="line">read a</span><br><span class="line">if [ $a -eq 0 ]</span><br><span class="line">then echo &#x27;zero&#x27;</span><br><span class="line">elif [ $a -gt 0 ]</span><br><span class="line">then echo &quot;is Postive&quot;</span><br><span class="line">elif [ $a -lt 0 ]</span><br><span class="line">then echo &quot; is Negative&quot;</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">if.sh</span></span><br></pre></td></tr></table></figure>
+<h4 id="if结构"><a href="#if结构" class="headerlink" title="if结构"></a>if结构</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span>  </span><br><span class="line">  </span><br><span class="line">num1=10  </span><br><span class="line">num2=20  </span><br><span class="line">  </span><br><span class="line">if [ $num1 -lt $num2 ]  </span><br><span class="line">then  </span><br><span class="line">    echo &quot;$num1 is less than $num2&quot;  </span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">! /usr/bin/bash</span></span><br><span class="line">read a</span><br><span class="line">if [ $a -eq 0 ]</span><br><span class="line">then echo &#x27;zero&#x27;</span><br><span class="line">elif [ $a -gt 0 ]</span><br><span class="line">then echo &quot;is Postive&quot;</span><br><span class="line">elif [ $a -lt 0 ]</span><br><span class="line">then echo &quot; is Negative&quot;</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">if.sh</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h4><p><img src="/2024/06/21/linux-zhi-ling/%E5%BE%AA%E7%8E%AF%E8%AF%BB%E5%8F%96.png" alt="alt text"></p>
 <h5 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h5><p><img src="/2024/06/21/linux-zhi-ling/if%E7%BB%93%E6%9E%84.png" alt="alt text"></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="keyword">for</span>循环格式 <span class="keyword">in</span>可以不写,表示从命令行取参数列表</span></span><br><span class="line">for variable [in argument-list]</span><br><span class="line">do</span><br><span class="line">   command-list</span><br><span class="line">done</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">实例</span></span><br><span class="line">for name in tom jack marry</span><br><span class="line">do</span><br><span class="line">   echo &quot;hello $name&quot;</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>题目: 从1加到100,输出结果<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">read n</span><br><span class="line">sum=0</span><br><span class="line">for i in $(seq 1 $n)</span><br><span class="line">do</span><br><span class="line">        sum=`expr $sum + $i`</span><br><span class="line">done</span><br><span class="line">echo $sum</span><br></pre></td></tr></table></figure></li>
-<li>题目: 批量的给文件改名<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span>  </span><br><span class="line">  </span><br><span class="line">read -p &quot;请输入目录（默认为当前目录）: &quot; dir  </span><br><span class="line">if [ -z &quot;$dir&quot; ]; then  </span><br><span class="line">    dir=&quot;./&quot;  # 如果目录为空，则默认为当前目录  </span><br><span class="line">fi  </span><br><span class="line">  </span><br><span class="line">i=1  </span><br><span class="line">for filename in &quot;$dir&quot;*.txt; do  # 注意这里使用引号包围变量和模式  </span><br><span class="line">    echo &quot;重命名 $filename 到 $i.txt，y 或 n&quot;  </span><br><span class="line">    read choice  </span><br><span class="line">    if [ &quot;$choice&quot; = &quot;y&quot; ]; then  </span><br><span class="line">        mv &quot;$filename&quot; &quot;$dir$i.txt&quot;  # 确保重命名后的文件路径正确  </span><br><span class="line">        i=$((i+1))  </span><br><span class="line">    fi  </span><br><span class="line">done</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>题目： 输出命令行参数之和</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">! /bin/bash</span></span><br><span class="line">sum=0</span><br><span class="line">for i </span><br><span class="line">do </span><br><span class="line">   sum=`expr $sum + $i`</span><br><span class="line">done</span><br><span class="line">echo $sum</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>题目: 从1加到100,输出结果</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">read n</span><br><span class="line">sum=0</span><br><span class="line">for i in $(seq 1 $n)</span><br><span class="line">do</span><br><span class="line">        sum=`expr $sum + $i`</span><br><span class="line">done</span><br><span class="line">echo $sum</span><br></pre></td></tr></table></figure></li>
+<li><p>题目: 批量的给文件改名</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span>  </span><br><span class="line">  </span><br><span class="line">read -p &quot;请输入目录（默认为当前目录）: &quot; dir  </span><br><span class="line">if [ -z &quot;$dir&quot; ]; then  </span><br><span class="line">    dir=&quot;./&quot;  # 如果目录为空，则默认为当前目录  </span><br><span class="line">fi  </span><br><span class="line">  </span><br><span class="line">i=1  </span><br><span class="line">for filename in &quot;$dir&quot;*.txt; do  # 注意这里使用引号包围变量和模式  </span><br><span class="line">    echo &quot;重命名 $filename 到 $i.txt，y 或 n&quot;  </span><br><span class="line">    read choice  </span><br><span class="line">    if [ &quot;$choice&quot; = &quot;y&quot; ]; then  </span><br><span class="line">        mv &quot;$filename&quot; &quot;$dir$i.txt&quot;  # 确保重命名后的文件路径正确  </span><br><span class="line">        i=$((i+1))  </span><br><span class="line">    fi  </span><br><span class="line">done</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h5 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">while expression</span><br><span class="line">do</span><br><span class="line">   command-list</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
 
@@ -2549,7 +2563,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">69.2k</span>&nbsp;字
+                class="white-color">69.5k</span>&nbsp;字
             
             
             
