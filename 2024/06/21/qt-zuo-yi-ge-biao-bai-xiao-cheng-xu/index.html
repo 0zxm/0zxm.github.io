@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 7.1.1"></head>
+<meta name="generator" content="Hexo 7.2.0"></head>
 
 
 
@@ -478,14 +478,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.6k
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    7 分
                 </div>
                 
 
@@ -521,38 +521,143 @@
 </ul>
 <h3 id="成品展示"><a href="#成品展示" class="headerlink" title="成品展示"></a>成品展示</h3><p>这是点击不接受的窗口,右侧是马里奥的gif动画</p>
 <p>若是不接受,会一直置于顶层</p>
-<p><img src="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/image-20240128090249459.png" alt="image-20240128090249459"></p>
+<p><img src="/image-20240128090249459.png" alt="image-20240128090249459"></p>
 <p>这是接受后弹出的窗口,可以拖拽</p>
-<p><img src="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/image-20240128090322689.png" alt="image-20240128090322689"></p>
+<p><img src="/image-20240128090322689.png" alt="image-20240128090322689"></p>
 <h3 id="关键部分讲解"><a href="#关键部分讲解" class="headerlink" title="关键部分讲解"></a>关键部分讲解</h3><h4 id="添加动画"><a href="#添加动画" class="headerlink" title="添加动画"></a>添加动画</h4><p>使用了qt写好的qmovie类,创建时指定动画资源,设置好播放速度,窗口创建就会开始播放,默认循环播放</p>
 <blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加马里奥动画</span></span><br><span class="line">QMovie * mario = <span class="keyword">new</span> <span class="built_in">QMovie</span>(<span class="string">&quot;:/mario.gif&quot;</span>);</span><br><span class="line">ui-&gt;marioLabel-&gt;<span class="built_in">setMovie</span>(mario);</span><br><span class="line">ui-&gt;marioLabel-&gt;<span class="built_in">setScaledContents</span>(<span class="literal">true</span>); <span class="comment">// 将内容缩放以适应控件大小</span></span><br><span class="line"><span class="comment">//设置播放速度</span></span><br><span class="line">mario-&gt;<span class="built_in">setSpeed</span>(<span class="number">150</span>);</span><br><span class="line">mario-&gt;<span class="built_in">start</span>();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;添加马里奥动画
+QMovie * mario &#x3D; new QMovie(&quot;:&#x2F;mario.gif&quot;);
+ui-&gt;marioLabel-&gt;setMovie(mario);
+ui-&gt;marioLabel-&gt;setScaledContents(true); &#x2F;&#x2F; 将内容缩放以适应控件大小
+&#x2F;&#x2F;设置播放速度
+mario-&gt;setSpeed(150);
+mario-&gt;start();
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
 <h4 id="循环逻辑"><a href="#循环逻辑" class="headerlink" title="循环逻辑"></a>循环逻辑</h4><p>这里使用connect链接按钮的点击事件,若是接受了,会弹出一个自定义的yes_next窗口,里面是我写好的从多处收集来的情诗和句子,背景我使用了爱心图片填充</p>
 <p>如果用户点击了不接受,就会创建一个循环对话框,一直监听信号,直到用户点击yes,在弹出yes_next对话框</p>
 <blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 连接按钮的点击事件</span></span><br><span class="line"> QObject::<span class="built_in">connect</span>(ui-&gt;pushButton_Yes, &amp;QPushButton::clicked, [=]()&#123;</span><br><span class="line">     Yes_Next *y = <span class="keyword">new</span> Yes_Next;</span><br><span class="line">     y-&gt;<span class="built_in">setVisible</span>(<span class="literal">true</span>);</span><br><span class="line">     y-&gt;<span class="built_in">setWindowFlag</span>(Qt::WindowStaysOnTopHint);</span><br><span class="line">     <span class="comment">//y-&gt;setGeometry(100, 100, 400, 400); // 设置窗口位置和大小</span></span><br><span class="line">     y-&gt;<span class="built_in">setGeometry</span>(<span class="number">600</span>,<span class="number">150</span>,<span class="number">400</span>,<span class="number">600</span>);</span><br><span class="line">     y-&gt;<span class="built_in">show</span>();</span><br><span class="line">     y-&gt;<span class="built_in">raise</span>();</span><br><span class="line">     <span class="keyword">this</span>-&gt;<span class="built_in">close</span>();</span><br><span class="line">     <span class="comment">//exit(0);</span></span><br><span class="line"> &#125;);</span><br><span class="line"> QObject::<span class="built_in">connect</span>(ui-&gt;pushButton_No, &amp;QPushButton::clicked, [=]()&#123;</span><br><span class="line"></span><br><span class="line">     <span class="comment">// 用户点击了 &quot;No&quot; 按钮，继续循环</span></span><br><span class="line">     <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">         QDialog loopDialog;</span><br><span class="line">         loopDialog.<span class="built_in">setWindowTitle</span>(<span class="string">&quot;循环对话框&quot;</span>);</span><br><span class="line">         loopDialog.<span class="built_in">setWindowFlag</span>(Qt::WindowStaysOnTopHint);</span><br><span class="line">         loopDialog.<span class="built_in">setModal</span>(<span class="literal">true</span>);</span><br><span class="line">         loopDialog.<span class="built_in">setFixedSize</span>(<span class="number">350</span>, <span class="number">100</span>); <span class="comment">// 设置固定大小</span></span><br><span class="line"></span><br><span class="line">         QLabel *label = <span class="keyword">new</span> <span class="built_in">QLabel</span>(&amp;loopDialog);</span><br><span class="line">         label-&gt;<span class="built_in">setText</span>(<span class="string">&quot;你在考虑下,接不接受&quot;</span>); <span class="comment">// 确保文本正确设置</span></span><br><span class="line">         label-&gt;<span class="built_in">show</span>();</span><br><span class="line">         label-&gt;<span class="built_in">setGeometry</span>(<span class="number">120</span>, <span class="number">10</span>, <span class="number">150</span>, <span class="number">35</span>); <span class="comment">// 设置位置和大小</span></span><br><span class="line">         <span class="comment">//label-&gt;setStyleSheet(&quot;border: 1px solid black&quot;); // 添加边框以显示位置</span></span><br><span class="line">         QPalette palette = label-&gt;<span class="built_in">palette</span>();</span><br><span class="line">         palette.<span class="built_in">setColor</span>(QPalette::Text, <span class="built_in">QColor</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>)); <span class="comment">// 设置文本颜色为蓝色</span></span><br><span class="line">         label-&gt;<span class="built_in">setPalette</span>(palette);</span><br><span class="line"></span><br><span class="line">         QPushButton *btnYesLoop = <span class="keyword">new</span> <span class="built_in">QPushButton</span>(<span class="string">&quot;Yes&quot;</span>, &amp;loopDialog);</span><br><span class="line">         QPushButton *btnNoLoop = <span class="keyword">new</span> <span class="built_in">QPushButton</span>(<span class="string">&quot;No&quot;</span>, &amp;loopDialog);</span><br><span class="line">         btnYesLoop-&gt;<span class="built_in">setGeometry</span>(<span class="number">50</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">30</span>);</span><br><span class="line">         btnNoLoop-&gt;<span class="built_in">setGeometry</span>(<span class="number">200</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">         <span class="comment">// 设置父子关系</span></span><br><span class="line">         btnYesLoop-&gt;<span class="built_in">setParent</span>(&amp;loopDialog);</span><br><span class="line">         btnNoLoop-&gt;<span class="built_in">setParent</span>(&amp;loopDialog);</span><br><span class="line"></span><br><span class="line">         <span class="comment">// 连接按钮的点击事件</span></span><br><span class="line">         QObject::<span class="built_in">connect</span>(btnYesLoop, &amp;QPushButton::clicked, &amp;loopDialog, &amp;QDialog::accept);</span><br><span class="line">         QObject::<span class="built_in">connect</span>(btnNoLoop, &amp;QPushButton::clicked, &amp;loopDialog, &amp;QDialog::reject);</span><br><span class="line"></span><br><span class="line">         <span class="comment">// 显示循环对话框</span></span><br><span class="line">         <span class="keyword">if</span> (loopDialog.<span class="built_in">exec</span>() == QDialog::Accepted) &#123;</span><br><span class="line">             <span class="comment">// 用户点击了 &quot;Yes&quot; 按钮，退出循环</span></span><br><span class="line">             Yes_Next *y = <span class="keyword">new</span> Yes_Next;</span><br><span class="line">             y-&gt;<span class="built_in">setGeometry</span>(<span class="number">600</span>, <span class="number">150</span>, <span class="number">400</span>, <span class="number">400</span>); <span class="comment">// 设置窗口位置和大小</span></span><br><span class="line">             y-&gt;<span class="built_in">show</span>();</span><br><span class="line">             y-&gt;<span class="built_in">raise</span>();</span><br><span class="line">             <span class="keyword">this</span>-&gt;<span class="built_in">close</span>();</span><br><span class="line">             <span class="comment">//exit(0);</span></span><br><span class="line">             <span class="keyword">break</span>;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 连接按钮的点击事件
+ QObject::connect(ui-&gt;pushButton_Yes, &amp;QPushButton::clicked, [&#x3D;]()&#123;
+     Yes_Next *y &#x3D; new Yes_Next;
+     y-&gt;setVisible(true);
+     y-&gt;setWindowFlag(Qt::WindowStaysOnTopHint);
+     &#x2F;&#x2F;y-&gt;setGeometry(100, 100, 400, 400); &#x2F;&#x2F; 设置窗口位置和大小
+     y-&gt;setGeometry(600,150,400,600);
+     y-&gt;show();
+     y-&gt;raise();
+     this-&gt;close();
+     &#x2F;&#x2F;exit(0);
+ &#125;);
+ QObject::connect(ui-&gt;pushButton_No, &amp;QPushButton::clicked, [&#x3D;]()&#123;
+
+     &#x2F;&#x2F; 用户点击了 &quot;No&quot; 按钮，继续循环
+     while (true) &#123;
+         QDialog loopDialog;
+         loopDialog.setWindowTitle(&quot;循环对话框&quot;);
+         loopDialog.setWindowFlag(Qt::WindowStaysOnTopHint);
+         loopDialog.setModal(true);
+         loopDialog.setFixedSize(350, 100); &#x2F;&#x2F; 设置固定大小
+
+         QLabel *label &#x3D; new QLabel(&amp;loopDialog);
+         label-&gt;setText(&quot;你在考虑下,接不接受&quot;); &#x2F;&#x2F; 确保文本正确设置
+         label-&gt;show();
+         label-&gt;setGeometry(120, 10, 150, 35); &#x2F;&#x2F; 设置位置和大小
+         &#x2F;&#x2F;label-&gt;setStyleSheet(&quot;border: 1px solid black&quot;); &#x2F;&#x2F; 添加边框以显示位置
+         QPalette palette &#x3D; label-&gt;palette();
+         palette.setColor(QPalette::Text, QColor(0, 0, 255)); &#x2F;&#x2F; 设置文本颜色为蓝色
+         label-&gt;setPalette(palette);
+
+         QPushButton *btnYesLoop &#x3D; new QPushButton(&quot;Yes&quot;, &amp;loopDialog);
+         QPushButton *btnNoLoop &#x3D; new QPushButton(&quot;No&quot;, &amp;loopDialog);
+         btnYesLoop-&gt;setGeometry(50, 50, 100, 30);
+         btnNoLoop-&gt;setGeometry(200, 50, 100, 30);
+
+         &#x2F;&#x2F; 设置父子关系
+         btnYesLoop-&gt;setParent(&amp;loopDialog);
+         btnNoLoop-&gt;setParent(&amp;loopDialog);
+
+         &#x2F;&#x2F; 连接按钮的点击事件
+         QObject::connect(btnYesLoop, &amp;QPushButton::clicked, &amp;loopDialog, &amp;QDialog::accept);
+         QObject::connect(btnNoLoop, &amp;QPushButton::clicked, &amp;loopDialog, &amp;QDialog::reject);
+
+         &#x2F;&#x2F; 显示循环对话框
+         if (loopDialog.exec() &#x3D;&#x3D; QDialog::Accepted) &#123;
+             &#x2F;&#x2F; 用户点击了 &quot;Yes&quot; 按钮，退出循环
+             Yes_Next *y &#x3D; new Yes_Next;
+             y-&gt;setGeometry(600, 150, 400, 400); &#x2F;&#x2F; 设置窗口位置和大小
+             y-&gt;show();
+             y-&gt;raise();
+             this-&gt;close();
+             &#x2F;&#x2F;exit(0);
+             break;
+         &#125;
+     &#125;
+ &#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
 <h4 id="yes-next窗口"><a href="#yes-next窗口" class="headerlink" title="yes_next窗口"></a>yes_next窗口</h4><blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;yes_next.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ui_yes_next.h&quot;</span></span></span><br><span class="line"></span><br><span class="line">Yes_Next::<span class="built_in">Yes_Next</span>(QWidget *parent)</span><br><span class="line"> : <span class="built_in">QWidget</span>(parent)</span><br><span class="line"> , <span class="built_in">ui</span>(<span class="keyword">new</span> Ui::Yes_Next)</span><br><span class="line">&#123;</span><br><span class="line"> ui-&gt;<span class="built_in">setupUi</span>(<span class="keyword">this</span>);</span><br><span class="line"> <span class="keyword">this</span>-&gt;<span class="built_in">setWindowTitle</span>(<span class="string">&quot;poems&quot;</span>);</span><br><span class="line"></span><br><span class="line"> <span class="comment">/*使用HTML标记：你可以使用HTML标记来在QLabel中显示换行文字。例如，你可以使用&lt;br&gt;标记来表示换行。示例代码如下：</span></span><br><span class="line"><span class="comment">     ui-&gt;label-&gt;setText(&quot;第一行文字&lt;br&gt;第二行文字&quot;);</span></span><br><span class="line"><span class="comment"> 使用QLabel的setWordWrap方法：你可以使用setWordWrap方法来启用QLabel的自动换行功能。示例代码如下：</span></span><br><span class="line"><span class="comment">     ui-&gt;label-&gt;setText(&quot;这是一段很长的文字，当文字超出label的大小时会自动换行&quot;);</span></span><br><span class="line"><span class="comment">     ui-&gt;label-&gt;setWordWrap(true);</span></span><br><span class="line"><span class="comment"> 这两种方法都可以用来在QLabel中显示换行文字。你可以根据你的需求选择其中一种方法*/</span></span><br><span class="line"></span><br><span class="line"> QString poem = <span class="string">&quot;&lt;br&gt;莎士比亚的《十四行诗》：&lt;br&gt;“我能否将你比作夏日？&lt;br&gt;但你比夏日更可爱也更温柔。”&lt;br&gt;&quot;</span></span><br><span class="line">                <span class="string">&quot;&lt;br&gt;杰拉尔德的《未与你共度一切》：&lt;br&gt;“我曾遇到过无数生灵，曾看过无数美景，&lt;br&gt;这一切却未与你共度，&lt;br&gt;这都会是我的损失；&lt;br&gt;这些事情我都想与你共度，&quot;</span></span><br><span class="line">                <span class="string">&quot;&lt;br&gt;这一切才会是我的收获。”&lt;br&gt;&lt;br&gt;波伏娃的《越洋情书》：&lt;br&gt;“唯有你也想见我的时候，我们的见面才有意义。”&lt;br&gt;&lt;br&gt;“犹如飞蛾扑向星星，又如黑夜追求黎明。”&lt;br&gt;&lt;br&gt;“见你第一眼我就沦陷了。”&lt;br&gt;&lt;br&gt;“他是我的南北，&quot;</span></span><br><span class="line">                <span class="string">&quot;我的西东，我的工作日，我的礼拜天，我的正午，我的深夜，我的言语，我的歌声。我认为爱可以不朽。”&quot;</span>;</span><br><span class="line"></span><br><span class="line"> ui-&gt;label-&gt;<span class="built_in">setText</span>(poem);</span><br><span class="line"> ui-&gt;label-&gt;<span class="built_in">setStyleSheet</span>(<span class="string">&quot;background-color: pink; font-style: italic; font-family: 华文楷体;&quot;</span>);</span><br><span class="line"> QFont font = ui-&gt;label-&gt;<span class="built_in">font</span>(); <span class="comment">// 获取label的当前字体</span></span><br><span class="line"> font.<span class="built_in">setPointSize</span>(<span class="number">16</span>); <span class="comment">// 设置字体大小为16</span></span><br><span class="line"> ui-&gt;label-&gt;<span class="built_in">setFont</span>(font); <span class="comment">// 应用新的字体</span></span><br><span class="line"> ui-&gt;label-&gt;<span class="built_in">setWordWrap</span>(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 设置背景图片</span></span><br><span class="line"> QString imagePath = <span class="string">&quot;url(:/loveheart.jfif)&quot;</span>; <span class="comment">// 替换成你的图片路径</span></span><br><span class="line"> <span class="keyword">this</span>-&gt;<span class="built_in">setStyleSheet</span>(<span class="string">&quot;background-image: &quot;</span>+ imagePath + <span class="string">&quot;; background-position: center; background-attachment: fixed;&quot;</span>);</span><br><span class="line"> <span class="comment">/*使用background-size属性来指定背景图片的大小和填充方式。例如，你可以设置为background-size: cover;</span></span><br><span class="line"><span class="comment">     * 来让背景图片覆盖整个窗口，或者设置为background-size: contain;来让背景图片完整显示在窗口内，不进行裁剪。*/</span></span><br><span class="line">    <span class="comment">//background-repeat: no-repeat不重复</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Yes_Next::~<span class="built_in">Yes_Next</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">delete</span> ui;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &quot;yes_next.h&quot;
+#include &quot;ui_yes_next.h&quot;
+
+Yes_Next::Yes_Next(QWidget *parent)
+ : QWidget(parent)
+ , ui(new Ui::Yes_Next)
+&#123;
+ ui-&gt;setupUi(this);
+ this-&gt;setWindowTitle(&quot;poems&quot;);
+
+ &#x2F;*使用HTML标记：你可以使用HTML标记来在QLabel中显示换行文字。例如，你可以使用&lt;br&gt;标记来表示换行。示例代码如下：
+     ui-&gt;label-&gt;setText(&quot;第一行文字&lt;br&gt;第二行文字&quot;);
+ 使用QLabel的setWordWrap方法：你可以使用setWordWrap方法来启用QLabel的自动换行功能。示例代码如下：
+     ui-&gt;label-&gt;setText(&quot;这是一段很长的文字，当文字超出label的大小时会自动换行&quot;);
+     ui-&gt;label-&gt;setWordWrap(true);
+ 这两种方法都可以用来在QLabel中显示换行文字。你可以根据你的需求选择其中一种方法*&#x2F;
+
+ QString poem &#x3D; &quot;&lt;br&gt;莎士比亚的《十四行诗》：&lt;br&gt;“我能否将你比作夏日？&lt;br&gt;但你比夏日更可爱也更温柔。”&lt;br&gt;&quot;
+                &quot;&lt;br&gt;杰拉尔德的《未与你共度一切》：&lt;br&gt;“我曾遇到过无数生灵，曾看过无数美景，&lt;br&gt;这一切却未与你共度，&lt;br&gt;这都会是我的损失；&lt;br&gt;这些事情我都想与你共度，&quot;
+                &quot;&lt;br&gt;这一切才会是我的收获。”&lt;br&gt;&lt;br&gt;波伏娃的《越洋情书》：&lt;br&gt;“唯有你也想见我的时候，我们的见面才有意义。”&lt;br&gt;&lt;br&gt;“犹如飞蛾扑向星星，又如黑夜追求黎明。”&lt;br&gt;&lt;br&gt;“见你第一眼我就沦陷了。”&lt;br&gt;&lt;br&gt;“他是我的南北，&quot;
+                &quot;我的西东，我的工作日，我的礼拜天，我的正午，我的深夜，我的言语，我的歌声。我认为爱可以不朽。”&quot;;
+
+ ui-&gt;label-&gt;setText(poem);
+ ui-&gt;label-&gt;setStyleSheet(&quot;background-color: pink; font-style: italic; font-family: 华文楷体;&quot;);
+ QFont font &#x3D; ui-&gt;label-&gt;font(); &#x2F;&#x2F; 获取label的当前字体
+ font.setPointSize(16); &#x2F;&#x2F; 设置字体大小为16
+ ui-&gt;label-&gt;setFont(font); &#x2F;&#x2F; 应用新的字体
+ ui-&gt;label-&gt;setWordWrap(true);
+
+ &#x2F;&#x2F; 设置背景图片
+ QString imagePath &#x3D; &quot;url(:&#x2F;loveheart.jfif)&quot;; &#x2F;&#x2F; 替换成你的图片路径
+ this-&gt;setStyleSheet(&quot;background-image: &quot;+ imagePath + &quot;; background-position: center; background-attachment: fixed;&quot;);
+ &#x2F;*使用background-size属性来指定背景图片的大小和填充方式。例如，你可以设置为background-size: cover;
+     * 来让背景图片覆盖整个窗口，或者设置为background-size: contain;来让背景图片完整显示在窗口内，不进行裁剪。*&#x2F;
+    &#x2F;&#x2F;background-repeat: no-repeat不重复
+&#125;
+
+
+Yes_Next::~Yes_Next()
+&#123;
+    delete ui;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
 <p>这个窗口里面有使用到一些html和qss之类的知识,我都在注释中写了,看注释就可以</p>
 <h4 id="Qt打包成品"><a href="#Qt打包成品" class="headerlink" title="Qt打包成品"></a>Qt打包成品</h4><p>如果不打包的话,这个程序只能在qt框架中使用,到别人的电脑上不一定能用(缺少依赖环境),所以最好把成品打包,再发给别人</p>
-<h5 id="release"><a href="#release" class="headerlink" title="release"></a>release</h5><p><img src="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/image-20240128091709599.png" alt="image-20240128091709599"></p>
+<h5 id="release"><a href="#release" class="headerlink" title="release"></a>release</h5><p><img src="/image-20240128091709599.png" alt="image-20240128091709599"></p>
 <ol>
 <li><p>箭头处切换成release版本在编译运行</p>
 </li>
 <li><p>找到release的生成文件夹,一般就在项目的同级目录下</p>
 </li>
 </ol>
-<p>  <img src="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/image-20240128091957364.png" alt="image-20240128091957364"></p>
+<p>  <img src="/image-20240128091957364.png" alt="image-20240128091957364"></p>
 <ol start="3">
 <li><p>找到.exe文件,复制到任意一个空文件夹</p>
 </li>
-<li><p>右键在终端中打开<br> <img src="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/image-20240128092221532.png" alt="image-20240128092221532"></p>
+<li><p>右键在终端中打开<br> <img src="/image-20240128092221532.png" alt="image-20240128092221532"></p>
 </li>
 <li><p>输入windeployqt “你的exe程序名字”,就会帮你自动打包需要的资源文件,最后放在此文件夹中,然后你就可以把这个文件夹发给别人开心的玩耍了!</p>
-<p> <img src="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/image-20240128092456774.png" alt="image-20240128092456774"></p>
+<p> <img src="/image-20240128092456774.png" alt="image-20240128092456774"></p>
 </li>
 </ol>
 <img src="image-20240128092516992.png" alt="image-20240128092516992" style="zoom:80%;" />
@@ -1075,7 +1180,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">69.5k</span>&nbsp;字
+                class="white-color">67.3k</span>&nbsp;字
             
             
             

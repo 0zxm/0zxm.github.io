@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 7.1.1"></head>
+<meta name="generator" content="Hexo 7.2.0"></head>
 
 
 
@@ -619,9 +619,9 @@
 <li><code>表示层</code> — 表示层用于处理交互数据的表示方式，例如格式转换、数据的加密和解密、数据压缩和恢复等功能</li>
 <li><code>应用层</code> — 使用应用程序通过网络服务</li>
 </ul>
-<p><img src="/2024/06/21/ji-suan-ji-wang-luo/%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B.png" alt="alt text"></p>
+<p><img src="/%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B.png" alt="alt text"></p>
 <ul>
-<li><code>TCP/IP模型</code><img src="/2024/06/21/ji-suan-ji-wang-luo/tcpip%E6%A8%A1%E5%9E%8B.png" alt="alt text"></li>
+<li><code>TCP/IP模型</code><img src="/tcpip%E6%A8%A1%E5%9E%8B.png" alt="alt text"></li>
 </ul>
 </li>
 </ul>
@@ -726,7 +726,7 @@
 
 <p><strong>首部</strong>和<strong>尾部</strong>的作用之一就是进行<strong>帧定界</strong>,同时他们包含必要的控制信息.为了提高传输效率,应当使帧的数据部分尽可能长些,但考虑到差错控制等多种因素,每一种链路层协议都规定了<code>MTU(最大传送单元)</code></p>
 <p>为了解决透明传输的问题,对于面向字节(字符)的物理链路可以采用字节(符)填充的方法</p>
-<p>对于面向比特的物理链路可以采用零比特填充的方法<br><img src="/2024/06/21/ji-suan-ji-wang-luo/%E5%AD%97%E7%AC%A6%E5%A1%AB%E5%85%85.png" alt="alt text"></p>
+<p>对于面向比特的物理链路可以采用零比特填充的方法<br><img src="/%E5%AD%97%E7%AC%A6%E5%A1%AB%E5%85%85.png" alt="alt text"></p>
 <img src="零比特填充.jpg" alt="alt text" style="zoom: 33%;" />
 
 <h3 id="数据链路层的两种传输方式"><a href="#数据链路层的两种传输方式" class="headerlink" title="数据链路层的两种传输方式"></a>数据链路层的两种传输方式</h3><ul>
@@ -761,7 +761,7 @@
 <li>广播域可以跨网段</li>
 <li>冲突域是基于第一层(物理层)，而广播域是机于第二层(数据链路层)。</li>
 <li>HUB 所有端口都在同一个广播域，冲突域内。Swith所有端口都在同一个广播域内，而每一个端口就是一个冲突域。</li>
-<li>同一冲突域共享带宽。<br><img src="/2024/06/21/ji-suan-ji-wang-luo/%E5%86%B2%E7%AA%81%E5%9F%9F%E5%B9%BF%E6%92%AD%E5%9F%9F.png" alt="alt text"></li>
+<li>同一冲突域共享带宽。<br><img src="/%E5%86%B2%E7%AA%81%E5%9F%9F%E5%B9%BF%E6%92%AD%E5%9F%9F.png" alt="alt text"></li>
 </ol>
 </li>
 </ul>
@@ -865,7 +865,7 @@
 </ol>
 </li>
 </ul>
-<p><img src="/2024/06/21/ji-suan-ji-wang-luo/ip%E5%9C%B0%E5%9D%80%E5%88%86%E7%B1%BB.png" alt="alt text"></p>
+<p><img src="/ip%E5%9C%B0%E5%9D%80%E5%88%86%E7%B1%BB.png" alt="alt text"></p>
 <ul>
 <li>IPv6</li>
 </ul>
@@ -968,7 +968,7 @@
 <li>动态路由是路由器根据路由器之间的交换的特定路由信息自动地建立路由表，并能够根据链路和节点的变化自动调整。</li>
 <li>当网络中节点或链路发生故障，或存在其他可用路由时，动态路由可以自行选择最佳可用路由并继续转发报文。</li>
 <li>动态路由依赖于路由器之间的路由信息交换和对路由表的维护。</li>
-<li>常见的动态路由协议有<code>RIP</code>、<code>OSPF</code>、<code>IS-IS</code>、<code>BGP</code>等，每种协议都有其特点和适用场景。<br><img src="/2024/06/21/ji-suan-ji-wang-luo/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE.png" alt="alt text"></li>
+<li>常见的动态路由协议有<code>RIP</code>、<code>OSPF</code>、<code>IS-IS</code>、<code>BGP</code>等，每种协议都有其特点和适用场景。<br><img src="/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE.png" alt="alt text"></li>
 </ul>
 </li>
 </ul>
@@ -999,7 +999,7 @@
 </li>
 <li><p>只有当链路状态发生变化时，路由器才向所有路由器用洪泛法发送此信息。而不像RIP那样，不管网络拓扑有无发生变化，路由器之间都要定期交换路由表的信息。</p>
 </li>
-<li><p>对于规模很大的网络，OSPF可以把一个自治系统再划分为若干个更小范围的区域(area)，实现层次路由<br><img src="/2024/06/21/ji-suan-ji-wang-luo/%E8%B7%AF%E7%94%B1%E7%AE%97%E6%B3%95%E5%8C%BA%E5%88%AB.png" alt="alt text"></p>
+<li><p>对于规模很大的网络，OSPF可以把一个自治系统再划分为若干个更小范围的区域(area)，实现层次路由<br><img src="/%E8%B7%AF%E7%94%B1%E7%AE%97%E6%B3%95%E5%8C%BA%E5%88%AB.png" alt="alt text"></p>
 </li>
 </ol>
 <h2 id="运输-传输-层"><a href="#运输-传输-层" class="headerlink" title="运输(传输)层"></a>运输(传输)层</h2><h3 id="传输层概论"><a href="#传输层概论" class="headerlink" title="传输层概论"></a>传输层概论</h3><h4 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h4><ol>
@@ -1175,7 +1175,7 @@
 </ul>
 </li>
 </ol>
-<p><img src="/2024/06/21/ji-suan-ji-wang-luo/%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6.png" alt="alt text"></p>
+<p><img src="/%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6.png" alt="alt text"></p>
 <h3 id="UDP-不可靠"><a href="#UDP-不可靠" class="headerlink" title="UDP(不可靠)"></a>UDP(不可靠)</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>用户数据报协议: UDP</p>
 <h4 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h4><p>UDP是在IP数据报服务之上增加了一些功能，增加了复用和分用的功能以及差错检测的功能，UDP的主要特点是:</p>
 <ol>
@@ -1267,7 +1267,7 @@
 <p>那么在多个站通过同一信道传输数据的时候，如何保证这些数据的独立性呢（不打架），要求数据之间能够内积得零（就是数学上向量内积得零）<br>比如，A，B 站向 C 站发送数据（这里用 4 位来计算）<br>如果 A（1，-1，1，-1），那么 B（-1，-1，-1，-1），这样 A，B 内积除以 4 位就得零，使得数据不会干扰。</p>
 <p>那么在传播的过程中，如何组合这些数据呢，利用线性相加<br>还是上面的数据，那么线性相加，组合的结果就是（0，-2，0，-2）</p>
 <p>那么在终点站如何分离出各自的数据呢，利用源站与终点站数据内积<br>还是上面的数据，分离 A 的数据，(0，-2，0，-2)*（1,-1,1,-1）&#x2F; 4 &#x3D; 1，所以 A 站发送的是 1 比特</p>
-<p><img src="/2024/06/21/ji-suan-ji-wang-luo/%E7%A0%81%E5%88%86%E5%A4%9A%E5%9D%80%E8%AE%A1%E7%AE%97%E9%A2%98.png" alt="alt text"></p>
+<p><img src="/%E7%A0%81%E5%88%86%E5%A4%9A%E5%9D%80%E8%AE%A1%E7%AE%97%E9%A2%98.png" alt="alt text"></p>
 <ul>
 <li><p>TCP&#x2F;IP网络模型<br><code>问</code>: TCP&#x2F;IP 参考模型中的主机-网络层对应于 0SI中的(D)<br>A.网络层  B.物理层   C.数据链路层  D.物理层与数据链路层</p>
 </li>
@@ -1287,13 +1287,13 @@
 <li><p>根据路由表求下一跳</p>
 </li>
 </ul>
-<p><img src="/2024/06/21/ji-suan-ji-wang-luo/%E6%B1%82%E4%B8%8B%E4%B8%80%E8%B7%B3.png" alt="下一跳"></p>
+<p><img src="/%E6%B1%82%E4%B8%8B%E4%B8%80%E8%B7%B3.png" alt="下一跳"></p>
 <ul>
-<li><p>网桥转发表<br><img src="/2024/06/21/ji-suan-ji-wang-luo/%E7%BD%91%E6%A1%A5%E8%BD%AC%E5%8F%91%E8%A1%A8.png" alt="alt text"></p>
+<li><p>网桥转发表<br><img src="/%E7%BD%91%E6%A1%A5%E8%BD%AC%E5%8F%91%E8%A1%A8.png" alt="alt text"></p>
 </li>
-<li><p>子网划分<br><img src="/2024/06/21/ji-suan-ji-wang-luo/%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86.jpg" alt="alt text"></p>
+<li><p>子网划分<br><img src="/%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86.jpg" alt="alt text"></p>
 </li>
-<li><p>碰撞检测计算<br><img src="/2024/06/21/ji-suan-ji-wang-luo/%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B%E9%97%AE.png" alt="alt text"><br><img src="/2024/06/21/ji-suan-ji-wang-luo/%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B%E8%A7%A3.png" alt="alt text"></p>
+<li><p>碰撞检测计算<br><img src="/%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B%E9%97%AE.png" alt="alt text"><br><img src="/%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B%E8%A7%A3.png" alt="alt text"></p>
 </li>
 <li><p><code>大题</code>: 有两台主机A和B接在800m长的电缆线的两端，并在t&#x3D;0时各自向对方发送一个帧，长度为1500bit(包括首部和前同步码)。假定在A和B之间有4个转发器，在转发帧时会产生20比特的时延。设传输速率为100Mbit&#x2F;s，而CSMA&#x2F;CD的退避时间是随机数r倍的争用期，争用期为512bit，在发生第一次碰撞后，在退避时A选择r&#x3D;0而B选择r&#x3D;1。忽略发生碰撞后的人为干扰信号和帧间最小间隔。</p>
 <ul>
@@ -1303,22 +1303,36 @@
 </ul>
 </li>
 </ul>
-<p><img src="/2024/06/21/ji-suan-ji-wang-luo/800%E7%B1%B3%E5%81%9C%E6%AD%A2%E7%AD%89%E5%BE%85%E9%A2%98%E7%9B%AE.png" alt="alt text"></p>
+<p><img src="/800%E7%B1%B3%E5%81%9C%E6%AD%A2%E7%AD%89%E5%BE%85%E9%A2%98%E7%9B%AE.png" alt="alt text"></p>
 <ul>
-<li><p><code>TCP确认机制</code><br><img src="/2024/06/21/ji-suan-ji-wang-luo/tcp%E7%A1%AE%E8%AE%A4%E6%9C%BA%E5%88%B6%E9%A2%98.png" alt="alt text"></p>
+<li><p><code>TCP确认机制</code><br><img src="/tcp%E7%A1%AE%E8%AE%A4%E6%9C%BA%E5%88%B6%E9%A2%98.png" alt="alt text"></p>
 </li>
-<li><p>样题<br><img src="/2024/06/21/ji-suan-ji-wang-luo/%E6%A0%B7%E9%A2%981.png" alt="alt text"><br><img src="/2024/06/21/ji-suan-ji-wang-luo/%E6%A0%B7%E9%A2%982.png" alt="alt text"></p>
+<li><p>样题<br><img src="/%E6%A0%B7%E9%A2%981.png" alt="alt text"><br><img src="/%E6%A0%B7%E9%A2%982.png" alt="alt text"></p>
 </li>
 </ul>
 <h2 id="实验题命令"><a href="#实验题命令" class="headerlink" title="实验题命令"></a>实验题命令</h2><h3 id="rip路由配置"><a href="#rip路由配置" class="headerlink" title="rip路由配置"></a>rip路由配置</h3><p>RIP (Routing Information Protocol) 是一种基于距离向量的路由选择协议。<br>其工作原理是：每个路由器都维护一个到所有可能目的地的路由表，包括下一跳路由器和到目的地的跳数。RIP路由器会周期性地或者当网络拓扑变化时向其所有邻接路由器发送自己的路由表。配置示例：</p>
 <ul>
-<li>配置rip路由：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">Router&gt;</span><span class="language-bash"><span class="built_in">enable</span></span></span><br><span class="line"><span class="meta prompt_">Router#</span><span class="language-bash">configure terminal</span></span><br><span class="line"><span class="meta prompt_">Router(config)#</span><span class="language-bash">router rip</span></span><br><span class="line"><span class="meta prompt_">Router(config-router)#</span><span class="language-bash">network 192.168.1.0</span></span><br><span class="line"><span class="meta prompt_">Router(config-router)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br><span class="line"><span class="meta prompt_">Router(config)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br></pre></td></tr></table></figure></li>
+<li>配置rip路由：<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Router<span class="token operator">></span>enable
+Router<span class="token comment">#configure terminal</span>
+Router<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#router rip</span>
+Router<span class="token punctuation">(</span>config-router<span class="token punctuation">)</span><span class="token comment">#network 192.168.1.0</span>
+Router<span class="token punctuation">(</span>config-router<span class="token punctuation">)</span><span class="token comment">#exit</span>
+Router<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#exit</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
 <ol>
 <li><strong>如何构建交换转发表</strong> 交换机使用 MAC 地址表（也被称为转发表或者 CAM 表）进行帧的转发或者过滤。当交换机接收到一个帧，<strong>它会记录源 MAC 地址和接口</strong>，并将其添加到 <strong>MAC 地址表</strong>中。如果目的 MAC 地址在表中，<strong>交换机就可以直接转发帧到对应的接口</strong>。如果没有，交换机将帧发送到所有的接口（除了源接口）。</li>
 </ol>
 <p><code>VLAN</code> 和<strong>配置</strong>VLAN（Virtual Local Area Network）是一种在物理网络中创建独立广播域的技术。同一个 VLAN 中的主机可以相互通信，但是不同 VLAN 中的主机默认是无法相互通信的。配置示例：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">Switch&gt;</span><span class="language-bash"><span class="built_in">enable</span> 从用户执行模式（User EXEC mode）进入到特权执行</span></span><br><span class="line"><span class="meta prompt_">Switch#</span><span class="language-bash">configure terminal  特权执行模式进入到全局配置模式</span></span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash">vlan 10 <span class="comment">#在交换机上创建一个编号为10的VLAN</span></span></span><br><span class="line"><span class="meta prompt_">Switch(config-vlan)#</span><span class="language-bash">name VLAN10 <span class="comment">#这个命令为VLAN 10设置一个名字（VLAN10）。</span></span></span><br><span class="line"><span class="meta prompt_">Switch(config-vlan)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash">interface fa0/1</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash">switchport mode access <span class="comment">#设置FastEthernet0/1接口为接入模式。接入模式意味着这个接口只能属于一个VLAN。</span></span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash">switchport access vlan 10 <span class="comment">#这个命令将FastEthernet0/1接口分配到VLAN 10。</span></span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash"><span class="built_in">exit</span></span> </span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Switch<span class="token operator">></span>enable 从用户执行模式（User EXEC mode）进入到特权执行
+Switch<span class="token comment">#configure terminal  特权执行模式进入到全局配置模式</span>
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#vlan 10 #在交换机上创建一个编号为10的VLAN</span>
+Switch<span class="token punctuation">(</span>config-vlan<span class="token punctuation">)</span><span class="token comment">#name VLAN10 #这个命令为VLAN 10设置一个名字（VLAN10）。</span>
+Switch<span class="token punctuation">(</span>config-vlan<span class="token punctuation">)</span><span class="token comment">#exit</span>
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#interface fa0/1</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#switchport mode access #设置FastEthernet0/1接口为接入模式。接入模式意味着这个接口只能属于一个VLAN。</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#switchport access vlan 10 #这个命令将FastEthernet0/1接口分配到VLAN 10。</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#exit </span>
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#exit</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ol>
 <li><p><strong>跨 VLAN 转发</strong> 默认情况下，VLAN 是隔离的，也就是说，不同的 VLAN 之间是不能通信的。但是，我们可以通过使用<strong>三层交换机</strong>来实现跨 VLAN 的通信。实际上，这就是在进行路由操作，因为不同的 VLAN 相当于不同的子网。</p>
 </li>
@@ -1326,7 +1340,39 @@
 </li>
 </ol>
 <p>启用三层交换实现跨vlan转发实验：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">Switch&gt;</span><span class="language-bash"><span class="built_in">enable</span></span></span><br><span class="line"><span class="meta prompt_">Switch#</span><span class="language-bash">configure terminal</span></span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash">ip routing <span class="comment">#启用路由功能</span></span></span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">配置vlan10</span></span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash">vlan 10</span></span><br><span class="line"><span class="meta prompt_">Switch(config-vlan)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">配置vlan20</span></span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash">vlan 20</span></span><br><span class="line"><span class="meta prompt_">Switch(config-vlan)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br><span class="line"> </span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash">interface vlan 10</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash">ip address 192.168.10.1 255.255.255.0  <span class="comment"># 为VLAN10配置SVI</span></span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash">no shutdown <span class="comment">#启动接口</span></span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash">interface vlan 20</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash">ip address 192.168.20.1 255.255.255.0</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash">no shutdown</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash">interface fa0/1</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash">switchport mode access</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash">switchport access vlan 10</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash">interface fa0/2</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash">switchport mode access</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash">switchport access vlan 20</span></span><br><span class="line"><span class="meta prompt_">Switch(config-if)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_">Switch(config)#</span><span class="language-bash"><span class="built_in">exit</span></span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Switch<span class="token operator">></span>enable
+Switch<span class="token comment">#configure terminal</span>
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#ip routing #启用路由功能</span>
+ 
+<span class="token comment">#配置vlan10</span>
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#vlan 10</span>
+Switch<span class="token punctuation">(</span>config-vlan<span class="token punctuation">)</span><span class="token comment">#exit</span>
+<span class="token comment">#配置vlan20</span>
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#vlan 20</span>
+Switch<span class="token punctuation">(</span>config-vlan<span class="token punctuation">)</span><span class="token comment">#exit</span>
+ 
+ 
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#interface vlan 10</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#ip address 192.168.10.1 255.255.255.0  # 为VLAN10配置SVI</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#no shutdown #启动接口</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#exit</span>
+ 
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#interface vlan 20</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#ip address 192.168.20.1 255.255.255.0</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#no shutdown</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#exit</span>
+ 
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#interface fa0/1</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#switchport mode access</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#switchport access vlan 10</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#exit</span>
+ 
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#interface fa0/2</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#switchport mode access</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#switchport access vlan 20</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#exit</span>
+ 
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#exit</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>简单来说，交换机通过 VLAN 10 和 VLAN 20 分别在 fa0&#x2F;1 和 fa0&#x2F;2 端口上接收到的数据包，会基于数据包的目标 IP 地址，通过配置的 SVI（交换机虚拟接口，即<strong>各 VLAN 的默认网关</strong>）进行路由。</p>
 <p>例如，如果一个数据包在 VLAN 10 （通过 fa0&#x2F;1 端口）进入，目标 IP 是 VLAN 20 中的一个 IP，那么交换机会把这个数据包路由到 VLAN 20（通过 fa0&#x2F;2 端口）去。</p>
 <p>需要注意的是，虽然现在 VLAN 10 和 VLAN 20 可以互相通信，但是这还不意味着 VLAN 内部的主机已经配置好了。主机需要设置正确的 IP 地址、子网掩码、以及<strong>默认网关（对应所在 VLAN 的 默认网关！）</strong>。否则，主机还是无法跨 VLAN 通信。</p>
@@ -1851,7 +1897,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">69.5k</span>&nbsp;字
+                class="white-color">67.3k</span>&nbsp;字
             
             
             
