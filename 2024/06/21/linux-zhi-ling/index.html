@@ -485,7 +485,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    59 分
+                    60 分
                 </div>
                 
 
@@ -586,7 +586,7 @@ unalias取消别名
 <li><p>ls指令(参数 -l等)</p>
 <p>  例: ls -l hello</p>
 <ul>
-<li><code>-i</code>参数,显示更详细信息</li>
+<li><code>-l</code>参数,显示更详细信息</li>
 </ul>
 <p>  <img src="/2024/06/21/linux-zhi-ling/image-20240314234557355.png" alt="image-20240314234557355"></p>
 </li>
@@ -872,7 +872,7 @@ mkfs -t  ext4 /dev/sdb  格式化指令,-t参数表示要创建什么样的文�
 <li><code>ls</code>命令 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> <span class="token parameter variable">-a</span> 目录或文件名
 参数a表示显示出所有以.开头的隐藏文件
 <span class="token function">ls</span> <span class="token parameter variable">-l</span> 目录或文件名
-参数p表示以列表的形式列出详细信息<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+参数l表示以列表的形式列出详细信息<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <img src="/2024/06/21/linux-zhi-ling/ls-l.png" alt="alt text"><br>第一个字段第一个字符表示文件类型,<code>-</code>表示普通文件<br>第二个字段: 链接数,有多少个条目指向了这个文件的索引节点<br>第三个字段:所属用户<br>第四个字段:所属组<br>第五个字段:大小(以字节为单位)<br>第六个字段:文件最后修改时间<br>第七个字段:文件名<br><img src="/2024/06/21/linux-zhi-ling/Determining_File_Attributes.png" alt="alt text"></li>
 <li><code>touch</code>命令  创建文件或修改文件最后修改时间<br>如果文件不存在,则创建文件,否则修改最后修改时间</li>
 <li><code>rm</code>命令  删除文件或目录<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> <span class="token parameter variable">-i</span> file1
@@ -1920,7 +1920,7 @@ input: <span class="token builtin class-name">umask</span> 077<span aria-hidden=
 </tr>
 <tr>
 <td><code>&quot;$@&quot;</code></td>
-<td>所有命令行参数的值；每个参数都单独引用 <code>&quot;a&quot; &quot;b&quot; &quot;c&quot; &#39;d&quot;</code></td>
+<td>所有命令行参数的值；每个参数都单独引用 <code>&quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;</code></td>
 </tr>
 <tr>
 <td><code>$#</code></td>
@@ -2077,7 +2077,7 @@ Output: <span class="token number">3</span><span aria-hidden="true" class="line-
 Output: <span class="token number">3.2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
 <h3 id="Homework"><a href="#Homework" class="headerlink" title="Homework"></a>Homework</h3><ul>
-<li>Write a script that take a directory as a command-line argument and output the names of all directorie swithin that directory.(1.sh)<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">dirname</span><span class="token operator">=</span><span class="token variable">$1</span>
+<li>Write a script that take a directory as a command-line argument and output the names of all directories within that directory.(1.sh)<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">dirname</span><span class="token operator">=</span><span class="token variable">$1</span>
 <span class="token function">ls</span> <span class="token parameter variable">-l</span> <span class="token variable">$dirname</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'/^d/&#123;print $9&#125;'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
 <li>Write a script that read a text filename from the keybard, sort the file and display it with the line number(2.sh)<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">read</span> <span class="token parameter variable">-p</span> <span class="token string">"Please input a file name:"</span> filename
 <span class="token function">sort</span> <span class="token variable">$filename</span> <span class="token operator">|</span> <span class="token function">nl</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
@@ -2279,12 +2279,21 @@ patternN<span class="token punctuation">)</span>   command-listN
 </ul>
 <p><img src="/2024/06/21/linux-zhi-ling/%E4%B9%A0%E9%A2%9807.png" alt="alt text"></p>
 <ul>
-<li><code>解答</code><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">``<span class="token variable"><span class="token variable">`</span>
+<li><code>解答</code><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">sum</span><span class="token operator">=</span><span class="token number">0</span>
 
-<span class="token operator">!</span><span class="token punctuation">[</span>alt text<span class="token punctuation">]</span><span class="token punctuation">(</span>习题08.png<span class="token punctuation">)</span>
-* <span class="token variable">`</span></span>解答<span class="token variable"><span class="token variable">`</span>
-<span class="token variable">`</span></span>``shell
-<span class="token assign-left variable">chance</span><span class="token operator">=</span><span class="token number">3</span>
+<span class="token keyword">while</span> <span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+    <span class="token builtin class-name">read</span> num    <span class="token comment"># 读取用户输入的数字</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$num</span> <span class="token parameter variable">-eq</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token builtin class-name">break</span>   <span class="token comment"># 如果输入为0，跳出循环</span>
+    <span class="token keyword">fi</span>
+    <span class="token assign-left variable">sum</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span>sum <span class="token operator">+</span> num<span class="token variable">))</span></span>  <span class="token comment"># 求和</span>
+<span class="token keyword">done</span>
+
+<span class="token builtin class-name">echo</span> <span class="token variable">$sum</span>   <span class="token comment"># 输出求和结果</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<p><img src="/2024/06/21/linux-zhi-ling/%E4%B9%A0%E9%A2%9808.png" alt="alt text"></p>
+<ul>
+<li><code>解答</code><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">chance</span><span class="token operator">=</span><span class="token number">3</span>
 <span class="token keyword">while</span> <span class="token punctuation">[</span> <span class="token variable">$chance</span> <span class="token parameter variable">-gt</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
     <span class="token builtin class-name">read</span> <span class="token parameter variable">-p</span> <span class="token string">"Enter password: "</span> <span class="token function">passwd</span>
     <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$passwd</span>"</span> <span class="token operator">=</span> <span class="token string">"zust"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
@@ -2297,7 +2306,7 @@ patternN<span class="token punctuation">)</span>   command-listN
     <span class="token keyword">fi</span>
 <span class="token keyword">done</span>
 <span class="token builtin class-name">echo</span> <span class="token string">"Login failed"</span>
-<span class="token builtin class-name">exit</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<span class="token builtin class-name">exit</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
 <h1 id="期末考试exam程序源代码"><a href="#期末考试exam程序源代码" class="headerlink" title="期末考试exam程序源代码"></a>期末考试exam程序源代码</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
 
