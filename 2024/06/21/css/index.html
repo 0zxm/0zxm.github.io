@@ -708,7 +708,7 @@
 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">p</span> <span class="token punctuation">&#123;</span>
    <span class="token property">line-height</span> <span class="token punctuation">:</span> 26px<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p><img src="/image.png" alt="alt text"></p>
+<p><img src="/2024/06/21/css/image.png" alt="alt text"></p>
 <h2 id="5-CSS的引入方式"><a href="#5-CSS的引入方式" class="headerlink" title="5. CSS的引入方式"></a>5. CSS的引入方式</h2><h3 id="5-1-CSS的三种样式表"><a href="#5-1-CSS的三种样式表" class="headerlink" title="5.1 CSS的三种样式表"></a>5.1 CSS的三种样式表</h3><p>按照 CSS 样式书写的位置(或者引入的方式)CSS样式表可以分为三大类</p>
 <ol>
 <li>行内样式表(行内式)</li>
@@ -1043,8 +1043,8 @@
         <span class="token punctuation">&#125;</span>
     &lt;/style><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>效果如下</p>
-<p><img src="/line-height.png"></p>
-<p>其实原理是<br><img src="/%E5%8E%9F%E7%90%86.png" alt="alt text"></p>
+<p><img src="/2024/06/21/css/line-height.png"></p>
+<p>其实原理是<br><img src="/2024/06/21/css/%E5%8E%9F%E7%90%86.png" alt="alt text"></p>
 <h2 id="10-CSS的背景样式"><a href="#10-CSS的背景样式" class="headerlink" title="10 CSS的背景样式"></a>10 CSS的背景样式</h2><p>通过 CSS 背最属性，可以给页面元素添加背景样式。背景属性可以设置背景颜色、背景图片、背景平铺、背景图片位置、背景图像固定等</p>
 <h3 id="10-1-背景颜色"><a href="#10-1-背景颜色" class="headerlink" title="10.1 背景颜色"></a>10.1 背景颜色</h3><p>background-color属性定义了背景的颜色值</p>
 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token property">background-color</span><span class="token punctuation">:</span>颜色值<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -1184,7 +1184,7 @@
 <td>$background-blend-mode: multiply;</td>
 </tr>
 </tbody></table>
-<h3 id="10-8-背景总结"><a href="#10-8-背景总结" class="headerlink" title="10.8 背景总结"></a>10.8 背景总结</h3><p><img src="/bg-tt.png" alt="alt text"></p>
+<h3 id="10-8-背景总结"><a href="#10-8-背景总结" class="headerlink" title="10.8 背景总结"></a>10.8 背景总结</h3><p><img src="/2024/06/21/css/bg-tt.png" alt="alt text"></p>
 <h2 id="11-CSS三大特性"><a href="#11-CSS三大特性" class="headerlink" title="11 CSS三大特性"></a>11 CSS三大特性</h2><p>CSS 有三个非常重要的三个特性:层善性、继承性、优先级。</p>
 <h3 id="11-1-层叠性"><a href="#11-1-层叠性" class="headerlink" title="11.1 层叠性"></a>11.1 层叠性</h3><p>相同选择器给设置相同的样式，此时一个样式就会**覆盖(层叠)**另一个冲突的样式。层叠性主要解决样式冲突的问题</p>
 <ul>
@@ -1195,7 +1195,7 @@
 <li>样式不冲突，不会层叠</li>
 </ol>
 <h3 id="11-2-继承性"><a href="#11-2-继承性" class="headerlink" title="11.2 继承性"></a>11.2 继承性</h3><p>CSS中的继承: 子标签会继承父标签的某些样式，如文本颜色和字号。简单的理解就是:子承父业</p>
-<h3 id="11-3-优先级"><a href="#11-3-优先级" class="headerlink" title="11.3 优先级"></a>11.3 优先级</h3><p><img src="/%E4%BC%98%E5%85%88%E7%BA%A7.png" alt="alt text"><br>优先级注意点:</p>
+<h3 id="11-3-优先级"><a href="#11-3-优先级" class="headerlink" title="11.3 优先级"></a>11.3 优先级</h3><p><img src="/2024/06/21/css/%E4%BC%98%E5%85%88%E7%BA%A7.png" alt="alt text"><br>优先级注意点:</p>
 <ol>
 <li>权重是有4组数字组成,但是不会有进位。</li>
 <li>可以理解为类选择器永远大于元素选择器, id选择器永远大于类选择器,以此类推.</li>
@@ -1212,7 +1212,7 @@
 <li>利用 CSS 设置好盒子样式，然后摆放到相应位置</li>
 <li>往盒子里面装内容网页布局的核心本质:就是利用CSS摆盒子</li>
 </ol>
-<h2 id="1-盒子模型-Box-Model"><a href="#1-盒子模型-Box-Model" class="headerlink" title="1. 盒子模型(Box Model)"></a>1. 盒子模型(Box Model)</h2><h3 id="1-1-组成"><a href="#1-1-组成" class="headerlink" title="1.1 组成"></a>1.1 组成</h3><p>所谓盒子模型:就是把 HTML 页面中的布局元素看作是一个矩形的盒子,也就是一个盛装内容的容器。<br>CSS 盒子模型本质上是一个盒子，封装周围的HTML元素，它包括:边框、外边距、内边距、和实际内容<br><img src="/boxmodel.png" alt="alt text"></p>
+<h2 id="1-盒子模型-Box-Model"><a href="#1-盒子模型-Box-Model" class="headerlink" title="1. 盒子模型(Box Model)"></a>1. 盒子模型(Box Model)</h2><h3 id="1-1-组成"><a href="#1-1-组成" class="headerlink" title="1.1 组成"></a>1.1 组成</h3><p>所谓盒子模型:就是把 HTML 页面中的布局元素看作是一个矩形的盒子,也就是一个盛装内容的容器。<br>CSS 盒子模型本质上是一个盒子，封装周围的HTML元素，它包括:边框、外边距、内边距、和实际内容<br><img src="/2024/06/21/css/boxmodel.png" alt="alt text"></p>
 <h3 id="1-2-边框border"><a href="#1-2-边框border" class="headerlink" title="1.2 边框border"></a>1.2 边框border</h3><p>border可以设置元素的边框。边框有三部分组成:边框宽度(粗细),边框样式,边框颜色<br>语法:</p>
 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">div</span> <span class="token punctuation">&#123;</span>
           <span class="token property">width</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>

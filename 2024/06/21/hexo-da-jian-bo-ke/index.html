@@ -538,7 +538,7 @@ npm -v<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
 </li>
 </ul>
 <p>出现版本号则安装配置成功</p>
-<p><img src="/image-20240126185511681.png" alt="image-20240126185511681"></p>
+<p><img src="/2024/06/21/hexo-da-jian-bo-ke/image-20240126185511681.png" alt="image-20240126185511681"></p>
 </li>
 </ul>
 <h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p>以上环境准备好了就可使用 npm 开始安装 Hexo 了，在命令行输入执行如下命令</p>
@@ -553,9 +553,9 @@ npm install <span aria-hidden="true" class="line-numbers-rows"><span></span><spa
 
 <p>若是上面的命令都没报错的话，就恭喜了，运行hexo s命令，其中s是server 的缩写，在浏览器中输入 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 回车就能够预览效果了。</p>
 </blockquote>
-<p><img src="/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240126193709.png"></p>
+<p><img src="/2024/06/21/hexo-da-jian-bo-ke/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240126193709.png"></p>
 <h2 id="加载主题"><a href="#加载主题" class="headerlink" title="加载主题"></a>加载主题</h2><p>大家可以去官网上找自己喜欢的主题下载<a target="_blank" rel="noopener" href="https://hexo.io/themes/%EF%BC%8C%E8%87%AA%E5%B7%B1%E9%87%87%E7%94%A8%E7%9A%84%E4%B8%BB%E9%A2%98%E6%98%AFhttps://github.com/Siricee/hexo-theme-Chic%EF%BC%8C%E8%BF%99%E6%AC%BE%E6%9C%89%E6%98%8E%E6%9A%97%E4%B8%A4%E7%A7%8D%E9%A2%9C%E8%89%B2%E3%80%82">https://hexo.io/themes/，自己采用的主题是https://github.com/Siricee/hexo-theme-Chic，这款有明暗两种颜色。</a></p>
-<p><img src="/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240126193855.png"></p>
+<p><img src="/2024/06/21/hexo-da-jian-bo-ke/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240126193855.png"></p>
 <h2 id="修改主题配置"><a href="#修改主题配置" class="headerlink" title="修改主题配置"></a>修改主题配置</h2><p>修改在主题文件夹下的_config.ym1文件，完成自己个人的配置，</p>
 <blockquote>
 <pre class="line-numbers language-text" data-language="text"><code class="language-text"># Header 主页面标题
@@ -683,7 +683,7 @@ ssh-keygen <span class="token operator">-</span>t rsa <span class="token operato
 
 </blockquote>
 <p>登陆 Github 上添加刚刚生成的SSH key，按如下步骤添加，右上角点击头像-&gt; settings -&gt; SSH and GPG keys，建立一个新的 SSH key, 标题随便，key 就填刚才生成那个，确认建立，这样在你 的 SSH keys 列表里就会看到你刚刚添加的密钥。</p>
-<p><img src="/image-20240126194544764.png" alt="image-20240126194544764"></p>
+<p><img src="/2024/06/21/hexo-da-jian-bo-ke/image-20240126194544764.png" alt="image-20240126194544764"></p>
 <h2 id="SSH无法添加信任的主机列表"><a href="#SSH无法添加信任的主机列表" class="headerlink" title="!!!SSH无法添加信任的主机列表"></a>!!!SSH无法添加信任的主机列表</h2><blockquote>
 <p>这是我搭建博客中遇到的最大的问题,一开始我以为是公钥添加问题,中途尝试了许多方法</p>
 <ol>
@@ -701,14 +701,14 @@ ssh-keygen <span class="token operator">-</span>t rsa <span class="token operato
 
 > Hi USERNAME! You<span class="token string">'ve successfully authenticated, but GitHub does not provide shell access.'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 </blockquote>
-<p>如果不行,尝试一下命令:   ssh -T -p 443ssh:&#x2F;&#x2F;<a href="mailto:&#103;&#x69;&#116;&#64;&#115;&#115;&#104;&#46;&#x67;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;">&#103;&#x69;&#116;&#64;&#115;&#115;&#104;&#46;&#x67;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;</a>,这个可以按照提示建立许可连接</p>
+<p>如果不行,尝试一下命令:   ssh -T -p 443ssh:&#x2F;&#x2F;<a href="mailto:&#x67;&#105;&#116;&#64;&#115;&#x73;&#x68;&#x2e;&#103;&#105;&#x74;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#109;">&#x67;&#105;&#116;&#64;&#115;&#x73;&#x68;&#x2e;&#103;&#105;&#x74;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#109;</a>,这个可以按照提示建立许可连接</p>
 <blockquote>
 <pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">ssh <span class="token operator">-</span>T <span class="token operator">-</span>p 443 git@ssh<span class="token punctuation">.</span>github<span class="token punctuation">.</span>com
 > Hi <span class="token string">'你的id'</span><span class="token operator">!</span><span class="token string">" You've successfully authenticated, but GitHub does not provide shell access."</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </blockquote>
 <p>如果你能在端口 443 上通过 SSH 连接到 <code>git@ssh.github.com</code>，则可覆盖你的 SSH 设置来强制与 GitHub.com 的任何连接均通过该服务器和端口运行。</p>
 <p>到此为止,问题解决得差不多了</p>
-<p>在输入命令 git clone ssh:&#x2F;&#x2F;<a href="mailto:&#x67;&#105;&#x74;&#x40;&#x73;&#x73;&#x68;&#46;&#x67;&#x69;&#116;&#x68;&#117;&#x62;&#46;&#x63;&#111;&#x6d;">&#x67;&#105;&#x74;&#x40;&#x73;&#x73;&#x68;&#46;&#x67;&#x69;&#116;&#x68;&#117;&#x62;&#46;&#x63;&#111;&#x6d;</a>:443&#x2F;0zxm&#x2F;0zxm.github.io时就能够正常clone仓库, 但是每次都输入更长的url难免繁琐,所以可以在你生成密钥的文件夹内新建一个config文件,输入以下内容保存:</p>
+<p>在输入命令 git clone ssh:&#x2F;&#x2F;<a href="mailto:&#x67;&#x69;&#116;&#x40;&#x73;&#115;&#x68;&#x2e;&#103;&#105;&#116;&#104;&#117;&#98;&#x2e;&#x63;&#111;&#109;">&#x67;&#x69;&#116;&#x40;&#x73;&#115;&#x68;&#x2e;&#103;&#105;&#116;&#104;&#117;&#98;&#x2e;&#x63;&#111;&#109;</a>:443&#x2F;0zxm&#x2F;0zxm.github.io时就能够正常clone仓库, 但是每次都输入更长的url难免繁琐,所以可以在你生成密钥的文件夹内新建一个config文件,输入以下内容保存:</p>
 <blockquote>
 <pre class="line-numbers language-text" data-language="text"><code class="language-text">Host github.com
  Hostname ssh.github.com
@@ -766,9 +766,9 @@ $ hexo d <span class="token parameter variable">-g</span><span aria-hidden="true
 <p>命令<code>hexo s -g</code>执行中时，命令<code>hexo clean</code>会没有效果，需要先终止 hexo server服务</p>
 </blockquote>
 <h4 id="写带有图片的文章"><a href="#写带有图片的文章" class="headerlink" title="写带有图片的文章"></a>写带有图片的文章</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41907806/article/details/109064385">hexo博客中如何插入图片-CSDN博客</a></p>
-<p><img src="/image-20240127141305597-1706432584388-1.png" alt="image-20240127141305597"></p>
+<p><img src="/2024/06/21/hexo-da-jian-bo-ke/image-20240127141305597-1706432584388-1.png" alt="image-20240127141305597"></p>
 <p>然后记得在hexo的source文件夹下找到该.md文件,删除每一个图片路径的文章名</p>
-<h4 id="注释bug"><a href="#注释bug" class="headerlink" title="注释bug"></a>注释bug</h4><p><img src="/%E6%B3%A8%E9%87%8Abug.png" alt="alt text"></p>
+<h4 id="注释bug"><a href="#注释bug" class="headerlink" title="注释bug"></a>注释bug</h4><p><img src="/2024/06/21/hexo-da-jian-bo-ke/%E6%B3%A8%E9%87%8Abug.png" alt="alt text"></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39698985/article/details/115448040">解决方法</a></p>
 
                 

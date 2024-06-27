@@ -521,9 +521,9 @@
 </ul>
 <h3 id="成品展示"><a href="#成品展示" class="headerlink" title="成品展示"></a>成品展示</h3><p>这是点击不接受的窗口,右侧是马里奥的gif动画</p>
 <p>若是不接受,会一直置于顶层</p>
-<p><img src="/image-20240128090249459.png" alt="image-20240128090249459"></p>
+<p><img src="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/image-20240128090249459.png" alt="image-20240128090249459"></p>
 <p>这是接受后弹出的窗口,可以拖拽</p>
-<p><img src="/image-20240128090322689.png" alt="image-20240128090322689"></p>
+<p><img src="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/image-20240128090322689.png" alt="image-20240128090322689"></p>
 <h3 id="关键部分讲解"><a href="#关键部分讲解" class="headerlink" title="关键部分讲解"></a>关键部分讲解</h3><h4 id="添加动画"><a href="#添加动画" class="headerlink" title="添加动画"></a>添加动画</h4><p>使用了qt写好的qmovie类,创建时指定动画资源,设置好播放速度,窗口创建就会开始播放,默认循环播放</p>
 <blockquote>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;添加马里奥动画
@@ -643,24 +643,24 @@ Yes_Next::~Yes_Next()
 </blockquote>
 <p>这个窗口里面有使用到一些html和qss之类的知识,我都在注释中写了,看注释就可以</p>
 <h4 id="Qt打包成品"><a href="#Qt打包成品" class="headerlink" title="Qt打包成品"></a>Qt打包成品</h4><p>如果不打包的话,这个程序只能在qt框架中使用,到别人的电脑上不一定能用(缺少依赖环境),所以最好把成品打包,再发给别人</p>
-<h5 id="release"><a href="#release" class="headerlink" title="release"></a>release</h5><p><img src="/image-20240128091709599.png" alt="image-20240128091709599"></p>
+<h5 id="release"><a href="#release" class="headerlink" title="release"></a>release</h5><p><img src="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/image-20240128091709599.png" alt="image-20240128091709599"></p>
 <ol>
 <li><p>箭头处切换成release版本在编译运行</p>
 </li>
 <li><p>找到release的生成文件夹,一般就在项目的同级目录下</p>
 </li>
 </ol>
-<p>  <img src="/image-20240128091957364.png" alt="image-20240128091957364"></p>
+<p>  <img src="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/image-20240128091957364.png" alt="image-20240128091957364"></p>
 <ol start="3">
 <li><p>找到.exe文件,复制到任意一个空文件夹</p>
 </li>
-<li><p>右键在终端中打开<br> <img src="/image-20240128092221532.png" alt="image-20240128092221532"></p>
+<li><p>右键在终端中打开<br> <img src="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/image-20240128092221532.png" alt="image-20240128092221532"></p>
 </li>
 <li><p>输入windeployqt “你的exe程序名字”,就会帮你自动打包需要的资源文件,最后放在此文件夹中,然后你就可以把这个文件夹发给别人开心的玩耍了!</p>
-<p> <img src="/image-20240128092456774.png" alt="image-20240128092456774"></p>
+<p> <img src="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/image-20240128092456774.png" alt="image-20240128092456774"></p>
 </li>
 </ol>
-<img src="image-20240128092516992.png" alt="image-20240128092516992" style="zoom:80%;" />
+<img src="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/image-20240128092516992.png" alt="image-20240128092516992" style="zoom:80%;">
 
 <h3 id="获取成品"><a href="#获取成品" class="headerlink" title="获取成品"></a>获取成品</h3><p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1dNQ9S1uWGD7fw-RxlXoIRA?pwd=1234">https://pan.baidu.com/s/1dNQ9S1uWGD7fw-RxlXoIRA?pwd=1234</a><br>提取码：1234</p>
 

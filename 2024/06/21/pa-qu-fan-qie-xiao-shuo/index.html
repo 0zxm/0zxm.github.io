@@ -519,7 +519,7 @@
             <div id="articleContent">
                 <h2 id="本文用于纪录爬取番茄小说过程中遇到的困难和解决措施"><a href="#本文用于纪录爬取番茄小说过程中遇到的困难和解决措施" class="headerlink" title="本文用于纪录爬取番茄小说过程中遇到的困难和解决措施"></a>本文用于纪录爬取番茄小说过程中遇到的困难和解决措施</h2><p>首先找到我想要的小说第一章</p>
 <h4 id="1-找网络接口"><a href="#1-找网络接口" class="headerlink" title="1.找网络接口"></a>1.找网络接口</h4><p>右键检查,清空网络日志,刷新,找到6893843740742386183document类型请求标头URL确实是<a target="_blank" rel="noopener" href="https://fanqienovel.com/reader/6893843740742386183,%E6%B2%A1%E6%9C%89%E5%81%9A%E5%85%B6%E4%BB%96%E6%8E%AA%E6%96%BD,%E6%89%80%E4%BB%A5%E7%9B%B4%E6%8E%A5%E7%94%A8requests%E5%BA%93%E4%BC%AA%E8%A3%85%E8%AE%BF%E9%97%AE,%E8%BF%99%E4%B8%80%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B">https://fanqienovel.com/reader/6893843740742386183,没有做其他措施,所以直接用requests库伪装访问,这一部分代码如下</a></p>
-<p><img src="/image-20240126232926232-1706330347599-1.png"></p>
+<p><img src="/2024/06/21/pa-qu-fan-qie-xiao-shuo/image-20240126232926232-1706330347599-1.png"></p>
 <blockquote>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># cap01_url = 'https://fanqienovel.com/reader/6893843740742386183?enter_from=reader'</span>
 <span class="token comment"># cap02_url = 'https://fanqienovel.com/reader/6893843740834660878?enter_from=reader'</span>
@@ -556,11 +556,11 @@ content_tags <span class="token operator">=</span> tree<span class="token punctu
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">type</span><span class="token punctuation">(</span>title<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 </blockquote>
-<p><img src="/image-20240126220945788.png" alt="image-20240126220945788"></p>
+<p><img src="/2024/06/21/pa-qu-fan-qie-xiao-shuo/image-20240126220945788.png" alt="image-20240126220945788"></p>
 <p>获取内容如图,具有乱码</p>
 <p>通过对网页结构分析,发现文字有一些超出了编码范围,于是可以推断出,字体暗藏玄机,找到网页字体文件后,下载到本地,用Fontforge打开,发现只从e3e8到e55b有文字,所以可以得出番茄使用了两套字体加载文本内容,当字符超出一定范围,就使用另一种</p>
-<p><img src="/image-20240126221219344.png" alt="image-20240126221219344"></p>
-<p><img src="/image-20240126221529195.png" alt="image-20240126221529195"></p>
+<p><img src="/2024/06/21/pa-qu-fan-qie-xiao-shuo/image-20240126221219344.png" alt="image-20240126221219344"></p>
+<p><img src="/2024/06/21/pa-qu-fan-qie-xiao-shuo/image-20240126221529195.png" alt="image-20240126221529195"></p>
 <p>于是这一段代码为:</p>
 <blockquote>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">CODE_ST <span class="token operator">=</span> <span class="token number">58344</span>  <span class="token comment"># 十六进制e3e8的十进制</span>
@@ -619,7 +619,7 @@ content <span class="token operator">=</span> <span class="token punctuation">[<
 <pre class="line-numbers language-text" data-language="text"><code class="language-text">只能去网络接口里面找,在点击下一张之后,发现网络请求中有一个请求返回的json数据不仅有内容还有下一页的**ItemID**,所以解析获得,然后拼接到本身url(替换原本的id,  *注意:原本的url里面的参数可以删去部分,不影响返回,最后的url是这样*https://fanqienovel.com/api/reader/full?itemId=6893843740834660878)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>注意,经过实验下一张的编号是itemId,而不是nextitemId</p>
-<p><img src="/image-20240126232926232-1706330347599-1.png"></p>
+<p><img src="/2024/06/21/pa-qu-fan-qie-xiao-shuo/image-20240126232926232-1706330347599-1.png"></p>
 <blockquote>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">cap01_url <span class="token operator">=</span> <span class="token string">'https://fanqienovel.com/api/reader/full?itemId=6893843740834660878'</span>
 <span class="token comment"># cap02_url = 'https://fanqienovel.com/reader/6893843740834660878?enter_from=reader'</span>
@@ -780,7 +780,7 @@ for para in content:
 print('正在下载第' + str(index) + '章')
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
-<p><img src="/image-20240127095944844-1706320789213-1.png" alt="image-20240127095944844"></p>
+<p><img src="/2024/06/21/pa-qu-fan-qie-xiao-shuo/image-20240127095944844-1706320789213-1.png" alt="image-20240127095944844"></p>
 <p>特别鸣谢</p>
 <p>在写程序的时候,参考了一些文章,感谢</p>
 <p>参考链接:</p>
