@@ -448,6 +448,14 @@
                                 <span class="chip bg-color">JavaScript</span>
                             </a>
                         
+                            <a href="/tags/json/">
+                                <span class="chip bg-color">json</span>
+                            </a>
+                        
+                            <a href="/tags/ajax/">
+                                <span class="chip bg-color">ajax</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -478,14 +486,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.1k
+                    5.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    21 分
+                    24 分
                 </div>
                 
 
@@ -1258,7 +1266,61 @@ p</span><span class="token punctuation">&#123;</span>
 <p>使用场景当多个相同的子元素绑定同一个事件，可以使用事件代理</p>
 <p><strong>事件代理方法:</strong></p>
 <p>事件代理是使用delegate方法来完成</p>
+<h1 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h1><h2 id="JSON的作用"><a href="#JSON的作用" class="headerlink" title="JSON的作用"></a>JSON的作用</h2><p><strong>JSON的介绍:</strong><br>JSON(JavaScript Object Notation,JS 对象简谱) 是一种轻量级的数据交换格式采用完全独立于编程语言的文本格式来存储和表示数据,简洁和清晰的层次结构使得 JSON 成为理想的数据交换语言</p>
+<p><strong>JSON的优点:</strong><br>易于人阅读和编写，同时也易于机器解析和生成，并有效地提升网络传输效率</p>
+<p><strong>JSON的格式</strong></p>
+<p>①对象格式</p>
+<p>②数组格式</p>
+<h3 id="对象格式"><a href="#对象格式" class="headerlink" title="对象格式"></a>对象格式</h3><ul>
+<li><p>对象格式的JSON数据，使用一对大括号()，大括号里面放入<code>key:value</code>形式的键值对，多个键值对使用<strong>逗号</strong>分隔</p>
+</li>
+<li><p>对象格式的JSON数据:</p>
+  <pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+    <span class="token property">"name"</span> <span class="token operator">:</span> <span class="token string">"tom"</span><span class="token punctuation">,</span>
+    <span class="token property">"age"</span><span class="token operator">:</span><span class="token number">18</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>格式说明:<br>  JOSN中的(key)属性名称和字符串值需要用双引号引起来，用单引号或者不用引号会导致读取数据错误</p>
+</li>
+</ul>
+<h3 id="数组格式"><a href="#数组格式" class="headerlink" title="数组格式"></a>数组格式</h3><p><strong>数组格式:</strong></p>
+<p>数组格式的JSON数据，使用一对中括号[]，中括号里面的数据使用逗号分隔</p>
+<p><strong>数组格式的JSON数据:</strong></p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">[</span><span class="token string">"tom"</span><span class="token punctuation">,</span><span class="token number">18</span><span class="token punctuation">,</span><span class="token string">"programmer"</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
+<p><strong>实际开发的JSON格式比较复杂:</strong></p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+<span class="token property">"name"</span> <span class="token operator">:</span><span class="token string">"jack"</span><span class="token punctuation">,</span>
+<span class="token property">"age"</span><span class="token operator">:</span><span class="token number">29</span><span class="token punctuation">,</span>
+<span class="token property">"hobby"</span> <span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">"reading"</span><span class="token punctuation">,</span><span class="token string">"travel"</span><span class="token punctuation">,</span><span class="token string">"photography"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token property">"school"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+<span class="token property">"name"</span><span class="token operator">:</span><span class="token string">"Merrimack College"</span><span class="token punctuation">,</span>
+<span class="token property">"location"</span><span class="token operator">:</span><span class="token string">"North Andover, MA"</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="json格式字符串转换成JavaScript对象"><a href="#json格式字符串转换成JavaScript对象" class="headerlink" title="json格式字符串转换成JavaScript对象"></a>json格式字符串转换成JavaScript对象</h3><p>JSON本质上是字符串，如果在js中操作JSON数据，可以将JSON字符串转化为JavaScript对象</p>
+<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">var sJson &#x3D;&#39;&#123;&quot;name&quot;:&quot;tom&quot;,&quot;age&quot;:18&#125;&#39;;
+var oPerson&#x3D;JSON.parse(sJson);
+&#x2F;&#x2F; 操作属性
+alert(oPerson.name);
+alert(oPerson.age);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&lt;script&gt;
+        &#x2F;&#x2F;对象格式的json数据
+        var sJson1 &#x3D; &#39;&#123;&quot;name&quot;:&quot;tom&quot;,&quot;age&quot;:18&#125;&#39;;
+        &#x2F;&#x2F;数组格式的json数据
+        var sJson2 &#x3D; &#39;[&#123;&quot;name&quot;:&quot;tom&quot;,&quot;age&quot;:18&#125;,&#123;&quot;name&quot;:&quot;jack&quot;,&quot;age&quot;:50&#125;]&#39;;
+
+        &#x2F;&#x2F; 浏览器获取对象格式的josn数据转换成JavaScript对象
+        var oPerson &#x3D; JSON.parse(sJson1);
+        console.log(oPerson.name);
+
+        &#x2F;&#x2F;浏览器获取数组格式的josn数据转换成数组
+        var aArry &#x3D; JSON.parse(sJson2);
+        console.log(aArry);
+
+        &#x2F;&#x2F;服务器获取对象格式的josn数据转换成字典，数组格式的josn数据转换列表
+    &lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -1324,6 +1386,14 @@ p</span><span class="token punctuation">&#123;</span>
                             
                                 <a href="/tags/JavaScript/">
                                     <span class="chip bg-color">JavaScript</span>
+                                </a>
+                            
+                                <a href="/tags/json/">
+                                    <span class="chip bg-color">json</span>
+                                </a>
+                            
+                                <a href="/tags/ajax/">
+                                    <span class="chip bg-color">ajax</span>
                                 </a>
                             
                         </div>
@@ -1535,6 +1605,14 @@ p</span><span class="token punctuation">&#123;</span>
                     
                     <a href="/tags/JavaScript/">
                         <span class="chip bg-color">JavaScript</span>
+                    </a>
+                    
+                    <a href="/tags/json/">
+                        <span class="chip bg-color">json</span>
+                    </a>
+                    
+                    <a href="/tags/ajax/">
+                        <span class="chip bg-color">ajax</span>
                     </a>
                     
                 </div>
@@ -1777,7 +1855,7 @@ p</span><span class="token punctuation">&#123;</span>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">142.3k</span>&nbsp;字
+                class="white-color">142.9k</span>&nbsp;字
             
             
             
