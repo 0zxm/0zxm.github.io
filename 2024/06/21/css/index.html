@@ -478,14 +478,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    8.2k
+                    9.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    30 分
+                    36 分
                 </div>
                 
 
@@ -1344,6 +1344,239 @@
    <span class="token property">padding</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注意:行内元素为了照顾兼容性，尽量只设置左右内外边距，不要设置上下内外边距。但是转换为块级和行内块元素就可以了</p>
+<h3 id="1-9-圆角边框border-radius"><a href="#1-9-圆角边框border-radius" class="headerlink" title="1.9 圆角边框border_radius"></a>1.9 圆角边框border_radius</h3><p>在 CSS3 中,新增了圆角边框样式，这样我们的盒子就可以变圆角了<br>语法:</p>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token property">border-radius</span><span class="token punctuation">:</span>length<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>radius半径(圆的半径) 原理:(椭)圆与边框的交集形成圆角效果<br><img src="/2024/06/21/css/%E5%9C%86%E8%A7%92%E5%8E%9F%E7%90%86.png" alt="alt text"></p>
+<ul>
+<li>参数值可以为数值或百分比的形式</li>
+<li>如果是<code>正方形</code>，想要设置为一个圆，把数值修改为高度或者宽度的<code>一半</code>即可，或者直接写为<code>50%</code></li>
+<li>如果是个<code>矩形</code>,设置为高度的一半就可以做<code>圆角矩线</code><br>该属性是一个简写属性，可以跟四个值，分别代表左上角、右上角、右下角、左下角</li>
+<li>分开写border-top-left-radius,border-bottom-left-radius, border-top-right-radius 和border-bottom-right-radius</li>
+</ul>
+<h3 id="1-10-盒子阴影box-shadow"><a href="#1-10-盒子阴影box-shadow" class="headerlink" title="1.10 盒子阴影box-shadow"></a>1.10 盒子阴影box-shadow</h3><p>CSS3 中新增了盒子阴影，我们可以使用box-shadow属性为盒子添加阴影</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>h-shadow</td>
+<td>必需。水平阴影的位置。允许负值。</td>
+</tr>
+<tr>
+<td>v-shadow</td>
+<td>必需。垂直阴影的位置。允许负值。</td>
+</tr>
+<tr>
+<td>blur</td>
+<td>可选。模糊距离。</td>
+</tr>
+<tr>
+<td>spread</td>
+<td>可选。阴影的尺寸。</td>
+</tr>
+<tr>
+<td>color</td>
+<td>可选。阴影的颜色。可使用 CSS 颜色值。</td>
+</tr>
+<tr>
+<td>inset</td>
+<td>可选。将外阴影（outset）改为内阴影。</td>
+</tr>
+</tbody></table>
+<h3 id="1-11-文字阴影"><a href="#1-11-文字阴影" class="headerlink" title="1.11 文字阴影"></a>1.11 文字阴影</h3><table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>h-shadow</td>
+<td>必需。水平阴影的位置。允许负值</td>
+</tr>
+<tr>
+<td>v-shadow</td>
+<td>必需。垂直阴影的位置。允许负值</td>
+</tr>
+<tr>
+<td>blur</td>
+<td>可选,模糊的距离</td>
+</tr>
+<tr>
+<td>color</td>
+<td>参阅 CSS 颜色值可选.阴影的颜色</td>
+</tr>
+</tbody></table>
+<h2 id="2-CSS浮动"><a href="#2-CSS浮动" class="headerlink" title="2.CSS浮动"></a>2.CSS浮动</h2><h3 id="2-1-浮动-float"><a href="#2-1-浮动-float" class="headerlink" title="2.1 浮动(float)"></a>2.1 浮动(float)</h3><h4 id="a-传统网页布局的三种方式"><a href="#a-传统网页布局的三种方式" class="headerlink" title="a.传统网页布局的三种方式"></a>a.传统网页布局的三种方式</h4><p>网页布局的本质–用 CSS 来摆放盒子.把盒子摆放到相应位置<br>CSS 提供了三种传统布局方式(简单说,就是盒子如何进行排列顺序)</p>
+<ul>
+<li>普通流(标准流&#x2F;文档流)<br> 所谓的标准流:就是标签按照规定好默认方式排列<ol>
+<li>块级元素会独占一行，从上向下顺序排列。常用元素:div、hr、p、h1~h6、ul、ol、dl、form、table</li>
+<li>行内元素会按照顺序，从左到右顺序排列，碰到父元素边缘则自动换行。常用元素:span、a、i、em等</li>
+</ol>
+</li>
+<li>浮动<ul>
+<li>总结:有很多的布局效果，标准流没有办法完成，此时就可以利用浮动完成布局。因为浮动可以改变元素标签默认的排列方式.</li>
+<li>浮动最典型的应用:可以让多个块级元素一行内排列显示网页布局第一准则:多个块级元素纵向排列找标准流，多个块级元素向排列找浮动，</li>
+</ul>
+</li>
+<li>定位</li>
+</ul>
+<h4 id="b-什么是浮动"><a href="#b-什么是浮动" class="headerlink" title="b.什么是浮动?"></a>b.什么是浮动?</h4><p><code>float</code>属性用于创建浮动框，将其移动到一边，直到左边缘或右边缘触及包含块或另一个浮动框的边缘<br>语法:</p>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">选择器</span><span class="token punctuation">&#123;</span> <span class="token property">float</span><span class="token punctuation">:</span>属性值<span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="c-浮动特性"><a href="#c-浮动特性" class="headerlink" title="c.浮动特性"></a>c.浮动特性</h4><ul>
+<li>浮动元素会脱离标准流(脱标)(浮动元素飘在标准流的上面,不占位置，脱标)</li>
+<li>浮动的盒子不再保留原先的位置</li>
+<li>如果多个盒子都设置了浮动，则它们会按照属性值一行内显示并且顶端对齐排列。</li>
+<li>注意:浮动的元素是互相贴靠在一起的(不会有缝隙),如果父级宽度装不下这些浮动的盒子，多出的盒子会另起一行对齐。</li>
+<li>浮动元素会具有行内块元素特性。<ol>
+<li>如果块级盒子没有设置宽度，默认宽度和父级一样宽，但是添加浮动后，它的大小根据内容来决定</li>
+<li>浮动的盒子中间是没有缝隙的，是紧挨着一起的</li>
+<li>行内元素同理</li>
+</ol>
+</li>
+</ul>
+<h4 id="浮动元素经常搭配标准父级搭配使用"><a href="#浮动元素经常搭配标准父级搭配使用" class="headerlink" title="浮动元素经常搭配标准父级搭配使用"></a>浮动元素经常搭配标准父级搭配使用</h4><ul>
+<li>案例: 小米布局示例<br>**网页布局第二标准:**先设置盒子大小,之后设置盒子的位置<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">&lt;!DOCTYPE html>
+&lt;html lang="en">
+
+&lt;head>
+    &lt;meta charset="UTF-8">
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0">
+    &lt;title>浮动布局练习3&lt;/title>
+    &lt;style>
+        .box</span> <span class="token punctuation">&#123;</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> 1226px<span class="token punctuation">;</span>
+            <span class="token property">height</span><span class="token punctuation">:</span> 615px<span class="token punctuation">;</span>
+            <span class="token property">background-color</span><span class="token punctuation">:</span> pink<span class="token punctuation">;</span>
+            <span class="token property">margin</span><span class="token punctuation">:</span> 0 auto<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token selector">.left</span> <span class="token punctuation">&#123;</span>
+            <span class="token property">float</span><span class="token punctuation">:</span> left<span class="token punctuation">;</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> 234px<span class="token punctuation">;</span>
+            <span class="token property">height</span><span class="token punctuation">:</span> 615px<span class="token punctuation">;</span>
+            <span class="token property">background-color</span><span class="token punctuation">:</span> purple<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token selector">.right</span> <span class="token punctuation">&#123;</span>
+            <span class="token property">float</span><span class="token punctuation">:</span> left<span class="token punctuation">;</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> 992px<span class="token punctuation">;</span>
+            <span class="token property">height</span><span class="token punctuation">:</span> 615px<span class="token punctuation">;</span>
+            <span class="token property">background-color</span><span class="token punctuation">:</span> skyblue<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token selector">.right>div</span> <span class="token punctuation">&#123;</span>
+            <span class="token property">float</span><span class="token punctuation">:</span> left<span class="token punctuation">;</span>
+            <span class="token property">margin-left</span><span class="token punctuation">:</span> 14px<span class="token punctuation">;</span>
+            <span class="token property">margin-bottom</span><span class="token punctuation">:</span> 14px<span class="token punctuation">;</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> 234px<span class="token punctuation">;</span>
+            <span class="token property">height</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+            <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token function">rgb</span><span class="token punctuation">(</span>255<span class="token punctuation">,</span> 150<span class="token punctuation">,</span> 60<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    &lt;/style>
+&lt;/head>
+
+&lt;body>
+    &lt;div class=<span class="token string">"box"</span>>
+        &lt;div class=<span class="token string">"left"</span>>左青龙&lt;/div>
+        &lt;div class=<span class="token string">"right"</span>>
+            &lt;div>1&lt;/div>
+            &lt;div>2&lt;/div>
+            &lt;div>3&lt;/div>
+            &lt;div>4&lt;/div>
+            &lt;div>5&lt;/div>
+            &lt;div>6&lt;/div>
+            &lt;div>7&lt;/div>
+            &lt;div>8&lt;/div>
+        &lt;/div>
+    &lt;/div>
+
+&lt;/body>
+
+&lt;/html><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h2 id="3-常见网页布局"><a href="#3-常见网页布局" class="headerlink" title="3.常见网页布局"></a>3.常见网页布局</h2><img src="/2024/06/21/css/常见网页布局.png" alt="alt text" style="zoom:50%;">
+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">&lt;!DOCTYPE html>
+&lt;html lang="en">
+
+&lt;head>
+    &lt;meta charset="UTF-8">
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0">
+    &lt;title>常见网页布局 &lt;/title>
+    &lt;style>
+        *</span> <span class="token punctuation">&#123;</span>
+            <span class="token property">margin</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+            <span class="token property">padding</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token selector">li</span> <span class="token punctuation">&#123;</span>
+            <span class="token property">list-style</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token selector">.top</span> <span class="token punctuation">&#123;</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+            <span class="token property">height</span><span class="token punctuation">:</span> 50px<span class="token punctuation">;</span>
+            <span class="token property">background-color</span><span class="token punctuation">:</span> gray<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token selector">.banner</span> <span class="token punctuation">&#123;</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> 980px<span class="token punctuation">;</span>
+            <span class="token property">height</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span>
+            <span class="token property">background-color</span><span class="token punctuation">:</span> gray<span class="token punctuation">;</span>
+            <span class="token property">margin</span><span class="token punctuation">:</span> 10px auto<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token selector">.box</span> <span class="token punctuation">&#123;</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> 980px<span class="token punctuation">;</span>
+            <span class="token property">height</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+            <span class="token property">background-color</span><span class="token punctuation">:</span> gray<span class="token punctuation">;</span>
+            <span class="token property">margin</span><span class="token punctuation">:</span> 10px auto<span class="token punctuation">;</span>
+
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token selector">.box li</span> <span class="token punctuation">&#123;</span>
+            <span class="token property">float</span><span class="token punctuation">:</span> left<span class="token punctuation">;</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> 237px<span class="token punctuation">;</span>
+            <span class="token property">height</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+            <span class="token property">background-color</span><span class="token punctuation">:</span> pink<span class="token punctuation">;</span>
+            <span class="token property">margin-right</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token selector">.box ul .last</span> <span class="token punctuation">&#123;</span>
+            <span class="token property">margin-right</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token selector">.footer</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">/* 只要是通栏的盒子,不需要指定宽度 */</span>
+            <span class="token property">height</span><span class="token punctuation">:</span> 600px<span class="token punctuation">;</span>
+            <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token function">rgb</span><span class="token punctuation">(</span>206<span class="token punctuation">,</span> 115<span class="token punctuation">,</span> 115<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token punctuation">&#125;</span>
+    &lt;/style>
+&lt;/head>
+
+&lt;body>
+    &lt;div class=<span class="token string">"top"</span>>top&lt;/div>
+    &lt;div class=<span class="token string">"banner"</span>>banner&lt;/div>
+    &lt;div class=<span class="token string">"box"</span>>
+        &lt;ul>
+            &lt;li>1&lt;/li>
+            &lt;li>2&lt;/li>
+            &lt;li>3&lt;/li>
+            &lt;li class=<span class="token string">"last"</span>>4&lt;/li>
+
+        &lt;/ul>
+    &lt;/div>
+    &lt;div class=<span class="token string">"footer"</span>>footer&lt;/div>
+
+&lt;/body>
+
+&lt;/html><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -1857,7 +2090,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">142.9k</span>&nbsp;字
+                class="white-color">145.4k</span>&nbsp;字
             
             
             
