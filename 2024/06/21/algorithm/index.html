@@ -513,19 +513,19 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="算法第一章-动态规划"><a href="#算法第一章-动态规划" class="headerlink" title="算法第一章 动态规划"></a>算法第一章 动态规划</h1><h3 id="一、动态规划的思想"><a href="#一、动态规划的思想" class="headerlink" title="一、动态规划的思想"></a>一、动态规划的思想</h3> <pre class="line-numbers language-text" data-language="text"><code class="language-text">动态规划的核心思想是通过寻找子问题的最优解来构造原问题的最优解。在应用动态规划的过程中，需要找到问题的状态转移方程，并利用储存中间结果的方法来避免重复计算。
+                <h1 id="算法第一章-动态规划"><a href="#算法第一章-动态规划" class="headerlink" title="算法第一章 动态规划"></a>算法第一章 动态规划</h1><h2 id="一、动态规划的思想"><a href="#一、动态规划的思想" class="headerlink" title="一、动态规划的思想"></a>一、动态规划的思想</h2> <pre class="line-numbers language-text" data-language="text"><code class="language-text">动态规划的核心思想是通过寻找子问题的最优解来构造原问题的最优解。在应用动态规划的过程中，需要找到问题的状态转移方程，并利用储存中间结果的方法来避免重复计算。
  
 总的来说，动态规划的思想包括：分析问题具有的重叠子问题性质、定义子问题的递推关系、储存中间结果以避免重复计算、推导出问题的最优解。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 
-<h3 id="二、动态规划五要素"><a href="#二、动态规划五要素" class="headerlink" title="二、动态规划五要素"></a>二、动态规划五要素</h3><ul>
+<h2 id="二、动态规划五要素"><a href="#二、动态规划五要素" class="headerlink" title="二、动态规划五要素"></a>二、动态规划五要素</h2><ul>
 <li>最优子结构</li>
 <li>重叠子问题</li>
 <li>状态转移方程</li>
 <li>边界条件</li>
 <li>填表法</li>
 </ul>
-<h3 id="三、例题"><a href="#三、例题" class="headerlink" title="三、例题"></a>三、例题</h3><h4 id="矩阵相乘问题"><a href="#矩阵相乘问题" class="headerlink" title="矩阵相乘问题"></a>矩阵相乘问题</h4> <pre class="line-numbers language-text" data-language="text"><code class="language-text">矩阵相乘问题
+<h2 id="三、例题"><a href="#三、例题" class="headerlink" title="三、例题"></a>三、例题</h2><h3 id="矩阵相乘问题"><a href="#矩阵相乘问题" class="headerlink" title="矩阵相乘问题"></a>矩阵相乘问题</h3> <pre class="line-numbers language-text" data-language="text"><code class="language-text">矩阵相乘问题
 	这道题的关键在于矩阵乘法的次数和举证的行列数有关,2行3列的矩阵乘3行4列的矩阵要乘2*4次<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 
@@ -609,7 +609,7 @@ int main() &#123;
 	return 0;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="最大子段和问题"><a href="#最大子段和问题" class="headerlink" title="最大子段和问题"></a>最大子段和问题</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">最大子段和问题
+<h3 id="最大子段和问题"><a href="#最大子段和问题" class="headerlink" title="最大子段和问题"></a>最大子段和问题</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">最大子段和问题
 &#x2F;*
 给定n个整数（可能为负数）组成的序列a[1],a[2],a[3],…,a[n]，求该序列如a[i]+a[i+1]+…+a[j]的子段和的最大值。当所给整数均为负数时，定义子段和为0。
 
@@ -674,7 +674,7 @@ int main()&#123;
 
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="0-1背包问题"><a href="#0-1背包问题" class="headerlink" title="0-1背包问题"></a>0-1背包问题</h4><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token number">0</span><span class="token operator">-</span><span class="token number">1</span>背包问题
+<h3 id="0-1背包问题"><a href="#0-1背包问题" class="headerlink" title="0-1背包问题"></a>0-1背包问题</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token number">0</span><span class="token operator">-</span><span class="token number">1</span>背包问题
  <span class="token comment">/*
 7-20 0-1背包
 给定n(n&lt;=100)种物品和一个背包。物品i的重量是wi(wi&lt;=100)，价值为vi(vi&lt;=100)，背包的容量为C(C&lt;=1000)。
@@ -751,7 +751,7 @@ int main()&#123;
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
  <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="子集和"><a href="#子集和" class="headerlink" title="子集和"></a>子集和</h4><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">子集和
+<h3 id="子集和"><a href="#子集和" class="headerlink" title="子集和"></a>子集和</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">子集和
 <span class="token comment">/*
 7-2 子集和
 给定n个不同的整数的集合，求有多少个子集的和为m
@@ -813,7 +813,7 @@ int main()&#123;
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
  <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="最长公共子序列问题"><a href="#最长公共子序列问题" class="headerlink" title="最长公共子序列问题"></a>最长公共子序列问题</h4><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">最长公共子序列问题
+<h3 id="最长公共子序列问题"><a href="#最长公共子序列问题" class="headerlink" title="最长公共子序列问题"></a>最长公共子序列问题</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">最长公共子序列问题
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span>  </span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string></span>  </span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>  
@@ -867,10 +867,10 @@ string A<span class="token punctuation">,</span> B<span class="token punctuation
  <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
-<h1 id="算法第二章-分治法"><a href="#算法第二章-分治法" class="headerlink" title="算法第二章 分治法"></a>算法第二章 分治法</h1><h3 id="一、分治法的思想"><a href="#一、分治法的思想" class="headerlink" title="一、分治法的思想"></a>一、分治法的思想</h3> <pre class="line-numbers language-text" data-language="text"><code class="language-text">分治法就是不断的划分子问题,直到子问题的规模足够小到可以直接求解,再通过合并子问题求得原来的子问题的解<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="算法第二章-分治法"><a href="#算法第二章-分治法" class="headerlink" title="算法第二章 分治法"></a>算法第二章 分治法</h1><h2 id="一、分治法的思想"><a href="#一、分治法的思想" class="headerlink" title="一、分治法的思想"></a>一、分治法的思想</h2> <pre class="line-numbers language-text" data-language="text"><code class="language-text">分治法就是不断的划分子问题,直到子问题的规模足够小到可以直接求解,再通过合并子问题求得原来的子问题的解<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h3 id="二、分治法的时间复杂度"><a href="#二、分治法的时间复杂度" class="headerlink" title="二、分治法的时间复杂度"></a>二、分治法的时间复杂度</h3><p><img src="/2024/06/21/algorithm/%E4%B8%BB%E5%AE%9A%E7%90%86%E6%B1%82%E5%88%86%E6%B2%BB%E6%B3%95%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6.png" alt="img"></p>
-<h3 id="三、分治法之排序问题"><a href="#三、分治法之排序问题" class="headerlink" title="三、分治法之排序问题"></a>三、分治法之排序问题</h3><h4 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h4> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">快速排序
+<h2 id="二、分治法的时间复杂度"><a href="#二、分治法的时间复杂度" class="headerlink" title="二、分治法的时间复杂度"></a>二、分治法的时间复杂度</h2><p><img src="/2024/06/21/algorithm/%E4%B8%BB%E5%AE%9A%E7%90%86%E6%B1%82%E5%88%86%E6%B2%BB%E6%B3%95%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6.png" alt="img"></p>
+<h2 id="三、分治法之排序问题"><a href="#三、分治法之排序问题" class="headerlink" title="三、分治法之排序问题"></a>三、分治法之排序问题</h2><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">快速排序
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
@@ -935,7 +935,7 @@ string A<span class="token punctuation">,</span> B<span class="token punctuation
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
-<h4 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h4><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">归并排序
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">归并排序
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
@@ -992,7 +992,7 @@ string A<span class="token punctuation">,</span> B<span class="token punctuation
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="四、分治法之查找问题"><a href="#四、分治法之查找问题" class="headerlink" title="四、分治法之查找问题"></a>四、分治法之查找问题</h3><h4 id="二分查找-递归"><a href="#二分查找-递归" class="headerlink" title="二分查找(递归)"></a>二分查找(递归)</h4> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">二分搜索
+<h2 id="四、分治法之查找问题"><a href="#四、分治法之查找问题" class="headerlink" title="四、分治法之查找问题"></a>四、分治法之查找问题</h2><h3 id="二分查找-递归"><a href="#二分查找-递归" class="headerlink" title="二分查找(递归)"></a>二分查找(递归)</h3> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">二分搜索
 <span class="token comment">/*
 给定已按降序排好的n个元素a[0:n-1]，在这n个元素中找出一特定元素x。
 
@@ -1064,7 +1064,7 @@ string A<span class="token punctuation">,</span> B<span class="token punctuation
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
-<h4 id="二分查找基础版-迭代"><a href="#二分查找基础版-迭代" class="headerlink" title="二分查找基础版(迭代)"></a>二分查找基础版(迭代)</h4> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<h3 id="二分查找基础版-迭代"><a href="#二分查找基础版-迭代" class="headerlink" title="二分查找基础版(迭代)"></a>二分查找基础版(迭代)</h3> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
 <span class="token keyword">public</span><span class="token operator">:</span>
     <span class="token keyword">int</span> <span class="token function">search</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -1085,7 +1085,7 @@ string A<span class="token punctuation">,</span> B<span class="token punctuation
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
-<h4 id="二分搜索返回数组-指针"><a href="#二分搜索返回数组-指针" class="headerlink" title="二分搜索返回数组(指针)"></a>二分搜索返回数组(指针)</h4> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">//在 C++ 中，函数不能直接返回数组。你可以使用指针或者容器来表示数组。在你的情况下，你可以返回一个 `int*` 指针来表示数组。这个指针指向动态分配的内存，可以在函数外部进行释放。</span>
+<h3 id="二分搜索返回数组-指针"><a href="#二分搜索返回数组-指针" class="headerlink" title="二分搜索返回数组(指针)"></a>二分搜索返回数组(指针)</h3> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">//在 C++ 中，函数不能直接返回数组。你可以使用指针或者容器来表示数组。在你的情况下，你可以返回一个 `int*` 指针来表示数组。这个指针指向动态分配的内存，可以在函数外部进行释放。</span>
 
 <span class="token comment">//另外，C++17 引入了 `std::array` 和 `std::vector` 这样的标准库容器，它们可以更方便地表示数组，并且具有更好的安全性和易用性。你可以考虑使用它们来代替裸指针。</span>
 
@@ -1145,14 +1145,14 @@ string A<span class="token punctuation">,</span> B<span class="token punctuation
 
 <span class="token comment">//希望这可以帮助你理解如何在 C++ 中返回数组。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h1 id="算法第三章-贪心算法"><a href="#算法第三章-贪心算法" class="headerlink" title="算法第三章 贪心算法"></a>算法第三章 贪心算法</h1><h3 id="一、贪心算法的思想"><a href="#一、贪心算法的思想" class="headerlink" title="一、贪心算法的思想"></a>一、贪心算法的思想</h3><pre class="line-numbers language-text" data-language="text"><code class="language-text">贪心算法:在每一次选择中选择当前情况的最优解,达到整体问题的最优解
+<h1 id="算法第三章-贪心算法"><a href="#算法第三章-贪心算法" class="headerlink" title="算法第三章 贪心算法"></a>算法第三章 贪心算法</h1><h2 id="一、贪心算法的思想"><a href="#一、贪心算法的思想" class="headerlink" title="一、贪心算法的思想"></a>一、贪心算法的思想</h2><pre class="line-numbers language-text" data-language="text"><code class="language-text">贪心算法:在每一次选择中选择当前情况的最优解,达到整体问题的最优解
  	值得注意的是,贪心问题必须满足
  		1.贪心选择性质
  			贪心选择性质指的是，通过贪心策略所做出的每一个局部最优的选择，都能够组合成一个全局最优解。换句话说
  			就是贪心算法每次选择的都是当前状态下最优的策略，而这些最优的策略组合在一起，可以形成最终的最优解。
  		2.最优子问题
  			最优子结构指的是，问题的最优解可以通过子问题的最优解构建出来，换句话说，问题可以被分解成更小的子问题，子问题的最优解可以构成原问题的最优解。这个性质是动态规划和贪心算法设计的前提之一。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="二、例题"><a href="#二、例题" class="headerlink" title="二、例题"></a>二、例题</h3><h4 id="完全背包问题"><a href="#完全背包问题" class="headerlink" title="完全背包问题"></a>完全背包问题</h4><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">完全背包问题
+<h2 id="二、例题"><a href="#二、例题" class="headerlink" title="二、例题"></a>二、例题</h2><h3 id="完全背包问题"><a href="#完全背包问题" class="headerlink" title="完全背包问题"></a>完全背包问题</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">完全背包问题
 <span class="token comment">/*
 7-35 背包问题
 分数 25
@@ -1220,7 +1220,7 @@ string A<span class="token punctuation">,</span> B<span class="token punctuation
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="迪杰斯特拉算法"><a href="#迪杰斯特拉算法" class="headerlink" title="迪杰斯特拉算法"></a>迪杰斯特拉算法</h4> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+<h3 id="迪杰斯特拉算法"><a href="#迪杰斯特拉算法" class="headerlink" title="迪杰斯特拉算法"></a>迪杰斯特拉算法</h3> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">MAX</span> <span class="token expression"><span class="token number">11</span></span></span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
@@ -1278,7 +1278,7 @@ string A<span class="token punctuation">,</span> B<span class="token punctuation
 	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h1 id="算法第五章-回溯法"><a href="#算法第五章-回溯法" class="headerlink" title="算法第五章 回溯法"></a>算法第五章 回溯法</h1><h3 id="1-回溯法的思想"><a href="#1-回溯法的思想" class="headerlink" title="1.回溯法的思想"></a>1.回溯法的思想</h3> <pre class="line-numbers language-text" data-language="text"><code class="language-text">有许多问题，当需要找出它的解集或者要求回答什么解是满足某些约束条件的最佳解时，往往要使用回溯法。
+<h1 id="算法第五章-回溯法"><a href="#算法第五章-回溯法" class="headerlink" title="算法第五章 回溯法"></a>算法第五章 回溯法</h1><h2 id="1-回溯法的思想"><a href="#1-回溯法的思想" class="headerlink" title="1.回溯法的思想"></a>1.回溯法的思想</h2> <pre class="line-numbers language-text" data-language="text"><code class="language-text">有许多问题，当需要找出它的解集或者要求回答什么解是满足某些约束条件的最佳解时，往往要使用回溯法。
 
 回溯法的基本做法是搜索，或是一种组织得井井有条的，能避免不必要搜索的穷举式搜索法。这种方法适用于解一些组合数相当大的问题。
 回溯法在问题的解空间树中，按深度优先策略，从根结点出发搜索解空间树。算法搜索至解空间树的任意一点时，先判断该结点是否包含问题的解。如果肯定不包含，则跳过对该结点为根子树的搜索，逐层向其祖先结点回溯；否则，进入该子树，继续按深度优先策略搜索。
@@ -1300,11 +1300,11 @@ string A<span class="token punctuation">,</span> B<span class="token punctuation
 用限界函数剪去得不到最优解的子树;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
 </ul>
 <p><img src="/2024/06/21/algorithm/image-20231119155509899.png" alt="img"></p>
-<h2 id="子集树和排列树"><a href="#子集树和排列树" class="headerlink" title="子集树和排列树"></a>子集树和排列树</h2><ul>
+<h3 id="子集树和排列树"><a href="#子集树和排列树" class="headerlink" title="子集树和排列树"></a>子集树和排列树</h3><ul>
 <li>子集树：当所给的问题是从n个元素的集合S中找出满足某种性质的子集时，相应的解空间树成为子集树。例：0－1背包问题。</li>
 <li>排列树：当所给问题是确定n个元素的满足排列树：当所给问题是确定n个元素的满足某种性质的排列时，相应的解空间树称为排列树。例：旅行售货员问题。</li>
 </ul>
-<h3 id="2-例题"><a href="#2-例题" class="headerlink" title="2. 例题"></a>2. 例题</h3><h4 id="0-1背包"><a href="#0-1背包" class="headerlink" title="0-1背包"></a>0-1背包</h4> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<h2 id="2-例题"><a href="#2-例题" class="headerlink" title="2. 例题"></a>2. 例题</h2><h3 id="0-1背包"><a href="#0-1背包" class="headerlink" title="0-1背包"></a>0-1背包</h3> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
@@ -1399,7 +1399,7 @@ string A<span class="token punctuation">,</span> B<span class="token punctuation
 <span class="token comment">//算法时间复杂度为O(2^n)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
-<h4 id="子集和-子集树"><a href="#子集和-子集树" class="headerlink" title="子集和(子集树)"></a>子集和(子集树)</h4> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">子集和问题<span class="token punctuation">(</span>找到序列中子集和为v并输出<span class="token punctuation">)</span>
+<h3 id="子集和-子集树"><a href="#子集和-子集树" class="headerlink" title="子集和(子集树)"></a>子集和(子集树)</h3> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">子集和问题<span class="token punctuation">(</span>找到序列中子集和为v并输出<span class="token punctuation">)</span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 <span class="token keyword">const</span> <span class="token keyword">int</span> MAX  <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>
@@ -1442,7 +1442,7 @@ string A<span class="token punctuation">,</span> B<span class="token punctuation
 		cout<span class="token operator">&lt;&lt;</span><span class="token string">"No Solution!"</span><span class="token punctuation">;</span>
 	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="居民部落问题"><a href="#居民部落问题" class="headerlink" title="居民部落问题"></a>居民部落问题</h4> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"> <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<h3 id="居民部落问题"><a href="#居民部落问题" class="headerlink" title="居民部落问题"></a>居民部落问题</h3> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"> <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
  <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
  
  <span class="token keyword">int</span> R<span class="token punctuation">[</span><span class="token number">201</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">201</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">//关系矩阵</span>
@@ -1511,7 +1511,7 @@ string A<span class="token punctuation">,</span> B<span class="token punctuation
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
  <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="旅行售货员问题"><a href="#旅行售货员问题" class="headerlink" title="旅行售货员问题"></a>旅行售货员问题</h4> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"> <span class="token comment">/*
+<h3 id="旅行售货员问题"><a href="#旅行售货员问题" class="headerlink" title="旅行售货员问题"></a>旅行售货员问题</h3> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"> <span class="token comment">/*
  7-1 旅行售货员
  
  某售货员要到若干城市去推销商品，已知各城市之间的路程(或旅费)。他要选定一条从驻地出发，经过每个城市一遍，最后回到驻地的路线，使总的路程（或总旅费）最小。
@@ -1575,7 +1575,7 @@ string A<span class="token punctuation">,</span> B<span class="token punctuation
  <span class="token punctuation">&#125;</span>
  <span class="token comment">//不剪枝时间复杂度为O(n!)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="n后问题"><a href="#n后问题" class="headerlink" title="n后问题"></a>n后问题</h4> <pre class="line-numbers language-text" data-language="text"><code class="language-text">在n×n格的棋盘上放置彼此不受攻击的n个皇后。按照国际象棋的规则，皇后可以攻击与之处在同一行或同一列或同一斜线上的棋子。n后问题等价于在n×n格的棋盘上放置n个皇后，任何个皇后不放在同一行或同一列或同一斜线上
+<h3 id="n后问题"><a href="#n后问题" class="headerlink" title="n后问题"></a>n后问题</h3> <pre class="line-numbers language-text" data-language="text"><code class="language-text">在n×n格的棋盘上放置彼此不受攻击的n个皇后。按照国际象棋的规则，皇后可以攻击与之处在同一行或同一列或同一斜线上的棋子。n后问题等价于在n×n格的棋盘上放置n个皇后，任何个皇后不放在同一行或同一列或同一斜线上
 
 输入格式:
 一个数字n
@@ -1684,7 +1684,7 @@ string A<span class="token punctuation">,</span> B<span class="token punctuation
     <span class="token function">backtrack</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="最小机器重量问题"><a href="#最小机器重量问题" class="headerlink" title="最小机器重量问题"></a>最小机器重量问题</h4> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
+<h3 id="最小机器重量问题"><a href="#最小机器重量问题" class="headerlink" title="最小机器重量问题"></a>最小机器重量问题</h3> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
 7-2 最小重量机器设计问题
 
 设某一机器由n个部件组成，每一种部件都可以从m个不同的供应商处购得。设wij是从供应商j 处购得的部件i的重量，cij是相应的价格。
@@ -1775,7 +1775,7 @@ string A<span class="token punctuation">,</span> B<span class="token punctuation
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
-<h1 id="算法第六章、分支限界法-广度优先或者最小生成树"><a href="#算法第六章、分支限界法-广度优先或者最小生成树" class="headerlink" title="算法第六章、分支限界法(广度优先或者最小生成树)"></a>算法第六章、分支限界法(广度优先或者最小生成树)</h1><h3 id="分支限界法的基本思想"><a href="#分支限界法的基本思想" class="headerlink" title="分支限界法的基本思想:"></a>分支限界法的基本思想:</h3><p>不断的广度优先遍历所有的层次</p>
+<h1 id="算法第六章、分支限界法-广度优先或者最小生成树"><a href="#算法第六章、分支限界法-广度优先或者最小生成树" class="headerlink" title="算法第六章、分支限界法(广度优先或者最小生成树)"></a>算法第六章、分支限界法(广度优先或者最小生成树)</h1><h2 id="分支限界法的基本思想"><a href="#分支限界法的基本思想" class="headerlink" title="分支限界法的基本思想:"></a>分支限界法的基本思想:</h2><p>不断的广度优先遍历所有的层次</p>
  <pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">从下一扩展结点的不同方式导致不同的分支限界法。    
   1、FIFO分支限界法
     将活结点表组织成为一个队列，按先进先出原则选择下一个结点。
@@ -1784,7 +1784,7 @@ string A<span class="token punctuation">,</span> B<span class="token punctuation
 - 最大优先队列：使用最大堆，体现最大效益优先
 - 最小优先队列：使用最小堆，体现最小费用优先<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><h4 id="0-1背包问题-FIFO"><a href="#0-1背包问题-FIFO" class="headerlink" title="0-1背包问题(FIFO)"></a>0-1背包问题(FIFO)</h4> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="0-1背包问题-FIFO"><a href="#0-1背包问题-FIFO" class="headerlink" title="0-1背包问题(FIFO)"></a>0-1背包问题(FIFO)</h3> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstring></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;queue></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
@@ -1873,7 +1873,7 @@ Obj objs<span class="token punctuation">[</span><span class="token number">101</
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="0-1背包-最小堆"><a href="#0-1背包-最小堆" class="headerlink" title="0-1背包(最小堆)"></a>0-1背包(最小堆)</h4> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<h3 id="0-1背包-最小堆"><a href="#0-1背包-最小堆" class="headerlink" title="0-1背包(最小堆)"></a>0-1背包(最小堆)</h3> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;queue></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstdio></span></span>
