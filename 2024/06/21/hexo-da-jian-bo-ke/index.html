@@ -701,14 +701,14 @@ ssh-keygen <span class="token operator">-</span>t rsa <span class="token operato
 
 > Hi USERNAME! You<span class="token string">'ve successfully authenticated, but GitHub does not provide shell access.'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 </blockquote>
-<p>如果不行,尝试一下命令:   ssh -T -p 443ssh:&#x2F;&#x2F;<a href="mailto:&#103;&#x69;&#116;&#x40;&#x73;&#115;&#x68;&#46;&#103;&#x69;&#116;&#104;&#117;&#98;&#46;&#99;&#x6f;&#x6d;">&#103;&#x69;&#116;&#x40;&#x73;&#115;&#x68;&#46;&#103;&#x69;&#116;&#104;&#117;&#98;&#46;&#99;&#x6f;&#x6d;</a>,这个可以按照提示建立许可连接</p>
+<p>如果不行,尝试一下命令:   ssh -T -p 443ssh:&#x2F;&#x2F;<a href="mailto:&#x67;&#x69;&#116;&#x40;&#115;&#x73;&#104;&#x2e;&#x67;&#x69;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#x40;&#115;&#x73;&#104;&#x2e;&#x67;&#x69;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#x6d;</a>,这个可以按照提示建立许可连接</p>
 <blockquote>
 <pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">ssh <span class="token operator">-</span>T <span class="token operator">-</span>p 443 git@ssh<span class="token punctuation">.</span>github<span class="token punctuation">.</span>com
 > Hi <span class="token string">'你的id'</span><span class="token operator">!</span><span class="token string">" You've successfully authenticated, but GitHub does not provide shell access."</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </blockquote>
 <p>如果你能在端口 443 上通过 SSH 连接到 <code>git@ssh.github.com</code>，则可覆盖你的 SSH 设置来强制与 GitHub.com 的任何连接均通过该服务器和端口运行。</p>
 <p>到此为止,问题解决得差不多了</p>
-<p>在输入命令 git clone ssh:&#x2F;&#x2F;<a href="mailto:&#x67;&#x69;&#x74;&#64;&#115;&#x73;&#x68;&#46;&#x67;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;">&#x67;&#x69;&#x74;&#64;&#115;&#x73;&#x68;&#46;&#x67;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;</a>:443&#x2F;0zxm&#x2F;0zxm.github.io时就能够正常clone仓库, 但是每次都输入更长的url难免繁琐,所以可以在你生成密钥的文件夹内新建一个config文件,输入以下内容保存:</p>
+<p>在输入命令 git clone ssh:&#x2F;&#x2F;<a href="mailto:&#103;&#105;&#116;&#x40;&#x73;&#x73;&#104;&#46;&#103;&#105;&#116;&#104;&#x75;&#98;&#46;&#x63;&#x6f;&#109;">&#103;&#105;&#116;&#x40;&#x73;&#x73;&#104;&#46;&#103;&#105;&#116;&#104;&#x75;&#98;&#46;&#x63;&#x6f;&#109;</a>:443&#x2F;0zxm&#x2F;0zxm.github.io时就能够正常clone仓库, 但是每次都输入更长的url难免繁琐,所以可以在你生成密钥的文件夹内新建一个config文件,输入以下内容保存:</p>
 <blockquote>
 <pre class="line-numbers language-text" data-language="text"><code class="language-text">Host github.com
  Hostname ssh.github.com
