@@ -465,7 +465,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    139
+                    138
                 </div>
                 
 
@@ -500,46 +500,39 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <!DOCTYPE html>
-<html lang="en">
+                <style>
+    a {
+        display: inline-block;
+        /* 确保a标签占满父元素的宽度 */
+        width: 100%;
+        /* 确保a标签的宽度占满父元素的宽度 */
+        text-decoration: none;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        position: absolute;
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        a {
-            display: inline-block;
-            /* 确保a标签占满父元素的宽度 */
-            width: 100%;
-            /* 确保a标签的宽度占满父元素的宽度 */
-            text-decoration: none;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            position: absolute;
+        bottom: 0;
+    }
 
-            bottom: 0;
-        }
+    div {
+        display: inline-block;
+        width: 125px;
+        height: 120px;
+        position: relative;
+        /* 确保子元素的定位基准 */
+    }
 
-        div {
-            display: inline-block;
-            width: 125px;
-            height: 120px;
-            position: relative;
-            /* 确保子元素的定位基准 */
-        }
+    div img {
+        position: absolute;
+        /* 使用绝对定位确保图片在div的顶部 */
+        top: 0;
+        left: 0;
+        width: 85px;
+        height: 85px;
+    }
+</style>
 
-        div img {
-            position: absolute;
-            /* 使用绝对定位确保图片在div的顶部 */
-            top: 0;
-            left: 0;
-            width: 85px;
-            height: 85px;
-        }
-    </style>
-</head>
 
 <body>
     <!-- 超链接，点击图片时下载文件 -->
@@ -574,8 +567,6 @@
         </a>
     </div>
 </body>
-
-</html>
                 
             </div>
             <hr/>
