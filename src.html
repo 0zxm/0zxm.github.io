@@ -7,6 +7,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-color: #fefefe;
+        }
+
+        .w {
+            /* display: flex;自动检测高度*/
+            display: flex;
+            margin: 20px auto;
+            width: 900px;
+            padding: 10px 10px;
+            border-radius: 15px;
+            /* 添加盒子阴影 */
+            box-shadow: 0 0 10px #7693d0;
+
+        }
+
+        a:hover {
+            color: #2eb461;
+            /* 鼠标悬停时样式 */
+            cursor: pointer;
+        }
+
         a {
             display: inline-block;
             /* 确保a标签占满父元素的宽度 */
@@ -22,8 +49,11 @@
         }
 
         div {
+            /* 设置失败,float: left;和display: inline-block;冲突 */
+            /* float: left; */
             display: inline-block;
-            width: 125px;
+            margin: 0 10px;
+            width: 130px;
             height: 120px;
             position: relative;
             /* 确保子元素的定位基准 */
@@ -37,40 +67,68 @@
             width: 85px;
             height: 85px;
         }
+
+        .home {
+            position: fixed;
+            right: 50px;
+            bottom: 50px;
+            width: 70px;
+            height: 71px;
+            border-radius: 50%;
+            background-color: #76d09f;
+        }
+
+        .home img {
+            width: 100%;
+            height: 100%;
+        }
     </style>
 
 
 </head><body>
-    <!-- 超链接，点击图片时下载文件 -->
-    <div class="src">
-        <img src="https://0zxm.github.io/file_img.jpg" alt="《概率统计》速成课配套电子讲义.zip">
-        <a href="http:/0zxm.github.io/PDFs/《概率统计》速成课配套电子讲义.zip" download="《概率统计》速成课配套电子讲义.zip">《概率统计》速成课配套电子讲义.zip
-        </a>
+    <!-- 版心 -->
+    <div class="w">
+        <!-- 超链接，点击图片时下载文件 -->
+        <div class="src">
+            <img src="https://0zxm.github.io/file_img.jpg" alt="《概率统计》速成课配套电子讲义.zip">
+            <a href="http:/0zxm.github.io/PDFs/《概率统计》速成课配套电子讲义.zip" download="《概率统计》速成课配套电子讲义.zip">《概率统计》速成课配套电子讲义.zip
+            </a>
+        </div>
+
+        <div class="src">
+            <img src="https://0zxm.github.io/file_img.jpg" alt="数据库系统概论.zip">
+            <a href="http:/0zxm.github.io/PDFs/数据库系统概论.zip" download="数据库系统概论.zip">
+                数据库系统概论.zip
+            </a>
+        </div>
+        <div class="src">
+            <img src="https://0zxm.github.io/file_img.jpg" alt="操作系统设计与实现.zip">
+            <a href="http:/0zxm.github.io/PDFs/操作系统设计与实现.zip" download="操作系统设计与实现.zip">
+                操作系统设计与实现.zip
+            </a>
+        </div>
+        <div class="src">
+            <img src="https://0zxm.github.io/file_img.jpg" alt="爬虫代码.zip">
+            <a href="http:/0zxm.github.io/PDFs/爬虫代码.zip" download="爬虫代码.zip">
+                爬虫代码.zip
+            </a>
+        </div>
+        <div class="src">
+            <img src="https://0zxm.github.io/file_img.jpg" alt="Qt教程.zip">
+            <a href="http:/0zxm.github.io/PDFs/Qt教程.zip" download="Qt教程.zip">
+                Qt教程.zip
+            </a>
+        </div>
+        <div class="src">
+            <img src="https://0zxm.github.io/file_img.jpg" alt="Qt教程.zip">
+            <a href="http:/0zxm.github.io/PDFs/Qt教程.zip" download="Qt教程.zip">
+                Qt教程.zip
+            </a>
+        </div>
     </div>
 
-    <div class="src">
-        <img src="https://0zxm.github.io/file_img.jpg" alt="数据库系统概论.zip">
-        <a href="http:/0zxm.github.io/PDFs/数据库系统概论.zip" download="数据库系统概论.zip">
-            数据库系统概论.zip
-        </a>
-    </div>
-    <div class="src">
-        <img src="https://0zxm.github.io/file_img.jpg" alt="操作系统设计与实现.zip">
-        <a href="http:/0zxm.github.io/PDFs/操作系统设计与实现.zip" download="操作系统设计与实现.zip">
-            操作系统设计与实现.zip
-        </a>
-    </div>
-    <div class="src">
-        <img src="https://0zxm.github.io/file_img.jpg" alt="爬虫代码.zip">
-        <a href="http:/0zxm.github.io/PDFs/爬虫代码.zip" download="爬虫代码.zip">
-            爬虫代码.zip
-        </a>
-    </div>
-    <div class="src">
-        <img src="https://0zxm.github.io/file_img.jpg" alt="Qt教程.zip">
-        <a href="http:/0zxm.github.io/PDFs/Qt教程.zip" download="Qt教程.zip">
-            Qt教程.zip
-        </a>
+    <div class="home">
+        <img src="/src.htm/home.png" alt="主页">
     </div>
 </body>
 
