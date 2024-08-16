@@ -28,6 +28,22 @@
 
         }
 
+        .header {
+            margin: 20px auto;
+            width: 1200px;
+            height: auto;
+            background-color: pink;
+            border-radius: 10px;
+        }
+
+        h1,
+        h3 {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: cadetblue;
+        }
+
         a:hover {
             color: #2eb461;
             /* 鼠标悬停时样式 */
@@ -86,6 +102,11 @@
 
 
 </head><body>
+    <div class="header">
+        <h1>这是所有文章中涉及的资源</h1>
+        <h3>包括但不限于：PDF、PPT、Word、Excel、图片、视频、音频、代码等</h3>
+    </div>
+
     <!-- 版心 -->
     <div class="w">
         <!-- 超链接，点击图片时下载文件 -->
@@ -128,7 +149,7 @@
     </div>
 
     <div class="home">
-        <img src="https://0zxm.github.io/home.png" alt="主页">
+        <img src="https://0zxm.github.io/home.png" alt="主页" onclick="window.location.href='http://0zxm.github.io/'">
     </div>
 </body>
 
