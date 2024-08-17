@@ -10,7 +10,7 @@ body {
 .w {
   /* display: flex;自动检测高度*/
   display: flex;
-  margin: 20px auto;
+  margin: 100px auto;
   width: 900px;
   height: max-content;
   padding: 10px 10px;
@@ -72,8 +72,20 @@ a {
   border-radius: 10px;
   z-index: 3;
 }
+.header .logo {
+  margin-top: 10px;
+  margin-left: 10px;
+  display: block;
+  width: 68px;
+  height: 68px;
+  float: left;
+}
+.header .logo img {
+  width: 68px;
+  height: 68px;
+}
 
-div img {
+.src img {
   position: absolute;
   /* 使用绝对定位确保图片在div的顶部 */
   top: 0;
