@@ -478,14 +478,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    18.6k
+                    19.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    73 分
+                    77 分
                 </div>
                 
 
@@ -2904,6 +2904,52 @@
 <p>把中文字体的名称用相应的 Unicode 编码来代替，这样就可以有效的避免浏览器解释 CSS 代码时候出现乱码的问题。</p>
 <p>比如：</p>
 <p>黑体 \9ED1\4F53<br>宋体 \5B8B\4F53<br>微软雅黑 \5FAE\8F6F\96C5\9ED1</p>
+<h2 id="名词解析概念"><a href="#名词解析概念" class="headerlink" title="名词解析概念"></a>名词解析概念</h2><h3 id="包含块"><a href="#包含块" class="headerlink" title="包含块"></a>包含块</h3><p><strong>包含块（containing block）</strong>是指一个元素生成它的子元素的区域。</p>
+<p>包含块的位置和大小由以下因素决定：</p>
+<ol>
+<li>元素的 position 值</li>
+<li>元素的 float 值</li>
+<li>元素的 display 值</li>
+<li>元素的 direction 值</li>
+<li>元素的 overflow 值</li>
+</ol>
+<p>包含块是一个矩形区域，通常由以下几种情况决定：</p>
+<p>静态位置和相对定位的元素： 对于静态位置（static）和相对定位（relative）的元素，其包含块通常是最近的块级祖先元素的内容框（content box）。</p>
+<p>绝对定位的元素： 对于绝对定位（absolute）的元素，其包含块是最近的定位（position 属性值不是 static）祖先元素的 padding box。如果没有这样的祖先元素，则包含块是初始包含块（通常是视口）。</p>
+<p>固定定位的元素： 对于固定定位（fixed）的元素，其包含块是视口（viewport）。</p>
+<h3 id="width-100-属性"><a href="#width-100-属性" class="headerlink" title="width:100%;属性"></a>width:100%;属性</h3><p>在CSS中，<code>width: 100%;</code>确实是指元素的宽度为其包含块（containing block）宽度的100%</p>
+<p>包括其他可以设置百分比的属性,例如<code>height</code>,<code>margin</code>,<code>padding</code></p>
+<h3 id="视口"><a href="#视口" class="headerlink" title="视口"></a>视口</h3><p>视口是什么?</p>
+<p><code>视口（Viewport）</code>是指用户在浏览器中可以看到的网页区域。它决定了网页内容在屏幕上的显示范围和大小。视口的概念在不同的上下文中有不同的含义，主要包括以下几种：</p>
+<h4 id="1-浏览器视口"><a href="#1-浏览器视口" class="headerlink" title="1. 浏览器视口"></a>1. 浏览器视口</h4><p>浏览器视口通常指的是浏览器窗口中显示网页内容的区域，不包括浏览器的地址栏、工具栏和滚动条等部分。浏览器视口的大小可以通过JavaScript的<code>window.innerWidth</code>和<code>window.innerHeight</code>属性获取。</p>
+<h4 id="2-布局视口"><a href="#2-布局视口" class="headerlink" title="2. 布局视口"></a>2. 布局视口</h4><p>布局视口（Layout Viewport）是指网页布局所基于的区域。在桌面浏览器中，布局视口通常与浏览器视口一致。但在移动设备上，布局视口可能会比实际的浏览器视口大，以便在较小的屏幕上显示整个网页内容。布局视口的大小可以通过CSS的<code>width</code>和<code>height</code>属性来控制。</p>
+<h4 id="3-视觉视口"><a href="#3-视觉视口" class="headerlink" title="3. 视觉视口"></a>3. 视觉视口</h4><p>视觉视口（Visual Viewport）是指用户当前可见的网页区域。在移动设备上，当用户缩放页面时，视觉视口的大小会发生变化，但布局视口的大小保持不变。视觉视口的大小可以通过JavaScript的<code>window.visualViewport</code>对象获取。</p>
+<h4 id="4-初始包含块"><a href="#4-初始包含块" class="headerlink" title="4. 初始包含块"></a>4. 初始包含块</h4><p>在CSS中，初始包含块（Initial Containing Block）是指根元素（<code>&lt;html&gt;</code>）的包含块。初始包含块的大小通常与视口一致，但在某些情况下（如使用<code>@viewport</code>规则），初始包含块的大小可能会发生变化。</p>
+<h3 id="视口元标签"><a href="#视口元标签" class="headerlink" title="视口元标签"></a>视口元标签</h3><p>为了优化移动设备上的网页显示效果，可以使用视口元标签（Viewport Meta Tag）来控制视口的大小和缩放行为。例如：</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这个元标签的含义是：</p>
+<ul>
+<li><code>width=device-width</code>：将布局视口的宽度设置为设备的宽度。</li>
+<li><code>initial-scale=1.0</code>：设置初始缩放比例为1.0，即不进行缩放。</li>
+</ul>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p>以下是一个简单的示例，展示了如何使用视口元标签来优化移动设备上的网页显示效果：</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>zh-CN<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>视口示例<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span> <span class="token property">height</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span> <span class="token property">background-color</span><span class="token punctuation">:</span> lightblue<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>
+        这个div的宽度是视口宽度的100%
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在这个示例中，<code>&lt;div&gt;</code>元素的宽度将始终等于视口的宽度，无论是在桌面浏览器还是在移动设备上。</p>
+<p>总结来说，视口是指用户在浏览器中可以看到的网页区域，包括浏览器视口、布局视口和视觉视口等概念。理解视口的概念有助于优化网页在不同设备上的显示效果。</p>
 
                 
             </div>
@@ -3417,7 +3463,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">162.9k</span>&nbsp;字
+                class="white-color">164k</span>&nbsp;字
             
             
             
