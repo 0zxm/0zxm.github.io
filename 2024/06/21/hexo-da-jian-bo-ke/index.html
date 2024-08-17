@@ -485,7 +485,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    12 分
+                    11 分
                 </div>
                 
 
@@ -688,13 +688,13 @@ ssh-keygen <span class="token parameter variable">-t</span> rsa <span class="tok
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> <span class="token parameter variable">-T</span> git@github.com
 <span class="token operator">></span> Hi USERNAME<span class="token operator">!</span> You<span class="token string">'ve successfully authenticated, but GitHub does not provide shell access.'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p>如果不行,尝试一下命令: ssh -T -p 443ssh:&#x2F;&#x2F;<a href="mailto:&#x67;&#x69;&#x74;&#64;&#x73;&#x73;&#x68;&#x2e;&#x67;&#x69;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;">&#x67;&#x69;&#x74;&#64;&#x73;&#x73;&#x68;&#x2e;&#x67;&#x69;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;</a>,这个可以按照提示建立许可连接</p>
+<p>如果不行,尝试一下命令: ssh -T -p 443ssh:&#x2F;&#x2F;<a href="mailto:&#x67;&#x69;&#116;&#64;&#115;&#115;&#104;&#x2e;&#103;&#x69;&#116;&#x68;&#117;&#x62;&#x2e;&#99;&#111;&#109;">&#x67;&#x69;&#116;&#64;&#115;&#115;&#104;&#x2e;&#103;&#x69;&#116;&#x68;&#117;&#x62;&#x2e;&#99;&#111;&#109;</a>,这个可以按照提示建立许可连接</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> <span class="token parameter variable">-T</span> <span class="token parameter variable">-p</span> <span class="token number">443</span> git@ssh.github.com
 <span class="token operator">></span> Hi <span class="token string">'你的id'</span><span class="token operator">!</span><span class="token string">" You've successfully authenticated, but GitHub does not provide shell access."</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>如果你能在端口 443 上通过 SSH 连接到 <code>git@ssh.github.com</code>，则可覆盖你的 SSH 设置来强制与 GitHub.com 的任何连接均通过该服务器和端口运行。</p>
 <p>到此为止,问题解决得差不多了</p>
-<p>在输入命令 git clone ssh:&#x2F;&#x2F;<a href="mailto:&#x67;&#105;&#x74;&#64;&#115;&#115;&#104;&#x2e;&#x67;&#105;&#116;&#x68;&#117;&#98;&#46;&#x63;&#111;&#109;">&#x67;&#105;&#x74;&#64;&#115;&#115;&#104;&#x2e;&#x67;&#105;&#116;&#x68;&#117;&#98;&#46;&#x63;&#111;&#109;</a>:443&#x2F;0zxm&#x2F;0zxm.github.io 时就能够正常 clone 仓库, 但是每次都输入更长的 url 难免繁琐,所以可以在你生成密钥的文件夹内新建一个 config 文件,输入以下内容保存:</p>
+<p>在输入命令 git clone ssh:&#x2F;&#x2F;<a href="mailto:&#x67;&#x69;&#116;&#x40;&#x73;&#115;&#104;&#x2e;&#103;&#x69;&#116;&#x68;&#x75;&#x62;&#x2e;&#99;&#111;&#x6d;">&#x67;&#x69;&#116;&#x40;&#x73;&#115;&#104;&#x2e;&#103;&#x69;&#116;&#x68;&#x75;&#x62;&#x2e;&#99;&#111;&#x6d;</a>:443&#x2F;0zxm&#x2F;0zxm.github.io 时就能够正常 clone 仓库, 但是每次都输入更长的 url 难免繁琐,所以可以在你生成密钥的文件夹内新建一个 config 文件,输入以下内容保存:</p>
 <pre class="line-numbers language-text" data-language="text"><code class="language-text">Host github.com
  Hostname ssh.github.com
  Port 443
@@ -782,7 +782,6 @@ $ hexo d <span class="token parameter variable">-g</span><span aria-hidden="true
 <h3 id="静态页面-img-标签的-src-路径问题"><a href="#静态页面-img-标签的-src-路径问题" class="headerlink" title="静态页面 img 标签的 src 路径问题"></a>静态页面 img 标签的 src 路径问题</h3><p>静态页面中,使用了 img 标签的 src 路径,如果是相对路径,那么路径将会被解析错误<br><code>./favicon.png</code>变成<code>src.htm/favicon.png</code><br>导致图片加载不出来,解决方法:</p>
 <ol>
 <li>使用绝对路径,例如: <code>&lt;img src=&quot;https://0zxm.github.io/favicon.png&quot; alt=&quot;logo&quot;&gt;</code></li>
-<li>把图片放入 public 文件夹中的静态 web 资源文件夹中，例如<code>medias</code>,然后使用相对路径,例如: <code>&lt;img src=&quot;/medias/favicon.png&quot; alt=&quot;logo&quot;&gt;</code></li>
 </ol>
 
                 
@@ -1302,7 +1301,7 @@ $ hexo d <span class="token parameter variable">-g</span><span aria-hidden="true
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">164k</span>&nbsp;字
+                class="white-color">163.9k</span>&nbsp;字
             
             
             
