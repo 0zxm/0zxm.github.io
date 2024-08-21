@@ -25,6 +25,7 @@ h1,
 h3 {
   text-align: center;
   margin-top: 10px;
+  margin-bottom: 10px;
   color: rgb(246, 251, 251);
 }
 
@@ -50,13 +51,21 @@ a {
 
 .w div {
   /* 设置失败,float: left;和display: inline-block;冲突 */
-  /* float: left; */
   display: inline-block;
   margin: 0 10px;
   width: 130px;
   height: 120px;
+  border-radius: 10px;
   position: relative;
   /* 确保子元素的定位基准 */
+
+  transition: all 0.3s ease;
+}
+.w div:hover {
+  background-color: rgb(189, 186, 187);
+  transform: scale(1.1);
+  /* 鼠标悬停时放大 */
+  cursor: pointer;
 }
 
 .header {
@@ -98,11 +107,11 @@ a {
   position: fixed;
   right: 50px;
   bottom: 50px;
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   background-color: #76d09f;
-  box-shadow: -1px 0 10px #2f3230;
+  box-shadow: -1px 0 10px #535353;
 }
 
 .home img {
