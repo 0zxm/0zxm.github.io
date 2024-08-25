@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="JavaScript, 0zxm">
+    <meta name="keywords" content="JavaScript基础和pythonWeb开发, 0zxm">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>JavaScript | 0zxm</title>
+    <title>JavaScript基础和pythonWeb开发 | 0zxm</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -323,12 +323,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">JavaScript</h1>
+                    <h1 class="description center-align post-title">JavaScript基础和pythonWeb开发</h1>
                 </div>
             </div>
         </div>
@@ -1329,7 +1329,7 @@ alert(oPerson.age);<span aria-hidden="true" class="line-numbers-rows"><span></sp
 <li><p><strong>ajax</strong>可以发送<strong>http请求</strong>当获取到后台数据的时候更新页面显示数据实现<strong>局部刷新</strong>，在这里大家只需要记住当前端页面想和后台服务器进行数据交互就可以使用ajax了</p>
 </li>
 </ul>
-<p><img src="/2024/07/19/javascript/ajax.jpg" alt="image-20240727191105742"></p>
+<p><img src="/2024/07/19/javascript-ji-chu-he-pythonweb-kai-fa/ajax.jpg" alt="image-20240727191105742"></p>
 <p><strong>说明:</strong><br>对于浏览器来说唯一需要改变的数据只有天气数据,也就是<strong>局部数据的更新</strong></p>
 <h5 id="ajax的使用"><a href="#ajax的使用" class="headerlink" title="ajax的使用"></a>ajax的使用</h5><ul>
 <li><p><strong>ajax的实现</strong></p>
@@ -1413,10 +1413,10 @@ alert(oPerson.age);<span aria-hidden="true" class="line-numbers-rows"><span></sp
 <p><strong>web框架:</strong><br>使用web框架专门负责处理用户的动态资源请求,这个web框架其实就是一个为web服务器提供服务的<strong>应用程序</strong>，简称web框架</p>
 <h4 id="静态动态资源"><a href="#静态动态资源" class="headerlink" title="静态动态资源"></a>静态动态资源</h4><p><strong>静态资源:</strong></p>
 <p>不需要经常变化的资源，这种资源web服务器可以提前准备好，比如: png&#x2F;jpg&#x2F;css&#x2F;js等文件<br><strong>动态资源:</strong><br>和静态资源相反,这种资源会经常变化，比如:我们在京东浏览商品时经常会根据条件进行筛选选择不同条件,浏览的商品就不同，这种资源web服务器无法提前准备好，需要web框架来帮web服务器进行准备，在这里web服务器可以把.html的资源请求认为是动态资源请求交由web框架进行处理</p>
-<h4 id="web框架"><a href="#web框架" class="headerlink" title="web框架"></a>web框架</h4><p><img src="/2024/07/19/javascript/web%E6%A1%86%E6%9E%B6.jpg" alt="image-20240727204621413"></p>
+<h4 id="web框架"><a href="#web框架" class="headerlink" title="web框架"></a>web框架</h4><p><img src="/2024/07/19/javascript-ji-chu-he-pythonweb-kai-fa/web%E6%A1%86%E6%9E%B6.jpg" alt="image-20240727204621413"></p>
 <h4 id="WSGI协议"><a href="#WSGI协议" class="headerlink" title="WSGI协议"></a>WSGI协议</h4><p>web服务器和web框架之间进行协同工作的一个规则</p>
-<p><img src="/2024/07/19/javascript/wsgi%E5%8D%8F%E8%AE%AE.jpg" alt="image-20240727205217349"></p>
-<h3 id="框架程序开发"><a href="#框架程序开发" class="headerlink" title="框架程序开发"></a>框架程序开发</h3><p><img src="/2024/07/19/javascript/JavaScript%5C%E6%88%90%E6%9E%9C%E5%B1%95%E7%A4%BA.png" alt="alt text"><br><strong>框架职责介绍:</strong><br>接收web服务器的动态资源请求，给web服务器提供处理动态资源请求的服务</p>
+<p><img src="/2024/07/19/javascript-ji-chu-he-pythonweb-kai-fa/wsgi%E5%8D%8F%E8%AE%AE.jpg" alt="image-20240727205217349"></p>
+<h3 id="框架程序开发"><a href="#框架程序开发" class="headerlink" title="框架程序开发"></a>框架程序开发</h3><p><img src="/2024/07/19/javascript-ji-chu-he-pythonweb-kai-fa/JavaScript%5C%E6%88%90%E6%9E%9C%E5%B1%95%E7%A4%BA.png" alt="alt text"><br><strong>框架职责介绍:</strong><br>接收web服务器的动态资源请求，给web服务器提供处理动态资源请求的服务</p>
 <p><strong>服务器中动态资源判断:</strong><br>根据<strong>请求资源路径的后缀名</strong>进行判断<br>①请求资源路径的后缀名是.html则是动态资源请求,让web框架程序进行处理<br>②否则是静态资源请求，让web服务器程序进行处理</p>
 <p><strong>web框架:</strong><br>③创建web框架程序<br>④接收web服务器的动态资源请求<br>⑤处理web服务器的动态资源请求并把处理结果返回给web服务器⑥web服务器把处理结果组装成响应报文发送给浏览器</p>
 
@@ -1445,7 +1445,7 @@ alert(oPerson.age);<span aria-hidden="true" class="line-numbers-rows"><span></sp
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://0zxm.github.io/2024/07/19/javascript/">https://0zxm.github.io/2024/07/19/javascript/</a>
+                    <a href="https://0zxm.github.io/2024/07/19/javascript-ji-chu-he-pythonweb-kai-fa/">https://0zxm.github.io/2024/07/19/javascript-ji-chu-he-pythonweb-kai-fa/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1956,7 +1956,7 @@ alert(oPerson.age);<span aria-hidden="true" class="line-numbers-rows"><span></sp
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">173.4k</span>&nbsp;字
+                class="white-color">173.9k</span>&nbsp;字
             
             
             
