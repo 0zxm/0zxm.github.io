@@ -1,0 +1,1796 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="git和ssh的基础知识, 0zxm">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>git和ssh的基础知识 | 0zxm</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">0zxm</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">0zxm</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">git和ssh的基础知识</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/git/">
+                                <span class="chip bg-color">git</span>
+                            </a>
+                        
+                            <a href="/tags/ssh/">
+                                <span class="chip bg-color">ssh</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/" class="post-category">
+                                理论知识
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2024-08-26
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    8.5k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    31 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+        <!-- 代码块折行 -->
+        <style type="text/css">
+            code[class*="language-"], pre[class*="language-"] { white-space: pre-wrap !important; }
+        </style>
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h2><p><a target="_blank" rel="noopener" href="https://slides.tonycrane.cc/PracticalSkillsTutorial/2023-fall-ckc/lec2/#">PPT-lec2 - 2023 秋冬实用技能拾遗 (tonycrane.cc)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fw4m1C7Tq/">B 站视频</a></p>
+<h2 id="ChatGpt-对话"><a href="#ChatGpt-对话" class="headerlink" title="ChatGpt 对话"></a>ChatGpt 对话</h2><p>在命令行中提交代码，通常是使用 Git 命令进行操作。以下是提交代码的基本步骤：</p>
+<ol>
+<li><p>打开命令行终端（如 Git Bash、Terminal 等）。</p>
+</li>
+<li><p>进入你的代码仓库所在的目录，使用 <code>cd</code> 命令切换到对应的目录。</p>
+</li>
+<li><p>使用 <code>git status</code> 命令查看当前代码的状态，确保没有未提交的更改。</p>
+</li>
+<li><p>如果有未提交的更改，使用 <code>git add .</code> 命令将所有更改添加到暂存区。</p>
+</li>
+<li><p>使用 <code>git commit -m &quot;commit message&quot;</code> 命令提交代码，其中 <code>&quot;commit message&quot;</code> 是你的提交信息，描述本次提交的内容。</p>
+</li>
+<li><p>最后使用 <code>git push</code> 指令将本地提交推送到远程仓库。</p>
+</li>
+</ol>
+<p>以上是提交代码的基本步骤，在实际操作中可能会根据具体情况有所不同。如果在提交代码过程中遇到问题，可以查看 Git 的官方文档或者在命令行中使用 <code>git help</code> 命令查看帮助信息。</p>
+<p>这个错误提示表明当前分支(main)没有与远程仓库关联的上游分支。你可以按照提示中的建议使用 <code>git push --set-upstream origin main</code> 命令将当前分支与远程仓库的主分支关联起来。这样一旦关联后，你就可以使用 <code>git push</code> 命令来推送代码到远程仓库。</p>
+<p>具体步骤如下：</p>
+<ol>
+<li><p>运行命令 <code>git push --set-upstream origin main</code>，这会将当前分支(main)与远程仓库的主分支关联。</p>
+</li>
+<li><p>接下来，你可以使用 <code>git push</code> 命令来推送代码到远程仓库，而不需要再次指定远程分支。</p>
+</li>
+</ol>
+<p>如果你希望将当前分支(main)作为默认推送的分支，可以在 Git 配置中设置 <code>push.default</code> 选项。可以通过运行 <code>git config --global push.default current</code> 来设置当前分支为默认推送分支。</p>
+<p>PS D:\MyCode\VSCode&gt; git remote -v master <a target="_blank" rel="noopener" href="https://github.com/0zxm/VScode.git">https://github.com/0zxm/VScode.git</a> (fetch) master <a target="_blank" rel="noopener" href="https://github.com/0zxm/VScode.git">https://github.com/0zxm/VScode.git</a> (push)</p>
+<p>GPT-3.5 Turbo</p>
+<p>根据你提供的输出结果，可以看到你的本地 Git 仓库已经正确地与远程仓库关联。远程仓库的名称是 <code>master</code>，远程仓库的 URL 是 <code>https://github.com/0zxm/VScode.git</code>，并且已经设置了 fetch 和 push 的地址。</p>
+<p>既然已经正确地设置了远程仓库，但是在执行 <code>git push</code> 命令时仍然出现了错误，可能是由于其他原因导致的。你可以尝试以下几种方法来解决问题：</p>
+<ol>
+<li>确保你有写入权限：请确保你对远程仓库有写入权限，如果是一个私有仓库，可能需要提供认证信息。</li>
+<li>检查网络连接：确保你的网络连接正常，能够访问远程仓库。</li>
+<li>检查分支名称：确保你当前在正确的分支上，并且使用正确的分支名称进行推送。</li>
+<li>尝试强制推送：如果你确定你要覆盖远程仓库的内容，可以尝试使用 <code>git push -f</code> 命令来强制推送。</li>
+</ol>
+<p>如果以上方法仍然无法解决问题，可能需要更详细地检查错误信息或者尝试其他方法。你也可以提供更多关于错误的详细信息，以便更好地帮助你解决问题。</p>
+<p>You</p>
+<p>怎么在仓库创建分支</p>
+<p>GPT-3.5 Turbo</p>
+<p>要在 Git 仓库中创建一个新的分支，可以按照以下步骤进行：</p>
+<ol>
+<li><p>确保你已经在本地 Git 仓库的主分支（通常是 <code>master</code> 或 <code>main</code>）上，并且工作目录是干净的（没有未提交的更改）。</p>
+</li>
+<li><p>打开命令行或终端，并切换到你的本地 Git 仓库目录。</p>
+</li>
+<li><p>使用以下命令创建并切换到新的分支：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout <span class="token parameter variable">-b</span> <span class="token operator">&lt;</span>branch_name<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这个命令会创建一个名为 <code>&lt;branch_name&gt;</code> 的新分支，并将你的工作目录切换到这个新分支上。</p>
+</li>
+<li><p>如果你想将新分支推送到远程仓库，可以使用以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push origin <span class="token operator">&lt;</span>branch_name<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这个命令会将新分支推送到远程仓库中，并在远程仓库上创建一个同名的分支。</p>
+</li>
+<li><p>如果你只是想在本地创建一个新分支，而不需要将其推送到远程仓库，可以简单地使用以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> branch <span class="token operator">&lt;</span>branch_name<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这个命令会在本地创建一个名为 <code>&lt;branch_name&gt;</code> 的新分支，但不会切换到这个分支上。</p>
+</li>
+</ol>
+<p>通过以上步骤，你就可以在 Git 仓库中成功地创建一个新的分支了。记得在新分支上进行开发或修改，然后根据需要将其合并回主分支或其他分支。</p>
+<p>You</p>
+<p>fatal: unable to access ‘<a target="_blank" rel="noopener" href="https://github.com/0zxm/VScode.git/">https://github.com/0zxm/VScode.git/</a>‘: HTTP&#x2F;2 stream 1 was not closed cleanly before end of the underlying stream</p>
+<p>GPT-3.5 Turbo</p>
+<p>这个错误提示表明在 Git 操作中出现了 HTTP&#x2F;2 流未正确关闭的问题。这可能是由于网络连接或 Git 配置问题引起的。以下是一些可能的解决方法：</p>
+<ol>
+<li><strong>尝试使用 SSH 协议</strong>： 有时候使用 SSH 协议而不是 HTTPS 协议可以解决一些网络相关的问题。你可以将远程仓库的 URL 从 HTTPS 切换为 SSH，然后尝试执行 Git 操作。</li>
+<li><strong>更新 Git 版本</strong>： 有时候旧版本的 Git 可能会出现一些问题，尝试更新到最新版本的 Git 可能会解决一些问题。</li>
+<li><strong>检查网络连接</strong>： 确保你的网络连接稳定，尝试使用其他网络环境或者重启网络设备。</li>
+<li><strong>检查代理设置</strong>： 如果你正在使用代理服务器访问网络，可能会导致一些问题，尝试检查代理设置或者暂时禁用代理。</li>
+<li><strong>尝试清除 Git 缓存</strong>： 有时候 Git 缓存中的一些问题可能导致错误，尝试清除 Git 的缓存并重新执行 Git 操作。</li>
+<li><strong>联系 GitHub 支持</strong>： 如果以上方法都无法解决问题，可能需要联系 GitHub 的支持团队寻求帮助，他们可能会提供更详细的解决方案。</li>
+</ol>
+<p>尝试以上方法中的一个或多个，看看是否能够解决你遇到的问题。如果问题仍然存在，请提供更多详细信息，以便更好地帮助你解决。</p>
+<p>You</p>
+<p>更新 Git 版本： 有时候旧版本的 Git 可能会出现一些问题，尝试更新到最新版本的 Git 可能会解决一些问题和尝试清除 Git 缓存： 有时候 Git 缓存中的一些问题可能导致错误，尝试清除 Git 的缓存并重新执行 Git 操作。 具体是怎么样的</p>
+<p>GPT-3.5 Turbo</p>
+<p>更新 Git 版本和清除 Git 缓存是两个独立的操作。以下是针对这两个操作的具体步骤：</p>
+<h3 id="更新-Git-版本："><a href="#更新-Git-版本：" class="headerlink" title="更新 Git 版本："></a>更新 Git 版本：</h3><ol>
+<li><p><strong>检查当前 Git 版本</strong>： 在命令行中输入以下命令可以查看当前安装的 Git 版本：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token parameter variable">--version</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>下载最新版本的 Git</strong>： 访问 Git 官方网站（<a target="_blank" rel="noopener" href="https://git-scm.com/%EF%BC%89%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC%E7%9A%84">https://git-scm.com/）下载最新版本的</a> Git 安装程序，并按照安装指南进行安装。</p>
+</li>
+<li><p><strong>更新 Git 版本</strong>： 安装完成后，可以再次输入以下命令检查 Git 版本，确认已成功更新：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token parameter variable">--version</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ol>
+<h3 id="清除-Git-缓存："><a href="#清除-Git-缓存：" class="headerlink" title="清除 Git 缓存："></a>清除 Git 缓存：</h3><ol>
+<li><p><strong>清除 Git 缓存</strong>： 在命令行中输入以下命令可以清除 Git 的缓存：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clean <span class="token parameter variable">-xdf</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这个命令会清除未跟踪文件和目录，<code>-x</code> 选项表示同时删除忽略的文件，<code>-d</code> 选项表示同时删除未跟踪的目录，<code>-f</code> 选项表示强制执行清除操作。</p>
+</li>
+<li><p><strong>重新执行 Git 操作</strong>： 清除完 Git 缓存后，可以尝试重新执行之前的 Git 操作，看看问题是否得到解决。</p>
+</li>
+</ol>
+<p>通过以上步骤，你可以更新 Git 版本和清除 Git 缓存，希望能够帮助你解决遇到的问题。如果问题仍然存在或者有任何疑问，请随时告诉我。</p>
+<p>You</p>
+<p>fatal: not a git repository (or any of the parent directories): .git</p>
+<p>GPT-3.5 Turbo</p>
+<p>这个错误提示表明当前目录或其父目录中不存在 Git 仓库。Git 需要在一个包含 <code>.git</code> 目录的目录中才能执行 Git 命令。以下是一些可能导致这个错误的原因以及解决方法：</p>
+<ol>
+<li><strong>检查当前目录</strong>： 确保你在包含 Git 仓库的目录中执行 Git 命令。你可以使用 <code>ls -a</code> 命令查看当前目录中是否包含 <code>.git</code> 目录。</li>
+<li><strong>检查父目录</strong>： 如果当前目录中不包含 <code>.git</code> 目录，可以尝试进入父目录查看是否存在 Git 仓库。你可以使用 <code>cd ..</code> 命令进入父目录，然后再次执行 Git 命令。</li>
+<li><strong>初始化 Git 仓库</strong>： 如果当前目录或其父目录中都没有 Git 仓库，你可以使用 <code>git init</code> 命令在当前目录初始化一个新的 Git 仓库。这将创建一个 <code>.git</code> 目录并将当前目录标记为 Git 仓库。</li>
+<li><strong>查找正确的 Git 仓库</strong>： 如果你是在错误的目录中执行 Git 命令，可以使用 <code>cd</code> 命令切换到包含正确 Git 仓库的目录，然后再次执行 Git 命令。</li>
+</ol>
+<p>请根据以上步骤检查当前目录和父目录中是否存在 Git 仓库，并确保在正确的目录中执行 Git 命令。如果问题仍然存在或者有任何疑问，请随时告诉我。</p>
+<p>git 怎么添加 ignore 文件</p>
+<p>GPT-3.5 Turbo</p>
+<p>要添加一个 ignore 文件，可以按照以下步骤操作：</p>
+<ol>
+<li>在项目的根目录下创建一个名为<code>.gitignore</code>的文件。</li>
+<li>打开<code>.gitignore</code>文件，并在其中列出你希望 Git 忽略的文件或文件夹，每一行代表一个文件或文件夹。</li>
+<li>保存<code>.gitignore</code>文件。</li>
+<li>将<code>.gitignore</code>文件添加到 Git 仓库中，使用以下命令：</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">add</span> .gitignore<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol>
+<li>提交更改到 Git 仓库，使用以下命令：</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Add .gitignore file"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这样，Git 就会开始忽略在<code>.gitignore</code>文件中列出的文件或文件夹，不会将它们包含在版本控制中。</p>
+<p>Ask GPT-4 Turbo</p>
+<p>在你提供的输出中，<code>git commit</code> 命令提示你输入一个提交信息来描述你所做的更改。同时，它也显示了你当前所在的分支（<code>main</code>）以及该分支与远程仓库（<code>origin/main</code>）的同步状态。此外，它还列出了即将被提交的更改，这些更改包括一个被修改的文件，但该文件的名字看起来像是由于编码问题而出现了乱码。</p>
+<p>文件名中出现的乱码可能是由于该文件名包含了一些非 ASCII 字符，而这些字符在你的终端或命令行界面中没有被正确显示。这通常是由于字符编码设置不匹配或不支持某些字符集造成的。</p>
+<p>为了解决这个问题，你可以尝试以下几个步骤：</p>
+<ol>
+<li><strong>检查文件名的实际字符</strong>：首先，确认文件名的实际字符是什么。你可以使用文件浏览器或图形界面工具来查看文件名，或者使用支持相应字符编码的终端来列出文件。</li>
+<li><strong>修改文件名</strong>：如果可能的话，将文件名修改为只包含 ASCII 字符或你的系统支持的字符集。这可以避免在命令行界面中出现乱码。</li>
+<li><strong>设置正确的字符编码</strong>：确保你的终端或命令行界面使用了正确的字符编码。在 Linux 和 macOS 上，通常是 UTF-8。在 Windows 上，可能是 GBK 或其他编码，但 UTF-8 也是一个常见的选择。你可以检查并修改终端的字符编码设置。</li>
+<li><strong>使用 Git 的配置</strong>：Git 也允许你设置用于文件名和日志消息的字符编码。你可以通过运行以下命令来设置 Git 的字符编码为 UTF-8（或其他你选择的编码）：</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> i18n.commitencoding utf-8
+<span class="token function">git</span> config <span class="token parameter variable">--global</span> i18n.logoutputencoding utf-8<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>这些设置会影响 Git 如何解释和显示文件名和提交信息。</p>
+<ol start="5">
+<li><strong>重新提交</strong>：在解决了文件名乱码问题后，你可以再次运行<code>git commit</code>命令并输入一个有意义的提交信息来完成提交。</li>
+</ol>
+<p>请注意，乱码问题可能还涉及其他因素，如操作系统的语言设置、终端模拟器的设置等。如果上述步骤没有解决问题，你可能需要进一步检查这些设置或寻求更具体的帮助。</p>
+<p>要彻底删除一个分支，你需要执行两个步骤：首先删除本地分支，然后删除远程分支。</p>
+<p>删除本地分支的命令是 <code>git branch -d &lt;local_branch&gt;</code>，其中 <local_branch> 是你要删除的本地分支的名称。请注意，如果分支包含未合并的更改和未推送的提交，那么这个命令可能无法删除分支。在这种情况下，你可以使用 <code>git branch -D &lt;local_branch&gt;</code> 命令来强制删除分支。</local_branch></p>
+<p>删除远程分支的命令是 <code>git push origin --delete &lt;remote_branch&gt;</code>，其中 <remote_branch> 是你要删除的远程分支的名称。这个命令会将删除操作推送到远程仓库，从而彻底删除分支。</remote_branch></p>
+<p>如果你想要一次性删除本地和远程分支，可以使用 <code>git push origin --delete &lt;local_branch&gt;</code> 命令。这个命令会先删除本地分支，然后将删除操作推送到远程仓库，从而彻底删除分支。</p>
+<p>请注意，在删除分支之前，最好先确认分支是否已经被合并，并且确保没有其他人在使用该分支。否则，删除分支可能会导致数据丢失或者影响其他人的工作。</p>
+<h2 id="SSH-安全外壳协议"><a href="#SSH-安全外壳协议" class="headerlink" title="SSH 安全外壳协议"></a>SSH 安全外壳协议</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>SSH 全称 <code>secure shell</code>，安全外壳协议（安全的 shell），是一个计算机网络协议（默认端口号为 22）。通过 ssh 协议可以在客户端安全（提供身份认证、信息加密）的远程连接<strong>Linux 服务器或其他设备。</strong></p>
+<p>使用广泛的 Xshell 软件就是基于 SSH 协议远程连接。</p>
+<ul>
+<li>SSH 远程连接之后能干什么？<ul>
+<li>SSH 远程连接之后，就可以像操作本地的机器一样操作远程机器。当需要操控的机器不在本地时就可以使用 ssh 协议远程连接操控。</li>
+</ul>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_51720581/article/details/131796669">相关链接 blog</a></p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p><code>ssh-keygen -t rsa -b 4096 -C &quot;密钥名称&quot;</code></p>
+<ul>
+<li><code>-t rsa</code>：指定生成 RSA 类型的密钥。</li>
+<li><code>-b 4096</code>：指定密钥的位数为 4096 位，这是 RSA 密钥的常用长度，提供较高的安全性。</li>
+<li><code>-C &quot;密钥名称&quot;</code>：为密钥添加一个注释（通常是你的电子邮件地址或其他标识符），方便识别密钥。</li>
+</ul>
+<p>完整的命令示例如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen <span class="token parameter variable">-t</span> rsa <span class="token parameter variable">-b</span> <span class="token number">4096</span> <span class="token parameter variable">-C</span> <span class="token string">"your_email@example.com"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>执行这个命令后，<code>ssh-keygen</code> 会提示你输入保存密钥的文件路径和 passphrase（可选）。按照提示操作即可生成 SSH 密钥对。</p>
+<p>生成的密钥对通常会保存在 <code>~/.ssh</code> 目录下，默认情况下，公钥文件名为 <code>id_rsa.pub</code>，私钥文件名为 <code>id_rsa</code>。</p>
+<p>如果你需要将生成的公钥添加到 GitHub 或其他 Git 托管服务，可以使用以下命令查看公钥内容：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> ~/.ssh/id_rsa.pub<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>然后将输出的内容复制到 Git 托管服务的 SSH 密钥设置页面中。</p>
+<ol>
+<li><p><strong>将公钥添加到 Git 托管服务</strong>：</p>
+<ul>
+<li><strong>GitHub</strong>：<ol>
+<li>登录 GitHub。</li>
+<li>点击右上角的头像，选择“Settings”。</li>
+<li>在左侧菜单中选择“SSH and GPG keys”。</li>
+<li>点击“New SSH key”按钮。</li>
+<li>将公钥内容粘贴到“Key”字段中，并为密钥添加一个标题（如“My Laptop”）。</li>
+<li>点击“Add SSH key”按钮。</li>
+</ol>
+</li>
+<li><strong>GitLab</strong>：<ol>
+<li>登录 GitLab。</li>
+<li>点击右上角的头像，选择“Settings”。</li>
+<li>在左侧菜单中选择“SSH Keys”。</li>
+<li>将公钥内容粘贴到“Key”字段中，并为密钥添加一个标题（如“My Laptop”）。</li>
+<li>点击“Add key”按钮。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>配置本地 Git 仓库使用 SSH URL</strong>： 确保你的本地 Git 仓库配置了使用 SSH URL 进行远程操作。例如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote set-url origin git@github.com:username/repo.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>测试 SSH 连接</strong>： 你可以使用以下命令测试 SSH 连接是否成功：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> <span class="token parameter variable">-T</span> git@github.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>如果连接成功，你会看到类似如下的输出：</p>
+<pre class="line-numbers language-none"><code class="language-none">Hi username! You&#39;ve successfully authenticated, but GitHub does not provide shell access.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ol>
+<h3 id="私钥"><a href="#私钥" class="headerlink" title="私钥"></a>私钥</h3><p>私钥（Private Key）在 SSH 密钥对中扮演着至关重要的角色。私钥是保密的，不应该与任何人共享。它的主要用途包括：</p>
+<ol>
+<li><strong>身份验证</strong>： 当你使用 SSH 连接到远程服务器或 Git 托管服务时，私钥用于验证你的身份。服务器会使用你的公钥（Public Key）来加密一条消息，然后只有拥有相应私钥的人才能解密并读取这条消息。这个过程称为“公钥加密”或“非对称加密”。</li>
+<li><strong>数字签名</strong>： 私钥还可以用于生成数字签名，以证明某个文件或消息确实是由你创建或发送的。数字签名可以防止篡改和伪造，确保数据的完整性和真实性。</li>
+<li><strong>安全通信</strong>： 在 SSH 会话中，私钥用于建立安全的加密通道，保护数据在传输过程中的机密性和完整性。</li>
+</ol>
+<p>以下是一些具体的应用场景：</p>
+<ul>
+<li><p><strong>远程登录</strong>： 当你使用 <code>ssh user@host</code> 命令连接到远程服务器时，SSH 客户端会使用你的私钥进行身份验证。如果服务器上配置了你的公钥，并且和你本机上的私钥匹配，你就可以成功登录。</p>
+</li>
+<li><p><strong>Git 操作</strong>： 当你使用 SSH URL 进行 Git 操作（如 <code>git push</code> 或 <code>git pull</code>）时，Git 会使用你的私钥进行身份验证。例如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone git@github.com:username/repo.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>文件传输</strong>： 当你使用 SCP 或 SFTP 进行安全的文件传输时，SSH 会使用你的私钥进行身份验证。例如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">scp</span> localfile user@host:/remote/directory<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+<p><strong>保护私钥的安全</strong>：</p>
+<p>由于私钥的敏感性，必须采取适当的措施来保护它：</p>
+<ol>
+<li><p><strong>设置 Passphrase</strong>： 在生成 SSH 密钥对时，<code>ssh-keygen</code> 会提示你设置一个 Passphrase。Passphrase 用于加密私钥文件，增加一层额外的安全保护。即使私钥文件被盗，没有 Passphrase 也无法使用。</p>
+</li>
+<li><p><strong>限制访问权限</strong>： 确保私钥文件的访问权限设置为仅限你本人访问。你可以使用以下命令设置权限：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> <span class="token number">600</span> ~/.ssh/id_rsa<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>定期更换密钥</strong>： 定期生成新的 SSH 密钥对，并删除旧的密钥对，以减少密钥泄露的风险。</p>
+</li>
+</ol>
+<p>通过这些措施，你可以确保私钥的安全，从而保护你的系统和数据免受未经授权的访问。</p>
+<h3 id="know-host-文件"><a href="#know-host-文件" class="headerlink" title="know_host 文件"></a>know_host 文件</h3><p>在 SSH 密钥文件夹（通常是 <code>~/.ssh</code>）中，<code>known_hosts</code> 文件用于存储你已经连接过的远程主机的公钥指纹。这个文件的作用是防止中间人攻击（Man-in-the-Middle Attack）。</p>
+<p>当你第一次连接到一个新的远程主机时，SSH 客户端会提示你确认主机的指纹，并将其存储在 <code>known_hosts</code> 文件中。以后每次连接到这个主机时，SSH 客户端会检查主机的指纹是否与 <code>known_hosts</code> 文件中的记录匹配。如果不匹配，SSH 客户端会发出警告，提示你可能存在安全风险。</p>
+<p><code>known_hosts</code> 文件的格式通常如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">主机名,IP地址 公钥类型 公钥<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>例如：</p>
+<pre class="line-numbers language-none"><code class="language-none">github.com,192.30.255.113 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmd...<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><code>known_hosts</code> 文件中的条目可以手动编辑，但通常不建议这样做，除非你确切知道自己在做什么。</p>
+<p>至于 <code>known_hosts.old</code> 文件，它通常是在更新 <code>known_hosts</code> 文件时生成的备份文件。例如，当你更新 SSH 客户端或操作系统时，可能会重新生成 <code>known_hosts</code> 文件，并将旧文件重命名为 <code>known_hosts.old</code>。</p>
+<p><strong>处理 <code>known_hosts</code> 文件的常见操作</strong>：</p>
+<ol>
+<li><p><strong>查看 <code>known_hosts</code> 文件内容</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> ~/.ssh/known_hosts<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>删除特定主机的条目</strong>： 如果你需要删除某个主机的条目，可以使用文本编辑器手动编辑 <code>known_hosts</code> 文件，或者使用以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen <span class="token parameter variable">-R</span> 主机名或IP地址<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>例如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen <span class="token parameter variable">-R</span> github.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>重新连接主机</strong>： 删除条目后，当你再次连接到该主机时，SSH 客户端会提示你确认新的主机指纹，并将其添加到 <code>known_hosts</code> 文件中。</p>
+</li>
+</ol>
+<p>通过这些操作，你可以管理 <code>known_hosts</code> 文件，确保 SSH 连接的安全性和可靠性。</p>
+<h3 id="可信列表"><a href="#可信列表" class="headerlink" title="可信列表"></a>可信列表</h3><p>Q: <code>know_host文件</code>就是把主机添加到可信列表的时候会产生的吗</p>
+<p>Fitten Code:</p>
+<p>A: 是的，当你第一次连接到一个新的远程主机时，SSH 客户端会提示你确认主机的公钥指纹，并将其添加到 <code>known_hosts</code> 文件中。这个过程实际上就是将该主机添加到你的可信列表中。</p>
+<p>具体步骤如下：</p>
+<ol>
+<li><p><strong>第一次连接到新主机</strong>： 当你第一次使用 <code>ssh user@host</code> 命令连接到一个新的远程主机时，你会看到类似如下的提示：</p>
+<pre class="line-numbers language-none"><code class="language-none">The authenticity of host &#39;host (IP地址)&#39; can&#39;t be established.
+RSA key fingerprint is SHA256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.
+Are you sure you want to continue connecting (yes&#x2F;no)?<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>确认主机指纹</strong>： 你需要输入 <code>yes</code> 来确认主机的指纹，并将其添加到 <code>known_hosts</code> 文件中。此时，SSH 客户端会显示类似如下的消息：</p>
+<pre class="line-numbers language-none"><code class="language-none">Warning: Permanently added &#39;host,IP地址&#39; (RSA) to the list of known hosts.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>指纹存储在 <code>known_hosts</code> 文件中</strong>： 确认后，主机的公钥指纹会被存储在 <code>~/.ssh/known_hosts</code> 文件中。以后每次连接到这个主机时，SSH 客户端会检查主机的指纹是否与 <code>known_hosts</code> 文件中的记录匹配。</p>
+</li>
+</ol>
+<p>通过这个过程，SSH 客户端确保你连接到的主机是预期的主机，而不是中间人攻击者伪装的主机。这有效地防止了中间人攻击，提高了连接的安全性</p>
+<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><h3 id="git-基本命令"><a href="#git-基本命令" class="headerlink" title="git 基本命令"></a>git 基本命令</h3><h4 id="git-init"><a href="#git-init" class="headerlink" title="git init"></a>git init</h4><p><code>git init</code>: 用于在一个空文件夹初始化 git 项目,初始化之后,会出现一个**.git**文件夹,里面存储你的仓库和 git 项目信息</p>
+<h4 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h4><p>需求: <strong>已知仓库在云端,拉取云端仓库到本地</strong></p>
+<p>使用<code>git clone git@gitee.com:Ozxm/qt.git --depth 10</code> 命令,进入 git 托管平台, 点击仓库,代码&#x2F;Code,<strong>clone 按钮</strong>,随便找一个方式(推荐使用 ssh 或者 http 协议)</p>
+<p><strong>参数:</strong></p>
+<ul>
+<li><p><code>--depth</code>: 在 Git 中用于创建一个浅克隆（shallow clone），即只克隆仓库的历史记录中的最近一部分(最近的 n 次提交)，而不是完整的仓库历史记录。这个参数可以显著减少克隆操作所需的时间和磁盘空间，特别是对于大型仓库</p>
+</li>
+<li><p><strong>扩展浅克隆</strong>：</p>
+<p>如果你在后续操作中需要更多的历史记录，可以使用以下命令扩展浅克隆：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token parameter variable">--depth</span> <span class="token operator">&lt;</span>new-depth<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>例如，如果你最初进行了 <code>--depth 1</code> 的浅克隆，并希望获取更多的历史记录：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token parameter variable">--depth</span> <span class="token number">10</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+<p>通过这些命令，你可以根据需要灵活地使用浅克隆和扩展浅克隆，以平衡速度和完整性</p>
+<h4 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h4><p><code>git status</code>: 查看状态,确定一下是否有没有 track 的子模块</p>
+<h4 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h4><p><code>git config</code>: 用于配置 git 信息,便于查找是谁提交的修改,追根溯源</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> user.email <span class="token string">"example@163.com"</span>
+<span class="token function">git</span> config <span class="token parameter variable">--global</span> user.name "usr'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h4><p><code>git checkout -b test</code>: 创建新分支 test 并切换到新分支</p>
+<ul>
+<li>在某个特定的分支（例如 <code>feature</code> 分支）的基础上创建一个新的分支。以下是具体步骤：</li>
+</ul>
+<ol>
+<li><strong>切换到基础分支</strong>： 首先，你需要切换到你希望作为基础的分支。例如，假设你想在 <code>feature</code> 分支的基础上创建新分支：</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout feature<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="2">
+<li><strong>创建并切换到新分支</strong>： 然后，你可以使用 <code>git checkout -b</code> 命令创建一个新的分支，并立即切换到该分支。例如，假设你要创建一个名为 <code>test</code> 的新分支：</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout <span class="token parameter variable">-b</span> <span class="token builtin class-name">test</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h4><p>把文件暂存更改,也可以直接使用 Vscdoe 的图形化界面(<code>+</code>号按钮)</p>
+<h4 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h4><p>提交更改到本地仓库,也可以直接使用 Vscdoe 的图形化界面(<strong>蓝色大框”√ 提交”</strong>)<br><code>git commit -m “[提交标题]详细”</code> 推荐提交信息格式</p>
+<h4 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h4><ul>
+<li><strong>推送本地分支到远程仓库</strong>：</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push origin2 master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这将把本地的 <code>master</code> 分支推送到名为 <code>origin2</code> 的远程仓库。</p>
+<p><code>git push --set-upstream origin test</code><br>第一次提交新分支需要发布分支,使用上面的代码,也可以直接使用 Vscode 的图形化界面(<strong>发布分支</strong>)<br>后续可直接使用<code>git push</code></p>
+<p><strong>-f: 表示强制提交</strong></p>
+<h3 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h3><p><strong>从远程仓库拉取更新</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> pull origin master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这将从名为 <code>origin</code>的远程仓库拉取 <code>master</code> 分支的更新。</p>
+<h4 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h4><p><code>git reset --soft HEAD^</code>: 回退到上一次提交</p>
+<h3 id="git-进阶命令"><a href="#git-进阶命令" class="headerlink" title="git 进阶命令"></a>git 进阶命令</h3><h4 id="git-remote"><a href="#git-remote" class="headerlink" title="git remote"></a>git remote</h4><ul>
+<li><code>git remote -v</code>: 列出我当前关联的远程仓库和分支</li>
+<li><code>git remote add origin git@gitee.com:example.git</code>: 命令用于向你的 Git 仓库添加一个新的远程仓库。这个命令将一个名为 &#96;origin2 的远程仓库 URL 添加到你的本地 Git 配置中</li>
+</ul>
+<h4 id="git-fetch"><a href="#git-fetch" class="headerlink" title="git fetch"></a>git fetch</h4><p><code>git fetch</code> 命令用于从远程仓库下载最新的更改，但不会自动合并或修改当前工作目录中的内容。它只是更新本地仓库的远程跟踪分支，使你能够查看远程仓库的最新状态。</p>
+<p><strong>基本用法</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>远程仓库<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>其中 <code>&lt;远程仓库&gt;</code> 是远程仓库的名称，通常是 <code>origin</code>。</p>
+<p><strong>示例</strong>：</p>
+<p>假设你有一个名为 <code>origin</code> 的远程仓库，并且希望获取最新的更改：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch origin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>常用选项</strong>：</p>
+<ul>
+<li><p><code>--all</code>：获取所有远程仓库的更新。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token parameter variable">--all</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><code>--prune</code>：在获取更新之前，删除本地已经不存在的远程分支的跟踪分支。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token parameter variable">--prune</span> origin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><code>--tags</code>：获取所有的标签（tags）。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token parameter variable">--tags</span> origin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+<h4 id="查看更新"><a href="#查看更新" class="headerlink" title="查看更新"></a><strong>查看更新</strong></h4><p>在执行 <code>git fech</code> 之后，你可以使用以下命令查看远程分支的更新：</p>
+<ul>
+<li><p><code>git branch -r</code>：查看所有远程跟踪分支。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> branch <span class="token parameter variable">-r</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><code>git log &lt;本地分支&gt;..&lt;远程跟踪分支&gt;</code>：查看远程跟踪分支相对于本地分支的差异。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> log master<span class="token punctuation">..</span>origin/master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+<h4 id="合并更新"><a href="#合并更新" class="headerlink" title="合并更新"></a><strong>合并更新</strong></h4><p><code>git fetch</code> 不会自动合并或修改当前工作目录中的内容。如果你希望将远程分支的更新合并到本地分支，可以使用 <code>git merge</code> 或 <code>git pull</code> 命令。例如：</p>
+<ul>
+<li><p><code>git merge</code>：将远程跟踪分支合并到当前分支,用于将两个分支的历史合并。它会创建一个新的合并提交，并保留合并前两个分支的历史。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge origin/master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><code>git pull</code>：相当于 <code>git fetch</code> 加上 <code>git merge</code>。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> pull origin master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+<h4 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h4><p><code>git rebase</code> 是一种不同于 <code>git merge</code> 的合并更改的方式。<code>git rebase</code> 通过将当前分支的提交重新应用到目标分支的最新提交之上，从而改变提交历史，使其更加线性和整洁。</p>
+<p><strong>基本用法</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> rebase <span class="token operator">&lt;</span>目标分支<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>其中 <code>&lt;目标分支&gt;</code> 是你希望将当前分支的提交重新应用到的分支。</p>
+<p><strong>示例</strong>：</p>
+<p>假设你在一个名为 <code>feature</code> 的分支上工作，并且希望将其提交重新应用到 <code>master</code> 分支的最新提交之上：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout feature
+<span class="token function">git</span> rebase master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><strong>工作原理</strong>：</p>
+<ol>
+<li><strong>找到两个分支的共同祖先</strong>：<code>git rebase</code> 首先找到当前分支和目标分支的共同祖先。</li>
+<li><strong>保存当前分支的提交</strong>：将当前分支的提交保存为临时文件。</li>
+<li><strong>将当前分支重置到目标分支的最新提交</strong>：将当前分支的 HEAD 重置到目标分支的最新提交。</li>
+<li><strong>重新应用保存的提交</strong>：按照顺序重新应用之前保存的提交。</li>
+</ol>
+<p><strong>冲突解决</strong>：</p>
+<p>如果在重新应用提交的过程中发生冲突，<code>git rebase</code> 会暂停并提示你解决冲突。解决冲突后，使用以下命令继续 rebase 过程：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">add</span> <span class="token operator">&lt;</span>冲突文件<span class="token operator">></span>
+<span class="token function">git</span> rebase <span class="token parameter variable">--continue</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><strong>中断 rebase</strong>：</p>
+<p>如果你希望中断 rebase 过程并恢复到 rebase 之前的状态，可以使用以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> rebase <span class="token parameter variable">--abort</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>优缺点</strong>：</p>
+<p><strong>优点</strong>：</p>
+<ul>
+<li><strong>线性的提交历史</strong>：<code>git rebase</code> 可以使提交历史更加线性和整洁，便于查看和理解。</li>
+<li><strong>避免合并提交</strong>：<code>git rebase</code> 不会创建合并提交，从而保持提交历史的简洁。</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li><strong>改变提交历史</strong>：<code>git rebase</code> 会改变提交历史，可能会影响其他开发者的工作。</li>
+<li><strong>冲突处理</strong>：如果在 rebase 过程中发生冲突，需要手动解决冲突，这可能会比较复杂。</li>
+</ul>
+<p><strong>示例流程</strong>：</p>
+<ol>
+<li><p><strong>切换到当前分支</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout feature<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>执行 rebase</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> rebase master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>解决冲突（如果需要）</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">add</span> <span class="token operator">&lt;</span>冲突文件<span class="token operator">></span>
+<span class="token function">git</span> rebase <span class="token parameter variable">--continue</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>完成 rebase</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> rebase <span class="token parameter variable">--continue</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h4><p>要将某个特定的提交(通过其哈希值识别)引入当前分支，可以使用以下命令</p>
+<p><code>git cherry-pick &lt;commit_hash&gt;</code></p>
+</li>
+</ol>
+<h3 id="对于子模块更新"><a href="#对于子模块更新" class="headerlink" title="对于子模块更新"></a>对于子模块更新</h3><p><code>git submodule update --init --recursive</code> 命令用于初始化和更新 Git 子模块（submodules）。子模块允许你在主仓库中包含其他 Git 仓库，并且可以独立地管理这些子仓库的版本。</p>
+<ul>
+<li><strong>初始化子模块</strong>（<code>--init</code>）： 如果子模块之前没有被初始化过，这个选项会初始化子模块，创建必要的子模块配置文件（<code>.gitmodules</code>）和子模块目录。</li>
+<li><strong>递归更新子模块</strong>（<code>--recursive</code>）： 这个选项会递归地更新所有子模块及其嵌套的子模块。也就是说，如果子模块本身也包含子模块，这个命令会一并处理这些嵌套的子模块。</li>
+</ul>
+<p>命令会执行以下操作：</p>
+<ul>
+<li>初始化所有未初始化的子模块。</li>
+<li>更新所有子模块到指定的提交（通常是主仓库中记录的提交）。</li>
+<li>递归地处理所有嵌套的子模块。</li>
+</ul>
+<p>这个命令通常在你克隆一个包含子模块的仓库后使用，以确保所有子模块都被正确初始化和更新到指定状态。例如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone --recurse-submodules <span class="token operator">&lt;</span>主仓库URL<span class="token operator">></span>
+<span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>主仓库目录<span class="token operator">></span>
+<span class="token function">git</span> submodule update <span class="token parameter variable">--init</span> <span class="token parameter variable">--recursive</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="gitee-和-github-不同配置"><a href="#gitee-和-github-不同配置" class="headerlink" title="gitee 和 github 不同配置"></a>gitee 和 github 不同配置</h3><p>Gitee（码云）和 GitHub 是两个不同的 Git 托管服务，虽然它们都支持 Git 协议，但在某些情况下，你可能需要为它们配置不同的 Git 设置。以下是一些常见的配置需求和方法：</p>
+<ol>
+<li><p><strong>不同的远程仓库 URL</strong>： 如果你在 Gitee 和 GitHub 上都有仓库，并且希望在同一个本地仓库中管理它们，你需要为每个远程仓库配置不同的 URL。例如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> github https://github.com/username/repo.git
+<span class="token function">git</span> remote <span class="token function">add</span> gitee https://gitee.com/username/repo.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>这样，你可以使用不同的远程名称来区分它们：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push github master
+<span class="token function">git</span> push gitee master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>不同的用户配置</strong>： 如果你在 Gitee 和 GitHub 上使用不同的用户名和电子邮件地址，可以在本地仓库中配置不同的用户信息。例如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config user.name <span class="token string">"GitHub User"</span>
+<span class="token function">git</span> config user.email <span class="token string">"github@example.com"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>然后在另一个仓库中：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config user.name <span class="token string">"Gitee User"</span>
+<span class="token function">git</span> config user.email <span class="token string">"gitee@example.com"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>不同的 SSH 密钥</strong>： 如果你在 Gitee 和 GitHub 上使用不同的 SSH 密钥，可以在 <code>~/.ssh/config</code> 文件中为每个主机配置不同的密钥。例如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># GitHub</span>
+Host github.com
+    HostName github.com
+    IdentityFile ~/.ssh/id_rsa_github
+    User <span class="token function">git</span>
+
+<span class="token comment"># Gitee</span>
+Host gitee.com
+    HostName gitee.com
+    IdentityFile ~/.ssh/id_rsa_gitee
+    User <span class="token function">git</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>不同的 Git 配置文件</strong>： 如果你希望为 Gitee 和 GitHub 使用不同的 Git 配置文件，可以在克隆仓库时指定不同的配置文件。例如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">GIT_CONFIG</span><span class="token operator">=~</span>/github.gitconfig <span class="token function">git</span> clone https://github.com/username/repo.git
+<span class="token assign-left variable">GIT_CONFIG</span><span class="token operator">=~</span>/gitee.gitconfig <span class="token function">git</span> clone https://gitee.com/username/repo.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+</ol>
+<h3 id="git-配置文件"><a href="#git-配置文件" class="headerlink" title="git 配置文件"></a>git 配置文件</h3><p>Git 配置文件用于存储 Git 的全局或本地配置选项，例如用户名、电子邮件地址、别名等。</p>
+<p><strong>生成 SSH 密钥</strong>：</p>
+<ol>
+<li><p><strong>生成 GitHub 的 SSH 密钥</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen <span class="token parameter variable">-t</span> rsa <span class="token parameter variable">-b</span> <span class="token number">4096</span> <span class="token parameter variable">-C</span> <span class="token string">"your_email@example.com"</span> <span class="token parameter variable">-f</span> ~/.ssh/id_rsa_github<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这将生成两个文件：<code>~/.ssh/id_rsa_github</code>（私钥）和 <code>~/.ssh/id_rsa_github.pub</code>（公钥）。</p>
+</li>
+<li><p><strong>生成 Gitee 的 SSH 密钥</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen <span class="token parameter variable">-t</span> rsa <span class="token parameter variable">-b</span> <span class="token number">4096</span> <span class="token parameter variable">-C</span> <span class="token string">"your_email@example.com"</span> <span class="token parameter variable">-f</span> ~/.ssh/id_rsa_gitee<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这将生成两个文件：<code>~/.ssh/id_rsa_gitee</code>（私钥）和 <code>~/.ssh/id_rsa_gitee.pub</code>（公钥）。</p>
+</li>
+</ol>
+<p><strong>配置 SSH 客户端</strong>：</p>
+<p>在 <code>~/.ssh/config</code> 文件中为每个主机配置不同的密钥。例如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># GitHub</span>
+Host github.com
+    HostName github.com
+    IdentityFile ~/.ssh/id_rsa_github
+    User <span class="token function">git</span>
+
+<span class="token comment"># Gitee</span>
+Host gitee.com
+    HostName gitee.com
+    IdentityFile ~/.ssh/id_rsa_gitee
+    User <span class="token function">git</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>配置 Git</strong>：</p>
+<p>如果你希望为不同的仓库使用不同的 Git 配置文件，可以在克隆仓库时指定不同的配置文件。例如：</p>
+<ol>
+<li><p><strong>克隆 GitHub 仓库并使用特定的配置文件</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">GIT_CONFIG</span><span class="token operator">=~</span>/github.gitconfig <span class="token function">git</span> clone git@github.com:username/repo.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>克隆 Gitee 仓库并使用特定的配置文件</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">GIT_CONFIG</span><span class="token operator">=~</span>/gitee.gitconfig <span class="token function">git</span> clone git@gitee.com:username/repo.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ol>
+<p><strong>创建和编辑 Git 配置文件</strong>：</p>
+<ol>
+<li><p><strong>创建 GitHub 的 Git 配置文件</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">touch</span> ~/github.gitconfig<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>编辑 GitHub 的 Git 配置文件</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>user<span class="token punctuation">]</span>
+    name <span class="token operator">=</span> GitHub User
+    email <span class="token operator">=</span> github@example.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>创建 Gitee 的 Git 配置文件</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">touch</span> ~/gitee.gitconfig<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>编辑 Gitee 的 Git 配置文件</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>user<span class="token punctuation">]</span>
+    name <span class="token operator">=</span> Gitee User
+    email <span class="token operator">=</span> gitee@example.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">0zxm</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://0zxm.github.io/2024/08/26/git-he-ssh-de-ji-chu-zhi-shi/">https://0zxm.github.io/2024/08/26/git-he-ssh-de-ji-chu-zhi-shi/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">0zxm</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/git/">
+                                    <span class="chip bg-color">git</span>
+                                </a>
+                            
+                                <a href="/tags/ssh/">
+                                    <span class="chip bg-color">ssh</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2024/08/26/git-he-ssh-de-ji-chu-zhi-shi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="git和ssh的基础知识">
+                        
+                        <span class="card-title">git和ssh的基础知识</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            git和ssh的基础使用
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/" class="post-category">
+                                    理论知识
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/git/">
+                        <span class="chip bg-color">git</span>
+                    </a>
+                    
+                    <a href="/tags/ssh/">
+                        <span class="chip bg-color">ssh</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/08/25/pa-chong-zhong-shi-yong-da-ma-ping-tai/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="爬虫中使用打码平台">
+                        
+                        <span class="card-title">爬虫中使用打码平台</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            python爬虫中使用第三方打码平台
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%88%AC%E8%99%AB/" class="post-category">
+                                    爬虫
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%B6%85%E7%BA%A7%E9%B9%B0/">
+                        <span class="chip bg-color">超级鹰</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        font-size: 15px;
+        color: #0019ED;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="3177534452"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#0019ED'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2024</span>
+            
+            <span id="year">2024</span>
+            <a href="/about" target="_blank">0zxm</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">183.6k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/0zxm" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:m15813109801@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2378173954" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2378173954" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
