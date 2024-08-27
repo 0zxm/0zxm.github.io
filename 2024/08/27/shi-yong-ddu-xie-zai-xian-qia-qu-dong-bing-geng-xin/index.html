@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="configure mysql in VisualStudio, 0zxm">
+    <meta name="keywords" content="使用DDU卸载显卡驱动并更新, 0zxm">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>configure mysql in VisualStudio | 0zxm</title>
+    <title>使用DDU卸载显卡驱动并更新 | 0zxm</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -323,12 +323,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">configure mysql in VisualStudio</h1>
+                    <h1 class="description center-align post-title">使用DDU卸载显卡驱动并更新</h1>
                 </div>
             </div>
         </div>
@@ -444,12 +444,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/mysql/">
-                                <span class="chip bg-color">mysql</span>
+                            <a href="/tags/%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/">
+                                <span class="chip bg-color">显卡驱动</span>
                             </a>
                         
-                            <a href="/tags/VisualStudio/">
-                                <span class="chip bg-color">VisualStudio</span>
+                            <a href="/tags/DDU/">
+                                <span class="chip bg-color">DDU</span>
+                            </a>
+                        
+                            <a href="/tags/Nvidia/">
+                                <span class="chip bg-color">Nvidia</span>
                             </a>
                         
                     </div>
@@ -460,8 +464,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
-                                数据库
+                            <a href="/categories/%E7%94%B5%E8%84%91%E6%8A%80%E8%83%BD/" class="post-category">
+                                电脑技能
                             </a>
                         
                     </div>
@@ -473,7 +477,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-06-21
+                    2024-08-27
                 </div>
                 
 
@@ -482,14 +486,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    358
+                    451
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -517,92 +521,31 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="C-加-MySQL"><a href="#C-加-MySQL" class="headerlink" title="C++ 加 MySQL"></a>C++ 加 MySQL</h1><blockquote>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">打开cmd
-输入 mysql
-输入 mysql <span class="token operator">-</span>u root <span class="token operator">-</span>p
-
-打开VisualStudio
-VC<span class="token operator">/</span>C目录
-项目属性:点击c<span class="token operator">+</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">></span>常规<span class="token operator">-</span><span class="token operator">></span>附加包含目录<span class="token operator">-</span><span class="token operator">></span><span class="token string">"选择C:\Program Files\MySQL\MySQL Server 8.0\include"</span>
-
-包含库文件<span class="token operator">-</span><span class="token operator">></span>链接<span class="token operator">-</span><span class="token operator">></span>常规<span class="token operator">-</span><span class="token operator">></span>附加库目录<span class="token operator">-</span><span class="token operator">></span><span class="token string">"选择C:\Program Files\MySQL\MySQL Server 8.0\lib"</span>
-写入库文件<span class="token operator">-</span><span class="token operator">></span>链接器<span class="token operator">-</span><span class="token operator">></span>输入<span class="token operator">-</span><span class="token operator">></span>附加依赖项<span class="token operator">-</span><span class="token operator">></span>libmysql<span class="token punctuation">.</span>lib
-libmysql<span class="token punctuation">.</span>lib复制到c盘windows下system32文件夹下
-
-
-PS C:\Users\<span class="token number">86158</span><span class="token operator">></span> mysql <span class="token operator">-</span>u root <span class="token operator">-</span>p
-Enter password: <span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span>
-Welcome <span class="token keyword">to</span> the MySQL monitor<span class="token punctuation">.</span>  Commands <span class="token keyword">end</span> <span class="token keyword">with</span> <span class="token punctuation">;</span> <span class="token operator">or</span> \g<span class="token punctuation">.</span>
-Your MySQL connection id <span class="token operator">is</span> <span class="token number">20</span>
-Server version: <span class="token number">8.0</span><span class="token number">.33</span> MySQL Community Server <span class="token operator">-</span> GPL
-
-Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token number">2000</span><span class="token punctuation">,</span> <span class="token number">2023</span><span class="token punctuation">,</span> Oracle <span class="token operator">and</span><span class="token operator">/</span><span class="token operator">or</span> its affiliates<span class="token punctuation">.</span>
-
-Oracle <span class="token operator">is</span> a registered trademark <span class="token keyword">of</span> Oracle Corporation <span class="token operator">and</span><span class="token operator">/</span><span class="token operator">or</span> its
-affiliates<span class="token punctuation">.</span> Other names may be trademarks <span class="token keyword">of</span> their respective
-owners<span class="token punctuation">.</span>
-
-<span class="token keyword">Type</span> <span class="token string">'help;'</span> <span class="token operator">or</span> <span class="token string">'\h'</span> <span class="token keyword">for</span> help<span class="token punctuation">.</span> <span class="token keyword">Type</span> <span class="token string">'\c'</span> <span class="token keyword">to</span> clear the <span class="token keyword">current</span> input statement<span class="token punctuation">.</span>
-
-mysql<span class="token operator">></span> <span class="token keyword">show</span> <span class="token keyword">databases</span><span class="token punctuation">;</span>
-<span class="token operator">+</span><span class="token comment">--------------------+</span>
-<span class="token operator">|</span> <span class="token keyword">Database</span>           <span class="token operator">|</span>
-<span class="token operator">+</span><span class="token comment">--------------------+</span>
-<span class="token operator">|</span> information_schema <span class="token operator">|</span>
-<span class="token operator">|</span> mysql              <span class="token operator">|</span>
-<span class="token operator">|</span> performance_schema <span class="token operator">|</span>
-<span class="token operator">|</span> py_sql             <span class="token operator">|</span>
-<span class="token operator">|</span> sakila             <span class="token operator">|</span>
-<span class="token operator">|</span> sys                <span class="token operator">|</span>
-<span class="token operator">|</span> test               <span class="token operator">|</span>
-<span class="token operator">|</span> world              <span class="token operator">|</span>
-<span class="token operator">+</span><span class="token comment">--------------------+</span>
-<span class="token number">8</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
-
-mysql<span class="token operator">></span> <span class="token keyword">create</span> <span class="token keyword">databases</span> student_manager<span class="token punctuation">;</span>
-ERROR <span class="token number">1064</span> <span class="token punctuation">(</span><span class="token number">42000</span><span class="token punctuation">)</span>: You have an error <span class="token operator">in</span> your <span class="token keyword">SQL</span> syntax<span class="token punctuation">;</span> <span class="token keyword">check</span> the manual that corresponds <span class="token keyword">to</span> your MySQL server version <span class="token keyword">for</span> the <span class="token keyword">right</span> syntax <span class="token keyword">to</span> <span class="token keyword">use</span> near <span class="token string">'databases student_manager'</span> at line <span class="token number">1</span>
-mysql<span class="token operator">></span> <span class="token keyword">create</span> <span class="token keyword">database</span> student_manager<span class="token punctuation">;</span>
-Query OK<span class="token punctuation">,</span> <span class="token number">1</span> <span class="token keyword">row</span> affected <span class="token punctuation">(</span><span class="token number">0.01</span> sec<span class="token punctuation">)</span>
-
-mysql<span class="token operator">></span> <span class="token keyword">show</span> <span class="token keyword">databases</span>
- <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">;</span>
-<span class="token operator">+</span><span class="token comment">--------------------+</span>
-<span class="token operator">|</span> <span class="token keyword">Database</span>           <span class="token operator">|</span>
-<span class="token operator">+</span><span class="token comment">--------------------+</span>
-<span class="token operator">|</span> information_schema <span class="token operator">|</span>
-<span class="token operator">|</span> mysql              <span class="token operator">|</span>
-<span class="token operator">|</span> performance_schema <span class="token operator">|</span>
-<span class="token operator">|</span> py_sql             <span class="token operator">|</span>
-<span class="token operator">|</span> sakila             <span class="token operator">|</span>
-<span class="token operator">|</span> student_manager    <span class="token operator">|</span>
-<span class="token operator">|</span> sys                <span class="token operator">|</span>
-<span class="token operator">|</span> test               <span class="token operator">|</span>
-<span class="token operator">|</span> world              <span class="token operator">|</span>
-<span class="token operator">+</span><span class="token comment">--------------------+</span>
-<span class="token number">9</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
-
-mysql<span class="token operator">></span> <span class="token keyword">use</span> student_manager<span class="token punctuation">;</span>
-<span class="token keyword">Database</span> changed
-mysql<span class="token operator">></span> <span class="token keyword">create</span> <span class="token keyword">table</span> students<span class="token punctuation">(</span>student_id <span class="token keyword">int</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">auto_increment</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span>student_name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>stude
-nt_class <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-Query OK<span class="token punctuation">,</span> <span class="token number">0</span> <span class="token keyword">rows</span> affected <span class="token punctuation">(</span><span class="token number">0.02</span> sec<span class="token punctuation">)</span>
-
-mysql<span class="token operator">></span> <span class="token keyword">show</span> <span class="token keyword">tables</span><span class="token punctuation">;</span>
-<span class="token operator">+</span><span class="token comment">---------------------------+</span>
-<span class="token operator">|</span> Tables_in_student_manager <span class="token operator">|</span>
-<span class="token operator">+</span><span class="token comment">---------------------------+</span>
-<span class="token operator">|</span> students                  <span class="token operator">|</span>
-<span class="token operator">+</span><span class="token comment">---------------------------+</span>
-<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
-
-mysql<span class="token operator">></span> <span class="token keyword">insert</span>  <span class="token keyword">into</span> students <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token number">20221003174</span><span class="token punctuation">,</span><span class="token string">'徐彬'</span><span class="token punctuation">,</span><span class="token string">'计科2201'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-ERROR <span class="token number">1264</span> <span class="token punctuation">(</span><span class="token number">22003</span><span class="token punctuation">)</span>: <span class="token keyword">Out</span> <span class="token keyword">of</span> range <span class="token keyword">value</span> <span class="token keyword">for</span> <span class="token keyword">column</span> <span class="token string">'student_id'</span> at <span class="token keyword">row</span> <span class="token number">1</span>
-mysql<span class="token operator">></span> <span class="token keyword">insert</span>  <span class="token keyword">into</span> students <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">,</span><span class="token string">'徐彬'</span><span class="token punctuation">,</span><span class="token string">'计科2201'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-Query OK<span class="token punctuation">,</span> <span class="token number">1</span> <span class="token keyword">row</span> affected <span class="token punctuation">(</span><span class="token number">0.01</span> sec<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-</blockquote>
+                <h1 id="使用DDU卸载显卡驱动并更新"><a href="#使用DDU卸载显卡驱动并更新" class="headerlink" title="使用DDU卸载显卡驱动并更新"></a>使用DDU卸载显卡驱动并更新</h1><h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><p>首先到<a target="_blank" rel="noopener" href="https://www.nvidia.cn/geforce/drivers">英伟达官网</a>去下载你想要的驱动,根据你的显卡型号选择你想要的驱动,一般都是选大版本最后几个小版本</p>
+<ul>
+<li><strong>笔记本选带后缀(Notebooks)</strong></li>
+</ul>
+<p><img src="/2024/08/27/shi-yong-ddu-xie-zai-xian-qia-qu-dong-bing-geng-xin/%E9%80%89%E6%8B%A9%E9%A9%B1%E5%8A%A8.png" alt="image-20240827205845738"></p>
+<p>然后下载<a target="_blank" rel="noopener" href="https://www.wagnardsoft.com/display-d#google_vignette">Display Driver Uninstaller (DDU卸载工具)</a>,保存在任意位置(一般在c盘下)</p>
+<h2 id="卸载驱动"><a href="#卸载驱动" class="headerlink" title="卸载驱动"></a>卸载驱动</h2><h3 id="安全模式"><a href="#安全模式" class="headerlink" title="安全模式"></a>安全模式</h3><ul>
+<li>虽然DDU可以直接使用,但是,一般还是建议在<strong>安全模式</strong>下使用</li>
+</ul>
+<p><code>安全模式</code>: 安全模式是<strong>Windows操作系统的一种诊断启动模式</strong>，用于在系统无法正常启动时解决问题。 </p>
+<p>在安全模式下，只有最基本的驱动程序和服务运行，桌面显示为黑色，<strong>并有‘安全模式’标识</strong>。 可以通过启动设置或高级启动选项进入安全模式。</p>
+<h4 id="进入安全模式"><a href="#进入安全模式" class="headerlink" title="进入安全模式"></a>进入安全模式</h4><p>在搜索框键入<code>msconfig</code>打开<strong>系统配置,点击引导-安全引导-应用,点击确认</strong>,会提示重启,立即重启</p>
+<p><strong>拔掉网线</strong>(否则会在卸载后自动联网重新下载驱动)</p>
+<ol>
+<li>重启之后的界面变成黑色,看到四角有安全模式样式表示成功进入安全模式</li>
+<li>打开DDU工具,选择设备种类,设备供应商,例如(显卡驱动,英伟达)</li>
+<li>点击清除并重启</li>
+<li>在等待卸载完成的时候,重复<strong>安全模式步骤</strong>,<strong>关闭</strong>安全模式</li>
+<li>卸载完成,自动重启</li>
+</ol>
+<p><img src="/2024/08/27/shi-yong-ddu-xie-zai-xian-qia-qu-dong-bing-geng-xin/DDU%E7%95%8C%E9%9D%A2.png" alt="image-20240827210906040"></p>
+<h2 id="安装新驱动"><a href="#安装新驱动" class="headerlink" title="安装新驱动"></a>安装新驱动</h2><ul>
+<li><strong>拔掉网线</strong>(否则会在卸载后自动联网重新下载驱动)</li>
+</ul>
+<p>重启之后,可以检查是否退出安全模式,在<strong>正常windows下</strong>,找到我们之前下好的驱动,自行安装就可以了</p>
 
                 
             </div>
@@ -629,7 +572,7 @@ Query OK<span class="token punctuation">,</span> <span class="token number">1</s
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://0zxm.github.io/2024/06/21/configure-mysql-in-visualstudio/">https://0zxm.github.io/2024/06/21/configure-mysql-in-visualstudio/</a>
+                    <a href="https://0zxm.github.io/2024/08/27/shi-yong-ddu-xie-zai-xian-qia-qu-dong-bing-geng-xin/">https://0zxm.github.io/2024/08/27/shi-yong-ddu-xie-zai-xian-qia-qu-dong-bing-geng-xin/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -667,12 +610,16 @@ Query OK<span class="token punctuation">,</span> <span class="token number">1</s
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/mysql/">
-                                    <span class="chip bg-color">mysql</span>
+                                <a href="/tags/%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/">
+                                    <span class="chip bg-color">显卡驱动</span>
                                 </a>
                             
-                                <a href="/tags/VisualStudio/">
-                                    <span class="chip bg-color">VisualStudio</span>
+                                <a href="/tags/DDU/">
+                                    <span class="chip bg-color">DDU</span>
+                                </a>
+                            
+                                <a href="/tags/Nvidia/">
+                                    <span class="chip bg-color">Nvidia</span>
                                 </a>
                             
                         </div>
@@ -842,29 +789,88 @@ Query OK<span class="token punctuation">,</span> <span class="token number">1</s
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2024/06/21/ji-suan-ji-wang-luo/">
+                <a href="/2024/08/27/shi-yong-ddu-xie-zai-xian-qia-qu-dong-bing-geng-xin/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="计算机网络">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="使用DDU卸载显卡驱动并更新">
                         
-                        <span class="card-title">计算机网络</span>
+                        <span class="card-title">使用DDU卸载显卡驱动并更新</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            计算机网络理论知识
+                            使用DDU彻底清理显卡驱动并更新
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-06-21
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-27
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%94%B5%E8%84%91%E6%8A%80%E8%83%BD/" class="post-category">
+                                    电脑技能
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/">
+                        <span class="chip bg-color">显卡驱动</span>
+                    </a>
+                    
+                    <a href="/tags/DDU/">
+                        <span class="chip bg-color">DDU</span>
+                    </a>
+                    
+                    <a href="/tags/Nvidia/">
+                        <span class="chip bg-color">Nvidia</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/08/26/git-he-ssh-de-ji-chu-zhi-shi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="git和ssh的基础知识">
+                        
+                        <span class="card-title">git和ssh的基础知识</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            git和ssh的基础使用
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-26
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -880,57 +886,12 @@ Query OK<span class="token punctuation">,</span> <span class="token number">1</s
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
-                        <span class="chip bg-color">计算机网络</span>
+                    <a href="/tags/git/">
+                        <span class="chip bg-color">git</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2024/06/21/html/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="html">
-                        
-                        <span class="card-title">html</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            html网页框架知识
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-21
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
-                                    前端
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/html/">
-                        <span class="chip bg-color">html</span>
+                    <a href="/tags/ssh/">
+                        <span class="chip bg-color">ssh</span>
                     </a>
                     
                 </div>
