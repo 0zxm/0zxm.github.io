@@ -871,15 +871,15 @@
 </ul>
 <p><code>unzip [-d] 参数</code></p>
 <p><img src="https://image-set.oss-cn-zhangjiakou.aliyuncs.com/img-out/2022/10/27/20221027221939.png" alt="image-20221027221939899"></p>
-<h3 id="su命令"><a href="#su命令" class="headerlink" title="su命令"></a>su命令</h3><p>切换用户</p>
+<h3 id="用户权限相关命令"><a href="#用户权限相关命令" class="headerlink" title="用户权限相关命令"></a>用户权限相关命令</h3><h4 id="su命令"><a href="#su命令" class="headerlink" title="su命令"></a>su命令</h4><p>切换用户</p>
 <p>语法：<code>su [-] [用户]</code></p>
 <p><img src="https://image-set.oss-cn-zhangjiakou.aliyuncs.com/img-out/2022/10/27/20221027222021.png" alt="image-20221027222021619"></p>
-<h3 id="sudo命令"><a href="#sudo命令" class="headerlink" title="sudo命令"></a>sudo命令</h3><p><img src="https://image-set.oss-cn-zhangjiakou.aliyuncs.com/img-out/2022/10/27/20221027222035.png" alt="image-20221027222035337"></p>
+<h4 id="sudo命令"><a href="#sudo命令" class="headerlink" title="sudo命令"></a>sudo命令</h4><p><img src="https://image-set.oss-cn-zhangjiakou.aliyuncs.com/img-out/2022/10/27/20221027222035.png" alt="image-20221027222035337"></p>
 <p>比如：</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">itheima <span class="token assign-left variable">ALL</span><span class="token operator">=</span><span class="token punctuation">(</span>ALL<span class="token punctuation">)</span>       NOPASSWD: ALL<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>在visudo内配置如上内容，可以让itheima用户，无需密码直接使用<code>sudo</code></p>
-<h3 id="chmod命令"><a href="#chmod命令" class="headerlink" title="chmod命令"></a>chmod命令</h3><p>修改文件、文件夹权限</p>
+<h4 id="chmod命令"><a href="#chmod命令" class="headerlink" title="chmod命令"></a>chmod命令</h4><p>修改文件、文件夹权限</p>
 <p>语法：<code>chmod [-R] 权限 参数</code></p>
 <ul>
 <li><p>权限，要设置的权限，比如755，表示：<code>rwxr-xr-x</code></p>
@@ -890,12 +890,12 @@
 <li><p>选项-R，设置文件夹和其内部全部内容一样生效</p>
 </li>
 </ul>
-<h3 id="chown命令"><a href="#chown命令" class="headerlink" title="chown命令"></a>chown命令</h3><p>修改文件、文件夹所属用户、组</p>
+<h4 id="chown命令"><a href="#chown命令" class="headerlink" title="chown命令"></a>chown命令</h4><p>修改文件、文件夹所属用户、组</p>
 <p>语法：<code>chown [-R] [用户][:][用户组] 文件或文件夹</code></p>
 <p><img src="https://image-set.oss-cn-zhangjiakou.aliyuncs.com/img-out/2022/10/27/20221027222326.png" alt="image-20221027222326192"></p>
-<h3 id="用户组管理"><a href="#用户组管理" class="headerlink" title="用户组管理"></a>用户组管理</h3><p><img src="https://image-set.oss-cn-zhangjiakou.aliyuncs.com/img-out/2022/10/27/20221027222354.png" alt="image-20221027222354498"></p>
-<h3 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h3><p><img src="https://image-set.oss-cn-zhangjiakou.aliyuncs.com/img-out/2022/10/27/20221027222407.png" alt="image-20221027222407618"></p>
-<h3 id="genenv命令"><a href="#genenv命令" class="headerlink" title="genenv命令"></a>genenv命令</h3><ul>
+<h4 id="用户组管理"><a href="#用户组管理" class="headerlink" title="用户组管理"></a>用户组管理</h4><p><img src="https://image-set.oss-cn-zhangjiakou.aliyuncs.com/img-out/2022/10/27/20221027222354.png" alt="image-20221027222354498"></p>
+<h4 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h4><p><img src="https://image-set.oss-cn-zhangjiakou.aliyuncs.com/img-out/2022/10/27/20221027222407.png" alt="image-20221027222407618"></p>
+<h4 id="genenv命令"><a href="#genenv命令" class="headerlink" title="genenv命令"></a>genenv命令</h4><ul>
 <li><p><code>getenv group</code>，查看系统全部的用户组</p>
 <p><img src="https://image-set.oss-cn-zhangjiakou.aliyuncs.com/img-out/2022/10/27/20221027222446.png" alt="image-20221027222446514"></p>
 </li>
@@ -903,7 +903,7 @@
 <p><img src="https://image-set.oss-cn-zhangjiakou.aliyuncs.com/img-out/2022/10/27/20221027222512.png" alt="image-20221027222512274"></p>
 </li>
 </ul>
-<h3 id="env命令"><a href="#env命令" class="headerlink" title="env命令"></a>env命令</h3><p>查看系统全部的环境变量</p>
+<h4 id="env命令"><a href="#env命令" class="headerlink" title="env命令"></a>env命令</h4><p>查看系统全部的环境变量</p>
 <p>语法：<code>env</code></p>
 
                 
@@ -1432,7 +1432,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">208.8k</span>&nbsp;字
+                class="white-color">208.9k</span>&nbsp;字
             
             
             
