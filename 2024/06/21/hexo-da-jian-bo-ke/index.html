@@ -688,13 +688,13 @@ ssh-keygen <span class="token parameter variable">-t</span> rsa <span class="tok
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> <span class="token parameter variable">-T</span> git@github.com
 <span class="token operator">></span> Hi USERNAME<span class="token operator">!</span> You<span class="token string">'ve successfully authenticated, but GitHub does not provide shell access.'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p>如果不行,尝试一下命令: ssh -T -p 443ssh:&#x2F;&#x2F;<a href="mailto:&#103;&#x69;&#116;&#64;&#115;&#x73;&#104;&#46;&#103;&#x69;&#116;&#x68;&#117;&#x62;&#46;&#x63;&#111;&#x6d;">&#103;&#x69;&#116;&#64;&#115;&#x73;&#104;&#46;&#103;&#x69;&#116;&#x68;&#117;&#x62;&#46;&#x63;&#111;&#x6d;</a>,这个可以按照提示建立许可连接</p>
+<p>如果不行,尝试一下命令: ssh -T -p 443ssh:&#x2F;&#x2F;<a href="mailto:&#x67;&#x69;&#x74;&#x40;&#115;&#x73;&#x68;&#46;&#103;&#x69;&#x74;&#104;&#117;&#x62;&#46;&#x63;&#111;&#109;">&#x67;&#x69;&#x74;&#x40;&#115;&#x73;&#x68;&#46;&#103;&#x69;&#x74;&#104;&#117;&#x62;&#46;&#x63;&#111;&#109;</a>,这个可以按照提示建立许可连接</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> <span class="token parameter variable">-T</span> <span class="token parameter variable">-p</span> <span class="token number">443</span> git@ssh.github.com
 <span class="token operator">></span> Hi <span class="token string">'你的id'</span><span class="token operator">!</span><span class="token string">" You've successfully authenticated, but GitHub does not provide shell access."</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>如果你能在端口 443 上通过 SSH 连接到 <code>git@ssh.github.com</code>，则可覆盖你的 SSH 设置来强制与 GitHub.com 的任何连接均通过该服务器和端口运行。</p>
 <p>到此为止,问题解决得差不多了</p>
-<p>在输入命令 git clone ssh:&#x2F;&#x2F;<a href="mailto:&#x67;&#105;&#116;&#64;&#x73;&#x73;&#104;&#46;&#x67;&#105;&#x74;&#x68;&#117;&#x62;&#46;&#99;&#x6f;&#109;">&#x67;&#105;&#116;&#64;&#x73;&#x73;&#104;&#46;&#x67;&#105;&#x74;&#x68;&#117;&#x62;&#46;&#99;&#x6f;&#109;</a>:443&#x2F;0zxm&#x2F;0zxm.github.io 时就能够正常 clone 仓库, 但是每次都输入更长的 url 难免繁琐,所以可以在你生成密钥的文件夹内新建一个 config 文件,输入以下内容保存:</p>
+<p>在输入命令 git clone ssh:&#x2F;&#x2F;<a href="mailto:&#x67;&#105;&#116;&#x40;&#115;&#115;&#104;&#46;&#103;&#105;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;">&#x67;&#105;&#116;&#x40;&#115;&#115;&#104;&#46;&#103;&#105;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;</a>:443&#x2F;0zxm&#x2F;0zxm.github.io 时就能够正常 clone 仓库, 但是每次都输入更长的 url 难免繁琐,所以可以在你生成密钥的文件夹内新建一个 config 文件,输入以下内容保存:</p>
 <pre class="line-numbers language-text" data-language="text"><code class="language-text">Host github.com
  Hostname ssh.github.com
  Port 443
@@ -1301,7 +1301,7 @@ $ hexo d <span class="token parameter variable">-g</span><span aria-hidden="true
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">190k</span>&nbsp;字
+                class="white-color">208.8k</span>&nbsp;字
             
             
             
