@@ -478,14 +478,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    3.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    13 分
                 </div>
                 
 
@@ -622,6 +622,13 @@
 <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 1.行内式的js 直接写到元素的内部 --></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>李白<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value javascript language-javascript"><span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'Hello, World!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span> <span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
+<ul>
+<li>可以将单行或少量JS代码写在HTML标签的事件属性中(以on开头的属性)，如:onclick</li>
+<li>注意单双引号的使用:在HTML中我们推荐使用双引号,JS中我们推荐使用单引号</li>
+<li>可读性差，在html中编写JS大量代码时，不方便阅读;</li>
+<li>引号易错，引号多层嵌套匹配时，非常容易弄混;</li>
+<li>特殊情况下使用</li>
+</ul>
 <ol start="2">
 <li>内嵌式js</li>
 </ol>
@@ -630,13 +637,209 @@
   <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"你好,世界!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
+<ul>
+<li>可以将多行JS代码写到<code>&lt;script&gt;</code>标签中</li>
+<li>内嵌 JS 是学习时常用的方式</li>
+</ul>
 <ol start="3">
 <li>外部文件式</li>
 </ol>
 <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 3.外链式js --></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>my.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>my.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<h3 id="JavaScript-注释"><a href="#JavaScript-注释" class="headerlink" title="JavaScript 注释"></a>JavaScript 注释</h3><h3 id="JavaScript输入输出语句"><a href="#JavaScript输入输出语句" class="headerlink" title="JavaScript输入输出语句"></a>JavaScript输入输出语句</h3>
+ <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// my.js</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Hello, World!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ul>
+<li>利于HTML页面代码结构化，把大段JS代码独立到HTML页面之外，既美观，也方便文件级别的复用</li>
+<li>引用<strong>外部JS文件</strong>的<strong>script标签</strong>中间不可以写代码</li>
+<li>适合于JS代码量比较大的情况</li>
+</ul>
+<h3 id="2-JavaScript-注释"><a href="#2-JavaScript-注释" class="headerlink" title="2.JavaScript 注释"></a>2.JavaScript 注释</h3><ul>
+<li>单行注释 <strong>使用&#x2F;&#x2F;</strong></li>
+<li>多行注释 <code>使用/**/</code></li>
+</ul>
+<h3 id="3-JavaScript输入输出语句"><a href="#3-JavaScript输入输出语句" class="headerlink" title="3.JavaScript输入输出语句"></a>3.JavaScript输入输出语句</h3><p>为了方便信息的输入输出，JS中提供了一些输入输出语句，其常用的语句如下</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+<th>归属</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>alert(msg)</td>
+<td>浏览器弹出警示框</td>
+<td>浏览器</td>
+</tr>
+<tr>
+<td>console.log(msg)</td>
+<td>浏览器控制台打印输出信息</td>
+<td>浏览器</td>
+</tr>
+<tr>
+<td>prompt(info)</td>
+<td>浏览器弹出输入框，用户可以输入</td>
+<td>浏览器</td>
+</tr>
+</tbody></table>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="1-变量概述"><a href="#1-变量概述" class="headerlink" title="1.变量概述"></a>1.变量概述</h3><h4 id="1-1什么是变量"><a href="#1-1什么是变量" class="headerlink" title="1.1什么是变量"></a>1.1什么是变量</h4><p>变量是用于存放数据的容器。我们通过变量名 获取数据，甚至数据可以修改。</p>
+<h4 id="1-2变量在内存中的存储"><a href="#1-2变量在内存中的存储" class="headerlink" title="1.2变量在内存中的存储"></a>1.2变量在内存中的存储</h4><p>本质:变量是程序在内存中申请的一块用来存放数据的空间。</p>
+<h3 id="2-变量的使用"><a href="#2-变量的使用" class="headerlink" title="2.变量的使用"></a>2.变量的使用</h3><p>变量在使用时分为两步: 1.声明变量 2.赋值</p>
+<h4 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 声明变量</span>
+<span class="token keyword">var</span> age<span class="token punctuation">;</span><span class="token comment">// 声明一个名称为age的变量</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ul>
+<li>var 是一个JS关键字,用来声明变量(<strong>variable变量</strong>的意思)。使用该关键字声明变量后,计算机会自动为变量分配内存空间，不需要程序员管</li>
+<li>age 是程序员定义的变量名，我们要通过变量名来访问内存中分配的空间</li>
+</ul>
+<h4 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">age <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token comment">//给age 这个变量赋值为10</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ul>
+<li><code>=</code>用来把右边的值赋给左边的变量空间中 此处代表赋值的意思</li>
+<li>变量值是程序员保存到变量空间里的值</li>
+</ul>
+<h4 id="变量的初始化"><a href="#变量的初始化" class="headerlink" title="变量的初始化"></a>变量的初始化</h4><p><code>var age = 18;//声明变量同时赋值为18</code></p>
+<h3 id="3-变量语法扩展"><a href="#3-变量语法扩展" class="headerlink" title="3.变量语法扩展"></a>3.变量语法扩展</h3><ol>
+<li>更新变量</li>
+</ol>
+<p>一个变量被重新复赋值后，它原有的值就会被覆盖，变量值将以最后一次赋的值为准。</p>
+<ol start="2">
+<li>同时声明多个变量</li>
+</ol>
+<p>同时声明多个变量时，只需要写一个<strong>var</strong>，多个变量名之间使用<strong>英文逗号</strong>隔开。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> age <span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span>name<span class="token operator">=</span><span class="token string">'s'</span><span class="token punctuation">,</span>sex<span class="token operator">=</span><span class="token number">2</span>
+<span class="token comment">// **英文逗号**隔开</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ol start="3">
+<li>声明变量特殊情况</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>说明</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>var age; console.log(age);</td>
+<td>只声明 不赋值</td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>console.log(age)</td>
+<td>不声明 不赋值 直接使用</td>
+<td>报错</td>
+</tr>
+<tr>
+<td>age &#x3D; 10; console.log(age);</td>
+<td>不声明 只赋值</td>
+<td>10</td>
+</tr>
+</tbody></table>
+<h3 id="变量命名规范"><a href="#变量命名规范" class="headerlink" title="变量命名规范"></a>变量命名规范</h3><ul>
+<li>由字母(A-Za-z)、数字(0-9)、下划线(_)、美元符号($)组成,如: usrAge, num01, nameR</li>
+<li>严格区分大小写。var app;和 var App;是两个变量</li>
+<li>不能 以数字开头。 18age 是错误的</li>
+<li>不能 是关键字、保留字。例如:var、for、while</li>
+<li>变量名必须有意义。MMD BBD  <code>nianling → age</code></li>
+<li>遵守驼峰命名法。首字母小写，后面单词的首字母需要大写。<code>myFirstName</code></li>
+<li>推荐翻译网站:有道 爱词霸</li>
+<li><code>name</code>一般不要使用作为变量名,可能在某些浏览器会有特殊含义</li>
+</ul>
+<h3 id="交换变量案例"><a href="#交换变量案例" class="headerlink" title="交换变量案例"></a>交换变量案例</h3><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 只对数字类型有效</span>
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Before swapping: a = "</span> <span class="token operator">+</span> a <span class="token operator">+</span> <span class="token string">", b = "</span> <span class="token operator">+</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+a <span class="token operator">=</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+b <span class="token operator">=</span> a <span class="token operator">-</span> b<span class="token punctuation">;</span>
+a <span class="token operator">=</span> a <span class="token operator">-</span> b<span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"After swapping: a = "</span> <span class="token operator">+</span> a <span class="token operator">+</span> <span class="token string">", b = "</span> <span class="token operator">+</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 字符串类型</span>
+<span class="token keyword">var</span> str1 <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> str2 <span class="token operator">=</span> <span class="token string">"world"</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Before swapping: str1 = "</span> <span class="token operator">+</span> str1 <span class="token operator">+</span> <span class="token string">", str2 = "</span> <span class="token operator">+</span> str2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+str1 <span class="token operator">=</span> str1 <span class="token operator">+</span> str2<span class="token punctuation">;</span>
+str2 <span class="token operator">=</span> str1<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> str1<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+str1 <span class="token operator">=</span> str1<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span>str1<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"After swapping: str1 = "</span> <span class="token operator">+</span> str1 <span class="token operator">+</span> <span class="token string">", str2 = "</span> <span class="token operator">+</span> str2<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="1-数据类型简介"><a href="#1-数据类型简介" class="headerlink" title="1.数据类型简介"></a>1.数据类型简介</h3><h4 id="1-1-为什么需要数据类型"><a href="#1-1-为什么需要数据类型" class="headerlink" title="1.1 为什么需要数据类型"></a>1.1 为什么需要数据类型</h4><p>在计算机中，不同的数据所需占用的存储空间是不同的，为了便于把数据分成所需内存大小不同的数据，充分利用存储空间，于是定义了不同的数据类型。</p>
+<h4 id="1-2-变量的数据类型"><a href="#1-2-变量的数据类型" class="headerlink" title="1.2 变量的数据类型"></a>1.2 变量的数据类型</h4><p>变量是用来存储值的所在处，它们有名字和数据类型。变量的数据类型决定了如何将代表这些值的位存储到计算机的内存中。<strong>JavaScript是一种弱类型或者说动态语言</strong>。这意味着不用提前声明变量的类型，在程序运行过程中，类型会被自动确定。</p>
+<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">var age &#x3D;10;		&#x2F;&#x2F; 这是一个数字型
+var areYouok &#x3D;&#39;是的&#39;;	&#x2F;&#x2F;这是一个字符串<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>在代码运行时，变量的数据类型是由JS引擎根据**&#x3D;右边变量值的数据类型来判断**的，运行完毕之后，变量就确定了数据类型<br><strong>JavaScript拥有动态类型，同时也意味着相同的变量可用作不同的类型</strong></p>
+<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">var x&#x3D; 6;		&#x2F;&#x2F;x为数字
+var x&#x3D;&quot;Bill&quot;; 	&#x2F;&#x2F;x为字符串<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="1-3-数据类型的分类"><a href="#1-3-数据类型的分类" class="headerlink" title="1.3 数据类型的分类"></a>1.3 数据类型的分类</h4><p>JS 把数据类型分为两类:</p>
+<ul>
+<li>简单数据类型(Number,String,Boolean,Undefined,Null)</li>
+<li>复杂数据类型(object)</li>
+</ul>
+<h3 id="2-简单数据类型"><a href="#2-简单数据类型" class="headerlink" title="2.简单数据类型"></a>2.简单数据类型</h3><h4 id="2-1-简单数据类型-基本数据类型"><a href="#2-1-简单数据类型-基本数据类型" class="headerlink" title="2.1 简单数据类型(基本数据类型)"></a>2.1 简单数据类型(基本数据类型)</h4><p>JavaScript中的简单数据类型及其说明如下</p>
+<table>
+<thead>
+<tr>
+<th>简单数据类型</th>
+<th>说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Number</td>
+<td>数字型，包含 整型值和浮点型值，如 21、0.21</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>布尔值类型，如 true、false，等价于 1 和 0</td>
+<td>false</td>
+</tr>
+<tr>
+<td>String</td>
+<td>字符串类型，如 “张三” 注意：在 JS 里面，字符串都带引号</td>
+<td>“”</td>
+</tr>
+<tr>
+<td>Undefined</td>
+<td>var a; 声明了变量 a 但是没有给值，此时 a &#x3D; undefined</td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>Null</td>
+<td>var a &#x3D; null; 声明了变量 a 为空值</td>
+<td>null</td>
+</tr>
+</tbody></table>
+<h4 id="2-2-数字型-Number"><a href="#2-2-数字型-Number" class="headerlink" title="2.2 数字型 Number"></a>2.2 数字型 Number</h4><p>JavaScript数字类型既可以用来保存整数值，也可以保存小数(浮点数)。</p>
+<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">var age &#x3D;21;&#x2F;&#x2F; 整数
+var age&#x3D;21.3747;&#x2F;&#x2F; 小数<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>1.数字型进制</p>
+<p>最常见的进制有二进制、八进制、十进制、十六进制。</p>
+<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&#x2F;&#x2F;1.八进制数字序列范围:0~7
+var numl &#x3D; 07;	&#x2F;&#x2F; 对应十进制的7
+var num2 &#x3D; 019;	&#x2F;&#x2F;对应十进制的19
+var num3&#x3D;08; 	&#x2F;&#x2F;对应十进制的8
+
+&#x2F;&#x2F;2.十六进制数字序列范围:0~9以及A~F
+var num &#x3D; 0xA;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>3.数字型三个特殊值</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">Infinity</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//Infinity</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">Infinity</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//-Infinity</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// NaN</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><code>Infinity</code> 代表无穷大，大于任何数值</p>
+<p><code>-Infinity</code> 代表无穷小，小于任何数值</p>
+<p><code>NaN，Not a number </code>代表一个非数值</p>
+
                 
             </div>
             <hr/>
@@ -1161,7 +1364,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.8k</span>&nbsp;字
+                class="white-color">212.5k</span>&nbsp;字
             
             
             
