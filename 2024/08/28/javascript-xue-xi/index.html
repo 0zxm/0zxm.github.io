@@ -478,14 +478,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.6k
+                    5.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    13 分
+                    21 分
                 </div>
                 
 
@@ -513,7 +513,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-计算机编程基础"><a href="#1-计算机编程基础" class="headerlink" title="1.计算机编程基础"></a>1.计算机编程基础</h2><h3 id="1-1-编程"><a href="#1-1-编程" class="headerlink" title="1.1 编程"></a>1.1 编程</h3><p>**编程:**就是让计算机为解决某个问题而使用某种程序设计语言编写程序代码，并最终得到结果的过程</p>
+                <h2 id="1-计算机编程基础"><a href="#1-计算机编程基础" class="headerlink" title="1.计算机编程基础"></a>1.计算机编程基础</h2><h3 id="1-1-编程"><a href="#1-1-编程" class="headerlink" title="1.1 编程"></a>1.1 编程</h3><p><strong>编程:</strong> 就是让计算机为解决某个问题而使用某种程序设计语言编写程序代码，并最终得到结果的过程</p>
 <p><strong>计算机程序</strong>:就是计算机所执行的一系列的指令集合，而程序全部都是用我们所掌握的语言来编写的，所以人们要控制计算机一定要通过计算机语言向计算机发出命令。</p>
 <p>**注意:**上面所定义的计算机指的是任何能够执行代码的设备，可能是智能手机、ATM机、黑莓P1、服务器等等。</p>
 <h3 id="1-2-计算机语言"><a href="#1-2-计算机语言" class="headerlink" title="1.2 计算机语言"></a>1.2 计算机语言</h3><p><strong>计算机语言</strong>指用于<strong>人与计算机之间</strong>通讯的语言，它是人与计算机之间传递信息的<strong>媒介</strong></p>
@@ -540,6 +540,18 @@
 <li>高级语言需要一个翻译器转换为计算机识别的机器语言</li>
 <li>编程语言是主动的有很强的逻辑性</li>
 </ol>
+<h3 id="1-7-编译型语言和解释型语言"><a href="#1-7-编译型语言和解释型语言" class="headerlink" title="1.7 编译型语言和解释型语言"></a>1.7 编译型语言和解释型语言</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>计算机不能直接理解任何除机器语言以外的语言，所以必须要把程序员所写的程序语言翻译成机器语言才能执行程序。程序语言翻译成机器语言的工具，被称为<strong>翻译器</strong>。</p>
+<ul>
+<li>翻译器翻译的方式有两种: 一个是<strong>编译</strong>，另外一个是<strong>解释</strong>。两种方式之间的区别在于<strong>翻译的时间点不同</strong></li>
+<li>编译器是在<strong>代码执行之前进行编译，生成中间代码文件</strong></li>
+<li>解释器是在<strong>运行时进行及时解释，并立即执行</strong>(当编译器以解释方式运行的时候，也称之为解释器)</li>
+</ul>
+<h4 id="执行过程"><a href="#执行过程" class="headerlink" title="执行过程"></a>执行过程</h4><p><img src="/2024/08/28/javascript-xue-xi/%E7%BC%96%E8%AF%91%E5%9E%8B%E5%92%8C%E8%A7%A3%E9%87%8A%E5%9E%8B%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B.png" alt="image-20240830183214962"></p>
+<h3 id="1-8-标识符、关键字、保留字"><a href="#1-8-标识符、关键字、保留字" class="headerlink" title="1.8 标识符、关键字、保留字"></a>1.8 标识符、关键字、保留字</h3><h4 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h4><p><code>标识(zhi)符</code>: 就是指开发人员为变量、属性、函数、参数取的名字。</p>
+<p><strong>标识符不能是关键字或保留字</strong></p>
+<h4 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h4><p>关键字: 是指JS本身已经使用了的字，不能再用它们充当变量名、方法名。</p>
+<p>包括: break、case、catch、continue、default、delete、do、else、finally、for、function、if、in、instanceof、new、return、switch、this、throw、try、typeof、var、void、while、with等。</p>
+<h4 id="保留字"><a href="#保留字" class="headerlink" title="保留字"></a>保留字</h4><p><strong>保留字:</strong> 实际上就是预留的“关键字”意思是现在虽然还不是关键字，但是未来可能会成为关键字，同样不能使用它们当变量名或方法名。</p>
 <h2 id="2-计算机基础"><a href="#2-计算机基础" class="headerlink" title="2.计算机基础"></a>2.计算机基础</h2><h3 id="2-1-计算机组成"><a href="#2-1-计算机组成" class="headerlink" title="2.1 计算机组成"></a>2.1 计算机组成</h3><p><img src="/2024/08/28/javascript-xue-xi/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%9B%BE.png" alt="image-20240828220424331"></p>
 <h3 id="2-2-数据存储"><a href="#2-2-数据存储" class="headerlink" title="2.2 数据存储"></a>2.2 数据存储</h3><ol>
 <li>计算机内部使用二进制0和1来表示数据</li>
@@ -770,12 +782,12 @@ console<span class="token punctuation">.</span><span class="token function">log<
 
 <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="1-数据类型简介"><a href="#1-数据类型简介" class="headerlink" title="1.数据类型简介"></a>1.数据类型简介</h3><h4 id="1-1-为什么需要数据类型"><a href="#1-1-为什么需要数据类型" class="headerlink" title="1.1 为什么需要数据类型"></a>1.1 为什么需要数据类型</h4><p>在计算机中，不同的数据所需占用的存储空间是不同的，为了便于把数据分成所需内存大小不同的数据，充分利用存储空间，于是定义了不同的数据类型。</p>
 <h4 id="1-2-变量的数据类型"><a href="#1-2-变量的数据类型" class="headerlink" title="1.2 变量的数据类型"></a>1.2 变量的数据类型</h4><p>变量是用来存储值的所在处，它们有名字和数据类型。变量的数据类型决定了如何将代表这些值的位存储到计算机的内存中。<strong>JavaScript是一种弱类型或者说动态语言</strong>。这意味着不用提前声明变量的类型，在程序运行过程中，类型会被自动确定。</p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">var age &#x3D;10;		&#x2F;&#x2F; 这是一个数字型
-var areYouok &#x3D;&#39;是的&#39;;	&#x2F;&#x2F;这是一个字符串<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> age <span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">;</span>		<span class="token comment">// 这是一个数字型</span>
+<span class="token keyword">var</span> areYouok <span class="token operator">=</span><span class="token string">'是的'</span><span class="token punctuation">;</span>	<span class="token comment">//这是一个字符串</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>在代码运行时，变量的数据类型是由JS引擎根据**&#x3D;右边变量值的数据类型来判断**的，运行完毕之后，变量就确定了数据类型<br><strong>JavaScript拥有动态类型，同时也意味着相同的变量可用作不同的类型</strong></p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">var x&#x3D; 6;		&#x2F;&#x2F;x为数字
-var x&#x3D;&quot;Bill&quot;; 	&#x2F;&#x2F;x为字符串<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> x<span class="token operator">=</span> <span class="token number">6</span><span class="token punctuation">;</span>		<span class="token comment">//x为数字</span>
+<span class="token keyword">var</span> x<span class="token operator">=</span><span class="token string">"Bill"</span><span class="token punctuation">;</span> 	<span class="token comment">//x为字符串</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="1-3-数据类型的分类"><a href="#1-3-数据类型的分类" class="headerlink" title="1.3 数据类型的分类"></a>1.3 数据类型的分类</h4><p>JS 把数据类型分为两类:</p>
 <ul>
@@ -817,19 +829,19 @@ var x&#x3D;&quot;Bill&quot;; 	&#x2F;&#x2F;x为字符串<span aria-hidden="true" 
 <td>null</td>
 </tr>
 </tbody></table>
-<h4 id="2-2-数字型-Number"><a href="#2-2-数字型-Number" class="headerlink" title="2.2 数字型 Number"></a>2.2 数字型 Number</h4><p>JavaScript数字类型既可以用来保存整数值，也可以保存小数(浮点数)。</p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">var age &#x3D;21;&#x2F;&#x2F; 整数
-var age&#x3D;21.3747;&#x2F;&#x2F; 小数<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h4 id="2-2-数字型Number"><a href="#2-2-数字型Number" class="headerlink" title="2.2 数字型Number"></a>2.2 数字型Number</h4><p>JavaScript数字类型既可以用来保存整数值，也可以保存小数(浮点数)。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> age <span class="token operator">=</span><span class="token number">21</span><span class="token punctuation">;</span><span class="token comment">// 整数</span>
+<span class="token keyword">var</span> age<span class="token operator">=</span><span class="token number">21.3747</span><span class="token punctuation">;</span><span class="token comment">// 小数</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>1.数字型进制</p>
 <p>最常见的进制有二进制、八进制、十进制、十六进制。</p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&#x2F;&#x2F;1.八进制数字序列范围:0~7
-var numl &#x3D; 07;	&#x2F;&#x2F; 对应十进制的7
-var num2 &#x3D; 019;	&#x2F;&#x2F;对应十进制的19
-var num3&#x3D;08; 	&#x2F;&#x2F;对应十进制的8
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//1.八进制数字序列范围:0~7</span>
+<span class="token keyword">var</span> numl <span class="token operator">=</span> <span class="token number">07</span><span class="token punctuation">;</span>	<span class="token comment">// 对应十进制的7</span>
+<span class="token keyword">var</span> num2 <span class="token operator">=</span> <span class="token number">019</span><span class="token punctuation">;</span>	<span class="token comment">//对应十进制的19</span>
+<span class="token keyword">var</span> num3<span class="token operator">=</span><span class="token number">08</span><span class="token punctuation">;</span> 	<span class="token comment">//对应十进制的8</span>
 
-&#x2F;&#x2F;2.十六进制数字序列范围:0~9以及A~F
-var num &#x3D; 0xA;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">//2.十六进制数字序列范围:0~9以及A~F</span>
+<span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">0xA</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>3.数字型三个特殊值</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">Infinity</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//Infinity</span>
@@ -839,7 +851,291 @@ var num &#x3D; 0xA;<span aria-hidden="true" class="line-numbers-rows"><span></sp
 <p><code>Infinity</code> 代表无穷大，大于任何数值</p>
 <p><code>-Infinity</code> 代表无穷小，小于任何数值</p>
 <p><code>NaN，Not a number </code>代表一个非数值</p>
+<ol start="4">
+<li>非数值型NaN</li>
+</ol>
+<p>使用<code>isNaN()</code>来判断是否是非数字</p>
+<h4 id="2-3-String字符串型"><a href="#2-3-String字符串型" class="headerlink" title="2.3 String字符串型"></a>2.3 String字符串型</h4><ol>
+<li>使用引号包裹起来的称为字符串类型</li>
+</ol>
+<p>字符串型可以是引号中的任意文本，其语法为双引号””和 单引号’</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> strMsg<span class="token operator">=</span><span class="token string">"我爱北京天安门~"</span><span class="token punctuation">;</span><span class="token comment">// 使用双引号表示字符串v</span>
+ar strMsg2<span class="token operator">=</span><span class="token string">'我爱吃猪蹄~'</span><span class="token punctuation">;</span>	<span class="token comment">//使用单引号表示字符串</span>
+<span class="token comment">// 常见错误</span>
+<span class="token keyword">var</span> strMsg3<span class="token operator">=</span>我爱大肘子<span class="token punctuation">;</span>	<span class="token comment">//报错，没使用引号，会被认为是js代码，但js没有这些语法</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
+
+<p>因为 HTML标签里面的属性使用的是双引号，JS这里我们更推荐<strong>使用单引号</strong>。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"> <span class="token comment">// 引号的嵌套</span>
+<span class="token keyword">var</span> str <span class="token operator">=</span> <span class="token string">'Hello, "World"!'</span><span class="token punctuation">;</span>
+ console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 字符串的拼接</span>
+<span class="token keyword">var</span> str1 <span class="token operator">=</span> <span class="token string">"Hello"</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> str2 <span class="token operator">=</span> <span class="token string">"World"</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str1 <span class="token operator">+</span> <span class="token string">""</span> <span class="token operator">+</span> str2<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="2">
+<li><strong>字符串转义符</strong></li>
+</ol>
+<p>类似HTML里面的特殊字符，字符串中也有特殊字符，我们称之为转义符转义符都是<code>\</code>开头的，常用的转义符及其说明如下</p>
+<table>
+<thead>
+<tr>
+<th>转义符</th>
+<th>解释说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\n</td>
+<td>换行符，n 是 newline 的意思</td>
+</tr>
+<tr>
+<td><code>\\</code></td>
+<td>斜杠 \</td>
+</tr>
+<tr>
+<td><code>\&#39;</code></td>
+<td>‘ 单引号</td>
+</tr>
+<tr>
+<td><code>\&quot;</code></td>
+<td>“ 双引号</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>tab 缩进</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>空格，b 是 blank 的意思</td>
+</tr>
+</tbody></table>
+<ol start="3">
+<li>字符串长度</li>
+</ol>
+<p>字符串是由若干字符组成的，这些字符的数量就是字符串的长度。通过字符串的<strong>length属性</strong>可以获取整个字符串的长度。</p>
+<ol start="4">
+<li>字符串拼接</li>
+</ol>
+<p>多个字符串之间可以使用+进行拼接，其拼接方式为<strong>字符串 + 任何类型 &#x3D; 拼接之后的新字符串</strong></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 字符串的拼接</span>
+<span class="token keyword">var</span> str1 <span class="token operator">=</span> <span class="token string">"Hello"</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str1 <span class="token operator">+</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//输出Hello100</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-4-布尔类型Boolean"><a href="#2-4-布尔类型Boolean" class="headerlink" title="2.4 布尔类型Boolean"></a>2.4 布尔类型Boolean</h4><p>布尔类型有两个值:<code>true</code>和<code>false</code>，其中 true 表示真(对)，而 false 表示假(错)。</p>
+<p>布尔型和数字型相加的时候，<strong>true的值为1，false 的值为0</strong>。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token boolean">true</span> <span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//2</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="2-5-Undefined和Null"><a href="#2-5-Undefined和Null" class="headerlink" title="2.5 Undefined和Null"></a>2.5 Undefined和Null</h4><p>-个声明后没有被赋值的变量会有一个默认值<strong>undefined</strong>(如果进行相连或者相加时，注意结果)</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> variable<span class="token punctuation">;</span> 
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>variable<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//undefined</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"你好:"</span><span class="token operator">+</span> variable<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//你好:undefined</span>
+undefinedconsole<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">11</span> <span class="token operator">+</span>variable<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// NaN</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token boolean">true</span> <span class="token operator">+</span>variable<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//NaN</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>一个声明变量给 null 值，里面存的值为空(学习对象时，我们继续研究null)</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> vari <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"你好"</span><span class="token operator">+</span>vari<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//你好nu11</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">11</span> <span class="token operator">+</span> vari<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//11</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token operator">+</span>vari<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-获取检测变量的数据类型"><a href="#3-获取检测变量的数据类型" class="headerlink" title="3.获取检测变量的数据类型"></a>3.获取检测变量的数据类型</h3><h4 id="3-1typeof可用来获取检测变量的数据类型"><a href="#3-1typeof可用来获取检测变量的数据类型" class="headerlink" title="3.1typeof可用来获取检测变量的数据类型"></a>3.1<code>typeof</code>可用来获取检测变量的数据类型</h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// output: number</span>
+
+<span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// output: string</span>
+
+<span class="token keyword">var</span> c <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// output: boolean</span>
+
+<span class="token keyword">var</span> d <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> d<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// output: object</span>
+
+<span class="token keyword">var</span> e <span class="token operator">=</span> <span class="token keyword">undefined</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// output: undefined</span>
+
+<span class="token keyword">var</span> <span class="token function-variable function">f</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> f<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// output: function</span>
+
+<span class="token keyword">var</span> g <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> g<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// output: object</span>
+
+<span class="token keyword">var</span> h <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> h<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// output: object</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li><code>prompt()</code>获取的是<strong>String类型</strong></li>
+</ul>
+<h4 id="3-2-字面量"><a href="#3-2-字面量" class="headerlink" title="3.2 字面量"></a>3.2 字面量</h4><p>字面量是在源代码中一个固定值的表示法，通俗来说，就是字面量表示如何表达这个值</p>
+<p>数字字面量: 8,9,10</p>
+<p>字符串字面量: ‘黑马程序员’，“大前端”</p>
+<p>布尔字面量: true，false</p>
+<h3 id="4-数据类型转换"><a href="#4-数据类型转换" class="headerlink" title="4.数据类型转换"></a>4.数据类型转换</h3><h4 id="4-1-什么是数据类型转换"><a href="#4-1-什么是数据类型转换" class="headerlink" title="4.1 什么是数据类型转换"></a>4.1 什么是数据类型转换</h4><p>使用表单、prompt获取过来的数据默认是字符串类型的，此时就不能直接简单的进行加法运算，而需要转换变量的数据类型。通俗来说，就是把<strong>一种数据类型的变量转换成另外一种数据类型</strong></p>
+<h4 id="4-2-转换成字符串类型"><a href="#4-2-转换成字符串类型" class="headerlink" title="4.2 转换成字符串类型"></a>4.2 转换成字符串类型</h4><table>
+<thead>
+<tr>
+<th>方式</th>
+<th>说明</th>
+<th>案例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>toString()</td>
+<td>转成字符串</td>
+<td><code>var num = 1; alert(num.toString());</code></td>
+</tr>
+<tr>
+<td>String() 强制转换</td>
+<td>转成字符串</td>
+<td><code>var num = 1; alert(String(num));</code></td>
+</tr>
+<tr>
+<td><strong>加号拼接字符串</strong></td>
+<td>和字符串拼接结果都是字符串</td>
+<td><code>var num = 1; alert(num + &quot;我是字符串&quot;);</code></td>
+</tr>
+</tbody></table>
+<ul>
+<li><code>toString()</code> 和 <code>String()</code> 使用方式不一样。</li>
+<li>三种转换方式，我们更喜欢用第三种加号拼接字符串转换方式，这一种方式也称之为<strong>隐式转换</strong></li>
+</ul>
+<h4 id="4-3-转换成数字型-重点"><a href="#4-3-转换成数字型-重点" class="headerlink" title="4.3 转换成数字型(重点)"></a>4.3 转换成数字型(重点)</h4><ul>
+<li><code>parseInt()</code>,取整函数,截断小数部分,返回整数部分</li>
+</ul>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 1.parseInt()</span>
+<span class="token keyword">var</span> str1 <span class="token operator">=</span> <span class="token string">"100.5"</span><span class="token punctuation">;</span>	<span class="token comment">// 100</span>
+<span class="token keyword">var</span> num1 <span class="token operator">=</span> <span class="token function">parseInt</span><span class="token punctuation">(</span>str1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"120px"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// 120,会从字符串中取出数字,但必须是以数字开头</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li><code>parseFloat()</code>,转变成浮点数</li>
+</ul>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 2.parseFloat()</span>
+<span class="token keyword">var</span> str2 <span class="token operator">=</span> <span class="token string">"10.5"</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> num2 <span class="token operator">=</span> <span class="token function">parseFloat</span><span class="token punctuation">(</span>str2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">parseFloat</span><span class="token punctuation">(</span><span class="token string">"120.45px"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 120.45,会从字符串中取出数字,但必须是以数字开头</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">parseFloat</span><span class="token punctuation">(</span><span class="token string">"rem120.45px"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// NaN</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li><code>Number()函数</code></li>
+</ul>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 3.Number()</span>
+<span class="token keyword">var</span> str3 <span class="token operator">=</span> <span class="token string">"10"</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> num3 <span class="token operator">=</span> <span class="token function">Number</span><span class="token punctuation">(</span>str3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num3<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li><code>算数运算符隐式转换</code></li>
+</ul>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//利用算数 - / *运算符实现转换效果</span>
+<span class="token keyword">var</span> str4 <span class="token operator">=</span> <span class="token string">"10"</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> num4 <span class="token operator">=</span> str4 <span class="token operator">-</span> <span class="token number">0</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num4<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> str5 <span class="token operator">=</span> <span class="token string">"10.5"</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> num5 <span class="token operator">=</span> str5 <span class="token operator">*</span> <span class="token number">1</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num5<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>说明</th>
+<th>案例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>parseInt(string) 函数</td>
+<td>将 string 类型转成整数数值类型</td>
+<td><code>parseInt(&#39;78&#39;)</code></td>
+</tr>
+<tr>
+<td>parseFloat(string) 函数</td>
+<td>将 string 类型转成浮点数数值类型</td>
+<td><code>parseFloat(&#39;78.21&#39;)</code></td>
+</tr>
+<tr>
+<td>Number() 强制转换函数</td>
+<td>将 string 类型转成数值类型</td>
+<td><code>Number(&#39;12&#39;)</code></td>
+</tr>
+<tr>
+<td>js 隐式转换 (- * &#x2F;)</td>
+<td>利用算术运算隐式转换为数值类型</td>
+<td><code>&#39;12&#39; - 0</code>或者<code>&#39;12&#39; - &#39;0&#39;</code></td>
+</tr>
+</tbody></table>
+<h4 id="4-4-转化成布尔类型"><a href="#4-4-转化成布尔类型" class="headerlink" title="4.4 转化成布尔类型"></a>4.4 转化成布尔类型</h4><ul>
+<li>代表<strong>空、否定</strong>的值会被转换为<strong>false</strong>,如<code>‘’</code>、&#96;&#96;0<code>、</code>NaN<code>、</code>null<code>、</code>undefined&#96;</li>
+<li>其余值都会被转换为<strong>true</strong></li>
+</ul>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// false</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// false</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">// false</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment">// false</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token keyword">undefined</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// false</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token string">'小徐'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// true</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>说明</th>
+<th>案例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Boolean() 函数</td>
+<td>其他类型转成布尔值</td>
+<td><code>Boolean(&#39;true&#39;)</code></td>
+</tr>
+</tbody></table>
+<h2 id="JavaScript运算符"><a href="#JavaScript运算符" class="headerlink" title="JavaScript运算符"></a>JavaScript运算符</h2><h3 id="1-运算符"><a href="#1-运算符" class="headerlink" title="1.运算符"></a>1.运算符</h3><p><code>运算符(operator)</code>也被称为操作符，是用于实现赋值、比较和执行算数运算等功能的符号</p>
+<h3 id="2-算数运算符"><a href="#2-算数运算符" class="headerlink" title="2.算数运算符"></a>2.算数运算符</h3><h4 id="2-1-算术运算符概述"><a href="#2-1-算术运算符概述" class="headerlink" title="2.1 算术运算符概述"></a>2.1 算术运算符概述</h4><p>概念: 算术运算使用的符号，用于执行两个变量或值的算术运算。</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>加</td>
+<td>10 + 20 &#x3D; 30</td>
+</tr>
+<tr>
+<td>-</td>
+<td>减</td>
+<td>10 - 20 &#x3D; -10</td>
+</tr>
+<tr>
+<td>*</td>
+<td>乘</td>
+<td>10 * 20 &#x3D; 200</td>
+</tr>
+<tr>
+<td>&#x2F;</td>
+<td>除</td>
+<td>10 &#x2F; 20 &#x3D; 0.5</td>
+</tr>
+<tr>
+<td>%</td>
+<td>取余数 (取模)</td>
+<td>返回除法的余数 9 % 2 &#x3D; 1</td>
+</tr>
+</tbody></table>
+<h3 id="递增和递减运算符"><a href="#递增和递减运算符" class="headerlink" title="递增和递减运算符"></a>递增和递减运算符</h3><h4 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h4><h4 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h4><h4 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h4><h4 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h4>
                 
             </div>
             <hr/>
@@ -1364,7 +1660,7 @@ var num &#x3D; 0xA;<span aria-hidden="true" class="line-numbers-rows"><span></sp
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">212.5k</span>&nbsp;字
+                class="white-color">214.4k</span>&nbsp;字
             
             
             

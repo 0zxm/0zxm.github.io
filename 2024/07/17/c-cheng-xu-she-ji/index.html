@@ -1107,9 +1107,15 @@
 </tr>
 <tr>
 <td>&#x2F;</td>
-<td>除</td>
+<td>除(取整)</td>
 <td>10 &#x2F; 5</td>
 <td>2</td>
+</tr>
+<tr>
+<td>&#x2F;</td>
+<td>除(当其中一个数是浮点数时,结果也为浮点)</td>
+<td>10.0 &#x2F; 5</td>
+<td>2.4</td>
 </tr>
 <tr>
 <td>%</td>
@@ -1161,6 +1167,10 @@
 	<span class="token keyword">int</span> a3 <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
 	<span class="token keyword">int</span> b3 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 	<span class="token comment">//cout &lt;&lt; a3 / b3 &lt;&lt; endl; //报错，除数不可以为0</span>
+    
+    cout <span class="token operator">&lt;&lt;</span> <span class="token number">1</span> <span class="token operator">/</span> <span class="token number">0.4</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  <span class="token comment">// 2.5</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token number">10.0</span> <span class="token operator">/</span> <span class="token number">4</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">// 2.5</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token number">10</span> <span class="token operator">/</span> <span class="token number">4</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>   <span class="token comment">// 2</span>
 
 
 	<span class="token comment">//两个小数可以相除</span>
@@ -1171,7 +1181,7 @@
 	<span class="token function">system</span><span class="token punctuation">(</span><span class="token string">"pause"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>总结：在除法运算中，除数不能为 0</p>
 <p><strong>示例 2：</strong></p>
@@ -3354,7 +3364,8 @@
 	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>​</p>
+
+
 <h4 id="2-5-引用的本质"><a href="#2-5-引用的本质" class="headerlink" title="2.5 引用的本质"></a>2.5 引用的本质</h4><p>本质：<strong>引用的本质在 c++内部实现是一个指针常量.</strong></p>
 <p>讲解示例：</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">//发现是引用，转换为 int* const ref = &amp;a;</span>
@@ -13341,7 +13352,7 @@ T <span class="token function">myAdd02</span><span class="token punctuation">(</
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">212.5k</span>&nbsp;字
+                class="white-color">214.4k</span>&nbsp;字
             
             
             
