@@ -478,14 +478,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.5k
+                    6.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    21 分
+                    23 分
                 </div>
                 
 
@@ -1132,10 +1132,114 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <tr>
 <td>%</td>
 <td>取余数 (取模)</td>
-<td>返回除法的余数 9 % 2 &#x3D; 1</td>
+<td>返回除法的余数 9 % 2 &#x3D; 1(常用于检测是否能整除)</td>
 </tr>
 </tbody></table>
-<h3 id="递增和递减运算符"><a href="#递增和递减运算符" class="headerlink" title="递增和递减运算符"></a>递增和递减运算符</h3><h4 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h4><h4 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h4><h4 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h4><h4 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h4>
+<h4 id="2-2-浮点数的精度问题"><a href="#2-2-浮点数的精度问题" class="headerlink" title="2.2 浮点数的精度问题"></a>2.2 浮点数的精度问题</h4><p>浮点数值的最高精度是 17 位小数，但在进行算术计算时其<strong>精确度远远不如整数</strong>。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> result <span class="token operator">=</span> <span class="token number">0.1</span> <span class="token operator">+</span> <span class="token number">0.2</span><span class="token punctuation">;</span>	<span class="token comment">//结果不是 0.3,而是:0.30000000000000004</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">0.07</span> <span class="token operator">*</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//结果不是7， 而是:7.000000000000001</span>
+
+<span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">0.1</span> <span class="token operator">+</span> <span class="token number">0.2</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num <span class="token operator">==</span> <span class="token number">0.3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>所以:<strong>不要直接判断两个浮点数是否相等!</strong></p>
+<h4 id="2-3-表达式和返回值"><a href="#2-3-表达式和返回值" class="headerlink" title="2.3 表达式和返回值"></a>2.3 表达式和返回值</h4><p><strong>表达式</strong>: 是由数字、运算符、变量等以能求得数值的有意义排列方法所得的组合简单理解:是由数字、运算符、变量等组成的式子</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> result <span class="token operator">=</span>  <span class="token number">1</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">//2</span>
+<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">1+1</span><span class="token template-punctuation string">`</span></span>是表达式<span class="token punctuation">,</span>把值返回给result变量<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="3-递增和递减运算符"><a href="#3-递增和递减运算符" class="headerlink" title="3.递增和递减运算符"></a>3.递增和递减运算符</h3><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><p>如果需要反复给数字变量添加或减去1，可以使用<strong>递增(++)和递减(–)运算符</strong>来完成.</p>
+<p>在 JavaScript中，递增(++)和递减(–)既可以放在变量前面，也可以放在变量后面。放在变量前面时我们可以称为<strong>前置递增(递减)运算符</strong>，放在变量后面时，我们可以称为<strong>后置递增(递减)运算符</strong></p>
+<h4 id="递增运算符"><a href="#递增运算符" class="headerlink" title="递增运算符"></a>递增运算符</h4><ul>
+<li>前置递增运算符**(先加后用)**</li>
+</ul>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 前置运算符 先+1在使用</span>
+<span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">11</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token operator">++</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 12</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>后置递增运算符**(先用后加)**</li>
+</ul>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 后置运算符 先使用在+1</span>
+<span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 10</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 11</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="递减运算符"><a href="#递减运算符" class="headerlink" title="递减运算符"></a>递减运算符</h4><ul>
+<li>前置递减运算符**(先加后用)**</li>
+</ul>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 前置运算符 先-1在使用</span>
+<span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">11</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token operator">++</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 10</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>后置递减运算符**(先用后加)**</li>
+</ul>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 后置运算符 先使用在-1</span>
+<span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 10</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 9</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="前置递增和后置递增小结"><a href="#前置递增和后置递增小结" class="headerlink" title="前置递增和后置递增小结"></a>前置递增和后置递增小结</h4><ul>
+<li>前置递增和后置递增运算符可以简化代码的编写，让变量的值+1比以前写法更简单</li>
+<li>单独使用时，运行结果相同</li>
+<li>与其他代码联用时，执行结果会不同</li>
+<li>后置:先原值运算，后自加</li>
+<li>前置:先自加，后运算</li>
+</ul>
+<h4 id="4-比较运算符"><a href="#4-比较运算符" class="headerlink" title="4.比较运算符"></a>4.比较运算符</h4><p>概念:比较运算符(关系运算符)是两个数据进行比较时所使用的运算符比较运算后，会**返回一个布尔值(true&#x2F;false)**作为比较运算的结果。</p>
+<table>
+<thead>
+<tr>
+<th>运算符名称</th>
+<th>说明</th>
+<th>案例</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&lt;</td>
+<td>小于号</td>
+<td>1 &lt; 2</td>
+<td>true</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大于号</td>
+<td>1 &gt; 2</td>
+<td>false</td>
+</tr>
+<tr>
+<td>&gt;&#x3D;</td>
+<td>大于等于号 (大于或者等于)</td>
+<td>2 &gt;&#x3D; 2</td>
+<td>true</td>
+</tr>
+<tr>
+<td>&lt;&#x3D;</td>
+<td>小于等于号 (小于或者等于)</td>
+<td>3 &lt;&#x3D; 2</td>
+<td>false</td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;</td>
+<td>判等号 (会转型)</td>
+<td>37 &#x3D;&#x3D; 37</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>!=</code></td>
+<td>不等号</td>
+<td>37 !&#x3D; 37</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>===</code> <code>!==</code></td>
+<td>全等 要求值和数据类型都一致</td>
+<td>37 &#x3D;&#x3D;&#x3D; ‘37’</td>
+<td>false</td>
+</tr>
+</tbody></table>
+<h4 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h4><h4 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h4><h4 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h4>
                 
             </div>
             <hr/>
@@ -1660,7 +1764,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">214.4k</span>&nbsp;字
+                class="white-color">215k</span>&nbsp;字
             
             
             
