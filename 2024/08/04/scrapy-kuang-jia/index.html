@@ -1708,11 +1708,11 @@ FEED_EXPORT_ENCODING <span class="token operator">=</span> <span class="token st
 <li>scrapy中post请求是通过<code>spider/你定义的爬虫程序名.py</code>的<code>start_request()</code>方法实现的</li>
 </ol>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># post请求 如果没有参数 那么这个请求将没有任何意义</span>
-<span class="token comment">#所以start urls 也没有用了</span>
+<span class="token comment"># 所以start urls 也没有用了</span>
 <span class="token comment"># parse方法也没有用了</span>
 <span class="token comment"># start_urls = ['https://fanyi.baidu.com/sug/']</span>
 <span class="token comment"># def parse(self, response):</span>
-<span class="token comment">#pass</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># pass</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ol start="2">
 <li>重写start_requests方法:</li>
