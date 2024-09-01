@@ -542,7 +542,7 @@
         },
         xAxis: {
             type: 'category',
-            data: ["2023-08","2023-09","2023-10","2023-11","2023-12","2024-01","2024-02","2024-03","2024-04","2024-05","2024-06","2024-07","2024-08"]
+            data: ["2023-09","2023-10","2023-11","2023-12","2024-01","2024-02","2024-03","2024-04","2024-05","2024-06","2024-07","2024-08","2024-09"]
         },
         yAxis: {
             type: 'value',
@@ -552,7 +552,7 @@
                 name: '文章篇数',
                 type: 'line',
                 color: ['#6772e5'],
-                data: [0,0,0,0,0,0,0,0,0,0,10,3,9],
+                data: [0,0,0,0,0,0,0,0,0,10,3,9,0],
                 markPoint: {
                     symbolSize: 45,
                     color: ['#fa755a','#3ecf8e','#82d3f4'],
@@ -594,7 +594,7 @@
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"前端","value":5},{"name":"操作系统","value":3},{"name":"Linux","value":1},{"name":"理论知识","value":2},{"name":"博客","value":1},{"name":"python","value":1},{"name":"GUI程序开发","value":1},{"name":"电脑技能","value":1},{"name":"爬虫","value":3},{"name":"数据库","value":2},{"name":"算法","value":1}],
+                data: [{"name":"前端","value":5},{"name":"操作系统","value":3},{"name":"Linux","value":1},{"name":"理论知识","value":2},{"name":"博客","value":1},{"name":"python","value":1},{"name":"爬虫","value":3},{"name":"GUI程序开发","value":1},{"name":"电脑技能","value":1},{"name":"数据库","value":2},{"name":"算法","value":1}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -618,7 +618,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: ["Linux","python","JavaScript","c++","html","计算机网络","mysql","json","ajax","Bash指令"]
+                data: ["Linux","python","JavaScript","html","计算机网络","c++","mysql","json","ajax","Bash指令"]
             }
         ],
         yAxis: [
@@ -827,24 +827,6 @@
             
             
             
-            <a href="/tags/c/">
-                <span class="chip center-align waves-effect waves-light chip-default">c++</span>
-            </a>
-            
-            
-            
-            <a href="/tags/STL/">
-                <span class="chip center-align waves-effect waves-light chip-default">STL</span>
-            </a>
-            
-            
-            
-            <a href="/tags/%E7%AE%97%E6%B3%95/">
-                <span class="chip center-align waves-effect waves-light chip-default">算法</span>
-            </a>
-            
-            
-            
             <a href="/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
                 <span class="chip center-align waves-effect waves-light chip-default">开发环境</span>
             </a>
@@ -865,12 +847,6 @@
             
             <a href="/tags/Hexo/">
                 <span class="chip center-align waves-effect waves-light chip-default">Hexo</span>
-            </a>
-            
-            
-            
-            <a href="/tags/css/">
-                <span class="chip center-align waves-effect waves-light chip-default">css</span>
             </a>
             
             
@@ -899,30 +875,6 @@
             
             
             
-            <a href="/tags/Qt/">
-                <span class="chip center-align waves-effect waves-light chip-default">Qt</span>
-            </a>
-            
-            
-            
-            <a href="/tags/%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/">
-                <span class="chip center-align waves-effect waves-light chip-default">显卡驱动</span>
-            </a>
-            
-            
-            
-            <a href="/tags/DDU/">
-                <span class="chip center-align waves-effect waves-light chip-default">DDU</span>
-            </a>
-            
-            
-            
-            <a href="/tags/Nvidia/">
-                <span class="chip center-align waves-effect waves-light chip-default">Nvidia</span>
-            </a>
-            
-            
-            
             <a href="/tags/scrapy/">
                 <span class="chip center-align waves-effect waves-light chip-default">scrapy</span>
             </a>
@@ -947,8 +899,50 @@
             
             
             
-            <a href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/">
-                <span class="chip center-align waves-effect waves-light chip-default">代码规范</span>
+            <a href="/tags/Qt/">
+                <span class="chip center-align waves-effect waves-light chip-default">Qt</span>
+            </a>
+            
+            
+            
+            <a href="/tags/css/">
+                <span class="chip center-align waves-effect waves-light chip-default">css</span>
+            </a>
+            
+            
+            
+            <a href="/tags/%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/">
+                <span class="chip center-align waves-effect waves-light chip-default">显卡驱动</span>
+            </a>
+            
+            
+            
+            <a href="/tags/DDU/">
+                <span class="chip center-align waves-effect waves-light chip-default">DDU</span>
+            </a>
+            
+            
+            
+            <a href="/tags/Nvidia/">
+                <span class="chip center-align waves-effect waves-light chip-default">Nvidia</span>
+            </a>
+            
+            
+            
+            <a href="/tags/c/">
+                <span class="chip center-align waves-effect waves-light chip-default">c++</span>
+            </a>
+            
+            
+            
+            <a href="/tags/STL/">
+                <span class="chip center-align waves-effect waves-light chip-default">STL</span>
+            </a>
+            
+            
+            
+            <a href="/tags/%E7%AE%97%E6%B3%95/">
+                <span class="chip center-align waves-effect waves-light chip-default">算法</span>
             </a>
             
             
@@ -965,6 +959,12 @@
             
             
             
+            <a href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/">
+                <span class="chip center-align waves-effect waves-light chip-default">代码规范</span>
+            </a>
+            
+            
+            
             <a href="/tags/Linux0-11/">
                 <span class="chip center-align waves-effect waves-light chip-default">Linux0.11</span>
             </a>
@@ -977,8 +977,8 @@
             
             
             
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                <span class="chip center-align waves-effect waves-light chip-default">数据库</span>
+            <a href="/tags/%E8%B6%85%E7%BA%A7%E9%B9%B0/">
+                <span class="chip center-align waves-effect waves-light chip-default">超级鹰</span>
             </a>
             
             
@@ -989,8 +989,8 @@
             
             
             
-            <a href="/tags/%E8%B6%85%E7%BA%A7%E9%B9%B0/">
-                <span class="chip center-align waves-effect waves-light chip-default">超级鹰</span>
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                <span class="chip center-align waves-effect waves-light chip-default">数据库</span>
             </a>
             
             
@@ -1108,7 +1108,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">215k</span>&nbsp;字
+                class="white-color">218.5k</span>&nbsp;字
             
             
             
