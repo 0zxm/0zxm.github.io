@@ -659,7 +659,7 @@ tcp_server_socket<span class="token punctuation">.</span>setsockopt<span class="
 <li>加入多线程来处理多个客户端请求</li>
 </ul>
 <h2 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h2><h3 id="1-网址的概念"><a href="#1-网址的概念" class="headerlink" title="1. 网址的概念"></a>1. 网址的概念</h3><p>网址又称为 URL，URL 的英文全拼是(Uniform Resoure Locator),表达的意思是<code>统一资源定位符</code>，通俗理解就是网络资源地址。</p>
-<h3 id="2-url-的组成"><a href="#2-url-的组成" class="headerlink" title="2. url 的组成"></a>2. url 的组成</h3><p><img src="/2024/09/02/python-wang-luo-bian-cheng/note%5Curl.png" alt="alt text"></p>
+<h3 id="2-url-的组成"><a href="#2-url-的组成" class="headerlink" title="2. url 的组成"></a>2. url 的组成</h3><p><img src="/2024/09/02/python-wang-luo-bian-cheng/url.png" alt="alt text"></p>
 <h2 id="http-协议"><a href="#http-协议" class="headerlink" title="http 协议"></a>http 协议</h2><p>通过<code>HTTP协议</code>来规定浏览器和 web 服务器之间通讯的<code>数据的格式</code></p>
 <h3 id="1-HTTP-协议的概念及作用"><a href="#1-HTTP-协议的概念及作用" class="headerlink" title="1. HTTP 协议的概念及作用"></a>1. HTTP 协议的概念及作用</h3><p>HTTP 协议的全称是(HyperText Transfer Protocol)，翻译过来就是<code>超文本传输协议</code>。超文本是指在文本数据的基础上还包括<code>非文本数据</code>，非文本数据有<code>图片</code>、<code>音乐</code>、<code>视频</code>等，而这些非文本数据会使用<code>链接的</code>方式进行加载显示，通俗来说超文本就是<code>带有链接的文本数据</code>也就是我们常说的<code>网页数据</code>。</p>
 <h3 id="2-HTTP-协议的概念及作用"><a href="#2-HTTP-协议的概念及作用" class="headerlink" title="2. HTTP 协议的概念及作用"></a>2. HTTP 协议的概念及作用</h3><ul>
@@ -731,7 +731,7 @@ tcp_server_socket<span class="token punctuation">.</span>setsockopt<span class="
 <li>包含服务器返回给客户端的数据</li>
 </ul>
 <p>这些是 HTTP 请求和响应的基本要素，可以帮助您更好地理解和处理 Web 通信过程中的各个部分。</p>
-<p><img src="/2024/09/02/python-wang-luo-bian-cheng/note%5C%E5%A4%9A%E6%AC%A1%E8%AF%B7%E6%B1%82.png" alt="alt text"></p>
+<p><img src="/2024/09/02/python-wang-luo-bian-cheng/%E5%A4%9A%E6%AC%A1%E8%AF%B7%E6%B1%82.png" alt="alt text"></p>
 <h2 id="python-搭建-Web-服务器"><a href="#python-搭建-Web-服务器" class="headerlink" title="python 搭建 Web 服务器"></a>python 搭建 Web 服务器</h2><h3 id="1-搭建-Python-自带的静态-Web-服务器"><a href="#1-搭建-Python-自带的静态-Web-服务器" class="headerlink" title="1.搭建 Python 自带的静态 Web 服务器"></a>1.搭建 Python 自带的静态 Web 服务器</h3><ul>
 <li>知识要点<ol>
 <li>静态 Web 服务器是<code>为发出请求的浏览器提供静态文档的程序</code>，搭建 Python 自带的 Web 服务器(进入资源文件夹)使用<code>python3 -m http.server 端口号</code>这个命令即可，端口号不指定默认是<code>8000</code></li>
@@ -745,7 +745,7 @@ tcp_server_socket<span class="token punctuation">.</span>setsockopt<span class="
 <li>编写一个 TCP 服务端程序</li>
 <li>获取浏览器发送的 HTTP 请求报文数据</li>
 <li>读取固定页面数据，把页面数据组装成 HTTP 响应报文数据发送给浏览器。</li>
-<li>HTTP 响应报文数据发送完成以后，关闭服务于客户端的套接字。<br><img src="/2024/09/02/python-wang-luo-bian-cheng/note%5Ctcp_pro.png" alt="alt text"></li>
+<li>HTTP 响应报文数据发送完成以后，关闭服务于客户端的套接字。<br><img src="/2024/09/02/python-wang-luo-bian-cheng/tcp_pro.png" alt="alt text"></li>
 </ol>
 <h3 id="3-静态-Web-服务器-返回指定页面数据"><a href="#3-静态-Web-服务器-返回指定页面数据" class="headerlink" title="3.静态 Web 服务器-返回指定页面数据"></a>3.静态 Web 服务器-返回指定页面数据</h3><p>分析步骤:</p>
 <ol>
