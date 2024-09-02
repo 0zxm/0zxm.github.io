@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="在VS中配置mysql环境, 0zxm">
+    <meta name="keywords" content="python网络编程, 0zxm">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>在VS中配置mysql环境 | 0zxm</title>
+    <title>python网络编程 | 0zxm</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -323,12 +323,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">在VS中配置mysql环境</h1>
+                    <h1 class="description center-align post-title">python网络编程</h1>
                 </div>
             </div>
         </div>
@@ -444,12 +444,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/mysql/">
-                                <span class="chip bg-color">mysql</span>
+                            <a href="/tags/python/">
+                                <span class="chip bg-color">python</span>
                             </a>
                         
-                            <a href="/tags/VisualStudio/">
-                                <span class="chip bg-color">VisualStudio</span>
+                            <a href="/tags/pythonWeb/">
+                                <span class="chip bg-color">pythonWeb</span>
                             </a>
                         
                     </div>
@@ -460,8 +460,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
-                                数据库
+                            <a href="/categories/python/" class="post-category">
+                                python
                             </a>
                         
                     </div>
@@ -473,7 +473,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-06-21
+                    2024-09-02
                 </div>
                 
 
@@ -482,14 +482,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    357
+                    3.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    13 分
                 </div>
                 
 
@@ -517,87 +517,284 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="C-加-MySQL"><a href="#C-加-MySQL" class="headerlink" title="C++ 加 MySQL"></a>C++ 加 MySQL</h1><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">打开cmd
-输入 mysql
-输入 mysql <span class="token operator">-</span>u root <span class="token operator">-</span>p
+                <h2 id="ifconfig-和-ping-命令"><a href="#ifconfig-和-ping-命令" class="headerlink" title="ifconfig 和 ping 命令"></a><code>ifconfig</code> 和 <code>ping</code> 命令</h2><h3 id="ifconfig"><a href="#ifconfig" class="headerlink" title="ifconfig"></a><code>ifconfig</code></h3><p><code>ifconfig</code> 是一个用于配置和显示Linux内核中网络接口参数的命令。它可以用来查看和设置网络接口的状态，包括 IP 地址、子网掩码、广播地址等信息。</p>
+<h3 id="ping"><a href="#ping" class="headerlink" title="ping"></a><code>ping</code></h3><p><code>ping</code> 是一个用于测试网络连接的工具。它发送 ICMP（Internet Control Message Protocol）回显请求到目标主机，并等待回显应答。通过 <code>ping</code> 命令，我们可以测试网络连通性，以及测量网络延迟。</p>
+<h2 id="端口和端口号-共有-65536-个"><a href="#端口和端口号-共有-65536-个" class="headerlink" title="端口和端口号 (共有 65536 个)"></a>端口和端口号 (共有 65536 个)</h2><p>端口和端口号是网络通信中的重要概念。</p>
+<h3 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h3><ul>
+<li>端口是数据传输的必经之路，可以视为网络程序之间通信的接口。</li>
+<li>每运行一个程序都会有一个端口，用于给对应的网络程序发送数据。</li>
+</ul>
+<h3 id="端口号"><a href="#端口号" class="headerlink" title="端口号"></a>端口号</h3><ul>
+<li>端口号用于标识不同的端口，共有 65536 个端口号。</li>
+</ul>
+<h4 id="知名端口号-0-1023"><a href="#知名端口号-0-1023" class="headerlink" title="知名端口号 (0-1023)"></a>知名端口号 (0-1023)</h4><ul>
+<li>知名端口号是指众所周知的端口号，范围从 0 到 1023。</li>
+<li>这些端口号一般固定分配给一些服务，比如 21 端口分配给 FTP（文件传输协议）服务，25 端口分配给 SMTP（简单邮件传输协议）服务，80 端口分配给 HTTP 服务。</li>
+</ul>
+<h4 id="动态端口号-1024-65535"><a href="#动态端口号-1024-65535" class="headerlink" title="动态端口号 (1024-65535)"></a>动态端口号 (1024-65535)</h4><ul>
+<li>动态端口号的范围是从 1024 到 65535。</li>
+<li>如果程序员开发的程序没有设置端口号，操作系统会在动态端口号这个范围内随机生成一个给开发的应用程序使用。</li>
+<li>当运行一个程序默认会有一个端口号，当这个程序退出时，所占用的这个端口号就会被释放。</li>
+</ul>
+<h2 id="Socket-套接字"><a href="#Socket-套接字" class="headerlink" title="Socket 套接字"></a>Socket 套接字</h2><p>Socket 套接字是网络编程中的基本概念。</p>
+<h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><ul>
+<li>TCP（Transmission Control Protocol）简称传输控制协议，是一种面向连接的、可靠的、基于字节流的传输层通信协议。</li>
+</ul>
+<h3 id="TCP-的特点"><a href="#TCP-的特点" class="headerlink" title="TCP 的特点"></a>TCP 的特点</h3><ul>
+<li><strong>面向连接</strong>：通信双方必须先建立好连接才能进行数据的传输，并且双方都会为此连接分配必要资源用来记录连接的状态和信息。当数据传输完成后，双方必须断开此连接，以释放系统资源。</li>
+<li><strong>可靠传输</strong>：<ul>
+<li>发送应答机制：通过 TCP 这种方式发送的每个报文段都必须得到接收方的应答才认为这个 TCP 报文段传送成功。</li>
+<li>超时重传：发送端发送一个报文之后就会启动定时器，如果指定时间内没有得到应答就会重新发送这个报文段。</li>
+<li>错误校验：TCP 用一个校验和函数来校验数据是否有错误，在发送和接收时都要计算校验和。</li>
+<li>流量控制和阻塞管理：流量控制用来避免发送端发送过快而使得接收方来不及接收。</li>
+</ul>
+</li>
+</ul>
+<p>通过 TCP 协议，网络程序之间可以实现稳定、可靠的数据传输。</p>
+<h3 id="开发-TCP-客户端程序"><a href="#开发-TCP-客户端程序" class="headerlink" title="开发 TCP 客户端程序"></a>开发 TCP 客户端程序</h3><h4 id="1-知识要点"><a href="#1-知识要点" class="headerlink" title="1.知识要点"></a>1.知识要点</h4><ol>
+<li>导入 socket 模块</li>
+<li>创建 TCP 套接字<code>socket</code><br>参数 1:<code>AF INET</code>，表示 IPv4 地址类型<br>参数 2:<code>SOCK STREAM</code>，表示 TCP 传输协议类型</li>
+<li>发送数据<code>send</code><br>参数 1:要发送的二进制数据，注意:字符串需要使用 encode()方法进行编码</li>
+<li>接收数据<code>recv</code><br>参数 1: 表示每次接收数据的大小，单位是字节</li>
+<li>关闭套接字<code>socket</code>表示通信完成</li>
+</ol>
+<h3 id="开发-TCP-服务端程序"><a href="#开发-TCP-服务端程序" class="headerlink" title="开发 TCP 服务端程序"></a>开发 TCP 服务端程序</h3><h4 id="TCP-服务端程序开发流程介绍"><a href="#TCP-服务端程序开发流程介绍" class="headerlink" title="TCP 服务端程序开发流程介绍"></a>TCP 服务端程序开发流程介绍</h4><ol>
+<li>创建服务端端套接字对象</li>
+<li>绑定 IP 地址和端口号</li>
+<li>设置监听</li>
+<li>等待接受客户端的连接请求</li>
+<li>接收数据</li>
+<li>发送数据</li>
+<li>关闭套接字</li>
+</ol>
+<h4 id="TCP-服务端程序开发相关函数"><a href="#TCP-服务端程序开发相关函数" class="headerlink" title="TCP 服务端程序开发相关函数"></a>TCP 服务端程序开发相关函数</h4><table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bind</td>
+<td>绑定 IP 地址和端口号</td>
+</tr>
+<tr>
+<td>listen</td>
+<td>设置监听</td>
+</tr>
+<tr>
+<td>accept</td>
+<td>等待接受客户端的连接请求</td>
+</tr>
+<tr>
+<td>send</td>
+<td>发送数据</td>
+</tr>
+<tr>
+<td>recv</td>
+<td>接收数据</td>
+</tr>
+</tbody></table>
+<h4 id="知识要点"><a href="#知识要点" class="headerlink" title="知识要点"></a>知识要点</h4><ol>
+<li>导入 socket 模块</li>
+</ol>
+<ul>
+<li>创建服务端 socket 对象使用 socket 类,<code>socket.socket(AddressFamily, Type)</code></li>
+</ul>
+<ol start="2">
+<li>创建 TCP 套接字<code>socket</code></li>
+</ol>
+<ul>
+<li><code>AddressFamily</code> : IP 地址类型,分为 TPv4 和 IPv6 <code>AF INET</code>，表示 IPv4 地址类型</li>
+<li><code>Type</code> : 传输协议类型 <code>SOCK STREAM</code>，表示 TCP 传输协议类型</li>
+</ul>
+<ol start="3">
+<li>绑定端口号 <code>bind</code></li>
+</ol>
+<ul>
+<li>参数 1: 元组,比如:(“”，端口号)，元组里面的一个元素是 ip 地址，一般不需要设置,第二个元素是启动程序后使用的端口号。</li>
+</ul>
+<ol start="4">
+<li>设置监听<code>listen</code></li>
+</ol>
+<ul>
+<li>参数 1: 最大等待连接数</li>
+</ul>
+<ol start="5">
+<li>等待接受客户端的连接请求<code>accept</code></li>
+<li>发送数据<code>send</code></li>
+</ol>
+<ul>
+<li>参数 1: 要发送的二进制数据，注意: 字符串需要使用 encode()方法进行编码</li>
+</ul>
+<ol start="7">
+<li>接收数据<code>recv</code></li>
+</ol>
+<ul>
+<li>参数 1:表示每次接收数据的大小，单位是字节，注意:解码成字符串使用 decode()方法</li>
+</ul>
+<ol start="8">
+<li>关闭套接字<code>socket</code>表示通信完成</li>
+</ol>
+<h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><ol>
+<li>当 TCP 客户端程序想要和 TCP 服务端程序进行通信的时候必须要先<code>建立连接</code></li>
+<li>TCP 客户端程序一般不需要绑定端口号，因为客户端是主动发起建立连接的。</li>
+<li><code>TCP服务端程序必须绑定端口号</code>，否则客户端找不到这个 TCP 服务端程序。</li>
+<li>listen 后的套接字是被动套接字，<code>只负责接收新的客户端的连接请求，不能收发消息</code></li>
+<li>当 TCP 客户端程序和 TCP 服务端程序连接成功后，TCP 服务器端程序会产生一个<code>新的套接字</code>，收发客户端消息使用该套接字。</li>
+<li>关闭 accept 返回的套接字意味着和<code>这个客户端已经通信完毕</code></li>
+<li><code>当客户端的套接字调用close后,服务器端的recv会解阻塞,返回的数据长度为0</code>,服务端可以通过返回数据的长度来判断客户端是否已经下线，反之<code>服务端关闭套接字，客户端的recv也会解阻塞，返回的数据长度也为0</code></li>
+</ol>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">## 设置端口复用</span>
+tcp_server_socket<span class="token punctuation">.</span>setsockopt<span class="token punctuation">(</span>socket<span class="token punctuation">.</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-打开VisualStudio
-VC<span class="token operator">/</span>C目录
-项目属性:点击c<span class="token operator">+</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">></span>常规<span class="token operator">-</span><span class="token operator">></span>附加包含目录<span class="token operator">-</span><span class="token operator">></span><span class="token string">"选择C:\Program Files\MySQL\MySQL Server 8.0\include"</span>
+<h3 id="socket-之-send-和-recv-原理剖析"><a href="#socket-之-send-和-recv-原理剖析" class="headerlink" title="socket 之 send 和 recv 原理剖析"></a>socket 之 send 和 recv 原理剖析</h3><ol>
+<li>TCP socket 的发送和接收缓冲区<br>当创建一个 TCP socket 对象的时候会有一个<code>发送缓冲区</code>和一个<code>接收缓冲区</code>，这个发送和接收缓冲区指的就是内存中的一片空间。</li>
+<li>send 原理剖析<br><code>问:</code>send 是不是直接把数据发给服务端?<br><code>答:</code>不是，要想发数据，必须得通过网卡发送数据，应用程序是无法直接通过网卡发送数据的，它需要调用操作系统接口也就是说，应用程序把发送的数据先写入到发送缓冲区(内存中的一片空间)，再由操作系统控制网卡把发送缓冲区的数据发送给服务端网卡</li>
+<li>recv 原理剖析<br><code>问:</code>recv 是不是直接从客户端接收数据?<br><code>答:</code>不是，应用软件是无法直接通过网卡接收数据的，它需要调用操作系统接口，由操作系统通过网卡接收数据，把接收的数据写入到接收缓冲区(内存中的一片空间)，应用程序再从接收缓存区获取客户端发送的数据。</li>
+</ol>
+<h3 id="案例-多任务版-TCP-服务端程序开发"><a href="#案例-多任务版-TCP-服务端程序开发" class="headerlink" title="案例-多任务版 TCP 服务端程序开发"></a>案例-多任务版 TCP 服务端程序开发</h3><ul>
+<li>目前我们开发的 TCP 服务端程序只能服务于一个客户端</li>
+<li>编写一个 TCP 服务端程序，循环等待接受客户端的连接请求</li>
+<li>加入多线程来处理多个客户端请求</li>
+</ul>
+<h2 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h2><h3 id="1-网址的概念"><a href="#1-网址的概念" class="headerlink" title="1. 网址的概念"></a>1. 网址的概念</h3><p>网址又称为 URL，URL 的英文全拼是(Uniform Resoure Locator),表达的意思是<code>统一资源定位符</code>，通俗理解就是网络资源地址。</p>
+<h3 id="2-url-的组成"><a href="#2-url-的组成" class="headerlink" title="2. url 的组成"></a>2. url 的组成</h3><p><img src="/2024/09/02/python-wang-luo-bian-cheng/note%5Curl.png" alt="alt text"></p>
+<h2 id="http-协议"><a href="#http-协议" class="headerlink" title="http 协议"></a>http 协议</h2><p>通过<code>HTTP协议</code>来规定浏览器和 web 服务器之间通讯的<code>数据的格式</code></p>
+<h3 id="1-HTTP-协议的概念及作用"><a href="#1-HTTP-协议的概念及作用" class="headerlink" title="1. HTTP 协议的概念及作用"></a>1. HTTP 协议的概念及作用</h3><p>HTTP 协议的全称是(HyperText Transfer Protocol)，翻译过来就是<code>超文本传输协议</code>。超文本是指在文本数据的基础上还包括<code>非文本数据</code>，非文本数据有<code>图片</code>、<code>音乐</code>、<code>视频</code>等，而这些非文本数据会使用<code>链接的</code>方式进行加载显示，通俗来说超文本就是<code>带有链接的文本数据</code>也就是我们常说的<code>网页数据</code>。</p>
+<h3 id="2-HTTP-协议的概念及作用"><a href="#2-HTTP-协议的概念及作用" class="headerlink" title="2. HTTP 协议的概念及作用"></a>2. HTTP 协议的概念及作用</h3><ul>
+<li><p>HTTP 协议的制作者是蒂姆·伯纳斯-李，1991 年设计出来的，<code>HTTP协议</code>设计之前目的是传输<code>网页数据</code>的，现在允许传输<code>任意类型</code>的数据。</p>
+</li>
+<li><p>传输 HTTP 协议格式的数据是基于 TCP 传输协议的，发送数据之前需要先建立连接。TCP 传输协议是用来保证网络中传输的数据的安全性的，HTTP 协议是用来规定这些数据的具体格式的</p>
+</li>
+<li><p>注意:</p>
+<ul>
+<li>HTTP 协议规定的数据格式是浏览器和 Web 服务器通信数据的格式，也就是说浏览器和 Web 服务器通信需要使用 HTTP 协议。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-HTTP-最常见的请求报文有两种"><a href="#3-HTTP-最常见的请求报文有两种" class="headerlink" title="3.HTTP 最常见的请求报文有两种:"></a>3.HTTP 最常见的请求报文有两种:</h3><ul>
+<li>GET: 获取 Web 服务器数据</li>
+<li>POST: 向 Web 服务器提交数据</li>
+<li>一个 HTTP 请求报文可以由请求行、请求头、空行和请求体 4 个部分组成。请求行是由三部分组成: 请求方式 请求资源路径 HTTP 协议版本</li>
+<li>POST 方式的请求报文可以有请求行、请求头、空行、请求体四部分组成。</li>
+<li><code>注意</code>:POST 方式可以允许没有请求体，但是这种格式很少见。<br>当涉及 HTTP 请求时，以下是一些重要的要点，以及它们在 Markdown 笔记中的整理方式：</li>
+</ul>
+<h2 id="HTTP-请求"><a href="#HTTP-请求" class="headerlink" title="HTTP 请求"></a>HTTP 请求</h2><h3 id="GET-方法"><a href="#GET-方法" class="headerlink" title="GET 方法"></a>GET 方法</h3><ul>
+<li>用于获取数据</li>
+<li>请求行: <code>GET /user/info HTTP/1.1</code></li>
+<li>资源路径: <code>www.douban.com/movie/top250?start=75&amp;filter=unwatched</code></li>
+<li>请求头:<ul>
+<li>Host: <a target="_blank" rel="noopener" href="http://www.example.com/">www.example.com</a></li>
+<li>User-Agent: [指定请求的用户代理]</li>
+<li>Accept: text&#x2F;html, application&#x2F;json, text&#x2F;html,application&#x2F;json, <em>&#x2F;</em></li>
+</ul>
+</li>
+<li>请求体: 通常为空</li>
+</ul>
+<h3 id="POST-方法"><a href="#POST-方法" class="headerlink" title="POST 方法"></a>POST 方法</h3><ul>
+<li>用于创建数据</li>
+<li>请求行: <code>POST /user/info HTTP/1.1</code></li>
+<li>请求头: 同 GET 方法</li>
+<li>请求体: 包含客户端传输给服务器的其他数据</li>
+</ul>
+<h2 id="HTTP-响应"><a href="#HTTP-响应" class="headerlink" title="HTTP 响应"></a>HTTP 响应</h2><h3 id="状态行"><a href="#状态行" class="headerlink" title="状态行"></a>状态行</h3><ul>
+<li>包含协议版本、状态码和状态消息</li>
+<li>例子: <code>HTTP/1.1 200 OK</code></li>
+</ul>
+<h3 id="响应状态码"><a href="#响应状态码" class="headerlink" title="响应状态码"></a>响应状态码</h3><ul>
+<li>2xx: 成功<ul>
+<li>200 OK: 请求成功处理</li>
+</ul>
+</li>
+<li>3xx: 需要重定向<ul>
+<li>301 Moved Permanently: 资源永久移动到新地址</li>
+</ul>
+</li>
+<li>4xx: 客户端错误<ul>
+<li>400 Bad Request: 服务器无法理解客户端请求</li>
+<li>401 Unauthorized: 未经授权的请求</li>
+<li>403 Forbidden: 服务器拒绝提供服务</li>
+<li>404 Not Found: 请求资源不存在</li>
+</ul>
+</li>
+<li>5xx: 服务器错误<ul>
+<li>500 Internal Server Error: 服务器发生不可预期的错误</li>
+<li>503 Server Unavailable: 服务器当前无法处理客户端请求</li>
+</ul>
+</li>
+</ul>
+<h3 id="响应头"><a href="#响应头" class="headerlink" title="响应头"></a>响应头</h3><ul>
+<li>包含日期、时间、响应数据类型和编码等信息</li>
+</ul>
+<h3 id="响应体"><a href="#响应体" class="headerlink" title="响应体"></a>响应体</h3><ul>
+<li>包含服务器返回给客户端的数据</li>
+</ul>
+<p>这些是 HTTP 请求和响应的基本要素，可以帮助您更好地理解和处理 Web 通信过程中的各个部分。</p>
+<p><img src="/2024/09/02/python-wang-luo-bian-cheng/note%5C%E5%A4%9A%E6%AC%A1%E8%AF%B7%E6%B1%82.png" alt="alt text"></p>
+<h2 id="python-搭建-Web-服务器"><a href="#python-搭建-Web-服务器" class="headerlink" title="python 搭建 Web 服务器"></a>python 搭建 Web 服务器</h2><h3 id="1-搭建-Python-自带的静态-Web-服务器"><a href="#1-搭建-Python-自带的静态-Web-服务器" class="headerlink" title="1.搭建 Python 自带的静态 Web 服务器"></a>1.搭建 Python 自带的静态 Web 服务器</h3><ul>
+<li>知识要点<ol>
+<li>静态 Web 服务器是<code>为发出请求的浏览器提供静态文档的程序</code>，搭建 Python 自带的 Web 服务器(进入资源文件夹)使用<code>python3 -m http.server 端口号</code>这个命令即可，端口号不指定默认是<code>8000</code></li>
+</ol>
+</li>
+</ul>
+<h3 id="2-静态-Web-服务器-返回固定页面数据"><a href="#2-静态-Web-服务器-返回固定页面数据" class="headerlink" title="2.静态 Web 服务器-返回固定页面数据"></a>2.静态 Web 服务器-返回固定页面数据</h3><h4 id="2-1-开发自己的静态-Web-服务器"><a href="#2-1-开发自己的静态-Web-服务器" class="headerlink" title="2.1 开发自己的静态 Web 服务器"></a>2.1 开发自己的静态 Web 服务器</h4><ul>
+<li>开发步骤</li>
+</ul>
+<ol>
+<li>编写一个 TCP 服务端程序</li>
+<li>获取浏览器发送的 HTTP 请求报文数据</li>
+<li>读取固定页面数据，把页面数据组装成 HTTP 响应报文数据发送给浏览器。</li>
+<li>HTTP 响应报文数据发送完成以后，关闭服务于客户端的套接字。<br><img src="/2024/09/02/python-wang-luo-bian-cheng/note%5Ctcp_pro.png" alt="alt text"></li>
+</ol>
+<h3 id="3-静态-Web-服务器-返回指定页面数据"><a href="#3-静态-Web-服务器-返回指定页面数据" class="headerlink" title="3.静态 Web 服务器-返回指定页面数据"></a>3.静态 Web 服务器-返回指定页面数据</h3><p>分析步骤:</p>
+<ol>
+<li>获取用户请求资源的路径</li>
+<li>根据请求资源的路径，读取指定文件的数据</li>
+<li>组装指定文件数据的响应报文，发送给浏览器</li>
+<li>判断请求的文件在服务端不存在，组装 404 状态的响应报文，发送给浏览器</li>
+</ol>
+<p>步骤详解</p>
+<ol>
+<li><p>获取用户请求资源的路径：</p>
+<ul>
+<li>首先，从客户端请求内容中分割出请求路径。</li>
+<li>通过将请求内容进行分割，可以获取用户请求的资源路径，这是服务器确定客户端请求的资源所在位置的关键步骤。</li>
+</ul>
+</li>
+<li><p>根据请求资源的路径，读取请求指定文件的数据：</p>
+<ul>
+<li>使用 Python 的<code>open</code>函数以二进制形式读取指定文件的数据。</li>
+<li>通过将请求路径与服务器静态文件目录拼接，可以读取客户端请求的指定文件的内容。</li>
+</ul>
+</li>
+<li><p>组装指定文件数据的响应报文，发送给浏览器：</p>
+<ul>
+<li>组装包含响应状态行、响应头和响应体的完整 HTTP 响应报文。</li>
+<li>将响应报文编码为 UTF-8 格式，并通过连接套接字将响应数据发送给浏览器。</li>
+</ul>
+</li>
+<li><p>判断请求的文件在服务端不存在，组装 404 状态的响应报文，发送给浏览器：</p>
+<ul>
+<li>使用<code>try-except</code>块捕获文件打开过程中的异常，通常用于处理文件不存在等错误。</li>
+<li>如果请求的文件在服务器端不存在，服务器将组装一个包含 404 状态的 HTTP 响应报文，并发送给浏览器，以表明请求资源未找到。</li>
+</ul>
+</li>
+</ol>
+<p>这些步骤用于处理客户端请求的静态资源文件，并生成相应的 HTTP 响应</p>
+<h3 id="4-多任务版"><a href="#4-多任务版" class="headerlink" title="4.多任务版"></a>4.多任务版</h3><ul>
+<li>多线程 当客户端和服务端建立连接成功，创建子线程，使用子线程专门处理客户端的请求，防止主线程阻塞</li>
+<li>多进程</li>
+</ul>
+<h3 id="5-静态-Web-服务器-面向对象开发"><a href="#5-静态-Web-服务器-面向对象开发" class="headerlink" title="5.静态 Web 服务器-面向对象开发"></a>5.静态 Web 服务器-面向对象开发</h3><p>分析步骤:<br>把提供服务的 Web 服务器抽象成一个类(HTTPWebServer)提供 Web 服务器的初始化方法，在初始化方法里面创建 Socket 对象</p>
+<h4 id="5-1-知识要点"><a href="#5-1-知识要点" class="headerlink" title="5.1 知识要点"></a>5.1 知识要点</h4><ol>
+<li>把提供服务的 Web 服务器抽象成一个类(HTTPWebServer)<code>class HttpWebServer(object):</code></li>
+<li>提供 Web 服务器的初始化方法，在初始化方法里面创建 socket 对象<code>def __init__ (self):</code><br>初始化服务端套接字，设置监听，代码省略..</li>
+<li>提供一个开启 Web 服务器的方法，让 Web 服务器处理客户端请求操作<code>def start(self):</code></li>
+</ol>
+<h3 id="6-命令行动态设定端口号"><a href="#6-命令行动态设定端口号" class="headerlink" title="6.命令行动态设定端口号"></a>6.命令行动态设定端口号</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> sys
 
-包含库文件<span class="token operator">-</span><span class="token operator">></span>链接<span class="token operator">-</span><span class="token operator">></span>常规<span class="token operator">-</span><span class="token operator">></span>附加库目录<span class="token operator">-</span><span class="token operator">></span><span class="token string">"选择C:\Program Files\MySQL\MySQL Server 8.0\lib"</span>
-写入库文件<span class="token operator">-</span><span class="token operator">></span>链接器<span class="token operator">-</span><span class="token operator">></span>输入<span class="token operator">-</span><span class="token operator">></span>附加依赖项<span class="token operator">-</span><span class="token operator">></span>libmysql<span class="token punctuation">.</span>lib
-libmysql<span class="token punctuation">.</span>lib复制到c盘windows下system32文件夹下
-
-
-PS C:\Users\<span class="token number">86158</span><span class="token operator">></span> mysql <span class="token operator">-</span>u root <span class="token operator">-</span>p
-Enter password: <span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span>
-Welcome <span class="token keyword">to</span> the MySQL monitor<span class="token punctuation">.</span>  Commands <span class="token keyword">end</span> <span class="token keyword">with</span> <span class="token punctuation">;</span> <span class="token operator">or</span> \g<span class="token punctuation">.</span>
-Your MySQL connection id <span class="token operator">is</span> <span class="token number">20</span>
-Server version: <span class="token number">8.0</span><span class="token number">.33</span> MySQL Community Server <span class="token operator">-</span> GPL
-
-Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token number">2000</span><span class="token punctuation">,</span> <span class="token number">2023</span><span class="token punctuation">,</span> Oracle <span class="token operator">and</span><span class="token operator">/</span><span class="token operator">or</span> its affiliates<span class="token punctuation">.</span>
-
-Oracle <span class="token operator">is</span> a registered trademark <span class="token keyword">of</span> Oracle Corporation <span class="token operator">and</span><span class="token operator">/</span><span class="token operator">or</span> its
-affiliates<span class="token punctuation">.</span> Other names may be trademarks <span class="token keyword">of</span> their respective
-owners<span class="token punctuation">.</span>
-
-<span class="token keyword">Type</span> <span class="token string">'help;'</span> <span class="token operator">or</span> <span class="token string">'\h'</span> <span class="token keyword">for</span> help<span class="token punctuation">.</span> <span class="token keyword">Type</span> <span class="token string">'\c'</span> <span class="token keyword">to</span> clear the <span class="token keyword">current</span> input statement<span class="token punctuation">.</span>
-
-mysql<span class="token operator">></span> <span class="token keyword">show</span> <span class="token keyword">databases</span><span class="token punctuation">;</span>
-<span class="token operator">+</span><span class="token comment">--------------------+</span>
-<span class="token operator">|</span> <span class="token keyword">Database</span>           <span class="token operator">|</span>
-<span class="token operator">+</span><span class="token comment">--------------------+</span>
-<span class="token operator">|</span> information_schema <span class="token operator">|</span>
-<span class="token operator">|</span> mysql              <span class="token operator">|</span>
-<span class="token operator">|</span> performance_schema <span class="token operator">|</span>
-<span class="token operator">|</span> py_sql             <span class="token operator">|</span>
-<span class="token operator">|</span> sakila             <span class="token operator">|</span>
-<span class="token operator">|</span> sys                <span class="token operator">|</span>
-<span class="token operator">|</span> test               <span class="token operator">|</span>
-<span class="token operator">|</span> world              <span class="token operator">|</span>
-<span class="token operator">+</span><span class="token comment">--------------------+</span>
-<span class="token number">8</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
-
-mysql<span class="token operator">></span> <span class="token keyword">create</span> <span class="token keyword">databases</span> student_manager<span class="token punctuation">;</span>
-ERROR <span class="token number">1064</span> <span class="token punctuation">(</span><span class="token number">42000</span><span class="token punctuation">)</span>: You have an error <span class="token operator">in</span> your <span class="token keyword">SQL</span> syntax<span class="token punctuation">;</span> <span class="token keyword">check</span> the manual that corresponds <span class="token keyword">to</span> your MySQL server version <span class="token keyword">for</span> the <span class="token keyword">right</span> syntax <span class="token keyword">to</span> <span class="token keyword">use</span> near <span class="token string">'databases student_manager'</span> at line <span class="token number">1</span>
-mysql<span class="token operator">></span> <span class="token keyword">create</span> <span class="token keyword">database</span> student_manager<span class="token punctuation">;</span>
-Query OK<span class="token punctuation">,</span> <span class="token number">1</span> <span class="token keyword">row</span> affected <span class="token punctuation">(</span><span class="token number">0.01</span> sec<span class="token punctuation">)</span>
-
-mysql<span class="token operator">></span> <span class="token keyword">show</span> <span class="token keyword">databases</span><span class="token punctuation">;</span>
-<span class="token operator">+</span><span class="token comment">--------------------+</span>
-<span class="token operator">|</span> <span class="token keyword">Database</span>           <span class="token operator">|</span>
-<span class="token operator">+</span><span class="token comment">--------------------+</span>
-<span class="token operator">|</span> information_schema <span class="token operator">|</span>
-<span class="token operator">|</span> mysql              <span class="token operator">|</span>
-<span class="token operator">|</span> performance_schema <span class="token operator">|</span>
-<span class="token operator">|</span> py_sql             <span class="token operator">|</span>
-<span class="token operator">|</span> sakila             <span class="token operator">|</span>
-<span class="token operator">|</span> student_manager    <span class="token operator">|</span>
-<span class="token operator">|</span> sys                <span class="token operator">|</span>
-<span class="token operator">|</span> test               <span class="token operator">|</span>
-<span class="token operator">|</span> world              <span class="token operator">|</span>
-<span class="token operator">+</span><span class="token comment">--------------------+</span>
-<span class="token number">9</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
-
-mysql<span class="token operator">></span> <span class="token keyword">use</span> student_manager<span class="token punctuation">;</span>
-<span class="token keyword">Database</span> changed
-mysql<span class="token operator">></span> <span class="token keyword">create</span> <span class="token keyword">table</span> students<span class="token punctuation">(</span>student_id <span class="token keyword">int</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">auto_increment</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span>student_name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>stude
-nt_class <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-Query OK<span class="token punctuation">,</span> <span class="token number">0</span> <span class="token keyword">rows</span> affected <span class="token punctuation">(</span><span class="token number">0.02</span> sec<span class="token punctuation">)</span>
-
-mysql<span class="token operator">></span> <span class="token keyword">show</span> <span class="token keyword">tables</span><span class="token punctuation">;</span>
-<span class="token operator">+</span><span class="token comment">---------------------------+</span>
-<span class="token operator">|</span> Tables_in_student_manager <span class="token operator">|</span>
-<span class="token operator">+</span><span class="token comment">---------------------------+</span>
-<span class="token operator">|</span> students                  <span class="token operator">|</span>
-<span class="token operator">+</span><span class="token comment">---------------------------+</span>
-<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
-
-mysql<span class="token operator">></span> <span class="token keyword">insert</span>  <span class="token keyword">into</span> students <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token number">20221003174</span><span class="token punctuation">,</span><span class="token string">'徐彬'</span><span class="token punctuation">,</span><span class="token string">'计科2201'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-ERROR <span class="token number">1264</span> <span class="token punctuation">(</span><span class="token number">22003</span><span class="token punctuation">)</span>: <span class="token keyword">Out</span> <span class="token keyword">of</span> range <span class="token keyword">value</span> <span class="token keyword">for</span> <span class="token keyword">column</span> <span class="token string">'student_id'</span> at <span class="token keyword">row</span> <span class="token number">1</span>
-mysql<span class="token operator">></span> <span class="token keyword">insert</span>  <span class="token keyword">into</span> students <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">,</span><span class="token string">'徐彬'</span><span class="token punctuation">,</span><span class="token string">'计科2201'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-Query OK<span class="token punctuation">,</span> <span class="token number">1</span> <span class="token keyword">row</span> affected <span class="token punctuation">(</span><span class="token number">0.01</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">print</span><span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -624,7 +821,7 @@ Query OK<span class="token punctuation">,</span> <span class="token number">1</s
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://0zxm.github.io/2024/06/21/zai-vs-pei-zhi-mysql-huan-jing/">https://0zxm.github.io/2024/06/21/zai-vs-pei-zhi-mysql-huan-jing/</a>
+                    <a href="https://0zxm.github.io/2024/09/02/python-wang-luo-bian-cheng/">https://0zxm.github.io/2024/09/02/python-wang-luo-bian-cheng/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -662,12 +859,12 @@ Query OK<span class="token punctuation">,</span> <span class="token number">1</s
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/mysql/">
-                                    <span class="chip bg-color">mysql</span>
+                                <a href="/tags/python/">
+                                    <span class="chip bg-color">python</span>
                                 </a>
                             
-                                <a href="/tags/VisualStudio/">
-                                    <span class="chip bg-color">VisualStudio</span>
+                                <a href="/tags/pythonWeb/">
+                                    <span class="chip bg-color">pythonWeb</span>
                                 </a>
                             
                         </div>
@@ -837,46 +1034,52 @@ Query OK<span class="token punctuation">,</span> <span class="token number">1</s
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2024/06/21/ji-suan-ji-wang-luo/">
+                <a href="/2024/09/02/python-wang-luo-bian-cheng/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="计算机网络">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="python网络编程">
                         
-                        <span class="card-title">计算机网络</span>
+                        <span class="card-title">python网络编程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            计算机网络理论知识
+                            使用python进行网络编程开发
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-06-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-09-02
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/" class="post-category">
-                                    理论知识
+                            <a href="/categories/python/" class="post-category">
+                                    python
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
-                        <span class="chip bg-color">计算机网络</span>
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                    <a href="/tags/pythonWeb/">
+                        <span class="chip bg-color">pythonWeb</span>
                     </a>
                     
                 </div>
@@ -890,31 +1093,31 @@ Query OK<span class="token punctuation">,</span> <span class="token number">1</s
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/06/21/html/">
+                <a href="/2024/08/28/linux-ji-chu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="html">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Linux基础">
                         
-                        <span class="card-title">html</span>
+                        <span class="card-title">Linux基础</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            html网页框架知识
+                            黑马Linux系统笔记
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-28
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
-                                    前端
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    操作系统
                                 </a>
                             
                             
@@ -924,8 +1127,12 @@ Query OK<span class="token punctuation">,</span> <span class="token number">1</s
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/html/">
-                        <span class="chip bg-color">html</span>
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
+                    </a>
+                    
+                    <a href="/tags/Bash%E6%8C%87%E4%BB%A4/">
+                        <span class="chip bg-color">Bash指令</span>
                     </a>
                     
                 </div>

@@ -478,14 +478,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    9.8k
+                    11k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    38 分
+                    42 分
                 </div>
                 
 
@@ -515,14 +515,14 @@
             <div id="articleContent">
                 <h2 id="计算机入门"><a href="#计算机入门" class="headerlink" title="计算机入门"></a>计算机入门</h2><h3 id="1-计算机编程基础"><a href="#1-计算机编程基础" class="headerlink" title="1.计算机编程基础"></a>1.计算机编程基础</h3><h4 id="1-1-编程"><a href="#1-1-编程" class="headerlink" title="1.1 编程"></a>1.1 编程</h4><p><strong>编程:</strong> 就是让计算机为解决某个问题而使用某种程序设计语言编写程序代码，并最终得到结果的过程</p>
 <p><strong>计算机程序</strong>:就是计算机所执行的一系列的指令集合，而程序全部都是用我们所掌握的语言来编写的，所以人们要控制计算机一定要通过计算机语言向计算机发出命令。</p>
-<p>**注意:**上面所定义的计算机指的是任何能够执行代码的设备，可能是智能手机、ATM机、黑莓P1、服务器等等。</p>
+<p><strong>注意:</strong> 上面所定义的计算机指的是任何能够执行代码的设备，可能是智能手机、ATM机、黑莓P1、服务器等等。</p>
 <h4 id="1-2-计算机语言"><a href="#1-2-计算机语言" class="headerlink" title="1.2 计算机语言"></a>1.2 计算机语言</h4><p><strong>计算机语言</strong>指用于<strong>人与计算机之间</strong>通讯的语言，它是人与计算机之间传递信息的<strong>媒介</strong></p>
 <p>计算机语言的种类非常的多，总的来说可以分成<strong>机器语言</strong>，<strong>汇编语言</strong>和<strong>高级语言</strong>三大类。实际上计算机最终所执行的都是<strong>机器语言</strong>，它是由“0”和“1”组成的二进制数，<strong>二进制是计算机语介言的基础。</strong></p>
 <pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">0=00000000 	1=00000001	2=00000010	
 3=00000011	4=00000100	5=00000101	6=00000110	
 7=00000111	8=00001000	9=00001001	10=00001010<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="1-3-编程语言"><a href="#1-3-编程语言" class="headerlink" title="1.3 编程语言"></a>1.3 编程语言</h4><p>可以通过类似于人类语言的“语言”来控制计算机，让计算机为我们做事情,这样的语言就叫做**编程语言(ProarammingLanguage)**。</p>
+<h4 id="1-3-编程语言"><a href="#1-3-编程语言" class="headerlink" title="1.3 编程语言"></a>1.3 编程语言</h4><p>可以通过类似于人类语言的“语言”来控制计算机，让计算机为我们做事情,这样的语言就叫做 **编程语言(ProarammingLanguage)**。</p>
 <p><strong>编程语言</strong>是用来控制计算机的一系列指令，它有固定的格式和词汇(不同编程语言的格式和词汇不一样)，必须遵守。</p>
 <p>如今通用的编程语言有两种形式:汇编语言和高级语言。</p>
 <ul>
@@ -1669,12 +1669,141 @@ console<span class="token punctuation">.</span><span class="token function">log<
 </ul>
 <h3 id="3-变量的作用域"><a href="#3-变量的作用域" class="headerlink" title="3.变量的作用域"></a>3.变量的作用域</h3><h4 id="3-1-变量作用域的分类"><a href="#3-1-变量作用域的分类" class="headerlink" title="3.1 变量作用域的分类"></a>3.1 变量作用域的分类</h4><p>在JavaScript中，根据作用域的不同，变量可以分为两种:</p>
 <ul>
-<li><p>局部变量</p>
-</li>
-<li><p>全局变量</p>
-</li>
+<li>局部变量</li>
 </ul>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 2.局部变量在局部作用域下的变量 后者在函数内部的变量就是 局部变量</span>
+<span class="token comment">// 函数的形参也可以当作局部变量</span>
+<span class="token keyword">function</span> <span class="token function">fun</span><span class="token punctuation">(</span><span class="token parameter">argu</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">var</span> num1 <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span><span class="token comment">// num1就是局部变量 只能在函数内部使用</span>
+    <span class="token keyword">var</span> num2 <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+    <span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<ul>
+<li>全局变量</li>
+</ul>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 1.全局变量: 在全局作用域下的变量 在全局下都可以使用</span>
+<span class="token comment">// 注意 如果在函数内部 没有声明直接赋值的变量也属于全局变量</span>
+
+<span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span><span class="token comment">//num就是一个全局变量</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="3-2-从执行效率来看全局变量和局部变量"><a href="#3-2-从执行效率来看全局变量和局部变量" class="headerlink" title="3.2 从执行效率来看全局变量和局部变量"></a>3.2 从执行效率来看全局变量和局部变量</h4><ol>
+<li>全局变量只有<strong>浏览器关闭</strong>的时候才会销毁，比较占内存资源</li>
+<li>局部变量,当<strong>程序执行完毕</strong>就会销毁</li>
+</ol>
+<h4 id="4-作用域链"><a href="#4-作用域链" class="headerlink" title="4. 作用域链"></a>4. 作用域链</h4><ul>
+<li>只要是代码，就至少有一个作用域</li>
+<li>写在函数内部的局部作用域</li>
+<li>如果<strong>函数中还有函数</strong>，那么在这个作用域中就又可以诞生一个作用域</li>
+<li>根据在<strong>内部函数可以访问外部函数变量</strong>的这种机制，用链式查找决定哪些数据能被内部函数访问，就称作<strong>作用域链</strong></li>
+</ul>
+<p><strong>链式查找: 内部函数先访问内部变量,如果没有该同名变量,则使用外部函数的变量,再没有则去找全局变量</strong></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">fun1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 外部函数</span>
+    <span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+    <span class="token keyword">function</span> <span class="token function">fun2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 内部函数</span>
+        <span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">fun2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">fun1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token literal-property property">输出结果</span><span class="token operator">:</span> <span class="token number">20</span> <span class="token number">10</span> <span class="token number">0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="JavaScript预解析"><a href="#JavaScript预解析" class="headerlink" title="JavaScript预解析"></a>JavaScript预解析</h2><h3 id="预解析"><a href="#预解析" class="headerlink" title="预解析"></a>预解析</h3><p>JavaScript代码是由浏览器中的JavaScript解析器来执行的。JavaScript解析器在运行JavaScript代码的时候分为两步:<strong>预解析</strong>和<strong>代码执行</strong>。</p>
+<p><strong>预解析</strong>:js引擎会把js里面所有的<code>var</code>还有<code>function</code>提升到当前作用域的最前面</p>
+<p><strong>代码执行</strong>:按照代码书写的顺序从上往下执行</p>
+<h3 id="变量预解析和函数预解析"><a href="#变量预解析和函数预解析" class="headerlink" title="变量预解析和函数预解析"></a>变量预解析和函数预解析</h3><h4 id="变量提升-预解析"><a href="#变量提升-预解析" class="headerlink" title="变量提升(预解析)"></a>变量提升(预解析)</h4><p>**变量提升:**就是把所有的变量声明提升到当前的作用域最前面,不提升赋值操作</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// undefined</span>
+<span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>首先进行变量提升,相当于把所有变量(num)定义,执行<code>var num</code>步骤</p>
+<p>然后才开始按顺序执行代码,所以输出undefined</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> <span class="token function-variable function">fun</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"fun是一个函数变量"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// 报错: fun不是函数</span>
+
+相当于以下代码
+<span class="token keyword">var</span> fun<span class="token punctuation">;</span>
+<span class="token keyword">var</span> <span class="token function-variable function">fun</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"fun是一个函数变量"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// "fun是一个函数变量"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="函数预解析"><a href="#函数预解析" class="headerlink" title="函数预解析"></a>函数预解析</h4><p><strong>函数提升</strong>:就是把所有的函数声明提升到当前作用域的最前面,<strong>不调用函数</strong></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 可以输出</span>
+<span class="token keyword">function</span> <span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"hello world"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="预解析案例"><a href="#预解析案例" class="headerlink" title="预解析案例"></a>预解析案例</h3><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//案例3</span>
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">18</span><span class="token punctuation">;</span>
+<span class="token function">f1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">f1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token number">9</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span>	a <span class="token operator">=</span><span class="token string">'123'</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>相当于以下代码</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> a<span class="token punctuation">;</span>
+<span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">var</span> b<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> a
+    b <span class="token operator">=</span> <span class="token number">9</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// undefined</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// 9</span>
+    a <span class="token operator">=</span> <span class="token string">'123'</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+a <span class="token operator">=</span> <span class="token number">18</span><span class="token punctuation">;</span>
+<span class="token function">f1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>var a = b = c = 9;</code> 相当于<code>var a = 9; b = 9; c = 9;</code></p>
+<p><strong>b和c直接赋值,没有var声明,当全局变量看</strong></p>
+<h2 id="JavaScript对象"><a href="#JavaScript对象" class="headerlink" title="JavaScript对象"></a>JavaScript对象</h2><h3 id="1-什么是对象"><a href="#1-什么是对象" class="headerlink" title="1. 什么是对象?"></a>1. 什么是对象?</h3><p><strong>面向对象(Object Oriented Programming)</strong>,简称<code>oop</code></p>
+<p>对象是由<strong>属性和方法</strong>组成的。</p>
+<ul>
+<li>属性:事物的<strong>特征</strong>，在对象中用属性来表示(常用名词)</li>
+<li>方法:事物的<strong>行为</strong>，在对象中用方法来表示(常用动词 )</li>
+</ul>
+<h3 id="2-为什么需要对象"><a href="#2-为什么需要对象" class="headerlink" title="2. 为什么需要对象"></a>2. 为什么需要对象</h3><p>保存一个值时，可以使用<strong>变量</strong>，保存多个值(一组值)时，可以使用<strong>数组</strong>。如果要保存一个人的完整信息呢?</p>
+<p>这个时候,就需要使用到<strong>对象</strong></p>
+<h3 id="3-创建对象的三种方式"><a href="#3-创建对象的三种方式" class="headerlink" title="3. 创建对象的三种方式"></a>3. 创建对象的三种方式</h3><h4 id="3-1-利用字面量创建对象"><a href="#3-1-利用字面量创建对象" class="headerlink" title="3.1 利用字面量创建对象"></a>3.1 利用字面量创建对象</h4><p>**对象字面量:**就是<code>花括号&#123;&#125;</code>里面包含了表达这个具体事物(对象)的属性和方法</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 创建空对象</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 创建对象</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">uname</span> <span class="token operator">:</span> <span class="token string">'0zxm'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">age</span> <span class="token operator">:</span> <span class="token number">18</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">sayHi</span> <span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>里面的属性或者方法我们采取<strong>键值对</strong>的形式 <code>键 属性名: 值 属性值</code></li>
+<li>多个属性或者方法中间用<strong>逗号</strong>隔开的</li>
+<li>方法冒号后面跟的是一个<strong>匿名函数</strong></li>
+</ul>
+<h5 id="使用对象"><a href="#使用对象" class="headerlink" title="使用对象"></a>使用对象</h5><ol>
+<li>调用对象的属性,我们采取<strong>对象名.属性名</strong>或者<strong>对象名[‘属性名’]</strong></li>
+<li>调用对象的方法,我们使用<strong>对象名.方法名()</strong></li>
+</ol>
+<h4 id="3-2-利用new关键字创建"><a href="#3-2-利用new关键字创建" class="headerlink" title="3.2 利用new关键字创建"></a>3.2 利用new关键字创建</h4>
                 
             </div>
             <hr/>
@@ -2199,7 +2328,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">218.8k</span>&nbsp;字
+                class="white-color">223.7k</span>&nbsp;字
             
             
             
