@@ -486,14 +486,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -521,7 +521,128 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="课程资源"><a href="#课程资源" class="headerlink" title="课程资源"></a>课程资源</h2><p><a target="_blank" rel="noopener" href="https://www.icourse163.org/learn/NUDT-1461782176">MOOC课程</a></p>
+<h2 id="1-绪论"><a href="#1-绪论" class="headerlink" title="1.绪论"></a>1.绪论</h2><h3 id="1-1-数据挖掘的重要性"><a href="#1-1-数据挖掘的重要性" class="headerlink" title="1.1 数据挖掘的重要性"></a>1.1 数据挖掘的重要性</h3><ul>
+<li><strong>背景</strong>: 数据爆炸但知识贫乏</li>
+</ul>
+<p><strong>人们积累的数据越来越多</strong>。但是，目前这些数据还仅仅应用在数据的录入查询、统计等功能，无法发现数据中存在的关系和规则，<strong>无法根据现有的数据预测未来的发展趋势</strong>，导致了<strong>“数据爆炸但知识贫乏”</strong>的现象。</p>
+<ul>
+<li>从商业数据到商业智能的进化</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>进化阶段</th>
+<th>商业问题</th>
+<th>支持技术</th>
+<th>产品特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据搜集 (60年代)</td>
+<td>“过去五年中我的总收入是多少？”</td>
+<td>计算机、磁带和磁盘</td>
+<td>提供历史性的、静态的数据信息</td>
+</tr>
+<tr>
+<td>数据访问 (80年代)</td>
+<td>“在新英格兰的分部去年三月的销售额是多少？”</td>
+<td>关系数据库(RDBMS)结构化查询语言(SQL)ODBC</td>
+<td>在记录级提供历史性的、动态的数据信息</td>
+</tr>
+<tr>
+<td>数据仓库决策支持 (90年代)</td>
+<td>“在新英格兰的分部去年三月的销售额是多少？波士顿据此可得出什么结论？”</td>
+<td>联机分析处理(OLAP)多维数据库数据仓库</td>
+<td>在各种层次上提供动态的数据信息</td>
+</tr>
+<tr>
+<td>数据挖掘 (正在流行)</td>
+<td>“下个月波士顿的销售会怎么样？为什么？”</td>
+<td>高级算法多处理器计算机海量数据库</td>
+<td>提供预测性信息</td>
+</tr>
+</tbody></table>
+<ul>
+<li>科学发展范式</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>时间段</th>
+<th>发展内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>经验科学</td>
+<td>Before-1600</td>
+<td>两个铁球同时落地</td>
+</tr>
+<tr>
+<td>理论科学</td>
+<td>1600-1950s</td>
+<td>集合论、图论、数论和概率论</td>
+</tr>
+<tr>
+<td>计算科学</td>
+<td>1950s-1990s</td>
+<td>人工智能1.0（简单的优化、贪婪算法）</td>
+</tr>
+<tr>
+<td>数据科学</td>
+<td>1990-now</td>
+<td>数据挖掘、人工智能2.0（以数据为基础的强化学习）</td>
+</tr>
+</tbody></table>
+<h3 id="1-2-数据挖掘的定义和概念"><a href="#1-2-数据挖掘的定义和概念" class="headerlink" title="1.2 数据挖掘的定义和概念"></a>1.2 数据挖掘的定义和概念</h3><ul>
+<li>数据挖掘是从<strong>大量的、不完全的、有噪声的、模糊的随机</strong>的数据中提取隐含在其中的、人们事先不知道的但又是<strong>潜在有用的信息和知识</strong>的过程。</li>
+<li>Data Mining is the process of automatically extracting <strong>interesting</strong> and <strong>useful hidden</strong> patterns from usually <strong>massive</strong>, incomplete and noisy data.[Wikipedia]</li>
+</ul>
+<h4 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h4><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/136978323">聊聊经典案例“啤酒与尿布”的本质：关联分析 - 知乎 (zhihu.com)</a></p>
+<p>数据分析里有一个经典的案例，沃尔玛超市里经常会把婴儿的<strong>尿不湿和啤酒</strong>放在一起售卖，原因是经过数据分析发现，出来买尿不湿的家长以父亲居多，如果他们在买尿不湿的同时看到了啤酒，将有很大的概率购买，这样就可以<strong>提高啤酒的销售量</strong>。</p>
+<h4 id="数据、信息、知识"><a href="#数据、信息、知识" class="headerlink" title="数据、信息、知识"></a>数据、信息、知识</h4><img src="/2024/09/03/shu-ju-wa-jue/数据信息知识.png" alt="image-20240904221443832" style="zoom:67%;">
+
+<ul>
+<li>“8,000”和“10,000”是<strong>数据</strong>。</li>
+<li>“8,000米是飞机飞行最大高度”与“10,000米的高山”是<strong>信息</strong>。</li>
+<li>“飞机无法飞越这座高山”是<strong>知识</strong>。</li>
+<li>“飞机必须飞得比山高”是<strong>智慧</strong>。</li>
+</ul>
+<h3 id="1-3-数据挖掘的主要内容"><a href="#1-3-数据挖掘的主要内容" class="headerlink" title="1.3 数据挖掘的主要内容"></a>1.3 数据挖掘的主要内容</h3><h4 id="关联规则挖掘"><a href="#关联规则挖掘" class="headerlink" title="关联规则挖掘"></a>关联规则挖掘</h4><img src="/2024/09/03/shu-ju-wa-jue/关联规则挖掘.png" alt="image-20240904221842077" style="zoom:80%;">
+
+<p>根据购买的数据,分析的出,购买牛奶的顾客,更可能同时买了面包,这两样东西具有关联性</p>
+<p>于是,在超市中,经常会看到用<strong>胶布把牛奶和面包(或者其他)<strong>进行捆绑销售,防止因为需要跑来跑去减少销量(增加顾客工作量),这就是</strong>关联性</strong></p>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><p>分类是指将数据集中的对象或实例分配到<strong>预先定义的类别或标签</strong>中。它是一种<strong>监督学习</strong>的方法</p>
+<img src="/2024/09/03/shu-ju-wa-jue/分类.png" alt="image-20240904222616382" style="zoom:67%;">
+
+<h5 id="分类分析步骤"><a href="#分类分析步骤" class="headerlink" title="分类分析步骤"></a>分类分析步骤</h5><ol>
+<li><strong>学习建模</strong>, 通过大量的训练集学习建立模型</li>
+<li><strong>分类测试</strong>, 将大量的新数据通过数据模型进行测试,查看<strong>输出结果</strong>是否符合预期</li>
+</ol>
+<h4 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h4><p><strong>不先训练模型,在通过模型预测</strong>,通常使用相似性算法,不断地进行算法,最后得出输出</p>
+<img src="/2024/09/03/shu-ju-wa-jue/聚类_扑克牌.png" alt="image-20240904223903131" style="zoom:50%;">
+
+<h4 id="分类和聚类的区别"><a href="#分类和聚类的区别" class="headerlink" title="分类和聚类的区别"></a>分类和聚类的区别</h4><ul>
+<li>非监督式学习<ul>
+<li>比如有一群白色和黑色的玩偶,你<strong>天然的知道</strong>要将白色的放到一起,黑色的放到一堆</li>
+</ul>
+</li>
+<li>监督式学习<ul>
+<li>你在一个广场上站着,不断的有男性来问你男厕所在哪,女性来问女厕所在哪,所以,你<strong>归纳</strong>出,<strong>男生就要去男厕所</strong>,在这之后,再有人来问,你会根据你的<strong>经验提前预知</strong>到他将要问什么</li>
+</ul>
+</li>
+</ul>
+<h4 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h4><img src="/2024/09/03/shu-ju-wa-jue/回归.png" alt="image-20240904224146310" style="zoom:80%;">
+
+<h3 id="1-4-数据挖掘的过程"><a href="#1-4-数据挖掘的过程" class="headerlink" title="1.4 数据挖掘的过程"></a>1.4 数据挖掘的过程</h3><img src="/2024/09/03/shu-ju-wa-jue/数据挖掘过程.png" alt="image-20240904224425973" style="zoom: 67%;">
+
+
+
+<h3 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h3><ol>
+<li>人从出生到长大的过程中，是如何认识事物的?(B)<br> A. 先分类，后聚类<br> B. 先聚类，后分类</li>
+</ol>
+
                 
             </div>
             <hr/>
@@ -1060,7 +1181,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">231.2k</span>&nbsp;字
+                class="white-color">233k</span>&nbsp;字
             
             
             
