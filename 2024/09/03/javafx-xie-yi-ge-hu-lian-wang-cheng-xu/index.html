@@ -486,14 +486,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.9k
+                    6.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    24 分
+                    28 分
                 </div>
                 
 
@@ -862,9 +862,92 @@ sbWithCapacity<span class="token punctuation">.</span><span class="token functio
 <p>TCP 连接成功后，逻辑上可理解为通信进程的双方具有两个流（输出流和输入流）。逻辑上可将两个流理解为两个通信管道的<strong>全双工</strong>通信模式，一个用于向对方发送数据，另一个用于接收对方的数据。 </p>
 <h4 id="成员方法"><a href="#成员方法" class="headerlink" title="成员方法"></a>成员方法</h4><p>套接字类有两个基本的方法可以获得两个通信管道：   </p>
 <ol>
-<li>**socket.getInputStream()**方法可获得输入字节流的入口；  </li>
-<li>**socket.getOutputStream()**方法可获得输出字节流的出口；</li>
+<li><strong>socket.getInputStream()</strong> 方法可获得输入字节流的入口；  </li>
+<li><strong>socket.getOutputStream()</strong> 方法可获得输出字节流的出口；</li>
 </ol>
+<h4 id="监听套接字和通信套接字"><a href="#监听套接字和通信套接字" class="headerlink" title="监听套接字和通信套接字"></a>监听套接字和通信套接字</h4><p>在网络编程中，监听套接字（Listening Socket）和通信套接字（Communication Socket）是两个重要的概念，通常用于实现客户端和服务器之间的通信。以下是对这两个概念的详细解释：</p>
+<h5 id="1-监听套接字（Listening-Socket）"><a href="#1-监听套接字（Listening-Socket）" class="headerlink" title="1. 监听套接字（Listening Socket）"></a>1. 监听套接字（Listening Socket）</h5><ul>
+<li><strong>定义</strong>：监听套接字是服务器端创建的套接字，用于监听来自客户端的连接请求。它不直接用于数据传输，而是用于接受连接。</li>
+<li><strong>创建</strong>：在服务器端，首先需要创建一个套接字并将其绑定到一个特定的地址和端口，然后调用 <code>listen()</code> 方法使其进入监听状态。</li>
+<li><strong>功能</strong>：<ul>
+<li>等待客户端的连接请求。</li>
+<li>一旦有客户端请求连接，服务器会接受这个连接并创建一个新的通信套接字。</li>
+</ul>
+</li>
+<li><strong>示例代码</strong>（C++）：</li>
+</ul>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/socket.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;netinet/in.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> server_fd <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 创建监听套接字</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>server_fd <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Socket creation failed"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">struct</span> <span class="token class-name">sockaddr_in</span> address<span class="token punctuation">;</span>
+    address<span class="token punctuation">.</span>sin_family <span class="token operator">=</span> AF_INET<span class="token punctuation">;</span>
+    address<span class="token punctuation">.</span>sin_addr<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> INADDR_ANY<span class="token punctuation">;</span> <span class="token comment">// 监听所有可用的接口</span>
+    address<span class="token punctuation">.</span>sin_port <span class="token operator">=</span> <span class="token function">htons</span><span class="token punctuation">(</span><span class="token number">8080</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 端口号</span>
+
+    <span class="token function">bind</span><span class="token punctuation">(</span>server_fd<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">sockaddr</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>address<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>address<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 绑定地址和端口</span>
+    <span class="token function">listen</span><span class="token punctuation">(</span>server_fd<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 开始监听，最大连接数为3</span>
+
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Listening on port 8080..."</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="2-通信套接字（Communication-Socket）"><a href="#2-通信套接字（Communication-Socket）" class="headerlink" title="2. 通信套接字（Communication Socket）"></a>2. 通信套接字（Communication Socket）</h5><ul>
+<li><strong>定义</strong>：通信套接字是服务器在接受客户端连接请求后创建的套接字，用于与特定客户端进行数据传输。</li>
+<li><strong>创建</strong>：当监听套接字接受到连接请求后，服务器会调用 <code>accept()</code> 方法，返回一个新的套接字（通信套接字），用于与该客户端进行通信。</li>
+<li><strong>功能</strong>：<ul>
+<li>进行数据的发送和接收。</li>
+<li>每个连接的客户端都有一个独立的通信套接字。</li>
+</ul>
+</li>
+<li><strong>示例代码</strong>（C++）：</li>
+</ul>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/socket.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;netinet/in.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstring></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> server_fd <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> <span class="token class-name">sockaddr_in</span> address<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> addrlen <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>address<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 省略监听套接字的创建和绑定代码...</span>
+
+    <span class="token function">listen</span><span class="token punctuation">(</span>server_fd<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Listening on port 8080..."</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> client_socket <span class="token operator">=</span> <span class="token function">accept</span><span class="token punctuation">(</span>server_fd<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">sockaddr</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>address<span class="token punctuation">,</span> <span class="token punctuation">(</span>socklen_t<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>addrlen<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 接受连接</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>client_socket <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Accept failed"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>message <span class="token operator">=</span> <span class="token string">"Hello from server"</span><span class="token punctuation">;</span>
+    <span class="token function">send</span><span class="token punctuation">(</span>client_socket<span class="token punctuation">,</span> message<span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 发送数据</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Message sent to client"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+
+    <span class="token function">close</span><span class="token punctuation">(</span>client_socket<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 关闭通信套接字</span>
+    <span class="token function">close</span><span class="token punctuation">(</span>server_fd<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 关闭监听套接字</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
+<li><strong>监听套接字</strong>：用于等待和接受客户端的连接请求。</li>
+<li><strong>通信套接字</strong>：用于与已连接的客户端进行数据传输。</li>
+</ul>
+<p>这种设计使得服务器能够同时处理多个客户端连接，因为每个连接都有自己的通信套接字，而监听套接字则保持在监听状态，等待新的连接请求。如果你有更多问题或需要进一步的帮助，请告诉我！</p>
 <h3 id="模拟Button的点击事件"><a href="#模拟Button的点击事件" class="headerlink" title="模拟Button的点击事件"></a>模拟Button的点击事件</h3><p>在JavaFX中，<strong>模拟按钮（Button）的点击</strong>可以通过直接调用按钮的<code>fire()</code>方法来实现，但请注意，<code>Button</code>类本身并没有直接提供<code>fire()</code>方法。不过，<code>Button</code>类继承自<code>javafx.scene.control.Control</code>，而<code>Control</code>类有一个受保护的<code>fire()</code>方法，但这个方法通常不是用来直接模拟用户点击事件的。</p>
 <p>更好的方法是<strong>定义一个可以在代码中调用的方法</strong>，该方法包含你想要在按钮点击时执行的代码。然后，你可以在按钮的事件监听器中调用这个方法，也可以直接从代码的其他部分调用它。</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>application<span class="token punctuation">.</span></span><span class="token class-name">Application</span></span><span class="token punctuation">;</span>  
@@ -1714,7 +1797,7 @@ sbWithCapacity<span class="token punctuation">.</span><span class="token functio
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">230.5k</span>&nbsp;字
+                class="white-color">231.2k</span>&nbsp;字
             
             
             
