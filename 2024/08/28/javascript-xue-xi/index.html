@@ -478,14 +478,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    11.7k
+                    11.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    45 分
+                    46 分
                 </div>
                 
 
@@ -1860,7 +1860,7 @@ obj<span class="token punctuation">.</span><span class="token function-variable 
 <li>查看里面参数的意义和类型</li>
 <li>查看返回值的意义和类型</li>
 </ol>
-<h3 id="3-Math对象的常用方法和成员"><a href="#3-Math对象的常用方法和成员" class="headerlink" title="3. Math对象的常用方法和成员"></a>3. Math对象的常用方法和成员</h3><ul>
+<h3 id="3-Math对象"><a href="#3-Math对象" class="headerlink" title="3. Math对象"></a>3. Math对象</h3><h4 id="常用方法和成员"><a href="#常用方法和成员" class="headerlink" title="常用方法和成员"></a>常用方法和成员</h4><ul>
 <li><p><code>Math.PI</code> - Π常量</p>
 </li>
 <li><p><code>Math.max()</code> - 传入任意个数值,如果给定的参数中至少有一个参数无法被转换成数字,则返回<code>NaN</code>,否则返回最大值,如果参数为空,返回<code>-Infinity</code></p>
@@ -1884,8 +1884,56 @@ obj<span class="token punctuation">.</span><span class="token function-variable 
 <span class="token punctuation">&#125;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-
-
+<h3 id="4-Date对象"><a href="#4-Date对象" class="headerlink" title="4.Date对象"></a>4.Date对象</h3><p><strong>Date对象</strong>必须使用<code>new Date();</code>构造函数来创建日期对象</p>
+<h4 id="4-1构造函数"><a href="#4-1构造函数" class="headerlink" title="4.1构造函数"></a>4.1构造函数</h4><ol>
+<li>空参构造: 返回系统当前时间</li>
+<li>带参(数字)构造: <code>var date = new Date(2019,10,1);</code><strong>输出的却是Nov,因为是从0开始</strong></li>
+<li>带参(字符串)构造: <code>var date = new Date(&quot;2018-10-14&quot;);</code></li>
+</ol>
+<h4 id="4-2日期格式化"><a href="#4-2日期格式化" class="headerlink" title="4.2日期格式化"></a>4.2日期格式化</h4><table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+<th>代码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>getFullYear()</td>
+<td>获取当年</td>
+<td><code>dObj.getFullYear()</code></td>
+</tr>
+<tr>
+<td>getMonth()</td>
+<td>获取当月（0-11）</td>
+<td><code>dObj.getMonth()</code></td>
+</tr>
+<tr>
+<td>getDate()</td>
+<td>获取当天日期</td>
+<td><code>dObj.getDate()</code></td>
+</tr>
+<tr>
+<td>getDay()</td>
+<td>获取星期几（周日0到周六6）</td>
+<td><code>dObj.getDay()</code></td>
+</tr>
+<tr>
+<td>getHours()</td>
+<td>获取当前小时</td>
+<td><code>dObj.getHours()</code></td>
+</tr>
+<tr>
+<td>getMinutes()</td>
+<td>获取当前分钟</td>
+<td><code>dObj.getMinutes()</code></td>
+</tr>
+<tr>
+<td>getSeconds()</td>
+<td>获取当前秒钟</td>
+<td><code>dObj.getSeconds()</code></td>
+</tr>
+</tbody></table>
 
                 
             </div>
@@ -2411,7 +2459,7 @@ obj<span class="token punctuation">.</span><span class="token function-variable 
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">227.9k</span>&nbsp;字
+                class="white-color">230.5k</span>&nbsp;字
             
             
             
