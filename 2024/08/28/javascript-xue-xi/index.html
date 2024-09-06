@@ -478,14 +478,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    15.6k
+                    16.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    60 分
+                    63 分
                 </div>
                 
 
@@ -2373,7 +2373,106 @@ console<span class="token punctuation">.</span><span class="token function">dir<
 <span class="token keyword">var</span> htmlEle <span class="token operator">=</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>htmlEle<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="3-事件基础"><a href="#3-事件基础" class="headerlink" title="3.事件基础"></a>3.事件基础</h3>
+<h3 id="3-事件基础"><a href="#3-事件基础" class="headerlink" title="3.事件基础"></a>3.事件基础</h3><h4 id="3-1-事件概述"><a href="#3-1-事件概述" class="headerlink" title="3.1 事件概述"></a>3.1 事件概述</h4><p>JavaScript使我们有能力创建动态页面，而事件是可以被JavaScript侦测到的行为。</p>
+<p>简单理解:触发—响应机制。</p>
+<p>网页中的每个元素都可以产生某些可以触发JavaScript的事件，例如，我们可以在用户点击某按钮时产生一个事件，然后去执行某些操作。</p>
+<h4 id="3-2-执行事件的步骤"><a href="#3-2-执行事件的步骤" class="headerlink" title="3.2 执行事件的步骤"></a>3.2 执行事件的步骤</h4><ol>
+<li>获取事件源</li>
+<li>注册事件(绑定事件)</li>
+<li>添加事件处理程序(采取函数赋值形式)</li>
+</ol>
+<h4 id="3-3-常见的鼠标点击事件"><a href="#3-3-常见的鼠标点击事件" class="headerlink" title="3.3 常见的鼠标点击事件"></a>3.3 常见的鼠标点击事件</h4><table>
+<thead>
+<tr>
+<th>鼠标事件</th>
+<th>触发条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>onclick</td>
+<td>鼠标点击左键触发</td>
+</tr>
+<tr>
+<td>onmouseover</td>
+<td>鼠标经过时触发</td>
+</tr>
+<tr>
+<td>onmouseout</td>
+<td>鼠标离开时触发</td>
+</tr>
+<tr>
+<td>onfocus</td>
+<td>获取鼠标焦点触发</td>
+</tr>
+<tr>
+<td>onblur</td>
+<td>失去鼠标焦点触发</td>
+</tr>
+<tr>
+<td>onmousemove</td>
+<td>鼠标移动触发</td>
+</tr>
+<tr>
+<td>onmouseup</td>
+<td>鼠标弹起触发</td>
+</tr>
+<tr>
+<td>onmousedown</td>
+<td>鼠标按下触发</td>
+</tr>
+</tbody></table>
+<h3 id="4-操作元素"><a href="#4-操作元素" class="headerlink" title="4.操作元素"></a>4.操作元素</h3><p>JavaScript的 DOM 操作可以改变网页内容、结构和样式，我们可以利用 DOM 操作元素来改变元素里面的内容、属性等。注意以下都是属性</p>
+<h4 id="4-1-改变元素内容"><a href="#4-1-改变元素内容" class="headerlink" title="4.1 改变元素内容"></a>4.1 改变元素内容</h4><ul>
+<li><code>element.innerText</code>: 从起始位置到终止位置的内容,但它去除html标签，同时空格和换行也会去掉</li>
+<li><code>element.innerHTML</code>: 起始位置到终止位置的全部内容，包括html标签，同时保留空格和换行</li>
+</ul>
+<h4 id="4-2-常用元素的属性操作"><a href="#4-2-常用元素的属性操作" class="headerlink" title="4.2 常用元素的属性操作"></a>4.2 常用元素的属性操作</h4><p>使用<code>元素.属性</code>来修改属性</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>修改元素属性<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>我是文本框<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">></span></span>点击修改按钮<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+      <span class="token keyword">var</span> btn <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"button"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      btn<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"input"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">"我被修改了"</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="4-3-表单元素的属性操作"><a href="#4-3-表单元素的属性操作" class="headerlink" title="4.3 表单元素的属性操作"></a>4.3 表单元素的属性操作</h4><p>利用DOM可以操作如下表单元素的属性:<code>type、value、checked、selected、disabled</code></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> inputElement <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'myInput'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+inputElement<span class="token punctuation">.</span>type <span class="token operator">=</span> <span class="token string">'password'</span><span class="token punctuation">;</span> <span class="token comment">// 将输入框类型改为密码框</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="4-4-样式属性操作"><a href="#4-4-样式属性操作" class="headerlink" title="4.4 样式属性操作"></a>4.4 样式属性操作</h4><p>我们可以通过JS修改元素的大小、颜色、位置等样式。</p>
+<ol>
+<li><code>element.style</code>   行内样式操作</li>
+<li><code>element.className</code>   类名样式操作</li>
+</ol>
+<p> 	</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span>
+    // 1.获取元素
+    var div = document.querySelector('div');
+    //2.注册事件 处理程序
+    div.onclick =function()&#123;
+    // div.style里面的属性 采取驼峰命名法
+    this.style.backgroundcolor ='purple'; //this指向函数的调用者
+    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意:</p>
+<ul>
+<li><strong>this关键字</strong>指向函数的调用者</li>
+<li>Js里面的样式采取驼峰命名法 比如 <code>fontSize</code>、<code>backgroundColor</code></li>
+<li>Js修改style样式操作,产生的是行内样式，<strong>CSS权重比较高</strong></li>
+</ul>
+
                 
             </div>
             <hr/>
@@ -2898,7 +2997,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">236.4k</span>&nbsp;字
+                class="white-color">238.2k</span>&nbsp;字
             
             
             

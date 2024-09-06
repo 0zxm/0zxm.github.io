@@ -486,14 +486,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    2.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    9 分
                 </div>
                 
 
@@ -642,7 +642,7 @@
 
 
 <h3 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h3><ol>
-<li>人从出生到长大的过程中，是如何认识事物的?(B)<br>  A. 先分类，后聚类<br>  B. 先聚类，后分类</li>
+<li>人从出生到长大的过程中，是如何认识事物的?(B)<br> A. 先分类，后聚类<br> B. 先聚类，后分类</li>
 <li>离群点一定是<strong>负面</strong>的吗?(不一定)</li>
 </ol>
 <p>答: 离群点（Outliers）在数据分析和统计学中通常指的是那些与大多数数据点显著不同的数据点,它们可能包含以下几种情况：</p>
@@ -650,6 +650,88 @@
 <p><strong>异常事件</strong>：在某些情况下，离群点可能代表一些异常但真实发生的事件。例如，在销售数据中，某个产品在某一天的异常高销量可能是由于特殊促销活动导致的。</p>
 <p><strong>新趋势或模式的指示</strong>：离群点有时可以指示新的趋势或模式。例如，在股票市场中，某些异常的价格波动可能是新趋势开始的信号。</p>
 <p><strong>数据多样性</strong>：在某些研究中，离群点可能代表数据集的多样性，反映了不同群体或条件的存在。</p>
+<h2 id="2-认识数据和统计"><a href="#2-认识数据和统计" class="headerlink" title="2.认识数据和统计"></a>2.认识数据和统计</h2><h3 id="2-1-数据对象"><a href="#2-1-数据对象" class="headerlink" title="2.1 数据对象"></a>2.1 数据对象</h3><ul>
+<li>数据集由数据对象组成</li>
+<li>一个数据对象代表一个实体(每行代表一个数据对象)</li>
+<li>称为样品，示例，实例，数据点，对象，元组(<strong>tuple</strong>)</li>
+<li>数据对象所描述的属性<ul>
+<li>数据库中的行 -&gt; 数据对象</li>
+<li>列 -&gt; “属性”</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-属性的类型"><a href="#2-2-属性的类型" class="headerlink" title="2.2 属性的类型"></a>2.2 属性的类型</h3><p>常见的四类属性:</p>
+<ul>
+<li><strong>标称(Nominal)</strong>: 状态,类别可列举<ul>
+<li>Examples: ID numbers, zip codes</li>
+<li>Hair color&#x3D;{黑色，棕色，灰色，白色} 婚姻状况{已婚,未婚}，职业，身份证号码，邮政编码</li>
+<li><strong>二进制类型数据</strong>: 只有2个状态(0和1)的属性,对称二进制两种(例如，性别) 不对称的二进制例如，(医疗测试的正面与负面)所谓对称,是<strong>指两种状态的数据规模是否大致相当</strong></li>
+</ul>
+</li>
+<li><strong>序数(Ordinal)</strong><ul>
+<li>Examples: rankings (e.g., taste of potato chips on a scale from 1-10),grades, height in {tall, medium, short})</li>
+<li><strong>有一个有意义的顺序(排名)，但不知道连续值之间的大小</strong>。大小&#x3D;{小，中，大}，等级，军队排名</li>
+</ul>
+</li>
+<li><strong>区间标度(Interval)</strong><ul>
+<li>Examples: calendar dates,temperatures in Celsius or Fahrenheit.</li>
+<li>以单位长度顺序性度量</li>
+<li>值有序，比如温度、日历等</li>
+<li>不存在0点，倍数没有意义:<strong>我们平常通常不说2000年是1000年的2倍</strong>。</li>
+</ul>
+</li>
+<li><strong>比率(Ratio)</strong><ul>
+<li>Examples: temperature in Kelvin, length, time, counts</li>
+<li>具有<strong>固定零点</strong>的数值属性，有序且可以计算倍数,<strong>长度、重量</strong>等</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-3-问题"><a href="#2-3-问题" class="headerlink" title="2.3 问题"></a>2.3 问题</h3><p>常见的四类属性:</p>
+<ul>
+<li>标称(Nominal): 标称属性的数据分类模型有哪些?</li>
+<li>序数(Ordinal): 序数类型的数据求均值是否合理?能否用<code>k-means</code>算法</li>
+<li>区间(Interval): 区间标度属性特征工程时，是否可以采用乘法原则?</li>
+<li>比率(Ratio): 哪些数据挖掘算法适用于比率标度属性?</li>
+</ul>
+<h3 id="2-4-数据统计汇总"><a href="#2-4-数据统计汇总" class="headerlink" title="2.4 数据统计汇总"></a>2.4 数据统计汇总</h3><ul>
+<li>动机<ul>
+<li>为了更好地理解数据:中性化趋势,分布趋势</li>
+</ul>
+</li>
+<li>数据的统计特性<ul>
+<li>最大值，最小值，中位数，位数，离群值，方差等。</li>
+</ul>
+</li>
+</ul>
+<h4 id="中性化趋势度量-均值、中位数和众数"><a href="#中性化趋势度量-均值、中位数和众数" class="headerlink" title="中性化趋势度量:均值、中位数和众数"></a>中性化趋势度量:均值、中位数和众数</h4><img src="/2024/09/03/shu-ju-wa-jue/中性化度量趋势.png" alt="image-20240905174331030" style="zoom:67%;">
+
+<ul>
+<li>平均值一组数据的均衡点。<strong>但是，均值对离群值很敏感。</strong></li>
+<li>因此，<strong>中位数和截断均值</strong>也很常用。</li>
+<li><strong>众数</strong>指一组数据中出现次数最多的数据值。</li>
+</ul>
+<img src="/2024/09/03/shu-ju-wa-jue/方差和标准差.png" alt="image-20240905174513570" style="zoom:80%;">
+
+<ul>
+<li>箱线图(boxplot):<br>  min, Q1, median, Q3, max;单独添加胡须表示离群点。</li>
+</ul>
+<h3 id="2-5-箱线图"><a href="#2-5-箱线图" class="headerlink" title="2.5 箱线图"></a>2.5 箱线图</h3><p>箱线图（Boxplot），也称为盒须图、盒式图或箱型图，是一种用于显示一组数据分布情况的统计图。它通过五个关键数值来描述数据的分布特征：最小值（min）、第一四分位数（Q1）、中位数（median）、第三四分位数（Q3）和最大值（max）。箱线图能够直观地展示数据的中心位置、分散程度以及是否存在异常值。</p>
+<h4 id="箱线图的组成部分"><a href="#箱线图的组成部分" class="headerlink" title="箱线图的组成部分"></a>箱线图的组成部分</h4><ol>
+<li><strong>箱体（Box）</strong>：箱体的上下边界分别对应第一四分位数（Q1）(25%的数据小于或等于Q1,75%的数据大于Q1)和第三四分位数（Q3），箱体的长度（Q3 - Q1）称为四分位距（IQR），表示数据的中间50%的分布范围。</li>
+<li><strong>中位数（Median）</strong>：箱体中间的线表示数据的中位数，即第二四分位数（Q2），它反映了数据的中心位置。</li>
+<li><strong>胡须（Whiskers）</strong>：箱体外的两条线称为胡须，通常表示数据的最大值和最小值。但在实际应用中，胡须的长度通常有限制，一般不超过1.5倍的四分位距（1.5 * IQR）。超过这个范围的点被认为是离群点（Outliers）。</li>
+<li><strong>离群点（Outliers）</strong>：在胡须之外的点被认为是离群点，通常用单独的点或符号表示，这些点可能是数据中的异常值。</li>
+</ol>
+<h4 id="箱线图的优点"><a href="#箱线图的优点" class="headerlink" title="箱线图的优点"></a>箱线图的优点</h4><ul>
+<li><strong>直观展示数据分布</strong>：箱线图能够直观地展示数据的分布情况，包括中心位置、分散程度和异常值。</li>
+<li><strong>比较不同组数据</strong>：通过并排显示多个箱线图，可以方便地比较不同组数据的分布特征。</li>
+<li><strong>识别异常值</strong>：箱线图能够帮助识别数据中的异常值，这些异常值可能是数据录入错误或真实存在的极端值。</li>
+</ul>
+<h4 id="箱线图的应用场景"><a href="#箱线图的应用场景" class="headerlink" title="箱线图的应用场景"></a>箱线图的应用场景</h4><ul>
+<li><strong>数据探索</strong>：在数据分析初期，使用箱线图可以帮助快速了解数据的分布特征。</li>
+<li><strong>质量控制</strong>：在生产过程中，箱线图可以用于监控产品质量，及时发现异常。</li>
+<li><strong>统计分析</strong>：在统计学中，箱线图常用于描述性统计分析，展示数据的分布情况。</li>
+</ul>
 
                 
             </div>
@@ -1189,7 +1271,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">236.4k</span>&nbsp;字
+                class="white-color">238.2k</span>&nbsp;字
             
             
             
