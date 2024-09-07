@@ -486,14 +486,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6.9k
+                    7.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    28 分
+                    32 分
                 </div>
                 
 
@@ -1408,7 +1408,7 @@ alert(oPerson.age);<span aria-hidden="true" class="line-numbers-rows"><span></sp
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="Web框架"><a href="#Web框架" class="headerlink" title="Web框架"></a>Web框架</h2><h3 id="1-web框架概述"><a href="#1-web框架概述" class="headerlink" title="1.web框架概述"></a>1.web框架概述</h3><p><strong>web框架和web服务器的关系</strong></p>
+<h2 id="Web框架"><a href="#Web框架" class="headerlink" title="Web框架"></a>Web框架</h2><h3 id="web框架概述"><a href="#web框架概述" class="headerlink" title="web框架概述"></a>web框架概述</h3><p><strong>web框架和web服务器的关系</strong></p>
 <p>前面已经学习过web服务器,我们知道web服务器主要是接收用户的http请求根据用户的请求返回不同的资源数据，但是之前我们开发的是静态web服务器返回的都是静态资源数据，假如我们想要web服务器返回动态资源那么该如何进行处理呢 ?</p>
 <p><strong>web框架:</strong><br>使用web框架专门负责处理用户的动态资源请求,这个web框架其实就是一个为web服务器提供服务的<strong>应用程序</strong>，简称web框架</p>
 <h4 id="静态动态资源"><a href="#静态动态资源" class="headerlink" title="静态动态资源"></a>静态动态资源</h4><p><strong>静态资源:</strong></p>
@@ -1419,7 +1419,33 @@ alert(oPerson.age);<span aria-hidden="true" class="line-numbers-rows"><span></sp
 <h3 id="框架程序开发"><a href="#框架程序开发" class="headerlink" title="框架程序开发"></a>框架程序开发</h3><p><img src="/2024/07/19/javascript-ji-chu-he-pythonweb-kai-fa/%E6%88%90%E6%9E%9C%E5%B1%95%E7%A4%BA.png" alt="alt text"></p>
 <p><strong>框架职责介绍:</strong><br>接收web服务器的动态资源请求，给web服务器提供处理动态资源请求的服务</p>
 <p><strong>服务器中动态资源判断:</strong><br>根据<strong>请求资源路径的后缀名</strong>进行判断<br>①请求资源路径的后缀名是.html则是动态资源请求,让web框架程序进行处理<br>②否则是静态资源请求，让web服务器程序进行处理</p>
-<p><strong>web框架:</strong><br>③创建web框架程序<br>④接收web服务器的动态资源请求<br>⑤处理web服务器的动态资源请求并把处理结果返回给web服务器⑥web服务器把处理结果组装成响应报文发送给浏览器</p>
+<p><strong>web框架:</strong><br>③创建web框架程序<br>④接收web服务器的动态资源请求<br>⑤处理web服务器的动态资源请求并把处理结果返回给web服务器<br>⑥web服务器把处理结果组装成响应报文发送给浏览器</p>
+<h4 id="路由（Routing）"><a href="#路由（Routing）" class="headerlink" title="路由（Routing）"></a>路由（Routing）</h4><p>路由是Web框架中用于将客户端请求的URL映射到相应的处理器（controller或action）的机制。这允许开发者定义应用程序的URL结构，并决定哪个部分的代码应该响应特定的路径和HTTP方法（如GET、POST、PUT、DELETE等）。</p>
+<h4 id="请求处理（Request-Handling）"><a href="#请求处理（Request-Handling）" class="headerlink" title="请求处理（Request Handling）"></a>请求处理（Request Handling）</h4><p>Web框架能够解析HTTP请求，提取出请求类型、URL、头信息、参数、表单数据、上传的文件等。这些信息通常被封装在一个请求对象中，方便开发者访问和使用。</p>
+<h4 id="模板引擎（Template-Engine）"><a href="#模板引擎（Template-Engine）" class="headerlink" title="模板引擎（Template Engine）"></a>模板引擎（Template Engine）</h4><p>模板引擎允许开发者使用预定义的模板（通常包含HTML和特定语法）来动态生成网页。模板中的变量和逻辑由后端代码填充和处理，使得生成个性化的响应变得简单。</p>
+<h4 id="数据库抽象层（Database-Abstraction）"><a href="#数据库抽象层（Database-Abstraction）" class="headerlink" title="数据库抽象层（Database Abstraction）"></a>数据库抽象层（Database Abstraction）</h4><p>Web框架通常提供数据库抽象层，使得开发者可以用统一的API与不同类型的数据库交互。ORM是数据库抽象层的一部分，它允许开发者使用面向对象的方式来操作数据库。</p>
+<h4 id="中间件（Middleware）"><a href="#中间件（Middleware）" class="headerlink" title="中间件（Middleware）"></a>中间件（Middleware）</h4><p>中间件是处理请求和响应的钩子，它们可以执行诸如身份验证、日志记录、请求限流、错误处理等任务。中间件可以在请求到达最终处理逻辑之前或响应发送给客户端之前执行。</p>
+<h4 id="会话管理（Session-Management）"><a href="#会话管理（Session-Management）" class="headerlink" title="会话管理（Session Management）"></a>会话管理（Session Management）</h4><p>会话管理用于跟踪用户的状态。Web框架提供了存储和检索会话数据的机制，这些数据可以跨多个页面请求持久化，通常用于实现用户登录状态的保持。</p>
+<h4 id="安全性（Security）"><a href="#安全性（Security）" class="headerlink" title="安全性（Security）"></a>安全性（Security）</h4><p>Web框架提供了多种安全特性来保护应用程序，包括但不限于：</p>
+<ul>
+<li>防止SQL注入</li>
+<li>跨站脚本（XSS）防护</li>
+<li>跨站请求伪造（CSRF）防护</li>
+<li>安全的Cookies和会话管理</li>
+<li>HTTPS和数据加密</li>
+</ul>
+<h4 id="测试支持（Testing-Support）"><a href="#测试支持（Testing-Support）" class="headerlink" title="测试支持（Testing Support）"></a>测试支持（Testing Support）</h4><p>Web框架通常包括测试工具，使得开发者可以编写单元测试、功能测试和集成测试。这些工具提供了模拟请求、断言响应和验证应用程序行为的API。</p>
+<h4 id="异步处理（Asynchronous-Handling）"><a href="#异步处理（Asynchronous-Handling）" class="headerlink" title="异步处理（Asynchronous Handling）"></a>异步处理（Asynchronous Handling）</h4><p>现代Web框架支持异步编程，允许非阻塞I&#x2F;O操作，这对于提高应用程序的性能和可伸缩性至关重要，特别是在处理大量并发请求时。</p>
+<h4 id="配置管理（Configuration-Management）"><a href="#配置管理（Configuration-Management）" class="headerlink" title="配置管理（Configuration Management）"></a>配置管理（Configuration Management）</h4><p>Web框架允许通过配置文件或环境变量来管理应用程序的设置，这使得在不同环境（开发、测试、生产）之间切换变得容易。</p>
+<h3 id="流行的Web框架举例："><a href="#流行的Web框架举例：" class="headerlink" title="流行的Web框架举例："></a>流行的Web框架举例：</h3><ul>
+<li><strong>Django</strong>：一个高级的Python Web框架，鼓励快速开发和干净、实用的设计。它自带了许多内置功能，如用户认证、内容管理等。</li>
+<li><strong>Flask</strong>：一个轻量级的Python Web框架，易于扩展，适合构建简单的Web应用或复杂的应用程序。</li>
+<li><strong>Express</strong>：一个灵活的Node.js Web应用框架，提供一套强大的功能，帮助你创建各种Web和移动设备应用。</li>
+<li><strong>Ruby on Rails</strong>：一个使用Ruby语言的服务器端Web应用框架，强调约定优于配置，旨在提高开发效率。</li>
+<li><strong>Spring Boot</strong>：一个基于Java的框架，用于创建独立、生产级的基于Spring框架的应用程序，简化了配置和部署。</li>
+<li><strong>Laravel</strong>：一个PHP Web应用框架，注重简洁的语法和优雅的代码结构，提供了许多开发工具和库。</li>
+</ul>
+<p>选择正确的Web框架取决于项目需求、开发团队的技术栈、性能要求、安全性需求以及生态系统的支持。</p>
 
                 
             </div>
@@ -1953,7 +1979,7 @@ alert(oPerson.age);<span aria-hidden="true" class="line-numbers-rows"><span></sp
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">240.3k</span>&nbsp;字
+                class="white-color">242.6k</span>&nbsp;字
             
             
             

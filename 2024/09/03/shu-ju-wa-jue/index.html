@@ -486,14 +486,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.6k
+                    3.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    11 分
                 </div>
                 
 
@@ -650,7 +650,7 @@
 <p><strong>异常事件</strong>：在某些情况下，离群点可能代表一些异常但真实发生的事件。例如，在销售数据中，某个产品在某一天的异常高销量可能是由于特殊促销活动导致的。</p>
 <p><strong>新趋势或模式的指示</strong>：离群点有时可以指示新的趋势或模式。例如，在股票市场中，某些异常的价格波动可能是新趋势开始的信号。</p>
 <p><strong>数据多样性</strong>：在某些研究中，离群点可能代表数据集的多样性，反映了不同群体或条件的存在。</p>
-<h2 id="2-认识数据和统计"><a href="#2-认识数据和统计" class="headerlink" title="2.认识数据和统计"></a>2.认识数据和统计</h2><h3 id="2-1-数据对象"><a href="#2-1-数据对象" class="headerlink" title="2.1 数据对象"></a>2.1 数据对象</h3><ul>
+<h2 id="2-认识数据和统计"><a href="#2-认识数据和统计" class="headerlink" title="2.认识数据和统计"></a>2.认识数据和统计</h2><h3 id="2-1-数据类型和统计"><a href="#2-1-数据类型和统计" class="headerlink" title="2.1 数据类型和统计"></a>2.1 数据类型和统计</h3><h4 id="2-1-数据对象"><a href="#2-1-数据对象" class="headerlink" title="2.1 数据对象"></a>2.1 数据对象</h4><ul>
 <li>数据集由数据对象组成</li>
 <li>一个数据对象代表一个实体(每行代表一个数据对象)</li>
 <li>称为样品，示例，实例，数据点，对象，元组(<strong>tuple</strong>)</li>
@@ -660,7 +660,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="2-2-属性的类型"><a href="#2-2-属性的类型" class="headerlink" title="2.2 属性的类型"></a>2.2 属性的类型</h3><p>常见的四类属性:</p>
+<h4 id="2-2-属性的类型"><a href="#2-2-属性的类型" class="headerlink" title="2.2 属性的类型"></a>2.2 属性的类型</h4><p>常见的四类属性:</p>
 <ul>
 <li><strong>标称(Nominal)</strong>: 状态,类别可列举<ul>
 <li>Examples: ID numbers, zip codes</li>
@@ -686,14 +686,14 @@
 </ul>
 </li>
 </ul>
-<h3 id="2-3-问题"><a href="#2-3-问题" class="headerlink" title="2.3 问题"></a>2.3 问题</h3><p>常见的四类属性:</p>
+<h4 id="2-3-问题"><a href="#2-3-问题" class="headerlink" title="2.3 问题"></a>2.3 问题</h4><p>常见的四类属性:</p>
 <ul>
 <li>标称(Nominal): 标称属性的数据分类模型有哪些?</li>
 <li>序数(Ordinal): 序数类型的数据求均值是否合理?能否用<code>k-means</code>算法</li>
 <li>区间(Interval): 区间标度属性特征工程时，是否可以采用乘法原则?</li>
 <li>比率(Ratio): 哪些数据挖掘算法适用于比率标度属性?</li>
 </ul>
-<h3 id="2-4-数据统计汇总"><a href="#2-4-数据统计汇总" class="headerlink" title="2.4 数据统计汇总"></a>2.4 数据统计汇总</h3><ul>
+<h4 id="2-4-数据统计汇总"><a href="#2-4-数据统计汇总" class="headerlink" title="2.4 数据统计汇总"></a>2.4 数据统计汇总</h4><ul>
 <li>动机<ul>
 <li>为了更好地理解数据:中性化趋势,分布趋势</li>
 </ul>
@@ -703,7 +703,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="中性化趋势度量-均值、中位数和众数"><a href="#中性化趋势度量-均值、中位数和众数" class="headerlink" title="中性化趋势度量:均值、中位数和众数"></a>中性化趋势度量:均值、中位数和众数</h4><img src="/2024/09/03/shu-ju-wa-jue/中性化度量趋势.png" alt="image-20240905174331030" style="zoom:67%;">
+<h5 id="中性化趋势度量-均值、中位数和众数"><a href="#中性化趋势度量-均值、中位数和众数" class="headerlink" title="中性化趋势度量:均值、中位数和众数"></a>中性化趋势度量:均值、中位数和众数</h5><img src="/2024/09/03/shu-ju-wa-jue/中性化度量趋势.png" alt="image-20240905174331030" style="zoom:67%;">
 
 <ul>
 <li>平均值一组数据的均衡点。<strong>但是，均值对离群值很敏感。</strong></li>
@@ -715,24 +715,159 @@
 <ul>
 <li>箱线图(boxplot):<br>  min, Q1, median, Q3, max;单独添加胡须表示离群点。</li>
 </ul>
-<h3 id="2-5-箱线图"><a href="#2-5-箱线图" class="headerlink" title="2.5 箱线图"></a>2.5 箱线图</h3><p>箱线图（Boxplot），也称为盒须图、盒式图或箱型图，是一种用于显示一组数据分布情况的统计图。它通过五个关键数值来描述数据的分布特征：最小值（min）、第一四分位数（Q1）、中位数（median）、第三四分位数（Q3）和最大值（max）。箱线图能够直观地展示数据的中心位置、分散程度以及是否存在异常值。</p>
-<h4 id="箱线图的组成部分"><a href="#箱线图的组成部分" class="headerlink" title="箱线图的组成部分"></a>箱线图的组成部分</h4><ol>
+<h4 id="2-5-箱线图"><a href="#2-5-箱线图" class="headerlink" title="2.5 箱线图"></a>2.5 箱线图</h4><p>箱线图（Boxplot），也称为盒须图、盒式图或箱型图，是一种用于显示一组数据分布情况的统计图。它通过五个关键数值来描述数据的分布特征：最小值（min）、第一四分位数（Q1）、中位数（median）、第三四分位数（Q3）和最大值（max）。箱线图能够直观地展示数据的中心位置、分散程度以及是否存在异常值。</p>
+<h5 id="箱线图的组成部分"><a href="#箱线图的组成部分" class="headerlink" title="箱线图的组成部分"></a>箱线图的组成部分</h5><ol>
 <li><strong>箱体（Box）</strong>：箱体的上下边界分别对应第一四分位数（Q1）(25%的数据小于或等于Q1,75%的数据大于Q1)和第三四分位数（Q3），箱体的长度（Q3 - Q1）称为四分位距（IQR），表示数据的中间50%的分布范围。</li>
 <li><strong>中位数（Median）</strong>：箱体中间的线表示数据的中位数，即第二四分位数（Q2），它反映了数据的中心位置。</li>
 <li><strong>胡须（Whiskers）</strong>：箱体外的两条线称为胡须，通常表示数据的最大值和最小值。但在实际应用中，胡须的长度通常有限制，一般不超过1.5倍的四分位距（1.5 * IQR）。超过这个范围的点被认为是离群点（Outliers）。</li>
 <li><strong>离群点（Outliers）</strong>：在胡须之外的点被认为是离群点，通常用单独的点或符号表示，这些点可能是数据中的异常值。</li>
 </ol>
-<h4 id="箱线图的优点"><a href="#箱线图的优点" class="headerlink" title="箱线图的优点"></a>箱线图的优点</h4><ul>
+<h5 id="箱线图的优点"><a href="#箱线图的优点" class="headerlink" title="箱线图的优点"></a>箱线图的优点</h5><ul>
 <li><strong>直观展示数据分布</strong>：箱线图能够直观地展示数据的分布情况，包括中心位置、分散程度和异常值。</li>
 <li><strong>比较不同组数据</strong>：通过并排显示多个箱线图，可以方便地比较不同组数据的分布特征。</li>
 <li><strong>识别异常值</strong>：箱线图能够帮助识别数据中的异常值，这些异常值可能是数据录入错误或真实存在的极端值。</li>
 </ul>
-<h4 id="箱线图的应用场景"><a href="#箱线图的应用场景" class="headerlink" title="箱线图的应用场景"></a>箱线图的应用场景</h4><ul>
+<h5 id="箱线图的应用场景"><a href="#箱线图的应用场景" class="headerlink" title="箱线图的应用场景"></a>箱线图的应用场景</h5><ul>
 <li><strong>数据探索</strong>：在数据分析初期，使用箱线图可以帮助快速了解数据的分布特征。</li>
 <li><strong>质量控制</strong>：在生产过程中，箱线图可以用于监控产品质量，及时发现异常。</li>
 <li><strong>统计分析</strong>：在统计学中，箱线图常用于描述性统计分析，展示数据的分布情况。</li>
 </ul>
+<h3 id="2-2-数据可视化"><a href="#2-2-数据可视化" class="headerlink" title="2.2 数据可视化"></a>2.2 数据可视化</h3><h4 id="数据可视化分析之箱线图分析"><a href="#数据可视化分析之箱线图分析" class="headerlink" title="数据可视化分析之箱线图分析"></a>数据可视化分析之箱线图分析</h4><img src="/2024/09/03/shu-ju-wa-jue/数据可视化之箱线图.png" alt="image-20240907194255374">
 
+<p>​			    <strong>箱线图能够分析多个属性数据的分布差异性</strong></p>
+<ul>
+<li>鸢尾花的案例</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/H_lukong/article/details/90139700">https://blog.csdn.net/H_lukong/article/details/90139700</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/star-zhao/p/9847082.html">https://www.cnblogs.com/star-zhao/p/9847082.html</a></p>
+<p><img src="/2024/09/03/shu-ju-wa-jue/%E9%B8%A2%E5%B0%BE%E8%8A%B1%E6%A1%88%E4%BE%8B.png" alt="image-20240907194926128"></p>
+<ul>
+<li>一个数据集有四个属性<ul>
+<li>花萼宽度</li>
+<li>花萼长度</li>
+<li>花瓣宽度</li>
+<li>花瓣长度</li>
+</ul>
+</li>
+<li>三种类别 lris Setosa , lris Versicolour , lris Virginica</li>
+</ul>
+<p><img src="/2024/09/03/shu-ju-wa-jue/%E7%AE%B1%E7%BA%BF%E5%9B%BE.png" alt="image-20240907202434181"></p>
+<h4 id="数据可视化之直方图"><a href="#数据可视化之直方图" class="headerlink" title="数据可视化之直方图"></a>数据可视化之直方图</h4><ul>
+<li><strong>用来分析单个属性在各个区间变化分布</strong></li>
+</ul>
+<p><img src="/2024/09/03/shu-ju-wa-jue/%E9%B8%A2%E5%B0%BE%E8%8A%B1%E4%B9%8B%E7%9B%B4%E6%96%B9%E5%9B%BE.png" alt="image-20240907202729476"></p>
+<ul>
+<li><strong>直方图可视化发现特征对类别的区别性</strong></li>
+</ul>
+<p>通过不同类别的各个属性的直方图,例如<code>lris Setosa</code>的花萼宽度近似于<code>μ = 3</code>的正态分布,而<code>lris Versicolour</code>近似于<code>μ = 2</code>,<code>lris Virginica</code>近似于<code>μ = 1</code>,就可以得出<strong>花萼宽度可以区分类别的简单结论</strong></p>
+<h4 id="数据可视化之散点图"><a href="#数据可视化之散点图" class="headerlink" title="数据可视化之散点图"></a>数据可视化之散点图</h4><p><strong>用来显示两组数据的相关性分布</strong></p>
+<p><strong>用来显示两组数据的类别分布</strong>(男性和女性身高体重的散点图,靠近坐标原点的可能性更接近于女性)</p>
+<img src="/2024/09/03/shu-ju-wa-jue/散点图.png" alt="image-20240907203435944" style="zoom:80%;">
+
+<p>分为正相关、负相关、不相关(不线性相关)</p>
+<ul>
+<li>房价预测案例</li>
+</ul>
+<img src="/2024/09/03/shu-ju-wa-jue/房价预测.png" alt="image-20240907203632198" style="zoom:80%;">
+
+<p><strong>房屋面积(1)和建筑面积(3)相关性更强</strong></p>
+<h3 id="2-3-数据相似性"><a href="#2-3-数据相似性" class="headerlink" title="2.3 数据相似性"></a>2.3 数据相似性</h3><h4 id="度量数据的相似性和相异性"><a href="#度量数据的相似性和相异性" class="headerlink" title="度量数据的相似性和相异性"></a>度量数据的相似性和相异性</h4><img src="/2024/09/03/shu-ju-wa-jue/du度量矩阵的相似度和差异性.png" alt="image-20240907204415245" style="zoom:80%;">
+
+<ul>
+<li>相似度Similarity<ul>
+<li>度量两个数据对象有多相似</li>
+<li>值越大就表示数据对象越相似</li>
+<li>通常取值范围为[0,1]</li>
+</ul>
+</li>
+<li>相异度Dissimilarity(e.g. distance)<ul>
+<li>度量两个数据对象的差别程度</li>
+<li>值越小就表示数据越相似</li>
+<li>最小相异度通常为0</li>
+</ul>
+</li>
+<li>邻近性Proximity<ul>
+<li>指相似度或者相异度</li>
+</ul>
+</li>
+</ul>
+<h4 id="标称属性的邻近性度量"><a href="#标称属性的邻近性度量" class="headerlink" title="标称属性的邻近性度量"></a>标称属性的邻近性度量</h4><ul>
+<li>标称属性可以取两个或多个状态</li>
+<li>方法: <strong>简单匹配</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>属性1</th>
+<th>属性2</th>
+<th>属性3</th>
+<th>属性4</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>弹琴</td>
+<td>跳高</td>
+<td>唱歌</td>
+<td>背诗</td>
+</tr>
+<tr>
+<td>2</td>
+<td>弹琴</td>
+<td>跳远</td>
+<td>跳舞</td>
+<td>读书</td>
+</tr>
+</tbody></table>
+<p>​	<strong>$$ d(i,j) &#x3D; \frac{p - m}{p} $$</strong>	$$d(1,2) &#x3D; \frac{4 - 1}{4} $$</p>
+<p>m:匹配次数，p: 属性总数</p>
+<h5 id="二值属性的邻近性度量例子"><a href="#二值属性的邻近性度量例子" class="headerlink" title="二值属性的邻近性度量例子"></a><strong>二值属性的邻近性度量例子</strong></h5><p><img src="/2024/09/03/shu-ju-wa-jue/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%B1%9E%E6%80%A7%E7%9A%84%E9%82%BB%E8%BF%9B%E6%80%A7%E5%BA%A6%E9%87%8F.png" alt="image-20240907210453783"></p>
+<ul>
+<li>Gender 是对称属性，其余都是非对称属性，假设只计算非对称属性</li>
+<li>Y 和 P 的值为1(阳性)，N 的值为0(阴性正常)</li>
+<li>test1-4表示抽血化验的结果</li>
+</ul>
+<h4 id="数值属性的邻近性度量"><a href="#数值属性的邻近性度量" class="headerlink" title="数值属性的邻近性度量"></a>数值属性的邻近性度量</h4><table>
+<thead>
+<tr>
+<th align="left">point</th>
+<th align="left">attribute 1</th>
+<th align="left">attribute 2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">x1</td>
+<td align="left">1</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">x2</td>
+<td align="left">3</td>
+<td align="left">5</td>
+</tr>
+<tr>
+<td align="left">x3</td>
+<td align="left">2</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">x4</td>
+<td align="left">4</td>
+<td align="left">5</td>
+</tr>
+</tbody></table>
+<p><strong>$$ d(i,j) &#x3D; \left( |x_{i1} - x_{j1}|^h + |x_{i2} - x_{j2}|^h + \ldots + |x_{ip} - x_{jp}|^h \right)^{\frac{1}{h}} $$</strong></p>
+<ul>
+<li>性质<ol>
+<li>d(i,j) &gt; 0 if i≠j,and d(i,i)&#x3D;0**(正定性)**</li>
+<li>d(i,j) &#x3D; d(j, i)<strong>(对称性)</strong></li>
+<li>d(i, i) ≤ d(i, k) + d(k,i)<strong>(三角不等性)</strong></li>
+</ol>
+</li>
+</ul>
+<img src="/2024/09/03/shu-ju-wa-jue/公式.png" alt="image-20240907211845099" style="zoom:80%;">
+
+<h3 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h3>
                 
             </div>
             <hr/>
@@ -1269,7 +1404,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">240.3k</span>&nbsp;字
+                class="white-color">242.6k</span>&nbsp;字
             
             
             
