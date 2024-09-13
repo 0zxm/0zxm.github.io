@@ -478,14 +478,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    17.2k
+                    17.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    68 分
+                    69 分
                 </div>
                 
 
@@ -2667,7 +2667,28 @@ inputElement<span class="token punctuation">.</span>type <span class="token oper
   </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="6-节点操作"><a href="#6-节点操作" class="headerlink" title="6.节点操作"></a>6.节点操作</h3>
+<h3 id="6-节点操作"><a href="#6-节点操作" class="headerlink" title="6.节点操作"></a>6.节点操作</h3><h4 id="6-1-为什么学节点操作"><a href="#6-1-为什么学节点操作" class="headerlink" title="6.1 为什么学节点操作"></a>6.1 为什么学节点操作</h4><p>获取元素通常使用两种方式</p>
+<ul>
+<li>使用DOM提供的方法<ul>
+<li><code>document.getElementByld()</code>,<code>document.getElementsByTagName()</code>,<code>document.querySelector()</code>等</li>
+<li><strong>逻辑性不强、繁琐</strong></li>
+</ul>
+</li>
+<li>利用<strong>节点层级关系</strong>获取元素<ul>
+<li>利用父子兄弟节点关系获取元素</li>
+<li>逻辑性强，但是兼容性稍差</li>
+</ul>
+</li>
+</ul>
+<h4 id="6-2-节点概述"><a href="#6-2-节点概述" class="headerlink" title="6.2 节点概述"></a>6.2 节点概述</h4><p>网页中的所有内容都是节点(标签、属性、文本、注释等)，在DOM中，节点使用 node 来表示HTMLDOM树中的所有节点均可通过JavaScript进行访问，所有HTML元素(节点)均可被修改，也可以创建或删除。</p>
+<p>一般地，节点至少拥有<code>nodeType(节点类型)</code>、<code>nodeName(节点名称)</code>和<code>nodeValue(节点值)</code>这三个基本属性。</p>
+<ul>
+<li>元素节点 nodeType 为1</li>
+<li>属性节点 nodeType 为2</li>
+<li>文本节点 nodeType 为3</li>
+</ul>
+<p><strong>(文本节点包含文字、空格、换行等我们在实际开发中，节点操作主要操作的是元素节点)</strong></p>
+
                 
             </div>
             <hr/>
@@ -3192,7 +3213,7 @@ inputElement<span class="token punctuation">.</span>type <span class="token oper
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">245.2k</span>&nbsp;字
+                class="white-color">247.5k</span>&nbsp;字
             
             
             
