@@ -1314,34 +1314,34 @@ sbWithCapacity<span class="token punctuation">.</span><span class="token functio
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="chapter03"><a href="#chapter03" class="headerlink" title="chapter03"></a>chapter03</h2><h3 id="教学与实践目的"><a href="#教学与实践目的" class="headerlink" title="教学与实践目的"></a>教学与实践目的</h3><p>学会在网络应用开发中运用Java多线程技术。</p>
-<h3 id="一、程序的基本调试技术"><a href="#一、程序的基本调试技术" class="headerlink" title="一、程序的基本调试技术"></a>一、程序的基本调试技术</h3><p>程序无语法错误、能运行，但没有出现预期的结果，说明程序可能存在逻辑错误。解决这类错误的主要方法是查看程序运行过程中的内存变量值。一个常用的手段是通过打印语句打印出变量的值，例如使用 <code>System.out.println(待排查的变量)</code>。但更强大的方法是使用IDE提供的断点功能。</p>
-<h4 id="在Idea设断点并查看变量的方法："><a href="#在Idea设断点并查看变量的方法：" class="headerlink" title="在Idea设断点并查看变量的方法："></a>在Idea设断点并查看变量的方法：</h4><ol>
+<h3 id="程序的基本调试技术"><a href="#程序的基本调试技术" class="headerlink" title="程序的基本调试技术"></a>程序的基本调试技术</h3><p>程序无语法错误、能运行，但没有出现预期的结果，说明程序可能存在逻辑错误。解决这类错误的主要方法是查看程序运行过程中的内存变量值。一个常用的手段是通过打印语句打印出变量的值，例如使用 <code>System.out.println(待排查的变量)</code>。但更强大的方法是使用IDE提供的断点功能。</p>
+<h4 id="在Idea设断点并查看变量的方法"><a href="#在Idea设断点并查看变量的方法" class="headerlink" title="在Idea设断点并查看变量的方法"></a>在Idea设断点并查看变量的方法</h4><ol>
 <li>鼠标点击要查看变量所在代码行的行号右侧空白处，出现棕红色实心圆，即表示在此处打了断点。</li>
 <li>调试时程序会在此处停住，方便观察程序运行的状况和各变量的即时值。</li>
 </ol>
-<h4 id="操作步骤："><a href="#操作步骤：" class="headerlink" title="操作步骤："></a>操作步骤：</h4><ul>
+<h4 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h4><ul>
 <li>首先新建一个包，命名为 <code>chapter03</code>。</li>
 <li>然后将上一讲的 <code>TCPServer.java</code>、<code>TCPClient.java</code>、<code>TCPClientFX.java</code> 复制到这个包中，注意程序中第一行语句是否自动修改为 <code>package chapter03;</code>。</li>
 <li>假如我们要观察获取的IP地址是否符合预期，可以在客户端窗口程序 <code>TCPClientFX</code> 中选择一行有相关变量的代码行，如图3.1，鼠标点击行号右侧标注断点。</li>
 <li>右上角下拉框选中 <code>TCPClientFX</code>，再点击“调试”图标（可以直接从“run”菜单或右键点击主窗体的弹出菜单中选择debug方式运行），窗口程序运行到红色断点行时会停留，便于观察此时IP、port等变量的状态值，如图3.2所示。</li>
 <li>通过图3.2所示红色框区域，可以让程序单步执行，一步一步地观察程序执行的情况，如果当前行代码中有方法的调用，<code>step over</code> 表示把方法当作一行代码直接执行，而 <code>step into</code> 则继续下钻，可以进入方法内部继续跟踪，一般只是用于进入自定义方法。</li>
 </ul>
-<h3 id="二、理解阻塞语句"><a href="#二、理解阻塞语句" class="headerlink" title="二、理解阻塞语句"></a>二、理解阻塞语句</h3><p>在同一个进程中，一条阻塞语句的执行影响着下条语句何时被执行。如果该条语句没有执行完，那么下条语句是不可能进入执行状态的，因此，从字面上理解，该条语句阻塞了下面语句的执行。</p>
-<h4 id="示例：使用-BufferedReader-中-readLine-方法"><a href="#示例：使用-BufferedReader-中-readLine-方法" class="headerlink" title="示例：使用 BufferedReader 中 readLine() 方法"></a>示例：使用 <code>BufferedReader</code> 中 <code>readLine()</code> 方法</h4><ul>
+<h3 id="理解阻塞语句"><a href="#理解阻塞语句" class="headerlink" title="理解阻塞语句"></a>理解阻塞语句</h3><p>在同一个进程中，一条阻塞语句的执行影响着下条语句何时被执行。如果该条语句没有执行完，那么下条语句是不可能进入执行状态的，因此，从字面上理解，该条语句阻塞了下面语句的执行。</p>
+<h4 id="使用-BufferedReader-中-readLine-方法"><a href="#使用-BufferedReader-中-readLine-方法" class="headerlink" title="使用 BufferedReader 中 readLine() 方法"></a>使用 <code>BufferedReader</code> 中 <code>readLine()</code> 方法</h4><ul>
 <li>若该套接字的输入流中没有带行结束符（如 <code>\n</code>）的字符可读，则该语句会处于阻塞状态，直到条件出现行结束符，才会执行下面的语句。</li>
 </ul>
-<h4 id="阻塞状态程序演示："><a href="#阻塞状态程序演示：" class="headerlink" title="阻塞状态程序演示："></a>阻塞状态程序演示：</h4><ol>
+<h4 id="阻塞状态程序演示"><a href="#阻塞状态程序演示" class="headerlink" title="阻塞状态程序演示"></a>阻塞状态程序演示</h4><ol>
 <li>将 <code>TCPServer.java</code> 程序中的发送语句临时禁用（验证完再还原），例如：<pre class="line-numbers language-java" data-language="java"><code class="language-java">   <span class="token comment">// 向输出流中输出一行字符串,远程客户端可以读取该字符串</span>
    <span class="token comment">// pw.println("来自服务器：" + msg);  临时禁用</span>
    即服务器不回传信息。
 <span class="token number">2.</span> 启动 `<span class="token class-name">TCPServer</span><span class="token punctuation">.</span>java` 服务程序，再启动 `<span class="token class-name">TCPClientFX</span><span class="token punctuation">.</span>java` 客户端程序，发送信息，发现客户程序不能正常运行，发送按钮甚至整个程序失去响应。
 <span class="token number">3.</span> 强行终止 `<span class="token class-name">TCPClientFX</span>`，在窗口程序的发送语句处设置断点，如图<span class="token number">3.3</span>所示。然后在调试状态运行该程序，逐行调试（遇到自定义的方法，建议使用 `step into` 跟踪进入）。在执行到 `<span class="token function">receive</span><span class="token punctuation">(</span><span class="token punctuation">)</span>` 方法时，使用 `step into` 跟踪进方法会发现程序会阻塞在 `msg <span class="token operator">=</span> br<span class="token punctuation">.</span><span class="token function">readLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>` 处（因为服务器没有返回，客户端的输入流队列中是空的，所以被阻塞）。
 
-### 三、理解读一行功能
+### 理解读一行功能
 
 同理，若套接字的输入流中有多行信息，调用一次 `<span class="token function">readLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span>` 方法，只是读出当前的一行（当然你可以调用其他的“读”方法）。
 
-#### 程序演示：
+#### 程序演示
 
 <span class="token number">1.</span> 在 `<span class="token class-name">TCPServer</span><span class="token punctuation">.</span>java` 程序中多增加一条信息返回语句，例如：
    ```java
@@ -1351,9 +1351,9 @@ sbWithCapacity<span class="token punctuation">.</span><span class="token functio
 然后启动服务端程序。</li>
 <li>启动客户端 <code>TCPClientFX</code> 程序，发现客户显示区每次只显示一条信息，且与你发送的信息不同步。因为每一次互动，服务器返回两行信息，而客户端只是读取最前面的一行信息。</li>
 </ol>
-<h3 id="四、多线程技术"><a href="#四、多线程技术" class="headerlink" title="四、多线程技术"></a>四、多线程技术</h3><p>有了多线程技术，我们就有了更多选择。</p>
+<h3 id="多线程技术"><a href="#多线程技术" class="headerlink" title="多线程技术"></a>多线程技术</h3><p>有了多线程技术，我们就有了更多选择。</p>
 <h4 id="编写读取服务器信息的线程"><a href="#编写读取服务器信息的线程" class="headerlink" title="编写读取服务器信息的线程"></a>编写读取服务器信息的线程</h4><p>在 <code>TCPClientFX.java</code> 程序中，发送信息是可以通过“发送”按钮来实现主动控制，可接收信息是被动的，你不知道输入流中有多少信息。为此，在窗口程序中添加一个线程专门负责读取输入流中的信息，同时，“发送”按钮动作中，读取输入流信息的代码就需要删除。</p>
-<h4 id="操作步骤：-1"><a href="#操作步骤：-1" class="headerlink" title="操作步骤："></a>操作步骤：</h4><ol>
+<h4 id="操作步骤："><a href="#操作步骤：" class="headerlink" title="操作步骤："></a>操作步骤：</h4><ol>
 <li>现在右键选择 <code>TCPClientFX.java</code> 重构（Refactor），重命名为 <code>TCPClientThreadFX.java</code>（采用如图 3.5 所示的方式）。</li>
 <li>在合适的位置添加如下线程代码（自己思考添加在什么位置合适，更新版本讲义会有更详细的提示），用于接收服务器的信息，为了简洁，匿名内部类使用了lambda的写法：<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 用于接收服务器信息的单独线程</span>
 receiveThread <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token punctuation">&#123;</span> 
@@ -1380,7 +1380,7 @@ receiveThread<span class="token punctuation">.</span><span class="token function
 </ul>
 </li>
 </ol>
-<h4 id="示例代码："><a href="#示例代码：" class="headerlink" title="示例代码："></a>示例代码：</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java">receiveThread <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token punctuation">&#123;</span> 
+<h4 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java">receiveThread <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token punctuation">&#123;</span> 
     <span class="token class-name">String</span> msg <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span> 
     <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>msg <span class="token operator">=</span> tcpClient<span class="token punctuation">.</span><span class="token function">receive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> 
         <span class="token class-name">String</span> msgTemp <span class="token operator">=</span> msg<span class="token punctuation">;</span> <span class="token comment">// msgTemp 实质是final类型 </span>
