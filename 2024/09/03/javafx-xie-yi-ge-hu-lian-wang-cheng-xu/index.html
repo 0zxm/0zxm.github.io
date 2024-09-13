@@ -486,14 +486,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    8.7k
+                    10.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    35 分
+                    42 分
                 </div>
                 
 
@@ -1353,7 +1353,7 @@ sbWithCapacity<span class="token punctuation">.</span><span class="token functio
 </ol>
 <h3 id="多线程技术"><a href="#多线程技术" class="headerlink" title="多线程技术"></a>多线程技术</h3><p>有了多线程技术，我们就有了更多选择。</p>
 <h4 id="编写读取服务器信息的线程"><a href="#编写读取服务器信息的线程" class="headerlink" title="编写读取服务器信息的线程"></a>编写读取服务器信息的线程</h4><p>在 <code>TCPClientFX.java</code> 程序中，发送信息是可以通过“发送”按钮来实现主动控制，可接收信息是被动的，你不知道输入流中有多少信息。为此，在窗口程序中添加一个线程专门负责读取输入流中的信息，同时，“发送”按钮动作中，读取输入流信息的代码就需要删除。</p>
-<h4 id="操作步骤："><a href="#操作步骤：" class="headerlink" title="操作步骤："></a>操作步骤：</h4><ol>
+<h4 id="操作步骤-1"><a href="#操作步骤-1" class="headerlink" title="操作步骤"></a>操作步骤</h4><ol>
 <li>现在右键选择 <code>TCPClientFX.java</code> 重构（Refactor），重命名为 <code>TCPClientThreadFX.java</code>（采用如图 3.5 所示的方式）。</li>
 <li>在合适的位置添加如下线程代码（自己思考添加在什么位置合适，更新版本讲义会有更详细的提示），用于接收服务器的信息，为了简洁，匿名内部类使用了lambda的写法：<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 用于接收服务器信息的单独线程</span>
 receiveThread <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token punctuation">&#123;</span> 
@@ -1393,6 +1393,148 @@ receiveThread<span class="token punctuation">.</span><span class="token function
     <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 receiveThread<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h3><p>在 Java 中，<code>()-&gt;&#123;&#125;</code> 是一个 lambda 表达式的语法，它用于创建一个没有参数的函数式接口的匿名实现。Lambda 表达式是 Java8 引入的一个特性，它允许你以简洁的方式表示只有一个方法的接口的实现。</p>
+<p>函数式接口是只有一个抽象方法的接口，这样的接口可以用 lambda 表达式来实现。例如，<code>Runnable</code> 和 <code>Callable</code> 都是函数式接口。</p>
+<p>下面是一个使用 lambda 表达式的简单例子：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Runnable</span> runnable <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token punctuation">&#123;</span>
+    <span class="token comment">// 这里是代码块</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Hello, Lambda!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+runnable<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 输出 "Hello, Lambda!"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在这个例子中，<code>Runnable</code> 是一个函数式接口，它有一个抽象方法 <code>run()</code>。我们通过 lambda 表达式 <code>()-&gt;&#123;&#125;</code> 创建了一个 <code>Runnable</code> 的匿名实现，并在代码块中编写了要执行的代码。然后，我们通过调用 <code>run()</code> 方法来执行这个 lambda 表达式。</p>
+<p>Lambda 表达式可以用于任何函数式接口，并且可以作为参数传递给方法，或者作为方法的返回值。这使得代码更加简洁和灵活。</p>
+<h3 id="Runnable接口"><a href="#Runnable接口" class="headerlink" title="Runnable接口"></a>Runnable接口</h3><p><code>Runnable</code> 是 Java 中的一个接口，属于 <code>java.lang</code> 包。它只有一个抽象方法 <code>run()</code>，通常用于创建线程时定义线程要执行的任务。</p>
+<p>当你创建一个实现了 <code>Runnable</code> 接口的类时，你需要重写 <code>run()</code> 方法来定义线程的行为。然后，你可以将这个实现了 <code>Runnable</code> 接口的类的实例传递给 <code>Thread</code> 类的构造器来创建一个线程。</p>
+<p>下面是 <code>Runnable</code> 接口的一个简单示例：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyRunnable</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 这里是线程要执行的代码</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"线程正在运行..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 创建 Runnable 实例</span>
+        <span class="token class-name">MyRunnable</span> myRunnable <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyRunnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// 创建并启动线程</span>
+        <span class="token class-name">Thread</span> thread <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>myRunnable<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        thread<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在这个例子中，<code>MyRunnable</code> 类实现了 <code>Runnable</code> 接口，并重写了 <code>run()</code> 方法来定义线程的行为。然后，在 <code>main</code> 方法中，我们创建了 <code>MyRunnable</code> 的实例，并将其传递给 <code>Thread</code> 类的构造器来创建一个线程。最后，我们调用 <code>start()</code> 方法来启动线程。</p>
+<p><code>Runnable</code> 接口的另一个常见用途是作为参数传递给 <code>ExecutorService</code>，这是一个用于管理线程池的类，它允许你以更高效的方式执行并发任务。</p>
+<p><code>Runnable</code> 接口的使用是 Java 多线程编程的基础之一，它提供了一种简单的方式来定义线程任务。</p>
+<h3 id="Thread类"><a href="#Thread类" class="headerlink" title="Thread类"></a>Thread类</h3><h4 id="Thread类的介绍"><a href="#Thread类的介绍" class="headerlink" title="Thread类的介绍"></a>Thread类的介绍</h4><ol>
+<li><strong>避免长时间运行的任务阻塞 UI</strong>：在 UI 线程中执行长时间运行的任务会导致应用程序无响应。因此，应该将这些任务放在单独的线程中执行。</li>
+<li><strong>更新 UI 线程</strong>：由于 UI 组件只能在 JavaFX 的主线程（UI 线程）中安全地更新，因此需要使用 <code>Platform.runLater(Runnable)</code> 方法来确保 UI 更新操作在正确的线程中执行。</li>
+<li><strong>线程的创建和管理</strong>：可以通过继承 <code>Thread</code> 类并重写 <code>run</code> 方法来创建新线程。也可以使用 <code>ExecutorService</code> 来管理线程池，这通常是更高效和灵活的方式。</li>
+</ol>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>application<span class="token punctuation">.</span></span><span class="token class-name">Application</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>application<span class="token punctuation">.</span></span><span class="token class-name">Platform</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span></span><span class="token class-name">Scene</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>control<span class="token punctuation">.</span></span><span class="token class-name">Label</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>layout<span class="token punctuation">.</span></span><span class="token class-name">StackPane</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>stage<span class="token punctuation">.</span></span><span class="token class-name">Stage</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ThreadExample</span> <span class="token keyword">extends</span> <span class="token class-name">Application</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">start</span><span class="token punctuation">(</span><span class="token class-name">Stage</span> primaryStage<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">Label</span> label <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Label</span><span class="token punctuation">(</span><span class="token string">"任务开始"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 创建并启动线程</span>
+        <span class="token class-name">Thread</span> thread <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+                <span class="token comment">// 模拟长时间运行的任务</span>
+                <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+
+            <span class="token comment">// 在 UI 线程中更新标签</span>
+            <span class="token class-name">Platform</span><span class="token punctuation">.</span><span class="token function">runLater</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+                label<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"任务完成"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        thread<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">StackPane</span> root <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StackPane</span><span class="token punctuation">(</span>label<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Scene</span> scene <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scene</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">,</span> <span class="token number">250</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        primaryStage<span class="token punctuation">.</span><span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token string">"JavaFX Thread Example"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        primaryStage<span class="token punctuation">.</span><span class="token function">setScene</span><span class="token punctuation">(</span>scene<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        primaryStage<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">launch</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在这个示例中，我们创建了一个 <code>Thread</code> 来执行一个模拟的长时间运行的任务。任务完成后，我们使用 <code>Platform.runLater</code> 来更新 UI 组件（在这个例子中是一个 <code>Label</code>）。</p>
+<p>记住，虽然 <code>Thread</code> 类在 JavaFX 中仍然可以使用，但更推荐的做法是使用 JavaFX 提供的 <code>Task</code> 类或者 <code>Service</code> 类来处理后台任务，因为它们提供了更好的集成和更简单的 UI 更新机制。</p>
+<h4 id="runLater方法"><a href="#runLater方法" class="headerlink" title="runLater方法"></a>runLater方法</h4><p><code>Platform.runLater()</code> 是 JavaFX 中的一个方法，用于将一个 <code>Runnable</code> 任务安排在 JavaFX 主线程（也称为 UI 线程）上执行。JavaFX 应用程序的 UI 组件必须在主线程上进行修改，以确保线程安全和正确的 UI 更新。</p>
+<p><code>Platform.runLater()</code> 方法接受一个 <code>Runnable</code> 参数，这个 <code>Runnable</code> 包含了要在 UI 线程上执行的代码。如果你在后台线程中更新 UI，而没有使用 <code>Platform.runLater()</code>，那么可能会导致不可预知的行为，比如应用程序崩溃或者 UI 组件状态不一致。</p>
+<p>这个方法通常在以下几种情况下使用：</p>
+<ol>
+<li><p><strong>从后台线程更新 UI</strong>：当你在后台线程中完成一项任务后，需要更新 UI 时，可以使用 <code>Platform.runLater()</code> 来确保更新操作在 UI 线程上执行。</p>
+</li>
+<li><p><strong>延迟 UI 更新</strong>：有时候你可能需要在 UI 线程上延迟执行某些操作，比如在动画结束后更新 UI。</p>
+</li>
+<li><p><strong>处理事件</strong>：在处理某些事件时，你可能需要在 UI 线程上执行一些操作，以确保 UI 的响应性和一致性。</p>
+</li>
+</ol>
+<p>下面是一个使用 <code>Platform.runLater()</code> 的简单示例：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>application<span class="token punctuation">.</span></span><span class="token class-name">Platform</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>application<span class="token punctuation">.</span></span><span class="token class-name">Application</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span></span><span class="token class-name">Scene</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>control<span class="token punctuation">.</span></span><span class="token class-name">Button</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>layout<span class="token punctuation">.</span></span><span class="token class-name">StackPane</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>stage<span class="token punctuation">.</span></span><span class="token class-name">Stage</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RunLaterExample</span> <span class="token keyword">extends</span> <span class="token class-name">Application</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">start</span><span class="token punctuation">(</span><span class="token class-name">Stage</span> primaryStage<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">Button</span> button <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Button</span><span class="token punctuation">(</span><span class="token string">"Click Me"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        button<span class="token punctuation">.</span><span class="token function">setOnAction</span><span class="token punctuation">(</span>event <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">// 模拟一个耗时操作</span>
+            <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+                    <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 模拟耗时操作</span>
+                <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token comment">// 使用 Platform.runLater 来更新 UI</span>
+                <span class="token class-name">Platform</span><span class="token punctuation">.</span><span class="token function">runLater</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+                    button<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"Clicked!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">StackPane</span> root <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StackPane</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        root<span class="token punctuation">.</span><span class="token function">getChildren</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>button<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">Scene</span> scene <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scene</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        primaryStage<span class="token punctuation">.</span><span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token string">"Platform.runLater Example"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        primaryStage<span class="token punctuation">.</span><span class="token function">setScene</span><span class="token punctuation">(</span>scene<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        primaryStage<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">launch</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在这个示例中，当用户点击按钮时，会启动一个后台线程来模拟一个耗时操作。操作完成后，我们使用 <code>Platform.runLater()</code> 来更新按钮的文本，确保这个更新操作在 UI 线程上执行。</p>
 
                 
             </div>
@@ -1926,7 +2068,7 @@ receiveThread<span class="token punctuation">.</span><span class="token function
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">247.5k</span>&nbsp;字
+                class="white-color">249.1k</span>&nbsp;字
             
             
             
