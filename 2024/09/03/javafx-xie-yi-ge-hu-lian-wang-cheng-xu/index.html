@@ -1331,23 +1331,17 @@ sbWithCapacity<span class="token punctuation">.</span><span class="token functio
 <li>若该套接字的输入流中没有带行结束符（如 <code>\n</code>）的字符可读，则该语句会处于阻塞状态，直到条件出现行结束符，才会执行下面的语句。</li>
 </ul>
 <h4 id="阻塞状态程序演示"><a href="#阻塞状态程序演示" class="headerlink" title="阻塞状态程序演示"></a>阻塞状态程序演示</h4><ol>
-<li>将 <code>TCPServer.java</code> 程序中的发送语句临时禁用（验证完再还原），例如：<pre class="line-numbers language-java" data-language="java"><code class="language-java">   <span class="token comment">// 向输出流中输出一行字符串,远程客户端可以读取该字符串</span>
-   <span class="token comment">// pw.println("来自服务器：" + msg);  临时禁用</span>
-   即服务器不回传信息。
-<span class="token number">2.</span> 启动 `<span class="token class-name">TCPServer</span><span class="token punctuation">.</span>java` 服务程序，再启动 `<span class="token class-name">TCPClientFX</span><span class="token punctuation">.</span>java` 客户端程序，发送信息，发现客户程序不能正常运行，发送按钮甚至整个程序失去响应。
-<span class="token number">3.</span> 强行终止 `<span class="token class-name">TCPClientFX</span>`，在窗口程序的发送语句处设置断点，如图<span class="token number">3.3</span>所示。然后在调试状态运行该程序，逐行调试（遇到自定义的方法，建议使用 `step into` 跟踪进入）。在执行到 `<span class="token function">receive</span><span class="token punctuation">(</span><span class="token punctuation">)</span>` 方法时，使用 `step into` 跟踪进方法会发现程序会阻塞在 `msg <span class="token operator">=</span> br<span class="token punctuation">.</span><span class="token function">readLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>` 处（因为服务器没有返回，客户端的输入流队列中是空的，所以被阻塞）。
-
-### 理解读一行功能
-
-同理，若套接字的输入流中有多行信息，调用一次 `<span class="token function">readLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span>` 方法，只是读出当前的一行（当然你可以调用其他的“读”方法）。
-
-#### 程序演示
-
-<span class="token number">1.</span> 在 `<span class="token class-name">TCPServer</span><span class="token punctuation">.</span>java` 程序中多增加一条信息返回语句，例如：
-   ```java
-   pw<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"来自服务器："</span> <span class="token operator">+</span> msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token comment">// 下面多增加一条信息返回语句</span>
-   pw<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"来自服务器，重复发送: "</span> <span class="token operator">+</span> msg<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<li>将 <code>TCPServer.java</code> 程序中的发送语句临时禁用（验证完再还原），例如：<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 向输出流中输出一行字符串,远程客户端可以读取该字符串</span>
+<span class="token comment">// pw.println("来自服务器：" + msg);  临时禁用</span>
+即服务器不回传信息。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li>启动 <code>TCPServer.java</code> 服务程序，再启动 <code>TCPClientFX.java</code> 客户端程序，发送信息，发现客户程序不能正常运行，发送按钮甚至整个程序失去响应。</li>
+<li>强行终止 <code>TCPClientFX</code>，在窗口程序的发送语句处设置断点，如图3.3所示。然后在调试状态运行该程序，逐行调试（遇到自定义的方法，建议使用 <code>step into</code> 跟踪进入）。在执行到 <code>receive()</code> 方法时，使用 <code>step into</code> 跟踪进方法会发现程序会阻塞在 <code>msg = br.readLine();</code> 处（因为服务器没有返回，客户端的输入流队列中是空的，所以被阻塞）。</li>
+</ol>
+<h3 id="理解读一行功能"><a href="#理解读一行功能" class="headerlink" title="理解读一行功能"></a>理解读一行功能</h3><p>同理，若套接字的输入流中有多行信息，调用一次 <code>readLine()</code> 方法，只是读出当前的一行（当然你可以调用其他的“读”方法）。</p>
+<h4 id="程序演示"><a href="#程序演示" class="headerlink" title="程序演示"></a>程序演示</h4><ol>
+<li>在 <code>TCPServer.java</code> 程序中多增加一条信息返回语句，例如：<pre class="line-numbers language-java" data-language="java"><code class="language-java">pw<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"来自服务器："</span> <span class="token operator">+</span> msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 下面多增加一条信息返回语句</span>
+pw<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"来自服务器，重复发送: "</span> <span class="token operator">+</span> msg<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 然后启动服务端程序。</li>
 <li>启动客户端 <code>TCPClientFX</code> 程序，发现客户显示区每次只显示一条信息，且与你发送的信息不同步。因为每一次互动，服务器返回两行信息，而客户端只是读取最前面的一行信息。</li>
 </ol>
