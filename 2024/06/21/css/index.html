@@ -478,14 +478,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    32k
+                    32.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    132 分
+                    133 分
                 </div>
                 
 
@@ -2191,7 +2191,7 @@
 
 <ul>
 <li>相对定位的特点:(务必记住)<ol>
-<li>它是相对于自己原来的位置来移动的**(移动位置的时候参照点是自己原来的位置)。**</li>
+<li>它是相对于自己原来的位置来移动的 ** (移动位置的时候参照点是自己原来的位置)**</li>
 <li><strong>原来</strong>在标准流的位置继续<strong>占有</strong>，后面的盒子仍然以标准流的方式对待它。(不脱标，继续保留原来位置)</li>
 </ol>
 </li>
@@ -2206,7 +2206,7 @@
 <ol>
 <li><strong>如果没有祖先元素或者祖先元素没有定位</strong>，则以浏览器为准定位(Document 文档)</li>
 <li>如果祖先元素<strong>有定位(相对、绝对、固定定位)<strong>则以</strong>最近一级</strong>的<strong>有定位</strong>祖先元素为参考点移动位置</li>
-<li>绝对定位不再占有原先的位置。**(脱标)**</li>
+<li>绝对定位不再占有原先的位置。** (脱标) **</li>
 </ol>
 <h3 id="子绝父相口诀"><a href="#子绝父相口诀" class="headerlink" title="子绝父相口诀"></a>子绝父相口诀</h3><ol>
 <li>子级绝对定位，不会占有位置，可以放到父盒子里面的任何一个地方，不会影响其他的兄弟盒子</li>
@@ -3728,6 +3728,55 @@
     </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="CSS3的2D转换"><a href="#CSS3的2D转换" class="headerlink" title="CSS3的2D转换"></a>CSS3的2D转换</h4><p><code>转换(transform)</code>是CSS3中具有颠覆性的特征之一，可以实现元素的位移、旋转、缩放等效果</p>
+<ul>
+<li>2D转换之移动<code>translate</code></li>
+</ul>
+<p>2D移动是2D转换里面的一种功能，可以改变元素在页面中的位置，类似<strong>定位</strong></p>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token property">transform</span><span class="token punctuation">:</span><span class="token function">translate</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>或者分开写
+<span class="token property">transform</span><span class="token punctuation">:</span><span class="token function">translateX</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token property">transform</span><span class="token punctuation">:</span><span class="token function">translateY</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>重点</strong></p>
+<ul>
+<li>定义2D转换中的移动，沿着X和Y轴移动元素</li>
+<li>translate最大的优点: 不会影响到其他元素的位置</li>
+<li>translate中的百分比单位是<strong>相对于自身元素的</strong>, <code>trahslate:(-50%,-50%)</code>配合定位的<code>left:50%; top:50%</code> 可以实现居中;</li>
+<li>对行内标签没有效果</li>
+</ul>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">&lt;!DOCTYPE html>
+&lt;html lang="en">
+  &lt;head>
+    &lt;meta charset="UTF-8" />
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    &lt;title>Document&lt;/title>
+  &lt;/head>
+  &lt;style>
+    div:first-child:hover</span> <span class="token punctuation">&#123;</span>
+      <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translate</span><span class="token punctuation">(</span>100px<span class="token punctuation">,</span> 100px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token selector">div:first-child</span> <span class="token punctuation">&#123;</span>
+      <span class="token property">width</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+      <span class="token property">height</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+      <span class="token property">background-color</span><span class="token punctuation">:</span> pink<span class="token punctuation">;</span>
+      <span class="token comment">/* transform: translate(100px, 100px); */</span>
+      <span class="token property">transition</span><span class="token punctuation">:</span> all 0.5s ease-in-out<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token selector">div:nth-child(2)</span> <span class="token punctuation">&#123;</span>
+      <span class="token property">width</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+      <span class="token property">height</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+      <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token function">rgb</span><span class="token punctuation">(</span>211<span class="token punctuation">,</span> 164<span class="token punctuation">,</span> 187<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+  &lt;/style>
+  &lt;body>
+    &lt;div>&lt;/div>
+    &lt;div>&lt;/div>
+  &lt;/body>
+&lt;/html><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
 
 <h4 id="CSS3其他新特性"><a href="#CSS3其他新特性" class="headerlink" title="CSS3其他新特性"></a>CSS3其他新特性</h4><p><strong>CSS3滤镜filter:</strong></p>
 <p><code>filter</code> CSS属性将模糊或颜色偏移等图形效果应用于元素</p>
@@ -5586,7 +5635,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">258.4k</span>&nbsp;字
+                class="white-color">260k</span>&nbsp;字
             
             
             
