@@ -486,14 +486,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.3k
+                    3.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    11 分
+                    13 分
                 </div>
                 
 
@@ -867,7 +867,47 @@
 </ul>
 <img src="/2024/09/03/shu-ju-wa-jue/公式.png" alt="image-20240907211845099" style="zoom:80%;">
 
-<h3 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h3>
+<h4 id="x和y的相似度或相异度"><a href="#x和y的相似度或相异度" class="headerlink" title="x和y的相似度或相异度"></a>x和y的相似度或相异度</h4><table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>x与y的相似度</th>
+<th>相异度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>标称</td>
+<td>s &#x3D; 1 (if x &#x3D; y)<br>s &#x3D; 0 (if x !&#x3D; y)</td>
+<td>d &#x3D; -s</td>
+</tr>
+<tr>
+<td>序数</td>
+<td>s &#x3D; 1 - d</td>
+<td>d &#x3D; |x - y| &#x2F; (n - 1)<br>n为值的个数,值映射到0 ~ n-1</td>
+</tr>
+<tr>
+<td>区间&#x2F;比率</td>
+<td>s &#x3D; -d, s &#x3D; 1 &#x2F; (1 + d)…等单调递减函数</td>
+<td>d &#x3D; |x - y|</td>
+</tr>
+</tbody></table>
+<h4 id="线性相关系数"><a href="#线性相关系数" class="headerlink" title="线性相关系数"></a>线性相关系数</h4><p>线性相关系数，通常指的是皮尔逊相关系数（Pearson correlation coefficient），用于度量两个变量之间的线性相关程度。其计算公式如下：</p>
+<p><code>\[ r = \frac&#123;\sum_&#123;i=1&#125;^&#123;n&#125; (X_i - \bar&#123;X&#125;)(Y_i - \bar&#123;Y&#125;)&#125;&#123;\sqrt&#123;\sum_&#123;i=1&#125;^&#123;n&#125; (X_i - \bar&#123;X&#125;)^2&#125; \sqrt&#123;\sum_&#123;i=1&#125;^&#123;n&#125; (Y_i - \bar&#123;Y&#125;)^2&#125;&#125; \]</code></p>
+<p>其中：</p>
+<ul>
+<li>( r ) 是相关系数。</li>
+<li>( X_i ) 和 ( Y_i ) 是两个变量的观测值。</li>
+<li>( \bar{X} ) 和 ( \bar{Y} ) 分别是变量 ( X ) 和 ( Y ) 的平均值。</li>
+<li>( n ) 是观测值的数量。</li>
+</ul>
+<p>相关系数 ( r ) 的取值范围在 -1 到 1 之间：</p>
+<ul>
+<li>( r &#x3D; 1 ) 表示完全正相关。</li>
+<li>( r &#x3D; -1 ) 表示完全负相关。</li>
+<li>( r &#x3D; 0 ) 表示没有线性相关。</li>
+</ul>
+<p>除了皮尔逊相关系数外，还有斯皮尔曼等级相关系数（Spearman’s rank correlation coefficient）和肯德尔等级相关系数（Kendall’s tau coefficient），它们用于度量两个变量之间的非线性相关程度。</p>
+
                 
             </div>
             <hr/>
@@ -1404,7 +1444,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">261.8k</span>&nbsp;字
+                class="white-color">262.3k</span>&nbsp;字
             
             
             
