@@ -478,14 +478,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    34.5k
+                    34.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    143 分
+                    145 分
                 </div>
                 
 
@@ -4252,6 +4252,76 @@
 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token property">width</span><span class="token punctuation">:</span> <span class="token function">calc</span><span class="token punctuation">(</span>100% -80px<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>括号里面可以使用<code> +</code>,<code>-</code>,<code>*</code>,<code>/</code>来进行计算。</p>
+<h4 id="H5C3综合案例-旋转木马"><a href="#H5C3综合案例-旋转木马" class="headerlink" title="H5C3综合案例-旋转木马"></a>H5C3综合案例-旋转木马</h4><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>旋转木马<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
+            <span class="token selector">body</span> <span class="token punctuation">&#123;</span>
+                <span class="token property">perspective</span><span class="token punctuation">:</span> 1000px<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token selector">section</span> <span class="token punctuation">&#123;</span>
+                <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+                <span class="token property">width</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+                <span class="token property">height</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+                <span class="token property">margin</span><span class="token punctuation">:</span> 100px auto<span class="token punctuation">;</span>
+                <span class="token property">transform-style</span><span class="token punctuation">:</span> preserve-3d<span class="token punctuation">;</span>
+                <span class="token comment">/* 添加动画效果 */</span>
+                <span class="token property">animation</span><span class="token punctuation">:</span> rotate 10s linear infinite<span class="token punctuation">;</span>
+                <span class="token property">background</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span>../html下/image.png<span class="token punctuation">)</span></span> no-repeat<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token atrule"><span class="token rule">@keyframes</span> rotate</span> <span class="token punctuation">&#123;</span>
+                <span class="token selector">0%</span> <span class="token punctuation">&#123;</span>
+                    <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">rotateY</span><span class="token punctuation">(</span>0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token selector">100%</span> <span class="token punctuation">&#123;</span>
+                    <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">rotateY</span><span class="token punctuation">(</span>360deg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token selector">section div</span> <span class="token punctuation">&#123;</span>
+                <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+                <span class="token property">top</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+                <span class="token property">left</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+                <span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+                <span class="token property">height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+                <span class="token property">background</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span>../html下/image.png<span class="token punctuation">)</span></span> no-repeat<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token selector">section div:nth-child(1)</span> <span class="token punctuation">&#123;</span>
+                <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translateZ</span><span class="token punctuation">(</span>300px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token selector">section div:nth-child(2)</span> <span class="token punctuation">&#123;</span>
+                <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">rotateY</span><span class="token punctuation">(</span>60deg<span class="token punctuation">)</span> <span class="token function">translateZ</span><span class="token punctuation">(</span>300px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token selector">section div:nth-child(3)</span> <span class="token punctuation">&#123;</span>
+                <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">rotateY</span><span class="token punctuation">(</span>120deg<span class="token punctuation">)</span> <span class="token function">translateZ</span><span class="token punctuation">(</span>300px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token selector">section div:nth-child(4)</span> <span class="token punctuation">&#123;</span>
+                <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">rotateY</span><span class="token punctuation">(</span>180deg<span class="token punctuation">)</span> <span class="token function">translateZ</span><span class="token punctuation">(</span>300px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token selector">section div:nth-child(5)</span> <span class="token punctuation">&#123;</span>
+                <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">rotateY</span><span class="token punctuation">(</span>240deg<span class="token punctuation">)</span> <span class="token function">translateZ</span><span class="token punctuation">(</span>300px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token selector">section div:nth-child(6)</span> <span class="token punctuation">&#123;</span>
+                <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">rotateY</span><span class="token punctuation">(</span>300deg<span class="token punctuation">)</span> <span class="token function">translateZ</span><span class="token punctuation">(</span>300px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>section</span>
+                 <span class="token special-attr"><span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value javascript language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>animationPlayState <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>animationPlayState <span class="token operator">===</span> <span class="token string">'paused'</span> <span class="token operator">?</span> <span class="token string">'running'</span> <span class="token operator">:</span> <span class="token string">'paused'</span></span><span class="token punctuation">"</span></span></span>
+                 <span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>section</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h3 id="HTML5和CSS3的解释"><a href="#HTML5和CSS3的解释" class="headerlink" title="HTML5和CSS3的解释"></a>HTML5和CSS3的解释</h3><h4 id="HTML5和CSS3的狭义解释"><a href="#HTML5和CSS3的狭义解释" class="headerlink" title="HTML5和CSS3的狭义解释"></a>HTML5和CSS3的狭义解释</h4><p><img src="/2024/06/21/css/%E7%8B%AD%E4%B9%89%E7%9A%84html5.png" alt="image-20240819132515383"></p>
 <h4 id="广义的HTML5"><a href="#广义的HTML5" class="headerlink" title="广义的HTML5"></a>广义的HTML5</h4><ol>
 <li>广义的HTML5是&#96;&#96;HTML5<code>本身+</code>CSS3<code>+</code>JavaScript&#96;。</li>
@@ -4259,6 +4329,20 @@
 <li>虽然HTML5的一些特性仍然不被某些浏览器支持，但是它是一种发展趋势。</li>
 <li>HTML5<code>MDN</code>介绍: <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/eb/Guide/HTML/HTML">https://developer.mozilla.org/zh-CN/docs/eb/Guide/HTML/HTML</a></li>
 </ol>
+<h3 id="浏览器私有前缀"><a href="#浏览器私有前缀" class="headerlink" title="浏览器私有前缀"></a>浏览器私有前缀</h3><p>浏览器私有前缀是为了兼容老版本的写法，比较新版本的浏览器无须添加。</p>
+<h4 id="1-私有前缀"><a href="#1-私有前缀" class="headerlink" title="1.私有前缀"></a>1.私有前缀</h4><ul>
+<li>-moz-: 代表firefox 浏览器私有属性</li>
+<li>-ms-: 代表ie 浏览器私有属性</li>
+<li>-webkit-: 代表safari、chrome私有属性</li>
+<li>-o-: 代表Opera 私有属性</li>
+</ul>
+<h4 id="2-推荐写法"><a href="#2-推荐写法" class="headerlink" title="2.推荐写法"></a>2.推荐写法</h4><pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token property">-moz-border-radius</span><span class="token punctuation">:</span>10px<span class="token punctuation">;</span>
+<span class="token property">-webkit-border-radius</span><span class="token punctuation">:</span>10px<span class="token punctuation">;</span>
+<span class="token property">-o-border-radius</span><span class="token punctuation">:</span>10px<span class="token punctuation">;</span>
+<span class="token property">border-radius</span><span class="token punctuation">:</span>10px<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h3 id="综合案例"><a href="#综合案例" class="headerlink" title="综合案例"></a>综合案例</h3><h4 id="1-品优购项目规划"><a href="#1-品优购项目规划" class="headerlink" title="1.品优购项目规划"></a>1.品优购项目规划</h4><p><img src="/2024/06/21/css/%E7%BD%91%E9%A1%B5%E5%88%B6%E4%BD%9C%E6%B5%81%E7%A8%8B.png" alt="image-20240819184008419"></p>
 <h5 id="1-1品优购项目整体介绍"><a href="#1-1品优购项目整体介绍" class="headerlink" title="1.1品优购项目整体介绍"></a>1.1品优购项目整体介绍</h5><ul>
 <li>项目名称:品优购</li>
@@ -6098,7 +6182,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">270.6k</span>&nbsp;字
+                class="white-color">271.8k</span>&nbsp;字
             
             
             
