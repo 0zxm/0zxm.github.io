@@ -482,14 +482,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.3k
+                    2.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    10 分
+                    12 分
                 </div>
                 
 
@@ -627,7 +627,7 @@ hello.exe<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
 <li><strong>cmake-gui</strong></li>
 <li><strong>ccmake</strong></li>
 </ol>
-<p>如何不通过CMakeLists.txt，运行CMake,<code>cmake -P *.cmake</code>,以上用法很少在项目中用到，但适合学习CMake语法</p>
+<p>如何不通过CMakeLists.txt运行CMake,<code>cmake -P *.cmake</code>,以上用法很少在项目中用到，但适合学习CMake语法</p>
 <h3 id="2-2-变量操作-set、list"><a href="#2-2-变量操作-set、list" class="headerlink" title="2.2 变量操作 set、list"></a>2.2 变量操作 set、list</h3><ul>
 <li>CMake中的变量分为两种<ul>
 <li>CMake提供</li>
@@ -912,6 +912,67 @@ message]]<span class="token punctuation">)</span>
 <li>Object Library 是一个特殊的库类型，它将目标文件编译成一个库，但不会生成最终的链接文件。这意味着你可以在后续的 add_library() 或 add_executable() 命令中，将 Obiect Library 作为源文件进行链接，从而生成最终的可执行文件或库文件。</li>
 <li>将target_include_directories移入到子CMakeLists中</li>
 </ul>
+<h2 id="第八章-动态库和静态库"><a href="#第八章-动态库和静态库" class="headerlink" title="第八章 动态库和静态库"></a>第八章 动态库和静态库</h2><h3 id="1-静态库和动态库"><a href="#1-静态库和动态库" class="headerlink" title="1. 静态库和动态库"></a>1. 静态库和动态库</h3><ul>
+<li><p>静态库<br>  在连接阶段，会将汇编生成的目标文件<code>.o</code>与引用到的库一起链接打包到可执行文件中。</p>
+<p>  因此对应的链接方式称为静态连接。对函数库的连接是在编译时完成的!</p>
+</li>
+<li><p>动态库<br>  动态库不是在编译时被连接到目标代码中，而是运行时才被载入。</p>
+</li>
+<li><p><strong>静态库对空间的浪费是巨大的!</strong></p>
+</li>
+</ul>
+<h3 id="2-命名"><a href="#2-命名" class="headerlink" title="2. 命名"></a>2. 命名</h3><ul>
+<li><p>动态库的命名</p>
+<p>  <code>lib&lt;name&gt;.so/dll</code></p>
+</li>
+<li><p>静态库的命名</p>
+<p>  <code>lib&lt;name&gt;.a/lib</code></p>
+</li>
+</ul>
+<h3 id="3-命令"><a href="#3-命令" class="headerlink" title="3. 命令"></a>3. 命令</h3><ul>
+<li><code>file()</code>常用于搜索源文件</li>
+<li><code>add_library(animal STATIC $&#123;SRC&#125;)</code>生成静态库</li>
+<li><code>add_library(animal SHARED $&#123;SRC&#125;)</code>生成动态库</li>
+<li><code>$&#123;LIBRARY_OUTPUT-PATH&#125;</code>导出目录</li>
+</ul>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20</span><span class="token punctuation">)</span>
+<span class="token keyword">project</span><span class="token punctuation">(</span>Animal CXX<span class="token punctuation">)</span>
+
+
+<span class="token comment"># 把源文件加入到变量中</span>
+<span class="token keyword">file</span><span class="token punctuation">(</span>GLOB SRC <span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/src/*.cpp<span class="token punctuation">)</span>
+<span class="token keyword">include_directories</span><span class="token punctuation">(</span><span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/include<span class="token punctuation">)</span>
+
+<span class="token comment"># 生成静态库</span>
+<span class="token comment"># set(LIBRARY_OUTPUT_PATH $&#123;PROJECT_SOURCE_DIR&#125;/a)</span>
+<span class="token comment"># add_library(Animal STATIC $&#123;SRC&#125;)</span>
+
+<span class="token comment"># 生成动态库</span>
+<span class="token keyword">set</span><span class="token punctuation">(</span><span class="token variable">LIBRARY_OUTPUT_PATH</span> <span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/so<span class="token punctuation">)</span>
+<span class="token keyword">add_library</span><span class="token punctuation">(</span>Animal <span class="token namespace">SHARED</span> <span class="token punctuation">$&#123;</span>SRC<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="4-cmake使用动态库和静态库"><a href="#4-cmake使用动态库和静态库" class="headerlink" title="4. cmake使用动态库和静态库"></a>4. cmake使用动态库和静态库</h3><p>静态库调用流程</p>
+<ol>
+<li>引入头文件</li>
+<li>连接静态库</li>
+<li>生成可执行二进制文件</li>
+</ol>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20</span><span class="token punctuation">)</span>
+<span class="token keyword">project</span><span class="token punctuation">(</span>Animal CXX<span class="token punctuation">)</span>
+
+<span class="token comment"># 导入头文件</span>
+<span class="token keyword">include_directories</span><span class="token punctuation">(</span><span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/include<span class="token punctuation">)</span>
+<span class="token comment"># 链接静态库</span>
+<span class="token comment"># link_directories($&#123;PROJECT_SOURCE_DIR&#125;/a)</span>
+<span class="token comment"># link_libraries(Animal)</span>
+<span class="token comment"># add_executable(app main.cpp)</span>
+
+<span class="token comment"># 链接动态库</span>
+<span class="token keyword">link_directories</span><span class="token punctuation">(</span><span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/so<span class="token punctuation">)</span>
+<span class="token keyword">add_executable</span><span class="token punctuation">(</span>app main.cpp<span class="token punctuation">)</span>
+<span class="token keyword">target_link_libraries</span><span class="token punctuation">(</span>app <span class="token namespace">PUBLIC</span> Animal<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>生成完成后,可以把可执行文件放到动态库目录下,确保能找到</code></p>
 
                 
             </div>
@@ -1439,7 +1500,7 @@ message]]<span class="token punctuation">)</span>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">274.4k</span>&nbsp;字
+                class="white-color">276.1k</span>&nbsp;字
             
             
             
