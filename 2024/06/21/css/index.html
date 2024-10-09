@@ -478,14 +478,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    36.6k
+                    37.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    151 分
+                    156 分
                 </div>
                 
 
@@ -1376,7 +1376,7 @@
 <li>margin: auto;</li>
 <li>margin: 0 auto;<br>注意:以上方法是让块级元素水平居中 <strong>行内元素或者行内块元素水平居中给其父元素添加 text-align:center</strong> 即可。</li>
 </ul>
-<h4 id="1-7-嵌套块元素垂直外边距的塌陷"><a href="#1-7-嵌套块元素垂直外边距的塌陷" class="headerlink" title="1.7 嵌套块元素垂直外边距的塌陷"></a>1.7 嵌套块元素垂直外边距的塌陷</h4><p>使用 margin 定义块元素的垂直外边距时，可能会出现外边距的合并。<br>对于两个嵌套关系(父子关系)的块元素，父元素有上外边距同时子元素也有上外边距，此时父元素会塌陷较大的外边距值</p>
+<h4 id="1-7-嵌套块元素垂直外边距的塌陷"><a href="#1-7-嵌套块元素垂直外边距的塌陷" class="headerlink" title="1.7 嵌套块元素垂直外边距的塌陷"></a>1.7 嵌套块元素垂直外边距的塌陷</h4><p>使用 margin 定义块元素的垂直外边距时，可能会出现外边距合并。<br>对于两个嵌套关系(父子关系)的块元素，父元素有上外边距同时子元素也有上外边距，此时父元素会塌陷较大的外边距值</p>
 <ul>
 <li>解决方案：</li>
 <li>为父元素添加上边框</li>
@@ -5705,7 +5705,172 @@
 <li><p>min-width 最小宽度(min-height 最小高度)</p>
 </li>
 </ul>
-<h4 id="6-2-响应式布局"><a href="#6-2-响应式布局" class="headerlink" title="6.2 响应式布局"></a>6.2 响应式布局</h4><h2 id="CSS3-选择器权重"><a href="#CSS3-选择器权重" class="headerlink" title="CSS3 选择器权重"></a>CSS3 选择器权重</h2><table>
+<h4 id="京东移动端案例"><a href="#京东移动端案例" class="headerlink" title="京东移动端案例"></a>京东移动端案例</h4><ul>
+<li><strong>图片格式</strong></li>
+<li><code>DPG图片压缩技术</code><br>  京东自主研发推出DPG图片压缩技术，经测试该技术，可直接节省用户近50%的浏览流量，极大的提升了用户的网页打开速度。能够兼容jpeg，实现全平台、全部浏览器的兼容支持，经过内部和外部上万张图片的人眼浏览测试后发现，压缩后的图片和webp的清晰度对比没有差距。</li>
+<li><code>webp图片格式</code><br>  谷歌开发的一种旨在加快图片加载速度的图片格式。图片压缩体积大约只有JPEG的2&#x2F;3，并能节省大量的服务器宽带资源和数据空间</li>
+</ul>
+<h4 id="6-2-flex布局"><a href="#6-2-flex布局" class="headerlink" title="6.2 flex布局"></a>6.2 flex布局</h4><h5 id="flex布局和传统布局"><a href="#flex布局和传统布局" class="headerlink" title="flex布局和传统布局"></a>flex布局和传统布局</h5><table>
+<thead>
+<tr>
+<th>传统布局</th>
+<th>flex 弹性布局</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>布局繁琐</td>
+<td>操作方便，布局极为简单，移动端应用很广泛</td>
+</tr>
+<tr>
+<td>兼容性好</td>
+<td>PC 端浏览器支持情况较差</td>
+</tr>
+<tr>
+<td>局限性，不能很好地移动端布局</td>
+<td>IE 11或更低版本，不支持或仅部分支持</td>
+</tr>
+</tbody></table>
+<ol>
+<li>如果是PC端页面布局，我们还是传统布局。</li>
+<li>如果是移动端或者不考虑兼容性问题的PC端页面布局，我们还是使用flex弹性布局</li>
+</ol>
+<h5 id="flex布局初体验"><a href="#flex布局初体验" class="headerlink" title="flex布局初体验"></a>flex布局初体验</h5><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
+    <span class="token selector">div</span> <span class="token punctuation">&#123;</span>
+      <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+      <span class="token property">justify-content</span><span class="token punctuation">:</span> space-between<span class="token punctuation">;</span>
+      <span class="token property">width</span><span class="token punctuation">:</span> 80%<span class="token punctuation">;</span>
+      <span class="token property">height</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+      <span class="token property">background-color</span><span class="token punctuation">:</span> pink<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token selector">div span</span> <span class="token punctuation">&#123;</span>
+      <span class="token property">width</span><span class="token punctuation">:</span> 150px<span class="token punctuation">;</span>
+      <span class="token property">height</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span>
+      <span class="token property">background-color</span><span class="token punctuation">:</span> purple<span class="token punctuation">;</span>
+      <span class="token property">margin-right</span><span class="token punctuation">:</span> 5px<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="布局原理"><a href="#布局原理" class="headerlink" title="布局原理"></a>布局原理</h5><p>flex 是 <code>flexible-Box</code>的缩写，意为“弹性布局”，用来为盒状模型提供最大的灵活性，任何一个容器都可以指定为flex布局。</p>
+<ul>
+<li>当我们为父盒子设为flex布局以后，子元素的foat、clear和vertical-align 属性将失效</li>
+<li>伸缩布局 &#x3D; 弹性布局 &#x3D; 伸缩盒布局 &#x3D; 弹性盒布局 &#x3D;flex布局</li>
+</ul>
+<p>采用 Flex布局的元素,称为<code>Flex容器(flex container)</code>,简称”容器”。</p>
+<p>它的所有子元素自动成为容器成员，称为Flex 项目(flexitem)，简称”项目”。</p>
+<img src="/2024/06/21/css/flex布局原理.png" alt="image-20241009201515198">
+
+<h5 id="flex布局父项常见属性"><a href="#flex布局父项常见属性" class="headerlink" title="flex布局父项常见属性"></a>flex布局父项常见属性</h5><ul>
+<li><p>flex-direction 设置主轴的方向</p>
+<ol>
+<li><p>主轴与侧轴</p>
+<p> 在 flex 布局中，是分为主轴和侧轴两个方向，同样的叫法有: 行和列、x轴和y轴</p>
+<ul>
+<li>默认主轴方向就是x轴方向，水平向右</li>
+<li>默认侧轴方向就是y轴方向，水平向下</li>
+</ul>
+</li>
+<li><p>属性值</p>
+<p> flex-direction属性决定主轴的方向(即项目的排列方向)</p>
+<p> 注意:主轴和侧轴是会变化的，就看fex-direction设置谁为主轴，剩下的就是侧轴。而我们的子元素是跟着主轴来排列的</p>
+<table>
+<thead>
+<tr>
+<th>属性值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>row</td>
+<td>默认值从左到右</td>
+</tr>
+<tr>
+<td>row-reverse</td>
+<td>从右到左</td>
+</tr>
+<tr>
+<td>column</td>
+<td>从上到下</td>
+</tr>
+<tr>
+<td>column-reverse</td>
+<td>从下到上</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><code>justify-content</code> 设置主轴上的子元素排列方式</p>
+<p> justify-content属性定义了项目在主轴上的对齐方式</p>
+<p> <code>注意:使用这个属性之前一定要确定好主轴是哪个</code></p>
+<table>
+<thead>
+<tr>
+<th>属性值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>flex-start</td>
+<td>默认值从头部开始 如果主轴是x轴，则从左到右</td>
+</tr>
+<tr>
+<td>flex-end</td>
+<td>从尾部开始排列</td>
+</tr>
+<tr>
+<td>center</td>
+<td>在主轴居中对齐（如果主轴是x轴则水平居中）</td>
+</tr>
+<tr>
+<td>space-around</td>
+<td>平分剩余空间</td>
+</tr>
+<tr>
+<td><code>space-between</code></td>
+<td>先两边贴边 再平分剩余空间（重要）</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="6-3-响应式布局"><a href="#6-3-响应式布局" class="headerlink" title="6.3 响应式布局"></a>6.3 响应式布局</h4><p>响应式布局是一种网页设计技术，旨在使网页在各种设备上（如电脑、平板、手机等）都能良好显示。它通过使用灵活的网格布局、媒体查询和流式图像等手段，自动调整网页的结构和样式，以适应不同的屏幕尺寸。</p>
+<p>以下是实现响应式布局的一些基本步骤和技巧：</p>
+<ol>
+<li><p><strong>使用流式网格布局</strong>： 通过使用百分比宽度而不是固定宽度，可以使元素相对于其父元素进行缩放。例如：</p>
+ <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span> <span class="token comment">/* 使容器宽度占满屏幕 */</span>
+<span class="token punctuation">&#125;</span>
+<span class="token selector">.column</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span> <span class="token comment">/* 列宽度为容器宽度的50% */</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>媒体查询</strong>： 利用CSS的媒体查询，根据不同的屏幕尺寸应用不同的样式。例如：</p>
+ <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">max-width</span><span class="token punctuation">:</span> 600px<span class="token punctuation">)</span></span> <span class="token punctuation">&#123;</span>
+    <span class="token selector">.column</span> <span class="token punctuation">&#123;</span>
+        <span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span> <span class="token comment">/* 当屏幕宽度小于600px时，列宽度为100% */</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>流式图像</strong>： 确保图像能够根据其父容器的大小进行缩放，通常可以通过设置<code>max-width</code>来实现：</p>
+ <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">img</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">max-width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span> <span class="token comment">/* 图像最大宽度为其父元素的100% */</span>
+    <span class="token property">height</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span> <span class="token comment">/* 保持图像的纵横比 */</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>灵活的排版</strong>： 设置字体大小和行高等，使用相对单位（如em、rem），确保文本在不同设备上可读性良好。</p>
+</li>
+<li><p><strong>移动优先设计</strong>： 在设计时优先考虑手机用户的体验，然后再为更大的屏幕添加样式。</p>
+</li>
+</ol>
+<h2 id="CSS3-选择器权重"><a href="#CSS3-选择器权重" class="headerlink" title="CSS3 选择器权重"></a>CSS3 选择器权重</h2><table>
 <thead>
 <tr>
 <th>选择器类型</th>
@@ -6311,7 +6476,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">280.8k</span>&nbsp;字
+                class="white-color">282.3k</span>&nbsp;字
             
             
             
