@@ -536,7 +536,7 @@
 <span class="token assign-left variable"><span class="token environment constant">PS1</span></span><span class="token operator">=</span><span class="token string">'HAPPY: \u $ '</span>
 <span class="token punctuation">\</span>u是特殊参数,表示用户名<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<p>​	<img src="/2024/06/21/linux-zhi-ling/image-20240314232634341.png" alt="image-20240314232634341"></p>
+<p><img src="/2024/06/21/linux-zhi-ling/image-20240314232634341.png" alt="image-20240314232634341"></p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">添加当前目录<span class="token punctuation">(</span>.<span class="token punctuation">)</span>到<span class="token environment constant">PATH</span>变量
 注意:<span class="token environment constant">PATH</span>变量以冒号分割<span class="token punctuation">(</span>:<span class="token punctuation">)</span>,修改<span class="token environment constant">PATH</span>环境变量只对本次生效,想要永久生效,可以修改.profile文件
 <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
@@ -1474,7 +1474,7 @@ input: <span class="token builtin class-name">umask</span> 077<span aria-hidden=
 
 <span class="token function">du</span> /tmp/* <span class="token operator"><span class="token file-descriptor important">2</span>></span> /dev/null <span class="token operator">|</span> <span class="token function">sort</span> <span class="token parameter variable">-n</span> <span class="token parameter variable">-k1</span> <span class="token operator">|</span> <span class="token function">tail</span> -3<span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'&#123;print$2&#125;'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
-<li><code>tee</code>命令<br> 接收上一条命令的输出,拷贝保存到一个文件中,并把输出传入下一个管道命令的输入<br><img src="/2024/06/21/linux-zhi-ling/tee.png" alt="alt text"></li>
+<li><code>tee</code>命令<br> 接收上一条命令的输出,拷贝保存到一个文件中,并把输出传入下一个管道命令的输入<br> <img src="/2024/06/21/linux-zhi-ling/tee.png" alt="alt text"></li>
 </ul>
 <h3 id="命名管道FIFOs"><a href="#命名管道FIFOs" class="headerlink" title="命名管道FIFOs"></a>命名管道FIFOs</h3><ul>
 <li><p>FIFOs（命名管道）可用于系统上两个进程之间的通信。它们允许两个进程在系统上独立执行时进行通信，而不像普通管道那样只能在同一个进程内进行通信。</p>
@@ -1673,7 +1673,7 @@ input: <span class="token builtin class-name">umask</span> 077<span aria-hidden=
 <li><strong>与后台进程的区别</strong>：与前台进程不同，后台进程在后台运行，不会阻塞用户终端，允许用户在同一终端启动新的前台或后台进程。后台进虽&gt;然可以向终端发送输出，但通常不能从终端接收输入。</li>
 <li><strong>操作系统中的表现</strong>：在Unix-like操作系统中，用户可以通过特定的命令在前台和后台之间切换进程。</li>
 <li><strong>实例</strong>：以Oracle数据库为例，当用户运行一个应用进程时，系统会为该应用建立一个服务进程，这个服务进程可以被视为前台进程，用于处理连接到数据库实例的用户进程的请求。</li>
-<li><strong>其他系统中的应用</strong>：在Android系统中，前台进程也是极其重要的，它代表当前正在与用户交互的应用程序。这类进程在系统资源分配中通常享有优先级，以确保流畅的用户体验。<br>   总的来说，前台进程是计算机系统中直接与用户进行交互的进程，它具有高度的交互性和实时性要求。在不同的操作系统和应用场景中，前台进程的具体表现和管理方式可能会有所不同。</li>
+<li><strong>其他系统中的应用</strong>：在Android系统中，前台进程也是极其重要的，它代表当前正在与用户交互的应用程序。这类进程在系统资源分配中通常享有优先级，以确保流畅的用户体验。<br>总的来说，前台进程是计算机系统中直接与用户进行交互的进程，它具有高度的交互性和实时性要求。在不同的操作系统和应用场景中，前台进程的具体表现和管理方式可能会有所不同。</li>
 </ol>
 <ul>
 <li>执行命令时指定其为后台进程<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">/tmp/loop <span class="token operator">&amp;</span>
@@ -1718,7 +1718,7 @@ input: <span class="token builtin class-name">umask</span> 077<span aria-hidden=
 </ol>
 <p><img src="/2024/06/21/linux-zhi-ling/loop.png" alt="alt text"></p>
 <ul>
-<li><code>fg</code><br>   把后台进程变成前台进程<ul>
+<li><code>fg</code><br> 把后台进程变成前台进程<ul>
 <li>默认把带<code>+</code>的进程调到前台</li>
 <li><code>%1</code>: 指定把哪个(进程id)进程变成前台进程</li>
 </ul>
@@ -1726,7 +1726,7 @@ input: <span class="token builtin class-name">umask</span> 077<span aria-hidden=
 </ul>
 <p><img src="/2024/06/21/linux-zhi-ling/fg.png" alt="alt text"></p>
 <ul>
-<li><code>bg</code><br>   挂起前台任务使用<code>CTRL+Z</code>，<code>bg</code>命令来把后台挂起的任务唤醒</li>
+<li><code>bg</code><br> 挂起前台任务使用<code>CTRL+Z</code>，<code>bg</code>命令来把后台挂起的任务唤醒</li>
 </ul>
 <h3 id="命令的顺序和并行执行（Sequential-and-Parallel-Execution-of-Commands）"><a href="#命令的顺序和并行执行（Sequential-and-Parallel-Execution-of-Commands）" class="headerlink" title="命令的顺序和并行执行（Sequential and Parallel Execution of Commands）"></a>命令的顺序和并行执行（Sequential and Parallel Execution of Commands）</h3><ul>
 <li>串行: cmd1 ; cmd2</li>
@@ -1739,7 +1739,7 @@ input: <span class="token builtin class-name">umask</span> 077<span aria-hidden=
 </ul>
 </li>
 <li>终止后台进程<ul>
-<li><code>kill</code>命令<br><img src="/2024/06/21/linux-zhi-ling/kill.png" alt="alt text"></li>
+<li><code>kill</code>命令<br> <img src="/2024/06/21/linux-zhi-ling/kill.png" alt="alt text"></li>
 </ul>
 </li>
 </ul>
@@ -3040,7 +3040,7 @@ main<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">286.6k</span>&nbsp;字
+                class="white-color">288.2k</span>&nbsp;字
             
             
             
