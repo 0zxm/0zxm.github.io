@@ -486,14 +486,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    18.6k
+                    21.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    79 分
+                    93 分
                 </div>
                 
 
@@ -521,13 +521,57 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="chapter0"><a href="#chapter0" class="headerlink" title="chapter0"></a>chapter0</h2><ul>
+                <h2 id="chapter0-课程前导"><a href="#chapter0-课程前导" class="headerlink" title="chapter0(课程前导)"></a>chapter0(课程前导)</h2><ul>
 <li><p>查分以及登陆端口为9090</p>
 </li>
 <li><p>服务器文件传输端口为2021,2020</p>
 </li>
 </ul>
-<h2 id="chapter01"><a href="#chapter01" class="headerlink" title="chapter01"></a>chapter01</h2><p><code>JavaFX</code> 是一个用于构建富客户端应用程序的框架，提供了一种现代化的方式来创建桌面应用程序和互联网应用程序。以</p>
+<h3 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h3><p>在Java中，<code>final</code>关键字是一个修饰符，它可以用来修饰类、方法和变量，具有不同的含义：</p>
+<ol>
+<li><p><strong>修饰变量</strong>：</p>
+<ul>
+<li>当修饰一个类变量（静态变量）时，表示这个变量一旦被初始化后，其值就不能被改变。</li>
+<li>当修饰一个实例变量时，表示这个变量在初始化后不能被修改，即它是一个常量。</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">int</span> <span class="token constant">MY_CONSTANT</span> <span class="token operator">=</span> <span class="token number">42</span><span class="token punctuation">;</span> <span class="token comment">// 类变量</span>
+<span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">int</span> value<span class="token punctuation">;</span> <span class="token comment">// 实例变量，必须在声明时或构造器中初始化</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>修饰方法</strong>：</p>
+<ul>
+<li>表示这个方法不能被子类覆盖。如果一个类的方法被声明为final，那么子类将不能重写这个方法。</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">void</span> <span class="token function">myMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 方法体</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>修饰类</strong>：</p>
+<ul>
+<li>表示这个类不能被继承。如果一个类被声明为final，那么它不能被其他类继承。</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name">MyClass</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 类体</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>修饰本地变量</strong>：</p>
+<ul>
+<li>表示这个局部变量一旦被赋值后就不能再被修改。</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">myMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">final</span> <span class="token keyword">int</span> myLocalVariable <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+    <span class="token comment">// myLocalVariable = 20; // 这行代码会编译错误</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>修饰泛型</strong>：</p>
+<ul>
+<li>在泛型中使用final可以限制类型参数必须是最终类型（final type），即不能是任何类的子类。</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span> <span class="token keyword">extends</span> <span class="token keyword">final</span> <span class="token class-name">Number</span><span class="token punctuation">></span></span> <span class="token keyword">void</span> <span class="token function">myMethod</span><span class="token punctuation">(</span><span class="token class-name">T</span> t<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// T 必须是 Number 或其子类的最终类型</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<p>使用<code>final</code>关键字可以提高代码的安全性和清晰度，因为它限制了变量和方法的修改，有助于防止错误和意外的副作用。同时，它还可以帮助编译器优化代码，因为编译器知道final变量的值不会改变，可以进行一些额外的优化。</p>
+<h2 id="chapter01-简单窗口搭建及文件读写"><a href="#chapter01-简单窗口搭建及文件读写" class="headerlink" title="chapter01(简单窗口搭建及文件读写)"></a>chapter01(简单窗口搭建及文件读写)</h2><p><code>JavaFX</code> 是一个用于构建富客户端应用程序的框架，提供了一种现代化的方式来创建桌面应用程序和互联网应用程序。以</p>
 <h3 id="创建JavaFx项目"><a href="#创建JavaFx项目" class="headerlink" title="创建JavaFx项目"></a>创建JavaFx项目</h3><p>​    在Java体系中，最常用的图形界面设计库主要是<code>Swing</code>和<code>JavaFX</code>，本课程使用JavaFX，采用手写代码方式创建窗体界面，建议的<code>jdk</code>版本为jdk8 （因为jdk8已经内置JavaFX库，高版本JDK中被剥离，需要额外下载jar 包），<a target="_blank" rel="noopener" href="https://oc.gdufs.edu.cn/">https://oc.gdufs.edu.cn</a> 教学资源站点可下载JDK8（如果使用下面所述 的idea2018 整合版，则不用下载，整合版已经包含）。</p>
 <ol>
 <li>启动<code>Intellij Idea</code>(以后简称 idea），新建项目之前，首先设置默认 的编码为utf-8</li>
@@ -856,7 +900,7 @@ sbWithCapacity<span class="token punctuation">.</span><span class="token functio
 
 
 
-<h2 id="chapter02"><a href="#chapter02" class="headerlink" title="chapter02"></a>chapter02</h2><h3 id="简单网络对话程序"><a href="#简单网络对话程序" class="headerlink" title="简单网络对话程序"></a>简单网络对话程序</h3><p><strong>设计任务</strong>：客户端向服务器发送字符串，并能读取服务器返回的字符串。  </p>
+<h2 id="chapter02-网络对话"><a href="#chapter02-网络对话" class="headerlink" title="chapter02(网络对话)"></a>chapter02(网络对话)</h2><h3 id="简单网络对话程序"><a href="#简单网络对话程序" class="headerlink" title="简单网络对话程序"></a>简单网络对话程序</h3><p><strong>设计任务</strong>：客户端向服务器发送字符串，并能读取服务器返回的字符串。  </p>
 <p><strong>知识点</strong>：TCP套接字技术，C&#x2F;S软件架构程序设计  </p>
 <p>重点理解：Java客户套接字类<strong>Socket</strong>和服务器套接字类<strong>ServerSocket</strong>，以及配套使用流的读&#x2F;写类<code>BufferedReader/PrintWriter</code>。  </p>
 <p>在<code>C/S软件架构程序</code>设计技术中,实现网络通信的两个应用进程，一个叫做<strong>服务进程</strong>，另一个叫做<strong>客户进程</strong>，如图所示。服务进程首先被动打开一个 监听端口，如8008，客户进程主动访问这个端口，完成对话聊天前的TCP三 次握手连接。</p>
@@ -1320,7 +1364,7 @@ sbWithCapacity<span class="token punctuation">.</span><span class="token functio
 
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="chapter03"><a href="#chapter03" class="headerlink" title="chapter03"></a>chapter03</h2><h3 id="教学与实践目的"><a href="#教学与实践目的" class="headerlink" title="教学与实践目的"></a>教学与实践目的</h3><p>学会在网络应用开发中运用Java多线程技术。</p>
+<h2 id="chapter03-多线程"><a href="#chapter03-多线程" class="headerlink" title="chapter03(多线程)"></a>chapter03(多线程)</h2><h3 id="教学与实践目的"><a href="#教学与实践目的" class="headerlink" title="教学与实践目的"></a>教学与实践目的</h3><p>学会在网络应用开发中运用Java多线程技术。</p>
 <h3 id="程序的基本调试技术"><a href="#程序的基本调试技术" class="headerlink" title="程序的基本调试技术"></a>程序的基本调试技术</h3><p>程序无语法错误、能运行，但没有出现预期的结果，说明程序可能存在逻辑错误。解决这类错误的主要方法是查看程序运行过程中的内存变量值。一个常用的手段是通过打印语句打印出变量的值，例如使用 <code>System.out.println(待排查的变量)</code>。但更强大的方法是使用IDE提供的断点功能。</p>
 <h4 id="在Idea设断点并查看变量的方法"><a href="#在Idea设断点并查看变量的方法" class="headerlink" title="在Idea设断点并查看变量的方法"></a>在Idea设断点并查看变量的方法</h4><ol>
 <li>鼠标点击要查看变量所在代码行的行号右侧空白处，出现棕红色实心圆，即表示在此处打了断点。</li>
@@ -2056,7 +2100,7 @@ runnable<span class="token punctuation">.</span><span class="token function">run
   <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="chapter04"><a href="#chapter04" class="headerlink" title="chapter04"></a>chapter04</h2><h3 id="BufferReader类"><a href="#BufferReader类" class="headerlink" title="BufferReader类"></a>BufferReader类</h3><p><code>BufferedReader</code> 是 Java 中用来包装一个 <code>Reader</code> 对象的类，它提供了一个缓冲区，可以提高读取文本数据的效率。<code>BufferedReader</code> 通常用于逐行读取文本文件，因为它提供了 <code>readLine()</code> 方法，该方法一次读取一行文本。</p>
+<h2 id="chapter04-网络文件传输"><a href="#chapter04-网络文件传输" class="headerlink" title="chapter04(网络文件传输)"></a>chapter04(网络文件传输)</h2><h3 id="BufferReader类"><a href="#BufferReader类" class="headerlink" title="BufferReader类"></a>BufferReader类</h3><p><code>BufferedReader</code> 是 Java 中用来包装一个 <code>Reader</code> 对象的类，它提供了一个缓冲区，可以提高读取文本数据的效率。<code>BufferedReader</code> 通常用于逐行读取文本文件，因为它提供了 <code>readLine()</code> 方法，该方法一次读取一行文本。</p>
 <p>以下是 <code>BufferedReader</code> 的一些常见用法：</p>
 <h4 id="创建-BufferedReader"><a href="#创建-BufferedReader" class="headerlink" title="创建 BufferedReader"></a>创建 BufferedReader</h4><p>要使用 <code>BufferedReader</code>，你首先需要创建一个实例。这通常是通过将现有的 <code>Reader</code> 对象（如 <code>FileReader</code>）传递给 <code>BufferedReader</code> 的构造函数来完成的。</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">FileReader</span> fileReader <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileReader</span><span class="token punctuation">(</span><span class="token string">"path/to/file.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -2770,6 +2814,376 @@ br <span class="token operator">=</span> <span class="token keyword">new</span> 
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="点击退出报错Socket-closed原因"><a href="#点击退出报错Socket-closed原因" class="headerlink" title="点击退出报错Socket closed原因"></a>点击退出报错<code>Socket closed</code>原因</h4><p>因为直接点击退出可能会<code>发送bye</code>之后立刻执行到<code>关闭socket</code>,但是子线程还在阻塞等待读写socket,所以运行到子线程时报错–<strong>线程不可控性</strong></p>
+<h2 id="chapter05-线程池-多用户服务器"><a href="#chapter05-线程池-多用户服务器" class="headerlink" title="chapter05(线程池-多用户服务器)"></a>chapter05(线程池-多用户服务器)</h2><h3 id="教学与实践目的-1"><a href="#教学与实践目的-1" class="headerlink" title="教学与实践目的"></a>教学与实践目的</h3><ul>
+<li>学会服务器支持多用户并发访问的程序设计技术。</li>
+</ul>
+<p>多用户服务器是指服务器能同时支持多个用户并发访问服务器所提供的服务资源，如聊天服务、文件传输等。  </p>
+<p>第二讲的TCPServer是单用户版本，每次只能和一个用户对话。（请仔细阅读TCPServer.java 程序，了解其中原理，找出关键语句），只有前一个用户 退出后，后面的用户才能完成服务器连接。</p>
+<h3 id="允许多个实例运行"><a href="#允许多个实例运行" class="headerlink" title="允许多个实例运行"></a>允许多个实例运行</h3><p><img src="/2024/09/03/javafx-xie-yi-ge-hu-lian-wang-cheng-xu/idea%E5%A4%9A%E5%AE%9E%E4%BE%8B.png" alt="image-20241010114553558"></p>
+<p><code>原因</code>：服务器的主进程一次只能处理一个客户，其它已连接的客户等候在 监听队列中。</p>
+<h3 id="设计思路-1"><a href="#设计思路-1" class="headerlink" title="设计思路"></a>设计思路</h3><ul>
+<li>解决思路就是用<code>多线程</code>。</li>
+</ul>
+<p>服务器可能面临很多客户的并发连接，这种情况的方案一般是：主线程只负责监听客户请求和接受连接请求，用一个线程专门负责和一个客户对话，即一个客户请求成功后，创建一个新线程来专门负责该客户。</p>
+<p>对于这种多用户的情况，用第三讲的方式new Thread创建线程，频繁创建大量线程需要消耗大量系统资源。</p>
+<p>对于服务器，一般是<strong>使用线程池来管理和复用线程</strong>。线程池内部维护了若干个线程，没有任务的时候，这些线程都处于等待状态。如果有新任务，就分配一个空闲线程执行。如果所有线程都处于忙碌状态，新任务要么放入队列等待，要么增加一个新线程进行处理。 </p>
+<ul>
+<li>ExecutorService 代表线程池，其创建方式常见的有两种：  <ul>
+<li><code>ExecutorService executorService = Executors.newFixedThreadPool(n);  </code></li>
+<li><code>ExecutorService executorService = Executors. newCachedThreadPool( );</code></li>
+</ul>
+</li>
+</ul>
+<p>创建后，就可以使用<code>executorService.execute</code>方法来取出一个线程执行， 该方法的参数就是Runnable接口类型。我们可以将和客户对话部分的代码抽 取到一个Runnable的实现类 Handler（见附录）的run方法中，然后丢给线程 池去执行。方便起见，Handler作为主程序的内部类是个不错的选择。</p>
+<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><p>Java中的线程池是一种<code>执行器（Executor）</code>，用于在一个后台线程中执行任务。线程池的主要目的是减少在创建和销毁线程时所产生的性能开销。通过重用已经创建的线程来执行新的任务，线程池提高了程序的响应速度，并且提供了更好的系统资源管理。</p>
+<p>Java通过<code>java.util.concurrent</code>包中的<code>Executor</code>框架提供了线程池的实现。以下是线程池的一些关键概念：</p>
+<ol>
+<li><p><strong>核心线程数（Core Pool Size）</strong>：线程池中始终保持的线程数量，即使它们处于空闲状态。</p>
+</li>
+<li><p><strong>最大线程数（Maximum Pool Size）</strong>：线程池中允许的最大线程数量。</p>
+</li>
+<li><p><strong>工作队列（Work Queue）</strong>：用于存放待执行任务的阻塞队列。</p>
+</li>
+<li><p><strong>线程工厂（Thread Factory）</strong>：用于创建新线程的工厂。</p>
+</li>
+<li><p><strong>拒绝策略（Rejected Execution Handler）</strong>：当任务太多，无法被线程池及时处理时，采取的策略。</p>
+</li>
+<li><p><strong>保持活动时间（Keep Alive Time）</strong>：非核心线程空闲时在终止前等待新任务的最长时间。</p>
+</li>
+<li><p><strong>时间单位（Time Unit）</strong>：保持活动时间的时间单位。</p>
+</li>
+</ol>
+<p>Java 提供了几种预定义的线程池：</p>
+<ul>
+<li><strong>FixedThreadPool</strong>：拥有固定数量线程的线程池。</li>
+<li><strong>CachedThreadPool</strong>：根据需要创建新线程的线程池，对于短生命周期的异步任务非常合适。</li>
+<li><strong>SingleThreadExecutor</strong>：只有一个线程的线程池，保证所有任务按顺序执行。</li>
+<li><strong>ScheduledThreadPool</strong>：用于延迟执行或定期执行任务的线程池。</li>
+</ul>
+<p>创建线程池的一般方式是使用<code>Executors</code>工厂类：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 创建一个拥有固定线程数量的线程池</span>
+<span class="token class-name">ExecutorService</span> fixedThreadPool <span class="token operator">=</span> <span class="token class-name">Executors</span><span class="token punctuation">.</span><span class="token function">newFixedThreadPool</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 创建一个可根据需要创建新线程的线程池</span>
+<span class="token class-name">ExecutorService</span> cachedThreadPool <span class="token operator">=</span> <span class="token class-name">Executors</span><span class="token punctuation">.</span><span class="token function">newCachedThreadPool</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 创建一个单线程的线程池</span>
+<span class="token class-name">ExecutorService</span> singleThreadExecutor <span class="token operator">=</span> <span class="token class-name">Executors</span><span class="token punctuation">.</span><span class="token function">newSingleThreadExecutor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 创建一个可定时执行任务的线程池</span>
+<span class="token class-name">ScheduledExecutorService</span> scheduledThreadPool <span class="token operator">=</span> <span class="token class-name">Executors</span><span class="token punctuation">.</span><span class="token function">newScheduledThreadPool</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>使用线程池执行任务：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 提交一个Runnable任务</span>
+fixedThreadPool<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Runnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 任务代码</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 提交一个Callable任务，并获取Future对象</span>
+<span class="token class-name">Future</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> future <span class="token operator">=</span> fixedThreadPool<span class="token punctuation">.</span><span class="token function">submit</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Callable</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 任务代码</span>
+        <span class="token keyword">return</span> <span class="token string">"result"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>关闭线程池：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 关闭线程池，不接受新任务，但已提交的任务会继续执行</span>
+fixedThreadPool<span class="token punctuation">.</span><span class="token function">shutdown</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 关闭线程池，不接受新任务，并且会尝试停止所有正在执行的任务</span>
+fixedThreadPool<span class="token punctuation">.</span><span class="token function">shutdownNow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>线程池是Java并发编程中非常重要的一部分，合理使用线程池可以显著提高程序性能和资源利用率。</p>
+<h3 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h3><p><code>TCPClientThreadFX.java</code></p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>application<span class="token punctuation">.</span></span><span class="token class-name">Application</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>application<span class="token punctuation">.</span></span><span class="token class-name">Platform</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>geometry<span class="token punctuation">.</span></span><span class="token class-name">Insets</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>geometry<span class="token punctuation">.</span></span><span class="token class-name">Pos</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span></span><span class="token class-name">Scene</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>control<span class="token punctuation">.</span></span><span class="token class-name">Button</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>control<span class="token punctuation">.</span></span><span class="token class-name">Label</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>control<span class="token punctuation">.</span></span><span class="token class-name">TextArea</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>control<span class="token punctuation">.</span></span><span class="token class-name">TextField</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>input<span class="token punctuation">.</span></span><span class="token class-name">KeyCode</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>layout<span class="token punctuation">.</span></span><span class="token class-name">BorderPane</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>layout<span class="token punctuation">.</span></span><span class="token class-name">HBox</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>layout<span class="token punctuation">.</span></span><span class="token class-name">Priority</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>layout<span class="token punctuation">.</span></span><span class="token class-name">VBox</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>stage<span class="token punctuation">.</span></span><span class="token class-name">Stage</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TCPClientThreadFX</span> <span class="token keyword">extends</span> <span class="token class-name">Application</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Button</span> btnCon <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Button</span><span class="token punctuation">(</span><span class="token string">"连接"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Button</span> btnExit <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Button</span><span class="token punctuation">(</span><span class="token string">"退出"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Button</span> btnSend <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Button</span><span class="token punctuation">(</span><span class="token string">"发送"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">TextField</span> <span class="token class-name">IpAdd_input</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TextField</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">TextField</span> <span class="token class-name">Port_input</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TextField</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">TextArea</span> <span class="token class-name">OutputArea</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TextArea</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">TextField</span> <span class="token class-name">InputField</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TextField</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">TCPClient</span> tcpClient<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">Thread</span> receiveThread<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">launch</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">start</span><span class="token punctuation">(</span><span class="token class-name">Stage</span> primaryStage<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        btnSend<span class="token punctuation">.</span><span class="token function">setDisable</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">BorderPane</span> mainPane <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BorderPane</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">VBox</span> mainVBox <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VBox</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">HBox</span> hBox <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HBox</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        hBox<span class="token punctuation">.</span><span class="token function">setSpacing</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        hBox<span class="token punctuation">.</span><span class="token function">setPadding</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Insets</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        hBox<span class="token punctuation">.</span><span class="token function">getChildren</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Label</span><span class="token punctuation">(</span><span class="token string">"IP地址: "</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">IpAdd_input</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Label</span><span class="token punctuation">(</span><span class="token string">"端口: "</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">Port_input</span><span class="token punctuation">,</span> btnCon<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        hBox<span class="token punctuation">.</span><span class="token function">setAlignment</span><span class="token punctuation">(</span><span class="token class-name">Pos</span><span class="token punctuation">.</span><span class="token constant">TOP_CENTER</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">VBox</span> vBox <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VBox</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        vBox<span class="token punctuation">.</span><span class="token function">setSpacing</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        vBox<span class="token punctuation">.</span><span class="token function">setPadding</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Insets</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        vBox<span class="token punctuation">.</span><span class="token function">getChildren</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Label</span><span class="token punctuation">(</span><span class="token string">"信息显示区:"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">OutputArea</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Label</span><span class="token punctuation">(</span><span class="token string">"信息输入区"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">InputField</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">VBox</span><span class="token punctuation">.</span><span class="token function">setVgrow</span><span class="token punctuation">(</span><span class="token class-name">OutputArea</span><span class="token punctuation">,</span> <span class="token class-name">Priority</span><span class="token punctuation">.</span><span class="token constant">ALWAYS</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">OutputArea</span><span class="token punctuation">.</span><span class="token function">setEditable</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">OutputArea</span><span class="token punctuation">.</span><span class="token function">setStyle</span><span class="token punctuation">(</span><span class="token string">"-fx-wrap-text: true; -fx-font-size: 14px;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mainPane<span class="token punctuation">.</span><span class="token function">setCenter</span><span class="token punctuation">(</span>vBox<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">InputField</span><span class="token punctuation">.</span><span class="token function">setOnKeyPressed</span><span class="token punctuation">(</span>event <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span><span class="token function">getCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token class-name">KeyCode</span><span class="token punctuation">.</span><span class="token constant">ENTER</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                btnSend<span class="token punctuation">.</span><span class="token function">fire</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">HBox</span> hBox2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HBox</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        hBox2<span class="token punctuation">.</span><span class="token function">setSpacing</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        hBox2<span class="token punctuation">.</span><span class="token function">setPadding</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Insets</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        btnCon<span class="token punctuation">.</span><span class="token function">setOnAction</span><span class="token punctuation">(</span>event <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">String</span> ip <span class="token operator">=</span> <span class="token class-name">IpAdd_input</span><span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">String</span> port <span class="token operator">=</span> <span class="token class-name">Port_input</span><span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            btnCon<span class="token punctuation">.</span><span class="token function">setDisable</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+                tcpClient <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TCPClient</span><span class="token punctuation">(</span>ip<span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                receiveThread <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+                    <span class="token class-name">String</span> msg<span class="token punctuation">;</span>
+                    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>msg <span class="token operator">=</span> tcpClient<span class="token punctuation">.</span><span class="token function">receive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                        <span class="token class-name">String</span> msgTemp <span class="token operator">=</span> msg<span class="token punctuation">;</span>
+                        <span class="token class-name">Platform</span><span class="token punctuation">.</span><span class="token function">runLater</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+                            <span class="token class-name">OutputArea</span><span class="token punctuation">.</span><span class="token function">appendText</span><span class="token punctuation">(</span>msgTemp <span class="token operator">+</span> <span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">&#125;</span>
+                    <span class="token class-name">Platform</span><span class="token punctuation">.</span><span class="token function">runLater</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+                        <span class="token class-name">OutputArea</span><span class="token punctuation">.</span><span class="token function">appendText</span><span class="token punctuation">(</span><span class="token string">"对话已关闭！\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                receiveThread<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                btnSend<span class="token punctuation">.</span><span class="token function">setDisable</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token class-name">OutputArea</span><span class="token punctuation">.</span><span class="token function">appendText</span><span class="token punctuation">(</span><span class="token string">"服务器连接失败！"</span> <span class="token operator">+</span> e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        btnExit<span class="token punctuation">.</span><span class="token function">setOnAction</span><span class="token punctuation">(</span>event <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>tcpClient <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                tcpClient<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">"bye"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+                    <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                tcpClient<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                btnSend<span class="token punctuation">.</span><span class="token function">setDisable</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        btnSend<span class="token punctuation">.</span><span class="token function">setOnAction</span><span class="token punctuation">(</span>event <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">String</span> sendMsg <span class="token operator">=</span> <span class="token class-name">InputField</span><span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tcpClient<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>sendMsg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">InputField</span><span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">OutputArea</span><span class="token punctuation">.</span><span class="token function">appendText</span><span class="token punctuation">(</span><span class="token string">"客户端发送："</span> <span class="token operator">+</span> sendMsg <span class="token operator">+</span> <span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        hBox2<span class="token punctuation">.</span><span class="token function">setAlignment</span><span class="token punctuation">(</span><span class="token class-name">Pos</span><span class="token punctuation">.</span><span class="token constant">CENTER_RIGHT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        hBox2<span class="token punctuation">.</span><span class="token function">getChildren</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span>btnSend<span class="token punctuation">,</span> btnExit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        mainVBox<span class="token punctuation">.</span><span class="token function">getChildren</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span>hBox<span class="token punctuation">,</span> vBox<span class="token punctuation">,</span> hBox2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mainPane<span class="token punctuation">.</span><span class="token function">setCenter</span><span class="token punctuation">(</span>mainVBox<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Scene</span> scene <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scene</span><span class="token punctuation">(</span>mainPane<span class="token punctuation">,</span> <span class="token number">700</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">IpAdd_input</span><span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"127.0.0.1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Port_input</span><span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"8080"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        primaryStage<span class="token punctuation">.</span><span class="token function">setScene</span><span class="token punctuation">(</span>scene<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        primaryStage<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>TCPClient.java</code></p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>net<span class="token punctuation">.</span></span><span class="token class-name">Socket</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>nio<span class="token punctuation">.</span>charset<span class="token punctuation">.</span></span><span class="token class-name">StandardCharsets</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TCPClient</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Socket</span> socket<span class="token punctuation">;</span> <span class="token comment">// 定义套接字</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">PrintWriter</span> pw<span class="token punctuation">;</span> <span class="token comment">// 定义字符输出流</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">BufferedReader</span> br<span class="token punctuation">;</span> <span class="token comment">// 定义字符输入流</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">TCPClient</span><span class="token punctuation">(</span><span class="token class-name">String</span> ip<span class="token punctuation">,</span> <span class="token class-name">String</span> port<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 主动向服务器发起连接，实现TCP的三次握手过程</span>
+        <span class="token comment">// 如果不成功，则抛出错误信息，其错误信息交由调用者处理</span>
+        socket <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Socket</span><span class="token punctuation">(</span>ip<span class="token punctuation">,</span> <span class="token class-name">Integer</span><span class="token punctuation">.</span><span class="token function">parseInt</span><span class="token punctuation">(</span>port<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 得到网络输出字节流地址，并封装成网络输出字符流</span>
+        <span class="token comment">// 设置最后一个参数为true，表示自动flush数据</span>
+        <span class="token class-name">OutputStream</span> socketOut <span class="token operator">=</span> socket<span class="token punctuation">.</span><span class="token function">getOutputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        pw <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PrintWriter</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">OutputStreamWriter</span><span class="token punctuation">(</span>socketOut<span class="token punctuation">,</span> <span class="token class-name">StandardCharsets</span><span class="token punctuation">.</span><span class="token constant">UTF_8</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 得到网络输入字节流地址，并封装成网络输入字符流</span>
+        <span class="token class-name">InputStream</span> socketIn <span class="token operator">=</span> socket<span class="token punctuation">.</span><span class="token function">getInputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        br <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BufferedReader</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">InputStreamReader</span><span class="token punctuation">(</span>socketIn<span class="token punctuation">,</span> <span class="token class-name">StandardCharsets</span><span class="token punctuation">.</span><span class="token constant">UTF_8</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">send</span><span class="token punctuation">(</span><span class="token class-name">String</span> msg<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 输出字符流，由Socket调用系统底层函数，经网卡发送字节流</span>
+        pw<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">receive</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">String</span> msg <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">// 从网络输入字符流中读信息，每次只能接收一行信息</span>
+            <span class="token comment">// 如果不够一行（无行结束符），则该语句阻塞等待</span>
+            msg <span class="token operator">=</span> br<span class="token punctuation">.</span><span class="token function">readLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> msg<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 实现close方法以关闭socket连接及相关的输入输出流</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>pw <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                pw<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 关闭PrintWriter会先flush再关闭底层流</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>br <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                br<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 关闭BufferedReader</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>socket <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                socket<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 关闭Socket连接</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="TCPServer-java-主要修改线程池部分"><a href="#TCPServer-java-主要修改线程池部分" class="headerlink" title="TCPServer.java(主要修改线程池部分)"></a>TCPServer.java(主要修改线程池部分)</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>net<span class="token punctuation">.</span></span><span class="token class-name">ServerSocket</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>net<span class="token punctuation">.</span></span><span class="token class-name">Socket</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>nio<span class="token punctuation">.</span>charset<span class="token punctuation">.</span></span><span class="token class-name">StandardCharsets</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span></span><span class="token class-name">Executors</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span></span><span class="token class-name">ExecutorService</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TCPServer</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">int</span> port<span class="token punctuation">;</span> <span class="token comment">// 服务器监听端口号</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">ServerSocket</span> serverSocket<span class="token punctuation">;</span> <span class="token comment">//定义服务器套接字</span>
+
+    <span class="token comment">// 创建线程池</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">ExecutorService</span> executorService <span class="token operator">=</span> <span class="token class-name">Executors</span><span class="token punctuation">.</span><span class="token function">newCachedThreadPool</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">TCPServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
+        port <span class="token operator">=</span> <span class="token number">8080</span><span class="token punctuation">;</span> <span class="token comment">// 例如，使用8080作为默认端口</span>
+        serverSocket <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ServerSocket</span><span class="token punctuation">(</span>port<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"服务器启动监听在 "</span> <span class="token operator">+</span> port <span class="token operator">+</span> <span class="token string">" 端口"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">TCPServer</span> server <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TCPServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"服务器将监听端口号: "</span> <span class="token operator">+</span> server<span class="token punctuation">.</span>port<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token namespace">server<span class="token punctuation">.</span></span>Service</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">PrintWriter</span> <span class="token function">getWriter</span><span class="token punctuation">(</span><span class="token class-name">Socket</span> socket<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">//获得输出流缓冲区的地址</span>
+        <span class="token class-name">OutputStream</span> socketOut <span class="token operator">=</span> socket<span class="token punctuation">.</span><span class="token function">getOutputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//网络流写出需要使用flush，这里在PrintWriter构造方法中直接设置为自动flush</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">PrintWriter</span><span class="token punctuation">(</span>
+            <span class="token keyword">new</span> <span class="token class-name">OutputStreamWriter</span><span class="token punctuation">(</span>socketOut<span class="token punctuation">,</span> <span class="token class-name">StandardCharsets</span><span class="token punctuation">.</span><span class="token constant">UTF_8</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">BufferedReader</span> <span class="token function">getReader</span><span class="token punctuation">(</span><span class="token class-name">Socket</span> socket<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">//获得输入流缓冲区的地址</span>
+        <span class="token class-name">InputStream</span> socketIn <span class="token operator">=</span> socket<span class="token punctuation">.</span><span class="token function">getInputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">BufferedReader</span><span class="token punctuation">(</span>
+            <span class="token keyword">new</span> <span class="token class-name">InputStreamReader</span><span class="token punctuation">(</span>socketIn<span class="token punctuation">,</span> <span class="token class-name">StandardCharsets</span><span class="token punctuation">.</span><span class="token constant">UTF_8</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">class</span> <span class="token class-name">ThreadHandler</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Socket</span> socket<span class="token punctuation">;</span>
+
+        <span class="token keyword">public</span> <span class="token class-name">ThreadHandler</span><span class="token punctuation">(</span><span class="token class-name">Socket</span> socket<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>socket <span class="token operator">=</span> socket<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">//本地服务器控制台显示客户端连接的用户信息</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"New connection accepted： "</span> <span class="token operator">+</span> socket<span class="token punctuation">.</span><span class="token function">getInetAddress</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getHostAddress</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+                <span class="token class-name">BufferedReader</span> br <span class="token operator">=</span> <span class="token function">getReader</span><span class="token punctuation">(</span>socket<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//定义字符串输入流</span>
+                <span class="token class-name">PrintWriter</span> pw <span class="token operator">=</span> <span class="token function">getWriter</span><span class="token punctuation">(</span>socket<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//定义字符串输出流</span>
+                <span class="token comment">//客户端正常连接成功，则发送服务器的欢迎信息，然后等待客户发送信息</span>
+                pw<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"From 服务器：欢迎使用本服务！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">String</span> msg <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+                <span class="token comment">//此处程序阻塞，每次从输入流中读入一行字符串</span>
+                <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>msg <span class="token operator">=</span> br<span class="token punctuation">.</span><span class="token function">readLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    <span class="token comment">//如果客户发送的消息为"bye"，就结束通信</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>msg<span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span><span class="token string">"bye"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                        <span class="token comment">//向输出流中输出一行字符串,远程客户端可以读取该字符串</span>
+                        pw<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"From服务器：服务器断开连接，结束服务！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"客户端离开"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token comment">//向输出流中输出一行字符串,远程客户端可以读取该字符串</span>
+                        <span class="token keyword">break</span><span class="token punctuation">;</span> <span class="token comment">//结束循环</span>
+                    <span class="token punctuation">&#125;</span>
+                    pw<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"From服务器："</span> <span class="token operator">+</span> msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">finally</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>socket <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+                        socket<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//关闭socket连接及相关的输入输出流</span>
+                <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+
+    <span class="token comment">//单客户版本，即每一次只能与一个客户建立通信连接</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token class-name">Service</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">Socket</span> socket <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+            <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+                <span class="token comment">//此处程序阻塞等待，监听并等待客户发起连接，有连接请求就生成一个套接字。</span>
+                socket <span class="token operator">=</span> serverSocket<span class="token punctuation">.</span><span class="token function">accept</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">Thread</span> t <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ThreadHandler</span><span class="token punctuation">(</span>socket<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                executorService<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -3303,7 +3717,7 @@ br <span class="token operator">=</span> <span class="token keyword">new</span> 
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">282.3k</span>&nbsp;字
+                class="white-color">285.6k</span>&nbsp;字
             
             
             
