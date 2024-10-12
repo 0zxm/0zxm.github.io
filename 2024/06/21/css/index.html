@@ -478,7 +478,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    37.5k
+                    37.6k
                 </div>
                 
 
@@ -5951,7 +5951,7 @@
 </ul>
 <h5 id="flex布局子项常见属性"><a href="#flex布局子项常见属性" class="headerlink" title="flex布局子项常见属性"></a>flex布局子项常见属性</h5><ul>
 <li><p><code>flex 属性 ★</code></p>
-<p>  flex 属性定义子项目分配剩余空间，用flex来表示占多少份数。</p>
+<p>  flex 属性定义子项目分配剩余空间，用flex来表示占多少份数。<code>也可以使用百分比(20%表示占父元素的20%)</code></p>
 </li>
 </ul>
 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">item</span><span class="token punctuation">&#123;</span>
@@ -6089,6 +6089,21 @@
 <span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">-webkit-linear-gradient</span><span class="token punctuation">(</span>left top<span class="token punctuation">,</span>red<span class="token punctuation">,</span>blue<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>背景渐变必须添加浏览器私有前缀<br>起始方向可以是:方位名词 或者 度数，如果省略默认就是 top</p>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">div</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> 600px<span class="token punctuation">;</span>
+    <span class="token property">height</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+    <span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">-webkit-linear-gradient</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> red<span class="token punctuation">,</span> blue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">/* 起始位置可以省略,默认从上到下 */</span>
+    <span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">-webkit-linear-gradient</span><span class="token punctuation">(</span>red<span class="token punctuation">,</span> blue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">/* 也可以指定起始位置 (左上角到右下角) */</span>
+    <span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">-webkit-linear-gradient</span><span class="token punctuation">(</span>top left<span class="token punctuation">,</span> red<span class="token punctuation">,</span> blue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="8-SEO之文字隐藏"><a href="#8-SEO之文字隐藏" class="headerlink" title="8. SEO之文字隐藏"></a>8. SEO之文字隐藏</h3><p>隐藏文本曾经是SEO手册中古老的运营技巧之一</p>
+<ul>
+<li>方式一 : <code>font-size: 0</code></li>
+<li>方式二 : <code>text-indent : -999; overflow : hidden;</code></li>
+</ul>
 
                 
             </div>
@@ -6602,7 +6617,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">364.7k</span>&nbsp;字
+                class="white-color">364.8k</span>&nbsp;字
             
             
             
