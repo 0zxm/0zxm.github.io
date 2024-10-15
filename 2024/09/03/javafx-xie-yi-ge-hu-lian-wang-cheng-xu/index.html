@@ -486,14 +486,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    22.9k
+                    25k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    98 分
+                    106 分
                 </div>
                 
 
@@ -1905,7 +1905,7 @@ runnable<span class="token punctuation">.</span><span class="token function">run
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="更新SimpleFx"><a href="#更新SimpleFx" class="headerlink" title="更新SimpleFx"></a>更新SimpleFx</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>application<span class="token punctuation">.</span></span><span class="token class-name">Application</span></span><span class="token punctuation">;</span>
+<h3 id="更新SimpleFx-添加文本选择功能"><a href="#更新SimpleFx-添加文本选择功能" class="headerlink" title="更新SimpleFx(添加文本选择功能)"></a>更新SimpleFx(添加文本选择功能)</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>application<span class="token punctuation">.</span></span><span class="token class-name">Application</span></span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>application<span class="token punctuation">.</span></span><span class="token class-name">Platform</span></span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>event<span class="token punctuation">.</span></span><span class="token class-name">EventHandler</span></span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>geometry<span class="token punctuation">.</span></span><span class="token class-name">Insets</span></span><span class="token punctuation">;</span>
@@ -3184,7 +3184,117 @@ fixedThreadPool<span class="token punctuation">.</span><span class="token functi
 
 
 
-<h3 id="群组聊天功能"><a href="#群组聊天功能" class="headerlink" title="群组聊天功能"></a>群组聊天功能</h3><h4 id="线程安全的集合CopyOnWriteArraySet"><a href="#线程安全的集合CopyOnWriteArraySet" class="headerlink" title="线程安全的集合CopyOnWriteArraySet"></a>线程安全的集合<code>CopyOnWriteArraySet</code></h4><p>在Java中，<code>CopyOnWriteArraySet</code> 是 <code>java.util</code> 包下的一个线程安全的变体，它继承自 <code>CopyOnWriteArrayList</code>。这个集合类适用于读多写少的场景，因为每次修改（添加、删除等）都会复制整个底层数组，这可能会导致写操作变得非常昂贵，尤其是在集合元素很多的情况下。</p>
+<h3 id="群组聊天功能"><a href="#群组聊天功能" class="headerlink" title="群组聊天功能"></a>群组聊天功能</h3><h4 id="数据结构之Set集合"><a href="#数据结构之Set集合" class="headerlink" title="数据结构之Set集合"></a>数据结构之Set集合</h4><p>在 Java 中，<code>Set</code> 是一种集合类型，用于存储不重复的元素。<code>Set</code> 接口是 Java Collections Framework 的一部分，主要用于表示不允许重复元素的集合。<code>Set</code> 接口的主要实现类有：</p>
+<ol>
+<li><p><strong>HashSet</strong>：最常用的 <code>Set</code> 实现，基于哈希表实现，具有较快的查找速度。它不保证元素的迭代顺序，可能会随时间而变化。</p>
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Set</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> hashSet <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashSet</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+hashSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Apple"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+hashSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Banana"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+hashSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Orange"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>LinkedHashSet</strong>：继承自 <code>HashSet</code>，维护插入元素的顺序。这意味着在迭代元素时，会按照插入的顺序返回。</p>
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Set</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> linkedHashSet <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedHashSet</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+linkedHashSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Apple"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+linkedHashSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Banana"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+linkedHashSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Orange"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>TreeSet</strong>：基于红黑树实现的 <code>Set</code>，它按自然顺序或通过构造函数提供的比较器进行排序。插入和删除操作的时间复杂度为 O(log n)。</p>
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Set</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> treeSet <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TreeSet</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+treeSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Apple"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+treeSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Banana"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+treeSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Orange"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<h5 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h5><ul>
+<li>集合中的元素是唯一的，不允许重复。</li>
+<li><code>Set</code> 不提供按索引访问元素的功能。</li>
+<li>可以使用迭代器遍历集合中的元素。</li>
+</ul>
+<h5 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h5><ul>
+<li>当需要存储不重复的元素时，如用户ID、唯一的商品代码等。</li>
+<li>常用于需要检索某个元素是否存在的情况。</li>
+</ul>
+<p>在 Java 中，<code>Set</code> 接口提供了多种方法来操作集合。以下是一些常用的 <code>Set</code> 方法，以及它们的具体说明和示例：</p>
+<h5 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h5><ol>
+<li><p><strong>add(E e)</strong>: 将指定元素添加到集合中，如果集合中已存在该元素，则不做任何操作。</p>
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Set</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> set <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashSet</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+set<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Apple"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+set<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Banana"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+set<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Apple"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 不会重复添加</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>remove(Object o)</strong>: 从集合中移除指定的元素，如果成功移除则返回 true。</p>
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java">set<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token string">"Banana"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 移除 "Banana"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>contains(Object o)</strong>: 检查集合是否包含指定的元素，如果包含返回 true。</p>
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">boolean</span> hasApple <span class="token operator">=</span> set<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token string">"Apple"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 返回 true</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>size()</strong>: 返回集合中的元素个数。</p>
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span> size <span class="token operator">=</span> set<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 返回 2，因为 "Banana" 已被移除</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>isEmpty()</strong>: 检查集合是否为空，如果集合没有元素则返回 true。</p>
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">boolean</span> isEmpty <span class="token operator">=</span> set<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 返回 false</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>clear()</strong>: 移除集合中的所有元素。</p>
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java">set<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 清空集合</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>iterator()</strong>: 返回集合的迭代器，可以用于遍历集合中的元素。</p>
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Iterator</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> iterator <span class="token operator">=</span> set<span class="token punctuation">.</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>addAll(Collection&lt;? extends E&gt; c)</strong>: 将指定集合中的所有元素添加到当前集合中。</p>
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Set</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> anotherSet <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashSet</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+anotherSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Cherry"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+anotherSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Date"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+set<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span>anotherSet<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 将 anotherSet 的元素添加到 set 中</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>retainAll(Collection&lt;?&gt; c)</strong>: 只保留当前集合中包含的指定集合中的元素，移除其他的元素。</p>
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Set</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> keepSet <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashSet</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+keepSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Apple"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+set<span class="token punctuation">.</span><span class="token function">retainAll</span><span class="token punctuation">(</span>keepSet<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 只保留 "Apple"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>removeAll(Collection&lt;?&gt; c)</strong>: 从当前集合中移除指定集合中的所有元素。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">set<span class="token punctuation">.</span><span class="token function">removeAll</span><span class="token punctuation">(</span>anotherSet<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 移除 anotherSet 中的所有元素</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ol>
+<h5 id="示例代码-4"><a href="#示例代码-4" class="headerlink" title="示例代码"></a>示例代码</h5><p>以下是一个综合实例，展示如何使用 Java 中的 <code>Set</code> 和它的方法：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">HashSet</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Iterator</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Set</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SetExample</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">Set</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> set <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashSet</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 添加元素</span>
+        set<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Apple"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        set<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Banana"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        set<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Cherry"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 检查是否包含</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Contains Apple: "</span> <span class="token operator">+</span> set<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token string">"Apple"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 输出集合大小</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Size: "</span> <span class="token operator">+</span> set<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 遍历集合</span>
+        <span class="token class-name">Iterator</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> iterator <span class="token operator">=</span> set<span class="token punctuation">.</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Elements in the set:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token comment">// 移除元素</span>
+        set<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token string">"Banana"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"After removing Banana, size: "</span> <span class="token operator">+</span> set<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 清空集合</span>
+        set<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"After clearing, is empty: "</span> <span class="token operator">+</span> set<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<h4 id="线程安全的集合CopyOnWriteArraySet"><a href="#线程安全的集合CopyOnWriteArraySet" class="headerlink" title="线程安全的集合CopyOnWriteArraySet"></a>线程安全的集合<code>CopyOnWriteArraySet</code></h4><p>在Java中，<code>CopyOnWriteArraySet</code> 是 <code>java.util</code> 包下的一个线程安全的变体，它继承自 <code>CopyOnWriteArrayList</code>。这个集合类适用于读多写少的场景，因为每次修改（添加、删除等）都会复制整个底层数组，这可能会导致写操作变得非常昂贵，尤其是在集合元素很多的情况下。</p>
 <p><code>CopyOnWriteArraySet</code> 维护了一个无序的元素集合，并且不允许元素重复。由于它是基于 <code>CopyOnWriteArrayList</code> 实现的，所以它的方法和 <code>CopyOnWriteArrayList</code> 相似，只是它额外确保了元素的唯一性。</p>
 <p>下面是一些使用 <code>CopyOnWriteArraySet</code> 的基本示例：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span></span><span class="token class-name">CopyOnWriteArraySet</span></span><span class="token punctuation">;</span>
@@ -3340,6 +3450,92 @@ fixedThreadPool<span class="token punctuation">.</span><span class="token functi
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h3 id="扩展练习一：自定义线程池"><a href="#扩展练习一：自定义线程池" class="headerlink" title="扩展练习一：自定义线程池"></a>扩展练习一：自定义线程池</h3><ul>
+<li><p>前面提到OOM的问题，如果能提供<code>自行确定最小值和最大值的动态调整的线程池</code>会更满足要求，大家跟踪<code>Executors. newCachedThreadPool()</code>方法，观察其源代码，会发现非常简单，而且也会明白为什么会出现OOM错误(Out of Memory内存溢出)</p>
+</li>
+<li><p>大家可以尝试将其实现代码拷贝出来稍作修改，封装一个自己版本的 myCachedThreadPool 方法来使用。</p>
+</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">ExecutorService</span> <span class="token function">newCachedThreadPool</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ThreadPoolExecutor</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">,</span><span class="token number">60L</span><span class="token punctuation">,</span> <span class="token class-name">TimeUnit</span><span class="token punctuation">.</span><span class="token constant">SECONDS</span><span class="token punctuation">,</span>
+       <span class="token keyword">new</span> <span class="token class-name">SynchronousQueue</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Runnable</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="扩展练习二：简易聊天室设计"><a href="#扩展练习二：简易聊天室设计" class="headerlink" title="扩展练习二：简易聊天室设计"></a>扩展练习二：简易聊天室设计</h3><ul>
+<li>设计聊天服务器<code>ChatServer.java</code>，客户端用学号-姓名的方式登录服务器，实现一对一、一对多私聊及群组广播聊天的功能；</li>
+<li>用户登录时，需要将用户上线的信息广播给所有在线用户；客户端发送特定命令，服务器要能够返回在线用户列表信息；</li>
+<li>程序设计中，要能显示发言者的学号姓名（例如20181111111-程旭），这种情况可以考虑使用线程安全的HashMap类型（自行搜索应该使用哪个类，这些线程安全的集合类型和普通的集合类型使用方式如出一辙）；</li>
+<li>自行考虑如何设计服务端和客户端之间的交互约定（协议），可以在用户连上服务器时，即要求用户发送学号和姓名信息，并给用户发送相关的使用指南，约定发送指令的作用。</li>
+<li>编程中要小心处理好各种逻辑关系。</li>
+</ul>
+<h4 id="数据结构之HashMap"><a href="#数据结构之HashMap" class="headerlink" title="数据结构之HashMap"></a>数据结构之HashMap</h4><p>HashMap 是一种数据结构，属于哈希表的一种实现。它能够以键值对的形式存储数据，具有快速的查找、插入和删除操作。以下是一些关于 HashMap 的基本概念和特性：</p>
+<ol>
+<li><strong>键值对存储</strong>：HashMap 将数据以键值对的方式存储，每个键（Key）唯一对应一个值（Value）。</li>
+<li><strong>快速访问</strong>：通过哈希函数，HashMap 可以快速定位到存储在内部数组中的数据，具有平均 O(1) 的时间复杂度进行查找、插入和删除。</li>
+<li><strong>允许空值</strong>：HashMap 允许一个键为 null，且可以有多个值为 null。</li>
+<li><strong>不保证顺序</strong>：HashMap 并不保证键值对的顺序，因此在迭代时可能不按插入顺序返回元素。</li>
+<li><strong>线程不安全</strong>：HashMap 不是线程安全的，若在多线程环境下使用，可能需要使用 <code>Collections.synchronizedMap</code> 或使用 <code>ConcurrentHashMap</code>。</li>
+</ol>
+<p>在 Java 中，HashMap 的基本用法示例如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">HashMap</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Example</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Integer</span><span class="token punctuation">></span></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 插入数据</span>
+        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"苹果"</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"香蕉"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"橙子"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 访问数据</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"香蕉的数量: "</span> <span class="token operator">+</span> map<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"香蕉"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 删除数据</span>
+        map<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token string">"橙子"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 遍历 HashMap</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">String</span> key <span class="token operator">:</span> map<span class="token punctuation">.</span><span class="token function">keySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>key <span class="token operator">+</span> <span class="token string">": "</span> <span class="token operator">+</span> map<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="线程安全的ConcurrentHashMap"><a href="#线程安全的ConcurrentHashMap" class="headerlink" title="线程安全的ConcurrentHashMap"></a>线程安全的<code>ConcurrentHashMap</code></h4><p><code>ConcurrentHashMap</code> 是 Java 中提供的一个线程安全的 <code>HashMap</code> 实现，它允许多个线程同时访问和修改，而不需要额外的同步控制。以下是一些基本的使用方法：</p>
+<h5 id="导入类"><a href="#导入类" class="headerlink" title="导入类"></a>导入类</h5><p>首先，你需要导入 <code>ConcurrentHashMap</code> 类：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span></span><span class="token class-name">ConcurrentHashMap</span></span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h5 id="创建-ConcurrentHashMap"><a href="#创建-ConcurrentHashMap" class="headerlink" title="创建 ConcurrentHashMap"></a>创建 <code>ConcurrentHashMap</code></h5><p>创建一个 <code>ConcurrentHashMap</code> 实例非常简单，你可以像创建普通的 <code>HashMap</code> 一样创建它：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">ConcurrentHashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">KeyType</span><span class="token punctuation">,</span> <span class="token class-name">ValueType</span><span class="token punctuation">></span></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConcurrentHashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h5 id="插入元素"><a href="#插入元素" class="headerlink" title="插入元素"></a>插入元素</h5><p>向 <code>ConcurrentHashMap</code> 中插入元素，可以使用 <code>putIfAbsent</code> 方法，该方法只有在键不存在时才会插入元素，这有助于避免多线程环境下的冲突：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">map<span class="token punctuation">.</span><span class="token function">putIfAbsent</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h5 id="获取元素"><a href="#获取元素" class="headerlink" title="获取元素"></a>获取元素</h5><p>获取元素可以直接通过 <code>get</code> 方法：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">ValueType</span> value <span class="token operator">=</span> map<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h5 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h5><p>删除元素可以使用 <code>remove</code> 方法：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">map<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h5 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h5><p>遍历 <code>ConcurrentHashMap</code> 和普通的 <code>HashMap</code> 一样，但是要注意，遍历时对 <code>ConcurrentHashMap</code> 的修改操作可能会影响迭代器的行为：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Map<span class="token punctuation">.</span>Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">KeyType</span><span class="token punctuation">,</span> <span class="token class-name">ValueType</span><span class="token punctuation">></span></span> entry <span class="token operator">:</span> map<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">KeyType</span> key <span class="token operator">=</span> entry<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">ValueType</span> value <span class="token operator">=</span> entry<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 处理键值对</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="原子操作"><a href="#原子操作" class="headerlink" title="原子操作"></a>原子操作</h5><p><code>ConcurrentHashMap</code> 提供了一些原子操作，例如 <code>putIfAbsent</code>、<code>replace</code> 和 <code>compute</code> 等：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 如果键存在，则替换旧值，否则插入新值</span>
+map<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> oldValue<span class="token punctuation">,</span> newValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 如果键存在，则根据提供的函数计算新值</span>
+map<span class="token punctuation">.</span><span class="token function">compute</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> <span class="token punctuation">(</span>k<span class="token punctuation">,</span> v<span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 计算新值的逻辑</span>
+    <span class="token keyword">return</span> newValue<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h5><p><code>ConcurrentHashMap</code> 在多线程环境下不需要额外的同步措施，因为它内部已经处理了线程安全的问题。但是，当涉及到复合操作时（比如先检查某个键是否存在，然后基于这个检查结果执行一些操作），你可能需要使用 <code>computeIfAbsent</code> 或 <code>computeIfPresent</code> 等原子方法来保证操作的原子性。</p>
+<p>使用 <code>ConcurrentHashMap</code> 时，你不需要担心线程安全问题，但是要确保你的操作是线程安全的，比如不要在迭代过程中修改 <code>ConcurrentHashMap</code>，或者在迭代过程中对元素进行修改时，要确保这些修改是线程安全的。</p>
 
                 
             </div>
@@ -3873,7 +4069,7 @@ fixedThreadPool<span class="token punctuation">.</span><span class="token functi
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">401k</span>&nbsp;字
+                class="white-color">369.4k</span>&nbsp;字
             
             
             
