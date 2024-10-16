@@ -478,14 +478,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    33.8k
+                    34.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    142 分
+                    144 分
                 </div>
                 
 
@@ -4611,7 +4611,7 @@ btn<span class="token punctuation">.</span><span class="token function">addEvent
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="let-关键字"><a href="#let-关键字" class="headerlink" title="let 关键字"></a>let 关键字</h4><p><code>var</code> 和 <code>let</code> 是 JavaScript 中用来声明变量的关键字，它们之间有几个重要的区别：</p>
+<h4 id="let关键字"><a href="#let关键字" class="headerlink" title="let关键字"></a>let关键字</h4><p><code>var</code> 和 <code>let</code> 是 JavaScript 中用来声明变量的关键字，它们之间有几个重要的区别：</p>
 <ol>
 <li><p><strong>作用域</strong>：</p>
 <ul>
@@ -5229,6 +5229,58 @@ div<span class="token punctuation">.</span><span class="token function">addEvent
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h3 id="本地储存"><a href="#本地储存" class="headerlink" title="本地储存"></a>本地储存</h3><h4 id="target"><a href="#target" class="headerlink" title="target"></a>target</h4><ul>
+<li>能够写出 sessionStorage 数据的存储以及获取</li>
+<li>能够写出 localStorage 数据的存储以及获取</li>
+<li>能够说出它们两者的区别</li>
+</ul>
+<h4 id="1-本地存储"><a href="#1-本地存储" class="headerlink" title="1.本地存储"></a>1.本地存储</h4><p>随着互联网的快速发展，基于网页的应用越来越普遍，同时也变的越来越复杂，为了满足各种各样的需求，会经常性在本地存储大量的数据，HTML5规范提出了相关解决方案。</p>
+<p>本地存储特性</p>
+<p>1、数据存储在用户浏览器中</p>
+<p>2、设置、读取方便、甚至页面刷新不丢失数据</p>
+<p>3、容量较大，<code>sessionStorage</code>约5M、<code>localStorage</code>约20M</p>
+<p>4、只能存储字符串，可以将对象<code>JSON.stringify()</code>编码后存储</p>
+<h4 id="2-window-sessionStorage"><a href="#2-window-sessionStorage" class="headerlink" title="2.window.sessionStorage"></a>2.window.sessionStorage</h4><ol>
+<li>生命周期为关闭浏览器窗口</li>
+<li>在同一个窗口(页面)下数据可以共享</li>
+<li>以键值对的形式存储使用</li>
+</ol>
+<p><strong>存储数据:</strong></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">sessionStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>获取数据:</strong></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">sessionStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>删除数据:</strong></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">sessionStorage<span class="token punctuation">.</span><span class="token function">removeItem</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>删除所有数据:</strong></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">sessionStorage<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="3-window-localStorage"><a href="#3-window-localStorage" class="headerlink" title="3.window.localStorage"></a>3.window.localStorage</h4><ol>
+<li>生命周期永久生效，除非手动删除否则关闭页面也会存在</li>
+<li>可以多窗口(页面)共享(同一浏览器可以共享)</li>
+<li>以键值对的形式存储使用</li>
+</ol>
+<p>存储数据:</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>获取数据:</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>删除数据:</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">localStorage<span class="token punctuation">.</span><span class="token function">removeItem</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>删除全部数据:</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">localStorage<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="4-记住用户名案例"><a href="#4-记住用户名案例" class="headerlink" title="4. 记住用户名案例"></a>4. 记住用户名案例</h4><p>如果勾选记住用户名，下次用户打开浏览器，就在文本框里面自动显示上次登录的用户名</p>
+<ol>
+<li>把数据存起来，用到本地存储</li>
+<li>关闭页面，也可以显示用户名，所以用到localStorage</li>
+<li>打开页面，先判断是否有这个用户名，如果有，就在表单里面显示用户名,并且勾选复选框</li>
+</ol>
+
                 
             </div>
             <hr/>
@@ -5743,7 +5795,7 @@ div<span class="token punctuation">.</span><span class="token function">addEvent
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">410.6k</span>&nbsp;字
+                class="white-color">411k</span>&nbsp;字
             
             
             
