@@ -11472,8 +11472,7 @@ background<span class="token punctuation">.</span><span class="token function">s
 <p> <img src="/2024/10/11/java-ji-chu-shang/1576047659085.png" alt="1576047659085"> </p>
 <p>Math类所在包为java.lang包，因此在使用的时候不需要进行导包。并且Math类被final修饰了，因此该类是不能被继承的。</p>
 <p>Math类包含执行基本数字运算的方法，我们可以使用Math类完成基本的数学运算。</p>
-<p>要想使用Math类我们就需要先创建该类的对象，那么创建对象就需要借助于构造方法。因此我们就需要首先查看一下API文档，看看API文档中针对Math类有没有提供对应的构造方法。通过API文档来查看</p>
-<p>一下Math类的成员，如下所示：</p>
+<p>要想使用Math类我们就需要先创建该类的对象，那么创建对象就需要借助于构造方法。因此我们就需要首先查看一下API文档，看看API文档中针对Math类有没有提供对应的构造方法。通过API文档来查看一下Math类的成员，如下所示：</p>
 <p><img src="/2024/10/11/java-ji-chu-shang/1576047846672.png" alt="1576047846672"> </p>
 <p>在API文档中没有体现可用的构造方法，因此我们就不能直接通过new关键字去创建Math类的对象。同时我们发现Math类中的方法都是静态的，因此在使用的时候我们可以直接通过类名去调用。在Math类中</p>
 <p>定义了很多数学运算的方法，但是我们并不可能将所有的方法学习一遍，我们主要学习的就是一些常见的方法。</p>
@@ -13281,7 +13280,7 @@ UP(直接进1) ， FLOOR(直接删除) ， HALF_UP(4舍五入),我们可以通�
 <p>​	请编写正则表达式验证用户输入的电话号码是否满足要求。</p>
 <p>​	验证手机号码 13112345678 13712345667 13945679027 139456790271</p>
 <p>​	验证座机电话号码 020-2324242 02122442 027-42424 0712-3242434</p>
-<p>​	验证邮箱号码 <a href="mailto:&#x33;&#x32;&#x33;&#50;&#x33;&#x32;&#51;&#x40;&#113;&#113;&#46;&#99;&#111;&#x6d;">&#x33;&#x32;&#x33;&#50;&#x33;&#x32;&#51;&#x40;&#113;&#113;&#46;&#99;&#111;&#x6d;</a> <a href="mailto:&#122;&#x68;&#x61;&#x6e;&#x67;&#115;&#x61;&#x6e;&#x40;&#105;&#x74;&#99;&#97;&#x73;&#116;&#46;&#99;&#x6e;&#110;">&#122;&#x68;&#x61;&#x6e;&#x67;&#115;&#x61;&#x6e;&#x40;&#105;&#x74;&#99;&#97;&#x73;&#116;&#46;&#99;&#x6e;&#110;</a> <a href="mailto:&#100;&#x6c;&#x65;&#105;&#x30;&#x30;&#48;&#x39;&#x40;&#49;&#x36;&#x33;&#46;&#x63;&#x6f;&#109;">&#100;&#x6c;&#x65;&#105;&#x30;&#x30;&#48;&#x39;&#x40;&#49;&#x36;&#x33;&#46;&#x63;&#x6f;&#109;</a> <a href="mailto:&#x64;&#x6c;&#x65;&#x69;&#x30;&#x30;&#x30;&#x39;&#64;&#x70;&#99;&#105;&#46;&#99;&#x6f;&#109;&#46;&#99;&#110;">&#x64;&#x6c;&#x65;&#x69;&#x30;&#x30;&#x30;&#x39;&#64;&#x70;&#99;&#105;&#46;&#99;&#x6f;&#109;&#46;&#99;&#110;</a></p>
+<p>​	验证邮箱号码 <a href="mailto:&#x33;&#50;&#51;&#50;&#x33;&#50;&#51;&#x40;&#113;&#113;&#x2e;&#99;&#x6f;&#x6d;">&#x33;&#50;&#51;&#50;&#x33;&#50;&#51;&#x40;&#113;&#113;&#x2e;&#99;&#x6f;&#x6d;</a> <a href="mailto:&#122;&#x68;&#x61;&#110;&#103;&#115;&#x61;&#110;&#x40;&#x69;&#116;&#x63;&#x61;&#115;&#116;&#46;&#x63;&#x6e;&#x6e;">&#122;&#x68;&#x61;&#110;&#103;&#115;&#x61;&#110;&#x40;&#x69;&#116;&#x63;&#x61;&#115;&#116;&#46;&#x63;&#x6e;&#x6e;</a> <a href="mailto:&#x64;&#108;&#x65;&#105;&#x30;&#48;&#48;&#x39;&#x40;&#49;&#54;&#x33;&#46;&#99;&#111;&#109;">&#x64;&#108;&#x65;&#105;&#x30;&#48;&#48;&#x39;&#x40;&#49;&#54;&#x33;&#46;&#99;&#111;&#109;</a> <a href="mailto:&#100;&#108;&#101;&#105;&#48;&#x30;&#x30;&#x39;&#64;&#x70;&#99;&#105;&#46;&#99;&#x6f;&#109;&#46;&#99;&#x6e;">&#100;&#108;&#101;&#105;&#48;&#x30;&#x30;&#x39;&#64;&#x70;&#99;&#105;&#46;&#99;&#x6f;&#109;&#46;&#99;&#x6e;</a></p>
 <p>代码示例：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>itheima<span class="token punctuation">.</span>a08regexdemo</span><span class="token punctuation">;</span>
 
@@ -13355,7 +13354,7 @@ UP(直接进1) ， FLOOR(直接删除) ， HALF_UP(4舍五入),我们可以通�
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="1-7-正则表达式练习2"><a href="#1-7-正则表达式练习2" class="headerlink" title="1.7 正则表达式练习2"></a>1.7 正则表达式练习2</h4><p>需求<br>    请编写正则表达式验证用户名是否满足要求。要求:大小写字母，数字，下划线一共4-16位<br>    请编写正则表达式验证身份证号码是否满足要求。<br>    简单要求:<br>            18位，前17位任意数字，最后一位可以是数字可以是大写或小写的x<br>    复杂要求:<br>            按照身份证号码的格式严格要求。</p>
-<p>​	身份证号码:<br>        41080119930228457x<br>        510801197609022309<br>        15040119810705387X<br>        130133197204039024<br>        430102197606046442</p>
+<p>​	身份证号码:<br>​		41080119930228457x<br>​		510801197609022309<br>​		15040119810705387X<br>​		130133197204039024<br>​		430102197606046442</p>
 <p>代码示例：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RegexDemo5</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -13541,7 +13540,7 @@ UP(直接进1) ， FLOOR(直接删除) ， HALF_UP(4舍五入),我们可以通�
 
 <h4 id="1-10-爬取数据练习"><a href="#1-10-爬取数据练习" class="headerlink" title="1.10 爬取数据练习"></a>1.10 爬取数据练习</h4><p>需求：</p>
 <p>​	把下面文本中的座机电话，邮箱，手机号，热线都爬取出来。</p>
-<p>来黑马程序员学习Java，手机号:18512516758，18512508907或者联系邮箱:<a href="mailto:&#x62;&#x6f;&#110;&#x69;&#117;&#64;&#105;&#x74;&#x63;&#x61;&#115;&#116;&#46;&#x63;&#x6e;">&#x62;&#x6f;&#110;&#x69;&#117;&#64;&#105;&#x74;&#x63;&#x61;&#115;&#116;&#46;&#x63;&#x6e;</a>，座机电话:01036517895，010-98951256邮箱:<a href="mailto:&#98;&#111;&#122;&#97;&#105;&#64;&#105;&#116;&#99;&#97;&#x73;&#x74;&#x2e;&#x63;&#x6e;">&#98;&#111;&#122;&#97;&#105;&#64;&#105;&#116;&#99;&#97;&#x73;&#x74;&#x2e;&#x63;&#x6e;</a>，热线电话:400-618-9090 ，400-618-4000，4006184000，4006189090手机号的正则表达式:1[3-9]\d{9}</p>
+<p>来黑马程序员学习Java，手机号:18512516758，18512508907或者联系邮箱:<a href="mailto:&#x62;&#111;&#110;&#x69;&#117;&#x40;&#x69;&#x74;&#x63;&#x61;&#115;&#x74;&#46;&#99;&#x6e;">&#x62;&#111;&#110;&#x69;&#117;&#x40;&#x69;&#x74;&#x63;&#x61;&#115;&#x74;&#46;&#99;&#x6e;</a>，座机电话:01036517895，010-98951256邮箱:<a href="mailto:&#98;&#x6f;&#122;&#x61;&#x69;&#64;&#x69;&#x74;&#x63;&#97;&#x73;&#x74;&#46;&#x63;&#x6e;">&#98;&#x6f;&#122;&#x61;&#x69;&#64;&#x69;&#x74;&#x63;&#97;&#x73;&#x74;&#46;&#x63;&#x6e;</a>，热线电话:400-618-9090 ，400-618-4000，4006184000，4006189090手机号的正则表达式:1[3-9]\d{9}</p>
 <p>代码示例：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>itheima<span class="token punctuation">.</span>a08regexdemo</span><span class="token punctuation">;</span>
 
@@ -15715,7 +15714,7 @@ i <span class="token operator">=</span> i <span class="token operator">+</span> 
 </ul>
 </li>
 <li><p>Iterator中的常用方法</p>
-<p>​	boolean hasNext(): 判断当前位置是否有元素可以被取出<br>E next(): 获取当前位置的元素,将迭代器对象移向下一个索引位置</p>
+<p>​	boolean hasNext(): 判断当前位置是否有元素可以被取出<br>​	E next(): 获取当前位置的元素,将迭代器对象移向下一个索引位置</p>
 </li>
 <li><p>Collection集合的遍历</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">IteratorDemo1</span> <span class="token punctuation">&#123;</span>
