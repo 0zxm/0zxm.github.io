@@ -486,14 +486,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    25.1k
+                    27.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    107 分
+                    114 分
                 </div>
                 
 
@@ -3545,7 +3545,214 @@ map<span class="token punctuation">.</span><span class="token function">compute<
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h2 id="chapter06-UDPSocket"><a href="#chapter06-UDPSocket" class="headerlink" title="chapter06(UDPSocket)"></a>chapter06(UDPSocket)</h2><h3 id="UPD的特点"><a href="#UPD的特点" class="headerlink" title="UPD的特点"></a>UPD的特点</h3><ol>
+<li>UDP有独立的套接字（IP + PORT），与TCP使用相同端口号不会冲突。</li>
+<li>UDP在使用前不需要进行连接，没有流的概念。</li>
+<li>UDP通信类似于邮件通信：不需要实时连接，只需要目的地址。</li>
+<li>UDP通信前只需知道对方的IP地址和端口号即可发送信息。</li>
+<li>基于用户数据报文（包）进行读写。</li>
+<li>UDP通信通常用于线路质量好的环境，如局域网。如果在互联网上，通常用于对数据完整性要求不高的场合，例如语音传送等。</li>
+</ol>
+<h3 id="UDP-编程关键Java类"><a href="#UDP-编程关键Java类" class="headerlink" title="UDP 编程关键Java类"></a>UDP 编程关键Java类</h3><ul>
+<li><code>DatagramSocket</code></li>
+<li><code>DatagramPacket</code></li>
+<li><code>MulticastSocket</code></li>
+</ul>
+<h3 id="1-创建-UDPClient-java-程序"><a href="#1-创建-UDPClient-java-程序" class="headerlink" title="1.创建 UDPClient.java 程序"></a>1.创建 UDPClient.java 程序</h3><h4 id="UDP-客户端的主要步骤"><a href="#UDP-客户端的主要步骤" class="headerlink" title="UDP 客户端的主要步骤"></a>UDP 客户端的主要步骤</h4><ol>
+<li><p><strong>创建 DatagramSocket 实例</strong></p>
+<ul>
+<li>可以选择对本地地址和端口号进行设置，但一般不需要指定。</li>
+<li>不指定时程序将自动选择本地地址和可用的端口。</li>
+</ul>
+</li>
+<li><p><strong>发送和接收数据</strong></p>
+<ul>
+<li>使用 <code>DatagramSocket</code> 类来发送和接收 <code>DatagramPacket</code> 类的实例进行通信。</li>
+</ul>
+</li>
+<li><p><strong>关闭套接字</strong></p>
+<ul>
+<li>通信完成后，使用 <code>DatagramSocket</code> 类的 <code>close()</code> 方法销毁该套接字。</li>
+</ul>
+</li>
+</ol>
+<h4 id="注意事项-3"><a href="#注意事项-3" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li>与 <code>Socket</code> 类不同，创建 <code>DatagramSocket</code> 实例时并不需要指定目的地址，这也是 TCP 协议和 UDP 协议的最大不同点之一。</li>
+</ul>
+<h3 id="UDP-套接字类-DatagramSocket"><a href="#UDP-套接字类-DatagramSocket" class="headerlink" title="UDP 套接字类: DatagramSocket"></a>UDP 套接字类: DatagramSocket</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><ul>
+<li>UDP通信没有客户套接字 (<code>Socket</code>用于通信) 和服务器套接字 (<code>ServerSocket</code>服务器端用于接收连接请求) 之分，UDP套接字只有一种：<code>DatagramSocket</code>。</li>
+<li>UDP套接字的角色类似于邮箱，可以从不同地址接收邮件，并向不同地址发送信息。</li>
+<li>UDP编程不严格区分服务端和客户端，通常将固定IP和固定端口的机器视为服务器。</li>
+</ul>
+<h4 id="创建-UDP-套接字"><a href="#创建-UDP-套接字" class="headerlink" title="创建 UDP 套接字"></a>创建 UDP 套接字</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">DatagramSocket</span> datagramSocket <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DatagramSocket</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
+<ul>
+<li>创建时不需要指定本地的地址和端口号。</li>
+</ul>
+<h4 id="UDP-套接字的重要方法"><a href="#UDP-套接字的重要方法" class="headerlink" title="UDP 套接字的重要方法"></a>UDP 套接字的重要方法</h4><ol>
+<li><p><strong>发送网络数据</strong></p>
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java">datagramSocket<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token class-name">DatagramPacket</span> packet<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li>发送一个数据包到由IP和端口号指定的地址。</li>
+</ul>
+</li>
+<li><p><strong>接收网络数据</strong></p>
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java">datagramSocket<span class="token punctuation">.</span><span class="token function">receive</span><span class="token punctuation">(</span><span class="token class-name">DatagramPacket</span> packet<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li>接收一个数据包。如果没有数据，程序会在此调用处阻塞。</li>
+</ul>
+</li>
+<li><p><strong>指定超时</strong></p>
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java">datagramSocket<span class="token punctuation">.</span><span class="token function">setSoTimeout</span><span class="token punctuation">(</span><span class="token keyword">int</span> timeout<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li><code>timeout</code> 是一个整数，表示毫秒数，用于指定 <code>receive(DatagramPacket packet)</code> 方法的最长阻塞时间。</li>
+<li>超过此时限后，如果没有响应，将抛出 <code>InterruptedIOException</code> 异常。</li>
+</ul>
+</li>
+</ol>
+<h4 id="注意事项-4"><a href="#注意事项-4" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li>如果客户端通过 <code>send</code> 发送信息并等待响应，则可以设置超时，避免程序无限等待。</li>
+<li>如果采用类似TCP的设计，开启新线程接收信息，则不应使用超时设置，以避免在等待过程中导致超时错误。</li>
+</ul>
+<h3 id="UDP-数据报文类-DatagramPacket"><a href="#UDP-数据报文类-DatagramPacket" class="headerlink" title="UDP 数据报文类: DatagramPacket"></a>UDP 数据报文类: DatagramPacket</h3><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><ul>
+<li>TCP发送数据是基于字节流的，而UDP发送数据是基于<code>DatagramPacket</code>报文。</li>
+<li>网络中传递的UDP数据都封装在自包含（self-contained）的报文中。</li>
+</ul>
+<h4 id="发送数据的过程"><a href="#发送数据的过程" class="headerlink" title="发送数据的过程"></a>发送数据的过程</h4><ul>
+<li>在<code>创建UDP套接字时</code>，没有指定远程通信方的IP和端口，而<code>send</code>方法的参数 <code>(DatagramPacket packet)</code> 是关键。</li>
+<li>每个数据报文实例除了包含要传输的信息外，还附加了IP地址和端口信息，这些信息的含义取决于数据报文是被发送还是被接收。</li>
+</ul>
+<h4 id="数据报文的创建"><a href="#数据报文的创建" class="headerlink" title="数据报文的创建"></a>数据报文的创建</h4><ol>
+<li><strong>发送信息的构造方法</strong><pre class="line-numbers language-java" data-language="java"><code class="language-java">   <span class="token class-name">DatagramPacket</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">,</span> <span class="token keyword">int</span> length<span class="token punctuation">,</span> <span class="token class-name">InetAddress</span> remoteAddr<span class="token punctuation">,</span> <span class="token keyword">int</span> remotePort<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token operator">-</span> 需要明确远程地址信息，以便将报文发送到目的地址。
+
+<span class="token number">1.</span> 接收信息的构造方法
+
+	```java
+	<span class="token class-name">DatagramPacket</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">,</span> <span class="token keyword">int</span> length<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>不需要指定地址信息，<code>length</code> 表示要读取的数据长度，<code>data</code> 是用于存储报文数据的字节数组缓存。</li>
+</ul>
+</li>
+</ol>
+<h4 id="UDP-数据报文的几个重要方法"><a href="#UDP-数据报文的几个重要方法" class="headerlink" title="UDP 数据报文的几个重要方法"></a>UDP 数据报文的几个重要方法</h4><ol>
+<li><p><strong>获取目标主机IP地址</strong></p>
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">InetAddress</span> <span class="token function">getAddress</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li>如果是发送的报文，返回目标主机的IP地址；如果是接收的报文，返回发送该数据报文的主机IP地址。</li>
+</ul>
+</li>
+<li><p><strong>获取目标主机端口</strong></p>
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span> <span class="token function">getPort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li>如果是发送的报文，返回目标主机的端口；如果是接收的报文，返回发送该数据报文的主机端口。</li>
+</ul>
+</li>
+<li><p><strong>获取与报文相关联的数据</strong></p>
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li>从报文中取出数据，返回与数据报文相关联的字节数组。</li>
+</ul>
+</li>
+</ol>
+<h4 id="注意事项-5"><a href="#注意事项-5" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li>上述两个方法 (<code>getAddress()</code> 和 <code>getPort()</code>) 主要供服务端使用，服务端可以通过这些方法获知客户端的地址信息。</li>
+</ul>
+<h3 id="2-创建UDPClientFX-java客户端窗体程序"><a href="#2-创建UDPClientFX-java客户端窗体程序" class="headerlink" title="2.创建UDPClientFX.java客户端窗体程序"></a>2.创建UDPClientFX.java客户端窗体程序</h3><h4 id="创建-UDPServer-java-程序"><a href="#创建-UDPServer-java-程序" class="headerlink" title="创建 UDPServer.java 程序"></a>创建 UDPServer.java 程序</h4><h4 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h4><ul>
+<li>类似TCP服务器，UDP服务器的工作是建立一个通信终端，并被动等待客户端发起连接。</li>
+<li>由于UDP是无连接的，因此没有TCP中建立连接的步骤。</li>
+<li>UDP通信通过客户端的数据报文进行初始化。</li>
+</ul>
+<h4 id="典型的UDP服务器步骤"><a href="#典型的UDP服务器步骤" class="headerlink" title="典型的UDP服务器步骤"></a>典型的UDP服务器步骤</h4><ol>
+<li><p><strong>创建UDP套接字</strong></p>
+<ul>
+<li><p>创建一个<code>DatagramSocket</code>实例，并指定一个本地端口（端口号范围在1024-65535之间选择）。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">   <span class="token class-name">DatagramSocket</span> datagramSocket <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DatagramSocket</span><span class="token punctuation">(</span>port<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token operator">-</span> 服务器准备好从任何客户端接收数据报文。
+<span class="token operator">-</span> <span class="token constant">UDP</span>服务器为所有客户端使用同一个套接字（与<span class="token constant">TCP</span>不同，<span class="token constant">TCP</span>服务器为每个成功的`accept`方法调用创建新的套接字）。
+
+<span class="token number">1.</span> <span class="token operator">*</span><span class="token operator">*</span>接收<span class="token constant">UDP</span>报文<span class="token operator">*</span><span class="token operator">*</span>
+
+	<span class="token operator">-</span> 使用`<span class="token class-name">DatagramSocket</span>`实例的`receive`方法接收一个`<span class="token class-name">DatagramPacket</span>`实例。
+
+	```java
+	datagramSocket<span class="token punctuation">.</span><span class="token function">receive</span><span class="token punctuation">(</span>datagramPacket<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>当<code>receive</code>方法返回时，数据报文将包含客户端的地址信息，从而使服务器知道该消息的来源，以便进行回复。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>通信过程</strong></p>
+<ul>
+<li>使用套接字的<code>send</code>和<code>receive</code>方法来发送和接收<code>DatagramPacket</code>的实例进行通信。</li>
+</ul>
+</li>
+</ol>
+<h4 id="注意事项-6"><a href="#注意事项-6" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li><p>服务端需要循环调用<code>receive</code>方法接收消息。</p>
+</li>
+<li><p>如果使用同一个报文实例来接收消息，在下一个<code>receive</code>方法调用之前，需要调用报文实例的<code>setLength(缓存数组.length)</code>方法，以确保兼容性，避免数据丢失的BUG。</p>
+  <pre class="line-numbers language-java" data-language="java"><code class="language-java">datagramPacket<span class="token punctuation">.</span><span class="token function">setLength</span><span class="token punctuation">(</span>缓存数组<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>每次<code>receive</code>接收到的报文会修改内部消息的长度值。如果接收到的消息是10字节，下一次<code>receive</code>接收超出10字节的内容将会被丢弃。因此，务必重置长度值以防数据丢失。</p>
+</li>
+</ul>
+<h3 id="UDP-服务器处理方法"><a href="#UDP-服务器处理方法" class="headerlink" title="UDP 服务器处理方法"></a>UDP 服务器处理方法</h3><h4 id="注意事项-7"><a href="#注意事项-7" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li>与TCP不同，小负荷的UDP服务器通常<code>不采用多线程方式</code>。</li>
+<li>由于UDP使用同一个套接字对应多个客户端，UDP服务器可以简单地使用顺序迭代的方式处理请求，而无需创建多个线程。</li>
+</ul>
+<h4 id="处理模式"><a href="#处理模式" class="headerlink" title="处理模式"></a>处理模式</h4><ul>
+<li>UDP服务器的工作模式可以直接按照以下步骤进行：</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 省略...... </span>
+<span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> buffer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token constant">MAX_PACKET_SIZE</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// 创建数据缓存区</span>
+<span class="token class-name">DatagramPacket</span> inPacket <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DatagramPacket</span><span class="token punctuation">(</span>buffer<span class="token punctuation">,</span> buffer<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 创建接收数据报文</span>
+<span class="token comment">// 省略..... </span>
+
+<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> 
+    <span class="token comment">// 等待客户端请求</span>
+    serverSocket<span class="token punctuation">.</span><span class="token function">receive</span><span class="token punctuation">(</span>inPacket<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 阻塞等待，来了哪个客户端就服务哪个客户端 </span>
+
+    <span class="token comment">// 处理请求</span>
+    <span class="token class-name">String</span> receivedData <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>inPacket<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> inPacket<span class="token punctuation">.</span><span class="token function">getLength</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 读取客户端发送的数据</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"收到来自客户端的消息: "</span> <span class="token operator">+</span> receivedData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 发送响应数据</span>
+    <span class="token class-name">String</span> response <span class="token operator">=</span> <span class="token string">"服务器已收到: "</span> <span class="token operator">+</span> receivedData<span class="token punctuation">;</span>
+    <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> responseData <span class="token operator">=</span> response<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">DatagramPacket</span> outPacket <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DatagramPacket</span><span class="token punctuation">(</span>responseData<span class="token punctuation">,</span> responseData<span class="token punctuation">.</span>length<span class="token punctuation">,</span> inPacket<span class="token punctuation">.</span><span class="token function">getAddress</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> inPacket<span class="token punctuation">.</span><span class="token function">getPort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    serverSocket<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>outPacket<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 发送响应给客户端</span>
+
+    <span class="token comment">// 每次调用前，重置报文内部消息长度为缓冲区的实际长度</span>
+    inPacket<span class="token punctuation">.</span><span class="token function">setLength</span><span class="token punctuation">(</span>buffer<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h4><ol>
+<li><strong>创建缓冲区</strong>：在服务器启动时，创建一个字节数组作为数据缓存区，以存放接收到的UDP数据报文。</li>
+<li><strong>进入处理循环</strong>：服务器进入无限循环，等待客户端的请求。</li>
+<li><strong>接收数据</strong>：当客户端请求到达时，通过<code>serverSocket.receive(inPacket)</code>方法阻塞等待，直到有数据到达。</li>
+<li><strong>处理请求</strong>：从<code>inPacket</code>中读取客户端发送的数据，处理相应的业务逻辑。</li>
+<li>发送响应：<ul>
+<li>根据处理结果创建响应数据，并将其封装到新的<code>DatagramPacket</code>中。</li>
+<li>使用<code>serverSocket.send(outPacket)</code>将响应发送回客户端。</li>
+</ul>
+</li>
+<li><strong>重置长度</strong>：在每次接收数据之前，调用<code>inPacket.setLength(buffer.length)</code>，以确保能够正确接收下一次数据，避免出现数据丢失。</li>
+</ol>
+<h4 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h4><ul>
+<li>这种单线程顺序处理方法简单易懂，适用于负载较轻的场景，可以有效减少服务器资源的占用。</li>
+<li>与多线程相比，能避免上下文切换和线程管理带来的额外开销。</li>
+</ul>
+<h3 id="预习版本代码"><a href="#预习版本代码" class="headerlink" title="预习版本代码"></a>预习版本代码</h3>
                 
             </div>
             <hr/>
@@ -4078,7 +4285,7 @@ map<span class="token punctuation">.</span><span class="token function">compute<
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">411k</span>&nbsp;字
+                class="white-color">413.1k</span>&nbsp;字
             
             
             
