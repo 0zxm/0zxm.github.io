@@ -478,14 +478,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    39.3k
+                    40.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    163 分
+                    166 分
                 </div>
                 
 
@@ -6304,6 +6304,88 @@
 <li>对于两个不同的单位的值之间的运算，运算结果的值取第一个值的单位</li>
 <li>如果两个值之间只有一个值有单位，则运算结果就取该单位</li>
 </ul>
+<h4 id="3-8-Less导入"><a href="#3-8-Less导入" class="headerlink" title="3.8 Less导入"></a>3.8 Less导入</h4><pre class="line-numbers language-less" data-language="less"><code class="language-less"><span class="token comment">//在 index.less 中导入common.less 文件</span>
+<span class="token variable">@import</span> <span class="token string">"common"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="4-rem适配布局"><a href="#4-rem适配布局" class="headerlink" title="4.rem适配布局"></a>4.rem适配布局</h3><h4 id="4-1-rem-实际开发适配方案"><a href="#4-1-rem-实际开发适配方案" class="headerlink" title="4.1 rem 实际开发适配方案"></a>4.1 rem 实际开发适配方案</h4><ol>
+<li>按照设计稿与设备宽度的比例，动态计算并设置html根标签的 font-size 大小;(媒体查询)</li>
+<li>CSS 中，设计稿元素的宽、高、相对位置等取值，按照同等比例换算为 rem 为单位的值;</li>
+</ol>
+<h4 id="4-2-rem-适配方案技术使用-市场主流"><a href="#4-2-rem-适配方案技术使用-市场主流" class="headerlink" title="4.2 rem 适配方案技术使用(市场主流)"></a>4.2 rem 适配方案技术使用(市场主流)</h4><ul>
+<li>技术方案1<ul>
+<li>less</li>
+<li>媒体查询</li>
+<li>rem</li>
+</ul>
+</li>
+<li>技术方案2(推荐)<ul>
+<li>flexible.js</li>
+<li>rem</li>
+</ul>
+</li>
+</ul>
+<p><strong>总结:</strong></p>
+<ol>
+<li>两种方案现在都存在。</li>
+<li>方案2 更简单，现阶段大家无需了解里面的js代码。</li>
+</ol>
+<h4 id="4-3-rem-实际开发适配方案1"><a href="#4-3-rem-实际开发适配方案1" class="headerlink" title="4.3 rem 实际开发适配方案1"></a>4.3 rem 实际开发适配方案1</h4><p>rem +媒体查询 + less 技术</p>
+<ol>
+<li><strong>设计稿常见尺寸宽度</strong></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>设备</th>
+<th>常见宽度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>iphone 4.5</td>
+<td>640px</td>
+</tr>
+<tr>
+<td>iphone 678</td>
+<td>750px</td>
+</tr>
+<tr>
+<td>Android</td>
+<td>常见320px、360px、375px、384px、400px、414px、500px、720px<br>大部分4.7~5寸的安卓设备为720px</td>
+</tr>
+</tbody></table>
+<p>一般情况下，我们现在基本以750为准。一套或两套效果图适应大部分的屏幕，放弃极端屏或对其优雅降级，牺牲一些效果</p>
+<ol start="2">
+<li><p>动态设置 html 标签 font-size 大小</p>
+<ol>
+<li>假设设计稿是750px</li>
+<li>假设我们把整个屏幕划分为15等份(划分标准不一可以是20份也可以是10等份)</li>
+<li>每一份作为html字体大小，这里就是50px</li>
+<li>那么在320px设备的时候，字体大小为320&#x2F;15就是 21.33px</li>
+<li>用我们页面元素的大小 除以不同的 html 字体大小会发现他们比例还是相同的</li>
+<li>比如我们以 750为标准设计稿</li>
+<li>一个100*100像素的页面元素在750屏幕下，就是100&#x2F;50 转换为rem是2rem * 2rem 比例是 1比1</li>
+<li>320屏幕下，html字体大小为21.33 则2rem&#x3D;42.66px 此时宽和高都是 42.66 但是 宽和高的比例还是 1比1</li>
+<li>但是已经能实现不同屏幕下 页面元素盒子等比例缩放的效果</li>
+</ol>
+</li>
+<li><p>元素大小取值方法</p>
+<ol>
+<li>最后的公式:页面元素的 rem值 &#x3D; 页面元素值(px)&#x2F;(屏幕宽度&#x2F;划分的份数)</li>
+<li>屏幕宽度&#x2F;划分的份数就是 html font-size 的大小</li>
+<li>或者:页面元素的 rem值 &#x3D; 页面元素值(px)&#x2F;html font-size 字体大小</li>
+</ol>
+</li>
+</ol>
+<h4 id="4-4-rem-实际开发适配方案2"><a href="#4-4-rem-实际开发适配方案2" class="headerlink" title="4.4 rem 实际开发适配方案2"></a>4.4 rem 实际开发适配方案2</h4><p>手机淘宝团队出的简洁高效移动端适配库</p>
+<p>我们再也不需要在写不同屏幕的媒体查询，因为里面js做了处理</p>
+<p>它的原理是把当前设备划分为10等份，但是不同设备下，比例还是一致的。</p>
+<p>我们要做的，就是确定好我们当前设备的html 文字大小就可以了比如当前设计稿是750px，那么我们只需要把html文字大小设置为75px(750px&#x2F;10)就可以</p>
+<p>里面页面元素rem值:页面元素的px值&#x2F;75</p>
+<p>剩余的，让flexible.js来去算</p>
+<h4 id="4-5-VSCode-px-转换rem-插件-cssrem"><a href="#4-5-VSCode-px-转换rem-插件-cssrem" class="headerlink" title="4.5 VSCode px 转换rem 插件 cssrem"></a>4.5 VSCode px 转换rem 插件 cssrem</h4><ol>
+<li>打开设置</li>
+<li>在<code>setting.json</code>中设置cssrem插件的<code>base-font-size</code></li>
+</ol>
 
                 
             </div>
@@ -6817,7 +6899,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">415k</span>&nbsp;字
+                class="white-color">416.8k</span>&nbsp;字
             
             
             
