@@ -486,14 +486,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.5k
+                    6.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    20 分
+                    23 分
                 </div>
                 
 
@@ -1083,7 +1083,7 @@
 <p><img src="/2024/09/03/shu-ju-wa-jue/%E5%88%86%E8%A3%82%E4%BF%A1%E6%81%AF%E9%87%8F.png" alt="image-20241008190951727"></p>
 <p>分裂信息计算的是，如果按照属性 ( A ) 划分数据集，需要多少位来编码表示每个样本属于哪个子集。这个值越小，表示使用属性 ( A ) 进行划分后得到的子集分布越均匀，分裂信息越小。</p>
 <p>在C4.5算法中，分裂信息用于计算信息增益率（Gain Ratio），信息增益率是信息增益与分裂信息的比值，用于选择最优的属性进行数据集的划分。信息增益率的计算可以减少属性值数量较多时对信息增益的影响，从而避免选择那些具有许多值的属性。</p>
-<h4 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h4><img src="/2024/09/03/shu-ju-wa-jue/Kimi 2024-10-08.jpg" alt="Kimi 2024-10-08" style="zoom: 80%;">
+<h4 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h4><img src="/2024/09/03/shu-ju-wa-jue/Kimi 2024-10-08.jpg" alt="Kimi 2024-10-08" style="zoom: 37%;">
 
 
 
@@ -1091,11 +1091,52 @@
 <li><code>纯度作为构建二叉决策数的标准</code></li>
 </ul>
 <p><img src="/2024/09/03/shu-ju-wa-jue/%E5%9F%BA%E5%B0%BC%E6%8C%87%E6%95%B0.png" alt="image-20241008192548006"></p>
-<h3 id="3-6-总结"><a href="#3-6-总结" class="headerlink" title="3.6 总结"></a>3.6 总结</h3><ol>
+<h3 id="3-6-决策数算法总结"><a href="#3-6-决策数算法总结" class="headerlink" title="3.6 决策数算法总结"></a>3.6 决策数算法总结</h3><ol>
 <li>其中ID3只能用作分类，划分准则是信息增益。</li>
 <li>C4.5也只能用作分类，划分准则是先寻找信息增益大于均值的，然后再根据增益率选择最优划分属性</li>
 <li>CART决策树既可以分类也可以回归。分类时使用的基尼指数，回归时使用误差平方和。</li>
 </ol>
+<h3 id="3-7-贝叶斯分类算法"><a href="#3-7-贝叶斯分类算法" class="headerlink" title="3.7 贝叶斯分类算法"></a>3.7 贝叶斯分类算法</h3><ul>
+<li>贝叶斯分类方法是一种<code>基于统计</code>的学习方法，是利用概率统计知识进行学习分类的方法</li>
+<li>贝叶斯分类算法是建立在<code>贝叶斯定理</code>基础上的算法</li>
+</ul>
+<h5 id="贝叶斯定理"><a href="#贝叶斯定理" class="headerlink" title="贝叶斯定理"></a>贝叶斯定理</h5><img src="/2024/09/03/shu-ju-wa-jue/贝叶斯定理.png" alt="image-20241019104348149">
+
+<p><code>贝叶斯定理是在H、X的先验概率P(H)、P(X)和X的后验概率P(X|H)已知的情况下，计算H的后验概率P(H|X)的方法</code></p>
+<h5 id="例题-2"><a href="#例题-2" class="headerlink" title="例题"></a>例题</h5><p><img src="/2024/09/03/shu-ju-wa-jue/%E8%B4%9D%E5%8F%B6%E6%96%AF%E4%BE%8B%E9%A2%981.png" alt="image-20241019105144131"></p>
+<p><img src="/2024/09/03/shu-ju-wa-jue/%E8%B4%9D%E5%8F%B6%E6%96%AF%E4%BE%8B%E9%A2%982.png" alt="image-20241019105219534"></p>
+<h5 id="朴素贝叶斯分类"><a href="#朴素贝叶斯分类" class="headerlink" title="朴素贝叶斯分类"></a>朴素贝叶斯分类</h5><p>朴素贝叶斯分类算法利用贝叶斯定理来<strong>预测一个未知类别的样本属于各个类别的可能性</strong>，选择其中<strong>可能性最大</strong>的一个类别作为该样本的最终类别</p>
+<p><img src="/2024/09/03/shu-ju-wa-jue/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E4%BE%8B%E9%A2%98.png" alt="屏幕截图_19-10-2024_111237_"></p>
+<p><strong>上题中因为P(X)已经是确定条件,所以P(X) &#x3D; 1,省略不写</strong></p>
+<h4 id="朴素贝叶斯分类的优缺点"><a href="#朴素贝叶斯分类的优缺点" class="headerlink" title="朴素贝叶斯分类的优缺点"></a>朴素贝叶斯分类的优缺点</h4><ul>
+<li>朴素贝叶斯分类算法的优点在于： <ul>
+<li><code>容易实现 </code></li>
+<li>在大多数情况下所获得的结果比较好。</li>
+</ul>
+</li>
+<li>缺点： <ul>
+<li>算法成立的前提是<code>假设各属性之间互相独立</code>。 </li>
+<li>当数据集满足这种独立性假设时，分类准确度较高。 而实际领域中，数据集可能并不完全满足独立性假设</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-8-K-最近邻算法"><a href="#3-8-K-最近邻算法" class="headerlink" title="3.8 K-最近邻算法"></a>3.8 K-最近邻算法</h3><p><code>K最近邻(k Nearest Neighbors，简称KNN)</code>方法是一种基于实例(已有样本)进行推理的算法，通过对已有训练样本集和新进的未知样本的比较得出该新进样本的类别。</p>
+<p>它不需要先使用训练样本进行分类器的设计，而是直接用训练集对数据样本进行分类， 确定其类别标号</p>
+<h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p><strong>K-最近邻算法的基本思想是：</strong></p>
+<p>对于未知类标号的样本，按照欧几里得距离找出它在训练集中的k个最近邻，将未知样本赋予k最近邻中出现次数最多的类别号</p>
+<p><img src="/2024/09/03/shu-ju-wa-jue/k%E6%9C%80%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95.png" alt="image-20241019112034999"></p>
+<p><code>对于类别数据来说,相同为0,不同为1</code></p>
+<h2 id="4-测试和评价分类模型的方法"><a href="#4-测试和评价分类模型的方法" class="headerlink" title="4. 测试和评价分类模型的方法"></a>4. 测试和评价分类模型的方法</h2><h3 id="4-1-保持方法"><a href="#4-1-保持方法" class="headerlink" title="4.1 保持方法"></a>4.1 保持方法</h3><ul>
+<li>保持(Hold Out)方法是我们目前为止讨论准确率时默认的方法</li>
+</ul>
+<p>其执行步骤如下：</p>
+<ol>
+<li>把数据集分为两个相互独立的子集：训练集和测试集。<br>通常情况下，指定不小于三分之二的数据分配到训练集，其余三分之一分配到测试集。 </li>
+<li>使用训练集来训练构建分类模型，用测试集来评估分类模型的分类效果</li>
+</ol>
+<h3 id="4-2-随机子抽样"><a href="#4-2-随机子抽样" class="headerlink" title="4.2 随机子抽样"></a>4.2 随机子抽样</h3><p><img src="/2024/09/03/shu-ju-wa-jue/%E9%9A%8F%E6%9C%BA%E5%AD%90%E6%8A%BD%E6%A0%B7.png"></p>
+<h3 id="4-3-k折交叉验证"><a href="#4-3-k折交叉验证" class="headerlink" title="4.3 k折交叉验证"></a>4.3 k折交叉验证</h3><p><img src="/2024/09/03/shu-ju-wa-jue/k%E6%8A%98%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81.png" alt="image-20241019112722475"></p>
+<h3 id="4-4-评价方法"><a href="#4-4-评价方法" class="headerlink" title="4.4.评价方法"></a>4.4.评价方法</h3><p><img src="/2024/09/03/shu-ju-wa-jue/%E8%AF%84%E4%BB%B7%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B.png" alt="image-20241019113157912"></p>
 
                 
             </div>
@@ -1644,7 +1685,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">416.8k</span>&nbsp;字
+                class="white-color">417.5k</span>&nbsp;字
             
             
             
