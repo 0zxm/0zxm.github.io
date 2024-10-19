@@ -478,14 +478,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    35.4k
+                    35.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    148 分
+                    150 分
                 </div>
                 
 
@@ -5425,6 +5425,93 @@ div<span class="token punctuation">.</span><span class="token function">addEvent
 <td>使用空格，代表后代选择器，获取ul下的所有li元素，包括孙子等</td>
 </tr>
 </tbody></table>
+<h4 id="3-3-隐式迭代"><a href="#3-3-隐式迭代" class="headerlink" title="3.3 隐式迭代"></a>3.3 隐式迭代</h4><p>遍历内部DOM元素(伪数组形式存储)的过程就叫做<code>隐式迭代</code>。</p>
+<p>简单理解: 给匹配到的所有元素进行循环遍历，执行相应的方法，而不用我们再进行循环，简化我们的操作方便我们调用。 </p>
+<h4 id="3-4-jQuery筛选选择器"><a href="#3-4-jQuery筛选选择器" class="headerlink" title="3.4 jQuery筛选选择器"></a>3.4 jQuery筛选选择器</h4><table>
+<thead>
+<tr>
+<th>语法</th>
+<th>用法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>:first</td>
+<td>$(‘li:first’)</td>
+<td>获取第一个li元素</td>
+</tr>
+<tr>
+<td>:last</td>
+<td>$(‘li:last’)</td>
+<td>获取最后一个li元素</td>
+</tr>
+<tr>
+<td>:eq(index)</td>
+<td>$(“li:eq(2)”)</td>
+<td>获取到的li元素中，选择索引号为2的元素，索引号index从0开始</td>
+</tr>
+<tr>
+<td>:odd</td>
+<td>$(“li:odd”)</td>
+<td>获取到的li元素中，选择索引号为奇数的元素</td>
+</tr>
+<tr>
+<td>:even</td>
+<td>$(“li:even”)</td>
+<td>获取到的li元素中，选择索引号为偶数的元素</td>
+</tr>
+</tbody></table>
+<h4 id="3-5-jQuery筛选方法-重点"><a href="#3-5-jQuery筛选方法-重点" class="headerlink" title="3.5 jQuery筛选方法(重点)"></a>3.5 jQuery筛选方法(重点)</h4><table>
+<thead>
+<tr>
+<th>语法</th>
+<th>用法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>parent()</td>
+<td>$(“li”).parent();</td>
+<td>查找父级</td>
+</tr>
+<tr>
+<td>children(selector)</td>
+<td>$(“ul”).children(“li”);</td>
+<td>相当于$(“ul&gt;li”)，最近一级（亲儿子）</td>
+</tr>
+<tr>
+<td>find(selector)</td>
+<td>$(“ul”).find(“li”);</td>
+<td>相当于$(“ul li”)，后代选择器</td>
+</tr>
+<tr>
+<td>siblings(selector)</td>
+<td>$(“.first”).siblings(“li”);</td>
+<td>查找兄弟节点，不包括自身</td>
+</tr>
+<tr>
+<td>nextAll([expr])</td>
+<td>$(“.first”).nextAll()</td>
+<td>查找当前元素之后所有的同辈元素</td>
+</tr>
+<tr>
+<td>prevtAll([expr])</td>
+<td>$(“.last”).prevAll()</td>
+<td>查找当前元素之前所有的同辈元素</td>
+</tr>
+<tr>
+<td>hasClass(class)</td>
+<td>$(“div”).hasClass(“protected”)</td>
+<td>检查当前的元素是否含有某个特定的类，如果有，则返回true</td>
+</tr>
+<tr>
+<td>eq(index)</td>
+<td>$(“li”).eq(2);</td>
+<td>相当于<code>$(&quot;li:eq(2)&quot;)</code>,index从0开始</td>
+</tr>
+</tbody></table>
+<h3 id="4-jQuery修改元素属性"><a href="#4-jQuery修改元素属性" class="headerlink" title="4. jQuery修改元素属性"></a>4. jQuery修改元素属性</h3><h4 id="4-1-jQuery设置样式"><a href="#4-1-jQuery设置样式" class="headerlink" title="4.1 jQuery设置样式"></a>4.1 jQuery设置样式</h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token string">'属性'</span><span class="token punctuation">,</span><span class="token string">'值'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 
                 
             </div>
@@ -5940,7 +6027,7 @@ div<span class="token punctuation">.</span><span class="token function">addEvent
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">417.5k</span>&nbsp;字
+                class="white-color">417.9k</span>&nbsp;字
             
             
             
