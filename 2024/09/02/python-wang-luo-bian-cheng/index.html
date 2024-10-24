@@ -690,9 +690,6 @@
 <li>关闭 accept 返回的套接字意味着和<code>这个客户端已经通信完毕</code></li>
 <li><code>当客户端的套接字调用close后,服务器端的recv会解阻塞,返回的数据长度为0</code>,服务端可以通过返回数据的长度来判断客户端是否已经下线，反之<code>服务端关闭套接字，客户端的recv也会解阻塞，返回的数据长度也为0</code></li>
 </ol>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">## 设置端口复用</span>
-tcp_server_socket<span class="token punctuation">.</span>setsockopt<span class="token punctuation">(</span>socket<span class="token punctuation">.</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> socket
 
 <span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
