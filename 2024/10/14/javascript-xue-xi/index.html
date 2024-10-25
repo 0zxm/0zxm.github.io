@@ -478,14 +478,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    37.4k
+                    37.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    157 分
+                    159 分
                 </div>
                 
 
@@ -5828,6 +5828,51 @@ div<span class="token punctuation">.</span><span class="token function">addEvent
 <span class="token operator">&lt;</span><span class="token operator">/</span>html<span class="token operator">></span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h3 id="6-jQuery的属性操作"><a href="#6-jQuery的属性操作" class="headerlink" title="6. jQuery的属性操作"></a>6. jQuery的属性操作</h3><h4 id="6-1-设置或获取元素固有属性值-prop"><a href="#6-1-设置或获取元素固有属性值-prop" class="headerlink" title="6.1 设置或获取元素固有属性值 prop()"></a>6.1 设置或获取元素固有属性值 prop()</h4><p>所谓元素固有属性就是元素本身自带的属性，比如<code>&lt;a&gt;元素里面的 href,比如 &lt;input&gt;元素里面的type</code>。</p>
+<ol>
+<li>获取属性语法</li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">prop</span><span class="token punctuation">(</span><span class="token string">"属性"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="2">
+<li>设置属性语法</li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">prop</span><span class="token punctuation">(</span><span class="token string">"属性"</span>，<span class="token string">"属性值"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="6-2-设置或获取元素自定义属性值-attr"><a href="#6-2-设置或获取元素自定义属性值-attr" class="headerlink" title="6.2 设置或获取元素自定义属性值 attr()"></a>6.2 设置或获取元素自定义属性值 attr()</h4><p>用户自己给元素添加的属性，我们称为自定义属性。比如给 div 添加 index&#x3D;“1“</p>
+<ol>
+<li>获取属性语法</li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">attr</span><span class="token punctuation">(</span><span class="token string">"属性"</span><span class="token punctuation">)</span><span class="token comment">//类似原生 getAttribute()</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="2">
+<li>设置属性语法</li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">attr</span><span class="token punctuation">(</span><span class="token string">"属性"</span>，<span class="token string">"属性值"</span><span class="token punctuation">)</span><span class="token comment">//类似原生 setAttribute()</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="6-3-数据缓存-data"><a href="#6-3-数据缓存-data" class="headerlink" title="6.3 数据缓存 data()"></a>6.3 数据缓存 data()</h4><p>data()方法可以在指定的元素上存取数据，并不会修改 DOM 元素结构。一旦页面刷新，之前存放的数据都将被移除</p>
+<p>1.附加数据语法</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"name"</span>，<span class="token string">"value"</span><span class="token punctuation">)</span><span class="token comment">// 向被选元素附加数据</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>2.获取数据语法</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">date</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token comment">// 向被选元素获取数据</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>同时，还可以读取 HTML5 自定义属性 data-index，得到的是数字型</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">data-index</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+
+console.log($("span").data("index")) <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>-</span> <span class="token attr-name">输出1</span> <span class="token attr-name">-</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="7-jQuery内容文本值"><a href="#7-jQuery内容文本值" class="headerlink" title="7.jQuery内容文本值"></a>7.jQuery内容文本值</h3><p>主要针对元素的内容还有表单的值操作。</p>
+<h4 id="7-1-普通元素内容html-相当于原生innerHTML"><a href="#7-1-普通元素内容html-相当于原生innerHTML" class="headerlink" title="7.1 普通元素内容html()(相当于原生innerHTML)"></a>7.1 普通元素内容html()(相当于原生innerHTML)</h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">html</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//获取元素内容</span>
+<span class="token function">html</span><span class="token punctuation">(</span><span class="token string">"内容"</span><span class="token punctuation">)</span> <span class="token comment">// 设置元素内容值</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="7-2-text-文本内容值"><a href="#7-2-text-文本内容值" class="headerlink" title="7.2 text()文本内容值"></a>7.2 text()文本内容值</h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">text</span><span class="token punctuation">(</span><span class="token string">"文本内容"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="7-3-val-表单值"><a href="#7-3-val-表单值" class="headerlink" title="7.3 val()表单值"></a>7.3 val()表单值</h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">val</span><span class="token punctuation">(</span><span class="token string">"文本内容"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
 
                 
             </div>
@@ -6343,7 +6388,7 @@ div<span class="token punctuation">.</span><span class="token function">addEvent
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">431.4k</span>&nbsp;字
+                class="white-color">431.8k</span>&nbsp;字
             
             
             
