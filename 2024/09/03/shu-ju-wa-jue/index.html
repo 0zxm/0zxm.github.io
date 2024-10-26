@@ -1,0 +1,812 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>数据挖掘 | 0zxm</title><meta name="author" content="0zxm"><meta name="copyright" content="0zxm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="课程资源MOOC课程 配套代码 数据挖掘 (educoder.net) 【决策树】深入浅出讲解决策树算法（原理、构建）_决策树算法原理-CSDN博客 决策树原理详解（无基础的同样可以看懂） 决策树C4.5算法的技术深度剖析、实战解读 - techlead_krischang - 博客园 (cnblogs.com) 1.绪论1.1 数据挖掘的重要性 背景: 数据爆炸但知识贫乏  人们积累的数据越来越">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据挖掘">
+<meta property="og:url" content="https://0zxm.github.io/2024/09/03/shu-ju-wa-jue/index.html">
+<meta property="og:site_name" content="0zxm">
+<meta property="og:description" content="课程资源MOOC课程 配套代码 数据挖掘 (educoder.net) 【决策树】深入浅出讲解决策树算法（原理、构建）_决策树算法原理-CSDN博客 决策树原理详解（无基础的同样可以看懂） 决策树C4.5算法的技术深度剖析、实战解读 - techlead_krischang - 博客园 (cnblogs.com) 1.绪论1.1 数据挖掘的重要性 背景: 数据爆炸但知识贫乏  人们积累的数据越来越">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://0zxm.github.io/img/cover2.jpg">
+<meta property="article:published_time" content="2024-09-03T09:12:17.000Z">
+<meta property="article:modified_time" content="2024-10-19T03:33:32.234Z">
+<meta property="article:author" content="0zxm">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="数据挖掘">
+<meta property="article:tag" content="数学建模">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0zxm.github.io/img/cover2.jpg"><link rel="shortcut icon" href="/"><link rel="canonical" href="https://0zxm.github.io/2024/09/03/shu-ju-wa-jue/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '数据挖掘',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-10-19 11:33:32'
+}</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover2.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">0zxm</span></a><a class="nav-page-title" href="/"><span class="site-name">数据挖掘</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">数据挖掘</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-09-03T09:12:17.000Z" title="发表于 2024-09-03 17:12:17">2024-09-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-10-19T03:33:32.234Z" title="更新于 2024-10-19 11:33:32">2024-10-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">6.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>20分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="课程资源"><a href="#课程资源" class="headerlink" title="课程资源"></a>课程资源</h2><p><a target="_blank" rel="noopener" href="https://www.icourse163.org/learn/NUDT-1461782176">MOOC课程</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/zyding1983/datamining">配套代码</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.educoder.net/paths/4153">数据挖掘 (educoder.net)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/kevinjin2011/article/details/125147134">【决策树】深入浅出讲解决策树算法（原理、构建）_决策树算法原理-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/GreenYang5277/article/details/104500739">决策树原理详解（无基础的同样可以看懂）</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xfuture/p/17844577.html">决策树C4.5算法的技术深度剖析、实战解读 - techlead_krischang - 博客园 (cnblogs.com)</a></p>
+<h2 id="1-绪论"><a href="#1-绪论" class="headerlink" title="1.绪论"></a>1.绪论</h2><h3 id="1-1-数据挖掘的重要性"><a href="#1-1-数据挖掘的重要性" class="headerlink" title="1.1 数据挖掘的重要性"></a>1.1 数据挖掘的重要性</h3><ul>
+<li><strong>背景</strong>: 数据爆炸但知识贫乏</li>
+</ul>
+<p><strong>人们积累的数据越来越多</strong>。但是，目前这些数据还仅仅应用在数据的录入查询、统计等功能，无法发现数据中存在的关系和规则，<strong>无法根据现有的数据预测未来的发展趋势</strong>，导致了<strong>“数据爆炸但知识贫乏”</strong>的现象。</p>
+<ul>
+<li>从商业数据到商业智能的进化</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>进化阶段</th>
+<th>商业问题</th>
+<th>支持技术</th>
+<th>产品特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据搜集 (60年代)</td>
+<td>“过去五年中我的总收入是多少？”</td>
+<td>计算机、磁带和磁盘</td>
+<td>提供历史性的、静态的数据信息</td>
+</tr>
+<tr>
+<td>数据访问 (80年代)</td>
+<td>“在新英格兰的分部去年三月的销售额是多少？”</td>
+<td>关系数据库(RDBMS)结构化查询语言(SQL)ODBC</td>
+<td>在记录级提供历史性的、动态的数据信息</td>
+</tr>
+<tr>
+<td>数据仓库决策支持 (90年代)</td>
+<td>“在新英格兰的分部去年三月的销售额是多少？波士顿据此可得出什么结论？”</td>
+<td>联机分析处理(OLAP)多维数据库数据仓库</td>
+<td>在各种层次上提供动态的数据信息</td>
+</tr>
+<tr>
+<td>数据挖掘 (正在流行)</td>
+<td>“下个月波士顿的销售会怎么样？为什么？”</td>
+<td>高级算法多处理器计算机海量数据库</td>
+<td>提供预测性信息</td>
+</tr>
+</tbody></table>
+<ul>
+<li>科学发展范式</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>时间段</th>
+<th>发展内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>经验科学</td>
+<td>Before-1600</td>
+<td>两个铁球同时落地</td>
+</tr>
+<tr>
+<td>理论科学</td>
+<td>1600-1950s</td>
+<td>集合论、图论、数论和概率论</td>
+</tr>
+<tr>
+<td>计算科学</td>
+<td>1950s-1990s</td>
+<td>人工智能1.0（简单的优化、贪婪算法）</td>
+</tr>
+<tr>
+<td>数据科学</td>
+<td>1990-now</td>
+<td>数据挖掘、人工智能2.0（以数据为基础的强化学习）</td>
+</tr>
+</tbody></table>
+<h3 id="1-2-数据挖掘的定义和概念"><a href="#1-2-数据挖掘的定义和概念" class="headerlink" title="1.2 数据挖掘的定义和概念"></a>1.2 数据挖掘的定义和概念</h3><ul>
+<li>数据挖掘是从<strong>大量的、不完全的、有噪声的、模糊的随机</strong>的数据中提取隐含在其中的、人们事先不知道的但又是<strong>潜在有用的信息和知识</strong>的过程。</li>
+<li>Data Mining is the process of automatically extracting <strong>interesting</strong> and <strong>useful hidden</strong> patterns from usually <strong>massive</strong>, incomplete and noisy data.[Wikipedia]</li>
+</ul>
+<h4 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h4><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/136978323">聊聊经典案例“啤酒与尿布”的本质：关联分析 - 知乎 (zhihu.com)</a></p>
+<p>数据分析里有一个经典的案例，沃尔玛超市里经常会把婴儿的<strong>尿不湿和啤酒</strong>放在一起售卖，原因是经过数据分析发现，出来买尿不湿的家长以父亲居多，如果他们在买尿不湿的同时看到了啤酒，将有很大的概率购买，这样就可以<strong>提高啤酒的销售量</strong>。</p>
+<h4 id="数据、信息、知识"><a href="#数据、信息、知识" class="headerlink" title="数据、信息、知识"></a>数据、信息、知识</h4><img src="/2024/09/03/shu-ju-wa-jue/数据信息知识.png" alt="image-20240904221443832" style="zoom:67%;">
+
+<ul>
+<li>“8,000”和“10,000”是<strong>数据</strong>。</li>
+<li>“8,000米是飞机飞行最大高度”与“10,000米的高山”是<strong>信息</strong>。</li>
+<li>“飞机无法飞越这座高山”是<strong>知识</strong>。</li>
+<li>“飞机必须飞得比山高”是<strong>智慧</strong>。</li>
+</ul>
+<h3 id="1-3-数据挖掘的主要内容"><a href="#1-3-数据挖掘的主要内容" class="headerlink" title="1.3 数据挖掘的主要内容"></a>1.3 数据挖掘的主要内容</h3><h4 id="关联规则挖掘"><a href="#关联规则挖掘" class="headerlink" title="关联规则挖掘"></a>关联规则挖掘</h4><img src="/2024/09/03/shu-ju-wa-jue/关联规则挖掘.png" alt="image-20240904221842077" style="zoom:80%;">
+
+<p>根据购买的数据,分析的出,购买牛奶的顾客,更可能同时买了面包,这两样东西具有关联性</p>
+<p>于是,在超市中,经常会看到用<strong>胶布把牛奶和面包(或者其他)<strong>进行捆绑销售,防止因为需要跑来跑去减少销量(增加顾客工作量),这就是</strong>关联性</strong></p>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><p>分类是指将数据集中的对象或实例分配到<strong>预先定义的类别或标签</strong>中。它是一种<strong>监督学习</strong>的方法</p>
+<img src="/2024/09/03/shu-ju-wa-jue/分类.png" alt="image-20240904222616382" style="zoom:67%;">
+
+<h5 id="分类分析步骤"><a href="#分类分析步骤" class="headerlink" title="分类分析步骤"></a>分类分析步骤</h5><ol>
+<li><strong>学习建模</strong>, 通过大量的训练集学习建立模型</li>
+<li><strong>分类测试</strong>, 将大量的新数据通过数据模型进行测试,查看<strong>输出结果</strong>是否符合预期</li>
+</ol>
+<h4 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h4><p><strong>不先训练模型,在通过模型预测</strong>,通常使用相似性算法,不断地进行算法,最后得出输出</p>
+<img src="/2024/09/03/shu-ju-wa-jue/聚类_扑克牌.png" alt="image-20240904223903131" style="zoom:50%;">
+
+<h4 id="分类和聚类的区别"><a href="#分类和聚类的区别" class="headerlink" title="分类和聚类的区别"></a>分类和聚类的区别</h4><ul>
+<li>非监督式学习<ul>
+<li>比如有一群白色和黑色的玩偶,你<strong>天然的知道</strong>要将白色的放到一起,黑色的放到一堆</li>
+</ul>
+</li>
+<li>监督式学习<ul>
+<li>你在一个广场上站着,不断的有男性来问你男厕所在哪,女性来问女厕所在哪,所以,你<strong>归纳</strong>出,<strong>男生就要去男厕所</strong>,在这之后,再有人来问,你会根据你的<strong>经验提前预知</strong>到他将要问什么</li>
+</ul>
+</li>
+</ul>
+<h4 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h4><img src="/2024/09/03/shu-ju-wa-jue/回归.png" alt="image-20240904224146310" style="zoom:80%;">
+
+<h3 id="1-4-数据挖掘的过程"><a href="#1-4-数据挖掘的过程" class="headerlink" title="1.4 数据挖掘的过程"></a>1.4 数据挖掘的过程</h3><img src="/2024/09/03/shu-ju-wa-jue/数据挖掘过程.png" alt="image-20240904224425973" style="zoom: 67%;">
+
+
+
+<h3 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h3><ol>
+<li>人从出生到长大的过程中，是如何认识事物的?(B)<br> A. 先分类，后聚类<br> B. 先聚类，后分类</li>
+<li>离群点一定是<strong>负面</strong>的吗?(不一定)</li>
+</ol>
+<p>答: 离群点（Outliers）在数据分析和统计学中通常指的是那些与大多数数据点显著不同的数据点,它们可能包含以下几种情况：</p>
+<p><strong>数据错误</strong>：离群点可能是由于数据收集或录入错误导致的，这种情况下它们确实是“坏”的，因为它们不代表真实的数据情况。</p>
+<p><strong>异常事件</strong>：在某些情况下，离群点可能代表一些异常但真实发生的事件。例如，在销售数据中，某个产品在某一天的异常高销量可能是由于特殊促销活动导致的。</p>
+<p><strong>新趋势或模式的指示</strong>：离群点有时可以指示新的趋势或模式。例如，在股票市场中，某些异常的价格波动可能是新趋势开始的信号。</p>
+<p><strong>数据多样性</strong>：在某些研究中，离群点可能代表数据集的多样性，反映了不同群体或条件的存在。</p>
+<h2 id="2-认识数据和统计"><a href="#2-认识数据和统计" class="headerlink" title="2.认识数据和统计"></a>2.认识数据和统计</h2><h3 id="2-1-数据类型和统计"><a href="#2-1-数据类型和统计" class="headerlink" title="2.1 数据类型和统计"></a>2.1 数据类型和统计</h3><h4 id="2-1-数据对象"><a href="#2-1-数据对象" class="headerlink" title="2.1 数据对象"></a>2.1 数据对象</h4><ul>
+<li>数据集由数据对象组成</li>
+<li>一个数据对象代表一个实体(每行代表一个数据对象)</li>
+<li>称为样品，示例，实例，数据点，对象，元组(<strong>tuple</strong>)</li>
+<li>数据对象所描述的属性<ul>
+<li>数据库中的行 -&gt; 数据对象</li>
+<li>列 -&gt; “属性”</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-2-属性的类型"><a href="#2-2-属性的类型" class="headerlink" title="2.2 属性的类型"></a>2.2 属性的类型</h4><p>常见的四类属性:</p>
+<ul>
+<li><strong>标称(Nominal)</strong>: 状态,类别可列举<ul>
+<li>Examples: ID numbers, zip codes</li>
+<li>Hair color&#x3D;{黑色，棕色，灰色，白色} 婚姻状况{已婚,未婚}，职业，身份证号码，邮政编码</li>
+<li><strong>二进制类型数据</strong>: 只有2个状态(0和1)的属性,对称二进制两种(例如，性别) 不对称的二进制例如，(医疗测试的正面与负面)所谓对称,是<strong>指两种状态的数据规模是否大致相当</strong></li>
+</ul>
+</li>
+<li><strong>序数(Ordinal)</strong><ul>
+<li>Examples: rankings (e.g., taste of potato chips on a scale from 1-10),grades, height in {tall, medium, short})</li>
+<li><strong>有一个有意义的顺序(排名)，但不知道连续值之间的大小</strong>。大小&#x3D;{小，中，大}，等级，军队排名</li>
+</ul>
+</li>
+<li><strong>区间标度(Interval)</strong><ul>
+<li>Examples: calendar dates,temperatures in Celsius or Fahrenheit.</li>
+<li>以单位长度顺序性度量</li>
+<li>值有序，比如温度、日历等</li>
+<li>不存在0点，倍数没有意义:<strong>我们平常通常不说2000年是1000年的2倍</strong>。</li>
+</ul>
+</li>
+<li><strong>比率(Ratio)</strong><ul>
+<li>Examples: temperature in Kelvin, length, time, counts</li>
+<li>具有<strong>固定零点</strong>的数值属性，有序且可以计算倍数,<strong>长度、重量</strong>等</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-3-问题"><a href="#2-3-问题" class="headerlink" title="2.3 问题"></a>2.3 问题</h4><p>常见的四类属性:</p>
+<ul>
+<li>标称(Nominal): 标称属性的数据分类模型有哪些?</li>
+<li>序数(Ordinal): 序数类型的数据求均值是否合理?能否用<code>k-means</code>算法</li>
+<li>区间(Interval): 区间标度属性特征工程时，是否可以采用乘法原则?</li>
+<li>比率(Ratio): 哪些数据挖掘算法适用于比率标度属性?</li>
+</ul>
+<h4 id="2-4-数据统计汇总"><a href="#2-4-数据统计汇总" class="headerlink" title="2.4 数据统计汇总"></a>2.4 数据统计汇总</h4><ul>
+<li>动机<ul>
+<li>为了更好地理解数据:中性化趋势,分布趋势</li>
+</ul>
+</li>
+<li>数据的统计特性<ul>
+<li>最大值，最小值，中位数，位数，离群值，方差等。</li>
+</ul>
+</li>
+</ul>
+<h5 id="中性化趋势度量-均值、中位数和众数"><a href="#中性化趋势度量-均值、中位数和众数" class="headerlink" title="中性化趋势度量:均值、中位数和众数"></a>中性化趋势度量:均值、中位数和众数</h5><img src="/2024/09/03/shu-ju-wa-jue/中性化度量趋势.png" alt="image-20240905174331030" style="zoom:67%;">
+
+<ul>
+<li>平均值一组数据的均衡点。<strong>但是，均值对离群值很敏感。</strong></li>
+<li>因此，<strong>中位数和截断均值</strong>也很常用。</li>
+<li><strong>众数</strong>指一组数据中出现次数最多的数据值。</li>
+</ul>
+<img src="/2024/09/03/shu-ju-wa-jue/方差和标准差.png" alt="image-20240905174513570" style="zoom:80%;">
+
+<ul>
+<li>箱线图(boxplot):<br>  min, Q1, median, Q3, max;单独添加胡须表示离群点。</li>
+</ul>
+<h4 id="2-5-箱线图"><a href="#2-5-箱线图" class="headerlink" title="2.5 箱线图"></a>2.5 箱线图</h4><p>箱线图（Boxplot），也称为盒须图、盒式图或箱型图，是一种用于显示一组数据分布情况的统计图。它通过五个关键数值来描述数据的分布特征：最小值（min）、第一四分位数（Q1）、中位数（median）、第三四分位数（Q3）和最大值（max）。箱线图能够直观地展示数据的中心位置、分散程度以及是否存在异常值。</p>
+<h5 id="箱线图的组成部分"><a href="#箱线图的组成部分" class="headerlink" title="箱线图的组成部分"></a>箱线图的组成部分</h5><ol>
+<li><strong>箱体（Box）</strong>：箱体的上下边界分别对应第一四分位数（Q1）(25%的数据小于或等于Q1,75%的数据大于Q1)和第三四分位数（Q3），箱体的长度（Q3 - Q1）称为四分位距（IQR），表示数据的中间50%的分布范围。</li>
+<li><strong>中位数（Median）</strong>：箱体中间的线表示数据的中位数，即第二四分位数（Q2），它反映了数据的中心位置。</li>
+<li><strong>胡须（Whiskers）</strong>：箱体外的两条线称为胡须，通常表示数据的最大值和最小值。但在实际应用中，胡须的长度通常有限制，一般不超过1.5倍的四分位距（1.5 * IQR）。超过这个范围的点被认为是离群点（Outliers）。</li>
+<li><strong>离群点（Outliers）</strong>：在胡须之外的点被认为是离群点，通常用单独的点或符号表示，这些点可能是数据中的异常值。</li>
+</ol>
+<h5 id="箱线图的优点"><a href="#箱线图的优点" class="headerlink" title="箱线图的优点"></a>箱线图的优点</h5><ul>
+<li><strong>直观展示数据分布</strong>：箱线图能够直观地展示数据的分布情况，包括中心位置、分散程度和异常值。</li>
+<li><strong>比较不同组数据</strong>：通过并排显示多个箱线图，可以方便地比较不同组数据的分布特征。</li>
+<li><strong>识别异常值</strong>：箱线图能够帮助识别数据中的异常值，这些异常值可能是数据录入错误或真实存在的极端值。</li>
+</ul>
+<h5 id="箱线图的应用场景"><a href="#箱线图的应用场景" class="headerlink" title="箱线图的应用场景"></a>箱线图的应用场景</h5><ul>
+<li><strong>数据探索</strong>：在数据分析初期，使用箱线图可以帮助快速了解数据的分布特征。</li>
+<li><strong>质量控制</strong>：在生产过程中，箱线图可以用于监控产品质量，及时发现异常。</li>
+<li><strong>统计分析</strong>：在统计学中，箱线图常用于描述性统计分析，展示数据的分布情况。</li>
+</ul>
+<h3 id="2-2-数据可视化"><a href="#2-2-数据可视化" class="headerlink" title="2.2 数据可视化"></a>2.2 数据可视化</h3><h4 id="数据可视化分析之箱线图分析"><a href="#数据可视化分析之箱线图分析" class="headerlink" title="数据可视化分析之箱线图分析"></a>数据可视化分析之箱线图分析</h4><img src="/2024/09/03/shu-ju-wa-jue/数据可视化之箱线图.png" alt="image-20240907194255374">
+
+<p>​			    <strong>箱线图能够分析多个属性数据的分布差异性</strong></p>
+<ul>
+<li>鸢尾花的案例</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/H_lukong/article/details/90139700">https://blog.csdn.net/H_lukong/article/details/90139700</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/star-zhao/p/9847082.html">https://www.cnblogs.com/star-zhao/p/9847082.html</a></p>
+<p><img src="/2024/09/03/shu-ju-wa-jue/%E9%B8%A2%E5%B0%BE%E8%8A%B1%E6%A1%88%E4%BE%8B.png" alt="image-20240907194926128"></p>
+<ul>
+<li>一个数据集有四个属性<ul>
+<li>花萼宽度</li>
+<li>花萼长度</li>
+<li>花瓣宽度</li>
+<li>花瓣长度</li>
+</ul>
+</li>
+<li>三种类别 lris Setosa , lris Versicolour , lris Virginica</li>
+</ul>
+<p><img src="/2024/09/03/shu-ju-wa-jue/%E7%AE%B1%E7%BA%BF%E5%9B%BE.png" alt="image-20240907202434181"></p>
+<h4 id="数据可视化之直方图"><a href="#数据可视化之直方图" class="headerlink" title="数据可视化之直方图"></a>数据可视化之直方图</h4><ul>
+<li><strong>用来分析单个属性在各个区间变化分布</strong></li>
+</ul>
+<p><img src="/2024/09/03/shu-ju-wa-jue/%E9%B8%A2%E5%B0%BE%E8%8A%B1%E4%B9%8B%E7%9B%B4%E6%96%B9%E5%9B%BE.png" alt="image-20240907202729476"></p>
+<ul>
+<li><strong>直方图可视化发现特征对类别的区别性</strong></li>
+</ul>
+<p>通过不同类别的各个属性的直方图,例如<code>lris Setosa</code>的花萼宽度近似于<code>μ = 3</code>的正态分布,而<code>lris Versicolour</code>近似于<code>μ = 2</code>,<code>lris Virginica</code>近似于<code>μ = 1</code>,就可以得出<strong>花萼宽度可以区分类别的简单结论</strong></p>
+<h4 id="数据可视化之散点图"><a href="#数据可视化之散点图" class="headerlink" title="数据可视化之散点图"></a>数据可视化之散点图</h4><p><strong>用来显示两组数据的相关性分布</strong></p>
+<p><strong>用来显示两组数据的类别分布</strong>(男性和女性身高体重的散点图,靠近坐标原点的可能性更接近于女性)</p>
+<img src="/2024/09/03/shu-ju-wa-jue/散点图.png" alt="image-20240907203435944" style="zoom:80%;">
+
+<p>分为正相关、负相关、不相关(不线性相关)</p>
+<ul>
+<li>房价预测案例</li>
+</ul>
+<img src="/2024/09/03/shu-ju-wa-jue/房价预测.png" alt="image-20240907203632198" style="zoom:80%;">
+
+<p><strong>房屋面积(1)和建筑面积(3)相关性更强</strong></p>
+<h3 id="2-3-数据相似性"><a href="#2-3-数据相似性" class="headerlink" title="2.3 数据相似性"></a>2.3 数据相似性</h3><h4 id="度量数据的相似性和相异性"><a href="#度量数据的相似性和相异性" class="headerlink" title="度量数据的相似性和相异性"></a>度量数据的相似性和相异性</h4><img src="/2024/09/03/shu-ju-wa-jue/du度量矩阵的相似度和差异性.png" alt="image-20240907204415245" style="zoom:80%;">
+
+<ul>
+<li>相似度Similarity<ul>
+<li>度量两个数据对象有多相似</li>
+<li>值越大就表示数据对象越相似</li>
+<li>通常取值范围为[0,1]</li>
+</ul>
+</li>
+<li>相异度Dissimilarity(e.g. distance)<ul>
+<li>度量两个数据对象的差别程度</li>
+<li>值越小就表示数据越相似</li>
+<li>最小相异度通常为0</li>
+</ul>
+</li>
+<li>邻近性Proximity<ul>
+<li>指相似度或者相异度</li>
+</ul>
+</li>
+</ul>
+<h4 id="标称属性的邻近性度量"><a href="#标称属性的邻近性度量" class="headerlink" title="标称属性的邻近性度量"></a>标称属性的邻近性度量</h4><ul>
+<li>标称属性可以取两个或多个状态</li>
+<li>方法: <strong>简单匹配</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>属性1</th>
+<th>属性2</th>
+<th>属性3</th>
+<th>属性4</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>弹琴</td>
+<td>跳高</td>
+<td>唱歌</td>
+<td>背诗</td>
+</tr>
+<tr>
+<td>2</td>
+<td>弹琴</td>
+<td>跳远</td>
+<td>跳舞</td>
+<td>读书</td>
+</tr>
+</tbody></table>
+<p>​	<strong>$$ d(i,j) &#x3D; \frac{p - m}{p} $$</strong>	$$d(1,2) &#x3D; \frac{4 - 1}{4} $$</p>
+<p>m:匹配次数，p: 属性总数</p>
+<h5 id="二值属性的邻近性度量例子"><a href="#二值属性的邻近性度量例子" class="headerlink" title="二值属性的邻近性度量例子"></a><strong>二值属性的邻近性度量例子</strong></h5><p><img src="/2024/09/03/shu-ju-wa-jue/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%B1%9E%E6%80%A7%E7%9A%84%E9%82%BB%E8%BF%9B%E6%80%A7%E5%BA%A6%E9%87%8F.png" alt="image-20240907210453783"></p>
+<ul>
+<li>Gender 是对称属性，其余都是非对称属性，假设只计算非对称属性</li>
+<li>Y 和 P 的值为1(阳性)，N 的值为0(阴性正常)</li>
+<li>test1-4表示抽血化验的结果</li>
+<li>SMC(简单匹配系数) &#x3D; ( M_11 + M_00 ) &#x2F; ( Ｍ_11 + M_00 + M_10 + M_01)</li>
+</ul>
+<h4 id="数值属性的邻近性度量"><a href="#数值属性的邻近性度量" class="headerlink" title="数值属性的邻近性度量"></a>数值属性的邻近性度量</h4><table>
+<thead>
+<tr>
+<th align="left">point</th>
+<th align="left">attribute 1</th>
+<th align="left">attribute 2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">x1</td>
+<td align="left">1</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">x2</td>
+<td align="left">3</td>
+<td align="left">5</td>
+</tr>
+<tr>
+<td align="left">x3</td>
+<td align="left">2</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">x4</td>
+<td align="left">4</td>
+<td align="left">5</td>
+</tr>
+</tbody></table>
+<p><strong>$$ d(i,j) &#x3D; \left( |x_{i1} - x_{j1}|^h + |x_{i2} - x_{j2}|^h + \ldots + |x_{ip} - x_{jp}|^h \right)^{\frac{1}{h}} $$</strong></p>
+<ul>
+<li>性质<ol>
+<li>d(i,j) &gt; 0 if i≠j,and d(i,i)&#x3D;0**(正定性)**</li>
+<li>d(i,j) &#x3D; d(j, i)<strong>(对称性)</strong></li>
+<li>d(i, i) ≤ d(i, k) + d(k,i)<strong>(三角不等性)</strong></li>
+</ol>
+</li>
+</ul>
+<img src="/2024/09/03/shu-ju-wa-jue/公式.png" alt="image-20240907211845099" style="zoom:80%;">
+
+<h4 id="x和y的相似度或相异度"><a href="#x和y的相似度或相异度" class="headerlink" title="x和y的相似度或相异度"></a>x和y的相似度或相异度</h4><table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>x与y的相似度</th>
+<th>相异度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>标称</td>
+<td>s &#x3D; 1 (if x &#x3D; y)<br>s &#x3D; 0 (if x !&#x3D; y)</td>
+<td>d &#x3D; -s</td>
+</tr>
+<tr>
+<td>序数</td>
+<td>s &#x3D; 1 - d</td>
+<td>d &#x3D; |x - y| &#x2F; (n - 1)<br>n为值的个数,值映射到0 ~ n-1</td>
+</tr>
+<tr>
+<td>区间&#x2F;比率</td>
+<td>s &#x3D; -d, s &#x3D; 1 &#x2F; (1 + d)…等单调递减函数</td>
+<td>d &#x3D; |x - y|</td>
+</tr>
+</tbody></table>
+<h3 id="2-4-数据相关性"><a href="#2-4-数据相关性" class="headerlink" title="2.4 数据相关性"></a>2.4 数据相关性</h3><h4 id="线性相关系数"><a href="#线性相关系数" class="headerlink" title="线性相关系数"></a>线性相关系数</h4><p>线性相关系数，通常指的是皮尔逊相关系数（Pearson correlation coefficient），用于度量两个变量之间的线性相关程度。其计算公式如下：</p>
+<p>$$ r &#x3D; \frac{\sum_{i&#x3D;1}^{n} (X_i - \bar{X})(Y_i - \bar{Y})}{\sqrt{\sum_{i&#x3D;1}^{n} (X_i - \bar{X})^2} \sqrt{\sum_{i&#x3D;1}^{n} (Y_i - \bar{Y})^2}} $$</p>
+<p>相关系数 ( r ) 的取值范围在 <strong>-1 到 1</strong> 之间：</p>
+<ul>
+<li>( r &#x3D; 1 ) 表示完全正相关。(平行向量)</li>
+<li>( r &#x3D; -1 ) 表示完全负相关。</li>
+<li>( r &#x3D; 0 ) 表示没有线性相关。(反向向量)</li>
+</ul>
+<h4 id="离散属性对象之间的相关性"><a href="#离散属性对象之间的相关性" class="headerlink" title="离散属性对象之间的相关性"></a>离散属性对象之间的相关性</h4><ul>
+<li>对称的不确定性<ul>
+<li>离散数据之间相关性(互信息)</li>
+<li>熵,特征x的信息熵(度量信息量的大小)</li>
+</ul>
+</li>
+</ul>
+<p><strong>熵是信息论中的一个重要概念，用于度量信息的不确定性。熵的公式如下：</strong></p>
+<p>对于离散随机变量 ( X ) ，其可能的取值为 ( $$x_1, x_2$$,$$\ldots, x_n $$) ，对应的概率为 ($$ P(X &#x3D; x_i) &#x3D; p_i $$) , (其中 ($$ i &#x3D; 1, 2, \ldots, n $$))，则熵 ( H(X) ) 定义为：</p>
+<p>$$ H(X) &#x3D; -\sum_{i&#x3D;1}^{n} p_i \log_2 p_i $$</p>
+<p>其中：</p>
+<ul>
+<li>( H(X) ) 表示随机变量 ( X ) 的熵。</li>
+<li>( p_i ) 是随机变量 ( X ) 取第 ( i ) 个值的概率。</li>
+<li>( \log_2 ) 是以2为底的对数。</li>
+</ul>
+<p>熵的单位是比特（bit），表示为了准确描述随机变量 ( X ) 的值，平均需要的二进制位数。</p>
+<p>对于连续随机变量，熵的计算需要用到概率密度函数 ( f(x) ) ，熵的表达式为：</p>
+<p>$$H(X) &#x3D; -\int_{-\infty}^{+\infty} f(x) \log_2 f(x) dx$$</p>
+<p>这里 ( f(x) ) 是随机变量 ( X ) 的概率密度函数，积分是在 ( X ) 的整个取值范围上进行的。</p>
+<p><strong>条件熵</strong></p>
+<p>条件熵 ( H(X|Y) ) 表示在已知随机变量 ( Y ) 的情况下随机变量 ( X ) 的不确定性。条件熵的公式如下：</p>
+<p>$$H(X|Y) &#x3D; \sum_{i&#x3D;1}^{n} \sum_{j&#x3D;1}^{m} p(x_i, y_j) \log_2 \frac{p(x_i, y_j)}{p(y_j)}$$</p>
+<p>其中：</p>
+<ul>
+<li>( H(X|Y) ) 表示给定 ( Y ) 的条件下 ( X ) 的条件熵。</li>
+<li>( p(x_i, y_j) ) 是联合概率分布，即 ( X ) 取第 ( i ) 个值同时 ( Y ) 取第 ( j ) 个值的概率。</li>
+<li>( p(y_j) ) 是边缘概率分布，即 ( Y ) 取第 ( j ) 个值的概率。</li>
+</ul>
+<p>条件熵 ( H(X|Y) ) 可以解释为在已知 ( Y ) 的情况下，为了确定 ( X ) 还需要多少信息。</p>
+<h3 id="2-5-信息增益"><a href="#2-5-信息增益" class="headerlink" title="2.5 信息增益"></a>2.5 信息增益</h3><p>信息增益是决策树算法中一个重要的概念，特别是在ID3、C4.5等算法中用来选择特征。信息增益表示得知特征 ( Y ) 的信息而使得类 ( X ) 的不确定性减少的量。</p>
+<p>信息增益的计算公式为：</p>
+<p>$$\text{Information Gain}(X, Y) &#x3D; H(X) - H(X|Y)$$</p>
+<p>其中：</p>
+<ul>
+<li>( H(X) ) 是 ( X ) 的熵，表示在没有考虑任何特征的情况下 ( X ) 的不确定性。</li>
+<li>( H(X|Y) ) 是 ( X ) 在已知 ( Y ) 的条件下的条件熵，表示在已知特征 ( Y ) 的情况下 ( X ) 的不确定性。</li>
+</ul>
+<p>信息增益越大，特征 ( Y ) 对于目标变量 ( X ) 的分类结果的贡献越大，因此选择信息增益大的特征作为决策树的节点。</p>
+<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><p>好的，我们来考虑一个简单的信息增益例题。</p>
+<p><strong>例题：</strong></p>
+<p>假设有一个天气数据集，包含以下四个样本，每个样本包含两个特征：”Outlook”（天气状况）和”Play”（是否进行户外活动）。我们想要根据”Outlook”特征来预测”Play”。</p>
+<table>
+<thead>
+<tr>
+<th>Outlook</th>
+<th>Temperature</th>
+<th>Humidity</th>
+<th>Windy</th>
+<th>Play</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Sunny</td>
+<td>Hot</td>
+<td>High</td>
+<td>False</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Sunny</td>
+<td>Hot</td>
+<td>High</td>
+<td>True</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Overcast</td>
+<td>Hot</td>
+<td>High</td>
+<td>False</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Rainy</td>
+<td>Mild</td>
+<td>High</td>
+<td>False</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Rainy</td>
+<td>Cool</td>
+<td>Normal</td>
+<td>False</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Rainy</td>
+<td>Cool</td>
+<td>Normal</td>
+<td>True</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<p><strong>步骤：</strong></p>
+<ol>
+<li><p><strong>计算总熵 ( H(Play) )：</strong></p>
+<p>首先，计算”Play”的总熵。”Play”有两种可能的值：”Yes”和”No”。</p>
+<ul>
+<li>Yes: 4次</li>
+<li>No: 2次</li>
+<li>总样本数: 6</li>
+</ul>
+<p>$$H(Play) &#x3D; -\left(\frac{4}{6} \log_2 \frac{4}{6} + \frac{2}{6} \log_2 \frac{2}{6}\right)$$</p>
+<p>计算得：</p>
+<p>$$H(Play) &#x3D; -\left(\frac{2}{3} \log_2 \frac{2}{3} + \frac{1}{3} \log_2 \frac{1}{3}\right) \approx 0.918$$</p>
+</li>
+<li><p><strong>计算条件熵 ( H(Play|Outlook) )：</strong></p>
+<p>对于每个”Outlook”值，计算”Play”的条件熵。</p>
+<ul>
+<li>Sunny: 2次No，0次Yes</li>
+<li>Overcast: 1次Yes，0次No</li>
+<li>Rainy: 2次Yes，1次No</li>
+</ul>
+<p>$$H(Play|Outlook&#x3D;Sunny) &#x3D; -\left(1 \log_2 1 + 0 \log_2 0\right) &#x3D; 0 $$</p>
+<p>$$H(Play|Outlook&#x3D;Overcast) &#x3D; -\left(1 \log_2 1 + 0 \log_2 0\right) &#x3D; 0$$</p>
+<p>$$H(Play|Outlook&#x3D;Rainy) &#x3D; -\left(\frac{2}{3} \log_2 \frac{2}{3} + \frac{1}{3} \log_2 \frac{1}{3}\right) \approx 0.918$$</p>
+<p>然后，根据”Outlook”的概率计算加权平均条件熵：</p>
+<p>$$H(Play|Outlook) &#x3D; \frac{2}{6} \times 0 + \frac{1}{6} \times 0 + \frac{3}{6} \times 0.918 \approx 0.459$$</p>
+</li>
+<li><p><strong>计算信息增益 ( IG(Play, Outlook) )：</strong></p>
+<p>$$IG(Play, Outlook) &#x3D; H(Play) - H(Play|Outlook)$$<br>$$IG(Play, Outlook) &#x3D; 0.918 - 0.459 \approx 0.459$$</p>
+</li>
+</ol>
+<p><strong>结论：</strong></p>
+<p>根据计算，”Outlook”特征的信息增益为0.459。这意味着使用”Outlook”作为决策树的节点可以显著降低”Play”的不确定性。</p>
+<h2 id="3-分类算法"><a href="#3-分类算法" class="headerlink" title="3. 分类算法"></a>3. 分类算法</h2><h3 id="3-1-分类步骤"><a href="#3-1-分类步骤" class="headerlink" title="3.1 分类步骤"></a>3.1 分类步骤</h3><ul>
+<li>把数据集划分成两个部分(<code>训练集</code>&amp;<code>测试集</code>)</li>
+<li>利用训练集训练出一个模型</li>
+<li>将测试集的数据对模型进行测试和反馈,评估是否合格</li>
+<li>合格的话就可以将模型<code>投入生产使用</code></li>
+</ul>
+<h3 id="3-2-决策树"><a href="#3-2-决策树" class="headerlink" title="3.2 决策树"></a>3.2 决策树</h3><p>首先要搞懂三个概念</p>
+<ol>
+<li><code>决策节点</code>: 待选择的<strong>属性</strong></li>
+<li><code>分支</code>: 做出的选择(<strong>属性值</strong>)</li>
+<li><code>叶节点</code>: 最终结果的<strong>标号</strong>(可能从多个分支得到)</li>
+</ol>
+<img src="/2024/09/03/shu-ju-wa-jue/025db8a738a1ce2ad3404a58a82165cb.png">
+
+<ul>
+<li>一般来说,越靠近根部的(属性)节点,<strong>信息量越大,效率越高,越便于分类</strong></li>
+<li>结果不会被节点之间相互顺序影响,具体可以参考多重<code>if-else嵌套结构</code></li>
+</ul>
+<h3 id="3-3-ID3分类算法-构建决策树"><a href="#3-3-ID3分类算法-构建决策树" class="headerlink" title="3.3 ID3分类算法(构建决策树)"></a>3.3 ID3分类算法(构建决策树)</h3><ul>
+<li>ID3分类算法以<code>信息增益</code>为标准构建决策树(寻找最优划分属性是决策树算法的关键)</li>
+<li>信息熵,就是用来描述一个属性的混乱程度</li>
+</ul>
+<img src="/2024/09/03/shu-ju-wa-jue/信息熵.png" alt="image-20241008184544726" style="zoom:80%;">
+
+<img src="/2024/09/03/shu-ju-wa-jue/488581-20231120183110817-2012522911.png" style="zoom: 67%;">
+
+<ul>
+<li>信息增益,就是一个随机变量有多个属性,其中一个属性已知,可以减少多少变量的不确定性(减少多少信息熵),这就是信息增益</li>
+</ul>
+<img src="/2024/09/03/shu-ju-wa-jue/信息增益.png" alt="image-20241008184927820" style="zoom: 67%;">
+
+<img src="/2024/09/03/shu-ju-wa-jue/信息增益_2.png" style="zoom: 67%;">
+
+<ul>
+<li><code>ID3算法就是将每一个属性的信息增益算出来,将高的排在根部</code></li>
+</ul>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li><p>只考虑深度,不考虑广度,假如所有属性带来的信息增益一样,则同一深度分支过多,决策树同样复杂</p>
+</li>
+<li><p>无法直接处理连续型数值(如工资数据集 110 120 134 155 171等),必须分类之后再决策</p>
+</li>
+</ul>
+<h3 id="3-4-C4-5算法"><a href="#3-4-C4-5算法" class="headerlink" title="3.4 C4.5算法"></a>3.4 C4.5算法</h3><h4 id="c4-5处理连续型数值"><a href="#c4-5处理连续型数值" class="headerlink" title="c4.5处理连续型数值"></a>c4.5处理连续型数值</h4><ol>
+<li>把连续型数据离散化</li>
+<li>递增排序</li>
+<li>每相邻两个值的中点做分裂点,把数据集分为<code>S_L</code>和<code>S_R</code>(左边和右边)</li>
+<li>求这个点的分裂信息量,100个数据要求99个分裂点的信息量</li>
+</ol>
+<h4 id="分裂信息量"><a href="#分裂信息量" class="headerlink" title="分裂信息量"></a>分裂信息量</h4><p>分裂信息（Split Information）是指在选择一个属性进行数据划分时，由于该属性的不同取值导致数据集分裂成多个子集所需要的信息量。在决策树算法中，分裂信息通常与信息增益率的计算相关。</p>
+<p>分裂信息的计算公式可以表示为：</p>
+<p><img src="/2024/09/03/shu-ju-wa-jue/%E5%88%86%E8%A3%82%E4%BF%A1%E6%81%AF%E9%87%8F.png" alt="image-20241008190951727"></p>
+<p>分裂信息计算的是，如果按照属性 ( A ) 划分数据集，需要多少位来编码表示每个样本属于哪个子集。这个值越小，表示使用属性 ( A ) 进行划分后得到的子集分布越均匀，分裂信息越小。</p>
+<p>在C4.5算法中，分裂信息用于计算信息增益率（Gain Ratio），信息增益率是信息增益与分裂信息的比值，用于选择最优的属性进行数据集的划分。信息增益率的计算可以减少属性值数量较多时对信息增益的影响，从而避免选择那些具有许多值的属性。</p>
+<h4 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h4><img src="/2024/09/03/shu-ju-wa-jue/Kimi 2024-10-08.jpg" alt="Kimi 2024-10-08" style="zoom: 37%;">
+
+
+
+<h3 id="3-5-CART算法"><a href="#3-5-CART算法" class="headerlink" title="3.5 CART算法"></a>3.5 CART算法</h3><ul>
+<li><code>纯度作为构建二叉决策数的标准</code></li>
+</ul>
+<p><img src="/2024/09/03/shu-ju-wa-jue/%E5%9F%BA%E5%B0%BC%E6%8C%87%E6%95%B0.png" alt="image-20241008192548006"></p>
+<h3 id="3-6-决策数算法总结"><a href="#3-6-决策数算法总结" class="headerlink" title="3.6 决策数算法总结"></a>3.6 决策数算法总结</h3><ol>
+<li>其中ID3只能用作分类，划分准则是信息增益。</li>
+<li>C4.5也只能用作分类，划分准则是先寻找信息增益大于均值的，然后再根据增益率选择最优划分属性</li>
+<li>CART决策树既可以分类也可以回归。分类时使用的基尼指数，回归时使用误差平方和。</li>
+</ol>
+<h3 id="3-7-贝叶斯分类算法"><a href="#3-7-贝叶斯分类算法" class="headerlink" title="3.7 贝叶斯分类算法"></a>3.7 贝叶斯分类算法</h3><ul>
+<li>贝叶斯分类方法是一种<code>基于统计</code>的学习方法，是利用概率统计知识进行学习分类的方法</li>
+<li>贝叶斯分类算法是建立在<code>贝叶斯定理</code>基础上的算法</li>
+</ul>
+<h5 id="贝叶斯定理"><a href="#贝叶斯定理" class="headerlink" title="贝叶斯定理"></a>贝叶斯定理</h5><img src="/2024/09/03/shu-ju-wa-jue/贝叶斯定理.png" alt="image-20241019104348149">
+
+<p><code>贝叶斯定理是在H、X的先验概率P(H)、P(X)和X的后验概率P(X|H)已知的情况下，计算H的后验概率P(H|X)的方法</code></p>
+<h5 id="例题-2"><a href="#例题-2" class="headerlink" title="例题"></a>例题</h5><p><img src="/2024/09/03/shu-ju-wa-jue/%E8%B4%9D%E5%8F%B6%E6%96%AF%E4%BE%8B%E9%A2%981.png" alt="image-20241019105144131"></p>
+<p><img src="/2024/09/03/shu-ju-wa-jue/%E8%B4%9D%E5%8F%B6%E6%96%AF%E4%BE%8B%E9%A2%982.png" alt="image-20241019105219534"></p>
+<h5 id="朴素贝叶斯分类"><a href="#朴素贝叶斯分类" class="headerlink" title="朴素贝叶斯分类"></a>朴素贝叶斯分类</h5><p>朴素贝叶斯分类算法利用贝叶斯定理来<strong>预测一个未知类别的样本属于各个类别的可能性</strong>，选择其中<strong>可能性最大</strong>的一个类别作为该样本的最终类别</p>
+<p><img src="/2024/09/03/shu-ju-wa-jue/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E4%BE%8B%E9%A2%98.png" alt="屏幕截图_19-10-2024_111237_"></p>
+<p><strong>上题中因为P(X)已经是确定条件,所以P(X) &#x3D; 1,省略不写</strong></p>
+<h4 id="朴素贝叶斯分类的优缺点"><a href="#朴素贝叶斯分类的优缺点" class="headerlink" title="朴素贝叶斯分类的优缺点"></a>朴素贝叶斯分类的优缺点</h4><ul>
+<li>朴素贝叶斯分类算法的优点在于： <ul>
+<li><code>容易实现 </code></li>
+<li>在大多数情况下所获得的结果比较好。</li>
+</ul>
+</li>
+<li>缺点： <ul>
+<li>算法成立的前提是<code>假设各属性之间互相独立</code>。 </li>
+<li>当数据集满足这种独立性假设时，分类准确度较高。 而实际领域中，数据集可能并不完全满足独立性假设</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-8-K-最近邻算法"><a href="#3-8-K-最近邻算法" class="headerlink" title="3.8 K-最近邻算法"></a>3.8 K-最近邻算法</h3><p><code>K最近邻(k Nearest Neighbors，简称KNN)</code>方法是一种基于实例(已有样本)进行推理的算法，通过对已有训练样本集和新进的未知样本的比较得出该新进样本的类别。</p>
+<p>它不需要先使用训练样本进行分类器的设计，而是直接用训练集对数据样本进行分类， 确定其类别标号</p>
+<h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p><strong>K-最近邻算法的基本思想是：</strong></p>
+<p>对于未知类标号的样本，按照欧几里得距离找出它在训练集中的k个最近邻，将未知样本赋予k最近邻中出现次数最多的类别号</p>
+<p><img src="/2024/09/03/shu-ju-wa-jue/k%E6%9C%80%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95.png" alt="image-20241019112034999"></p>
+<p><code>对于类别数据来说,相同为0,不同为1</code></p>
+<h2 id="4-测试和评价分类模型的方法"><a href="#4-测试和评价分类模型的方法" class="headerlink" title="4. 测试和评价分类模型的方法"></a>4. 测试和评价分类模型的方法</h2><h3 id="4-1-保持方法"><a href="#4-1-保持方法" class="headerlink" title="4.1 保持方法"></a>4.1 保持方法</h3><ul>
+<li>保持(Hold Out)方法是我们目前为止讨论准确率时默认的方法</li>
+</ul>
+<p>其执行步骤如下：</p>
+<ol>
+<li>把数据集分为两个相互独立的子集：训练集和测试集。<br>通常情况下，指定不小于三分之二的数据分配到训练集，其余三分之一分配到测试集。 </li>
+<li>使用训练集来训练构建分类模型，用测试集来评估分类模型的分类效果</li>
+</ol>
+<h3 id="4-2-随机子抽样"><a href="#4-2-随机子抽样" class="headerlink" title="4.2 随机子抽样"></a>4.2 随机子抽样</h3><p><img src="/2024/09/03/shu-ju-wa-jue/%E9%9A%8F%E6%9C%BA%E5%AD%90%E6%8A%BD%E6%A0%B7.png"></p>
+<h3 id="4-3-k折交叉验证"><a href="#4-3-k折交叉验证" class="headerlink" title="4.3 k折交叉验证"></a>4.3 k折交叉验证</h3><p><img src="/2024/09/03/shu-ju-wa-jue/k%E6%8A%98%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81.png" alt="image-20241019112722475"></p>
+<h3 id="4-4-评价方法"><a href="#4-4-评价方法" class="headerlink" title="4.4.评价方法"></a>4.4.评价方法</h3><p><img src="/2024/09/03/shu-ju-wa-jue/%E8%AF%84%E4%BB%B7%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B.png" alt="image-20241019113157912"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://0zxm.github.io">0zxm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://0zxm.github.io/2024/09/03/shu-ju-wa-jue/">https://0zxm.github.io/2024/09/03/shu-ju-wa-jue/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://0zxm.github.io" target="_blank">0zxm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a><a class="post-meta__tags" href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></div><div class="post-share"><div class="social-share" data-image="/img/cover2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/09/07/selenium-zi-dong-hua-qiang-piao-12306/" title="selenium自动化抢票12306"><img class="cover" src="/img/cover1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">selenium自动化抢票12306</div></div><div class="info-2"><div class="info-item-1">自动化抢票 123061. 明确需求明确采集的网站以及数据内容  网址: https://kyfw.12306.cn/otn/leftTicket/init 数据: 车次相关信息  2. 抓包分析通过浏览器开发者工具分析对应的数据位置  打开开发者工具 F12 或鼠标右键点击检查   刷新网页 点击下一页&#x2F;下滑网页页面&#x2F;点击搜索&#x2F;查询按钮 让网页相关数据内容加载出来 (整个网站数据内容重新加载一遍)   通过关键字搜索找到对应数据位置 需要什么数据就搜什么    数据包地址: https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=2024-09-06&amp;leftTicketDTO.from_station=IZQ&amp;leftTicketDTO.to_station=SNQ&amp;purpose_codes=ADULT 3. 代码实现步骤1. 发送请求模拟浏览器对于 url 地址发送请求  模拟浏览器  可以直接复制，使用请求标头中参数内容 去哪里找:...</div></div></div></a><a class="pagination-related" href="/2024/09/03/javafx-xie-yi-ge-hu-lian-wang-cheng-xu/" title="JavaFx写一个互联网程序"><img class="cover" src="/img/default_cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">JavaFx写一个互联网程序</div></div><div class="info-2"><div class="info-item-1">chapter0(课程前导) 查分以及登陆端口为9009  服务器文件传输端口为2021,2020   final关键字在Java中，final关键字是一个修饰符，它可以用来修饰类、方法和变量，具有不同的含义：  修饰变量：  当修饰一个类变量（静态变量）时，表示这个变量一旦被初始化后，其值就不能被改变。 当修饰一个实例变量时，表示这个变量在初始化后不能被修改，即它是一个常量。  public final int MY_CONSTANT = 42; // 类变量 public final int value; // 实例变量，必须在声明时或构造器中初始化  修饰方法：  表示这个方法不能被子类覆盖。如果一个类的方法被声明为final，那么子类将不能重写这个方法。  public final void myMethod() &#123;     // 方法体 &#125;  修饰类：  表示这个类不能被继承。如果一个类被声明为final，那么它不能被其他类继承。  public final class MyClass &#123;     //...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2024/09/09/pyqt-kai-fa-yi-ge-ji-shi-ben/" title="pyqt开发一个记事本"><img class="cover" src="/img/default_cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-09</div><div class="info-item-2">pyqt开发一个记事本</div></div><div class="info-2"><div class="info-item-1">构建一个功能丰富的记事本应用在现代软件开发中，记事本应用是一个经典的入门项目，它不仅能够帮助开发者熟悉GUI编程，还能在实践中掌握事件处理、文件操作等核心概念。本文将详细介绍如何使用 PyQt5 构建一个功能丰富的记事本应用，包括新建、打开、保存文件，以及字体大小调整等高级功能。 一、项目概述我们的记事本应用将包含以下核心功能：  文件操作：新建、打开、保存、另存为、退出。 文本编辑：支持基本的文本编辑功能，包括字体大小调整。 状态显示：在状态栏显示当前文件状态，如是否已保存。 语言模式：支持多种语言模式，如 Python、Java、HTML 等，以便于代码高亮。  二、环境搭建在开始编码之前，确保你的 Python 环境中已安装 PyQt5。如果未安装，可以通过以下命令进行安装： pip install PyQt5  三、核心组件实现1. 主窗口 Notebook主窗口类 Notebook 负责初始化整个应用的 UI 组件，包括菜单栏、工具栏、编辑区和状态栏。 class Notebook(QMainWindow):     def __init__(self):      ...</div></div></div></a><a class="pagination-related" href="/2024/09/02/python-wang-luo-bian-cheng/" title="python网络编程"><img class="cover" src="/img/default_cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-02</div><div class="info-item-2">python网络编程</div></div><div class="info-2"><div class="info-item-1">ifconfig 和 ping 命令ifconfigifconfig 是一个用于配置和显示Linux内核中网络接口参数的命令。它可以用来查看和设置网络接口的状态，包括 IP 地址、子网掩码、广播地址等信息。 pingping 是一个用于测试网络连接的工具。它发送 ICMP（Internet Control Message Protocol）回显请求到目标主机，并等待回显应答。通过 ping 命令，我们可以测试网络连通性，以及测量网络延迟。 端口和端口号 (共有 65536 个)端口和端口号是网络通信中的重要概念。 端口 端口是数据传输的必经之路，可以视为网络程序之间通信的接口。 每运行一个程序都会有一个端口，用于给对应的网络程序发送数据。  端口号 端口号用于标识不同的端口，共有 65536 个端口号。  知名端口号 (0-1023) 知名端口号是指众所周知的端口号，范围从 0 到 1023。 这些端口号一般固定分配给一些服务，比如 21 端口分配给 FTP（文件传输协议）服务，25 端口分配给 SMTP（简单邮件传输协议）服务，80 端口分配给 HTTP 服务。  动态端口号...</div></div></div></a><a class="pagination-related" href="/2024/09/07/selenium-zi-dong-hua-qiang-piao-12306/" title="selenium自动化抢票12306"><img class="cover" src="/img/cover1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-07</div><div class="info-item-2">selenium自动化抢票12306</div></div><div class="info-2"><div class="info-item-1">自动化抢票 123061. 明确需求明确采集的网站以及数据内容  网址: https://kyfw.12306.cn/otn/leftTicket/init 数据: 车次相关信息  2. 抓包分析通过浏览器开发者工具分析对应的数据位置  打开开发者工具 F12 或鼠标右键点击检查   刷新网页 点击下一页&#x2F;下滑网页页面&#x2F;点击搜索&#x2F;查询按钮 让网页相关数据内容加载出来 (整个网站数据内容重新加载一遍)   通过关键字搜索找到对应数据位置 需要什么数据就搜什么    数据包地址: https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=2024-09-06&amp;leftTicketDTO.from_station=IZQ&amp;leftTicketDTO.to_station=SNQ&amp;purpose_codes=ADULT 3. 代码实现步骤1. 发送请求模拟浏览器对于 url 地址发送请求  模拟浏览器  可以直接复制，使用请求标头中参数内容 去哪里找:...</div></div></div></a><a class="pagination-related" href="/2024/08/04/scrapy-kuang-jia/" title="scrapy框架"><img class="cover" src="/img/default_cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-04</div><div class="info-item-2">scrapy框架</div></div><div class="info-2"><div class="info-item-1">Scrapy框架简介Scrapy官方文档 B站黑马教程 B站尚硅谷教程 代码文件 scrapy框架 Scrapy是用纯Python实现一个为了爬取网站数据、提取结构性数据而编写的应用框架，用途非常广泛。 框架的力量，用户只需要定制开发几个模块就可以轻松的实现一个爬虫，用来抓取网页内容以及各种图片，非常之方便。 Scrapy 使用了 Twisted[&#39;twrstrd](其主要对手是Tornado)异步网络框架来处理网络通讯，可以加快我们的下载速度，不用自己去实现异步框架，并且包含了各种中间件接口，可以灵活的完成各种需求  scrapy是什么？Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。 安装scrapy安装非Python的依赖  sudo apt-get install python-dev python-pip libxm12-dev libxslt1-dev zlib1g-dev libffi-dev libssl-dev(Ubuntu下安装)  pip install...</div></div></div></a><a class="pagination-related" href="/2024/08/25/pa-chong-zhong-shi-yong-da-ma-ping-tai/" title="爬虫中使用打码平台"><img class="cover" src="/img/default_cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-25</div><div class="info-item-2">爬虫中使用打码平台</div></div><div class="info-2"><div class="info-item-1">引入在爬虫程序中,常常会遇到验证码校验的关卡,人工识别不仅慢而且很费精力,使用打码平台就成了高效,省时且便利的选择。 本次案例对于高清资源库1080zyk.com进行爬虫采集，使用超级鹰验证码识别(chaojiying.com)和python的requests库具体实现，类似的第三方打码库还有云打码,tt图鉴，ddddorc库等 代码实现  首先我们对网页进行分析，通过键入搜索框，并点击搜索按钮，F12中的网络接口可以找到，发起了两次请求  post请求，将搜索框里的内容通过表单数据data发送给服务器     get请求，返回的是验证码的图片    所以我们先编写如下代码，将图片保存本地，使用Session对象是为了保证验证码和请求是同一次会话 import requests  # 爬取优质资源网 session = requests.Session()  urls = &#123;     "data": "http://www.1080zyk.com/index.php?m=vod-search",     "yanzenma":...</div></div></div></a><a class="pagination-related" href="/2024/06/21/pa-qu-fan-qie-xiao-shuo/" title="爬取番茄小说"><img class="cover" src="/img/cover1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-21</div><div class="info-item-2">爬取番茄小说</div></div><div class="info-2"><div class="info-item-1">本文用于纪录爬取番茄小说过程中遇到的困难和解决措施首先找到我想要的小说第一章 1.找网络接口右键检查,清空网络日志,刷新,找到6893843740742386183document类型请求标头URL确实是https://fanqienovel.com/reader/6893843740742386183,没有做其他措施,所以直接用requests库伪装访问,这一部分代码如下   # cap01_url = 'https://fanqienovel.com/reader/6893843740742386183?enter_from=reader' # cap02_url = 'https://fanqienovel.com/reader/6893843740834660878?enter_from=reader' # cap03_url = 'https://fanqienovel.com/reader/6893843740910158344?enter_from=reader' 观察发现,网页之间并没有直接关联  import requests  cap01_url =...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">0zxm</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/0zxm" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:m15813109801@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="http://0zxm.github.io" target="_blank" title="博客"><i class="fab fa-algolia" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E8%B5%84%E6%BA%90"><span class="toc-number">1.</span> <span class="toc-text">课程资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%BB%AA%E8%AE%BA"><span class="toc-number">2.</span> <span class="toc-text">1.绪论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 数据挖掘的重要性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E6%A6%82%E5%BF%B5"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 数据挖掘的定义和概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E5%85%A5"><span class="toc-number">2.2.1.</span> <span class="toc-text">引入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E3%80%81%E4%BF%A1%E6%81%AF%E3%80%81%E7%9F%A5%E8%AF%86"><span class="toc-number">2.2.2.</span> <span class="toc-text">数据、信息、知识</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E7%9A%84%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 数据挖掘的主要内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E8%A7%84%E5%88%99%E6%8C%96%E6%8E%98"><span class="toc-number">2.3.1.</span> <span class="toc-text">关联规则挖掘</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">2.3.2.</span> <span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E7%B1%BB%E5%88%86%E6%9E%90%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.3.2.1.</span> <span class="toc-text">分类分析步骤</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%81%9A%E7%B1%BB"><span class="toc-number">2.3.3.</span> <span class="toc-text">聚类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%B1%BB%E5%92%8C%E8%81%9A%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.3.4.</span> <span class="toc-text">分类和聚类的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9E%E5%BD%92"><span class="toc-number">2.3.5.</span> <span class="toc-text">回归</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">2.4.</span> <span class="toc-text">1.4 数据挖掘的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98"><span class="toc-number">2.5.</span> <span class="toc-text">习题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%AE%A4%E8%AF%86%E6%95%B0%E6%8D%AE%E5%92%8C%E7%BB%9F%E8%AE%A1"><span class="toc-number">3.</span> <span class="toc-text">2.认识数据和统计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%BB%9F%E8%AE%A1"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 数据类型和统计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.1.1.</span> <span class="toc-text">2.1 数据对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E5%B1%9E%E6%80%A7%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.1.2.</span> <span class="toc-text">2.2 属性的类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-%E9%97%AE%E9%A2%98"><span class="toc-number">3.1.3.</span> <span class="toc-text">2.3 问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1%E6%B1%87%E6%80%BB"><span class="toc-number">3.1.4.</span> <span class="toc-text">2.4 数据统计汇总</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%AD%E6%80%A7%E5%8C%96%E8%B6%8B%E5%8A%BF%E5%BA%A6%E9%87%8F-%E5%9D%87%E5%80%BC%E3%80%81%E4%B8%AD%E4%BD%8D%E6%95%B0%E5%92%8C%E4%BC%97%E6%95%B0"><span class="toc-number">3.1.4.1.</span> <span class="toc-text">中性化趋势度量:均值、中位数和众数</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-%E7%AE%B1%E7%BA%BF%E5%9B%BE"><span class="toc-number">3.1.5.</span> <span class="toc-text">2.5 箱线图</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AE%B1%E7%BA%BF%E5%9B%BE%E7%9A%84%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="toc-number">3.1.5.1.</span> <span class="toc-text">箱线图的组成部分</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AE%B1%E7%BA%BF%E5%9B%BE%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-number">3.1.5.2.</span> <span class="toc-text">箱线图的优点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AE%B1%E7%BA%BF%E5%9B%BE%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">3.1.5.3.</span> <span class="toc-text">箱线图的应用场景</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 数据可视化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E4%B9%8B%E7%AE%B1%E7%BA%BF%E5%9B%BE%E5%88%86%E6%9E%90"><span class="toc-number">3.2.1.</span> <span class="toc-text">数据可视化分析之箱线图分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B%E7%9B%B4%E6%96%B9%E5%9B%BE"><span class="toc-number">3.2.2.</span> <span class="toc-text">数据可视化之直方图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B%E6%95%A3%E7%82%B9%E5%9B%BE"><span class="toc-number">3.2.3.</span> <span class="toc-text">数据可视化之散点图</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E6%95%B0%E6%8D%AE%E7%9B%B8%E4%BC%BC%E6%80%A7"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 数据相似性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%A6%E9%87%8F%E6%95%B0%E6%8D%AE%E7%9A%84%E7%9B%B8%E4%BC%BC%E6%80%A7%E5%92%8C%E7%9B%B8%E5%BC%82%E6%80%A7"><span class="toc-number">3.3.1.</span> <span class="toc-text">度量数据的相似性和相异性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%87%E7%A7%B0%E5%B1%9E%E6%80%A7%E7%9A%84%E9%82%BB%E8%BF%91%E6%80%A7%E5%BA%A6%E9%87%8F"><span class="toc-number">3.3.2.</span> <span class="toc-text">标称属性的邻近性度量</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8C%E5%80%BC%E5%B1%9E%E6%80%A7%E7%9A%84%E9%82%BB%E8%BF%91%E6%80%A7%E5%BA%A6%E9%87%8F%E4%BE%8B%E5%AD%90"><span class="toc-number">3.3.2.1.</span> <span class="toc-text">二值属性的邻近性度量例子</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E5%B1%9E%E6%80%A7%E7%9A%84%E9%82%BB%E8%BF%91%E6%80%A7%E5%BA%A6%E9%87%8F"><span class="toc-number">3.3.3.</span> <span class="toc-text">数值属性的邻近性度量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#x%E5%92%8Cy%E7%9A%84%E7%9B%B8%E4%BC%BC%E5%BA%A6%E6%88%96%E7%9B%B8%E5%BC%82%E5%BA%A6"><span class="toc-number">3.3.4.</span> <span class="toc-text">x和y的相似度或相异度</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3%E6%80%A7"><span class="toc-number">3.4.</span> <span class="toc-text">2.4 数据相关性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0"><span class="toc-number">3.4.1.</span> <span class="toc-text">线性相关系数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%B1%9E%E6%80%A7%E5%AF%B9%E8%B1%A1%E4%B9%8B%E9%97%B4%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%A7"><span class="toc-number">3.4.2.</span> <span class="toc-text">离散属性对象之间的相关性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A"><span class="toc-number">3.5.</span> <span class="toc-text">2.5 信息增益</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">3.5.1.</span> <span class="toc-text">例题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">3. 分类算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%88%86%E7%B1%BB%E6%AD%A5%E9%AA%A4"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 分类步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%86%B3%E7%AD%96%E6%A0%91"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 决策树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-ID3%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95-%E6%9E%84%E5%BB%BA%E5%86%B3%E7%AD%96%E6%A0%91"><span class="toc-number">4.3.</span> <span class="toc-text">3.3 ID3分类算法(构建决策树)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-number">4.3.1.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-C4-5%E7%AE%97%E6%B3%95"><span class="toc-number">4.4.</span> <span class="toc-text">3.4 C4.5算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#c4-5%E5%A4%84%E7%90%86%E8%BF%9E%E7%BB%AD%E5%9E%8B%E6%95%B0%E5%80%BC"><span class="toc-number">4.4.1.</span> <span class="toc-text">c4.5处理连续型数值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E8%A3%82%E4%BF%A1%E6%81%AF%E9%87%8F"><span class="toc-number">4.4.2.</span> <span class="toc-text">分裂信息量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="toc-number">4.4.3.</span> <span class="toc-text">例题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-CART%E7%AE%97%E6%B3%95"><span class="toc-number">4.5.</span> <span class="toc-text">3.5 CART算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-%E5%86%B3%E7%AD%96%E6%95%B0%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93"><span class="toc-number">4.6.</span> <span class="toc-text">3.6 决策数算法总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95"><span class="toc-number">4.7.</span> <span class="toc-text">3.7 贝叶斯分类算法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%AE%9A%E7%90%86"><span class="toc-number">4.7.0.1.</span> <span class="toc-text">贝叶斯定理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98-2"><span class="toc-number">4.7.0.2.</span> <span class="toc-text">例题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB"><span class="toc-number">4.7.0.3.</span> <span class="toc-text">朴素贝叶斯分类</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">4.7.1.</span> <span class="toc-text">朴素贝叶斯分类的优缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-K-%E6%9C%80%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95"><span class="toc-number">4.8.</span> <span class="toc-text">3.8 K-最近邻算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="toc-number">4.8.1.</span> <span class="toc-text">基本思想</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%B5%8B%E8%AF%95%E5%92%8C%E8%AF%84%E4%BB%B7%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">5.</span> <span class="toc-text">4. 测试和评价分类模型的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E4%BF%9D%E6%8C%81%E6%96%B9%E6%B3%95"><span class="toc-number">5.1.</span> <span class="toc-text">4.1 保持方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E9%9A%8F%E6%9C%BA%E5%AD%90%E6%8A%BD%E6%A0%B7"><span class="toc-number">5.2.</span> <span class="toc-text">4.2 随机子抽样</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-k%E6%8A%98%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81"><span class="toc-number">5.3.</span> <span class="toc-text">4.3 k折交叉验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E8%AF%84%E4%BB%B7%E6%96%B9%E6%B3%95"><span class="toc-number">5.4.</span> <span class="toc-text">4.4.评价方法</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/10/26/hexo-geng-huan-zhu-ti-butterfly/" title="Hexo更换主题butterfly"><img src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo更换主题butterfly"/></a><div class="content"><a class="title" href="/2024/10/26/hexo-geng-huan-zhu-ti-butterfly/" title="Hexo更换主题butterfly">Hexo更换主题butterfly</a><time datetime="2024-10-26T12:14:16.000Z" title="发表于 2024-10-26 20:14:16">2024-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/14/javascript-xue-xi/" title="JavaScript学习"><img src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JavaScript学习"/></a><div class="content"><a class="title" href="/2024/10/14/javascript-xue-xi/" title="JavaScript学习">JavaScript学习</a><time datetime="2024-10-14T12:36:08.000Z" title="发表于 2024-10-14 20:36:08">2024-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/11/java-ji-chu-shang/" title="Java基础上"><img src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java基础上"/></a><div class="content"><a class="title" href="/2024/10/11/java-ji-chu-shang/" title="Java基础上">Java基础上</a><time datetime="2024-10-11T12:12:04.000Z" title="发表于 2024-10-11 20:12:04">2024-10-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/10/java-cheng-xu-da-bao-cheng-jar-bao/" title="Java程序打包成jar包"><img src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java程序打包成jar包"/></a><div class="content"><a class="title" href="/2024/10/10/java-cheng-xu-da-bao-cheng-jar-bao/" title="Java程序打包成jar包">Java程序打包成jar包</a><time datetime="2024-10-10T04:51:27.000Z" title="发表于 2024-10-10 12:51:27">2024-10-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/06/zai-vscode-zhong-pei-zhi-cpp-di-san-fang-ku/" title="在vscode中配置cpp第三方库"><img src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在vscode中配置cpp第三方库"/></a><div class="content"><a class="title" href="/2024/10/06/zai-vscode-zhong-pei-zhi-cpp-di-san-fang-ku/" title="在vscode中配置cpp第三方库">在vscode中配置cpp第三方库</a><time datetime="2024-10-06T15:10:51.000Z" title="发表于 2024-10-06 23:10:51">2024-10-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By 0zxm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

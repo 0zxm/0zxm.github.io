@@ -1,0 +1,656 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>在vscode中配置cpp第三方库 | 0zxm</title><meta name="author" content="0zxm"><meta name="copyright" content="0zxm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="bilibili 下载第三方库 以SFML库为例,到官网SFML (sfml-dev.org)下载对应编译器架构的(如gcc是32位的就安装32位的SFML)对应压缩包 解压到指定目录下  添加环境配置c_cpp_properties.json一般你配置好vscode中的标准c++环境之后,都会有这个文件,c_cpp_properties.json是用来语法检查和代码提示等功能的, 所以我们要加上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在vscode中配置cpp第三方库">
+<meta property="og:url" content="https://0zxm.github.io/2024/10/06/zai-vscode-zhong-pei-zhi-cpp-di-san-fang-ku/index.html">
+<meta property="og:site_name" content="0zxm">
+<meta property="og:description" content="bilibili 下载第三方库 以SFML库为例,到官网SFML (sfml-dev.org)下载对应编译器架构的(如gcc是32位的就安装32位的SFML)对应压缩包 解压到指定目录下  添加环境配置c_cpp_properties.json一般你配置好vscode中的标准c++环境之后,都会有这个文件,c_cpp_properties.json是用来语法检查和代码提示等功能的, 所以我们要加上">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://0zxm.github.io/img/default_cover.jpg">
+<meta property="article:published_time" content="2024-10-06T15:10:51.000Z">
+<meta property="article:modified_time" content="2024-10-25T10:04:52.711Z">
+<meta property="article:author" content="0zxm">
+<meta property="article:tag" content="vscode">
+<meta property="article:tag" content="SFML库">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0zxm.github.io/img/default_cover.jpg"><link rel="shortcut icon" href="/"><link rel="canonical" href="https://0zxm.github.io/2024/10/06/zai-vscode-zhong-pei-zhi-cpp-di-san-fang-ku/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '在vscode中配置cpp第三方库',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-10-25 18:04:52'
+}</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/default_cover.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">0zxm</span></a><a class="nav-page-title" href="/"><span class="site-name">在vscode中配置cpp第三方库</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">在vscode中配置cpp第三方库</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-06T15:10:51.000Z" title="发表于 2024-10-06 23:10:51">2024-10-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-10-25T10:04:52.711Z" title="更新于 2024-10-25 18:04:52">2024-10-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/c/">c++</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1F72FYsEQY">bilibili</a></p>
+<h3 id="下载第三方库"><a href="#下载第三方库" class="headerlink" title="下载第三方库"></a>下载第三方库</h3><ul>
+<li>以SFML库为例,到官网<a target="_blank" rel="noopener" href="https://www.sfml-dev.org/">SFML (sfml-dev.org)</a>下载对应编译器架构的(如gcc是32位的就安装32位的SFML)对应压缩包</li>
+<li>解压到指定目录下</li>
+</ul>
+<h3 id="添加环境配置"><a href="#添加环境配置" class="headerlink" title="添加环境配置"></a>添加环境配置</h3><h4 id="c-cpp-properties-json"><a href="#c-cpp-properties-json" class="headerlink" title="c_cpp_properties.json"></a><code>c_cpp_properties.json</code></h4><p>一般你配置好vscode中的标准c++环境之后,都会有这个文件,<code>c_cpp_properties.json</code>是用来语法检查和代码提示等功能的,</p>
+<p>所以我们要加上SFML库的头文件(我这里安装了<code>mysql</code>和<code>smfl</code>)</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+    <span class="token property">"configurations"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Win32"</span><span class="token punctuation">,</span>
+            <span class="token property">"includePath"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                <span class="token string">"$&#123;workspaceFolder&#125;/**"</span><span class="token punctuation">,</span>
+                  <span class="token string">"C:\\Program Files\\MySQL\\MySQL Server 8.0\\include"</span> <span class="token comment">//（添加）此处为mysql安装路径下的include文件夹路径,</span>
+                  <span class="token punctuation">,</span><span class="token string">"D:/Develop software/code/c++Code/SFML-2.6.1-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.1/include"</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token property">"defines"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                <span class="token string">"_DEBUG"</span><span class="token punctuation">,</span>
+                <span class="token string">"UNICODE"</span><span class="token punctuation">,</span>
+                <span class="token string">"_UNICODE"</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token property">"windowsSdkVersion"</span><span class="token operator">:</span> <span class="token string">"10.0.22621.0"</span><span class="token punctuation">,</span>
+            <span class="token property">"compilerPath"</span><span class="token operator">:</span> <span class="token string">"D:\\Develop software\\visualStudio\\VC\\Tools\\MSVC\\14.39.33519\\bin\\Hostx64\\x64\\cl.exe"</span><span class="token punctuation">,</span>
+            <span class="token comment">// "compilerPath": "D://Develop software//development environment//mingw64//bin//g++.exe",</span>
+            <span class="token property">"cStandard"</span><span class="token operator">:</span> <span class="token string">"c17"</span><span class="token punctuation">,</span>
+            <span class="token property">"cppStandard"</span><span class="token operator">:</span> <span class="token string">"c++17"</span><span class="token punctuation">,</span>
+            <span class="token property">"intelliSenseMode"</span><span class="token operator">:</span> <span class="token string">"windows-msvc-x64"</span>
+            <span class="token comment">// "intelliSenseMode": "gcc-x64"</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"version"</span><span class="token operator">:</span> <span class="token number">4</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="task-json"><a href="#task-json" class="headerlink" title="task.json"></a><code>task.json</code></h4><p>这个文件中包含需要的<code>头文件路径</code>和<code>链接指令</code>,以及<code>所需要的动态或者静态库</code>,少一步骤就会出错,需要什么库的名字可以去查找安装的<code>sfml/bin</code>目录下有什么库的名称</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+  <span class="token property">"tasks"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">&#123;</span>
+      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"cppbuild"</span><span class="token punctuation">,</span>
+      <span class="token property">"label"</span><span class="token operator">:</span> <span class="token string">"C/C++: g++.exe 生成活动文件"</span><span class="token punctuation">,</span>
+      <span class="token property">"command"</span><span class="token operator">:</span> <span class="token string">"D:\\Develop software\\development environment\\mingw64\\bin\\g++.exe"</span><span class="token punctuation">,</span>
+      <span class="token property">"args"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"-fdiagnostics-color=always"</span><span class="token punctuation">,</span>
+        <span class="token string">"-g"</span><span class="token punctuation">,</span>
+        <span class="token comment">// "$&#123;file&#125;", //当前文件  // "*",</span>
+        <span class="token string">"*.cpp"</span><span class="token punctuation">,</span> <span class="token comment">//当前文件夹所有的.cpp文件都编译</span>
+        <span class="token string">"-o"</span><span class="token punctuation">,</span>
+        <span class="token comment">// "$&#123;fileDirname&#125;\\$&#123;fileBasenameNoExtension&#125;.exe"</span>
+        <span class="token string">"$&#123;fileDirname&#125;\\output.exe"</span><span class="token punctuation">,</span> <span class="token comment">//生成的可执行程序名字</span>
+        <span class="token string">"-I"</span><span class="token punctuation">,</span>
+        <span class="token string">"C:\\Program Files\\MySQL\\MySQL Server 8.0\\include"</span><span class="token punctuation">,</span> <span class="token comment">// mysql的头文件路径</span>
+        <span class="token string">"-I"</span><span class="token punctuation">,</span>
+        <span class="token string">"D:/Develop software/code/c++Code/SFML-2.6.1-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.1/include"</span><span class="token punctuation">,</span> <span class="token comment">// SFML的头文件路径</span>
+        <span class="token string">"-L"</span><span class="token punctuation">,</span>
+        <span class="token string">"D:/Develop software/code/c++Code/SFML-2.6.1-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.1/lib"</span><span class="token punctuation">,</span> <span class="token comment">// SFML的lib路径</span>
+        <span class="token string">"-L"</span><span class="token punctuation">,</span>
+        <span class="token string">"C:\\Program Files\\MySQL\\MySQL Server 8.0\\lib"</span><span class="token punctuation">,</span> <span class="token comment">// lib</span>
+        <span class="token string">"-llibmysql"</span><span class="token punctuation">,</span>
+        <span class="token string">"-lsfml-graphics"</span><span class="token punctuation">,</span> <span class="token comment">// SFML图形库</span>
+        <span class="token string">"-lsfml-window"</span><span class="token punctuation">,</span> <span class="token comment">// SFML窗口库</span>
+        <span class="token string">"-lsfml-system"</span><span class="token punctuation">,</span> <span class="token comment">// SFML系统库</span>
+        <span class="token string">"-lsfml-network"</span> <span class="token comment">// SFML网络库</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">"options"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token property">"cwd"</span><span class="token operator">:</span> <span class="token string">"$&#123;fileDirname&#125;"</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token property">"problemMatcher"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"$gcc"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">"group"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token property">"kind"</span><span class="token operator">:</span> <span class="token string">"build"</span><span class="token punctuation">,</span>
+        <span class="token property">"isDefault"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token property">"detail"</span><span class="token operator">:</span> <span class="token string">"调试器生成的任务。"</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"2.0.0"</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="拷贝dll文件"><a href="#拷贝dll文件" class="headerlink" title="拷贝dll文件"></a>拷贝dll文件</h3><p>将<code>bin</code>目录下的所有(需要用到的)<code>dll文件</code>拷贝到你的项目下,使它能被找到(也可以<strong>修改环境变量</strong>,或者放到<strong>system32</strong>目录下)</p>
+<h3 id="在VisualStudio中配置"><a href="#在VisualStudio中配置" class="headerlink" title="在VisualStudio中配置"></a>在VisualStudio中配置</h3><p>类似步骤,都是添加<code>include</code>头文件,<code>链接指令</code>,<code>动态库文件</code></p>
+<ul>
+<li>解决方案管理器 -&gt; 右键属性 -&gt; C&#x2F;C++ -&gt; 附加包含目录 -&gt; 添加include路径</li>
+<li>链接器 -&gt; 常规 -&gt; 附加库目录 -&gt; 添加lib路径</li>
+<li>链接器 -&gt; 输入 -&gt; 附加依赖项 -&gt; 编辑 -&gt; 添加如下代码</li>
+</ul>
+<pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">sfml-graphics-d.lib
+sfml-window-d.lib
+sfml-system-d.lib
+sfml-audio-d.lib
+opengl32.lib
+freetype.lib
+winmm.lib
+gdi32.lib<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>最后把<code>sfml/bin</code>目录下的动态链接库复制到项目路径(和main.cpp同处一个目录)下</li>
+</ul>
+<h2 id="赛车游戏代码"><a href="#赛车游戏代码" class="headerlink" title="赛车游戏代码"></a>赛车游戏代码</h2><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;SFML/Graphics.hpp></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;SFML/Audio.hpp></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cmath></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> sf<span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token keyword">int</span> WIN_WIDTH <span class="token operator">=</span> <span class="token number">1024</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> WIN_HEIGHT <span class="token operator">=</span> <span class="token number">768</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> roadWidth <span class="token operator">=</span> <span class="token number">1800</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> roadHeight <span class="token operator">=</span> <span class="token number">180</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> roadSegLength <span class="token operator">=</span> <span class="token number">180</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> roadCount <span class="token operator">=</span> <span class="token number">1885</span><span class="token punctuation">;</span> <span class="token comment">// 因为y是一个三角函数的变量,轨道长度要设为3.14的倍数1884</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> FPS <span class="token operator">=</span> <span class="token number">60</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> ItemSize <span class="token operator">=</span> <span class="token number">450</span><span class="token punctuation">;</span> <span class="token comment">// 路障大小</span>
+<span class="token keyword">int</span> socre <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>            <span class="token comment">// 得分</span>
+<span class="token keyword">const</span> <span class="token keyword">char</span> charItem<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"1234567890+*/-%"</span><span class="token punctuation">;</span>
+<span class="token keyword">struct</span> <span class="token class-name">Road</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 轨道中心的3d世界坐标</span>
+    <span class="token keyword">float</span> x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> z<span class="token punctuation">;</span>
+    <span class="token comment">// 轨道在屏幕中的坐标以及长度</span>
+    <span class="token keyword">float</span> X<span class="token punctuation">,</span> Y<span class="token punctuation">,</span> W<span class="token punctuation">;</span>
+    <span class="token keyword">float</span> scale<span class="token punctuation">;</span>
+    <span class="token keyword">float</span> curve<span class="token punctuation">;</span>   <span class="token comment">// 曲线因子</span>
+    Sprite numspr<span class="token punctuation">;</span> <span class="token comment">// 路障数字</span>
+    <span class="token comment">// 路障数字索引</span>
+    <span class="token keyword">int</span> operatorIndex<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> numIndex<span class="token punctuation">;</span>
+
+    <span class="token comment">// 3d坐标转2d屏幕坐标</span>
+    <span class="token keyword">void</span> <span class="token function">project</span><span class="token punctuation">(</span><span class="token keyword">int</span> cameraX<span class="token punctuation">,</span> <span class="token keyword">int</span> cameraY<span class="token punctuation">,</span> <span class="token keyword">int</span> cameraZ<span class="token punctuation">)</span> <span class="token comment">// 转换坐标的规则,而非物体,宽度是由scale计算得来的</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 离摄像机越远，缩放数值越小(在z轴上)</span>
+        <span class="token comment">/*
+                z
+                ^
+                |
+                |
+                |
+                |
+                ----------------->x
+
+            y轴垂直于你，向上为正，向下为负
+            所以，在摄像机前方的物体，它的z坐标值越大，它的缩放值越小
+            反之，在摄像机后方的物体，它的z坐标值越小，它的缩放值越大
+         */</span>
+        scale <span class="token operator">=</span> <span class="token number">1.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>z <span class="token operator">-</span> cameraZ<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 反比例函数,取值范围是(0,+∞)(最靠近摄像机的物体的缩放值是+∞，最远的物体的缩放值是0)</span>
+        <span class="token comment">// 3d坐标转2d屏幕坐标</span>
+        X <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">+</span> <span class="token punctuation">(</span>x <span class="token operator">-</span> cameraX<span class="token punctuation">)</span> <span class="token operator">*</span> scale<span class="token punctuation">)</span> <span class="token operator">*</span> WIN_WIDTH <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token comment">// z不变,x轴数值越大,物品在视野中的距离越远(x越大)</span>
+        Y <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> <span class="token punctuation">(</span>y <span class="token operator">-</span> cameraY<span class="token punctuation">)</span> <span class="token operator">*</span> scale<span class="token punctuation">)</span> <span class="token operator">*</span> WIN_HEIGHT <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        W <span class="token operator">=</span> roadWidth <span class="token operator">*</span> scale <span class="token operator">*</span> WIN_WIDTH <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">void</span> <span class="token function">drawItem</span><span class="token punctuation">(</span>RenderWindow <span class="token operator">&amp;</span>window<span class="token punctuation">,</span> <span class="token keyword">int</span> index<span class="token punctuation">,</span> <span class="token keyword">int</span> xPlacement<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        Sprite s <span class="token operator">=</span> numspr<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token punctuation">(</span>index <span class="token operator">%</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">*</span> ItemSize<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> top <span class="token operator">=</span> <span class="token punctuation">(</span>index <span class="token operator">/</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">*</span> ItemSize<span class="token punctuation">;</span>
+        s<span class="token punctuation">.</span><span class="token function">setTextureRect</span><span class="token punctuation">(</span><span class="token function">IntRect</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> top<span class="token punctuation">,</span> ItemSize<span class="token punctuation">,</span> ItemSize<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 裁剪到对应数字的位置</span>
+        s<span class="token punctuation">.</span><span class="token function">setScale</span><span class="token punctuation">(</span>W <span class="token operator">/</span> ItemSize<span class="token punctuation">,</span> W <span class="token operator">/</span> ItemSize<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        s<span class="token punctuation">.</span><span class="token function">setPosition</span><span class="token punctuation">(</span>X <span class="token operator">+</span> xPlacement <span class="token operator">*</span> W<span class="token punctuation">,</span> Y <span class="token operator">-</span> W<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        window<span class="token punctuation">.</span><span class="token function">draw</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 重载版本,画路障</span>
+    <span class="token keyword">void</span> <span class="token function">drawItem</span><span class="token punctuation">(</span>RenderWindow <span class="token operator">&amp;</span>win<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>operatorIndex <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token function">drawItem</span><span class="token punctuation">(</span>win<span class="token punctuation">,</span> operatorIndex<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">drawItem</span><span class="token punctuation">(</span>win<span class="token punctuation">,</span> numIndex<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">void</span> <span class="token function">generateItem</span><span class="token punctuation">(</span><span class="token keyword">bool</span> bAlwaysGen<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>bAlwaysGen <span class="token operator">||</span> <span class="token punctuation">(</span><span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">200</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            operatorIndex <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">10</span><span class="token punctuation">;</span>
+            numIndex <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>numIndex <span class="token operator">==</span> <span class="token number">9</span><span class="token punctuation">)</span> <span class="token comment">// 处理数字为0的情况</span>
+            <span class="token punctuation">&#123;</span>
+                numIndex <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">else</span>
+        <span class="token punctuation">&#123;</span>
+            operatorIndex <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token function">Road</span><span class="token punctuation">(</span><span class="token keyword">int</span> _x<span class="token punctuation">,</span> <span class="token keyword">int</span> _y<span class="token punctuation">,</span> <span class="token keyword">int</span> _z<span class="token punctuation">,</span> <span class="token keyword">float</span> _c<span class="token punctuation">,</span> Sprite _spr<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">x</span><span class="token punctuation">(</span>_x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">y</span><span class="token punctuation">(</span>_y<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">z</span><span class="token punctuation">(</span>_z<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">curve</span><span class="token punctuation">(</span>_c<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">numspr</span><span class="token punctuation">(</span>_spr<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">generateItem</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 随机生成路障</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">calculateScore</span><span class="token punctuation">(</span><span class="token keyword">int</span> socre<span class="token punctuation">,</span> <span class="token keyword">int</span> operatorIndex<span class="token punctuation">,</span> <span class="token keyword">int</span> numIndex<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">char</span> op <span class="token operator">=</span> charItem<span class="token punctuation">[</span>operatorIndex<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> num <span class="token operator">=</span> charItem<span class="token punctuation">[</span>numIndex<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token char">'0'</span><span class="token punctuation">;</span> <span class="token comment">// 将数字字符转成数字</span>
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>op<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+    <span class="token keyword">case</span> <span class="token char">'+'</span><span class="token operator">:</span>
+        socre <span class="token operator">+=</span> num<span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token char">'-'</span><span class="token operator">:</span>
+        socre <span class="token operator">-=</span> num<span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token char">'*'</span><span class="token operator">:</span>
+        socre <span class="token operator">*=</span> num<span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token char">'/'</span><span class="token operator">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            socre <span class="token operator">/=</span> num<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token char">'%'</span><span class="token operator">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            socre <span class="token operator">%=</span> num<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token operator">:</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> socre<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">void</span> <span class="token function">drawScore</span><span class="token punctuation">(</span>RenderWindow <span class="token operator">&amp;</span>window<span class="token punctuation">,</span> Sprite sItem<span class="token punctuation">,</span> <span class="token keyword">int</span> score<span class="token punctuation">,</span> <span class="token keyword">int</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> y<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">char</span> ch<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token char">'\0'</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    <span class="token function">_itoa_s</span><span class="token punctuation">(</span>score<span class="token punctuation">,</span> ch<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 把数字转成10进制字符串</span>
+    <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token function">strlen</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        Sprite s <span class="token operator">=</span> sItem<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> index <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> charItem<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token char">'\0'</span><span class="token punctuation">;</span> <span class="token operator">++</span>j<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>charItem<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> ch<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token punctuation">&#123;</span>
+                index <span class="token operator">=</span> j<span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token punctuation">(</span>index <span class="token operator">%</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">*</span> ItemSize<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> top <span class="token operator">=</span> <span class="token punctuation">(</span>index <span class="token operator">/</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">*</span> ItemSize<span class="token punctuation">;</span>
+        s<span class="token punctuation">.</span><span class="token function">setTextureRect</span><span class="token punctuation">(</span><span class="token function">IntRect</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> top<span class="token punctuation">,</span> ItemSize<span class="token punctuation">,</span> ItemSize<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        s<span class="token punctuation">.</span><span class="token function">setScale</span><span class="token punctuation">(</span><span class="token number">0.18f</span><span class="token punctuation">,</span> <span class="token number">0.18f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        s<span class="token punctuation">.</span><span class="token function">setPosition</span><span class="token punctuation">(</span>x <span class="token operator">+</span> <span class="token number">0.13f</span> <span class="token operator">*</span> i <span class="token operator">*</span> ItemSize<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        window<span class="token punctuation">.</span><span class="token function">draw</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// x1,y1,w1分别是下底的中心坐标x,y,以及一半的下底宽度w,x2,y2,w2分别是上底的中心坐标x,y,以及一半的上底宽度w</span>
+<span class="token keyword">void</span> <span class="token function">drawTrape</span><span class="token punctuation">(</span>RenderWindow <span class="token operator">&amp;</span>window<span class="token punctuation">,</span> Color c<span class="token punctuation">,</span> <span class="token keyword">int</span> x1<span class="token punctuation">,</span> <span class="token keyword">int</span> y1<span class="token punctuation">,</span> <span class="token keyword">int</span> w1<span class="token punctuation">,</span> <span class="token keyword">int</span> x2<span class="token punctuation">,</span> <span class="token keyword">int</span> y2<span class="token punctuation">,</span> <span class="token keyword">int</span> w2<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 定义一个多边形</span>
+    ConvexShape <span class="token function">polygon</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    polygon<span class="token punctuation">.</span><span class="token function">setFillColor</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 设置多边形的点,Vector2f(x,y)表示点的坐标二维向量</span>
+    polygon<span class="token punctuation">.</span><span class="token function">setPoint</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token function">Vector2f</span><span class="token punctuation">(</span>x1 <span class="token operator">-</span> w1<span class="token punctuation">,</span> y1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    polygon<span class="token punctuation">.</span><span class="token function">setPoint</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token function">Vector2f</span><span class="token punctuation">(</span>x2 <span class="token operator">-</span> w2<span class="token punctuation">,</span> y2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    polygon<span class="token punctuation">.</span><span class="token function">setPoint</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token function">Vector2f</span><span class="token punctuation">(</span>x2 <span class="token operator">+</span> w2<span class="token punctuation">,</span> y2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    polygon<span class="token punctuation">.</span><span class="token function">setPoint</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token function">Vector2f</span><span class="token punctuation">(</span>x1 <span class="token operator">+</span> w1<span class="token punctuation">,</span> y1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 绘制多边形</span>
+    window<span class="token punctuation">.</span><span class="token function">draw</span><span class="token punctuation">(</span>polygon<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    sf<span class="token double-colon punctuation">::</span>RenderWindow <span class="token function">window</span><span class="token punctuation">(</span>sf<span class="token double-colon punctuation">::</span><span class="token function">VideoMode</span><span class="token punctuation">(</span>WIN_WIDTH<span class="token punctuation">,</span> WIN_HEIGHT<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"Racing Game!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    window<span class="token punctuation">.</span><span class="token function">setFramerateLimit</span><span class="token punctuation">(</span>FPS<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    Texture bg<span class="token punctuation">;</span>
+    bg<span class="token punctuation">.</span><span class="token function">loadFromFile</span><span class="token punctuation">(</span><span class="token string">"cloud.png"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Sprite <span class="token function">bgSprite</span><span class="token punctuation">(</span>bg<span class="token punctuation">,</span> <span class="token function">IntRect</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> WIN_WIDTH<span class="token punctuation">,</span> WIN_HEIGHT <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 加载路障数字</span>
+    Texture item<span class="token punctuation">;</span>
+    item<span class="token punctuation">.</span><span class="token function">loadFromFile</span><span class="token punctuation">(</span><span class="token string">"item.png"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Sprite <span class="token function">s</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 加载音乐</span>
+    Sound sound<span class="token punctuation">,</span> bgm<span class="token punctuation">;</span>
+    sf<span class="token double-colon punctuation">::</span>SoundBuffer buffer<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    buffer<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">loadFromFile</span><span class="token punctuation">(</span><span class="token string">"get.mp3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    buffer<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">loadFromFile</span><span class="token punctuation">(</span><span class="token string">"jump.mp3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    buffer<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">loadFromFile</span><span class="token punctuation">(</span><span class="token string">"falldown.mp3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    buffer<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">loadFromFile</span><span class="token punctuation">(</span><span class="token string">"tianfuyue.mp3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    buffer<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">loadFromFile</span><span class="token punctuation">(</span><span class="token string">"liumaishenjian.mp3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span>Road<span class="token operator">></span> roads<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> roadCount<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 随机生成曲线因子</span>
+        <span class="token keyword">float</span> curve <span class="token operator">=</span> <span class="token punctuation">(</span>i <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> i <span class="token operator">&lt;</span> <span class="token number">300</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">0.5</span> <span class="token operator">:</span> <span class="token operator">-</span><span class="token number">0.5</span><span class="token punctuation">;</span>
+        <span class="token comment">// 每一格轨道沿Z轴正方向叠放(3D坐标系)</span>
+        <span class="token comment">// Road road(0, 1600 * std::sin(i / 30.0), (i + 1) * roadSegLength, curve, s);</span>
+        Road <span class="token function">road</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> roadSegLength<span class="token punctuation">,</span> curve<span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        roads<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>road<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">int</span> cameraZ <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>    <span class="token comment">// 摄像机的z坐标(3d),可能超出int范围</span>
+    <span class="token keyword">int</span> cameraX <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>    <span class="token comment">// 摄像机的x坐标(3d)</span>
+    <span class="token keyword">int</span> cameraY <span class="token operator">=</span> <span class="token number">1600</span><span class="token punctuation">;</span> <span class="token comment">// 摄像机的y坐标(3d)</span>
+
+    <span class="token keyword">int</span> speed <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>        <span class="token comment">// 速度,每帧移动的距离</span>
+    <span class="token keyword">bool</span> isJumping <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token comment">// 是否跳跃</span>
+    <span class="token keyword">float</span> dy <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>    <span class="token comment">// 竖直向上的速度,跳跃产生的位移</span>
+
+    bgm<span class="token punctuation">.</span><span class="token function">setBuffer</span><span class="token punctuation">(</span>buffer<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    bgm<span class="token punctuation">.</span><span class="token function">setLoop</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    bgm<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span><span class="token function">isOpen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        sf<span class="token double-colon punctuation">::</span>Event event<span class="token punctuation">;</span>
+        <span class="token comment">// 从事件队列中获取事件</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span><span class="token function">pollEvent</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>type <span class="token operator">==</span> sf<span class="token double-colon punctuation">::</span>Event<span class="token double-colon punctuation">::</span>Closed<span class="token punctuation">)</span>
+            <span class="token punctuation">&#123;</span>
+                window<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">Keyboard</span><span class="token double-colon punctuation">::</span><span class="token function">isKeyPressed</span><span class="token punctuation">(</span>Keyboard<span class="token double-colon punctuation">::</span>Up<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">&#123;</span>
+                speed <span class="token operator">+=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>speed <span class="token operator">></span> <span class="token number">1000</span><span class="token punctuation">)</span>
+                <span class="token punctuation">&#123;</span>
+                    speed <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">Keyboard</span><span class="token double-colon punctuation">::</span><span class="token function">isKeyPressed</span><span class="token punctuation">(</span>Keyboard<span class="token double-colon punctuation">::</span>Down<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">&#123;</span>
+                speed <span class="token operator">-=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>speed <span class="token operator">&lt;</span> <span class="token number">100</span><span class="token punctuation">)</span>
+                <span class="token punctuation">&#123;</span>
+                    speed <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        cameraZ <span class="token operator">+=</span> speed<span class="token punctuation">;</span> <span class="token comment">// 每帧累加速度</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">Keyboard</span><span class="token double-colon punctuation">::</span><span class="token function">isKeyPressed</span><span class="token punctuation">(</span>Keyboard<span class="token double-colon punctuation">::</span>Up<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            cameraZ <span class="token operator">+=</span> roadSegLength<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">Keyboard</span><span class="token double-colon punctuation">::</span><span class="token function">isKeyPressed</span><span class="token punctuation">(</span>Keyboard<span class="token double-colon punctuation">::</span>Down<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            cameraZ <span class="token operator">-=</span> roadSegLength<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">Keyboard</span><span class="token double-colon punctuation">::</span><span class="token function">isKeyPressed</span><span class="token punctuation">(</span>Keyboard<span class="token double-colon punctuation">::</span>Left<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            cameraX <span class="token operator">-=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">Keyboard</span><span class="token double-colon punctuation">::</span><span class="token function">isKeyPressed</span><span class="token punctuation">(</span>Keyboard<span class="token double-colon punctuation">::</span>Right<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            cameraX <span class="token operator">+=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">Keyboard</span><span class="token double-colon punctuation">::</span><span class="token function">isKeyPressed</span><span class="token punctuation">(</span>Keyboard<span class="token double-colon punctuation">::</span>Space<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>isJumping<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            sound<span class="token punctuation">.</span><span class="token function">setBuffer</span><span class="token punctuation">(</span>buffer<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            sound<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            isJumping <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+            dy <span class="token operator">=</span> <span class="token number">150</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>isJumping<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            dy <span class="token operator">-=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+            y <span class="token operator">+=</span> dy<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>y <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token punctuation">&#123;</span>
+                isJumping <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+                y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+                sound<span class="token punctuation">.</span><span class="token function">setBuffer</span><span class="token punctuation">(</span>buffer<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                sound<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">Keyboard</span><span class="token double-colon punctuation">::</span><span class="token function">isKeyPressed</span><span class="token punctuation">(</span>Keyboard<span class="token double-colon punctuation">::</span>LControl<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token class-name">Keyboard</span><span class="token double-colon punctuation">::</span><span class="token function">isKeyPressed</span><span class="token punctuation">(</span>Keyboard<span class="token double-colon punctuation">::</span>Q<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            window<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token comment">// 循环使用轨道</span>
+        <span class="token keyword">int</span> totalLength <span class="token operator">=</span> roadCount <span class="token operator">*</span> roadSegLength<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cameraZ <span class="token operator">>=</span> totalLength<span class="token punctuation">)</span>
+            cameraZ <span class="token operator">-=</span> totalLength<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cameraZ <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            cameraZ <span class="token operator">+=</span> totalLength<span class="token punctuation">;</span>
+
+        <span class="token comment">// 渲染窗口内容</span>
+        window<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// drawTrape(window, sf::Color::White, WIN_WIDTH / 2, 500, 200, WIN_WIDTH / 2, 300, 100);</span>
+
+        <span class="token keyword">int</span> roadIndex <span class="token operator">=</span> cameraZ <span class="token operator">/</span> roadSegLength<span class="token punctuation">;</span>
+        <span class="token keyword">float</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> dx <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        cameraY <span class="token operator">=</span> <span class="token number">1600</span> <span class="token operator">+</span> roads<span class="token punctuation">[</span>roadIndex<span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token punctuation">;</span> <span class="token comment">// 相机随着y变化而变化会有带入感,可以试着注释掉看看效果,(如果y在顶点处,会出现相机最近的砖块过大或者看到贴图下面)</span>
+        <span class="token comment">// 此处300行是视野范围</span>
+        <span class="token keyword">int</span> minY <span class="token operator">=</span> WIN_HEIGHT<span class="token punctuation">;</span> <span class="token comment">// 可以看到的最高点y坐标(2d屏幕)</span>
+
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> roadIndex<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> roadIndex <span class="token operator">+</span> <span class="token number">300</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            Road <span class="token operator">&amp;</span>now <span class="token operator">=</span> roads<span class="token punctuation">[</span>i <span class="token operator">%</span> roadCount<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token comment">// 每一块轨道在被转换成2d界面后,由于摄像机的x变化,转换后的形状变成斜梯形所以产生(拼接)曲线的效果</span>
+            now<span class="token punctuation">.</span><span class="token function">project</span><span class="token punctuation">(</span>cameraX <span class="token operator">-</span> x<span class="token punctuation">,</span> cameraY <span class="token operator">+</span> y<span class="token punctuation">,</span> cameraZ <span class="token operator">-</span> <span class="token punctuation">(</span>i <span class="token operator">>=</span> roadCount <span class="token operator">?</span> totalLength <span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 如果当前要绘制的方块大于总共的方块数,i>roadCount,则需要将摄像头放回起点在转换,但是实际上的cameraZ值还没有超出totalLength</span>
+            <span class="token comment">// 进行循环处理(从0开始,又因为总共的个数是3.14倍数,所以循环处理后会回到原点且没有高低差)</span>
+            dx <span class="token operator">+=</span> now<span class="token punctuation">.</span>curve<span class="token punctuation">;</span>
+            x <span class="token operator">+=</span> dx<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>i<span class="token punctuation">)</span>
+            <span class="token punctuation">&#123;</span>
+                <span class="token keyword">continue</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>now<span class="token punctuation">.</span>Y <span class="token operator">>=</span> WIN_HEIGHT<span class="token punctuation">)</span> <span class="token comment">// 你所撞击的方块(屏幕最下方的)</span>
+            <span class="token punctuation">&#123;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isJumping <span class="token operator">&amp;&amp;</span> now<span class="token punctuation">.</span>operatorIndex <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+                <span class="token punctuation">&#123;</span>
+                    socre <span class="token operator">=</span> <span class="token function">calculateScore</span><span class="token punctuation">(</span>socre<span class="token punctuation">,</span> now<span class="token punctuation">.</span>operatorIndex<span class="token punctuation">,</span> now<span class="token punctuation">.</span>numIndex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    now<span class="token punctuation">.</span>operatorIndex <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+                    roads<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1500</span><span class="token punctuation">)</span> <span class="token operator">%</span> roadCount<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">generateItem</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 重新生成道路障碍物</span>
+                    sound<span class="token punctuation">.</span><span class="token function">setBuffer</span><span class="token punctuation">(</span>buffer<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    sound<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>now<span class="token punctuation">.</span>Y <span class="token operator">&lt;</span> minY<span class="token punctuation">)</span>
+            <span class="token punctuation">&#123;</span>
+                minY <span class="token operator">=</span> now<span class="token punctuation">.</span>Y<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>now<span class="token punctuation">.</span>Y <span class="token operator">>=</span> minY<span class="token punctuation">)</span>
+            <span class="token punctuation">&#123;</span>
+                <span class="token keyword">continue</span><span class="token punctuation">;</span> <span class="token comment">// 被遮挡住超出视野范围的方块,不绘制</span>
+            <span class="token punctuation">&#125;</span>
+
+            bgSprite<span class="token punctuation">.</span><span class="token function">setTextureRect</span><span class="token punctuation">(</span><span class="token function">IntRect</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> WIN_WIDTH<span class="token punctuation">,</span> minY<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 设置背景图片的显示范围</span>
+            window<span class="token punctuation">.</span><span class="token function">draw</span><span class="token punctuation">(</span>bgSprite<span class="token punctuation">)</span><span class="token punctuation">;</span>                                   <span class="token comment">// 绘制背景图片</span>
+
+            <span class="token function">drawScore</span><span class="token punctuation">(</span>window<span class="token punctuation">,</span> s<span class="token punctuation">,</span> socre<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 显示得分</span>
+
+            Road <span class="token operator">&amp;</span>prev <span class="token operator">=</span> roads<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> roadCount<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+            Color grass <span class="token operator">=</span> i <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">?</span> <span class="token function">Color</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">,</span> <span class="token number">210</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">Color</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">199</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 偶数行用白</span>
+            Color edge <span class="token operator">=</span> i <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">?</span> <span class="token function">Color</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">Color</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 偶数行用白色,奇数行用黑色</span>
+            Color road <span class="token operator">=</span> i <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">?</span> <span class="token function">Color</span><span class="token punctuation">(</span><span class="token number">105</span><span class="token punctuation">,</span> <span class="token number">105</span><span class="token punctuation">,</span> <span class="token number">105</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">Color</span><span class="token punctuation">(</span><span class="token number">101</span><span class="token punctuation">,</span> <span class="token number">101</span><span class="token punctuation">,</span> <span class="token number">101</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token function">drawTrape</span><span class="token punctuation">(</span>window<span class="token punctuation">,</span> grass<span class="token punctuation">,</span> prev<span class="token punctuation">.</span>X<span class="token punctuation">,</span> prev<span class="token punctuation">.</span>Y<span class="token punctuation">,</span> WIN_WIDTH <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">,</span> now<span class="token punctuation">.</span>X<span class="token punctuation">,</span> now<span class="token punctuation">.</span>Y<span class="token punctuation">,</span> WIN_WIDTH <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">drawTrape</span><span class="token punctuation">(</span>window<span class="token punctuation">,</span> edge<span class="token punctuation">,</span> prev<span class="token punctuation">.</span>X<span class="token punctuation">,</span> prev<span class="token punctuation">.</span>Y<span class="token punctuation">,</span> prev<span class="token punctuation">.</span>W <span class="token operator">*</span> <span class="token number">1.3</span><span class="token punctuation">,</span> now<span class="token punctuation">.</span>X<span class="token punctuation">,</span> now<span class="token punctuation">.</span>Y<span class="token punctuation">,</span> now<span class="token punctuation">.</span>W <span class="token operator">*</span> <span class="token number">1.3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 先画边框,再画道路覆盖</span>
+            <span class="token function">drawTrape</span><span class="token punctuation">(</span>window<span class="token punctuation">,</span> road<span class="token punctuation">,</span> prev<span class="token punctuation">.</span>X<span class="token punctuation">,</span> prev<span class="token punctuation">.</span>Y<span class="token punctuation">,</span> prev<span class="token punctuation">.</span>W<span class="token punctuation">,</span> now<span class="token punctuation">.</span>X<span class="token punctuation">,</span> now<span class="token punctuation">.</span>Y<span class="token punctuation">,</span> now<span class="token punctuation">.</span>W<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> roadIndex <span class="token operator">+</span> <span class="token number">300</span><span class="token punctuation">;</span> i <span class="token operator">></span> roadIndex<span class="token punctuation">;</span> <span class="token operator">--</span>i<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            roads<span class="token punctuation">[</span>i <span class="token operator">%</span> roadCount<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">drawItem</span><span class="token punctuation">(</span>window<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        window<span class="token punctuation">.</span><span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 显示渲染窗口</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/*
+project只负责处理一个方块的3d坐标到2d屏幕坐标的转换
+
+drawTrape因为把上一个方块的中心(2d)坐标作为绘制new轨道的下底中心坐标,宽与prev的宽一样,所以不会超出范围
+
+curse是曲线因子,用来控制斜率,值越大,斜率越大,曲线越陡峭,值越小,斜率越小,曲线越平滑,
+每一帧要绘制300块,每一块绘制完后,cameraX会改变,所以相应的新的上底的x坐标也会改变,形成曲线的效果
+*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://0zxm.github.io">0zxm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://0zxm.github.io/2024/10/06/zai-vscode-zhong-pei-zhi-cpp-di-san-fang-ku/">https://0zxm.github.io/2024/10/06/zai-vscode-zhong-pei-zhi-cpp-di-san-fang-ku/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://0zxm.github.io" target="_blank">0zxm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/vscode/">vscode</a><a class="post-meta__tags" href="/tags/SFML%E5%BA%93/">SFML库</a></div><div class="post-share"><div class="social-share" data-image="/img/default_cover.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/10/10/java-cheng-xu-da-bao-cheng-jar-bao/" title="Java程序打包成jar包"><img class="cover" src="/img/cover1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Java程序打包成jar包</div></div><div class="info-2"><div class="info-item-1">步骤1 打开项目结构 步骤2 配置工件  选择你要打包的模块 选择主类(程序的主入口main类) 提取到目标会把库文件的jar包打包到目标,一般选择这个,更方便在不同电脑上运行   步骤3 构建并生成jar包 最后,在对应的out/artifacts文件夹中找到jar包,在终端输入java -jar xxxx.jar就可以正常运行 </div></div></div></a><a class="pagination-related" href="/2024/09/22/cmake-de-shi-yong/" title="cmake的使用"><img class="cover" src="/img/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">cmake的使用</div></div><div class="info-2"><div class="info-item-1">b站教程 第一章 CMake初体验1. CMake是什么、CMake构建项目的流程CMake是一个开源的、跨平台的自动化构建工具，通过cmake我们可以轻松地管理我们的项目。  注意: CMake并不是包管理工具! CMake并不只支持C&#x2F;C++! 掌握CMake是学习C++必经之路!    2. CMake的优点和缺点 优点 操作透明而细腻 它专注于现代C++现代化，专注于支持C++现代编译器和工具链 真正的跨平台，支持比如Windows、Linux、macOS、Cygwin(Linux移植到Windows)等 支持生成几乎所有主流IDE的项目   缺点 它还在成长 CMake它是一门语言，你需要学习    CMake没有阻碍C++的发展，相反CMake拯救了C++! 相比其他语言的构建工具，CMake自然要复杂的多，但这不是CMake的问题。相比其他的编程语言，C&#x2F;C++更关注底层和构建其他的编程语言，因此CMake面临的问题的和其他编程语言是完全不同的! 而且正因为CMake的出现，C++才终于完成了项目跨平台! 3....</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">0zxm</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/0zxm" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:m15813109801@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="http://0zxm.github.io" target="_blank" title="博客"><i class="fab fa-algolia" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93"><span class="toc-number">1.</span> <span class="toc-text">下载第三方库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">添加环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#c-cpp-properties-json"><span class="toc-number">2.1.</span> <span class="toc-text">c_cpp_properties.json</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#task-json"><span class="toc-number">2.2.</span> <span class="toc-text">task.json</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%B7%E8%B4%9Ddll%E6%96%87%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">拷贝dll文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8VisualStudio%E4%B8%AD%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text">在VisualStudio中配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%9B%E8%BD%A6%E6%B8%B8%E6%88%8F%E4%BB%A3%E7%A0%81"><span class="toc-number"></span> <span class="toc-text">赛车游戏代码</span></a></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/10/26/hexo-geng-huan-zhu-ti-butterfly/" title="Hexo更换主题butterfly"><img src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo更换主题butterfly"/></a><div class="content"><a class="title" href="/2024/10/26/hexo-geng-huan-zhu-ti-butterfly/" title="Hexo更换主题butterfly">Hexo更换主题butterfly</a><time datetime="2024-10-26T12:14:16.000Z" title="发表于 2024-10-26 20:14:16">2024-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/14/javascript-xue-xi/" title="JavaScript学习"><img src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JavaScript学习"/></a><div class="content"><a class="title" href="/2024/10/14/javascript-xue-xi/" title="JavaScript学习">JavaScript学习</a><time datetime="2024-10-14T12:36:08.000Z" title="发表于 2024-10-14 20:36:08">2024-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/11/java-ji-chu-shang/" title="Java基础上"><img src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java基础上"/></a><div class="content"><a class="title" href="/2024/10/11/java-ji-chu-shang/" title="Java基础上">Java基础上</a><time datetime="2024-10-11T12:12:04.000Z" title="发表于 2024-10-11 20:12:04">2024-10-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/10/java-cheng-xu-da-bao-cheng-jar-bao/" title="Java程序打包成jar包"><img src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java程序打包成jar包"/></a><div class="content"><a class="title" href="/2024/10/10/java-cheng-xu-da-bao-cheng-jar-bao/" title="Java程序打包成jar包">Java程序打包成jar包</a><time datetime="2024-10-10T04:51:27.000Z" title="发表于 2024-10-10 12:51:27">2024-10-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/06/zai-vscode-zhong-pei-zhi-cpp-di-san-fang-ku/" title="在vscode中配置cpp第三方库"><img src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在vscode中配置cpp第三方库"/></a><div class="content"><a class="title" href="/2024/10/06/zai-vscode-zhong-pei-zhi-cpp-di-san-fang-ku/" title="在vscode中配置cpp第三方库">在vscode中配置cpp第三方库</a><time datetime="2024-10-06T15:10:51.000Z" title="发表于 2024-10-06 23:10:51">2024-10-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By 0zxm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

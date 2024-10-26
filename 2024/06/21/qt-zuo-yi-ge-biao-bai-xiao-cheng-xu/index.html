@@ -1,0 +1,344 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>qt做一个表白小程序 | 0zxm</title><meta name="author" content="0zxm"><meta name="copyright" content="0zxm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Qt实战01 刷视频看到大家学了图形化界面编程后的第一件事,一定是写出一个表白小程序用来对自己心爱的人用来表白,而且一定要让他接受,所以我写了一个qt小程序,能够把窗口置于顶层,让她一直感到你的爱意,而且怎么关也关不掉,正好适合对不怎么会使用电脑的人使用  当然,关掉的方法还是有很多的,包括但不限于调出任务管理器kill掉等方法   成品展示这是点击不接受的窗口,右侧是马里奥的gif动画 若是不接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="qt做一个表白小程序">
+<meta property="og:url" content="https://0zxm.github.io/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/index.html">
+<meta property="og:site_name" content="0zxm">
+<meta property="og:description" content="Qt实战01 刷视频看到大家学了图形化界面编程后的第一件事,一定是写出一个表白小程序用来对自己心爱的人用来表白,而且一定要让他接受,所以我写了一个qt小程序,能够把窗口置于顶层,让她一直感到你的爱意,而且怎么关也关不掉,正好适合对不怎么会使用电脑的人使用  当然,关掉的方法还是有很多的,包括但不限于调出任务管理器kill掉等方法   成品展示这是点击不接受的窗口,右侧是马里奥的gif动画 若是不接">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://0zxm.github.io/img/default_cover.jpg">
+<meta property="article:published_time" content="2024-06-21T03:56:16.000Z">
+<meta property="article:modified_time" content="2024-09-20T16:08:39.201Z">
+<meta property="article:author" content="0zxm">
+<meta property="article:tag" content="Qt">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0zxm.github.io/img/default_cover.jpg"><link rel="shortcut icon" href="/"><link rel="canonical" href="https://0zxm.github.io/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'qt做一个表白小程序',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-09-21 00:08:39'
+}</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/default_cover.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">0zxm</span></a><a class="nav-page-title" href="/"><span class="site-name">qt做一个表白小程序</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">qt做一个表白小程序</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-06-21T03:56:16.000Z" title="发表于 2024-06-21 11:56:16">2024-06-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-09-20T16:08:39.201Z" title="更新于 2024-09-21 00:08:39">2024-09-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/GUI%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/">GUI程序开发</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Qt实战01"><a href="#Qt实战01" class="headerlink" title="Qt实战01"></a>Qt实战01</h1><ul>
+<li><p>刷视频看到大家学了图形化界面编程后的第一件事,一定是写出一个表白小程序用来对自己心爱的人用来表白,而且一定要让他接受,所以我写了一个qt小程序,能够把窗口置于顶层,让她一直感到你的爱意,而且怎么关也关不掉,正好适合对不怎么会使用电脑的人使用</p>
+</li>
+<li><p>当然,关掉的方法还是有很多的,包括但不限于调出任务管理器kill掉等方法</p>
+</li>
+</ul>
+<h3 id="成品展示"><a href="#成品展示" class="headerlink" title="成品展示"></a>成品展示</h3><p>这是点击不接受的窗口,右侧是马里奥的gif动画</p>
+<p>若是不接受,会一直置于顶层</p>
+<p><img src="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/image-20240128090249459.png" alt="image-20240128090249459"></p>
+<p>这是接受后弹出的窗口,可以拖拽</p>
+<p><img src="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/image-20240128090322689.png" alt="image-20240128090322689"></p>
+<h3 id="关键部分讲解"><a href="#关键部分讲解" class="headerlink" title="关键部分讲解"></a>关键部分讲解</h3><h4 id="添加动画"><a href="#添加动画" class="headerlink" title="添加动画"></a>添加动画</h4><p>使用了qt写好的qmovie类,创建时指定动画资源,设置好播放速度,窗口创建就会开始播放,默认循环播放</p>
+<blockquote>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;添加马里奥动画
+QMovie * mario &#x3D; new QMovie(&quot;:&#x2F;mario.gif&quot;);
+ui-&gt;marioLabel-&gt;setMovie(mario);
+ui-&gt;marioLabel-&gt;setScaledContents(true); &#x2F;&#x2F; 将内容缩放以适应控件大小
+&#x2F;&#x2F;设置播放速度
+mario-&gt;setSpeed(150);
+mario-&gt;start();
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="循环逻辑"><a href="#循环逻辑" class="headerlink" title="循环逻辑"></a>循环逻辑</h4><p>这里使用connect链接按钮的点击事件,若是接受了,会弹出一个自定义的yes_next窗口,里面是我写好的从多处收集来的情诗和句子,背景我使用了爱心图片填充</p>
+<p>如果用户点击了不接受,就会创建一个循环对话框,一直监听信号,直到用户点击yes,在弹出yes_next对话框</p>
+<blockquote>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 连接按钮的点击事件
+ QObject::connect(ui-&gt;pushButton_Yes, &amp;QPushButton::clicked, [&#x3D;]()&#123;
+     Yes_Next *y &#x3D; new Yes_Next;
+     y-&gt;setVisible(true);
+     y-&gt;setWindowFlag(Qt::WindowStaysOnTopHint);
+     &#x2F;&#x2F;y-&gt;setGeometry(100, 100, 400, 400); &#x2F;&#x2F; 设置窗口位置和大小
+     y-&gt;setGeometry(600,150,400,600);
+     y-&gt;show();
+     y-&gt;raise();
+     this-&gt;close();
+     &#x2F;&#x2F;exit(0);
+ &#125;);
+ QObject::connect(ui-&gt;pushButton_No, &amp;QPushButton::clicked, [&#x3D;]()&#123;
+
+     &#x2F;&#x2F; 用户点击了 &quot;No&quot; 按钮，继续循环
+     while (true) &#123;
+         QDialog loopDialog;
+         loopDialog.setWindowTitle(&quot;循环对话框&quot;);
+         loopDialog.setWindowFlag(Qt::WindowStaysOnTopHint);
+         loopDialog.setModal(true);
+         loopDialog.setFixedSize(350, 100); &#x2F;&#x2F; 设置固定大小
+
+         QLabel *label &#x3D; new QLabel(&amp;loopDialog);
+         label-&gt;setText(&quot;你在考虑下,接不接受&quot;); &#x2F;&#x2F; 确保文本正确设置
+         label-&gt;show();
+         label-&gt;setGeometry(120, 10, 150, 35); &#x2F;&#x2F; 设置位置和大小
+         &#x2F;&#x2F;label-&gt;setStyleSheet(&quot;border: 1px solid black&quot;); &#x2F;&#x2F; 添加边框以显示位置
+         QPalette palette &#x3D; label-&gt;palette();
+         palette.setColor(QPalette::Text, QColor(0, 0, 255)); &#x2F;&#x2F; 设置文本颜色为蓝色
+         label-&gt;setPalette(palette);
+
+         QPushButton *btnYesLoop &#x3D; new QPushButton(&quot;Yes&quot;, &amp;loopDialog);
+         QPushButton *btnNoLoop &#x3D; new QPushButton(&quot;No&quot;, &amp;loopDialog);
+         btnYesLoop-&gt;setGeometry(50, 50, 100, 30);
+         btnNoLoop-&gt;setGeometry(200, 50, 100, 30);
+
+         &#x2F;&#x2F; 设置父子关系
+         btnYesLoop-&gt;setParent(&amp;loopDialog);
+         btnNoLoop-&gt;setParent(&amp;loopDialog);
+
+         &#x2F;&#x2F; 连接按钮的点击事件
+         QObject::connect(btnYesLoop, &amp;QPushButton::clicked, &amp;loopDialog, &amp;QDialog::accept);
+         QObject::connect(btnNoLoop, &amp;QPushButton::clicked, &amp;loopDialog, &amp;QDialog::reject);
+
+         &#x2F;&#x2F; 显示循环对话框
+         if (loopDialog.exec() &#x3D;&#x3D; QDialog::Accepted) &#123;
+             &#x2F;&#x2F; 用户点击了 &quot;Yes&quot; 按钮，退出循环
+             Yes_Next *y &#x3D; new Yes_Next;
+             y-&gt;setGeometry(600, 150, 400, 400); &#x2F;&#x2F; 设置窗口位置和大小
+             y-&gt;show();
+             y-&gt;raise();
+             this-&gt;close();
+             &#x2F;&#x2F;exit(0);
+             break;
+         &#125;
+     &#125;
+ &#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="yes-next窗口"><a href="#yes-next窗口" class="headerlink" title="yes_next窗口"></a>yes_next窗口</h4><blockquote>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &quot;yes_next.h&quot;
+#include &quot;ui_yes_next.h&quot;
+
+Yes_Next::Yes_Next(QWidget *parent)
+ : QWidget(parent)
+ , ui(new Ui::Yes_Next)
+&#123;
+ ui-&gt;setupUi(this);
+ this-&gt;setWindowTitle(&quot;poems&quot;);
+
+ &#x2F;*使用HTML标记：你可以使用HTML标记来在QLabel中显示换行文字。例如，你可以使用&lt;br&gt;标记来表示换行。示例代码如下：
+     ui-&gt;label-&gt;setText(&quot;第一行文字&lt;br&gt;第二行文字&quot;);
+ 使用QLabel的setWordWrap方法：你可以使用setWordWrap方法来启用QLabel的自动换行功能。示例代码如下：
+     ui-&gt;label-&gt;setText(&quot;这是一段很长的文字，当文字超出label的大小时会自动换行&quot;);
+     ui-&gt;label-&gt;setWordWrap(true);
+ 这两种方法都可以用来在QLabel中显示换行文字。你可以根据你的需求选择其中一种方法*&#x2F;
+
+ QString poem &#x3D; &quot;&lt;br&gt;莎士比亚的《十四行诗》：&lt;br&gt;“我能否将你比作夏日？&lt;br&gt;但你比夏日更可爱也更温柔。”&lt;br&gt;&quot;
+                &quot;&lt;br&gt;杰拉尔德的《未与你共度一切》：&lt;br&gt;“我曾遇到过无数生灵，曾看过无数美景，&lt;br&gt;这一切却未与你共度，&lt;br&gt;这都会是我的损失；&lt;br&gt;这些事情我都想与你共度，&quot;
+                &quot;&lt;br&gt;这一切才会是我的收获。”&lt;br&gt;&lt;br&gt;波伏娃的《越洋情书》：&lt;br&gt;“唯有你也想见我的时候，我们的见面才有意义。”&lt;br&gt;&lt;br&gt;“犹如飞蛾扑向星星，又如黑夜追求黎明。”&lt;br&gt;&lt;br&gt;“见你第一眼我就沦陷了。”&lt;br&gt;&lt;br&gt;“他是我的南北，&quot;
+                &quot;我的西东，我的工作日，我的礼拜天，我的正午，我的深夜，我的言语，我的歌声。我认为爱可以不朽。”&quot;;
+
+ ui-&gt;label-&gt;setText(poem);
+ ui-&gt;label-&gt;setStyleSheet(&quot;background-color: pink; font-style: italic; font-family: 华文楷体;&quot;);
+ QFont font &#x3D; ui-&gt;label-&gt;font(); &#x2F;&#x2F; 获取label的当前字体
+ font.setPointSize(16); &#x2F;&#x2F; 设置字体大小为16
+ ui-&gt;label-&gt;setFont(font); &#x2F;&#x2F; 应用新的字体
+ ui-&gt;label-&gt;setWordWrap(true);
+
+ &#x2F;&#x2F; 设置背景图片
+ QString imagePath &#x3D; &quot;url(:&#x2F;loveheart.jfif)&quot;; &#x2F;&#x2F; 替换成你的图片路径
+ this-&gt;setStyleSheet(&quot;background-image: &quot;+ imagePath + &quot;; background-position: center; background-attachment: fixed;&quot;);
+ &#x2F;*使用background-size属性来指定背景图片的大小和填充方式。例如，你可以设置为background-size: cover;
+     * 来让背景图片覆盖整个窗口，或者设置为background-size: contain;来让背景图片完整显示在窗口内，不进行裁剪。*&#x2F;
+    &#x2F;&#x2F;background-repeat: no-repeat不重复
+&#125;
+
+
+Yes_Next::~Yes_Next()
+&#123;
+    delete ui;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<p>这个窗口里面有使用到一些html和qss之类的知识,我都在注释中写了,看注释就可以</p>
+<h4 id="Qt打包成品"><a href="#Qt打包成品" class="headerlink" title="Qt打包成品"></a>Qt打包成品</h4><p>如果不打包的话,这个程序只能在qt框架中使用,到别人的电脑上不一定能用(缺少依赖环境),所以最好把成品打包,再发给别人</p>
+<h5 id="release"><a href="#release" class="headerlink" title="release"></a>release</h5><p><img src="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/image-20240128091709599.png" alt="image-20240128091709599"></p>
+<ol>
+<li><p>箭头处切换成release版本在编译运行</p>
+</li>
+<li><p>找到release的生成文件夹,一般就在项目的同级目录下</p>
+</li>
+</ol>
+<p>  <img src="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/image-20240128091957364.png" alt="image-20240128091957364"></p>
+<ol start="3">
+<li><p>找到.exe文件,复制到任意一个空文件夹</p>
+</li>
+<li><p>右键在终端中打开<br> <img src="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/image-20240128092221532.png" alt="image-20240128092221532"></p>
+</li>
+<li><p>输入windeployqt “你的exe程序名字”,就会帮你自动打包需要的资源文件,最后放在此文件夹中,然后你就可以把这个文件夹发给别人开心的玩耍了!</p>
+<p> <img src="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/image-20240128092456774.png" alt="image-20240128092456774"></p>
+</li>
+</ol>
+<img src="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/image-20240128092516992.png" alt="image-20240128092516992" style="zoom:80%;">
+
+<h3 id="获取成品"><a href="#获取成品" class="headerlink" title="获取成品"></a>获取成品</h3><p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1dNQ9S1uWGD7fw-RxlXoIRA?pwd=1234">https://pan.baidu.com/s/1dNQ9S1uWGD7fw-RxlXoIRA?pwd=1234</a><br>提取码：1234</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://0zxm.github.io">0zxm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://0zxm.github.io/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/">https://0zxm.github.io/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://0zxm.github.io" target="_blank">0zxm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Qt/">Qt</a></div><div class="post-share"><div class="social-share" data-image="/img/default_cover.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/06/21/suan-fa/" title="算法"><img class="cover" src="/img/default_cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">算法</div></div><div class="info-2"><div class="info-item-1">算法第一章 动态规划一、动态规划的思想动态规划的核心思想是通过寻找子问题的最优解来构造原问题的最优解。在应用动态规划的过程中，需要找到问题的状态转移方程，并利用储存中间结果的方法来避免重复计算。  总的来说，动态规划的思想包括：分析问题具有的重叠子问题性质、定义子问题的递推关系、储存中间结果以避免重复计算、推导出问题的最优解。  二、动态规划五要素 最优子结构 重叠子问题 状态转移方程 边界条件 填表法  解题思路这里以抖音-最短编辑距离为例题,讲解动态规划的思路    构建问题: 输入两个字符串,返回最小编辑距离,用函数Question(word1,word2) = minEditDist来抽象  分解子问题: 一个大的问题可以拆成若干子问题,例如Qusetion(word,word)就是一个更小的子问题,Qusetion(&quot;&quot;,&quot;&quot;)就是最小的子问题,把所有的子问题列出来,形成二维矩阵,状态(i,j)表示 word1 前 i 个字符变成word2 前 j...</div></div></div></a><a class="pagination-related" href="/2024/06/21/pa-qu-fan-qie-xiao-shuo/" title="爬取番茄小说"><img class="cover" src="/img/cover1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">爬取番茄小说</div></div><div class="info-2"><div class="info-item-1">本文用于纪录爬取番茄小说过程中遇到的困难和解决措施首先找到我想要的小说第一章 1.找网络接口右键检查,清空网络日志,刷新,找到6893843740742386183document类型请求标头URL确实是https://fanqienovel.com/reader/6893843740742386183,没有做其他措施,所以直接用requests库伪装访问,这一部分代码如下   # cap01_url = 'https://fanqienovel.com/reader/6893843740742386183?enter_from=reader' # cap02_url = 'https://fanqienovel.com/reader/6893843740834660878?enter_from=reader' # cap03_url = 'https://fanqienovel.com/reader/6893843740910158344?enter_from=reader' 观察发现,网页之间并没有直接关联  import requests  cap01_url =...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">0zxm</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/0zxm" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:m15813109801@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="http://0zxm.github.io" target="_blank" title="博客"><i class="fab fa-algolia" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Qt%E5%AE%9E%E6%88%9801"><span class="toc-number">1.</span> <span class="toc-text">Qt实战01</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%90%E5%93%81%E5%B1%95%E7%A4%BA"><span class="toc-number">1.0.1.</span> <span class="toc-text">成品展示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E9%83%A8%E5%88%86%E8%AE%B2%E8%A7%A3"><span class="toc-number">1.0.2.</span> <span class="toc-text">关键部分讲解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%8A%A8%E7%94%BB"><span class="toc-number">1.0.2.1.</span> <span class="toc-text">添加动画</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E9%80%BB%E8%BE%91"><span class="toc-number">1.0.2.2.</span> <span class="toc-text">循环逻辑</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#yes-next%E7%AA%97%E5%8F%A3"><span class="toc-number">1.0.2.3.</span> <span class="toc-text">yes_next窗口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Qt%E6%89%93%E5%8C%85%E6%88%90%E5%93%81"><span class="toc-number">1.0.2.4.</span> <span class="toc-text">Qt打包成品</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#release"><span class="toc-number">1.0.2.4.1.</span> <span class="toc-text">release</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%88%90%E5%93%81"><span class="toc-number">1.0.3.</span> <span class="toc-text">获取成品</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/10/26/hexo-geng-huan-zhu-ti-butterfly/" title="Hexo更换主题butterfly"><img src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo更换主题butterfly"/></a><div class="content"><a class="title" href="/2024/10/26/hexo-geng-huan-zhu-ti-butterfly/" title="Hexo更换主题butterfly">Hexo更换主题butterfly</a><time datetime="2024-10-26T12:14:16.000Z" title="发表于 2024-10-26 20:14:16">2024-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/14/javascript-xue-xi/" title="JavaScript学习"><img src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JavaScript学习"/></a><div class="content"><a class="title" href="/2024/10/14/javascript-xue-xi/" title="JavaScript学习">JavaScript学习</a><time datetime="2024-10-14T12:36:08.000Z" title="发表于 2024-10-14 20:36:08">2024-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/11/java-ji-chu-shang/" title="Java基础上"><img src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java基础上"/></a><div class="content"><a class="title" href="/2024/10/11/java-ji-chu-shang/" title="Java基础上">Java基础上</a><time datetime="2024-10-11T12:12:04.000Z" title="发表于 2024-10-11 20:12:04">2024-10-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/10/java-cheng-xu-da-bao-cheng-jar-bao/" title="Java程序打包成jar包"><img src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java程序打包成jar包"/></a><div class="content"><a class="title" href="/2024/10/10/java-cheng-xu-da-bao-cheng-jar-bao/" title="Java程序打包成jar包">Java程序打包成jar包</a><time datetime="2024-10-10T04:51:27.000Z" title="发表于 2024-10-10 12:51:27">2024-10-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/06/zai-vscode-zhong-pei-zhi-cpp-di-san-fang-ku/" title="在vscode中配置cpp第三方库"><img src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在vscode中配置cpp第三方库"/></a><div class="content"><a class="title" href="/2024/10/06/zai-vscode-zhong-pei-zhi-cpp-di-san-fang-ku/" title="在vscode中配置cpp第三方库">在vscode中配置cpp第三方库</a><time datetime="2024-10-06T15:10:51.000Z" title="发表于 2024-10-06 23:10:51">2024-10-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By 0zxm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

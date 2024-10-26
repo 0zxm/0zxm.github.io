@@ -1,0 +1,722 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>git和ssh的基础知识 | 0zxm</title><meta name="author" content="0zxm"><meta name="copyright" content="0zxm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="教程PPT-lec2 - 2023 秋冬实用技能拾遗 (tonycrane.cc) B 站视频 ChatGpt 对话在命令行中提交代码，通常是使用 Git 命令进行操作。以下是提交代码的基本步骤：  打开命令行终端（如 Git Bash、Terminal 等）。  进入你的代码仓库所在的目录，使用 cd 命令切换到对应的目录。  使用 git status 命令查看当前代码的状态，确保没有未提交的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git和ssh的基础知识">
+<meta property="og:url" content="https://0zxm.github.io/2024/08/26/git-he-ssh-de-ji-chu-zhi-shi/index.html">
+<meta property="og:site_name" content="0zxm">
+<meta property="og:description" content="教程PPT-lec2 - 2023 秋冬实用技能拾遗 (tonycrane.cc) B 站视频 ChatGpt 对话在命令行中提交代码，通常是使用 Git 命令进行操作。以下是提交代码的基本步骤：  打开命令行终端（如 Git Bash、Terminal 等）。  进入你的代码仓库所在的目录，使用 cd 命令切换到对应的目录。  使用 git status 命令查看当前代码的状态，确保没有未提交的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://0zxm.github.io/img/cover2.jpg">
+<meta property="article:published_time" content="2024-08-26T12:03:38.000Z">
+<meta property="article:modified_time" content="2024-08-26T12:05:28.461Z">
+<meta property="article:author" content="0zxm">
+<meta property="article:tag" content="git">
+<meta property="article:tag" content="ssh">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0zxm.github.io/img/cover2.jpg"><link rel="shortcut icon" href="/"><link rel="canonical" href="https://0zxm.github.io/2024/08/26/git-he-ssh-de-ji-chu-zhi-shi/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'git和ssh的基础知识',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-08-26 20:05:28'
+}</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover2.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">0zxm</span></a><a class="nav-page-title" href="/"><span class="site-name">git和ssh的基础知识</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">git和ssh的基础知识</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-08-26T12:03:38.000Z" title="发表于 2024-08-26 20:03:38">2024-08-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-08-26T12:05:28.461Z" title="更新于 2024-08-26 20:05:28">2024-08-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/">理论知识</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">8.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>28分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h2><p><a target="_blank" rel="noopener" href="https://slides.tonycrane.cc/PracticalSkillsTutorial/2023-fall-ckc/lec2/#">PPT-lec2 - 2023 秋冬实用技能拾遗 (tonycrane.cc)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fw4m1C7Tq/">B 站视频</a></p>
+<h2 id="ChatGpt-对话"><a href="#ChatGpt-对话" class="headerlink" title="ChatGpt 对话"></a>ChatGpt 对话</h2><p>在命令行中提交代码，通常是使用 Git 命令进行操作。以下是提交代码的基本步骤：</p>
+<ol>
+<li><p>打开命令行终端（如 Git Bash、Terminal 等）。</p>
+</li>
+<li><p>进入你的代码仓库所在的目录，使用 <code>cd</code> 命令切换到对应的目录。</p>
+</li>
+<li><p>使用 <code>git status</code> 命令查看当前代码的状态，确保没有未提交的更改。</p>
+</li>
+<li><p>如果有未提交的更改，使用 <code>git add .</code> 命令将所有更改添加到暂存区。</p>
+</li>
+<li><p>使用 <code>git commit -m &quot;commit message&quot;</code> 命令提交代码，其中 <code>&quot;commit message&quot;</code> 是你的提交信息，描述本次提交的内容。</p>
+</li>
+<li><p>最后使用 <code>git push</code> 指令将本地提交推送到远程仓库。</p>
+</li>
+</ol>
+<p>以上是提交代码的基本步骤，在实际操作中可能会根据具体情况有所不同。如果在提交代码过程中遇到问题，可以查看 Git 的官方文档或者在命令行中使用 <code>git help</code> 命令查看帮助信息。</p>
+<p>这个错误提示表明当前分支(main)没有与远程仓库关联的上游分支。你可以按照提示中的建议使用 <code>git push --set-upstream origin main</code> 命令将当前分支与远程仓库的主分支关联起来。这样一旦关联后，你就可以使用 <code>git push</code> 命令来推送代码到远程仓库。</p>
+<p>具体步骤如下：</p>
+<ol>
+<li><p>运行命令 <code>git push --set-upstream origin main</code>，这会将当前分支(main)与远程仓库的主分支关联。</p>
+</li>
+<li><p>接下来，你可以使用 <code>git push</code> 命令来推送代码到远程仓库，而不需要再次指定远程分支。</p>
+</li>
+</ol>
+<p>如果你希望将当前分支(main)作为默认推送的分支，可以在 Git 配置中设置 <code>push.default</code> 选项。可以通过运行 <code>git config --global push.default current</code> 来设置当前分支为默认推送分支。</p>
+<p>PS D:\MyCode\VSCode&gt; git remote -v master <a target="_blank" rel="noopener" href="https://github.com/0zxm/VScode.git">https://github.com/0zxm/VScode.git</a> (fetch) master <a target="_blank" rel="noopener" href="https://github.com/0zxm/VScode.git">https://github.com/0zxm/VScode.git</a> (push)</p>
+<p>GPT-3.5 Turbo</p>
+<p>根据你提供的输出结果，可以看到你的本地 Git 仓库已经正确地与远程仓库关联。远程仓库的名称是 <code>master</code>，远程仓库的 URL 是 <code>https://github.com/0zxm/VScode.git</code>，并且已经设置了 fetch 和 push 的地址。</p>
+<p>既然已经正确地设置了远程仓库，但是在执行 <code>git push</code> 命令时仍然出现了错误，可能是由于其他原因导致的。你可以尝试以下几种方法来解决问题：</p>
+<ol>
+<li>确保你有写入权限：请确保你对远程仓库有写入权限，如果是一个私有仓库，可能需要提供认证信息。</li>
+<li>检查网络连接：确保你的网络连接正常，能够访问远程仓库。</li>
+<li>检查分支名称：确保你当前在正确的分支上，并且使用正确的分支名称进行推送。</li>
+<li>尝试强制推送：如果你确定你要覆盖远程仓库的内容，可以尝试使用 <code>git push -f</code> 命令来强制推送。</li>
+</ol>
+<p>如果以上方法仍然无法解决问题，可能需要更详细地检查错误信息或者尝试其他方法。你也可以提供更多关于错误的详细信息，以便更好地帮助你解决问题。</p>
+<p>You</p>
+<p>怎么在仓库创建分支</p>
+<p>GPT-3.5 Turbo</p>
+<p>要在 Git 仓库中创建一个新的分支，可以按照以下步骤进行：</p>
+<ol>
+<li><p>确保你已经在本地 Git 仓库的主分支（通常是 <code>master</code> 或 <code>main</code>）上，并且工作目录是干净的（没有未提交的更改）。</p>
+</li>
+<li><p>打开命令行或终端，并切换到你的本地 Git 仓库目录。</p>
+</li>
+<li><p>使用以下命令创建并切换到新的分支：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout <span class="token parameter variable">-b</span> <span class="token operator">&lt;</span>branch_name<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这个命令会创建一个名为 <code>&lt;branch_name&gt;</code> 的新分支，并将你的工作目录切换到这个新分支上。</p>
+</li>
+<li><p>如果你想将新分支推送到远程仓库，可以使用以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push origin <span class="token operator">&lt;</span>branch_name<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这个命令会将新分支推送到远程仓库中，并在远程仓库上创建一个同名的分支。</p>
+</li>
+<li><p>如果你只是想在本地创建一个新分支，而不需要将其推送到远程仓库，可以简单地使用以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> branch <span class="token operator">&lt;</span>branch_name<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这个命令会在本地创建一个名为 <code>&lt;branch_name&gt;</code> 的新分支，但不会切换到这个分支上。</p>
+</li>
+</ol>
+<p>通过以上步骤，你就可以在 Git 仓库中成功地创建一个新的分支了。记得在新分支上进行开发或修改，然后根据需要将其合并回主分支或其他分支。</p>
+<p>You</p>
+<p>fatal: unable to access ‘<a target="_blank" rel="noopener" href="https://github.com/0zxm/VScode.git/">https://github.com/0zxm/VScode.git/</a>‘: HTTP&#x2F;2 stream 1 was not closed cleanly before end of the underlying stream</p>
+<p>GPT-3.5 Turbo</p>
+<p>这个错误提示表明在 Git 操作中出现了 HTTP&#x2F;2 流未正确关闭的问题。这可能是由于网络连接或 Git 配置问题引起的。以下是一些可能的解决方法：</p>
+<ol>
+<li><strong>尝试使用 SSH 协议</strong>： 有时候使用 SSH 协议而不是 HTTPS 协议可以解决一些网络相关的问题。你可以将远程仓库的 URL 从 HTTPS 切换为 SSH，然后尝试执行 Git 操作。</li>
+<li><strong>更新 Git 版本</strong>： 有时候旧版本的 Git 可能会出现一些问题，尝试更新到最新版本的 Git 可能会解决一些问题。</li>
+<li><strong>检查网络连接</strong>： 确保你的网络连接稳定，尝试使用其他网络环境或者重启网络设备。</li>
+<li><strong>检查代理设置</strong>： 如果你正在使用代理服务器访问网络，可能会导致一些问题，尝试检查代理设置或者暂时禁用代理。</li>
+<li><strong>尝试清除 Git 缓存</strong>： 有时候 Git 缓存中的一些问题可能导致错误，尝试清除 Git 的缓存并重新执行 Git 操作。</li>
+<li><strong>联系 GitHub 支持</strong>： 如果以上方法都无法解决问题，可能需要联系 GitHub 的支持团队寻求帮助，他们可能会提供更详细的解决方案。</li>
+</ol>
+<p>尝试以上方法中的一个或多个，看看是否能够解决你遇到的问题。如果问题仍然存在，请提供更多详细信息，以便更好地帮助你解决。</p>
+<p>You</p>
+<p>更新 Git 版本： 有时候旧版本的 Git 可能会出现一些问题，尝试更新到最新版本的 Git 可能会解决一些问题和尝试清除 Git 缓存： 有时候 Git 缓存中的一些问题可能导致错误，尝试清除 Git 的缓存并重新执行 Git 操作。 具体是怎么样的</p>
+<p>GPT-3.5 Turbo</p>
+<p>更新 Git 版本和清除 Git 缓存是两个独立的操作。以下是针对这两个操作的具体步骤：</p>
+<h3 id="更新-Git-版本："><a href="#更新-Git-版本：" class="headerlink" title="更新 Git 版本："></a>更新 Git 版本：</h3><ol>
+<li><p><strong>检查当前 Git 版本</strong>： 在命令行中输入以下命令可以查看当前安装的 Git 版本：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token parameter variable">--version</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>下载最新版本的 Git</strong>： 访问 Git 官方网站（<a target="_blank" rel="noopener" href="https://git-scm.com/%EF%BC%89%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC%E7%9A%84">https://git-scm.com/）下载最新版本的</a> Git 安装程序，并按照安装指南进行安装。</p>
+</li>
+<li><p><strong>更新 Git 版本</strong>： 安装完成后，可以再次输入以下命令检查 Git 版本，确认已成功更新：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token parameter variable">--version</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ol>
+<h3 id="清除-Git-缓存："><a href="#清除-Git-缓存：" class="headerlink" title="清除 Git 缓存："></a>清除 Git 缓存：</h3><ol>
+<li><p><strong>清除 Git 缓存</strong>： 在命令行中输入以下命令可以清除 Git 的缓存：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clean <span class="token parameter variable">-xdf</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这个命令会清除未跟踪文件和目录，<code>-x</code> 选项表示同时删除忽略的文件，<code>-d</code> 选项表示同时删除未跟踪的目录，<code>-f</code> 选项表示强制执行清除操作。</p>
+</li>
+<li><p><strong>重新执行 Git 操作</strong>： 清除完 Git 缓存后，可以尝试重新执行之前的 Git 操作，看看问题是否得到解决。</p>
+</li>
+</ol>
+<p>通过以上步骤，你可以更新 Git 版本和清除 Git 缓存，希望能够帮助你解决遇到的问题。如果问题仍然存在或者有任何疑问，请随时告诉我。</p>
+<p>You</p>
+<p>fatal: not a git repository (or any of the parent directories): .git</p>
+<p>GPT-3.5 Turbo</p>
+<p>这个错误提示表明当前目录或其父目录中不存在 Git 仓库。Git 需要在一个包含 <code>.git</code> 目录的目录中才能执行 Git 命令。以下是一些可能导致这个错误的原因以及解决方法：</p>
+<ol>
+<li><strong>检查当前目录</strong>： 确保你在包含 Git 仓库的目录中执行 Git 命令。你可以使用 <code>ls -a</code> 命令查看当前目录中是否包含 <code>.git</code> 目录。</li>
+<li><strong>检查父目录</strong>： 如果当前目录中不包含 <code>.git</code> 目录，可以尝试进入父目录查看是否存在 Git 仓库。你可以使用 <code>cd ..</code> 命令进入父目录，然后再次执行 Git 命令。</li>
+<li><strong>初始化 Git 仓库</strong>： 如果当前目录或其父目录中都没有 Git 仓库，你可以使用 <code>git init</code> 命令在当前目录初始化一个新的 Git 仓库。这将创建一个 <code>.git</code> 目录并将当前目录标记为 Git 仓库。</li>
+<li><strong>查找正确的 Git 仓库</strong>： 如果你是在错误的目录中执行 Git 命令，可以使用 <code>cd</code> 命令切换到包含正确 Git 仓库的目录，然后再次执行 Git 命令。</li>
+</ol>
+<p>请根据以上步骤检查当前目录和父目录中是否存在 Git 仓库，并确保在正确的目录中执行 Git 命令。如果问题仍然存在或者有任何疑问，请随时告诉我。</p>
+<p>git 怎么添加 ignore 文件</p>
+<p>GPT-3.5 Turbo</p>
+<p>要添加一个 ignore 文件，可以按照以下步骤操作：</p>
+<ol>
+<li>在项目的根目录下创建一个名为<code>.gitignore</code>的文件。</li>
+<li>打开<code>.gitignore</code>文件，并在其中列出你希望 Git 忽略的文件或文件夹，每一行代表一个文件或文件夹。</li>
+<li>保存<code>.gitignore</code>文件。</li>
+<li>将<code>.gitignore</code>文件添加到 Git 仓库中，使用以下命令：</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">add</span> .gitignore<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol>
+<li>提交更改到 Git 仓库，使用以下命令：</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Add .gitignore file"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这样，Git 就会开始忽略在<code>.gitignore</code>文件中列出的文件或文件夹，不会将它们包含在版本控制中。</p>
+<p>Ask GPT-4 Turbo</p>
+<p>在你提供的输出中，<code>git commit</code> 命令提示你输入一个提交信息来描述你所做的更改。同时，它也显示了你当前所在的分支（<code>main</code>）以及该分支与远程仓库（<code>origin/main</code>）的同步状态。此外，它还列出了即将被提交的更改，这些更改包括一个被修改的文件，但该文件的名字看起来像是由于编码问题而出现了乱码。</p>
+<p>文件名中出现的乱码可能是由于该文件名包含了一些非 ASCII 字符，而这些字符在你的终端或命令行界面中没有被正确显示。这通常是由于字符编码设置不匹配或不支持某些字符集造成的。</p>
+<p>为了解决这个问题，你可以尝试以下几个步骤：</p>
+<ol>
+<li><strong>检查文件名的实际字符</strong>：首先，确认文件名的实际字符是什么。你可以使用文件浏览器或图形界面工具来查看文件名，或者使用支持相应字符编码的终端来列出文件。</li>
+<li><strong>修改文件名</strong>：如果可能的话，将文件名修改为只包含 ASCII 字符或你的系统支持的字符集。这可以避免在命令行界面中出现乱码。</li>
+<li><strong>设置正确的字符编码</strong>：确保你的终端或命令行界面使用了正确的字符编码。在 Linux 和 macOS 上，通常是 UTF-8。在 Windows 上，可能是 GBK 或其他编码，但 UTF-8 也是一个常见的选择。你可以检查并修改终端的字符编码设置。</li>
+<li><strong>使用 Git 的配置</strong>：Git 也允许你设置用于文件名和日志消息的字符编码。你可以通过运行以下命令来设置 Git 的字符编码为 UTF-8（或其他你选择的编码）：</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> i18n.commitencoding utf-8
+<span class="token function">git</span> config <span class="token parameter variable">--global</span> i18n.logoutputencoding utf-8<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>这些设置会影响 Git 如何解释和显示文件名和提交信息。</p>
+<ol start="5">
+<li><strong>重新提交</strong>：在解决了文件名乱码问题后，你可以再次运行<code>git commit</code>命令并输入一个有意义的提交信息来完成提交。</li>
+</ol>
+<p>请注意，乱码问题可能还涉及其他因素，如操作系统的语言设置、终端模拟器的设置等。如果上述步骤没有解决问题，你可能需要进一步检查这些设置或寻求更具体的帮助。</p>
+<p>要彻底删除一个分支，你需要执行两个步骤：首先删除本地分支，然后删除远程分支。</p>
+<p>删除本地分支的命令是 <code>git branch -d &lt;local_branch&gt;</code>，其中 <local_branch> 是你要删除的本地分支的名称。请注意，如果分支包含未合并的更改和未推送的提交，那么这个命令可能无法删除分支。在这种情况下，你可以使用 <code>git branch -D &lt;local_branch&gt;</code> 命令来强制删除分支。</local_branch></p>
+<p>删除远程分支的命令是 <code>git push origin --delete &lt;remote_branch&gt;</code>，其中 <remote_branch> 是你要删除的远程分支的名称。这个命令会将删除操作推送到远程仓库，从而彻底删除分支。</remote_branch></p>
+<p>如果你想要一次性删除本地和远程分支，可以使用 <code>git push origin --delete &lt;local_branch&gt;</code> 命令。这个命令会先删除本地分支，然后将删除操作推送到远程仓库，从而彻底删除分支。</p>
+<p>请注意，在删除分支之前，最好先确认分支是否已经被合并，并且确保没有其他人在使用该分支。否则，删除分支可能会导致数据丢失或者影响其他人的工作。</p>
+<h2 id="SSH-安全外壳协议"><a href="#SSH-安全外壳协议" class="headerlink" title="SSH 安全外壳协议"></a>SSH 安全外壳协议</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>SSH 全称 <code>secure shell</code>，安全外壳协议（安全的 shell），是一个计算机网络协议（默认端口号为 22）。通过 ssh 协议可以在客户端安全（提供身份认证、信息加密）的远程连接<strong>Linux 服务器或其他设备。</strong></p>
+<p>使用广泛的 Xshell 软件就是基于 SSH 协议远程连接。</p>
+<ul>
+<li>SSH 远程连接之后能干什么？<ul>
+<li>SSH 远程连接之后，就可以像操作本地的机器一样操作远程机器。当需要操控的机器不在本地时就可以使用 ssh 协议远程连接操控。</li>
+</ul>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_51720581/article/details/131796669">相关链接 blog</a></p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p><code>ssh-keygen -t rsa -b 4096 -C &quot;密钥名称&quot;</code></p>
+<ul>
+<li><code>-t rsa</code>：指定生成 RSA 类型的密钥。</li>
+<li><code>-b 4096</code>：指定密钥的位数为 4096 位，这是 RSA 密钥的常用长度，提供较高的安全性。</li>
+<li><code>-C &quot;密钥名称&quot;</code>：为密钥添加一个注释（通常是你的电子邮件地址或其他标识符），方便识别密钥。</li>
+</ul>
+<p>完整的命令示例如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen <span class="token parameter variable">-t</span> rsa <span class="token parameter variable">-b</span> <span class="token number">4096</span> <span class="token parameter variable">-C</span> <span class="token string">"your_email@example.com"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>执行这个命令后，<code>ssh-keygen</code> 会提示你输入保存密钥的文件路径和 passphrase（可选）。按照提示操作即可生成 SSH 密钥对。</p>
+<p>生成的密钥对通常会保存在 <code>~/.ssh</code> 目录下，默认情况下，公钥文件名为 <code>id_rsa.pub</code>，私钥文件名为 <code>id_rsa</code>。</p>
+<p>如果你需要将生成的公钥添加到 GitHub 或其他 Git 托管服务，可以使用以下命令查看公钥内容：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> ~/.ssh/id_rsa.pub<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>然后将输出的内容复制到 Git 托管服务的 SSH 密钥设置页面中。</p>
+<ol>
+<li><p><strong>将公钥添加到 Git 托管服务</strong>：</p>
+<ul>
+<li><strong>GitHub</strong>：<ol>
+<li>登录 GitHub。</li>
+<li>点击右上角的头像，选择“Settings”。</li>
+<li>在左侧菜单中选择“SSH and GPG keys”。</li>
+<li>点击“New SSH key”按钮。</li>
+<li>将公钥内容粘贴到“Key”字段中，并为密钥添加一个标题（如“My Laptop”）。</li>
+<li>点击“Add SSH key”按钮。</li>
+</ol>
+</li>
+<li><strong>GitLab</strong>：<ol>
+<li>登录 GitLab。</li>
+<li>点击右上角的头像，选择“Settings”。</li>
+<li>在左侧菜单中选择“SSH Keys”。</li>
+<li>将公钥内容粘贴到“Key”字段中，并为密钥添加一个标题（如“My Laptop”）。</li>
+<li>点击“Add key”按钮。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>配置本地 Git 仓库使用 SSH URL</strong>： 确保你的本地 Git 仓库配置了使用 SSH URL 进行远程操作。例如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote set-url origin git@github.com:username/repo.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>测试 SSH 连接</strong>： 你可以使用以下命令测试 SSH 连接是否成功：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> <span class="token parameter variable">-T</span> git@github.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>如果连接成功，你会看到类似如下的输出：</p>
+<pre class="line-numbers language-none"><code class="language-none">Hi username! You&#39;ve successfully authenticated, but GitHub does not provide shell access.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ol>
+<h3 id="私钥"><a href="#私钥" class="headerlink" title="私钥"></a>私钥</h3><p>私钥（Private Key）在 SSH 密钥对中扮演着至关重要的角色。私钥是保密的，不应该与任何人共享。它的主要用途包括：</p>
+<ol>
+<li><strong>身份验证</strong>： 当你使用 SSH 连接到远程服务器或 Git 托管服务时，私钥用于验证你的身份。服务器会使用你的公钥（Public Key）来加密一条消息，然后只有拥有相应私钥的人才能解密并读取这条消息。这个过程称为“公钥加密”或“非对称加密”。</li>
+<li><strong>数字签名</strong>： 私钥还可以用于生成数字签名，以证明某个文件或消息确实是由你创建或发送的。数字签名可以防止篡改和伪造，确保数据的完整性和真实性。</li>
+<li><strong>安全通信</strong>： 在 SSH 会话中，私钥用于建立安全的加密通道，保护数据在传输过程中的机密性和完整性。</li>
+</ol>
+<p>以下是一些具体的应用场景：</p>
+<ul>
+<li><p><strong>远程登录</strong>： 当你使用 <code>ssh user@host</code> 命令连接到远程服务器时，SSH 客户端会使用你的私钥进行身份验证。如果服务器上配置了你的公钥，并且和你本机上的私钥匹配，你就可以成功登录。</p>
+</li>
+<li><p><strong>Git 操作</strong>： 当你使用 SSH URL 进行 Git 操作（如 <code>git push</code> 或 <code>git pull</code>）时，Git 会使用你的私钥进行身份验证。例如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone git@github.com:username/repo.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>文件传输</strong>： 当你使用 SCP 或 SFTP 进行安全的文件传输时，SSH 会使用你的私钥进行身份验证。例如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">scp</span> localfile user@host:/remote/directory<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+<p><strong>保护私钥的安全</strong>：</p>
+<p>由于私钥的敏感性，必须采取适当的措施来保护它：</p>
+<ol>
+<li><p><strong>设置 Passphrase</strong>： 在生成 SSH 密钥对时，<code>ssh-keygen</code> 会提示你设置一个 Passphrase。Passphrase 用于加密私钥文件，增加一层额外的安全保护。即使私钥文件被盗，没有 Passphrase 也无法使用。</p>
+</li>
+<li><p><strong>限制访问权限</strong>： 确保私钥文件的访问权限设置为仅限你本人访问。你可以使用以下命令设置权限：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> <span class="token number">600</span> ~/.ssh/id_rsa<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>定期更换密钥</strong>： 定期生成新的 SSH 密钥对，并删除旧的密钥对，以减少密钥泄露的风险。</p>
+</li>
+</ol>
+<p>通过这些措施，你可以确保私钥的安全，从而保护你的系统和数据免受未经授权的访问。</p>
+<h3 id="know-host-文件"><a href="#know-host-文件" class="headerlink" title="know_host 文件"></a>know_host 文件</h3><p>在 SSH 密钥文件夹（通常是 <code>~/.ssh</code>）中，<code>known_hosts</code> 文件用于存储你已经连接过的远程主机的公钥指纹。这个文件的作用是防止中间人攻击（Man-in-the-Middle Attack）。</p>
+<p>当你第一次连接到一个新的远程主机时，SSH 客户端会提示你确认主机的指纹，并将其存储在 <code>known_hosts</code> 文件中。以后每次连接到这个主机时，SSH 客户端会检查主机的指纹是否与 <code>known_hosts</code> 文件中的记录匹配。如果不匹配，SSH 客户端会发出警告，提示你可能存在安全风险。</p>
+<p><code>known_hosts</code> 文件的格式通常如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">主机名,IP地址 公钥类型 公钥<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>例如：</p>
+<pre class="line-numbers language-none"><code class="language-none">github.com,192.30.255.113 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmd...<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><code>known_hosts</code> 文件中的条目可以手动编辑，但通常不建议这样做，除非你确切知道自己在做什么。</p>
+<p>至于 <code>known_hosts.old</code> 文件，它通常是在更新 <code>known_hosts</code> 文件时生成的备份文件。例如，当你更新 SSH 客户端或操作系统时，可能会重新生成 <code>known_hosts</code> 文件，并将旧文件重命名为 <code>known_hosts.old</code>。</p>
+<p><strong>处理 <code>known_hosts</code> 文件的常见操作</strong>：</p>
+<ol>
+<li><p><strong>查看 <code>known_hosts</code> 文件内容</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> ~/.ssh/known_hosts<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>删除特定主机的条目</strong>： 如果你需要删除某个主机的条目，可以使用文本编辑器手动编辑 <code>known_hosts</code> 文件，或者使用以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen <span class="token parameter variable">-R</span> 主机名或IP地址<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>例如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen <span class="token parameter variable">-R</span> github.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>重新连接主机</strong>： 删除条目后，当你再次连接到该主机时，SSH 客户端会提示你确认新的主机指纹，并将其添加到 <code>known_hosts</code> 文件中。</p>
+</li>
+</ol>
+<p>通过这些操作，你可以管理 <code>known_hosts</code> 文件，确保 SSH 连接的安全性和可靠性。</p>
+<h3 id="可信列表"><a href="#可信列表" class="headerlink" title="可信列表"></a>可信列表</h3><p>Q: <code>know_host文件</code>就是把主机添加到可信列表的时候会产生的吗</p>
+<p>Fitten Code:</p>
+<p>A: 是的，当你第一次连接到一个新的远程主机时，SSH 客户端会提示你确认主机的公钥指纹，并将其添加到 <code>known_hosts</code> 文件中。这个过程实际上就是将该主机添加到你的可信列表中。</p>
+<p>具体步骤如下：</p>
+<ol>
+<li><p><strong>第一次连接到新主机</strong>： 当你第一次使用 <code>ssh user@host</code> 命令连接到一个新的远程主机时，你会看到类似如下的提示：</p>
+<pre class="line-numbers language-none"><code class="language-none">The authenticity of host &#39;host (IP地址)&#39; can&#39;t be established.
+RSA key fingerprint is SHA256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.
+Are you sure you want to continue connecting (yes&#x2F;no)?<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>确认主机指纹</strong>： 你需要输入 <code>yes</code> 来确认主机的指纹，并将其添加到 <code>known_hosts</code> 文件中。此时，SSH 客户端会显示类似如下的消息：</p>
+<pre class="line-numbers language-none"><code class="language-none">Warning: Permanently added &#39;host,IP地址&#39; (RSA) to the list of known hosts.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>指纹存储在 <code>known_hosts</code> 文件中</strong>： 确认后，主机的公钥指纹会被存储在 <code>~/.ssh/known_hosts</code> 文件中。以后每次连接到这个主机时，SSH 客户端会检查主机的指纹是否与 <code>known_hosts</code> 文件中的记录匹配。</p>
+</li>
+</ol>
+<p>通过这个过程，SSH 客户端确保你连接到的主机是预期的主机，而不是中间人攻击者伪装的主机。这有效地防止了中间人攻击，提高了连接的安全性</p>
+<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><h3 id="git-基本命令"><a href="#git-基本命令" class="headerlink" title="git 基本命令"></a>git 基本命令</h3><h4 id="git-init"><a href="#git-init" class="headerlink" title="git init"></a>git init</h4><p><code>git init</code>: 用于在一个空文件夹初始化 git 项目,初始化之后,会出现一个**.git**文件夹,里面存储你的仓库和 git 项目信息</p>
+<h4 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h4><p>需求: <strong>已知仓库在云端,拉取云端仓库到本地</strong></p>
+<p>使用<code>git clone git@gitee.com:Ozxm/qt.git --depth 10</code> 命令,进入 git 托管平台, 点击仓库,代码&#x2F;Code,<strong>clone 按钮</strong>,随便找一个方式(推荐使用 ssh 或者 http 协议)</p>
+<p><strong>参数:</strong></p>
+<ul>
+<li><p><code>--depth</code>: 在 Git 中用于创建一个浅克隆（shallow clone），即只克隆仓库的历史记录中的最近一部分(最近的 n 次提交)，而不是完整的仓库历史记录。这个参数可以显著减少克隆操作所需的时间和磁盘空间，特别是对于大型仓库</p>
+</li>
+<li><p><strong>扩展浅克隆</strong>：</p>
+<p>如果你在后续操作中需要更多的历史记录，可以使用以下命令扩展浅克隆：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token parameter variable">--depth</span> <span class="token operator">&lt;</span>new-depth<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>例如，如果你最初进行了 <code>--depth 1</code> 的浅克隆，并希望获取更多的历史记录：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token parameter variable">--depth</span> <span class="token number">10</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+<p>通过这些命令，你可以根据需要灵活地使用浅克隆和扩展浅克隆，以平衡速度和完整性</p>
+<h4 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h4><p><code>git status</code>: 查看状态,确定一下是否有没有 track 的子模块</p>
+<h4 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h4><p><code>git config</code>: 用于配置 git 信息,便于查找是谁提交的修改,追根溯源</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> user.email <span class="token string">"example@163.com"</span>
+<span class="token function">git</span> config <span class="token parameter variable">--global</span> user.name "usr'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h4><p><code>git checkout -b test</code>: 创建新分支 test 并切换到新分支</p>
+<ul>
+<li>在某个特定的分支（例如 <code>feature</code> 分支）的基础上创建一个新的分支。以下是具体步骤：</li>
+</ul>
+<ol>
+<li><strong>切换到基础分支</strong>： 首先，你需要切换到你希望作为基础的分支。例如，假设你想在 <code>feature</code> 分支的基础上创建新分支：</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout feature<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="2">
+<li><strong>创建并切换到新分支</strong>： 然后，你可以使用 <code>git checkout -b</code> 命令创建一个新的分支，并立即切换到该分支。例如，假设你要创建一个名为 <code>test</code> 的新分支：</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout <span class="token parameter variable">-b</span> <span class="token builtin class-name">test</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h4><p>把文件暂存更改,也可以直接使用 Vscdoe 的图形化界面(<code>+</code>号按钮)</p>
+<h4 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h4><p>提交更改到本地仓库,也可以直接使用 Vscdoe 的图形化界面(<strong>蓝色大框”√ 提交”</strong>)<br><code>git commit -m “[提交标题]详细”</code> 推荐提交信息格式</p>
+<h4 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h4><ul>
+<li><strong>推送本地分支到远程仓库</strong>：</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push origin2 master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这将把本地的 <code>master</code> 分支推送到名为 <code>origin2</code> 的远程仓库。</p>
+<p><code>git push --set-upstream origin test</code><br>第一次提交新分支需要发布分支,使用上面的代码,也可以直接使用 Vscode 的图形化界面(<strong>发布分支</strong>)<br>后续可直接使用<code>git push</code></p>
+<p><strong>-f: 表示强制提交</strong></p>
+<h3 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h3><p><strong>从远程仓库拉取更新</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> pull origin master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这将从名为 <code>origin</code>的远程仓库拉取 <code>master</code> 分支的更新。</p>
+<h4 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h4><p><code>git reset --soft HEAD^</code>: 回退到上一次提交</p>
+<h3 id="git-进阶命令"><a href="#git-进阶命令" class="headerlink" title="git 进阶命令"></a>git 进阶命令</h3><h4 id="git-remote"><a href="#git-remote" class="headerlink" title="git remote"></a>git remote</h4><ul>
+<li><code>git remote -v</code>: 列出我当前关联的远程仓库和分支</li>
+<li><code>git remote add origin git@gitee.com:example.git</code>: 命令用于向你的 Git 仓库添加一个新的远程仓库。这个命令将一个名为 &#96;origin2 的远程仓库 URL 添加到你的本地 Git 配置中</li>
+</ul>
+<h4 id="git-fetch"><a href="#git-fetch" class="headerlink" title="git fetch"></a>git fetch</h4><p><code>git fetch</code> 命令用于从远程仓库下载最新的更改，但不会自动合并或修改当前工作目录中的内容。它只是更新本地仓库的远程跟踪分支，使你能够查看远程仓库的最新状态。</p>
+<p><strong>基本用法</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>远程仓库<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>其中 <code>&lt;远程仓库&gt;</code> 是远程仓库的名称，通常是 <code>origin</code>。</p>
+<p><strong>示例</strong>：</p>
+<p>假设你有一个名为 <code>origin</code> 的远程仓库，并且希望获取最新的更改：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch origin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>常用选项</strong>：</p>
+<ul>
+<li><p><code>--all</code>：获取所有远程仓库的更新。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token parameter variable">--all</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><code>--prune</code>：在获取更新之前，删除本地已经不存在的远程分支的跟踪分支。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token parameter variable">--prune</span> origin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><code>--tags</code>：获取所有的标签（tags）。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token parameter variable">--tags</span> origin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+<h4 id="查看更新"><a href="#查看更新" class="headerlink" title="查看更新"></a><strong>查看更新</strong></h4><p>在执行 <code>git fech</code> 之后，你可以使用以下命令查看远程分支的更新：</p>
+<ul>
+<li><p><code>git branch -r</code>：查看所有远程跟踪分支。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> branch <span class="token parameter variable">-r</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><code>git log &lt;本地分支&gt;..&lt;远程跟踪分支&gt;</code>：查看远程跟踪分支相对于本地分支的差异。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> log master<span class="token punctuation">..</span>origin/master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+<h4 id="合并更新"><a href="#合并更新" class="headerlink" title="合并更新"></a><strong>合并更新</strong></h4><p><code>git fetch</code> 不会自动合并或修改当前工作目录中的内容。如果你希望将远程分支的更新合并到本地分支，可以使用 <code>git merge</code> 或 <code>git pull</code> 命令。例如：</p>
+<ul>
+<li><p><code>git merge</code>：将远程跟踪分支合并到当前分支,用于将两个分支的历史合并。它会创建一个新的合并提交，并保留合并前两个分支的历史。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge origin/master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><code>git pull</code>：相当于 <code>git fetch</code> 加上 <code>git merge</code>。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> pull origin master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+<h4 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h4><p><code>git rebase</code> 是一种不同于 <code>git merge</code> 的合并更改的方式。<code>git rebase</code> 通过将当前分支的提交重新应用到目标分支的最新提交之上，从而改变提交历史，使其更加线性和整洁。</p>
+<p><strong>基本用法</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> rebase <span class="token operator">&lt;</span>目标分支<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>其中 <code>&lt;目标分支&gt;</code> 是你希望将当前分支的提交重新应用到的分支。</p>
+<p><strong>示例</strong>：</p>
+<p>假设你在一个名为 <code>feature</code> 的分支上工作，并且希望将其提交重新应用到 <code>master</code> 分支的最新提交之上：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout feature
+<span class="token function">git</span> rebase master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><strong>工作原理</strong>：</p>
+<ol>
+<li><strong>找到两个分支的共同祖先</strong>：<code>git rebase</code> 首先找到当前分支和目标分支的共同祖先。</li>
+<li><strong>保存当前分支的提交</strong>：将当前分支的提交保存为临时文件。</li>
+<li><strong>将当前分支重置到目标分支的最新提交</strong>：将当前分支的 HEAD 重置到目标分支的最新提交。</li>
+<li><strong>重新应用保存的提交</strong>：按照顺序重新应用之前保存的提交。</li>
+</ol>
+<p><strong>冲突解决</strong>：</p>
+<p>如果在重新应用提交的过程中发生冲突，<code>git rebase</code> 会暂停并提示你解决冲突。解决冲突后，使用以下命令继续 rebase 过程：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">add</span> <span class="token operator">&lt;</span>冲突文件<span class="token operator">></span>
+<span class="token function">git</span> rebase <span class="token parameter variable">--continue</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><strong>中断 rebase</strong>：</p>
+<p>如果你希望中断 rebase 过程并恢复到 rebase 之前的状态，可以使用以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> rebase <span class="token parameter variable">--abort</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>优缺点</strong>：</p>
+<p><strong>优点</strong>：</p>
+<ul>
+<li><strong>线性的提交历史</strong>：<code>git rebase</code> 可以使提交历史更加线性和整洁，便于查看和理解。</li>
+<li><strong>避免合并提交</strong>：<code>git rebase</code> 不会创建合并提交，从而保持提交历史的简洁。</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li><strong>改变提交历史</strong>：<code>git rebase</code> 会改变提交历史，可能会影响其他开发者的工作。</li>
+<li><strong>冲突处理</strong>：如果在 rebase 过程中发生冲突，需要手动解决冲突，这可能会比较复杂。</li>
+</ul>
+<p><strong>示例流程</strong>：</p>
+<ol>
+<li><p><strong>切换到当前分支</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout feature<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>执行 rebase</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> rebase master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>解决冲突（如果需要）</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">add</span> <span class="token operator">&lt;</span>冲突文件<span class="token operator">></span>
+<span class="token function">git</span> rebase <span class="token parameter variable">--continue</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>完成 rebase</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> rebase <span class="token parameter variable">--continue</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h4><p>要将某个特定的提交(通过其哈希值识别)引入当前分支，可以使用以下命令</p>
+<p><code>git cherry-pick &lt;commit_hash&gt;</code></p>
+</li>
+</ol>
+<h3 id="对于子模块更新"><a href="#对于子模块更新" class="headerlink" title="对于子模块更新"></a>对于子模块更新</h3><p><code>git submodule update --init --recursive</code> 命令用于初始化和更新 Git 子模块（submodules）。子模块允许你在主仓库中包含其他 Git 仓库，并且可以独立地管理这些子仓库的版本。</p>
+<ul>
+<li><strong>初始化子模块</strong>（<code>--init</code>）： 如果子模块之前没有被初始化过，这个选项会初始化子模块，创建必要的子模块配置文件（<code>.gitmodules</code>）和子模块目录。</li>
+<li><strong>递归更新子模块</strong>（<code>--recursive</code>）： 这个选项会递归地更新所有子模块及其嵌套的子模块。也就是说，如果子模块本身也包含子模块，这个命令会一并处理这些嵌套的子模块。</li>
+</ul>
+<p>命令会执行以下操作：</p>
+<ul>
+<li>初始化所有未初始化的子模块。</li>
+<li>更新所有子模块到指定的提交（通常是主仓库中记录的提交）。</li>
+<li>递归地处理所有嵌套的子模块。</li>
+</ul>
+<p>这个命令通常在你克隆一个包含子模块的仓库后使用，以确保所有子模块都被正确初始化和更新到指定状态。例如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone --recurse-submodules <span class="token operator">&lt;</span>主仓库URL<span class="token operator">></span>
+<span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>主仓库目录<span class="token operator">></span>
+<span class="token function">git</span> submodule update <span class="token parameter variable">--init</span> <span class="token parameter variable">--recursive</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="gitee-和-github-不同配置"><a href="#gitee-和-github-不同配置" class="headerlink" title="gitee 和 github 不同配置"></a>gitee 和 github 不同配置</h3><p>Gitee（码云）和 GitHub 是两个不同的 Git 托管服务，虽然它们都支持 Git 协议，但在某些情况下，你可能需要为它们配置不同的 Git 设置。以下是一些常见的配置需求和方法：</p>
+<ol>
+<li><p><strong>不同的远程仓库 URL</strong>： 如果你在 Gitee 和 GitHub 上都有仓库，并且希望在同一个本地仓库中管理它们，你需要为每个远程仓库配置不同的 URL。例如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> github https://github.com/username/repo.git
+<span class="token function">git</span> remote <span class="token function">add</span> gitee https://gitee.com/username/repo.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>这样，你可以使用不同的远程名称来区分它们：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push github master
+<span class="token function">git</span> push gitee master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>不同的用户配置</strong>： 如果你在 Gitee 和 GitHub 上使用不同的用户名和电子邮件地址，可以在本地仓库中配置不同的用户信息。例如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config user.name <span class="token string">"GitHub User"</span>
+<span class="token function">git</span> config user.email <span class="token string">"github@example.com"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>然后在另一个仓库中：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config user.name <span class="token string">"Gitee User"</span>
+<span class="token function">git</span> config user.email <span class="token string">"gitee@example.com"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>不同的 SSH 密钥</strong>： 如果你在 Gitee 和 GitHub 上使用不同的 SSH 密钥，可以在 <code>~/.ssh/config</code> 文件中为每个主机配置不同的密钥。例如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># GitHub</span>
+Host github.com
+    HostName github.com
+    IdentityFile ~/.ssh/id_rsa_github
+    User <span class="token function">git</span>
+
+<span class="token comment"># Gitee</span>
+Host gitee.com
+    HostName gitee.com
+    IdentityFile ~/.ssh/id_rsa_gitee
+    User <span class="token function">git</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>不同的 Git 配置文件</strong>： 如果你希望为 Gitee 和 GitHub 使用不同的 Git 配置文件，可以在克隆仓库时指定不同的配置文件。例如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">GIT_CONFIG</span><span class="token operator">=~</span>/github.gitconfig <span class="token function">git</span> clone https://github.com/username/repo.git
+<span class="token assign-left variable">GIT_CONFIG</span><span class="token operator">=~</span>/gitee.gitconfig <span class="token function">git</span> clone https://gitee.com/username/repo.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+</ol>
+<h3 id="git-配置文件"><a href="#git-配置文件" class="headerlink" title="git 配置文件"></a>git 配置文件</h3><p>Git 配置文件用于存储 Git 的全局或本地配置选项，例如用户名、电子邮件地址、别名等。</p>
+<p><strong>生成 SSH 密钥</strong>：</p>
+<ol>
+<li><p><strong>生成 GitHub 的 SSH 密钥</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen <span class="token parameter variable">-t</span> rsa <span class="token parameter variable">-b</span> <span class="token number">4096</span> <span class="token parameter variable">-C</span> <span class="token string">"your_email@example.com"</span> <span class="token parameter variable">-f</span> ~/.ssh/id_rsa_github<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这将生成两个文件：<code>~/.ssh/id_rsa_github</code>（私钥）和 <code>~/.ssh/id_rsa_github.pub</code>（公钥）。</p>
+</li>
+<li><p><strong>生成 Gitee 的 SSH 密钥</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen <span class="token parameter variable">-t</span> rsa <span class="token parameter variable">-b</span> <span class="token number">4096</span> <span class="token parameter variable">-C</span> <span class="token string">"your_email@example.com"</span> <span class="token parameter variable">-f</span> ~/.ssh/id_rsa_gitee<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这将生成两个文件：<code>~/.ssh/id_rsa_gitee</code>（私钥）和 <code>~/.ssh/id_rsa_gitee.pub</code>（公钥）。</p>
+</li>
+</ol>
+<p><strong>配置 SSH 客户端</strong>：</p>
+<p>在 <code>~/.ssh/config</code> 文件中为每个主机配置不同的密钥。例如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># GitHub</span>
+Host github.com
+    HostName github.com
+    IdentityFile ~/.ssh/id_rsa_github
+    User <span class="token function">git</span>
+
+<span class="token comment"># Gitee</span>
+Host gitee.com
+    HostName gitee.com
+    IdentityFile ~/.ssh/id_rsa_gitee
+    User <span class="token function">git</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>配置 Git</strong>：</p>
+<p>如果你希望为不同的仓库使用不同的 Git 配置文件，可以在克隆仓库时指定不同的配置文件。例如：</p>
+<ol>
+<li><p><strong>克隆 GitHub 仓库并使用特定的配置文件</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">GIT_CONFIG</span><span class="token operator">=~</span>/github.gitconfig <span class="token function">git</span> clone git@github.com:username/repo.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>克隆 Gitee 仓库并使用特定的配置文件</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">GIT_CONFIG</span><span class="token operator">=~</span>/gitee.gitconfig <span class="token function">git</span> clone git@gitee.com:username/repo.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ol>
+<p><strong>创建和编辑 Git 配置文件</strong>：</p>
+<ol>
+<li><p><strong>创建 GitHub 的 Git 配置文件</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">touch</span> ~/github.gitconfig<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>编辑 GitHub 的 Git 配置文件</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>user<span class="token punctuation">]</span>
+    name <span class="token operator">=</span> GitHub User
+    email <span class="token operator">=</span> github@example.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>创建 Gitee 的 Git 配置文件</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">touch</span> ~/gitee.gitconfig<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>编辑 Gitee 的 Git 配置文件</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>user<span class="token punctuation">]</span>
+    name <span class="token operator">=</span> Gitee User
+    email <span class="token operator">=</span> gitee@example.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://0zxm.github.io">0zxm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://0zxm.github.io/2024/08/26/git-he-ssh-de-ji-chu-zhi-shi/">https://0zxm.github.io/2024/08/26/git-he-ssh-de-ji-chu-zhi-shi/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://0zxm.github.io" target="_blank">0zxm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/git/">git</a><a class="post-meta__tags" href="/tags/ssh/">ssh</a></div><div class="post-share"><div class="social-share" data-image="/img/cover2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/08/27/shi-yong-ddu-xie-zai-xian-qia-qu-dong-bing-geng-xin/" title="使用DDU卸载显卡驱动并更新"><img class="cover" src="/img/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">使用DDU卸载显卡驱动并更新</div></div><div class="info-2"><div class="info-item-1">使用DDU卸载显卡驱动并更新安装环境首先到英伟达官网去下载你想要的驱动,根据你的显卡型号选择你想要的驱动,一般都是选大版本最后几个小版本  笔记本选带后缀(Notebooks)   然后下载Display Driver Uninstaller (DDU卸载工具),保存在任意位置(一般在c盘下) 卸载驱动安全模式 虽然DDU可以直接使用,但是,一般还是建议在安全模式下使用  安全模式: 安全模式是Windows操作系统的一种诊断启动模式，用于在系统无法正常启动时解决问题。  在安全模式下，只有最基本的驱动程序和服务运行，桌面显示为黑色，并有‘安全模式’标识。...</div></div></div></a><a class="pagination-related" href="/2024/08/25/pa-chong-zhong-shi-yong-da-ma-ping-tai/" title="爬虫中使用打码平台"><img class="cover" src="/img/default_cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">爬虫中使用打码平台</div></div><div class="info-2"><div class="info-item-1">引入在爬虫程序中,常常会遇到验证码校验的关卡,人工识别不仅慢而且很费精力,使用打码平台就成了高效,省时且便利的选择。 本次案例对于高清资源库1080zyk.com进行爬虫采集，使用超级鹰验证码识别(chaojiying.com)和python的requests库具体实现，类似的第三方打码库还有云打码,tt图鉴，ddddorc库等 代码实现  首先我们对网页进行分析，通过键入搜索框，并点击搜索按钮，F12中的网络接口可以找到，发起了两次请求  post请求，将搜索框里的内容通过表单数据data发送给服务器     get请求，返回的是验证码的图片    所以我们先编写如下代码，将图片保存本地，使用Session对象是为了保证验证码和请求是同一次会话 import requests  # 爬取优质资源网 session = requests.Session()  urls = &#123;     "data": "http://www.1080zyk.com/index.php?m=vod-search",     "yanzenma":...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">0zxm</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/0zxm" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:m15813109801@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="http://0zxm.github.io" target="_blank" title="博客"><i class="fab fa-algolia" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%99%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">教程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ChatGpt-%E5%AF%B9%E8%AF%9D"><span class="toc-number">2.</span> <span class="toc-text">ChatGpt 对话</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0-Git-%E7%89%88%E6%9C%AC%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">更新 Git 版本：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%85%E9%99%A4-Git-%E7%BC%93%E5%AD%98%EF%BC%9A"><span class="toc-number">2.2.</span> <span class="toc-text">清除 Git 缓存：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH-%E5%AE%89%E5%85%A8%E5%A4%96%E5%A3%B3%E5%8D%8F%E8%AE%AE"><span class="toc-number">3.</span> <span class="toc-text">SSH 安全外壳协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">3.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%81%E9%92%A5"><span class="toc-number">3.3.</span> <span class="toc-text">私钥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#know-host-%E6%96%87%E4%BB%B6"><span class="toc-number">3.4.</span> <span class="toc-text">know_host 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E4%BF%A1%E5%88%97%E8%A1%A8"><span class="toc-number">3.5.</span> <span class="toc-text">可信列表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git"><span class="toc-number">4.</span> <span class="toc-text">Git</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#git-%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="toc-number">4.1.</span> <span class="toc-text">git 基本命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#git-init"><span class="toc-number">4.1.1.</span> <span class="toc-text">git init</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git-clone"><span class="toc-number">4.1.2.</span> <span class="toc-text">git clone</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git-status"><span class="toc-number">4.1.3.</span> <span class="toc-text">git status</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git-config"><span class="toc-number">4.1.4.</span> <span class="toc-text">git config</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git-checkout"><span class="toc-number">4.1.5.</span> <span class="toc-text">git checkout</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git-add"><span class="toc-number">4.1.6.</span> <span class="toc-text">git add</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git-commit"><span class="toc-number">4.1.7.</span> <span class="toc-text">git commit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git-push"><span class="toc-number">4.1.8.</span> <span class="toc-text">git push</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-pull"><span class="toc-number">4.2.</span> <span class="toc-text">git pull</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#git-reset"><span class="toc-number">4.2.1.</span> <span class="toc-text">git reset</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-%E8%BF%9B%E9%98%B6%E5%91%BD%E4%BB%A4"><span class="toc-number">4.3.</span> <span class="toc-text">git 进阶命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#git-remote"><span class="toc-number">4.3.1.</span> <span class="toc-text">git remote</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git-fetch"><span class="toc-number">4.3.2.</span> <span class="toc-text">git fetch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%9B%B4%E6%96%B0"><span class="toc-number">4.3.3.</span> <span class="toc-text">查看更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E6%9B%B4%E6%96%B0"><span class="toc-number">4.3.4.</span> <span class="toc-text">合并更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git-rebase"><span class="toc-number">4.3.5.</span> <span class="toc-text">git rebase</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git-cherry-pick"><span class="toc-number">4.3.6.</span> <span class="toc-text">git cherry-pick</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E5%AD%90%E6%A8%A1%E5%9D%97%E6%9B%B4%E6%96%B0"><span class="toc-number">4.4.</span> <span class="toc-text">对于子模块更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gitee-%E5%92%8C-github-%E4%B8%8D%E5%90%8C%E9%85%8D%E7%BD%AE"><span class="toc-number">4.5.</span> <span class="toc-text">gitee 和 github 不同配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">4.6.</span> <span class="toc-text">git 配置文件</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/10/26/hexo-geng-huan-zhu-ti-butterfly/" title="Hexo更换主题butterfly"><img src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo更换主题butterfly"/></a><div class="content"><a class="title" href="/2024/10/26/hexo-geng-huan-zhu-ti-butterfly/" title="Hexo更换主题butterfly">Hexo更换主题butterfly</a><time datetime="2024-10-26T12:14:16.000Z" title="发表于 2024-10-26 20:14:16">2024-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/14/javascript-xue-xi/" title="JavaScript学习"><img src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JavaScript学习"/></a><div class="content"><a class="title" href="/2024/10/14/javascript-xue-xi/" title="JavaScript学习">JavaScript学习</a><time datetime="2024-10-14T12:36:08.000Z" title="发表于 2024-10-14 20:36:08">2024-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/11/java-ji-chu-shang/" title="Java基础上"><img src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java基础上"/></a><div class="content"><a class="title" href="/2024/10/11/java-ji-chu-shang/" title="Java基础上">Java基础上</a><time datetime="2024-10-11T12:12:04.000Z" title="发表于 2024-10-11 20:12:04">2024-10-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/10/java-cheng-xu-da-bao-cheng-jar-bao/" title="Java程序打包成jar包"><img src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java程序打包成jar包"/></a><div class="content"><a class="title" href="/2024/10/10/java-cheng-xu-da-bao-cheng-jar-bao/" title="Java程序打包成jar包">Java程序打包成jar包</a><time datetime="2024-10-10T04:51:27.000Z" title="发表于 2024-10-10 12:51:27">2024-10-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/06/zai-vscode-zhong-pei-zhi-cpp-di-san-fang-ku/" title="在vscode中配置cpp第三方库"><img src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在vscode中配置cpp第三方库"/></a><div class="content"><a class="title" href="/2024/10/06/zai-vscode-zhong-pei-zhi-cpp-di-san-fang-ku/" title="在vscode中配置cpp第三方库">在vscode中配置cpp第三方库</a><time datetime="2024-10-06T15:10:51.000Z" title="发表于 2024-10-06 23:10:51">2024-10-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By 0zxm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

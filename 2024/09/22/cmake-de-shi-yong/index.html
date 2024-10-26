@@ -1,0 +1,691 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>cmake的使用 | 0zxm</title><meta name="author" content="0zxm"><meta name="copyright" content="0zxm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="b站教程 第一章 CMake初体验1. CMake是什么、CMake构建项目的流程CMake是一个开源的、跨平台的自动化构建工具，通过cmake我们可以轻松地管理我们的项目。  注意: CMake并不是包管理工具! CMake并不只支持C&#x2F;C++! 掌握CMake是学习C++必经之路!    2. CMake的优点和缺点 优点 操作透明而细腻 它专注于现代C++现代化，专注于支持C++现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cmake的使用">
+<meta property="og:url" content="https://0zxm.github.io/2024/09/22/cmake-de-shi-yong/index.html">
+<meta property="og:site_name" content="0zxm">
+<meta property="og:description" content="b站教程 第一章 CMake初体验1. CMake是什么、CMake构建项目的流程CMake是一个开源的、跨平台的自动化构建工具，通过cmake我们可以轻松地管理我们的项目。  注意: CMake并不是包管理工具! CMake并不只支持C&#x2F;C++! 掌握CMake是学习C++必经之路!    2. CMake的优点和缺点 优点 操作透明而细腻 它专注于现代C++现代化，专注于支持C++现">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://0zxm.github.io/img/cover2.jpg">
+<meta property="article:published_time" content="2024-09-22T14:17:54.000Z">
+<meta property="article:modified_time" content="2024-10-03T04:01:16.856Z">
+<meta property="article:author" content="0zxm">
+<meta property="article:tag" content="cmake">
+<meta property="article:tag" content="项目工具">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0zxm.github.io/img/cover2.jpg"><link rel="shortcut icon" href="/"><link rel="canonical" href="https://0zxm.github.io/2024/09/22/cmake-de-shi-yong/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'cmake的使用',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-10-03 12:01:16'
+}</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover2.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">0zxm</span></a><a class="nav-page-title" href="/"><span class="site-name">cmake的使用</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">cmake的使用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-09-22T14:17:54.000Z" title="发表于 2024-09-22 22:17:54">2024-09-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-10-03T04:01:16.856Z" title="更新于 2024-10-03 12:01:16">2024-10-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/c/">c++</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1xa4y1R7vT/">b站教程</a></p>
+<h2 id="第一章-CMake初体验"><a href="#第一章-CMake初体验" class="headerlink" title="第一章 CMake初体验"></a>第一章 CMake初体验</h2><h3 id="1-CMake是什么、CMake构建项目的流程"><a href="#1-CMake是什么、CMake构建项目的流程" class="headerlink" title="1. CMake是什么、CMake构建项目的流程"></a>1. CMake是什么、CMake构建项目的流程</h3><p>CMake是一个<strong>开源的、跨平台的自动化构建</strong>工具，通过cmake我们可以轻松地管理我们的项目。</p>
+<ul>
+<li>注意:<ul>
+<li>CMake并不是包管理工具!</li>
+<li>CMake并不只支持C&#x2F;C++!</li>
+<li>掌握CMake是学习C++必经之路!</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-CMake的优点和缺点"><a href="#2-CMake的优点和缺点" class="headerlink" title="2. CMake的优点和缺点"></a>2. CMake的优点和缺点</h3><ul>
+<li>优点<ul>
+<li>操作透明而细腻</li>
+<li>它专注于现代C++现代化，专注于支持C++现代编译器和工具链</li>
+<li>真正的跨平台，支持比如Windows、Linux、macOS、Cygwin(Linux移植到Windows)等</li>
+<li>支持生成几乎所有主流IDE的项目</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>它还在成长</li>
+<li>CMake它是一门语言，你需要学习</li>
+</ul>
+</li>
+</ul>
+<p><strong>CMake没有阻碍C++的发展，相反CMake拯救了C++!</strong></p>
+<p>相比其他语言的构建工具，CMake自然要复杂的多，但这不是CMake的问题。相比其他的编程语言，C&#x2F;C++更关注底层和构建其他的编程语言，因此CMake面临的问题的和其他编程语言是完全不同的!</p>
+<p>而且正因为CMake的出现，C++才终于完成了项目跨平台!</p>
+<h3 id="3-C-C-源文件是怎么生成可执行程序的toolchain流程"><a href="#3-C-C-源文件是怎么生成可执行程序的toolchain流程" class="headerlink" title="3. C&#x2F;C++源文件是怎么生成可执行程序的toolchain流程"></a>3. C&#x2F;C++源文件是怎么生成可执行程序的toolchain流程</h3><ol>
+<li>预处理 (-E参数 宏替换等)</li>
+<li>编译 gcc&#x2F;msvc&#x2F;clang (-S参数)</li>
+<li>汇编 (-C参数 linux生成.o文件、windows生成.obj文件)</li>
+<li>连接 (将多个二进制文件连接生成一个可执行的文件)</li>
+</ol>
+<h3 id="4-CMake与Makefile、Make的关系"><a href="#4-CMake与Makefile、Make的关系" class="headerlink" title="4. CMake与Makefile、Make的关系"></a>4. CMake与Makefile、Make的关系</h3><ul>
+<li>Makefile并不跨平台，CMake会根据编译器的类型来决定是否生成Makefile，大多数情况下CMake会生成Makefile</li>
+<li>大型项目不推荐大家手动编写Makefile</li>
+<li>Make工具(类似批处理工具)是通过调用makefile文件中的命令实现编译和链接的，本人极其反感在cmake中使用make命令</li>
+</ul>
+<h3 id="5-CMake命令行执行流程"><a href="#5-CMake命令行执行流程" class="headerlink" title="5. CMake命令行执行流程"></a>5. CMake命令行执行流程</h3><p><img src="/2024/09/22/cmake-de-shi-yong/cmake%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="image-20240922225916768"></p>
+<ol>
+<li><p>编写CMakeLists.txt文件，下面是最基本的配置</p>
+<ul>
+<li>cmake_minimum_required(VERSION 3.20)#最小版本</li>
+<li>project(Hello)#项目名</li>
+<li>add_executable(Hello hello.cpp)#由源文件生成一个可执行的程序</li>
+</ul>
+</li>
+<li><p>cmake -B build</p>
+<ul>
+<li>创建一个build并在此目录下生成makefile或其他文件</li>
+</ul>
+</li>
+<li><p>cmake –build </p>
+<ul>
+<li>build生成项目</li>
+</ul>
+</li>
+</ol>
+<h3 id="6-在Windows下使用cmake来构建项目"><a href="#6-在Windows下使用cmake来构建项目" class="headerlink" title="6. 在Windows下使用cmake来构建项目"></a>6. 在Windows下使用cmake来构建项目</h3><ul>
+<li>Windows下的CMake安装</li>
+<li>官网下载CMake</li>
+<li><a target="_blank" rel="noopener" href="https://cmake.org/download/">https://cmake.org/download/</a></li>
+<li>安装完成后输入<code>cmake --version</code>查看是否正确安装</li>
+</ul>
+<p><img src="/2024/09/22/cmake-de-shi-yong/%E5%AE%89%E8%A3%85cmake.png" alt="image-20240923132830927"></p>
+<h4 id="6-1-Windows下的build-system-generator"><a href="#6-1-Windows下的build-system-generator" class="headerlink" title="6.1 Windows下的build system generator"></a>6.1 Windows下的build system generator</h4><ul>
+<li>默认MSVC (vs2022与vs2019)</li>
+<li>可以安装 MinGW (gcc与clang)</li>
+<li>cmake参数: <code>cmake -G &lt;generator-name&gt; -T &lt;toolset-spec&gt; -A &lt;platform-name&gt;&lt;path-to-source&gt;</code></li>
+<li>通过指定<code>-G&quot;MinGW Makefiles&quot;</code>来指定<strong>cmake使用gcc</strong></li>
+</ul>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake">cmake -B build -G <span class="token string">"MinGW Makefiles"</span>
+cmake --build build
+运行
+cd build 
+hello.exe<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="7-Linux下使用CMake构建项目"><a href="#7-Linux下使用CMake构建项目" class="headerlink" title="7. Linux下使用CMake构建项目"></a>7. Linux下使用CMake构建项目</h3><ul>
+<li><p>Linux下安装cmake</p>
+<ul>
+<li>sudo apt-get install cmake</li>
+</ul>
+</li>
+<li><p>源码安装</p>
+<ul>
+<li>推荐源码安装，感受一下C++的编译速度</li>
+<li>sudo apt-get install build-essential</li>
+<li>sudo wget <a target="_blank" rel="noopener" href="https://cmake.org/files/v3.28/cmake-3.28.0.tar.gz">https://cmake.org/files/v3.28/cmake-3.28.0.tar.gz</a></li>
+<li>tar -zxvf cmake-3.28.0.tar.gz</li>
+<li>cd cmake-3.28.0</li>
+<li>.&#x2F;configure</li>
+<li>sudo make</li>
+<li>sudo make install</li>
+<li>cmake –version 检查是否安装成功</li>
+</ul>
+</li>
+</ul>
+<h2 id="第二章-CMake-Language概述"><a href="#第二章-CMake-Language概述" class="headerlink" title="第二章 CMake Language概述"></a>第二章 CMake Language概述</h2><ul>
+<li>CMake项目是基于CMakeLists.txt构建的，在CMakeLists.txt中(或是*.cmake)我们用到的就是CMake Language</li>
+<li>CMake Language的语法非常像一些<strong>命令式编程语言</strong></li>
+<li>执行从源树(CMakeLists.txt)的根文件文件开始</li>
+</ul>
+<h3 id="2-1-cmake命令行工具"><a href="#2-1-cmake命令行工具" class="headerlink" title="2.1 cmake命令行工具"></a>2.1 cmake命令行工具</h3><p>cmake命令行工具是由五个可执行文件构成</p>
+<ol>
+<li><strong>cmake</strong></li>
+<li><strong>ctest</strong></li>
+<li><strong>cpack</strong></li>
+<li><strong>cmake-gui</strong></li>
+<li><strong>ccmake</strong></li>
+</ol>
+<p>如何不通过CMakeLists.txt运行CMake,<code>cmake -P *.cmake</code>,以上用法很少在项目中用到，但适合学习CMake语法</p>
+<h3 id="2-2-变量操作-set、list"><a href="#2-2-变量操作-set、list" class="headerlink" title="2.2 变量操作 set、list"></a>2.2 变量操作 set、list</h3><ul>
+<li>CMake中的变量分为两种<ul>
+<li>CMake提供</li>
+<li>自定义</li>
+</ul>
+</li>
+<li>CMake变量的命名<strong>区分大小写</strong></li>
+<li>CMake中的变量在存储时都是<strong>字符串</strong></li>
+<li>CMake获取变量: <strong>$(变量名}</strong></li>
+<li>变量的基础操作是 set()与unset()，但你也可以用list或是string操作变量</li>
+</ul>
+<h3 id="2-3-set方法"><a href="#2-3-set方法" class="headerlink" title="2.3 set方法"></a>2.3 set方法</h3><ul>
+<li><code>set(&lt;variable&gt; &lt;value&gt;... [PARENT SCOPE])</code></li>
+<li>set可以给一个变量设置多个值</li>
+<li>变量内部存储时使用”;”分割，但显示时只进行连接处理</li>
+</ul>
+<h3 id="2-4-list方法"><a href="#2-4-list方法" class="headerlink" title="2.4 list方法"></a>2.4 list方法</h3><ul>
+<li><code>list(APPEND &lt;list&gt; [&lt;element&gt;...])</code>列表添加元素</li>
+<li><code>list(REMOVE ITEM &lt;list&gt; &lt;value&gt; [value..])</code>列表删除元素</li>
+<li><code>list(LENGTH &lt;list&gt; &lt;output variable&gt;)</code>获取列表元素个数</li>
+<li><code>list(FIND &lt;list&gt; &lt;value&gt; &lt;out-var&gt;)</code>在列表中查找元素返回索引</li>
+<li><code>list(INSERT &lt;list&gt; &lt;index&gt; [&lt;element&gt;...])</code>在index位置插入</li>
+<li><code>list(REVERSE &lt;list&gt;)</code>反转list</li>
+<li><code>list(SORT &lt;list&gt; [..])</code> 排序list</li>
+</ul>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20</span><span class="token punctuation">)</span>
+<span class="token comment"># 打印信息</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"Hello, CMake!"</span><span class="token punctuation">)</span>
+<span class="token comment"># 多行</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"This is a message
+on multiple lines."</span><span class="token punctuation">)</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span>[[This is 
+message]]<span class="token punctuation">)</span>
+
+<span class="token comment">#  获取cmake的信息 $&#123;&#125;</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"CMAKE_VERSION: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">CMAKE_VERSION</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># set()方法</span>
+<span class="token keyword">set</span><span class="token punctuation">(</span>VAR1 <span class="token string">"value1"</span><span class="token punctuation">)</span>
+<span class="token keyword">set</span><span class="token punctuation">(</span><span class="token string">"my var"</span> <span class="token string">"value2"</span><span class="token punctuation">)</span>  <span class="token comment"># 注意空格,输出时要加转义符\</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"VAR1: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">VAR1</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>    
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"my var: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">my</span>\ <span class="token variable">var</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+<span class="token comment"># 设置多个值</span>
+<span class="token keyword">set</span><span class="token punctuation">(</span>LISTVALUE a1 a2<span class="token punctuation">)</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"LISTVALUE: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">LISTVALUE</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>  <span class="token comment"># 输出 a1;a2</span>
+<span class="token keyword">set</span><span class="token punctuation">(</span>LISTVALUE a1;a2<span class="token punctuation">)</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"LISTVALUE: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">LISTVALUE</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>  <span class="token comment"># 输出 a1;a2</span>
+
+<span class="token comment"># 系统变量</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span>$<span class="token variable">ENV</span>&#123;PATH<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token keyword">set</span><span class="token punctuation">(</span><span class="token variable">ENV</span>&#123;CXX<span class="token punctuation">&#125;</span> G++<span class="token punctuation">)</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span>$<span class="token variable">ENV</span>&#123;CXX<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+
+<span class="token comment"># unset()方法</span>
+<span class="token keyword">unset</span><span class="token punctuation">(</span><span class="token variable">ENV</span>&#123;CXX<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token comment"># message($ENV&#123;CXX&#125;) 保错</span>
+
+<span class="token comment"># list方法</span>
+<span class="token keyword">list</span><span class="token punctuation">(</span>APPEND mylist a b c<span class="token punctuation">)</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"mylist: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">mylist</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>    <span class="token comment"># a;b;c</span>
+<span class="token keyword">list</span><span class="token punctuation">(</span>LENGTH mylist len<span class="token punctuation">)</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"mylist length: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">len</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+<span class="token keyword">list</span><span class="token punctuation">(</span>GET mylist <span class="token number">1</span> elem<span class="token punctuation">)</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"mylist[1]: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">elem</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+<span class="token keyword">list</span><span class="token punctuation">(</span>REMOVE_AT mylist <span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"mylist after remove: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">mylist</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+<span class="token keyword">list</span><span class="token punctuation">(</span>INSERT mylist <span class="token number">1</span> x y z<span class="token punctuation">)</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"mylist after insert: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">mylist</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+<span class="token keyword">list</span><span class="token punctuation">(</span>FIND mylist x index<span class="token punctuation">)</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"index of x in mylist: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">index</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+<span class="token keyword">list</span><span class="token punctuation">(</span>SUBLIST mylist <span class="token number">1</span> <span class="token number">3</span> sublist<span class="token punctuation">)</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"sublist: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">sublist</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+<span class="token keyword">list</span><span class="token punctuation">(</span>REVERSE sublist<span class="token punctuation">)</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"reverse sublist: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">sublist</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+<span class="token keyword">list</span><span class="token punctuation">(</span>SORT sublist<span class="token punctuation">)</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"sorted sublist: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">sublist</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+<span class="token keyword">list</span><span class="token punctuation">(</span>POP_FRONT sublist elem<span class="token punctuation">)</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"pop front elem: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">elem</span><span class="token punctuation">&#125;</span></span>, sublist: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">sublist</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+<span class="token keyword">list</span><span class="token punctuation">(</span>POP_BACK sublist elem<span class="token punctuation">)</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"pop back elem: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">elem</span><span class="token punctuation">&#125;</span></span>, sublist: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">sublist</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+<span class="token keyword">list</span><span class="token punctuation">(</span>JOIN sublist <span class="token string">";"</span> str<span class="token punctuation">)</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"joined sublist: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">str</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="第三章-流程控制"><a href="#第三章-流程控制" class="headerlink" title="第三章 流程控制"></a>第三章 流程控制</h2><h3 id="if-条件流程控制"><a href="#if-条件流程控制" class="headerlink" title="if 条件流程控制"></a>if 条件流程控制</h3><ul>
+<li>条件if语句</li>
+</ul>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">if</span><span class="token punctuation">(</span>&lt;condition<span class="token punctuation">></span><span class="token punctuation">)</span>&lt;commands<span class="token punctuation">></span>
+<span class="token keyword">elseif</span><span class="token punctuation">(</span>&lt;condition<span class="token punctuation">></span><span class="token punctuation">)</span>&lt;commands<span class="token punctuation">></span>
+<span class="token keyword">else</span><span class="token punctuation">(</span><span class="token punctuation">)</span>&lt;commands<span class="token punctuation">></span>
+<span class="token keyword">endif</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="loop-循环流程控制"><a href="#loop-循环流程控制" class="headerlink" title="loop 循环流程控制"></a>loop 循环流程控制</h3><ul>
+<li>For循环</li>
+</ul>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">foreach</span><span class="token punctuation">(</span>&lt;loop_var<span class="token punctuation">></span> RANGE &lt;max<span class="token punctuation">></span><span class="token punctuation">)</span>
+&lt;commands<span class="token punctuation">></span>
+<span class="token keyword">endforeach</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">foreach</span><span class="token punctuation">(</span>&lt;loop_var<span class="token punctuation">></span> RANGE &lt;min<span class="token punctuation">></span> &lt;max<span class="token punctuation">></span> [&lt;step<span class="token punctuation">></span>]<span class="token punctuation">)</span>
+<span class="token keyword">foreach</span><span class="token punctuation">(</span>&lt;loop variable<span class="token punctuation">></span> IN [LISTS &lt;lists<span class="token punctuation">></span>] [ITEMS &lt;items<span class="token punctuation">></span>]<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>While循环</li>
+</ul>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">while</span><span class="token punctuation">(</span>&lt;condition<span class="token punctuation">></span><span class="token punctuation">)</span>
+&lt;commands<span class="token punctuation">></span>
+<span class="token keyword">endwhile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>break和continue使用类似其他语言</li>
+</ul>
+<h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20.0</span><span class="token punctuation">)</span>
+<span class="token keyword">set</span> <span class="token punctuation">(</span>VARBOOL <span class="token boolean">TRUE</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span>VARBOOL<span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span>STATUS <span class="token string">"VARBOOL is true"</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span>STATUS <span class="token string">"VARBOOL is false"</span><span class="token punctuation">)</span>
+<span class="token keyword">endif</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">NOT</span> VARBOOL<span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span>STATUS <span class="token string">"VARBOOL is true"</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span>STATUS <span class="token string">"VARBOOL is false"</span><span class="token punctuation">)</span>
+<span class="token keyword">endif</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">NOT</span> VARBOOL <span class="token operator">OR</span> VARBOOL<span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token boolean">TRUE</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token boolean">FALSE</span><span class="token punctuation">)</span>
+<span class="token keyword">endif</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">NOT</span> VARBOOL <span class="token operator">AND</span> VARBOOL<span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token boolean">TRUE</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token boolean">FALSE</span><span class="token punctuation">)</span>
+<span class="token keyword">endif</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">LESS</span> <span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"1 is less than 2"</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">endif</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token string">"ok"</span> <span class="token operator">LESS</span> <span class="token number">233</span><span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"ok is less than 233"</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">endif</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token string">"2"</span> <span class="token operator">EQUAL</span> <span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"'2' is equal to 2"</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">endif</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20</span><span class="token punctuation">)</span>
+
+<span class="token keyword">foreach</span><span class="token punctuation">(</span>i RANGE <span class="token number">1</span> <span class="token number">5</span><span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token punctuation">$&#123;</span>i<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token keyword">endforeach</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">set</span><span class="token punctuation">(</span>MY_LIST <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token keyword">foreach</span><span class="token punctuation">(</span>i <span class="token punctuation">$&#123;</span>MY_LIST<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token punctuation">$&#123;</span>i<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token keyword">endforeach</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">foreach</span><span class="token punctuation">(</span>VAR IN LISTS MY_LIST ITEMS <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span><span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token punctuation">$&#123;</span>VAR<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    
+<span class="token keyword">endforeach</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># zip</span>
+<span class="token keyword">set</span><span class="token punctuation">(</span>L1 one two three four<span class="token punctuation">)</span>
+<span class="token keyword">set</span><span class="token punctuation">(</span>L2 <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token keyword">foreach</span><span class="token punctuation">(</span>num IN ZIP_LISTS L1 L2<span class="token punctuation">)</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"word = <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">num_0</span><span class="token punctuation">&#125;</span></span>, num = <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">num_1</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+<span class="token keyword">endforeach</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="第四章-函数"><a href="#第四章-函数" class="headerlink" title="第四章 函数"></a>第四章 函数</h2><p><strong>定义函数的语法</strong></p>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">function</span><span class="token punctuation">(</span>&lt;name<span class="token punctuation">></span> [&lt;argument<span class="token punctuation">></span>...]<span class="token punctuation">)</span>
+&lt;commands<span class="token punctuation">></span><span class="token keyword">endfunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>函数参数<strong>第一个参数是函数名称</strong></p>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20.0</span><span class="token punctuation">)</span>
+
+<span class="token keyword">function</span><span class="token punctuation">(</span>MyFunc FirstArg<span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"MyFunc Name: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">CMAKE_CURRENT_FUNCTION</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"FirstArg: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">FirstArg</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+    <span class="token keyword">set</span><span class="token punctuation">(</span>FirstArg <span class="token string">"New value"</span><span class="token punctuation">)</span> 
+    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"FirstArg again: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">FirstArg</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"ARGV0: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">ARGV0</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>  <span class="token comment"># 注意: CMake 默认的 ARGV0, ARGV1 等在这里可能没有定义</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"ARGV1: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">ARGV1</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"ARGV2: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">ARGV2</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+<span class="token keyword">endfunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">set</span><span class="token punctuation">(</span>FirstArg <span class="token string">"first value"</span><span class="token punctuation">)</span>
+<span class="token function">MyFunc</span><span class="token punctuation">(</span><span class="token punctuation">$&#123;</span>FirstArg<span class="token punctuation">&#125;</span> <span class="token string">"value"</span><span class="token punctuation">)</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"FirstArg: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">FirstArg</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>    <span class="token comment"># 并没有修改,作用域问题</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="第五章-Scope作用域"><a href="#第五章-Scope作用域" class="headerlink" title="第五章 Scope作用域"></a>第五章 Scope作用域</h2><p>CMake 有两种作用域</p>
+<ol>
+<li>Function scope 函数作用域</li>
+<li>Directory scope 当从<code>add_subdirectory()</code>命令执行嵌套目录中的CMakeLists.txt列表文件时，注意父CMakeLists.txt其中的变量可以被子CMakeLists.txt使用</li>
+</ol>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20.0</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 定义输出函数</span>
+<span class="token keyword">function</span><span class="token punctuation">(</span>outFunc<span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"-> out: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">Var</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+    <span class="token keyword">set</span><span class="token punctuation">(</span>Var <span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token function">InFunc</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"&lt;- out: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">Var</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+<span class="token keyword">endfunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 定义输入函数</span>
+<span class="token keyword">function</span><span class="token punctuation">(</span>InFunc<span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"-> In: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">Var</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+    <span class="token keyword">set</span><span class="token punctuation">(</span>Var <span class="token number">3</span><span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"&lt;- In: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">Var</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+<span class="token keyword">endfunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 设置全局变量</span>
+<span class="token keyword">set</span><span class="token punctuation">(</span>Var <span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"-> Global: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">Var</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 调用输出函数</span>
+<span class="token function">outFunc</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 输出全局变量的值</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"&lt;- Global: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">Var</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="第六章-宏"><a href="#第六章-宏" class="headerlink" title="第六章 宏"></a>第六章 宏</h2><p><strong>CMake中的宏</strong>,<code>宏是直接把代码替换到调用处</code></p>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">macro</span><span class="token punctuation">(</span>&lt;name<span class="token punctuation">></span> [&lt;argument<span class="token punctuation">></span>...]<span class="token punctuation">)</span>
+&lt;commands<span class="token punctuation">></span>
+<span class="token keyword">endmacro</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>注意:尽量不要写宏，只要会读就好</p>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.15</span><span class="token punctuation">)</span>
+
+<span class="token keyword">macro</span><span class="token punctuation">(</span>Test MyVar<span class="token punctuation">)</span>
+<span class="token keyword">set</span><span class="token punctuation">(</span><span class="token punctuation">$&#123;</span>MyVar<span class="token punctuation">&#125;</span> <span class="token string">"new Value"</span><span class="token punctuation">)</span>   <span class="token comment"># 创建了一个新的变量并赋值</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"args <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">MyVar</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>   
+<span class="token keyword">endmacro</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">set</span> <span class="token punctuation">(</span>MyVar <span class="token string">"old Value"</span><span class="token punctuation">)</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"before macro <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">MyVar</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+<span class="token function">Test</span><span class="token punctuation">(</span>MyVar<span class="token punctuation">)</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"after macro <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">MyVar</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="第七章-CMake构建项目的四种方式"><a href="#第七章-CMake构建项目的四种方式" class="headerlink" title="第七章 CMake构建项目的四种方式"></a>第七章 CMake构建项目的四种方式</h2><h4 id="第一节-直接写入源码路径的方式"><a href="#第一节-直接写入源码路径的方式" class="headerlink" title="第一节: 直接写入源码路径的方式"></a>第一节: 直接写入源码路径的方式</h4><ul>
+<li><code>add_executable</code>中直接写入相对路径,在源码中引入头文件时需要写<strong>相对路径</strong></li>
+</ul>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20</span><span class="token punctuation">)</span>
+
+<span class="token keyword">project</span><span class="token punctuation">(</span>animal CXX<span class="token punctuation">)</span>
+
+<span class="token keyword">add_executable</span><span class="token punctuation">(</span>Animal main.cpp animal/dog.cpp<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="第二节-调用子目录cmake脚本的方法"><a href="#第二节-调用子目录cmake脚本的方法" class="headerlink" title="第二节: 调用子目录cmake脚本的方法"></a>第二节: 调用子目录cmake脚本的方法</h4><ul>
+<li>include方法可以引入子目录中的cmake后缀的配置文件</li>
+<li>将配置加入add_executable中</li>
+</ul>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token comment"># animal.cmake</span>
+<span class="token keyword">set</span><span class="token punctuation">(</span>animal_sources animal/cat.cpp animal/dog.cpp<span class="token punctuation">)</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token comment"># cmakelists.txt</span>
+<span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20</span><span class="token punctuation">)</span>
+<span class="token keyword">project</span><span class="token punctuation">(</span>animal CXX<span class="token punctuation">)</span>
+<span class="token keyword">include</span><span class="token punctuation">(</span>animal/animal.cmake<span class="token punctuation">)</span>
+<span class="token keyword">add_executable</span><span class="token punctuation">(</span>Animal main.cpp <span class="token punctuation">$&#123;</span>animal_sources<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="第三节-CMakeLists嵌套"><a href="#第三节-CMakeLists嵌套" class="headerlink" title="第三节:CMakeLists嵌套"></a>第三节:CMakeLists嵌套</h4><ul>
+<li><code>target_include_directories</code> 头文件目录的声明</li>
+<li><code>target_link_libraries</code> 连接库文件</li>
+<li><code>add_subdirectory</code> 添加子目录</li>
+<li><code>add_library</code> 生成库文件,默认是静态库 <strong>STATIC library</strong></li>
+</ul>
+<h4 id="第四节-Object-Libraries"><a href="#第四节-Object-Libraries" class="headerlink" title="第四节:Object Libraries"></a>第四节:Object Libraries</h4><p><code>add_library OBJECT</code></p>
+<ul>
+<li>Object Library 是一个特殊的库类型，它将目标文件编译成一个库，但不会生成最终的链接文件。这意味着你可以在后续的 add_library() 或 add_executable() 命令中，将 Obiect Library 作为源文件进行链接，从而生成最终的可执行文件或库文件。</li>
+<li>将target_include_directories移入到子CMakeLists中</li>
+</ul>
+<h2 id="第八章-动态库和静态库"><a href="#第八章-动态库和静态库" class="headerlink" title="第八章 动态库和静态库"></a>第八章 动态库和静态库</h2><h3 id="1-静态库和动态库"><a href="#1-静态库和动态库" class="headerlink" title="1. 静态库和动态库"></a>1. 静态库和动态库</h3><ul>
+<li><p>静态库<br>  在连接阶段，会将汇编生成的目标文件<code>.o</code>与引用到的库一起链接打包到可执行文件中。</p>
+<p>  因此对应的链接方式称为静态连接。对函数库的连接是在编译时完成的!</p>
+</li>
+<li><p>动态库<br>  动态库不是在编译时被连接到目标代码中，而是运行时才被载入。</p>
+</li>
+<li><p><strong>静态库对空间的浪费是巨大的!</strong></p>
+</li>
+</ul>
+<h3 id="2-命名"><a href="#2-命名" class="headerlink" title="2. 命名"></a>2. 命名</h3><ul>
+<li><p>动态库的命名</p>
+<p>  <code>lib&lt;name&gt;.so/dll</code></p>
+</li>
+<li><p>静态库的命名</p>
+<p>  <code>lib&lt;name&gt;.a/lib</code></p>
+</li>
+</ul>
+<h3 id="3-命令"><a href="#3-命令" class="headerlink" title="3. 命令"></a>3. 命令</h3><ul>
+<li><code>file()</code>常用于搜索源文件</li>
+<li><code>add_library(animal STATIC $&#123;SRC&#125;)</code>生成静态库</li>
+<li><code>add_library(animal SHARED $&#123;SRC&#125;)</code>生成动态库</li>
+<li><code>$&#123;LIBRARY_OUTPUT-PATH&#125;</code>导出目录</li>
+</ul>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20</span><span class="token punctuation">)</span>
+<span class="token keyword">project</span><span class="token punctuation">(</span>Animal CXX<span class="token punctuation">)</span>
+
+
+<span class="token comment"># 把源文件加入到变量中</span>
+<span class="token keyword">file</span><span class="token punctuation">(</span>GLOB SRC <span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/src/*.cpp<span class="token punctuation">)</span>
+<span class="token keyword">include_directories</span><span class="token punctuation">(</span><span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/include<span class="token punctuation">)</span>
+
+<span class="token comment"># 生成静态库</span>
+<span class="token comment"># set(LIBRARY_OUTPUT_PATH $&#123;PROJECT_SOURCE_DIR&#125;/a)</span>
+<span class="token comment"># add_library(Animal STATIC $&#123;SRC&#125;)</span>
+
+<span class="token comment"># 生成动态库</span>
+<span class="token keyword">set</span><span class="token punctuation">(</span><span class="token variable">LIBRARY_OUTPUT_PATH</span> <span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/so<span class="token punctuation">)</span>
+<span class="token keyword">add_library</span><span class="token punctuation">(</span>Animal <span class="token namespace">SHARED</span> <span class="token punctuation">$&#123;</span>SRC<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="4-cmake使用动态库和静态库"><a href="#4-cmake使用动态库和静态库" class="headerlink" title="4. cmake使用动态库和静态库"></a>4. cmake使用动态库和静态库</h3><p>静态库调用流程</p>
+<ol>
+<li>引入头文件</li>
+<li>连接静态库</li>
+<li>生成可执行二进制文件</li>
+</ol>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20</span><span class="token punctuation">)</span>
+<span class="token keyword">project</span><span class="token punctuation">(</span>Animal CXX<span class="token punctuation">)</span>
+
+<span class="token comment"># 导入头文件</span>
+<span class="token keyword">include_directories</span><span class="token punctuation">(</span><span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/include<span class="token punctuation">)</span>
+<span class="token comment"># 链接静态库</span>
+<span class="token comment"># link_directories($&#123;PROJECT_SOURCE_DIR&#125;/a)</span>
+<span class="token comment"># link_libraries(Animal)</span>
+<span class="token comment"># add_executable(app main.cpp)</span>
+
+<span class="token comment"># 链接动态库</span>
+<span class="token keyword">link_directories</span><span class="token punctuation">(</span><span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/so<span class="token punctuation">)</span>
+<span class="token keyword">add_executable</span><span class="token punctuation">(</span>app main.cpp<span class="token punctuation">)</span>
+<span class="token keyword">target_link_libraries</span><span class="token punctuation">(</span>app <span class="token namespace">PUBLIC</span> Animal<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>生成完成后,可以把可执行文件放到动态库目录下,确保能找到</code></p>
+<h2 id="第九章-cmake和源文件交互"><a href="#第九章-cmake和源文件交互" class="headerlink" title="第九章 cmake和源文件交互"></a>第九章 cmake和源文件交互</h2><ul>
+<li><p>在项目下新建<code>config.h.in</code>文件,里面用宏定义cmake变量<code>#define CMAKE_CXX_STANDARD $&#123;CMAKE_CXX_STANDARD&#125;   // 和源文件交互</code></p>
+</li>
+<li><p>animal文件夹中<code>cmakelists.txt</code> -&gt; <code>add_library(AnimalLib cat.cpp dog.cpp)</code></p>
+</li>
+<li><p>主项目cmakelists.txt文件</p>
+</li>
+<li><p>然后就可以在源文件中使用宏</p>
+</li>
+</ul>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20</span><span class="token punctuation">)</span>
+<span class="token keyword">project</span><span class="token punctuation">(</span>Animal CXX<span class="token punctuation">)</span>
+
+<span class="token comment"># 设置c++版本</span>
+<span class="token keyword">set</span><span class="token punctuation">(</span><span class="token variable">CMAKE_CXX_STANDARD</span> <span class="token number">11</span><span class="token punctuation">)</span>
+<span class="token keyword">set</span><span class="token punctuation">(</span><span class="token variable">CMAKE_CXX_STANDARD_REQUIRED</span> <span class="token boolean">ON</span><span class="token punctuation">)</span>
+
+<span class="token keyword">configure_file</span><span class="token punctuation">(</span>config.h.in config.h<span class="token punctuation">)</span>
+<span class="token keyword">add_subdirectory</span><span class="token punctuation">(</span>animal<span class="token punctuation">)</span>
+
+<span class="token keyword">add_executable</span><span class="token punctuation">(</span>Animal main.cpp<span class="token punctuation">)</span>
+
+<span class="token keyword">target_link_libraries</span><span class="token punctuation">(</span>Animal <span class="token namespace">PUBLIC</span> AnimalLib<span class="token punctuation">)</span>
+
+<span class="token keyword">target_include_directories</span><span class="token punctuation">(</span>Animal <span class="token namespace">PUBLIC</span> <span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_BINARY_DIR</span><span class="token punctuation">&#125;</span> <span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/animal<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="第十章-cmake条件编译"><a href="#第十章-cmake条件编译" class="headerlink" title="第十章 cmake条件编译"></a>第十章 cmake条件编译</h2><ul>
+<li>通过不同传入参数编译不同的文件<ol>
+<li>用option定义变量</li>
+<li>在子CMakeLists.txt中根据变量ON还是OFF来修改SRC(源文件)以及<code>target_compile_definitions</code></li>
+<li>修改源文件根据变量选择代码</li>
+<li>执行命令时<code>-D&lt;变量&gt;</code>&#x3D;ON&#x2F;OFF来进行条件编译<code>cmake -B build -G &quot;MinGW Makefiles&quot; -DUSE_CATTWO=FALSE</code>就能正确地将 <code>USE_CATTWO</code> 设置为 <code>FALSE</code>。</li>
+</ol>
+</li>
+</ul>
+<h3 id="说明-PUBLIC-INTERFACE-和-PRIVATE的区别"><a href="#说明-PUBLIC-INTERFACE-和-PRIVATE的区别" class="headerlink" title="说明 PUBLIC INTERFACE 和 PRIVATE的区别"></a>说明 PUBLIC INTERFACE 和 PRIVATE的区别</h3><ul>
+<li>PUBLIC 本目标需要用，依赖这个目标的其他目标也需要</li>
+<li>INTERFACE 本目标不需要，依赖本目标的其他目标需要</li>
+<li>PRIVATE 本目标需要，依赖这个目标的其他目标不需要</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://0zxm.github.io">0zxm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://0zxm.github.io/2024/09/22/cmake-de-shi-yong/">https://0zxm.github.io/2024/09/22/cmake-de-shi-yong/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://0zxm.github.io" target="_blank">0zxm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/cmake/">cmake</a><a class="post-meta__tags" href="/tags/%E9%A1%B9%E7%9B%AE%E5%B7%A5%E5%85%B7/">项目工具</a></div><div class="post-share"><div class="social-share" data-image="/img/cover2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/10/06/zai-vscode-zhong-pei-zhi-cpp-di-san-fang-ku/" title="在vscode中配置cpp第三方库"><img class="cover" src="/img/default_cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">在vscode中配置cpp第三方库</div></div><div class="info-2"><div class="info-item-1">bilibili 下载第三方库 以SFML库为例,到官网SFML (sfml-dev.org)下载对应编译器架构的(如gcc是32位的就安装32位的SFML)对应压缩包 解压到指定目录下  添加环境配置c_cpp_properties.json一般你配置好vscode中的标准c++环境之后,都会有这个文件,c_cpp_properties.json是用来语法检查和代码提示等功能的, 所以我们要加上SFML库的头文件(我这里安装了mysql和smfl) &#123;     "configurations": [         &#123;             "name": "Win32",             "includePath": [                 "$&#123;workspaceFolder&#125;/**",                   "C:\\Program Files\\MySQL\\MySQL Server 8.0\\include" //（添加）此处为mysql安装路径下的include文件夹路径,        ...</div></div></div></a><a class="pagination-related" href="/2024/09/09/pyqt-kai-fa-yi-ge-ji-shi-ben/" title="pyqt开发一个记事本"><img class="cover" src="/img/default_cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">pyqt开发一个记事本</div></div><div class="info-2"><div class="info-item-1">构建一个功能丰富的记事本应用在现代软件开发中，记事本应用是一个经典的入门项目，它不仅能够帮助开发者熟悉GUI编程，还能在实践中掌握事件处理、文件操作等核心概念。本文将详细介绍如何使用 PyQt5 构建一个功能丰富的记事本应用，包括新建、打开、保存文件，以及字体大小调整等高级功能。 一、项目概述我们的记事本应用将包含以下核心功能：  文件操作：新建、打开、保存、另存为、退出。 文本编辑：支持基本的文本编辑功能，包括字体大小调整。 状态显示：在状态栏显示当前文件状态，如是否已保存。 语言模式：支持多种语言模式，如 Python、Java、HTML 等，以便于代码高亮。  二、环境搭建在开始编码之前，确保你的 Python 环境中已安装 PyQt5。如果未安装，可以通过以下命令进行安装： pip install PyQt5  三、核心组件实现1. 主窗口 Notebook主窗口类 Notebook 负责初始化整个应用的 UI 组件，包括菜单栏、工具栏、编辑区和状态栏。 class Notebook(QMainWindow):     def __init__(self):      ...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">0zxm</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/0zxm" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:m15813109801@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="http://0zxm.github.io" target="_blank" title="博客"><i class="fab fa-algolia" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-CMake%E5%88%9D%E4%BD%93%E9%AA%8C"><span class="toc-number">1.</span> <span class="toc-text">第一章 CMake初体验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-CMake%E6%98%AF%E4%BB%80%E4%B9%88%E3%80%81CMake%E6%9E%84%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">1. CMake是什么、CMake构建项目的流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-CMake%E7%9A%84%E4%BC%98%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9"><span class="toc-number">1.2.</span> <span class="toc-text">2. CMake的优点和缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-C-C-%E6%BA%90%E6%96%87%E4%BB%B6%E6%98%AF%E6%80%8E%E4%B9%88%E7%94%9F%E6%88%90%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%84toolchain%E6%B5%81%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">3. C&#x2F;C++源文件是怎么生成可执行程序的toolchain流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-CMake%E4%B8%8EMakefile%E3%80%81Make%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.4.</span> <span class="toc-text">4. CMake与Makefile、Make的关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-CMake%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-number">1.5.</span> <span class="toc-text">5. CMake命令行执行流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%9C%A8Windows%E4%B8%8B%E4%BD%BF%E7%94%A8cmake%E6%9D%A5%E6%9E%84%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.6.</span> <span class="toc-text">6. 在Windows下使用cmake来构建项目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-Windows%E4%B8%8B%E7%9A%84build-system-generator"><span class="toc-number">1.6.1.</span> <span class="toc-text">6.1 Windows下的build system generator</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-Linux%E4%B8%8B%E4%BD%BF%E7%94%A8CMake%E6%9E%84%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.7.</span> <span class="toc-text">7. Linux下使用CMake构建项目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-CMake-Language%E6%A6%82%E8%BF%B0"><span class="toc-number">2.</span> <span class="toc-text">第二章 CMake Language概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-cmake%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 cmake命令行工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%8F%98%E9%87%8F%E6%93%8D%E4%BD%9C-set%E3%80%81list"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 变量操作 set、list</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-set%E6%96%B9%E6%B3%95"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 set方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-list%E6%96%B9%E6%B3%95"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 list方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-number">3.</span> <span class="toc-text">第三章 流程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#if-%E6%9D%A1%E4%BB%B6%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-number">3.1.</span> <span class="toc-text">if 条件流程控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#loop-%E5%BE%AA%E7%8E%AF%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-number">3.2.</span> <span class="toc-text">loop 循环流程控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-number">3.3.</span> <span class="toc-text">示例代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">第四章 函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-Scope%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">5.</span> <span class="toc-text">第五章 Scope作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%AE%8F"><span class="toc-number">6.</span> <span class="toc-text">第六章 宏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0-CMake%E6%9E%84%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">7.</span> <span class="toc-text">第七章 CMake构建项目的四种方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-%E7%9B%B4%E6%8E%A5%E5%86%99%E5%85%A5%E6%BA%90%E7%A0%81%E8%B7%AF%E5%BE%84%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">7.0.1.</span> <span class="toc-text">第一节: 直接写入源码路径的方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82-%E8%B0%83%E7%94%A8%E5%AD%90%E7%9B%AE%E5%BD%95cmake%E8%84%9A%E6%9C%AC%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">7.0.2.</span> <span class="toc-text">第二节: 调用子目录cmake脚本的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82-CMakeLists%E5%B5%8C%E5%A5%97"><span class="toc-number">7.0.3.</span> <span class="toc-text">第三节:CMakeLists嵌套</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E8%8A%82-Object-Libraries"><span class="toc-number">7.0.4.</span> <span class="toc-text">第四节:Object Libraries</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E5%8A%A8%E6%80%81%E5%BA%93%E5%92%8C%E9%9D%99%E6%80%81%E5%BA%93"><span class="toc-number">8.</span> <span class="toc-text">第八章 动态库和静态库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%9D%99%E6%80%81%E5%BA%93%E5%92%8C%E5%8A%A8%E6%80%81%E5%BA%93"><span class="toc-number">8.1.</span> <span class="toc-text">1. 静态库和动态库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%91%BD%E5%90%8D"><span class="toc-number">8.2.</span> <span class="toc-text">2. 命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%91%BD%E4%BB%A4"><span class="toc-number">8.3.</span> <span class="toc-text">3. 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-cmake%E4%BD%BF%E7%94%A8%E5%8A%A8%E6%80%81%E5%BA%93%E5%92%8C%E9%9D%99%E6%80%81%E5%BA%93"><span class="toc-number">8.4.</span> <span class="toc-text">4. cmake使用动态库和静态库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0-cmake%E5%92%8C%E6%BA%90%E6%96%87%E4%BB%B6%E4%BA%A4%E4%BA%92"><span class="toc-number">9.</span> <span class="toc-text">第九章 cmake和源文件交互</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E7%AB%A0-cmake%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91"><span class="toc-number">10.</span> <span class="toc-text">第十章 cmake条件编译</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E-PUBLIC-INTERFACE-%E5%92%8C-PRIVATE%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">10.1.</span> <span class="toc-text">说明 PUBLIC INTERFACE 和 PRIVATE的区别</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/10/26/hexo-geng-huan-zhu-ti-butterfly/" title="Hexo更换主题butterfly"><img src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo更换主题butterfly"/></a><div class="content"><a class="title" href="/2024/10/26/hexo-geng-huan-zhu-ti-butterfly/" title="Hexo更换主题butterfly">Hexo更换主题butterfly</a><time datetime="2024-10-26T12:14:16.000Z" title="发表于 2024-10-26 20:14:16">2024-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/14/javascript-xue-xi/" title="JavaScript学习"><img src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JavaScript学习"/></a><div class="content"><a class="title" href="/2024/10/14/javascript-xue-xi/" title="JavaScript学习">JavaScript学习</a><time datetime="2024-10-14T12:36:08.000Z" title="发表于 2024-10-14 20:36:08">2024-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/11/java-ji-chu-shang/" title="Java基础上"><img src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java基础上"/></a><div class="content"><a class="title" href="/2024/10/11/java-ji-chu-shang/" title="Java基础上">Java基础上</a><time datetime="2024-10-11T12:12:04.000Z" title="发表于 2024-10-11 20:12:04">2024-10-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/10/java-cheng-xu-da-bao-cheng-jar-bao/" title="Java程序打包成jar包"><img src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java程序打包成jar包"/></a><div class="content"><a class="title" href="/2024/10/10/java-cheng-xu-da-bao-cheng-jar-bao/" title="Java程序打包成jar包">Java程序打包成jar包</a><time datetime="2024-10-10T04:51:27.000Z" title="发表于 2024-10-10 12:51:27">2024-10-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/06/zai-vscode-zhong-pei-zhi-cpp-di-san-fang-ku/" title="在vscode中配置cpp第三方库"><img src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在vscode中配置cpp第三方库"/></a><div class="content"><a class="title" href="/2024/10/06/zai-vscode-zhong-pei-zhi-cpp-di-san-fang-ku/" title="在vscode中配置cpp第三方库">在vscode中配置cpp第三方库</a><time datetime="2024-10-06T15:10:51.000Z" title="发表于 2024-10-06 23:10:51">2024-10-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By 0zxm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

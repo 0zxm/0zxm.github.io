@@ -1,0 +1,411 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>爬虫中使用打码平台 | 0zxm</title><meta name="author" content="0zxm"><meta name="copyright" content="0zxm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="引入在爬虫程序中,常常会遇到验证码校验的关卡,人工识别不仅慢而且很费精力,使用打码平台就成了高效,省时且便利的选择。 本次案例对于高清资源库1080zyk.com进行爬虫采集，使用超级鹰验证码识别(chaojiying.com)和python的requests库具体实现，类似的第三方打码库还有云打码,tt图鉴，ddddorc库等 代码实现  首先我们对网页进行分析，通过键入搜索框，并点击搜索按钮，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="爬虫中使用打码平台">
+<meta property="og:url" content="https://0zxm.github.io/2024/08/25/pa-chong-zhong-shi-yong-da-ma-ping-tai/index.html">
+<meta property="og:site_name" content="0zxm">
+<meta property="og:description" content="引入在爬虫程序中,常常会遇到验证码校验的关卡,人工识别不仅慢而且很费精力,使用打码平台就成了高效,省时且便利的选择。 本次案例对于高清资源库1080zyk.com进行爬虫采集，使用超级鹰验证码识别(chaojiying.com)和python的requests库具体实现，类似的第三方打码库还有云打码,tt图鉴，ddddorc库等 代码实现  首先我们对网页进行分析，通过键入搜索框，并点击搜索按钮，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://0zxm.github.io/img/default_cover.jpg">
+<meta property="article:published_time" content="2024-08-25T11:30:27.000Z">
+<meta property="article:modified_time" content="2024-08-26T05:03:46.708Z">
+<meta property="article:author" content="0zxm">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="超级鹰">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0zxm.github.io/img/default_cover.jpg"><link rel="shortcut icon" href="/"><link rel="canonical" href="https://0zxm.github.io/2024/08/25/pa-chong-zhong-shi-yong-da-ma-ping-tai/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '爬虫中使用打码平台',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-08-26 13:03:46'
+}</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/default_cover.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">0zxm</span></a><a class="nav-page-title" href="/"><span class="site-name">爬虫中使用打码平台</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">爬虫中使用打码平台</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-08-25T11:30:27.000Z" title="发表于 2024-08-25 19:30:27">2024-08-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-08-26T05:03:46.708Z" title="更新于 2024-08-26 13:03:46">2024-08-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>在爬虫程序中,常常会遇到验证码校验的关卡,人工识别不仅慢而且很费精力,使用打码平台就成了高效,省时且便利的选择。</p>
+<p>本次案例对于<a target="_blank" rel="noopener" href="https://www.1080zyk.com/">高清资源库1080zyk.com</a>进行爬虫采集，使用<a target="_blank" rel="noopener" href="https://www.chaojiying.com/api-5.html">超级鹰验证码识别(chaojiying.com)</a>和python的requests库具体实现，类似的第三方打码库还有<a target="_blank" rel="noopener" href="http://www.yundama.com/">云打码</a>,<code>tt图鉴</code>，<code>ddddorc</code>库等</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><img src="/2024/08/25/pa-chong-zhong-shi-yong-da-ma-ping-tai/资源网站.png" alt="image-20240825193924467" style="zoom:80%;">
+
+<p>首先我们对网页进行分析，通过键入搜索框，并点击搜索按钮，F12中的网络接口可以找到，发起了两次请求</p>
+<ul>
+<li>post请求，将搜索框里的内容通过表单数据data发送给服务器</li>
+</ul>
+<img src="/2024/08/25/pa-chong-zhong-shi-yong-da-ma-ping-tai/搜索数据请求.png" alt="image-20240825194459109" style="zoom:67%;">
+
+<ul>
+<li>get请求，返回的是验证码的图片</li>
+</ul>
+<img src="/2024/08/25/pa-chong-zhong-shi-yong-da-ma-ping-tai/验证码接口.png" alt="image-20240825194351890" style="zoom:67%;">
+
+<p>所以我们先编写如下代码，将图片保存本地，<strong>使用Session对象是为了保证验证码和请求是同一次会话</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> requests
+
+<span class="token comment"># 爬取优质资源网</span>
+session <span class="token operator">=</span> requests<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+urls <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token string">"data"</span><span class="token punctuation">:</span> <span class="token string">"http://www.1080zyk.com/index.php?m=vod-search"</span><span class="token punctuation">,</span>
+    <span class="token string">"yanzenma"</span><span class="token punctuation">:</span> <span class="token string">"https://www.1080zyk.com/inc/common/code.php?a=search&amp;s="</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">for</span> key<span class="token punctuation">,</span> url <span class="token keyword">in</span> urls<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> key <span class="token operator">==</span> <span class="token string">"data"</span><span class="token punctuation">:</span>
+        data <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">"wd"</span><span class="token punctuation">:</span> <span class="token string">"python"</span><span class="token punctuation">,</span> <span class="token string">"submit"</span><span class="token punctuation">:</span> <span class="token string">"search"</span><span class="token punctuation">&#125;</span>
+        response <span class="token operator">=</span> session<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token punctuation">,</span> data<span class="token operator">=</span>data<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> key <span class="token operator">==</span> <span class="token string">"yanzenma"</span><span class="token punctuation">:</span>
+        response <span class="token operator">=</span> session<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+        <span class="token comment"># response是一张图片</span>
+        <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"./yanzenma.jpg"</span><span class="token punctuation">,</span> <span class="token string">"wb"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+            f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>response<span class="token punctuation">.</span>content<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"验证码已保存到yanzenma.jpg"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="超级鹰平台的使用"><a href="#超级鹰平台的使用" class="headerlink" title="超级鹰平台的使用"></a>超级鹰平台的使用</h2><p>然后登陆到<strong>超级鹰打码平台</strong>，下载相应语言的接口示例</p>
+<p><img src="/2024/08/25/pa-chong-zhong-shi-yong-da-ma-ping-tai/python%E6%8E%A5%E5%8F%A3%E5%AE%9E%E4%BE%8B.png" alt="image-20240825205458702"></p>
+<p>把python源文件解压到项目目录下，修改里面的参数，自己去超级鹰网站生成软件id，填入替换96001</p>
+<p><img src="/2024/08/25/pa-chong-zhong-shi-yong-da-ma-ping-tai/%E4%BF%AE%E6%94%B9%E5%8F%82%E6%95%B0.png" alt="image-20240825205724733"></p>
+<p><img src="/2024/08/25/pa-chong-zhong-shi-yong-da-ma-ping-tai/%E8%BD%AF%E4%BB%B6id.png" alt="image-20240825205856628"></p>
+<h3 id="导入类"><a href="#导入类" class="headerlink" title="导入类"></a>导入类</h3><p>在你的爬虫文件中导入<strong>超级鹰类</strong>，替换参数和图片地址，原本打印出来的是一个字典，我们取他的<code>pic_str</code>值</p>
+<p><img src="/2024/08/25/pa-chong-zhong-shi-yong-da-ma-ping-tai/%E8%8E%B7%E5%8F%96%E9%AA%8C%E8%AF%81%E7%A0%81.png" alt="image-20240825211123200"></p>
+<p>可以看到，最后获取到了正确的验证码值</p>
+<h2 id="JavaScript逆向"><a href="#JavaScript逆向" class="headerlink" title="JavaScript逆向"></a>JavaScript逆向</h2><p><img src="/2024/08/25/pa-chong-zhong-shi-yong-da-ma-ping-tai/js.png" alt="image-20240826095006734"></p>
+<p>检查验证码页面,发现主要内容是一段js代码实现检验功能,于是,我们把这段代码给复制下来,交给<code>fittencode</code>解释.</p>
+<h3 id="fittenCode插件"><a href="#fittenCode插件" class="headerlink" title="fittenCode插件"></a>fittenCode插件</h3><p>结果如下:</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">".ldg_verify_submit"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">const</span> code <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">".mac_verify"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">const</span> type <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#code_type"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            $<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"/inc/ajax.php?ac=code_check&amp;code="</span> <span class="token operator">+</span> code <span class="token operator">+</span> <span class="token string">"&amp;type="</span> <span class="token operator">+</span> type <span class="token operator">+</span> <span class="token string">"&amp;rnd="</span> <span class="token operator">+</span> Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">r</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>data<span class="token punctuation">.</span>code <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    location<span class="token punctuation">.</span><span class="token function">reload</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+                    <span class="token function">alert</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+帮我解释一下这段代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这段代码是一个使用jQuery编写的JavaScript代码片段，主要功能是处理一个验证提交按钮的点击事件。以下是对这段代码的详细解释：</p>
+<ol>
+<li><p><code>$(&quot;.ldg_verify_submit&quot;).click(() =&gt; &#123; ... &#125;)</code>：</p>
+<ul>
+<li>这行代码监听类名为<code>ldg_verify_submit</code>的元素的点击事件。当该元素被点击时，执行箭头函数内的代码。</li>
+</ul>
+</li>
+<li><p><code>const code = $(&quot;.mac_verify&quot;).val();</code>：</p>
+<ul>
+<li>这行代码获取类名为<code>mac_verify</code>的元素的值，并将其存储在变量<code>code</code>中。通常，这个元素可能是一个输入框，用户在这里输入验证码。</li>
+</ul>
+</li>
+<li><p><code>const type = $(&quot;#code_type&quot;).val();</code>：</p>
+<ul>
+<li>这行代码获取ID为<code>code_type</code>的元素的值，并将其存储在变量<code>type</code>中。这个元素可能也是一个输入框或下拉菜单，用于选择验证码的类型。</li>
+</ul>
+</li>
+<li><p><code>$.get(&quot;/inc/ajax.php?ac=code_check&amp;code=&quot; + code + &quot;&amp;type=&quot; + type + &quot;&amp;rnd=&quot; + Math.random(), function (r) &#123; ... &#125;)</code>：</p>
+<ul>
+<li>这行代码使用jQuery的<code>$.get</code>方法发送一个GET请求到服务器。请求的URL是<code>/inc/ajax.php</code>，并附带以下查询参数：<ul>
+<li><code>ac=code_check</code>：表示执行的操作是验证码检查。</li>
+<li><code>code=</code> + code：传递用户输入的验证码。</li>
+<li><code>type=</code> + type：传递验证码的类型。</li>
+<li><code>rnd=</code> + Math.random()：添加一个随机数，以避免浏览器缓存。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>const data = JSON.parse(r);</code>：</p>
+<ul>
+<li>这行代码将服务器返回的JSON字符串解析为JavaScript对象，并存储在变量<code>data</code>中。</li>
+</ul>
+</li>
+<li><p><code>if (data.code == 1) &#123; location.reload(); &#125; else &#123; alert(data.msg); &#125;</code>：</p>
+<ul>
+<li>这行代码检查解析后的<code>data</code>对象中的<code>code</code>属性。如果<code>code</code>等于1，表示验证成功，页面将重新加载（<code>location.reload()</code>）。如果<code>code</code>不等于1，表示验证失败，弹出一个警告框显示<code>data.msg</code>中的错误信息（<code>alert(data.msg)</code>）。</li>
+</ul>
+</li>
+</ol>
+<p>总结来说，这段代码的功能是当用户点击验证提交按钮时，获取用户输入的验证码和验证码类型，然后通过AJAX请求将这些信息发送到服务器进行验证。根据服务器的响应，决定是重新加载页面（验证成功）还是显示错误信息（验证失败）。</p>
+<p>于是我们将参数拼接,对<code>https://www.1080zyk.com/inc/ajax.php?ac=code_check&amp;code=3991&amp;type=search&amp;rnd=1</code>发起请求,最后得到响应数据为<code>&#123;&quot;code&quot;:1,&quot;msg&quot;:&quot;ok&quot;&#125;</code>,然后reload页面,发现,可以正常获得响应,于是,补充下列代码</p>
+<p><img src="/2024/08/25/pa-chong-zhong-shi-yong-da-ma-ping-tai/%E6%AD%A3%E5%B8%B8%E5%93%8D%E5%BA%94.png" alt="image-20240826100747246"></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 校验验证码url</span>
+url <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"http://www.1080zyk.com/inc/ajax.php?ac=code_check&amp;code=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>code<span class="token punctuation">&#125;</span></span><span class="token string">&amp;type=search&amp;rnd=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">100000</span><span class="token punctuation">,</span> <span class="token number">999999</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span></span><span class="token string">"</span></span>
+
+response_code <span class="token operator">=</span> session<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+<span class="token keyword">if</span> response_code<span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">"code"</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>	<span class="token comment"># 注意,不是字符串1</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"验证码正确"</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>session<span class="token punctuation">.</span>get<span class="token punctuation">(</span>urls<span class="token punctuation">[</span><span class="token string">"data"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"验证码错误"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>最后,加入选择下载项和保存本地的代码,就完成了</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> random
+<span class="token keyword">import</span> requests
+<span class="token keyword">import</span> lxml<span class="token punctuation">.</span>etree
+<span class="token keyword">from</span> 超级鹰接口 <span class="token keyword">import</span> Chaojiying_Client
+
+<span class="token comment"># 初始化会话</span>
+session <span class="token operator">=</span> requests<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+headers <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token string">"User-Agent"</span><span class="token punctuation">:</span> <span class="token string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36 Edg/128.0.0.0"</span><span class="token punctuation">,</span>
+    <span class="token string">"Referer"</span><span class="token punctuation">:</span> <span class="token string">"https://www.1080zyk.com/index.php?m=vod-search"</span><span class="token punctuation">,</span>
+    <span class="token string">"Cookie"</span><span class="token punctuation">:</span> <span class="token string">"_ga=GA1.1.838502423.1724576396; PHPSESSID=o15hha1hpqlbddfon13h85rt37; _ga_20DNV0Q96J=GS1.1.1724591590.4.1.1724591970.0.0.0"</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span>
+
+urls <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token string">"data"</span><span class="token punctuation">:</span> <span class="token string">"http://www.1080zyk.com/index.php?m=vod-search"</span><span class="token punctuation">,</span>
+    <span class="token string">"yanzenma"</span><span class="token punctuation">:</span> <span class="token string">"https://www.1080zyk.com/inc/common/code.php?a=search&amp;s="</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span>
+
+
+<span class="token keyword">def</span> <span class="token function">fetch_captcha</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    response <span class="token operator">=</span> session<span class="token punctuation">.</span>get<span class="token punctuation">(</span>urls<span class="token punctuation">[</span><span class="token string">"yanzenma"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"./yanzenma.jpg"</span><span class="token punctuation">,</span> <span class="token string">"wb"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+        f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>response<span class="token punctuation">.</span>content<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"验证码已保存到yanzenma.jpg"</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">recognize_captcha</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    chaojiying <span class="token operator">=</span> Chaojiying_Client<span class="token punctuation">(</span>
+        <span class="token string">"0zxmss"</span><span class="token punctuation">,</span> <span class="token string">"Xubin159753123"</span><span class="token punctuation">,</span> <span class="token string">"962795"</span>
+    <span class="token punctuation">)</span>  <span class="token comment"># 用户中心>>软件ID 生成一个替换 96001</span>
+    im <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span>
+        <span class="token string">"./yanzenma.jpg"</span><span class="token punctuation">,</span> <span class="token string">"rb"</span>
+    <span class="token punctuation">)</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 本地图片文件路径 来替换 a.jpg 有时WIN系统须要//</span>
+    result <span class="token operator">=</span> chaojiying<span class="token punctuation">.</span>PostPic<span class="token punctuation">(</span>im<span class="token punctuation">,</span> <span class="token number">1902</span><span class="token punctuation">)</span><span class="token punctuation">.</span>get<span class="token punctuation">(</span>
+        <span class="token string">"pic_str"</span>
+    <span class="token punctuation">)</span>  <span class="token comment"># 1902 验证码类型  官方网站>>价格体系 3.4+版 print 后要加()</span>
+    <span class="token keyword">return</span> result
+
+
+<span class="token keyword">def</span> <span class="token function">verify_captcha</span><span class="token punctuation">(</span>code<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    url <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"http://www.1080zyk.com/inc/ajax.php?ac=code_check&amp;code=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>code<span class="token punctuation">&#125;</span></span><span class="token string">&amp;type=search&amp;rnd=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">100000</span><span class="token punctuation">,</span> <span class="token number">999999</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span></span><span class="token string">"</span></span>
+    response_code <span class="token operator">=</span> session<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> response_code<span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">search_data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    data <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">"wd"</span><span class="token punctuation">:</span> <span class="token string">"你好"</span><span class="token punctuation">,</span> <span class="token string">"submit"</span><span class="token punctuation">:</span> <span class="token string">"search"</span><span class="token punctuation">&#125;</span>
+    response <span class="token operator">=</span> session<span class="token punctuation">.</span>post<span class="token punctuation">(</span>urls<span class="token punctuation">[</span><span class="token string">"data"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> data<span class="token operator">=</span>data<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> response<span class="token punctuation">.</span>text
+
+
+<span class="token keyword">def</span> <span class="token function">parse_data</span><span class="token punctuation">(</span>html<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    tree <span class="token operator">=</span> lxml<span class="token punctuation">.</span>etree<span class="token punctuation">.</span>HTML<span class="token punctuation">(</span>html<span class="token punctuation">,</span> <span class="token boolean">None</span><span class="token punctuation">)</span>
+    base_xpath <span class="token operator">=</span> <span class="token string">"//div[@class='xing_vb']/ul/li"</span>
+    items <span class="token operator">=</span> tree<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span>base_xpath<span class="token punctuation">)</span>
+
+    nums <span class="token operator">=</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">&#123;</span><span class="token string">"标题"</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"类别"</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"地区"</span><span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">"评分"</span><span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">"更新时间"</span><span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token string">"链接"</span><span class="token punctuation">:</span> <span class="token string">"span[2]/a/@href"</span><span class="token punctuation">,</span>
+            <span class="token string">"标题"</span><span class="token punctuation">:</span> <span class="token string">"span[2]/a/text()"</span><span class="token punctuation">,</span>
+            <span class="token string">"类别"</span><span class="token punctuation">:</span> <span class="token string">"span[3]/text()"</span><span class="token punctuation">,</span>
+            <span class="token string">"地区"</span><span class="token punctuation">:</span> <span class="token string">"span[4]/text()"</span><span class="token punctuation">,</span>
+            <span class="token string">"评分"</span><span class="token punctuation">:</span> <span class="token string">"span[5]/text()"</span><span class="token punctuation">,</span>
+            <span class="token string">"更新时间"</span><span class="token punctuation">:</span> <span class="token string">"span[6]/text()"</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span>
+
+    index <span class="token operator">=</span> <span class="token number">1</span>
+    <span class="token keyword">for</span> item <span class="token keyword">in</span> items<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> index <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
+            <span class="token keyword">for</span> name<span class="token punctuation">,</span> num <span class="token keyword">in</span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                name_value <span class="token operator">=</span> item<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"./span[</span><span class="token interpolation"><span class="token punctuation">&#123;</span>num<span class="token punctuation">&#125;</span></span><span class="token string">]/text()"</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span>name_value<span class="token punctuation">)</span>
+            index <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">for</span> name<span class="token punctuation">,</span> path <span class="token keyword">in</span> nums<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                name_value <span class="token operator">=</span> item<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"./</span><span class="token interpolation"><span class="token punctuation">&#123;</span>path<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span>name_value<span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    fetch_captcha<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment"># code = recognize_captcha()</span>
+    code <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"请输入验证码："</span><span class="token punctuation">)</span>
+    result <span class="token operator">=</span> verify_captcha<span class="token punctuation">(</span>code<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> result<span class="token punctuation">[</span><span class="token string">"code"</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"验证码正确"</span><span class="token punctuation">)</span>
+        html <span class="token operator">=</span> search_data<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        parse_data<span class="token punctuation">(</span>html<span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"验证码错误"</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    main<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://0zxm.github.io">0zxm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://0zxm.github.io/2024/08/25/pa-chong-zhong-shi-yong-da-ma-ping-tai/">https://0zxm.github.io/2024/08/25/pa-chong-zhong-shi-yong-da-ma-ping-tai/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://0zxm.github.io" target="_blank">0zxm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a><a class="post-meta__tags" href="/tags/%E8%B6%85%E7%BA%A7%E9%B9%B0/">超级鹰</a></div><div class="post-share"><div class="social-share" data-image="/img/default_cover.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/08/26/git-he-ssh-de-ji-chu-zhi-shi/" title="git和ssh的基础知识"><img class="cover" src="/img/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">git和ssh的基础知识</div></div><div class="info-2"><div class="info-item-1">教程PPT-lec2 - 2023 秋冬实用技能拾遗 (tonycrane.cc) B 站视频 ChatGpt 对话在命令行中提交代码，通常是使用 Git 命令进行操作。以下是提交代码的基本步骤：  打开命令行终端（如 Git Bash、Terminal 等）。  进入你的代码仓库所在的目录，使用 cd 命令切换到对应的目录。  使用 git status 命令查看当前代码的状态，确保没有未提交的更改。  如果有未提交的更改，使用 git add . 命令将所有更改添加到暂存区。  使用 git commit -m &quot;commit message&quot; 命令提交代码，其中 &quot;commit message&quot; 是你的提交信息，描述本次提交的内容。  最后使用 git push 指令将本地提交推送到远程仓库。   以上是提交代码的基本步骤，在实际操作中可能会根据具体情况有所不同。如果在提交代码过程中遇到问题，可以查看 Git 的官方文档或者在命令行中使用 git help...</div></div></div></a><a class="pagination-related" href="/2024/08/19/pin-you-gou-dai-ma-gui-fan/" title="品优购代码规范"><img class="cover" src="/img/default_cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">品优购代码规范</div></div><div class="info-2"><div class="info-item-1">代码规范1. 概述欢迎使用品优购代码规范， 这个是我借鉴京东前端代码规范，组织的品优购内部规范。旨在增强团队开发协作、提高代码质量和打造开发基石的编码规范， 以下规范是团队基本约定的内容，必须严格遵循。 HTML 规范基于 W3C、苹果开发者 等官方文档，并结合团队业务和开发过程中总结的规范约定，让页面 HTML 代码更具语义性。 图片规范了解各种图片格式特性，根据特性制定图片规范，包括但不限于图片的质量约定、图片引入方式、图片合并处理等，旨在从图片层面优化页面性能。 CSS 规范统一规范团队 CSS 代码书写风格和使用 CSS 预编译语言语法风格，提供常用媒体查询语句和浏览器私有属性引用，并从业务层面统一规范常用模块的引用。 命名规范从 目录、图片、HTML/CSS文件、ClassName 的命名等层面约定规范团队的命名习惯，增强团队代码的可读性。 2. HTML 规范DOCTYPE 声明HTML 文件必须加上 DOCTYPE 声明，并统一使用 HTML5 的文档声明： &lt;!DOCTYPE html>  HTML5 标准模版 &lt;!DOCTYPE...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2024/09/09/pyqt-kai-fa-yi-ge-ji-shi-ben/" title="pyqt开发一个记事本"><img class="cover" src="/img/default_cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-09</div><div class="info-item-2">pyqt开发一个记事本</div></div><div class="info-2"><div class="info-item-1">构建一个功能丰富的记事本应用在现代软件开发中，记事本应用是一个经典的入门项目，它不仅能够帮助开发者熟悉GUI编程，还能在实践中掌握事件处理、文件操作等核心概念。本文将详细介绍如何使用 PyQt5 构建一个功能丰富的记事本应用，包括新建、打开、保存文件，以及字体大小调整等高级功能。 一、项目概述我们的记事本应用将包含以下核心功能：  文件操作：新建、打开、保存、另存为、退出。 文本编辑：支持基本的文本编辑功能，包括字体大小调整。 状态显示：在状态栏显示当前文件状态，如是否已保存。 语言模式：支持多种语言模式，如 Python、Java、HTML 等，以便于代码高亮。  二、环境搭建在开始编码之前，确保你的 Python 环境中已安装 PyQt5。如果未安装，可以通过以下命令进行安装： pip install PyQt5  三、核心组件实现1. 主窗口 Notebook主窗口类 Notebook 负责初始化整个应用的 UI 组件，包括菜单栏、工具栏、编辑区和状态栏。 class Notebook(QMainWindow):     def __init__(self):      ...</div></div></div></a><a class="pagination-related" href="/2024/09/02/python-wang-luo-bian-cheng/" title="python网络编程"><img class="cover" src="/img/default_cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-02</div><div class="info-item-2">python网络编程</div></div><div class="info-2"><div class="info-item-1">ifconfig 和 ping 命令ifconfigifconfig 是一个用于配置和显示Linux内核中网络接口参数的命令。它可以用来查看和设置网络接口的状态，包括 IP 地址、子网掩码、广播地址等信息。 pingping 是一个用于测试网络连接的工具。它发送 ICMP（Internet Control Message Protocol）回显请求到目标主机，并等待回显应答。通过 ping 命令，我们可以测试网络连通性，以及测量网络延迟。 端口和端口号 (共有 65536 个)端口和端口号是网络通信中的重要概念。 端口 端口是数据传输的必经之路，可以视为网络程序之间通信的接口。 每运行一个程序都会有一个端口，用于给对应的网络程序发送数据。  端口号 端口号用于标识不同的端口，共有 65536 个端口号。  知名端口号 (0-1023) 知名端口号是指众所周知的端口号，范围从 0 到 1023。 这些端口号一般固定分配给一些服务，比如 21 端口分配给 FTP（文件传输协议）服务，25 端口分配给 SMTP（简单邮件传输协议）服务，80 端口分配给 HTTP 服务。  动态端口号...</div></div></div></a><a class="pagination-related" href="/2024/09/07/selenium-zi-dong-hua-qiang-piao-12306/" title="selenium自动化抢票12306"><img class="cover" src="/img/cover1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-07</div><div class="info-item-2">selenium自动化抢票12306</div></div><div class="info-2"><div class="info-item-1">自动化抢票 123061. 明确需求明确采集的网站以及数据内容  网址: https://kyfw.12306.cn/otn/leftTicket/init 数据: 车次相关信息  2. 抓包分析通过浏览器开发者工具分析对应的数据位置  打开开发者工具 F12 或鼠标右键点击检查   刷新网页 点击下一页&#x2F;下滑网页页面&#x2F;点击搜索&#x2F;查询按钮 让网页相关数据内容加载出来 (整个网站数据内容重新加载一遍)   通过关键字搜索找到对应数据位置 需要什么数据就搜什么    数据包地址: https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=2024-09-06&amp;leftTicketDTO.from_station=IZQ&amp;leftTicketDTO.to_station=SNQ&amp;purpose_codes=ADULT 3. 代码实现步骤1. 发送请求模拟浏览器对于 url 地址发送请求  模拟浏览器  可以直接复制，使用请求标头中参数内容 去哪里找:...</div></div></div></a><a class="pagination-related" href="/2024/08/04/scrapy-kuang-jia/" title="scrapy框架"><img class="cover" src="/img/default_cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-04</div><div class="info-item-2">scrapy框架</div></div><div class="info-2"><div class="info-item-1">Scrapy框架简介Scrapy官方文档 B站黑马教程 B站尚硅谷教程 代码文件 scrapy框架 Scrapy是用纯Python实现一个为了爬取网站数据、提取结构性数据而编写的应用框架，用途非常广泛。 框架的力量，用户只需要定制开发几个模块就可以轻松的实现一个爬虫，用来抓取网页内容以及各种图片，非常之方便。 Scrapy 使用了 Twisted[&#39;twrstrd](其主要对手是Tornado)异步网络框架来处理网络通讯，可以加快我们的下载速度，不用自己去实现异步框架，并且包含了各种中间件接口，可以灵活的完成各种需求  scrapy是什么？Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。 安装scrapy安装非Python的依赖  sudo apt-get install python-dev python-pip libxm12-dev libxslt1-dev zlib1g-dev libffi-dev libssl-dev(Ubuntu下安装)  pip install...</div></div></div></a><a class="pagination-related" href="/2024/06/21/pa-qu-fan-qie-xiao-shuo/" title="爬取番茄小说"><img class="cover" src="/img/cover1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-21</div><div class="info-item-2">爬取番茄小说</div></div><div class="info-2"><div class="info-item-1">本文用于纪录爬取番茄小说过程中遇到的困难和解决措施首先找到我想要的小说第一章 1.找网络接口右键检查,清空网络日志,刷新,找到6893843740742386183document类型请求标头URL确实是https://fanqienovel.com/reader/6893843740742386183,没有做其他措施,所以直接用requests库伪装访问,这一部分代码如下   # cap01_url = 'https://fanqienovel.com/reader/6893843740742386183?enter_from=reader' # cap02_url = 'https://fanqienovel.com/reader/6893843740834660878?enter_from=reader' # cap03_url = 'https://fanqienovel.com/reader/6893843740910158344?enter_from=reader' 观察发现,网页之间并没有直接关联  import requests  cap01_url =...</div></div></div></a><a class="pagination-related" href="/2024/09/03/shu-ju-wa-jue/" title="数据挖掘"><img class="cover" src="/img/cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-03</div><div class="info-item-2">数据挖掘</div></div><div class="info-2"><div class="info-item-1">课程资源MOOC课程 配套代码 数据挖掘 (educoder.net) 【决策树】深入浅出讲解决策树算法（原理、构建）_决策树算法原理-CSDN博客 决策树原理详解（无基础的同样可以看懂） 决策树C4.5算法的技术深度剖析、实战解读 - techlead_krischang - 博客园 (cnblogs.com) 1.绪论1.1 数据挖掘的重要性 背景: 数据爆炸但知识贫乏  人们积累的数据越来越多。但是，目前这些数据还仅仅应用在数据的录入查询、统计等功能，无法发现数据中存在的关系和规则，无法根据现有的数据预测未来的发展趋势，导致了“数据爆炸但知识贫乏”的现象。  从商业数据到商业智能的进化     进化阶段 商业问题 支持技术 产品特点    数据搜集 (60年代) “过去五年中我的总收入是多少？” 计算机、磁带和磁盘 提供历史性的、静态的数据信息   数据访问 (80年代) “在新英格兰的分部去年三月的销售额是多少？” 关系数据库(RDBMS)结构化查询语言(SQL)ODBC 在记录级提供历史性的、动态的数据信息   数据仓库决策支持...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">0zxm</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/0zxm" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:m15813109801@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="http://0zxm.github.io" target="_blank" title="博客"><i class="fab fa-algolia" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%85%A5"><span class="toc-number">1.</span> <span class="toc-text">引入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.</span> <span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E7%BA%A7%E9%B9%B0%E5%B9%B3%E5%8F%B0%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">超级鹰平台的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E7%B1%BB"><span class="toc-number">3.1.</span> <span class="toc-text">导入类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript%E9%80%86%E5%90%91"><span class="toc-number">4.</span> <span class="toc-text">JavaScript逆向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fittenCode%E6%8F%92%E4%BB%B6"><span class="toc-number">4.1.</span> <span class="toc-text">fittenCode插件</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/10/26/hexo-geng-huan-zhu-ti-butterfly/" title="Hexo更换主题butterfly"><img src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo更换主题butterfly"/></a><div class="content"><a class="title" href="/2024/10/26/hexo-geng-huan-zhu-ti-butterfly/" title="Hexo更换主题butterfly">Hexo更换主题butterfly</a><time datetime="2024-10-26T12:14:16.000Z" title="发表于 2024-10-26 20:14:16">2024-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/14/javascript-xue-xi/" title="JavaScript学习"><img src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JavaScript学习"/></a><div class="content"><a class="title" href="/2024/10/14/javascript-xue-xi/" title="JavaScript学习">JavaScript学习</a><time datetime="2024-10-14T12:36:08.000Z" title="发表于 2024-10-14 20:36:08">2024-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/11/java-ji-chu-shang/" title="Java基础上"><img src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java基础上"/></a><div class="content"><a class="title" href="/2024/10/11/java-ji-chu-shang/" title="Java基础上">Java基础上</a><time datetime="2024-10-11T12:12:04.000Z" title="发表于 2024-10-11 20:12:04">2024-10-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/10/java-cheng-xu-da-bao-cheng-jar-bao/" title="Java程序打包成jar包"><img src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java程序打包成jar包"/></a><div class="content"><a class="title" href="/2024/10/10/java-cheng-xu-da-bao-cheng-jar-bao/" title="Java程序打包成jar包">Java程序打包成jar包</a><time datetime="2024-10-10T04:51:27.000Z" title="发表于 2024-10-10 12:51:27">2024-10-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/06/zai-vscode-zhong-pei-zhi-cpp-di-san-fang-ku/" title="在vscode中配置cpp第三方库"><img src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在vscode中配置cpp第三方库"/></a><div class="content"><a class="title" href="/2024/10/06/zai-vscode-zhong-pei-zhi-cpp-di-san-fang-ku/" title="在vscode中配置cpp第三方库">在vscode中配置cpp第三方库</a><time datetime="2024-10-06T15:10:51.000Z" title="发表于 2024-10-06 23:10:51">2024-10-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By 0zxm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

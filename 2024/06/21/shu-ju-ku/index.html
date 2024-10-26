@@ -1,0 +1,1108 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>数据库 | 0zxm</title><meta name="author" content="0zxm"><meta name="copyright" content="0zxm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据库关系型数据库关系数据库，是指采用了关系模型来组织数据的数据库简单来说，关系模型指的就是二维表格模型 非关系型数据库非关系型数据库，又被称为NoSQL(Not Only SQL),意为不仅仅是SQL,对NOSQL最普遍的定义是非关联型的，强调Key-Value的方式存储。 数据库管理系统数据库管理系统(Database Management System,简称DBMS)是为管理数据库而设计的软">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库">
+<meta property="og:url" content="https://0zxm.github.io/2024/06/21/shu-ju-ku/index.html">
+<meta property="og:site_name" content="0zxm">
+<meta property="og:description" content="数据库关系型数据库关系数据库，是指采用了关系模型来组织数据的数据库简单来说，关系模型指的就是二维表格模型 非关系型数据库非关系型数据库，又被称为NoSQL(Not Only SQL),意为不仅仅是SQL,对NOSQL最普遍的定义是非关联型的，强调Key-Value的方式存储。 数据库管理系统数据库管理系统(Database Management System,简称DBMS)是为管理数据库而设计的软">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://0zxm.github.io/img/cover1.jpg">
+<meta property="article:published_time" content="2024-06-21T04:12:52.000Z">
+<meta property="article:modified_time" content="2024-06-23T09:57:49.211Z">
+<meta property="article:author" content="0zxm">
+<meta property="article:tag" content="mysql">
+<meta property="article:tag" content="数据库">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0zxm.github.io/img/cover1.jpg"><link rel="shortcut icon" href="/"><link rel="canonical" href="https://0zxm.github.io/2024/06/21/shu-ju-ku/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '数据库',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-06-23 17:57:49'
+}</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover1.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">0zxm</span></a><a class="nav-page-title" href="/"><span class="site-name">数据库</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">数据库</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-06-21T04:12:52.000Z" title="发表于 2024-06-21 12:12:52">2024-06-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-06-23T09:57:49.211Z" title="更新于 2024-06-23 17:57:49">2024-06-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">9.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>31分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h2 id="关系型数据库"><a href="#关系型数据库" class="headerlink" title="关系型数据库"></a>关系型数据库</h2><p>关系数据库，是指采用了关系模型来组织数据的数据库简单来说，关系模型指的就是二维表格模型</p>
+<h2 id="非关系型数据库"><a href="#非关系型数据库" class="headerlink" title="非关系型数据库"></a>非关系型数据库</h2><p>非关系型数据库，又被称为NoSQL(Not Only SQL),意为不仅仅是SQL,对<code>NOSQL</code>最普遍的定义是<code>非关联型的</code>，强调Key-Value的方式存储。</p>
+<h2 id="数据库管理系统"><a href="#数据库管理系统" class="headerlink" title="数据库管理系统"></a>数据库管理系统</h2><p><code>数据库管理系统</code>(Database Management System,简称<code>DBMS</code>)是为管理数据库而设计的软件系统</p>
+<ul>
+<li>包括三大部分构成。<ul>
+<li>数据库文件集合:主要是一系列的数据文件，作用是存储数据。</li>
+<li>数据库服务器:主要负责对数据文件以及文件中的数据进行管理。</li>
+<li>数据库客户端:主要负责和服务端通信，向服务端传输数据或者从服务端获取数据。</li>
+</ul>
+</li>
+</ul>
+<h2 id="SQL语句"><a href="#SQL语句" class="headerlink" title="SQL语句"></a>SQL语句</h2><p>数据库客户端和数据库服务端怎么通讯呢?<br>数据库客户端通过“特殊的语言”告诉服务端，客户端想要做什么.这个专门的语言就是SQL语句</p>
+<ul>
+<li><code>SQL(Structured Query Language)</code>是结构化査询语言，是一种用来操作<code>RDBMS(Relational Database Management System 所谓的关系型数据库管理系统RDBMS)</code>的数据库语言。</li>
+<li>当前几乎所有关系型数据库都支持使用SQL语言进行操作,也就是说可以通过 SQL 操作 oracle,sql server,mysql,sqlite 等等所有的关系型的数据库。</li>
+</ul>
+<h2 id="关系型数据库中核心元素（主键定义）"><a href="#关系型数据库中核心元素（主键定义）" class="headerlink" title="关系型数据库中核心元素（主键定义）"></a>关系型数据库中核心元素（主键定义）</h2><ul>
+<li>字段:一列数据类型相同的数据</li>
+<li>记录:一行记录某个事物的完整信息的数据</li>
+<li>数据表:有若干字段和记录组成</li>
+<li>数据库:由若干数据表组成</li>
+<li>主键:唯一标识一行记录的字段（可以由多个字段组成）<br> <img src="/2024/06/21/shu-ju-ku/main_element.png" alt="alt text"></li>
+</ul>
+<h2 id="搭建mysql环境"><a href="#搭建mysql环境" class="headerlink" title="搭建mysql环境"></a>搭建mysql环境</h2><ul>
+<li><p>安装 MySQL 数据库服务端：</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo apt-get install mysql-server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>安装 MySQL 数据库客户端：</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo apt-get install mysql-client<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>启动 MySQL 数据库：</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo service mysql start<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>停止 MySQL 数据库：</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo service mysql stop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>查看 MySQL 数据库启动状态：</p>
+<pre class="line-numbers language-none"><code class="language-none">ps ajx|grep mysql<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+<h3 id="MySQL配置文件-了解"><a href="#MySQL配置文件-了解" class="headerlink" title="MySQL配置文件(了解)"></a>MySQL配置文件(了解)</h3><p>配置文件目录为&#x2F;etc&#x2F;mysql&#x2F;mysql.cnf:<br>进入mysql.conf.d目录，打开mysql.cnf，可以看到配置项:</p>
+<h4 id="主要配置选项"><a href="#主要配置选项" class="headerlink" title="主要配置选项"></a>主要配置选项</h4><ul>
+<li>bind-address表示服务器绑定的ip，默认为127.0.0.1</li>
+<li>port表示端口，默认为3306</li>
+<li>datadir表示数据库目录，默认为&#x2F;var&#x2F;lib&#x2F;mysql</li>
+<li>general_log_file表示普通日志，默认为&#x2F;var&#x2F;log&#x2F;mysql&#x2F;mysql.log</li>
+<li>log_error表示错误日志，默认为&#x2F;var&#x2F;log&#x2F;mysql&#x2F;error.log</li>
+</ul>
+<h2 id="MySql数据类型"><a href="#MySql数据类型" class="headerlink" title="MySql数据类型"></a>MySql数据类型</h2><ul>
+<li>枚举类型<br>枚举类型enum，在定义字段时就预告规定好固定的几个值，然后插入记录时值只能在这几个固定好的值中选择一个<ul>
+<li>语法定义:<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">gender enum(&#39;男&#39;,&#39;女&#39;,&#39;妖&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li>应用场景:<br>当值是几个固定可选时，比如:性别、星期、月份、表示状态时(比如:是、否)</li>
+</ul>
+</li>
+<li>decimal: 定点数<ul>
+<li>decimal(5,2)代表共5位数字，其中2位是小数，比如:888.88</li>
+</ul>
+</li>
+<li>char:定长字符串<ul>
+<li>char(10):不管实际使用,必然占用10个字符空间</li>
+</ul>
+</li>
+<li>varchar:变长字符串<ul>
+<li>varchar(10):根据实际使用占用空间</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据完整性和约束"><a href="#数据完整性和约束" class="headerlink" title="数据完整性和约束"></a>数据完整性和约束</h2><h3 id="1-数据完整性"><a href="#1-数据完整性" class="headerlink" title="1.数据完整性"></a>1.数据完整性</h3><p><code>数据完整性</code>用于保证数据的<code>正确性</code>。系统在更新、插入或除等操作时都要检查数据的完整性，核实其约束条件。<br>参照完整性<br><strong>参照完整性</strong>属于表间规则。在更新、插入或者删除记录时，如果只改其一，就会影响数据的完整性。如<strong>删除表2的某记录后</strong>，表1的相应记录未删除，致使这些记录成为孤立记录。</p>
+<h3 id="2-约束"><a href="#2-约束" class="headerlink" title="2.约束"></a>2.约束</h3><table>
+<thead>
+<tr>
+<th>约束类型</th>
+<th>约束说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NOT NULL</td>
+<td>非空约束(设置非空约束，该字段不能为空)</td>
+</tr>
+<tr>
+<td>PRIMARY KEY</td>
+<td>主键约束(唯一性，非空性)</td>
+</tr>
+<tr>
+<td>UNIQUE KEY</td>
+<td>唯一约束(唯一性，可以空，但只能有一个)</td>
+</tr>
+<tr>
+<td>DEFAULT</td>
+<td>默认约束(该数据的默认值)</td>
+</tr>
+<tr>
+<td>FOREIGN KEY</td>
+<td>外键约束(需要建立两表间的关系)</td>
+</tr>
+</tbody></table>
+<h2 id="MySql基本操作"><a href="#MySql基本操作" class="headerlink" title="MySql基本操作"></a>MySql基本操作</h2><ul>
+<li>快捷键<ol>
+<li><code>ctrl + a</code>  快速回到行首</li>
+<li><code>ctrl + e</code>  快速回到行尾</li>
+<li><code>ctrl + l</code>  清屏</li>
+<li><code>ctrl + c</code>  回车 结束</li>
+</ol>
+</li>
+<li>数据库登陆和连接<ol>
+<li><code>mysql -uroot -p密码</code>  root是根用户(超级用户)</li>
+<li><code>quit/exit/ctrl + d</code>  退出mysql</li>
+</ol>
+</li>
+<li>显示数据库信息<ol>
+<li><code>select version();</code>  显示数据库版本</li>
+<li><code>select now();</code>  显示时间</li>
+</ol>
+</li>
+</ul>
+<h2 id="数据库基本操作命令"><a href="#数据库基本操作命令" class="headerlink" title="数据库基本操作命令"></a>数据库基本操作命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>show databases;</td>
+<td>查看所有数据库</td>
+<td>show databases;</td>
+</tr>
+<tr>
+<td>select database();</td>
+<td>查看当前使用的数据库</td>
+<td>select database();</td>
+</tr>
+<tr>
+<td>create database数据库名 charset&#x3D;utf8;</td>
+<td>创建数据库</td>
+<td>create database python charset&#x3D;utf8;</td>
+</tr>
+<tr>
+<td>use 数据库名;</td>
+<td>使用数据库</td>
+<td>use python;</td>
+</tr>
+<tr>
+<td>drop database 数据库名;</td>
+<td>删除数据库-慎重</td>
+<td>drop database python;</td>
+</tr>
+</tbody></table>
+<p>在MySQL中，您可以使用以下SQL语句来查看创建数据库的SQL语句：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SHOW</span> <span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> database_name<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这条SQL语句将显示创建指定数据库的SQL语句，包括数据库名称和其默认字符集。您可以将 <code>database_name</code> 替换为实际的数据库名称来查看该数据库的创建语句。</p>
+<h2 id="数据表基本操作命令"><a href="#数据表基本操作命令" class="headerlink" title="数据表基本操作命令"></a>数据表基本操作命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>show tables;</td>
+<td>查看当前数据库中所有表</td>
+</tr>
+<tr>
+<td>desc 表名;</td>
+<td>查看表结构</td>
+</tr>
+<tr>
+<td>show create table 表名</td>
+<td>查看表的创建语句-详细过程</td>
+</tr>
+</tbody></table>
+<ul>
+<li>创建表<ul>
+<li>int unsigned 无符号整形</li>
+<li>auto_increment 表示自动增长</li>
+<li>not null 表示不能为空</li>
+<li>primary key 表示主键</li>
+<li>default 默认值</li>
+<li>create table 数据表名字(字段 类型 约束[，字段 类型 约束]);</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据表基本操作命令-1"><a href="#数据表基本操作命令-1" class="headerlink" title="数据表基本操作命令"></a>数据表基本操作命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ALTER TABLE 表名 ADD 列名 类型;</code></td>
+<td><strong>添加字段</strong>：向表中增加一个新的列，需指定列名和数据类型。</td>
+</tr>
+<tr>
+<td><code>ALTER TABLE 表名 CHANGE 原名 新名 类型及约束;</code></td>
+<td><strong>重命名字段</strong>：更改现有列的名字，并可同时修改其数据类型和约束条件。</td>
+</tr>
+<tr>
+<td><code>ALTER TABLE 表名 MODIFY 列名 类型及约束;</code></td>
+<td><strong>修改字段类型</strong>：更改指定列的数据类型及约束条件，不改变列名。</td>
+</tr>
+<tr>
+<td><code>ALTER TABLE 表名 DROP 列名;</code></td>
+<td><strong>删除字段</strong>：从表中移除指定的列。</td>
+</tr>
+<tr>
+<td><code>DROP TABLE 表名;</code></td>
+<td><strong>删除表</strong>：完全删除指定的表及其所有数据，这是一个不可逆的操作。</td>
+</tr>
+</tbody></table>
+<h2 id="数据增删改查操作"><a href="#数据增删改查操作" class="headerlink" title="数据增删改查操作"></a>数据增删改查操作</h2><ul>
+<li>增加数据</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令形式</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>INSERT INTO 表名 VALUES (...);</code></td>
+<td><strong>全列插入</strong>：值的顺序需与表结构中的字段顺序一致。</td>
+<td><code>INSERT INTO Students VALUES (&#39;John Doe&#39;, 20, &#39;Computer Science&#39;);</code></td>
+</tr>
+<tr>
+<td><code>INSERT INTO 表名 (列1,...) VALUES (值1,...);</code></td>
+<td><strong>部分列插入</strong>：仅指定列和对应的值，值的顺序与列出的列顺序对应。</td>
+<td><code>INSERT INTO Students (Name, Major) VALUES (&#39;Jane Doe&#39;, &#39;Mathematics&#39;);</code></td>
+</tr>
+<tr>
+<td><code>INSERT INTO 表名 VALUES (...),(...)...;</code></td>
+<td><strong>一次性插入多行数据</strong>：在单个命令中插入多行，每行数据用逗号分隔。所有行都必须遵循全列插入的规则。</td>
+<td><code>INSERT INTO Students VALUES (&#39;Alice Smith&#39;, 19, &#39;Physics&#39;), (&#39;Bob Johnson&#39;, 21, &#39;Chemistry&#39;);</code></td>
+</tr>
+<tr>
+<td><code>INSERT INTO 表名 (列1,...) VALUES (值1,...),(值1,...)...;</code></td>
+<td><strong>部分列多行插入</strong>：结合了部分列插入和一次性插入多行的特点，每对值集对应一行，并指定了列。</td>
+<td><code>INSERT INTO Students (Name, Major) VALUES (&#39;Eva Brown&#39;, &#39;Biology&#39;), (&#39;Sam Wilson&#39;, &#39;Engineering&#39;);</code></td>
+</tr>
+</tbody></table>
+<ul>
+<li>修改查询数据</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令形式</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SELECT * FROM 表名;</code></td>
+<td><strong>查询所有列数据</strong>：从指定表中选取所有列的所有数据行。</td>
+<td><code>SELECT * FROM Employees;</code></td>
+</tr>
+<tr>
+<td><code>SELECT 列1,列2... FROM 表名;</code></td>
+<td><strong>查询指定列数据</strong>：仅选取指定列的数据行。</td>
+<td><code>SELECT FirstName, LastName FROM Employees;</code></td>
+</tr>
+<tr>
+<td><code>UPDATE 表名 SET 列1=值1,列2=值2... WHERE 条件;</code></td>
+<td><strong>修改数据</strong>：更新表中满足指定条件的行的列值。</td>
+<td><code>UPDATE Employees SET Salary=50000 WHERE Department=&#39;Sales&#39;;</code></td>
+</tr>
+<tr>
+<td><code>SELECT 字段 as &quot;别名&quot;, 字段 as &quot;别名&quot;... FROM 表名;</code></td>
+<td><strong>查询指定列(可以使用as为列或表指定别名)数据</strong>：仅选取指定列的数据行,并起别名</td>
+<td><code>SELECT FirstName as &quot;姓&quot;, LastName as &quot;名&quot; FROM Employees;</code></td>
+</tr>
+<tr>
+<td><code>SELECT 别名.字段 FROM 表名 AS 表的别名</code></td>
+<td><strong>给表起别名</strong></td>
+<td><code>SELECT s.name FROM students AS s;</code></td>
+</tr>
+<tr>
+<td><code>SELECT DISTINCT 字段 FROM 表名;  </code></td>
+<td><strong>去重查询</strong></td>
+<td><code>SELECT DISTINCT gender FROM students;</code></td>
+</tr>
+</tbody></table>
+<ul>
+<li>删除数据</li>
+</ul>
+<ol>
+<li>物理删除</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>delete from 表名 where 条件;</td>
+<td>删除数据</td>
+</tr>
+</tbody></table>
+<ol>
+<li>逻辑删除<br>用一个字段来表示 这条信息是否已经不能再使用了<br>给 students 表添加<code>is_delete</code> 字段 bit 类型<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">举例:
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> students <span class="token keyword">add</span> is_delete <span class="token keyword">BIT</span> <span class="token keyword">DEFAULT</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">UPDATE</span> students <span class="token keyword">SET</span> is_delete<span class="token operator">=</span>l <span class="token keyword">WHERE</span> id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<h3 id="1-WHERE关键字"><a href="#1-WHERE关键字" class="headerlink" title="1.WHERE关键字"></a>1.WHERE关键字</h3><h4 id="1-1-where语句的作用"><a href="#1-1-where语句的作用" class="headerlink" title="1.1 where语句的作用"></a>1.1 where语句的作用</h4><p>使用where子句对表中的数据筛选，结果为true的记录会出现在结果集中</p>
+<ul>
+<li><p>条件查询语法:</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span><span class="token keyword">from</span> 表名 <span class="token keyword">where</span> 条件<span class="token punctuation">;</span>
+<span class="token comment">-- eg:  </span>
+<span class="token keyword">select</span> <span class="token operator">*</span><span class="token keyword">from</span> students <span class="token keyword">where</span> id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>where</strong>后面支持<strong>多种运算符</strong>，进行条件的处理:</p>
+<ul>
+<li>比较运算符</li>
+<li>逻辑运算符</li>
+<li>模糊查询</li>
+<li>范围查询</li>
+<li>空判断</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-2-比较运算符"><a href="#1-2-比较运算符" class="headerlink" title="1.2 比较运算符"></a>1.2 比较运算符</h4><p>常见的比较运算符</p>
+<ul>
+<li>等于: <code>=</code></li>
+<li>大于: <code>&gt;</code></li>
+<li>大于等于: <code>&gt;=</code></li>
+<li>小于: <code>&lt;</code></li>
+<li>小于等于: <code>&lt;=</code></li>
+<li>不等于: <code>!=</code> 或 <code>&lt;&gt;</code><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- eg:  其他运算符类似</span>
+<span class="token keyword">select</span> <span class="token operator">*</span><span class="token keyword">from</span> students <span class="token keyword">where</span> id <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">select</span> <span class="token operator">*</span><span class="token keyword">from</span> students <span class="token keyword">where</span> age <span class="token operator">&lt;=</span> <span class="token number">18</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h4 id="1-3-逻辑运算符"><a href="#1-3-逻辑运算符" class="headerlink" title="1.3 逻辑运算符"></a>1.3 逻辑运算符</h4><ul>
+<li><code>AND</code> 表示有多个条件时，多个条件必须同时成立(值为True)</li>
+<li><code>OR</code>表示有多个条件时，满足任意一个条件时成立</li>
+<li><code>NOT</code>表示取反操作</li>
+</ul>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 18和28岁之间的所有学生信息</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> age <span class="token operator">></span> <span class="token number">18</span> <span class="token operator">and</span> age <span class="token operator">&lt;</span> <span class="token number">28</span><span class="token punctuation">;</span>
+<span class="token comment">-- 失败(错误格式):</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> <span class="token number">18</span><span class="token operator">&lt;</span>age<span class="token operator">&lt;</span><span class="token number">28</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 18岁以上的女性</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> age <span class="token operator">></span> l8 <span class="token operator">and</span> gender<span class="token operator">=</span><span class="token string">"女"</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 18以上或者身高高过180(包含)以上</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> age <span class="token operator">></span> <span class="token number">18</span> <span class="token operator">or</span> height <span class="token operator">>=</span> <span class="token number">180</span><span class="token punctuation">;</span>
+<span class="token comment">-- not</span>
+<span class="token comment">-- 不在 18岁以上的女性 这个范围内的信息</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> <span class="token operator">not</span><span class="token punctuation">(</span>age <span class="token operator">></span> l8 <span class="token operator">and</span> gender<span class="token operator">=</span><span class="token string">"女"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">-- 注意:使用 "()"   运算符优先级问题</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="1-4-模糊查询"><a href="#1-4-模糊查询" class="headerlink" title="1.4 模糊查询"></a>1.4 模糊查询</h4><ul>
+<li><code>like</code>关键字</li>
+<li>like后跟<code>% </code>表示任意多个任意字符,<code>_</code>表示一个任意字符<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">查询姓名中 以“小”开始的名字
+
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> name <span class="token operator">like</span> <span class="token string">"小%"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h4 id="1-5-范围查询"><a href="#1-5-范围查询" class="headerlink" title="1.5 范围查询"></a>1.5 范围查询</h4><ul>
+<li>知道<code>between-and</code>和<code>in</code>的区别</li>
+<li>范围查询分为连续范围查询和非连续范围查询:<br>in 表示在一个非连续的范围内<br>between .. and .. 表示在一个连续的范围内</li>
+</ul>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 查询编号为3至8的学生:</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> id <span class="token operator">between</span> <span class="token number">3</span> <span class="token operator">and</span> <span class="token number">8</span><span class="token punctuation">;</span>
+<span class="token comment">-- 注意:select* from students where age not(petween 18 and 34);是错误的</span>
+
+<span class="token comment">-- 查询年龄为18、34的姓名</span>
+<span class="token keyword">select</span> name<span class="token punctuation">,</span> age <span class="token keyword">from</span> students <span class="token keyword">where</span> age <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token number">18</span><span class="token punctuation">,</span><span class="token number">34</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="1-6-where之空值判断"><a href="#1-6-where之空值判断" class="headerlink" title="1.6 where之空值判断"></a>1.6 where之空值判断</h4><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> height <span class="token operator">is</span> <span class="token boolean">null</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="order排序查询"><a href="#order排序查询" class="headerlink" title="order排序查询"></a>order排序查询</h3><ul>
+<li><code>asc</code> 升序</li>
+<li><code>desc</code> 降序<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> name<span class="token punctuation">,</span> age <span class="token keyword">from</span> students <span class="token keyword">where</span> age <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token number">18</span><span class="token punctuation">,</span><span class="token number">34</span><span class="token punctuation">)</span> <span class="token operator">and</span> gender <span class="token operator">=</span> <span class="token string">'男'</span> <span class="token keyword">order</span> <span class="token keyword">by</span> height <span class="token keyword">desc</span><span class="token punctuation">,</span> age <span class="token keyword">desc</span><span class="token punctuation">;</span> 
+<span class="token comment">-- 字段1 排序规则 ，字段2 排序规则</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+可以按照多个字段排序，当第一字段数值相同，比较第二个字段，以此类推</li>
+</ul>
+<h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>count(字段)</code></td>
+<td>计算包含非NULL值的指定字段的总行数</td>
+</tr>
+<tr>
+<td><code>max(字段)</code></td>
+<td>求指定字段的最大值</td>
+</tr>
+<tr>
+<td><code>min(字段)</code></td>
+<td>求指定字段的最小值</td>
+</tr>
+<tr>
+<td><code>sum(字段)</code></td>
+<td>求指定字段所有值的总和</td>
+</tr>
+<tr>
+<td><code>avg(字段)</code></td>
+<td>求指定字段的平均值</td>
+</tr>
+</tbody></table>
+<h4 id="7-2-聚合函数的作用和特点"><a href="#7-2-聚合函数的作用和特点" class="headerlink" title="7.2 聚合函数的作用和特点"></a>7.2 聚合函数的作用和特点</h4><p><strong>聚合函数作用:聚合函数会把当前所在表当做一个组进行统计</strong><br>聚合函数有以下几个特点:</p>
+<ul>
+<li>每个组函数接收一个参数(字段名或者表达式)</li>
+<li>统计结果中默认忽略字段为NULL的记录</li>
+<li>不允许出现嵌套 比如sum(max(xx))<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 查询男性有多少人</span>
+<span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> gender<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 计算平均年龄</span>
+<span class="token keyword">select</span> <span class="token function">avg</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span> <span class="token keyword">from</span> students<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><code>round</code>函数<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- round(123.23, 1)表示保留1位小数</span>
+
+<span class="token comment">-- 对年龄求平均值并保留两位小数</span>
+<span class="token keyword">select</span> <span class="token function">round</span><span class="token punctuation">(</span><span class="token function">avg</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">from</span> students<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h3 id="group分组查询"><a href="#group分组查询" class="headerlink" title="group分组查询"></a>group分组查询</h3><h4 id="1-1-什么是分组"><a href="#1-1-什么是分组" class="headerlink" title="1.1 什么是分组"></a>1.1 什么是分组</h4><p>什么是分组?</p>
+<p>所谓的分组就是将一个“数据集”划分成若干个“小区域”,然后针对若干个“小区域”进行数据处理。</p>
+<p><strong>group by分组</strong></p>
+<blockquote>
+<p><strong>使用特点</strong><br>  <em>group by的含义</em>:将查询结果按照1个或多个字段进行分组，字段值相同的为一组<br>  <em>group by</em>可用于<strong>单个字段</strong>分组，也可用于<strong>多个字段</strong>分组</p>
+</blockquote>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 按照性别分组，查询所有的性别</span>
+<span class="token keyword">select</span> gender <span class="token keyword">from</span> students <span class="token keyword">group</span> <span class="token keyword">by</span> gender<span class="token punctuation">;</span>
+<span class="token keyword">select</span> name<span class="token punctuation">,</span>gender <span class="token keyword">from</span> students <span class="token keyword">group</span> <span class="token keyword">by</span> gender<span class="token punctuation">;</span>错误
+
+<span class="token comment">-- 计算每种性别中的人数</span>
+<span class="token keyword">select</span> gender<span class="token punctuation">,</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">from</span> students <span class="token keyword">group</span> <span class="token keyword">by</span> gender<span class="token punctuation">;</span>
+
+<span class="token comment">-- group_concat()函数</span>
+<span class="token comment">-- 查询同种性别中的姓名</span>
+<span class="token keyword">select</span> <span class="token keyword">group</span> concat<span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">,</span>gender <span class="token keyword">from</span> students <span class="token keyword">group</span> <span class="token keyword">by</span> gender<span class="token punctuation">;</span>
+
+<span class="token comment">-- 查询平均年龄超过30岁的性别，以及姓名 having avg(age)> 30(重点)</span>
+<span class="token keyword">select</span> <span class="token keyword">group</span> concat<span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">,</span>gender <span class="token keyword">from</span> students <span class="token keyword">group</span> <span class="token keyword">by</span> gender <span class="token keyword">having</span> <span class="token function">avg</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">30</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- with rollup 汇总的作用(了解)</span>
+<span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">,</span>gender <span class="token keyword">from</span> students <span class="token keyword">group</span> <span class="token keyword">by</span> gender <span class="token keyword">with rollup</span><span class="token punctuation">;</span>
+<span class="token comment">-- with rollup的作用是:在数据表最后新增一行，来记录当前表中该字段对应的操作结果，一般是汇总结果</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="limit-限制-分页查询"><a href="#limit-限制-分页查询" class="headerlink" title="limit(限制)分页查询"></a>limit(限制)分页查询</h3><h4 id="1-引入"><a href="#1-引入" class="headerlink" title="1.引入"></a>1.引入</h4><p><code>Q</code> select * from 淘宝某个数据表，会产生什么现象?<br><code>A</code> 由于数据过多很有可能直接死机了</p>
+<h4 id="2-limit限制查询"><a href="#2-limit限制查询" class="headerlink" title="2.limit限制查询"></a>2.limit限制查询</h4><p>可以使用 <strong>limit</strong> 限制取出记录的数量，但 <strong>limit</strong> 要写在 sql语句的最后</p>
+<p><strong>语法</strong></p>
+<ul>
+<li>limit 起始记录,记录数</li>
+</ul>
+<p><strong>说明:</strong></p>
+<ul>
+<li>起始记录是指从第几条记录开始取，第一条记录的下标是0</li>
+<li>记录数是指从起始记录开始向后依次取的记录数</li>
+</ul>
+<h3 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h3><h4 id="1-为什么要使用连接查询"><a href="#1-为什么要使用连接查询" class="headerlink" title="1.为什么要使用连接查询"></a>1.为什么要使用连接查询</h4><h4 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h4><p>内连接查询:查询的结果为两个表符合条件匹配到的数据<br><img src="/2024/06/21/shu-ju-ku/%E5%86%85%E8%BF%9E%E6%8E%A5.png" alt="alt text"></p>
+<ul>
+<li>语法:<br>select 字段 from 表1 inner join 表2 on 表1.字段1&#x3D;表2.字段2</li>
+<li>注意:<ol>
+<li>内连接:根据连接条件取出两个表“交集”</li>
+<li>on 是连接条件， where是连接后筛选条件</li>
+</ol>
+</li>
+</ul>
+<h4 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h4><p><strong>左外连接查询</strong>:查询数据为两个表匹配到的数据和左表的数据</p>
+<ul>
+<li>注意: 对于右表中不存在的数据使用null填充<br><img src="/2024/06/21/shu-ju-ku/%E5%B7%A6%E5%A4%96%E8%BF%9E%E6%8E%A5.png" alt="alt text"></li>
+<li>语法<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 左连接:</span>
+主表 <span class="token keyword">left</span> <span class="token keyword">join</span> 从表 <span class="token keyword">on</span> 连接条件<span class="token punctuation">;</span>
+<span class="token comment">-- 右连接:</span>
+主表 <span class="token keyword">right</span> <span class="token keyword">join</span> 从表 <span class="token keyword">on</span> 连接条件<span class="token punctuation">;</span>
+
+<span class="token comment">-- 能够使用连接的前提是，多表之间有字段上的关联</span>
+<span class="token comment">-- 左连接和右连接区别在于主表在SQL语句中的位置,因此实际左连接就可以满足常见需求</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h4 id="自连接"><a href="#自连接" class="headerlink" title="自连接"></a>自连接</h4><p>使用自身和自身连接,第一次查询的结果被第二次查询时用到</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> city<span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">from</span> areas <span class="token keyword">as</span> city <span class="token keyword">inner</span> <span class="token keyword">join</span> areas <span class="token keyword">as</span> province <span class="token keyword">on</span> city<span class="token punctuation">.</span>pid<span class="token operator">=</span>province<span class="token punctuation">.</span>aid <span class="token keyword">where</span> province<span class="token punctuation">.</span>atitle<span class="token operator">=</span><span class="token string">"广东省"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>使用自连接査询 只需要使用一个表 可以加开査询速度 减少数据表占用空间<br>自连接查询本质就还是连接查询</p>
+<h4 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h4><p><strong>子查询</strong>:把一个查询的结果当做另一查询的条件</p>
+<p>子查询分为三类</p>
+<ul>
+<li>标量子查询:子查询返回的结果是一个数据(一行一列)</li>
+<li>列子查询:返回的结果是一列(一列多行)</li>
+<li>行子查询:返回的结果是一行(一行多列)<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 查出高于平均身高的信息</span>
+<span class="token keyword">select</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> height <span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token function">avg</span><span class="token punctuation">(</span>height<span class="token punctuation">)</span> <span class="token keyword">from</span> students<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">-- 查出能够对应上班级号的学生信息</span>
+<span class="token keyword">select</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> cls_id <span class="token operator">in</span><span class="token punctuation">(</span><span class="token keyword">select</span> id <span class="token keyword">from</span> classes<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h2 id="MySql高级"><a href="#MySql高级" class="headerlink" title="MySql高级"></a>MySql高级</h2><h3 id="删除异常"><a href="#删除异常" class="headerlink" title="删除异常"></a>删除异常</h3><p><img src="/2024/06/21/shu-ju-ku/%E5%88%A0%E9%99%A4%E5%BC%82%E5%B8%B8.png" alt="alt text"></p>
+<p>由于只存在<strong>商品信息一张表</strong>，其中既有商品信息又有<strong>分类名称</strong>和<strong>品牌名称</strong>。</p>
+<p>当把某个<strong>商品信息</strong>删除后，本不应该删除的 <strong>&lt;独立于商品信息的分类和品牌&gt;</strong> 等信息结果也随着删除商品信息而删除，那么此时存在<strong>删除异常</strong>。</p>
+<p><img src="/2024/06/21/shu-ju-ku/%E6%9C%80%E7%BB%88%E8%A1%A8.png" alt="alt text"></p>
+<h4 id="信息表优化"><a href="#信息表优化" class="headerlink" title="信息表优化"></a>信息表优化</h4><ul>
+<li>第一步: 创建商品种类表</li>
+<li>第二步: 同步数据到商品种类表中</li>
+<li>第三步: 更新商品信息表数据</li>
+<li>第四步: 修改商品信息表表结构</li>
+</ul>
+<h3 id="外键"><a href="#外键" class="headerlink" title="外键"></a>外键</h3><h4 id="1-什么是外键？"><a href="#1-什么是外键？" class="headerlink" title="1.什么是外键？"></a>1.什么是外键？</h4><ul>
+<li>外键的作用<ul>
+<li>外键有一个很重要的作用: 防止无效信息的插入</li>
+</ul>
+</li>
+<li>注意:<ul>
+<li>关键字: foreign key,只有 innodb 数据库引擎才能使用外键</li>
+<li>外键本身也是一种约束 和 not null 等约束一样</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-外键的使用"><a href="#2-外键的使用" class="headerlink" title="2.外键的使用"></a>2.外键的使用</h4><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 添加外键</span>
+<span class="token keyword">alter</span> <span class="token keyword">table</span> goods <span class="token keyword">add</span> <span class="token keyword">foreign</span> <span class="token keyword">key</span><span class="token punctuation">(</span>cate_id<span class="token punctuation">)</span> <span class="token keyword">references</span> goods_cates<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 如何取消外键约束</span>
+<span class="token comment">-- 需要先获取外键约束名称，该名称系统会自动生成,可以通过查看表创建语句来获取名称</span>
+<span class="token keyword">show</span> <span class="token keyword">create</span> <span class="token keyword">table</span> goods<span class="token punctuation">;</span>
+<span class="token comment">-- 获取名称之后就可以根据名称来删除外键约束</span>
+<span class="token keyword">alter</span> <span class="token keyword">table</span> goods <span class="token keyword">drop</span> <span class="token keyword">foreign</span> <span class="token keyword">key</span> goods_ibfk_1<span class="token punctuation">;</span>
+<span class="token keyword">alter</span> <span class="token keyword">table</span> goods <span class="token keyword">drop</span> <span class="token keyword">foreign</span> <span class="token keyword">key</span> goods_ibfk_2<span class="token punctuation">;</span>
+<span class="token comment">-- 注意:使用到外键约束会极大的降低表更新的效率,所以在追求读写效率优先的场景下一般很少使用外键</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>在创建数据表的时候设置外键约束<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 创建数据表的同时直接创建外键</span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> goods<span class="token punctuation">(</span>
+  id <span class="token keyword">int</span> <span class="token keyword">primary</span> <span class="token keyword">key</span> <span class="token keyword">auto_increment</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+  name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">40</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token string">' '</span><span class="token punctuation">,</span>
+  price <span class="token keyword">decimal</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  cate_id <span class="token keyword">int</span> <span class="token keyword">unsigned</span><span class="token punctuation">,</span>
+  brand_id <span class="token keyword">int</span> <span class="token keyword">unsigned</span><span class="token punctuation">,</span>
+  is_show <span class="token keyword">bit</span> <span class="token keyword">default</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  is_saleoff <span class="token keyword">bit</span> <span class="token keyword">default</span> <span class="token number">0</span><span class="token punctuation">,</span>
+
+  <span class="token keyword">foreign</span> <span class="token keyword">key</span><span class="token punctuation">(</span>cate_id<span class="token punctuation">)</span><span class="token keyword">references</span> goods_cates<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">foreign</span> <span class="token keyword">key</span><span class="token punctuation">(</span>brand_id<span class="token punctuation">)</span> <span class="token keyword">references</span> goods_brands<span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h3 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h3><h4 id="1-什么是视图"><a href="#1-什么是视图" class="headerlink" title="1.什么是视图"></a>1.什么是视图</h4><p>视图就是一个能够把复杂SQL语句的功能封装起来的一个虚表。所以我们在创建视图的时候，主要的工作就落在创建这条SQL查询语句上</p>
+<p>视图是对若干张基本表的引用，一张虚表，不存储具体的数据(基本表数据发生了改变，视图也会跟着改变)</p>
+<p>视图的好处:方便操作，特别是查询操作，减少复杂的SQL语句，增强可读性，复用性;</p>
+<h4 id="2-视图的使用"><a href="#2-视图的使用" class="headerlink" title="2.视图的使用"></a>2.视图的使用</h4><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 定义(创建)视图</span>
+<span class="token keyword">create</span> <span class="token keyword">view</span> 视图名字<span class="token punctuation">(</span>一般使用v开头<span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token keyword">select</span>语句<span class="token punctuation">;</span>
+<span class="token comment">-- 查看视图</span>
+<span class="token keyword">show</span> <span class="token keyword">tables</span><span class="token punctuation">;</span>
+<span class="token comment">-- 使用视图</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> v_goods_info<span class="token punctuation">,</span>
+<span class="token comment">-- 删除视图</span>
+<span class="token keyword">drop</span> <span class="token keyword">view</span> 视图名称<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>总结</li>
+</ul>
+<ol>
+<li>视图封装了对多张基本表的复杂操作，简化用户操作</li>
+<li>视图只是一个虚表,并不存储任何基本表的表数据,当用户使用视图的时候。视图会从基本表中取出</li>
+<li>通过视图可以对用户展示指定字段从而屏蔽其他字段数据，更加安全</li>
+</ol>
+<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><h4 id="1-事务的概念"><a href="#1-事务的概念" class="headerlink" title="1. 事务的概念"></a>1. 事务的概念</h4><p>事务Transaction,是指作为一个基本工作单元执行的一系列SQL语句的操作,要么完全地执行,要么完全地都不执行。</p>
+<p>事务回滚</p>
+<h4 id="2-事务四大特性"><a href="#2-事务四大特性" class="headerlink" title="2.事务四大特性"></a>2.事务四大特性</h4><ol>
+<li>原子性(Atomicity)<ul>
+<li>一个事务必须被视为一个不可分割的最小工作单元，整个事务中的所有操作要么全部提交成功要么全部失败回滚，对于一个事务来说，不可能只执行其中的一部分操作，这就是事务的原子性</li>
+</ul>
+</li>
+<li>一致性(Consistency)<ul>
+<li>数据库总是从一致性的状态转换到另一个一致性的状态。(在前面的例子中，一致性确保了即使在执行第三、四条语句之间时系统崩溃，支票账户中也不会损失500元，因为事务最终没有提交，所以事务中所做的修改也不会保存到数据库中)</li>
+</ul>
+</li>
+<li>隔离性(Isolation)<ul>
+<li>通常来说，个事务所做的修改在最终提交以前，对其他事务是不可见的。(在前面的例子中，当执行完第三条语句、第四条语句还未开始时，此时有另外的一个账户汇总程序开始运行，则其看到支票帐户的余额并没有被减去500元)</li>
+</ul>
+</li>
+<li>持久性(Durability)<ul>
+<li>一旦事务提交，则其所做的修改会永久保存到数据库。(此时即使系统崩溃，修改的数据也不会丢失。)</li>
+</ul>
+</li>
+</ol>
+<h4 id="3-事务的使用"><a href="#3-事务的使用" class="headerlink" title="3.事务的使用"></a>3.事务的使用</h4><ul>
+<li>开启事务</li>
+</ul>
+<p>开启事务后执行修改命令变更会维护到本地缓存中，而不维护到物理表中<br><code>begin;</code> 或者<code>start transaction;</code></p>
+<ul>
+<li>提交事务</li>
+</ul>
+<p>将缓存中的数据变更维护到物理表中<br><code>commit;</code></p>
+<ul>
+<li>回滚事务</li>
+</ul>
+<p>放弃缓存中变更的数据 表示事务执行失败 应该回到开始事务前的状态<br><code>rollback;</code></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">begin</span><span class="token punctuation">;</span>
+<span class="token keyword">update</span> students <span class="token keyword">set</span> age<span class="token operator">=</span><span class="token number">10</span> <span class="token keyword">where</span> id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">commit</span><span class="token punctuation">;</span>
+<span class="token comment">-- 至此才完成一次事务,真正修改了数据</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><h4 id="1-索引的作用"><a href="#1-索引的作用" class="headerlink" title="1.索引的作用"></a>1.索引的作用</h4><p><strong>思考:</strong><br>如何在一个图书馆中找到一本书?<br>图书馆管理系统，大家要找书籍先在系统上查找到书籍所在的房屋编号和货架编号，然后就可以直接大摇大摆的去取书了。</p>
+<p>我们把这种能够帮助我们快速查询数据的线索就称之为索引<br>如果数据库本身是一个字典，<strong>那么索引就是这个字典的目录</strong></p>
+<p><strong>索引的本质</strong><br>索引是一种特殊的文件(InnoDB数据表上的索引是表空间的一个组成部分)，它们包含着对数据表里所有记录的位置信息。</p>
+<h4 id="2-索引的使用"><a href="#2-索引的使用" class="headerlink" title="2.索引的使用"></a>2.索引的使用</h4><p>查看表中已有索引</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">show</span> <span class="token keyword">index</span> <span class="token keyword">from</span> 表名<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>创建索引</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> 表名 <span class="token keyword">add</span> <span class="token keyword">index</span> 索引名【可选】<span class="token punctuation">(</span>字段名<span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>删除索引</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">drop</span> <span class="token keyword">index</span> 索引名称 <span class="token keyword">on</span> 表名<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 1. 创建测试表：</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> test <span class="token punctuation">(</span>
+    id <span class="token keyword">INT</span> <span class="token keyword">AUTO_INCREMENT</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">,</span>
+    title <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 2. 插入数据：</span>
+
+使用Python脚本或其他方式向<span class="token identifier"><span class="token punctuation">`</span>test<span class="token punctuation">`</span></span>表中插入数据。这里不展示具体的Python脚本，但请确保插入足够的数据以便观察索引的效果。
+
+<span class="token comment">-- 3. 没有索引时测试查询性能：</span>
+
+在测试之前，确保MySQL的profiling功能是开启的（如果您的MySQL版本支持）。但请注意，profiling在MySQL <span class="token number">8.0</span>及更高版本中已被弃用。
+
+<span class="token comment">-- 注意：MySQL 8.0+中SET profiling = 1; 已被弃用</span>
+<span class="token comment">-- 使用 EXPLAIN 替代</span>
+<span class="token keyword">EXPLAIN</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> test <span class="token keyword">WHERE</span> title <span class="token operator">=</span> <span class="token string">'some_title'</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 如果您使用的是MySQL 8.0或更高版本，直接使用`EXPLAIN`命令来分析查询的执行计划。</span>
+
+<span class="token comment">-- 4. 为`title`字段创建索引：</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> test <span class="token keyword">ADD</span> <span class="token keyword">INDEX</span> idx_title <span class="token punctuation">(</span>title<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 5. 有索引时测试查询性能：</span>
+
+再次使用<span class="token identifier"><span class="token punctuation">`</span>EXPLAIN<span class="token punctuation">`</span></span>命令来查看查询的执行计划，或者使用其他性能分析工具（如<span class="token identifier"><span class="token punctuation">`</span>Performance Schema<span class="token punctuation">`</span></span>）来监控性能。
+
+<span class="token keyword">EXPLAIN</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> test <span class="token keyword">WHERE</span> title <span class="token operator">=</span> <span class="token string">'some_title'</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 请注意，即使您使用的是支持profiling的MySQL版本，也建议优先使用`EXPLAIN`命令，因为它提供了更详细的信息，并且不需要在每次查询之前都开启profiling。</span>
+
+<span class="token comment">-- 6. 比较结果：</span>
+
+<span class="token comment">-- 比较没有索引和有索引时查询的执行计划，观察索引如何影响查询性能。在有索引的情况下，您应该能看到查询速度的提升，特别是当查询条件能够充分利用索引时。</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>优点:</li>
+</ul>
+<p>加快数据的查询速度</p>
+<ul>
+<li>缺点:</li>
+</ul>
+<p>创建索引会浪费时间和占用磁盘空间，并且随着数据量的增加所耗费的时间会越来越多</p>
+<ul>
+<li>使用原则:</li>
+</ul>
+<ol>
+<li>经常发生数据更新的表避免使用过多的索引</li>
+<li>数据量小的表没有必要使用索引</li>
+<li>数据量较大同时不会频发发生数据更改的表可以使用索引</li>
+</ol>
+<h3 id="数据库设计之三范式"><a href="#数据库设计之三范式" class="headerlink" title="数据库设计之三范式"></a>数据库设计之三范式</h3><h4 id="1-什么是三范式"><a href="#1-什么是三范式" class="headerlink" title="1.什么是三范式"></a>1.什么是三范式</h4><p>设计关系数据库时，遵从不同的规范要求，设计出合理的关系型数据库，这些不同的规范要求被称为不同的范式</p>
+<p>各种范式呈递次规范，越高的范式数据库几余越小。</p>
+<h4 id="2-范式的划分"><a href="#2-范式的划分" class="headerlink" title="2.范式的划分"></a>2.范式的划分</h4><p><strong>数据冗余</strong>是指数据之间的重复，也可以说是同一数据存储在不同数据文件中的现象</p>
+<p><img src="/2024/06/21/shu-ju-ku/%E6%95%B0%E6%8D%AE%E5%86%97%E4%BD%99.png" alt="alt text"></p>
+<h4 id="3-范式的划分"><a href="#3-范式的划分" class="headerlink" title="3.范式的划分"></a>3.范式的划分</h4><p>根据数据库<strong>冗余的大小</strong>,目前<strong>关系型数据库</strong>有六种范式,各种范式呈递次规范，越高的范式数据库冗余越小。</p>
+<p>六种范式:</p>
+<ul>
+<li>第一范式(1NF)</li>
+<li>第二范式(2NF)</li>
+<li>第三范式(3NF)</li>
+<li>巴斯-科德范式(BCNF)</li>
+<li>第四范式(4NF)</li>
+<li>第五范式(5NF，又称完美范式)</li>
+</ul>
+<p>一般遵循 前三种范式即可</p>
+<h5 id="第一范式1NF"><a href="#第一范式1NF" class="headerlink" title="第一范式1NF"></a>第一范式1NF</h5><p>第一范式(1NF):强调的是字段的原子性，即一个字段不能够再分成其他几个字段<br><img src="/2024/06/21/shu-ju-ku/%E4%B8%80%E8%8C%83%E5%BC%8F%E8%8C%83%E4%BE%8B.png" alt="alt text"></p>
+<h5 id="第二范式2NF"><a href="#第二范式2NF" class="headerlink" title="第二范式2NF"></a>第二范式2NF</h5><p>第二范式(2NF):<strong>满足 1NF的基础上</strong>，另外包含两部分内容</p>
+<p>一是表必须有一个<strong>主键</strong><br>二是<strong>非主键字段</strong>必须<strong>完全</strong>依赖于主键，而不能只依赖于主键的一部分（意思是关系中非主键字段必须可以由主键唯一确定）</p>
+<p><img src="/2024/06/21/shu-ju-ku/%E4%B8%BB%E9%94%AE%E7%94%B1%E5%A4%9A%E4%B8%AA%E5%AD%97%E6%AE%B5%E6%9E%84%E6%88%90.png" alt="alt text"></p>
+<p><img src="/2024/06/21/shu-ju-ku/%E4%BA%8C%E8%8C%83%E5%BC%8F%E6%94%B9%E8%89%AF.png" alt="alt text"></p>
+<h5 id="第三范式3NF"><a href="#第三范式3NF" class="headerlink" title="第三范式3NF"></a>第三范式3NF</h5><p>第三范式(3NF):<strong>满足 2NF</strong><br>另外<strong>非主键字段</strong>必须<strong>直接依赖</strong>于主键，不能存在传递依赖。</p>
+<p>即不能存在:非主键字段 A 依赖于非主键字段 B,非主键字段 B 依赖于主键的情况</p>
+<p><img src="/2024/06/21/shu-ju-ku/%E4%B8%89%E8%8C%83%E5%BC%8F%E5%89%8D.png" alt="alt text"></p>
+<p><img src="/2024/06/21/shu-ju-ku/%E4%B8%89%E8%8C%83%E5%BC%8F%E5%90%8E.png" alt="alt text"></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p><strong>范式:</strong><br>设计关系<strong>数据库</strong>时，遵从不同的规范<strong>要求</strong>，设计出合理的关系型数据库，这些不同的规范要求被称为不同的<strong>范式</strong>，各种范式呈递次规范，越高的范式<strong>数据库冗余</strong>越小。</p>
+<ol>
+<li><p>第一范式（1NF, First Normal Form）:</p>
+<ul>
+<li>强调列的原子性。即数据库表的每一列都是不可分割的原子数据项，不能再分。</li>
+<li>所有的列都是单一的数据类型，如整数、字符串等。</li>
+<li>如果某个列包含多个值（如一个列存储多个电话号码），则需要拆分该列，使得每一行数据都是唯一的，且每列数据都是原子的。</li>
+</ul>
+</li>
+<li><p>第二范式（2NF, Second Normal Form）:</p>
+<ul>
+<li>必须满足1NF。</li>
+<li>表必须有一个主键，主键可以是一个列或多个列的组合（复合主键）。</li>
+<li>所有的非主键列必须完全依赖于整个主键，而不是主键的一部分。</li>
+<li>如果存在复合主键，那么非主键列不能仅依赖于复合主键中的某一个字段，它必须依赖于整个复合主键。</li>
+</ul>
+</li>
+<li><p>第三范式（3NF, Third Normal Form）:</p>
+<ul>
+<li>必须满足2NF。</li>
+<li>任何非主键列不能传递依赖于主键。</li>
+<li>这意味着，非主键列A不能依赖于非主键列B，而列B又依赖于主键。如果存在这样的依赖关系，就需要将列A和列B（以及它们相关的其他列）分离到另一个新的表中，并在两个表之间建立关联关系（如使用外键）。</li>
+</ul>
+</li>
+</ol>
+<p>第三范式的主要目的是减少数据冗余和更新异常。通过消除传递依赖，我们可以确保数据的一致性，并在更新数据时避免不必要的麻烦。</p>
+<h3 id="E-R模型和表间关系"><a href="#E-R模型和表间关系" class="headerlink" title="E-R模型和表间关系"></a>E-R模型和表间关系</h3><p>E-R模型即<strong>实体-关系模型</strong><br>E-R模型就是<strong>描述数据库存储数据的结构模型</strong></p>
+<h4 id="三种关系"><a href="#三种关系" class="headerlink" title="三种关系"></a>三种关系</h4><p><strong>表现形式</strong></p>
+<ul>
+<li>实体: 用矩形表示，并标注实体名称</li>
+<li>属性: 用椭圆表示，并标注属性名称</li>
+<li>关系: 用菱形表示，并标注关系名称<br><strong>E-R模型中的三种关系</strong></li>
+<li>一对一</li>
+<li>一对多(1-n)</li>
+<li>多对多(m-n)<br><img src="/2024/06/21/shu-ju-ku/E_R.png" alt="alt text"></li>
+</ul>
+<h1 id="数据库安全性"><a href="#数据库安全性" class="headerlink" title="数据库安全性"></a>数据库安全性</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
+<li>不安全因素<ol>
+<li>非授权对数据库的恶意存取和破坏</li>
+<li>数据库中重要的数据泄露</li>
+<li>安全环境的脆弱性</li>
+</ol>
+</li>
+</ul>
+<p>自主存取控制方法</p>
+<ol>
+<li>grant revoke<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">grant</span> <span class="token operator">&lt;</span>权限<span class="token operator">></span> <span class="token keyword">on</span> <span class="token keyword">table</span> <span class="token operator">&lt;</span>表名<span class="token operator">></span> <span class="token keyword">to</span> <span class="token operator">&lt;</span>用户<span class="token operator">></span>
+<span class="token keyword">revoke</span><span class="token operator">&lt;</span>权限<span class="token operator">></span> <span class="token keyword">on</span> <span class="token keyword">table</span> <span class="token operator">&lt;</span>表名<span class="token operator">></span> <span class="token keyword">from</span> <span class="token operator">&lt;</span>用户<span class="token operator">></span>
+
+用户、角色
+
+创建用户
+<span class="token keyword">create</span> <span class="token keyword">user</span> <span class="token operator">&lt;</span>username<span class="token operator">></span> <span class="token keyword">with</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<h2 id="安全性控制"><a href="#安全性控制" class="headerlink" title="安全性控制"></a>安全性控制</h2><ul>
+<li>数据库安全性控制<ul>
+<li>用户身份鉴别<ul>
+<li>静态口令鉴别</li>
+<li>动态口令鉴别</li>
+<li>生物特征鉴别</li>
+<li>智能卡鉴别</li>
+</ul>
+</li>
+<li>存取控制</li>
+<li>自主存取控制方法(重点讲解)；字面意思就是我们用户可以自定义和分配其他用户的操作权限<pre class="line-numbers language-text" data-language="text"><code class="language-text">主要通过grant  revoke来进行控制
+由两个元素构成:  数据库对象 和 操作权限
+我们定义用户的存取权限 成为授权
+
+主要存取权限<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
+</ul>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">Reference权限代表是否允许创建外键
+
+4、授权 Grant
+Grant单词翻译:
+vt.承认;同意;准许;授予
+n.拨款;补助金;授给物(如财产、授地、专有权、补助、拨款等)
+
+Grant &lt;权限> on 表名[(列名)] to 用户 With grant option
+授权命令是由数据库管理员使用的，若给用户分配权限时带 Withgrant option 子句，则普通用户获权后,可把自己的权限授予其他用户。
+
+grant all privilege on 视图或者表 to usr1;
+
+5回收权限 revoke 
+REVOKE &lt;权限> 0N &lt;数据对象> FR0M &lt;数据库用户名> cascade(级联)
+
+revoke翻译:
+vt.撤销，取消;废除<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/2024/06/21/shu-ju-ku/%E8%B5%8B%E4%BA%88%E6%9F%A5%E8%AF%A2%E6%9D%83%E9%99%90.png" alt="alt text"></p>
+<h2 id="数据库角色"><a href="#数据库角色" class="headerlink" title="数据库角色"></a>数据库角色</h2><p>数据库角色（Role）是数据库管理系统（DBMS）中用于管理权限的一种机制。通过角色，数据库管理员（DBA）可以为一组用户分配相同的权限，而无需单独为每个用户设置权限。这大大简化了权限管理过程，提高了安全性和可管理性。</p>
+<h3 id="角色的基本概念"><a href="#角色的基本概念" class="headerlink" title="角色的基本概念"></a>角色的基本概念</h3><ul>
+<li><strong>角色</strong>：代表了一类用户，如CEO、总监、普通职员等。通过角色，可以为这些用户组分配相同的权限。</li>
+</ul>
+<h3 id="角色的操作"><a href="#角色的操作" class="headerlink" title="角色的操作"></a>角色的操作</h3><h4 id="1-角色的创建"><a href="#1-角色的创建" class="headerlink" title="1. 角色的创建"></a>1. 角色的创建</h4><p>使用<code>CREATE ROLE</code>语句创建角色。例如：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> ROLE CEO<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="2-角色授权"><a href="#2-角色授权" class="headerlink" title="2. 角色授权"></a>2. 角色授权</h4><p>使用<code>GRANT</code>语句为角色分配权限。例如，为<code>CEO</code>角色授予<code>Student</code>表上的<code>SELECT</code>权限：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">GRANT</span> <span class="token keyword">SELECT</span> <span class="token keyword">ON</span> Student <span class="token keyword">TO</span> CEO<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如果要为多个角色分配权限，可以在<code>TO</code>子句后列出这些角色，用逗号分隔：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">GRANT</span> <span class="token keyword">SELECT</span> <span class="token keyword">ON</span> Student <span class="token keyword">TO</span> CEO<span class="token punctuation">,</span> Director<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="3-把角色授权给其他用户或角色"><a href="#3-把角色授权给其他用户或角色" class="headerlink" title="3. 把角色授权给其他用户或角色"></a>3. 把角色授权给其他用户或角色</h4><p>使用<code>GRANT</code>语句将角色授权给其他用户或角色。如果加上<code>WITH ADMIN OPTION</code>，则意味着被授权的用户或角色还可以将这个角色及其权限进一步授予其他用户或角色。例如：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">GRANT</span> CEO <span class="token keyword">TO</span> User1 <span class="token keyword">WITH</span> ADMIN <span class="token keyword">OPTION</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="4-角色权限的收回"><a href="#4-角色权限的收回" class="headerlink" title="4. 角色权限的收回"></a>4. 角色权限的收回</h4><p>使用<code>REVOKE</code>语句收回角色的权限。例如，从<code>CEO</code>角色中收回<code>Student</code>表上的<code>SELECT</code>权限：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">REVOKE</span> <span class="token keyword">SELECT</span> <span class="token keyword">ON</span> Student <span class="token keyword">FROM</span> CEO<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如果要从用户或角色中收回角色本身，也需要使用<code>REVOKE</code>语句：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">REVOKE</span> CEO <span class="token keyword">FROM</span> User1<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>在使用角色时，要确保遵循数据库的安全策略和最佳实践。</li>
+<li>不要为不必要的角色分配过多的权限，以减少潜在的安全风险。</li>
+<li>定期审查和更新角色的权限设置，以确保其与组织的需求和策略保持一致。</li>
+</ul>
+<h1 id="Python数据库编程"><a href="#Python数据库编程" class="headerlink" title="Python数据库编程"></a>Python数据库编程</h1><h2 id="1-Python连接MySQL"><a href="#1-Python连接MySQL" class="headerlink" title="1.Python连接MySQL"></a>1.Python连接MySQL</h2><h3 id="1-1-PyMysql模块"><a href="#1-1-PyMysql模块" class="headerlink" title="1.1 PyMysql模块"></a>1.1 PyMysql模块</h3><p>如果使用之前学习的MySQL客户端来完成这个操作，那么这个工作量无疑是巨大的</p>
+<p>我们可以通过使用程序代码的方式去连接MySQL数据库，然后对MySQL数据库进行增删改查的方式，实现10000条数据的插入，像这样使用代码的方式操作数据库就称为<strong>数据库编程</strong></p>
+<p>安装pymysql第三方包:<code>sudo pip3 install pymysql</code></p>
+<h3 id="1-2-使用PyMysql模块"><a href="#1-2-使用PyMysql模块" class="headerlink" title="1.2 使用PyMysql模块"></a>1.2 使用PyMysql模块</h3><p>pymysql使用步骤</p>
+<ol>
+<li>导入<strong>pymysql</strong>包</li>
+<li>创建<strong>连接对象</strong></li>
+<li>获取<strong>游标对象</strong></li>
+<li>pymysql完成数据的<strong>增删改查</strong>操作</li>
+<li>关闭<strong>游标</strong>和<strong>连接</strong></li>
+</ol>
+<h3 id="1-3-python代码"><a href="#1-3-python代码" class="headerlink" title="1.3 python代码"></a>1.3 python代码</h3><p>在使用 <code>pymysql</code> 这个 Python 库与 MySQL 数据库进行交互时，通常需要遵循以下步骤。以下是详细的步骤说明：</p>
+<h4 id="①-导入-pymysql-模块"><a href="#①-导入-pymysql-模块" class="headerlink" title="① 导入 pymysql 模块"></a>① 导入 pymysql 模块</h4><p>在使用 <code>pymysql</code> 之前，首先需要导入该模块。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pymysql<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="②-创建连接对象"><a href="#②-创建连接对象" class="headerlink" title="② 创建连接对象"></a>② 创建连接对象</h4><p>调用 <code>pymysql</code> 模块中的 <code>connect()</code> 函数来创建连接对象。你需要提供一系列参数来配置你的连接。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">conn <span class="token operator">=</span> pymysql<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>
+    host<span class="token operator">=</span><span class="token string">'localhost'</span><span class="token punctuation">,</span>       <span class="token comment"># 连接的mysql主机，如果本机是'localhost'</span>
+    port<span class="token operator">=</span><span class="token number">3306</span><span class="token punctuation">,</span>              <span class="token comment"># 连接的mysql主机的端口，默认是3306</span>
+    user<span class="token operator">=</span><span class="token string">'yourusername'</span><span class="token punctuation">,</span>    <span class="token comment"># 连接的用户名</span>
+    password<span class="token operator">=</span><span class="token string">'yourpassword'</span><span class="token punctuation">,</span><span class="token comment"># 连接的密码</span>
+    database<span class="token operator">=</span><span class="token string">'yourdb'</span><span class="token punctuation">,</span>      <span class="token comment"># 数据库的名称</span>
+    charset<span class="token operator">=</span><span class="token string">'utf8'</span>          <span class="token comment"># 通信采用的编码方式，推荐使用utf8</span>
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="③-获取游标对象"><a href="#③-获取游标对象" class="headerlink" title="③ 获取游标对象"></a>③ 获取游标对象</h4><p>获取游标对象的目标是要执行 SQL 语句，完成对数据库的增、删、改、查操作。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">cur <span class="token operator">=</span> conn<span class="token punctuation">.</span>cursor<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="④-使用游标执行-SQL-语句"><a href="#④-使用游标执行-SQL-语句" class="headerlink" title="④ 使用游标执行 SQL 语句"></a>④ 使用游标执行 SQL 语句</h4><p>使用游标对象的 <code>execute()</code> 方法来执行 SQL 语句。返回受影响的行数，主要用于执行insert、update、delete、select等语句</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 插入数据</span>
+sql <span class="token operator">=</span> <span class="token string">"INSERT INTO your_table (column1, column2) VALUES (%s, %s)"</span>
+cur<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token string">'value1'</span><span class="token punctuation">,</span> <span class="token string">'value2'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 更新数据</span>
+sql <span class="token operator">=</span> <span class="token string">"UPDATE your_table SET column1=%s WHERE column2=%s"</span>
+cur<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token string">'new_value1'</span><span class="token punctuation">,</span> <span class="token string">'some_condition'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 删除数据</span>
+sql <span class="token operator">=</span> <span class="token string">"DELETE FROM your_table WHERE column2=%s"</span>
+cur<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token string">'some_condition'</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 查询数据</span>
+sql <span class="token operator">=</span> <span class="token string">"SELECT * FROM your_table WHERE column2=%s"</span>
+cur<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token string">'some_condition'</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="⑤-获取查询结果"><a href="#⑤-获取查询结果" class="headerlink" title="⑤ 获取查询结果"></a>⑤ 获取查询结果</h4><p>对于查询语句，可以使用游标对象的 <code>fetchone()</code> 或 <code>fetchall()</code> 方法来获取结果。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 获取查询结果集中的一条数据</span>
+row <span class="token operator">=</span> cur<span class="token punctuation">.</span>fetchone<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>row<span class="token punctuation">)</span>  <span class="token comment"># 输出如: (1, '张三')</span>
+
+<span class="token comment"># 获取查询结果集中的所有数据</span>
+rows <span class="token operator">=</span> cur<span class="token punctuation">.</span>fetchall<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>rows<span class="token punctuation">)</span>  <span class="token comment"># 输出如: [(1, '张三'), (2, '李四')]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意：在调用 <code>fetchone()</code> 或 <code>fetchall()</code> 后，游标的位置会移动到下一条数据或末尾。如果你需要再次遍历结果集，通常需要重置游标位置或使用新的游标对象。</p>
+<h4 id="⑥-提交或回滚事务"><a href="#⑥-提交或回滚事务" class="headerlink" title="⑥ 提交或回滚事务"></a>⑥ 提交或回滚事务</h4><p>如果执行了修改数据（如 INSERT、UPDATE、DELETE）的 SQL 语句，并且你希望这些更改被保存到数据库中，那么你需要调用连接对象的 <code>commit()</code> 方法。如果希望在出错时撤销这些更改，可以调用 <code>rollback()</code> 方法。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 提交事务</span>
+conn<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 或者回滚事务</span>
+conn<span class="token punctuation">.</span>rollback<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="⑦-关闭游标和连接"><a href="#⑦-关闭游标和连接" class="headerlink" title="⑦ 关闭游标和连接"></a>⑦ 关闭游标和连接</h4><p>在完成数据库操作后，需要关闭游标和连接以释放资源。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 关闭游标</span>
+cur<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 关闭连接</span>
+conn<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意：在实际应用中，应该使用 <code>try...except...finally</code> 语句块来确保即使在发生异常时也能正确地关闭游标和连接。</p>
+<h1 id="SQL语句参数化"><a href="#SQL语句参数化" class="headerlink" title="SQL语句参数化"></a>SQL语句参数化</h1><h2 id="1-SQL注入"><a href="#1-SQL注入" class="headerlink" title="1.SQL注入"></a>1.SQL注入</h2><p>什么是SQL注入?<br>用户提交带有恶意的数据与SQL语句进行字符串方式的拼接，从而影响了SQL语句的语义，最终产生数据泄露的现象。</p>
+<p>SQL注入是一种网络安全漏洞，攻击者可以通过在输入字段中插入恶意的SQL代码来访问或修改数据库中的数据。以下是一个简单的SQL注入案例，用于说明其工作原理和潜在危害。</p>
+<h3 id="案例背景"><a href="#案例背景" class="headerlink" title="案例背景"></a>案例背景</h3><p>假设我们有一个简单的用户登录页面，用户需要输入用户名和密码来登录系统。登录页面的后台代码可能使用类似以下的SQL查询来验证用户输入：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> users <span class="token keyword">WHERE</span> username<span class="token operator">=</span><span class="token string">'$username'</span> <span class="token operator">AND</span> password<span class="token operator">=</span><span class="token string">'$password'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这里的<code>$username</code>和<code>$password</code>是用户输入的用户名和密码，它们被直接嵌入到SQL查询中。</p>
+<h3 id="SQL注入攻击"><a href="#SQL注入攻击" class="headerlink" title="SQL注入攻击"></a>SQL注入攻击</h3><ol>
+<li><p><strong>攻击者输入</strong>：<br>攻击者尝试在用户名或密码字段中输入特殊字符来修改原始的SQL查询。例如，攻击者可能在用户名字段中输入<code>&#39; OR &#39;1&#39;=&#39;1</code>（注意这里的单引号用于闭合原始查询中的<code>$username</code>变量），这样原始的SQL查询就会变为：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> users <span class="token keyword">WHERE</span> username<span class="token operator">=</span><span class="token string">''</span> <span class="token operator">OR</span> <span class="token string">'1'</span><span class="token operator">=</span><span class="token string">'1'</span> <span class="token operator">AND</span> password<span class="token operator">=</span><span class="token string">'$password'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>由于<code>&#39;1&#39;=&#39;1&#39;</code>始终为真，因此这个查询会返回数据库中的所有用户记录，而不管密码是什么。</p>
+</li>
+<li><p><strong>结果</strong>：<br>因为SQL查询被篡改，攻击者能够绕过登录验证，并可能访问到系统内的敏感信息或执行其他恶意操作。</p>
+</li>
+</ol>
+<h3 id="防范措施"><a href="#防范措施" class="headerlink" title="防范措施"></a>防范措施</h3><p>为了防止SQL注入攻击，应该采取以下措施：</p>
+<ol>
+<li><p><strong>使用参数化查询</strong>：避免直接在SQL查询中嵌入用户输入，而是使用参数化查询或预编译的语句。这样，即使用户输入包含特殊字符，它们也不会被解释为SQL代码的一部分。</p>
+</li>
+<li><p><strong>输入验证和过滤</strong>：对用户输入进行严格的验证和过滤，确保它们只包含预期的字符和数据类型。</p>
+</li>
+<li><p><strong>最小权限原则</strong>：为数据库连接分配最小的必要权限，以减少潜在的安全风险。</p>
+</li>
+<li><p><strong>使用ORM框架</strong>：对象关系映射（ORM）框架可以帮助管理数据库操作，减少手动编写SQL查询的需要，从而降低SQL注入的风险。</p>
+</li>
+<li><p><strong>定期更新和维护</strong>：保持数据库软件、Web服务器和应用程序的最新版本，以利用最新的安全特性和修复潜在的安全漏洞。</p>
+</li>
+<li><p><strong>使用防火墙和入侵检测系统</strong>：这些工具可以帮助检测和阻止潜在的攻击行为，提高系统的安全性。</p>
+</li>
+</ol>
+<h2 id="2-如何防止SQL注入"><a href="#2-如何防止SQL注入" class="headerlink" title="2.如何防止SQL注入"></a>2.如何防止SQL注入</h2><p>SQL语句参数化</p>
+<ul>
+<li>SQL语言中的参数使用%s来占位，此处不是python中的字符串格式化操作</li>
+<li>将SQL语句中%s占位所需要的参数存在一个列表中，把参数列表传递给execute方法中第二个参数</li>
+</ul>
+<p><strong>不安全的方式</strong></p>
+<ul>
+<li><code>sql =&quot;select * from goods where name=&#39;%s&#39;&quot; % find_name</code></li>
+<li><code>cs.execute(sql)</code></li>
+</ul>
+<p><strong>安全的方式</strong></p>
+<ul>
+<li>构造参数列表<ul>
+<li><code>params = [find_name]</code></li>
+</ul>
+</li>
+<li>执行select语句<ul>
+<li><code>sql = &quot;select * from goods where name=%s&quot;</code>(这里的%s不需要加引号)</li>
+<li>cs.execute(sql,params)</li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://0zxm.github.io">0zxm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://0zxm.github.io/2024/06/21/shu-ju-ku/">https://0zxm.github.io/2024/06/21/shu-ju-ku/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://0zxm.github.io" target="_blank">0zxm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/mysql/">mysql</a><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></div><div class="post-share"><div class="social-share" data-image="/img/cover1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/06/21/linux-zhi-ling/" title="Linux指令"><img class="cover" src="/img/default_cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Linux指令</div></div><div class="info-2"><div class="info-item-1">Linux学习第一章 Linux的由来 开源协议 POSIX接口规范POSIX接口规范，全称为“可移植操作系统接口”（Portable Operating System Interface），是由IEEE（电气和电子工程师协会）和ISO&#x2F;IEC联合制定的一组操作系统接口规范。其主要目的在于实现不同操作系统之间的兼容性和互操作性，使得开发人员能够跨平台编写和运行应用程序，而无需进行大量的代码修改。  第二章 linux基本命令期末考试方式使用exam命令,输入数字选择选项或题目,答案默认保存,若想修改之前的答案,输入对应题号就行 1.连接到学校主机10.188.2.251的帐号密码账号:s223174 密码:welcome  2.nano指令操作文件查看和编辑文件 3.环境变量 PATH环境变量: 当shell执行时去哪找可执行文件,依次查找 PS1环境变量: shell命令提示符的样式 LANG环境变量: 与shell交互使用的语言 HOME环境变量: 当前用户工作目录  locale -a...</div></div></div></a><a class="pagination-related" href="/2024/06/21/ji-suan-ji-wang-luo/" title="计算机网络"><img class="cover" src="/img/default_cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">计算机网络</div></div><div class="info-2"><div class="info-item-1">要点CRC  判断ip是否属于子网 计算机网络概述计算机网络的概念 计算机网络的定义  计算机网络是指将地理位置不同、具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，并在网络操作系统、网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的计算机系统  计算机网络的组成 通信子网: 提供信息交换的网络结点和通信线路 资源子网: 提供共享的软件资源和硬件资源   计算机网络的类型 按照拓扑分类详细 星型 网状型 树形 总线型 环形 网状         按照范围分类 局域网 LAN: 几百米到十几公里 城域网 MAN: 覆盖一个城市 广域网 WAN: 中国或者是大省之间的通信 个人局域网 PAN: 蓝牙耳机等 Internet   按照传输方式分类 有线网络: IEEE802.3 无线网络:  IEEE802.11 WLAN无线局域网 ( wireless ) WPAN无线个域网      计算机网络的体系结构 传输方式  按照传输方向 单工: 只能单方向传输的工作模式 双工: 在同一时间，线路上只能允许一个方向的数据通 全双工:...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2024/06/21/zai-vs-pei-zhi-mysql-huan-jing/" title="在VS中配置mysql环境"><img class="cover" src="/img/cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-21</div><div class="info-item-2">在VS中配置mysql环境</div></div><div class="info-2"><div class="info-item-1">C++ 加 MySQL打开cmd 输入 mysql 输入 mysql -u root -p  打开VisualStudio VC/C目录 项目属性:点击c++->常规->附加包含目录->"选择C:\Program Files\MySQL\MySQL Server 8.0\include"  包含库文件->链接->常规->附加库目录->"选择C:\Program Files\MySQL\MySQL Server 8.0\lib" 写入库文件->链接器->输入->附加依赖项->libmysql.lib libmysql.lib复制到c盘windows下system32文件夹下   PS C:\Users\86158> mysql -u root -p Enter password: ************** Welcome to the MySQL monitor.  Commands end with ; or \g. Your MySQL connection id is 20 Server version: 8.0.33 MySQL Community Server -...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">0zxm</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/0zxm" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:m15813109801@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="http://0zxm.github.io" target="_blank" title="博客"><i class="fab fa-algolia" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.</span> <span class="toc-text">数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.1.</span> <span class="toc-text">关系型数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.2.</span> <span class="toc-text">非关系型数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.3.</span> <span class="toc-text">数据库管理系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.4.</span> <span class="toc-text">SQL语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E6%A0%B8%E5%BF%83%E5%85%83%E7%B4%A0%EF%BC%88%E4%B8%BB%E9%94%AE%E5%AE%9A%E4%B9%89%EF%BC%89"><span class="toc-number">1.5.</span> <span class="toc-text">关系型数据库中核心元素（主键定义）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AD%E5%BB%BAmysql%E7%8E%AF%E5%A2%83"><span class="toc-number">1.6.</span> <span class="toc-text">搭建mysql环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-%E4%BA%86%E8%A7%A3"><span class="toc-number">1.6.1.</span> <span class="toc-text">MySQL配置文件(了解)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9"><span class="toc-number">1.6.1.1.</span> <span class="toc-text">主要配置选项</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySql%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.7.</span> <span class="toc-text">MySql数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AE%8C%E6%95%B4%E6%80%A7%E5%92%8C%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.8.</span> <span class="toc-text">数据完整性和约束</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="toc-number">1.8.1.</span> <span class="toc-text">1.数据完整性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.8.2.</span> <span class="toc-text">2.约束</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySql%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.9.</span> <span class="toc-text">MySql基本操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="toc-number">1.10.</span> <span class="toc-text">数据库基本操作命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%A1%A8%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="toc-number">1.11.</span> <span class="toc-text">数据表基本操作命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%A1%A8%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4-1"><span class="toc-number">1.12.</span> <span class="toc-text">数据表基本操作命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5%E6%93%8D%E4%BD%9C"><span class="toc-number">1.13.</span> <span class="toc-text">数据增删改查操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-WHERE%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.13.1.</span> <span class="toc-text">1.WHERE关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-where%E8%AF%AD%E5%8F%A5%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.13.1.1.</span> <span class="toc-text">1.1 where语句的作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.13.1.2.</span> <span class="toc-text">1.2 比较运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.13.1.3.</span> <span class="toc-text">1.3 逻辑运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.13.1.4.</span> <span class="toc-text">1.4 模糊查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-%E8%8C%83%E5%9B%B4%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.13.1.5.</span> <span class="toc-text">1.5 范围查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-where%E4%B9%8B%E7%A9%BA%E5%80%BC%E5%88%A4%E6%96%AD"><span class="toc-number">1.13.1.6.</span> <span class="toc-text">1.6 where之空值判断</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#order%E6%8E%92%E5%BA%8F%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.13.2.</span> <span class="toc-text">order排序查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0"><span class="toc-number">1.13.3.</span> <span class="toc-text">聚合函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%9C%E7%94%A8%E5%92%8C%E7%89%B9%E7%82%B9"><span class="toc-number">1.13.3.1.</span> <span class="toc-text">7.2 聚合函数的作用和特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#group%E5%88%86%E7%BB%84%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.13.4.</span> <span class="toc-text">group分组查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-%E4%BB%80%E4%B9%88%E6%98%AF%E5%88%86%E7%BB%84"><span class="toc-number">1.13.4.1.</span> <span class="toc-text">1.1 什么是分组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#limit-%E9%99%90%E5%88%B6-%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.13.5.</span> <span class="toc-text">limit(限制)分页查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%BC%95%E5%85%A5"><span class="toc-number">1.13.5.1.</span> <span class="toc-text">1.引入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-limit%E9%99%90%E5%88%B6%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.13.5.2.</span> <span class="toc-text">2.limit限制查询</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.13.6.</span> <span class="toc-text">连接查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.13.6.1.</span> <span class="toc-text">1.为什么要使用连接查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.13.6.2.</span> <span class="toc-text">内连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%96%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.13.6.3.</span> <span class="toc-text">外连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.13.6.4.</span> <span class="toc-text">自连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.13.6.5.</span> <span class="toc-text">子查询</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySql%E9%AB%98%E7%BA%A7"><span class="toc-number">1.14.</span> <span class="toc-text">MySql高级</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%BC%82%E5%B8%B8"><span class="toc-number">1.14.1.</span> <span class="toc-text">删除异常</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E8%A1%A8%E4%BC%98%E5%8C%96"><span class="toc-number">1.14.1.1.</span> <span class="toc-text">信息表优化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E9%94%AE"><span class="toc-number">1.14.2.</span> <span class="toc-text">外键</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%96%E9%94%AE%EF%BC%9F"><span class="toc-number">1.14.2.1.</span> <span class="toc-text">1.什么是外键？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%A4%96%E9%94%AE%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.14.2.2.</span> <span class="toc-text">2.外键的使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E5%9B%BE"><span class="toc-number">1.14.3.</span> <span class="toc-text">视图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E8%A7%86%E5%9B%BE"><span class="toc-number">1.14.3.1.</span> <span class="toc-text">1.什么是视图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%A7%86%E5%9B%BE%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.14.3.2.</span> <span class="toc-text">2.视图的使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1"><span class="toc-number">1.14.4.</span> <span class="toc-text">事务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BA%8B%E5%8A%A1%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">1.14.4.1.</span> <span class="toc-text">1. 事务的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BA%8B%E5%8A%A1%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7"><span class="toc-number">1.14.4.2.</span> <span class="toc-text">2.事务四大特性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.14.4.3.</span> <span class="toc-text">3.事务的使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-number">1.14.5.</span> <span class="toc-text">索引</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.14.5.1.</span> <span class="toc-text">1.索引的作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.14.5.2.</span> <span class="toc-text">2.索引的使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E4%B9%8B%E4%B8%89%E8%8C%83%E5%BC%8F"><span class="toc-number">1.14.6.</span> <span class="toc-text">数据库设计之三范式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%89%E8%8C%83%E5%BC%8F"><span class="toc-number">1.14.6.1.</span> <span class="toc-text">1.什么是三范式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%8C%83%E5%BC%8F%E7%9A%84%E5%88%92%E5%88%86"><span class="toc-number">1.14.6.2.</span> <span class="toc-text">2.范式的划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%8C%83%E5%BC%8F%E7%9A%84%E5%88%92%E5%88%86"><span class="toc-number">1.14.6.3.</span> <span class="toc-text">3.范式的划分</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8C%83%E5%BC%8F1NF"><span class="toc-number">1.14.6.3.1.</span> <span class="toc-text">第一范式1NF</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8C%83%E5%BC%8F2NF"><span class="toc-number">1.14.6.3.2.</span> <span class="toc-text">第二范式2NF</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8C%83%E5%BC%8F3NF"><span class="toc-number">1.14.6.3.3.</span> <span class="toc-text">第三范式3NF</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.14.6.4.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#E-R%E6%A8%A1%E5%9E%8B%E5%92%8C%E8%A1%A8%E9%97%B4%E5%85%B3%E7%B3%BB"><span class="toc-number">1.14.7.</span> <span class="toc-text">E-R模型和表间关系</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E5%85%B3%E7%B3%BB"><span class="toc-number">1.14.7.1.</span> <span class="toc-text">三种关系</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7"><span class="toc-number">2.</span> <span class="toc-text">数据库安全性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">2.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E6%80%A7%E6%8E%A7%E5%88%B6"><span class="toc-number">2.2.</span> <span class="toc-text">安全性控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%92%E8%89%B2"><span class="toc-number">2.3.</span> <span class="toc-text">数据库角色</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%92%E8%89%B2%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">2.3.1.</span> <span class="toc-text">角色的基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%92%E8%89%B2%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">2.3.2.</span> <span class="toc-text">角色的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%A7%92%E8%89%B2%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-number">2.3.2.1.</span> <span class="toc-text">1. 角色的创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%A7%92%E8%89%B2%E6%8E%88%E6%9D%83"><span class="toc-number">2.3.2.2.</span> <span class="toc-text">2. 角色授权</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8A%8A%E8%A7%92%E8%89%B2%E6%8E%88%E6%9D%83%E7%BB%99%E5%85%B6%E4%BB%96%E7%94%A8%E6%88%B7%E6%88%96%E8%A7%92%E8%89%B2"><span class="toc-number">2.3.2.3.</span> <span class="toc-text">3. 把角色授权给其他用户或角色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%9A%84%E6%94%B6%E5%9B%9E"><span class="toc-number">2.3.2.4.</span> <span class="toc-text">4. 角色权限的收回</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">2.3.3.</span> <span class="toc-text">注意事项</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Python%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">Python数据库编程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Python%E8%BF%9E%E6%8E%A5MySQL"><span class="toc-number">3.1.</span> <span class="toc-text">1.Python连接MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-PyMysql%E6%A8%A1%E5%9D%97"><span class="toc-number">3.1.1.</span> <span class="toc-text">1.1 PyMysql模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E4%BD%BF%E7%94%A8PyMysql%E6%A8%A1%E5%9D%97"><span class="toc-number">3.1.2.</span> <span class="toc-text">1.2 使用PyMysql模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-python%E4%BB%A3%E7%A0%81"><span class="toc-number">3.1.3.</span> <span class="toc-text">1.3 python代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A0-%E5%AF%BC%E5%85%A5-pymysql-%E6%A8%A1%E5%9D%97"><span class="toc-number">3.1.3.1.</span> <span class="toc-text">① 导入 pymysql 模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A1-%E5%88%9B%E5%BB%BA%E8%BF%9E%E6%8E%A5%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.1.3.2.</span> <span class="toc-text">② 创建连接对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A2-%E8%8E%B7%E5%8F%96%E6%B8%B8%E6%A0%87%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.1.3.3.</span> <span class="toc-text">③ 获取游标对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A3-%E4%BD%BF%E7%94%A8%E6%B8%B8%E6%A0%87%E6%89%A7%E8%A1%8C-SQL-%E8%AF%AD%E5%8F%A5"><span class="toc-number">3.1.3.4.</span> <span class="toc-text">④ 使用游标执行 SQL 语句</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A4-%E8%8E%B7%E5%8F%96%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C"><span class="toc-number">3.1.3.5.</span> <span class="toc-text">⑤ 获取查询结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A5-%E6%8F%90%E4%BA%A4%E6%88%96%E5%9B%9E%E6%BB%9A%E4%BA%8B%E5%8A%A1"><span class="toc-number">3.1.3.6.</span> <span class="toc-text">⑥ 提交或回滚事务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A6-%E5%85%B3%E9%97%AD%E6%B8%B8%E6%A0%87%E5%92%8C%E8%BF%9E%E6%8E%A5"><span class="toc-number">3.1.3.7.</span> <span class="toc-text">⑦ 关闭游标和连接</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E8%AF%AD%E5%8F%A5%E5%8F%82%E6%95%B0%E5%8C%96"><span class="toc-number">4.</span> <span class="toc-text">SQL语句参数化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-SQL%E6%B3%A8%E5%85%A5"><span class="toc-number">4.1.</span> <span class="toc-text">1.SQL注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%E8%83%8C%E6%99%AF"><span class="toc-number">4.1.1.</span> <span class="toc-text">案例背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB"><span class="toc-number">4.1.2.</span> <span class="toc-text">SQL注入攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B2%E8%8C%83%E6%8E%AA%E6%96%BD"><span class="toc-number">4.1.3.</span> <span class="toc-text">防范措施</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%A6%82%E4%BD%95%E9%98%B2%E6%AD%A2SQL%E6%B3%A8%E5%85%A5"><span class="toc-number">4.2.</span> <span class="toc-text">2.如何防止SQL注入</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/10/26/hexo-geng-huan-zhu-ti-butterfly/" title="Hexo更换主题butterfly"><img src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo更换主题butterfly"/></a><div class="content"><a class="title" href="/2024/10/26/hexo-geng-huan-zhu-ti-butterfly/" title="Hexo更换主题butterfly">Hexo更换主题butterfly</a><time datetime="2024-10-26T12:14:16.000Z" title="发表于 2024-10-26 20:14:16">2024-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/14/javascript-xue-xi/" title="JavaScript学习"><img src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JavaScript学习"/></a><div class="content"><a class="title" href="/2024/10/14/javascript-xue-xi/" title="JavaScript学习">JavaScript学习</a><time datetime="2024-10-14T12:36:08.000Z" title="发表于 2024-10-14 20:36:08">2024-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/11/java-ji-chu-shang/" title="Java基础上"><img src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java基础上"/></a><div class="content"><a class="title" href="/2024/10/11/java-ji-chu-shang/" title="Java基础上">Java基础上</a><time datetime="2024-10-11T12:12:04.000Z" title="发表于 2024-10-11 20:12:04">2024-10-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/10/java-cheng-xu-da-bao-cheng-jar-bao/" title="Java程序打包成jar包"><img src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java程序打包成jar包"/></a><div class="content"><a class="title" href="/2024/10/10/java-cheng-xu-da-bao-cheng-jar-bao/" title="Java程序打包成jar包">Java程序打包成jar包</a><time datetime="2024-10-10T04:51:27.000Z" title="发表于 2024-10-10 12:51:27">2024-10-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/06/zai-vscode-zhong-pei-zhi-cpp-di-san-fang-ku/" title="在vscode中配置cpp第三方库"><img src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在vscode中配置cpp第三方库"/></a><div class="content"><a class="title" href="/2024/10/06/zai-vscode-zhong-pei-zhi-cpp-di-san-fang-ku/" title="在vscode中配置cpp第三方库">在vscode中配置cpp第三方库</a><time datetime="2024-10-06T15:10:51.000Z" title="发表于 2024-10-06 23:10:51">2024-10-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By 0zxm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
