@@ -797,25 +797,27 @@
 <li><p>设置Linux内部固定IP</p>
 <p>修改文件：<code>/etc/sysconfig/network-scripts/ifcfg-ens33</code></p>
 <p>示例文件内容：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">TYPE</span><span class="token operator">=</span><span class="token string">"Ethernet"</span>
-<span class="token assign-left variable">PROXY_METHOD</span><span class="token operator">=</span><span class="token string">"none"</span>
-<span class="token assign-left variable">BROWSER_ONLY</span><span class="token operator">=</span><span class="token string">"no"</span>
-<span class="token assign-left variable">BOOTPROTO</span><span class="token operator">=</span><span class="token string">"static"</span>			<span class="token comment"># 改为static，固定IP</span>
-<span class="token assign-left variable">DEFROUTE</span><span class="token operator">=</span><span class="token string">"yes"</span>
-<span class="token assign-left variable">IPV4_FAILURE_FATAL</span><span class="token operator">=</span><span class="token string">"no"</span>
-<span class="token assign-left variable">IPV6INIT</span><span class="token operator">=</span><span class="token string">"yes"</span>
-<span class="token assign-left variable">IPV6_AUTOCONF</span><span class="token operator">=</span><span class="token string">"yes"</span>
-<span class="token assign-left variable">IPV6_DEFROUTE</span><span class="token operator">=</span><span class="token string">"yes"</span>
-<span class="token assign-left variable">IPV6_FAILURE_FATAL</span><span class="token operator">=</span><span class="token string">"no"</span>
-<span class="token assign-left variable">IPV6_ADDR_GEN_MODE</span><span class="token operator">=</span><span class="token string">"stable-privacy"</span>
-<span class="token assign-left variable">NAME</span><span class="token operator">=</span><span class="token string">"ens33"</span>
-<span class="token assign-left variable">UUID</span><span class="token operator">=</span><span class="token string">"1b0011cb-0d2e-4eaa-8a11-af7d50ebc876"</span>
-<span class="token assign-left variable">DEVICE</span><span class="token operator">=</span><span class="token string">"ens33"</span>
-<span class="token assign-left variable">ONBOOT</span><span class="token operator">=</span><span class="token string">"yes"</span>
-<span class="token assign-left variable">IPADDR</span><span class="token operator">=</span><span class="token string">"192.168.88.131"</span>		<span class="token comment"># IP地址，自己设置，要匹配网络范围</span>
-<span class="token assign-left variable">NETMASK</span><span class="token operator">=</span><span class="token string">"255.255.255.0"</span>		<span class="token comment"># 子网掩码，固定写法255.255.255.0</span>
-<span class="token assign-left variable">GATEWAY</span><span class="token operator">=</span><span class="token string">"192.168.88.2"</span>		<span class="token comment"># 网关，要和VMware中配置的一致</span>
-<span class="token assign-left variable">DNS1</span><span class="token operator">=</span><span class="token string">"192.168.88.2"</span>			<span class="token comment"># DNS1服务器，和网关一致即可</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<pre><code class="shell">TYPE=&quot;Ethernet&quot;
+PROXY_METHOD=&quot;none&quot;
+BROWSER_ONLY=&quot;no&quot;
+BOOTPROTO=&quot;static&quot;			# 改为static，固定IP
+DEFROUTE=&quot;yes&quot;
+IPV4_FAILURE_FATAL=&quot;no&quot;
+IPV6INIT=&quot;yes&quot;
+IPV6_AUTOCONF=&quot;yes&quot;
+IPV6_DEFROUTE=&quot;yes&quot;
+IPV6_FAILURE_FATAL=&quot;no&quot;
+IPV6_ADDR_GEN_MODE=&quot;stable-privacy&quot;
+NAME=&quot;ens33&quot;
+UUID=&quot;1b0011cb-0d2e-4eaa-8a11-af7d50ebc876&quot;
+DEVICE=&quot;ens33&quot;
+ONBOOT=&quot;yes&quot;
+IPADDR=&quot;192.168.88.131&quot;		# IP地址，自己设置，要匹配网络范围
+NETMASK=&quot;255.255.255.0&quot;		# 子网掩码，固定写法255.255.255.0
+GATEWAY=&quot;192.168.88.2&quot;		# 网关，要和VMware中配置的一致
+DNS1=&quot;192.168.88.2&quot;			# DNS1服务器，和网关一致即可
+</code></pre>
+</li>
 </ol>
 <h4 id="ps命令"><a href="#ps命令" class="headerlink" title="ps命令"></a>ps命令</h4><p>功能：查看进程信息</p>
 <p>语法：<code>ps -ef</code>，查看全部进程信息，可以搭配grep做过滤：<code>ps -ef | grep xxx</code></p>
@@ -876,8 +878,8 @@
 <p><img src="https://image-set.oss-cn-zhangjiakou.aliyuncs.com/img-out/2022/10/27/20221027222021.png" alt="image-20221027222021619"></p>
 <h4 id="sudo命令"><a href="#sudo命令" class="headerlink" title="sudo命令"></a>sudo命令</h4><p><img src="https://image-set.oss-cn-zhangjiakou.aliyuncs.com/img-out/2022/10/27/20221027222035.png" alt="image-20221027222035337"></p>
 <p>比如：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">itheima <span class="token assign-left variable">ALL</span><span class="token operator">=</span><span class="token punctuation">(</span>ALL<span class="token punctuation">)</span>       NOPASSWD: ALL<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="shell">itheima ALL=(ALL)       NOPASSWD: ALL
+</code></pre>
 <p>在visudo内配置如上内容，可以让itheima用户，无需密码直接使用<code>sudo</code></p>
 <h4 id="chmod命令"><a href="#chmod命令" class="headerlink" title="chmod命令"></a>chmod命令</h4><p>修改文件、文件夹权限</p>
 <p>语法：<code>chmod [-R] 权限 参数</code></p>
@@ -1428,7 +1430,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">432.3k</span>&nbsp;字
+                class="white-color">448.8k</span>&nbsp;字
             
             
             

@@ -542,19 +542,25 @@
 </ul>
 <h2 id="搭建mysql环境"><a href="#搭建mysql环境" class="headerlink" title="搭建mysql环境"></a>搭建mysql环境</h2><ul>
 <li><p>安装 MySQL 数据库服务端：</p>
-<pre class="line-numbers language-none"><code class="language-none">sudo apt-get install mysql-server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>sudo apt-get install mysql-server
+</code></pre>
 </li>
 <li><p>安装 MySQL 数据库客户端：</p>
-<pre class="line-numbers language-none"><code class="language-none">sudo apt-get install mysql-client<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>sudo apt-get install mysql-client
+</code></pre>
 </li>
 <li><p>启动 MySQL 数据库：</p>
-<pre class="line-numbers language-none"><code class="language-none">sudo service mysql start<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>sudo service mysql start
+</code></pre>
 </li>
 <li><p>停止 MySQL 数据库：</p>
-<pre class="line-numbers language-none"><code class="language-none">sudo service mysql stop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>sudo service mysql stop
+</code></pre>
 </li>
 <li><p>查看 MySQL 数据库启动状态：</p>
-<pre class="line-numbers language-none"><code class="language-none">ps ajx|grep mysql<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<pre><code>ps ajx|grep mysql
+</code></pre>
+</li>
 </ul>
 <h3 id="MySQL配置文件-了解"><a href="#MySQL配置文件-了解" class="headerlink" title="MySQL配置文件(了解)"></a>MySQL配置文件(了解)</h3><p>配置文件目录为&#x2F;etc&#x2F;mysql&#x2F;mysql.cnf:<br>进入mysql.conf.d目录，打开mysql.cnf，可以看到配置项:</p>
 <h4 id="主要配置选项"><a href="#主要配置选项" class="headerlink" title="主要配置选项"></a>主要配置选项</h4><ul>
@@ -566,7 +572,11 @@
 </ul>
 <h2 id="MySql数据类型"><a href="#MySql数据类型" class="headerlink" title="MySql数据类型"></a>MySql数据类型</h2><ul>
 <li>枚举类型<br>枚举类型enum，在定义字段时就预告规定好固定的几个值，然后插入记录时值只能在这几个固定好的值中选择一个<ul>
-<li>语法定义:<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">gender enum(&#39;男&#39;,&#39;女&#39;,&#39;妖&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li>语法定义:</li>
+</ul>
+<pre><code class="mysql">gender enum(&#39;男&#39;,&#39;女&#39;,&#39;妖&#39;)
+</code></pre>
+<ul>
 <li>应用场景:<br>当值是几个固定可选时，比如:性别、星期、月份、表示状态时(比如:是、否)</li>
 </ul>
 </li>
@@ -666,8 +676,8 @@
 </tr>
 </tbody></table>
 <p>在MySQL中，您可以使用以下SQL语句来查看创建数据库的SQL语句：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SHOW</span> <span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> database_name<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="sql">SHOW CREATE DATABASE database_name;
+</code></pre>
 <p>这条SQL语句将显示创建指定数据库的SQL语句，包括数据库名称和其默认字符集。您可以将 <code>database_name</code> 替换为实际的数据库名称来查看该数据库的创建语句。</p>
 <h2 id="数据表基本操作命令"><a href="#数据表基本操作命令" class="headerlink" title="数据表基本操作命令"></a>数据表基本操作命令</h2><table>
 <thead>
@@ -821,19 +831,22 @@
 </tr>
 </tbody></table>
 <ol>
-<li>逻辑删除<br>用一个字段来表示 这条信息是否已经不能再使用了<br>给 students 表添加<code>is_delete</code> 字段 bit 类型<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">举例:
-<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> students <span class="token keyword">add</span> is_delete <span class="token keyword">BIT</span> <span class="token keyword">DEFAULT</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token keyword">UPDATE</span> students <span class="token keyword">SET</span> is_delete<span class="token operator">=</span>l <span class="token keyword">WHERE</span> id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li>逻辑删除<br>用一个字段来表示 这条信息是否已经不能再使用了<br>给 students 表添加<code>is_delete</code> 字段 bit 类型</li>
 </ol>
+<pre><code class="sql">举例:
+ALTER TABLE students add is_delete BIT DEFAULT 0;
+UPDATE students SET is_delete=l WHERE id=1;
+</code></pre>
 <h3 id="1-WHERE关键字"><a href="#1-WHERE关键字" class="headerlink" title="1.WHERE关键字"></a>1.WHERE关键字</h3><h4 id="1-1-where语句的作用"><a href="#1-1-where语句的作用" class="headerlink" title="1.1 where语句的作用"></a>1.1 where语句的作用</h4><p>使用where子句对表中的数据筛选，结果为true的记录会出现在结果集中</p>
 <ul>
-<li><p>条件查询语法:</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span><span class="token keyword">from</span> 表名 <span class="token keyword">where</span> 条件<span class="token punctuation">;</span>
-<span class="token comment">-- eg:  </span>
-<span class="token keyword">select</span> <span class="token operator">*</span><span class="token keyword">from</span> students <span class="token keyword">where</span> id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-</li>
-<li><p><strong>where</strong>后面支持<strong>多种运算符</strong>，进行条件的处理:</p>
+<li>条件查询语法:</li>
+</ul>
+<pre><code class="sql">select *from 表名 where 条件;
+-- eg:  
+select *from students where id=1;
+</code></pre>
 <ul>
+<li><strong>where</strong>后面支持<strong>多种运算符</strong>，进行条件的处理:<ul>
 <li>比较运算符</li>
 <li>逻辑运算符</li>
 <li>模糊查询</li>
@@ -849,56 +862,61 @@
 <li>大于等于: <code>&gt;=</code></li>
 <li>小于: <code>&lt;</code></li>
 <li>小于等于: <code>&lt;=</code></li>
-<li>不等于: <code>!=</code> 或 <code>&lt;&gt;</code><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- eg:  其他运算符类似</span>
-<span class="token keyword">select</span> <span class="token operator">*</span><span class="token keyword">from</span> students <span class="token keyword">where</span> id <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token keyword">select</span> <span class="token operator">*</span><span class="token keyword">from</span> students <span class="token keyword">where</span> age <span class="token operator">&lt;=</span> <span class="token number">18</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li>不等于: <code>!=</code> 或 <code>&lt;&gt;</code></li>
 </ul>
+<pre><code class="sql">-- eg:  其他运算符类似
+select *from students where id &lt; 1;
+select *from students where age &lt;= 18;
+</code></pre>
 <h4 id="1-3-逻辑运算符"><a href="#1-3-逻辑运算符" class="headerlink" title="1.3 逻辑运算符"></a>1.3 逻辑运算符</h4><ul>
 <li><code>AND</code> 表示有多个条件时，多个条件必须同时成立(值为True)</li>
 <li><code>OR</code>表示有多个条件时，满足任意一个条件时成立</li>
 <li><code>NOT</code>表示取反操作</li>
 </ul>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 18和28岁之间的所有学生信息</span>
-<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> age <span class="token operator">></span> <span class="token number">18</span> <span class="token operator">and</span> age <span class="token operator">&lt;</span> <span class="token number">28</span><span class="token punctuation">;</span>
-<span class="token comment">-- 失败(错误格式):</span>
-<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> <span class="token number">18</span><span class="token operator">&lt;</span>age<span class="token operator">&lt;</span><span class="token number">28</span><span class="token punctuation">;</span>
+<pre><code class="sql">-- 18和28岁之间的所有学生信息
+select * from students where age &gt; 18 and age &lt; 28;
+-- 失败(错误格式):
+select * from students where 18&lt;age&lt;28;
 
-<span class="token comment">-- 18岁以上的女性</span>
-<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> age <span class="token operator">></span> l8 <span class="token operator">and</span> gender<span class="token operator">=</span><span class="token string">"女"</span><span class="token punctuation">;</span>
+-- 18岁以上的女性
+select * from students where age &gt; l8 and gender=&quot;女&quot;;
 
-<span class="token comment">-- 18以上或者身高高过180(包含)以上</span>
-<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> age <span class="token operator">></span> <span class="token number">18</span> <span class="token operator">or</span> height <span class="token operator">>=</span> <span class="token number">180</span><span class="token punctuation">;</span>
-<span class="token comment">-- not</span>
-<span class="token comment">-- 不在 18岁以上的女性 这个范围内的信息</span>
-<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> <span class="token operator">not</span><span class="token punctuation">(</span>age <span class="token operator">></span> l8 <span class="token operator">and</span> gender<span class="token operator">=</span><span class="token string">"女"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment">-- 注意:使用 "()"   运算符优先级问题</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+-- 18以上或者身高高过180(包含)以上
+select * from students where age &gt; 18 or height &gt;= 180;
+-- not
+-- 不在 18岁以上的女性 这个范围内的信息
+select * from students where not(age &gt; l8 and gender=&quot;女&quot;);
+-- 注意:使用 &quot;()&quot;   运算符优先级问题
+</code></pre>
 <h4 id="1-4-模糊查询"><a href="#1-4-模糊查询" class="headerlink" title="1.4 模糊查询"></a>1.4 模糊查询</h4><ul>
 <li><code>like</code>关键字</li>
-<li>like后跟<code>% </code>表示任意多个任意字符,<code>_</code>表示一个任意字符<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">查询姓名中 以“小”开始的名字
-
-<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> name <span class="token operator">like</span> <span class="token string">"小%"</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li>like后跟<code>% </code>表示任意多个任意字符,<code>_</code>表示一个任意字符</li>
 </ul>
+<pre><code class="sql">查询姓名中 以“小”开始的名字
+
+select * from students where name like &quot;小%&quot;
+</code></pre>
 <h4 id="1-5-范围查询"><a href="#1-5-范围查询" class="headerlink" title="1.5 范围查询"></a>1.5 范围查询</h4><ul>
 <li>知道<code>between-and</code>和<code>in</code>的区别</li>
 <li>范围查询分为连续范围查询和非连续范围查询:<br>in 表示在一个非连续的范围内<br>between .. and .. 表示在一个连续的范围内</li>
 </ul>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 查询编号为3至8的学生:</span>
-<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> id <span class="token operator">between</span> <span class="token number">3</span> <span class="token operator">and</span> <span class="token number">8</span><span class="token punctuation">;</span>
-<span class="token comment">-- 注意:select* from students where age not(petween 18 and 34);是错误的</span>
+<pre><code class="sql">-- 查询编号为3至8的学生:
+select * from students where id between 3 and 8;
+-- 注意:select* from students where age not(petween 18 and 34);是错误的
 
-<span class="token comment">-- 查询年龄为18、34的姓名</span>
-<span class="token keyword">select</span> name<span class="token punctuation">,</span> age <span class="token keyword">from</span> students <span class="token keyword">where</span> age <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token number">18</span><span class="token punctuation">,</span><span class="token number">34</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="1-6-where之空值判断"><a href="#1-6-where之空值判断" class="headerlink" title="1.6 where之空值判断"></a>1.6 where之空值判断</h4><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> height <span class="token operator">is</span> <span class="token boolean">null</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+-- 查询年龄为18、34的姓名
+select name, age from students where age in (18,34);
+</code></pre>
+<h4 id="1-6-where之空值判断"><a href="#1-6-where之空值判断" class="headerlink" title="1.6 where之空值判断"></a>1.6 where之空值判断</h4><pre><code class="sql">select * from students where height is null;
+</code></pre>
 <h3 id="order排序查询"><a href="#order排序查询" class="headerlink" title="order排序查询"></a>order排序查询</h3><ul>
 <li><code>asc</code> 升序</li>
-<li><code>desc</code> 降序<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> name<span class="token punctuation">,</span> age <span class="token keyword">from</span> students <span class="token keyword">where</span> age <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token number">18</span><span class="token punctuation">,</span><span class="token number">34</span><span class="token punctuation">)</span> <span class="token operator">and</span> gender <span class="token operator">=</span> <span class="token string">'男'</span> <span class="token keyword">order</span> <span class="token keyword">by</span> height <span class="token keyword">desc</span><span class="token punctuation">,</span> age <span class="token keyword">desc</span><span class="token punctuation">;</span> 
-<span class="token comment">-- 字段1 排序规则 ，字段2 排序规则</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-可以按照多个字段排序，当第一字段数值相同，比较第二个字段，以此类推</li>
+<li><code>desc</code> 降序</li>
 </ul>
+<pre><code class="sql">select name, age from students where age in (18,34) and gender = &#39;男&#39; order by height desc, age desc; 
+-- 字段1 排序规则 ，字段2 排序规则
+</code></pre>
+<p>可以按照多个字段排序，当第一字段数值相同，比较第二个字段，以此类推</p>
 <h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3><table>
 <thead>
 <tr>
@@ -931,40 +949,46 @@
 <ul>
 <li>每个组函数接收一个参数(字段名或者表达式)</li>
 <li>统计结果中默认忽略字段为NULL的记录</li>
-<li>不允许出现嵌套 比如sum(max(xx))<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 查询男性有多少人</span>
-<span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> gender<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
-
-<span class="token comment">-- 计算平均年龄</span>
-<span class="token keyword">select</span> <span class="token function">avg</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span> <span class="token keyword">from</span> students<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-<li><code>round</code>函数<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- round(123.23, 1)表示保留1位小数</span>
-
-<span class="token comment">-- 对年龄求平均值并保留两位小数</span>
-<span class="token keyword">select</span> <span class="token function">round</span><span class="token punctuation">(</span><span class="token function">avg</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">from</span> students<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>不允许出现嵌套 比如sum(max(xx))</li>
 </ul>
+<pre><code class="sql">-- 查询男性有多少人
+select count(*) from students where gender=1;
+
+-- 计算平均年龄
+select avg(age) from students;
+</code></pre>
+<ul>
+<li><code>round</code>函数</li>
+</ul>
+<pre><code class="sql">-- round(123.23, 1)表示保留1位小数
+
+-- 对年龄求平均值并保留两位小数
+select round(avg(age),2) from students;
+</code></pre>
 <h3 id="group分组查询"><a href="#group分组查询" class="headerlink" title="group分组查询"></a>group分组查询</h3><h4 id="1-1-什么是分组"><a href="#1-1-什么是分组" class="headerlink" title="1.1 什么是分组"></a>1.1 什么是分组</h4><p>什么是分组?</p>
 <p>所谓的分组就是将一个“数据集”划分成若干个“小区域”,然后针对若干个“小区域”进行数据处理。</p>
 <p><strong>group by分组</strong></p>
 <blockquote>
 <p><strong>使用特点</strong><br>  <em>group by的含义</em>:将查询结果按照1个或多个字段进行分组，字段值相同的为一组<br>  <em>group by</em>可用于<strong>单个字段</strong>分组，也可用于<strong>多个字段</strong>分组</p>
 </blockquote>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 按照性别分组，查询所有的性别</span>
-<span class="token keyword">select</span> gender <span class="token keyword">from</span> students <span class="token keyword">group</span> <span class="token keyword">by</span> gender<span class="token punctuation">;</span>
-<span class="token keyword">select</span> name<span class="token punctuation">,</span>gender <span class="token keyword">from</span> students <span class="token keyword">group</span> <span class="token keyword">by</span> gender<span class="token punctuation">;</span>错误
+<pre><code class="sql">-- 按照性别分组，查询所有的性别
+select gender from students group by gender;
+select name,gender from students group by gender;错误
 
-<span class="token comment">-- 计算每种性别中的人数</span>
-<span class="token keyword">select</span> gender<span class="token punctuation">,</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">from</span> students <span class="token keyword">group</span> <span class="token keyword">by</span> gender<span class="token punctuation">;</span>
+-- 计算每种性别中的人数
+select gender,count(*) from students group by gender;
 
-<span class="token comment">-- group_concat()函数</span>
-<span class="token comment">-- 查询同种性别中的姓名</span>
-<span class="token keyword">select</span> <span class="token keyword">group</span> concat<span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">,</span>gender <span class="token keyword">from</span> students <span class="token keyword">group</span> <span class="token keyword">by</span> gender<span class="token punctuation">;</span>
+-- group_concat()函数
+-- 查询同种性别中的姓名
+select group concat(name),gender from students group by gender;
 
-<span class="token comment">-- 查询平均年龄超过30岁的性别，以及姓名 having avg(age)> 30(重点)</span>
-<span class="token keyword">select</span> <span class="token keyword">group</span> concat<span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">,</span>gender <span class="token keyword">from</span> students <span class="token keyword">group</span> <span class="token keyword">by</span> gender <span class="token keyword">having</span> <span class="token function">avg</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">30</span><span class="token punctuation">;</span>
+-- 查询平均年龄超过30岁的性别，以及姓名 having avg(age)&gt; 30(重点)
+select group concat(name),gender from students group by gender having avg(age) &gt; 30;
 
-<span class="token comment">-- with rollup 汇总的作用(了解)</span>
-<span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">,</span>gender <span class="token keyword">from</span> students <span class="token keyword">group</span> <span class="token keyword">by</span> gender <span class="token keyword">with rollup</span><span class="token punctuation">;</span>
-<span class="token comment">-- with rollup的作用是:在数据表最后新增一行，来记录当前表中该字段对应的操作结果，一般是汇总结果</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+-- with rollup 汇总的作用(了解)
+select count(*),gender from students group by gender with rollup;
+-- with rollup的作用是:在数据表最后新增一行，来记录当前表中该字段对应的操作结果，一般是汇总结果
+</code></pre>
 <h3 id="limit-限制-分页查询"><a href="#limit-限制-分页查询" class="headerlink" title="limit(限制)分页查询"></a>limit(限制)分页查询</h3><h4 id="1-引入"><a href="#1-引入" class="headerlink" title="1.引入"></a>1.引入</h4><p><code>Q</code> select * from 淘宝某个数据表，会产生什么现象?<br><code>A</code> 由于数据过多很有可能直接死机了</p>
 <h4 id="2-limit限制查询"><a href="#2-limit限制查询" class="headerlink" title="2.limit限制查询"></a>2.limit限制查询</h4><p>可以使用 <strong>limit</strong> 限制取出记录的数量，但 <strong>limit</strong> 要写在 sql语句的最后</p>
 <p><strong>语法</strong></p>
@@ -988,27 +1012,32 @@
 <h4 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h4><p><strong>左外连接查询</strong>:查询数据为两个表匹配到的数据和左表的数据</p>
 <ul>
 <li>注意: 对于右表中不存在的数据使用null填充<br><img src="/2024/06/21/shu-ju-ku/%E5%B7%A6%E5%A4%96%E8%BF%9E%E6%8E%A5.png" alt="alt text"></li>
-<li>语法<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 左连接:</span>
-主表 <span class="token keyword">left</span> <span class="token keyword">join</span> 从表 <span class="token keyword">on</span> 连接条件<span class="token punctuation">;</span>
-<span class="token comment">-- 右连接:</span>
-主表 <span class="token keyword">right</span> <span class="token keyword">join</span> 从表 <span class="token keyword">on</span> 连接条件<span class="token punctuation">;</span>
-
-<span class="token comment">-- 能够使用连接的前提是，多表之间有字段上的关联</span>
-<span class="token comment">-- 左连接和右连接区别在于主表在SQL语句中的位置,因此实际左连接就可以满足常见需求</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>语法</li>
 </ul>
+<pre><code class="sql">-- 左连接:
+主表 left join 从表 on 连接条件;
+-- 右连接:
+主表 right join 从表 on 连接条件;
+
+-- 能够使用连接的前提是，多表之间有字段上的关联
+-- 左连接和右连接区别在于主表在SQL语句中的位置,因此实际左连接就可以满足常见需求
+</code></pre>
 <h4 id="自连接"><a href="#自连接" class="headerlink" title="自连接"></a>自连接</h4><p>使用自身和自身连接,第一次查询的结果被第二次查询时用到</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> city<span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">from</span> areas <span class="token keyword">as</span> city <span class="token keyword">inner</span> <span class="token keyword">join</span> areas <span class="token keyword">as</span> province <span class="token keyword">on</span> city<span class="token punctuation">.</span>pid<span class="token operator">=</span>province<span class="token punctuation">.</span>aid <span class="token keyword">where</span> province<span class="token punctuation">.</span>atitle<span class="token operator">=</span><span class="token string">"广东省"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="sql">select city.* from areas as city inner join areas as province on city.pid=province.aid where province.atitle=&quot;广东省&quot;;
+</code></pre>
 <p>使用自连接査询 只需要使用一个表 可以加开査询速度 减少数据表占用空间<br>自连接查询本质就还是连接查询</p>
 <h4 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h4><p><strong>子查询</strong>:把一个查询的结果当做另一查询的条件</p>
 <p>子查询分为三类</p>
 <ul>
 <li>标量子查询:子查询返回的结果是一个数据(一行一列)</li>
 <li>列子查询:返回的结果是一列(一列多行)</li>
-<li>行子查询:返回的结果是一行(一行多列)<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 查出高于平均身高的信息</span>
-<span class="token keyword">select</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> height <span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token function">avg</span><span class="token punctuation">(</span>height<span class="token punctuation">)</span> <span class="token keyword">from</span> students<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment">-- 查出能够对应上班级号的学生信息</span>
-<span class="token keyword">select</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> cls_id <span class="token operator">in</span><span class="token punctuation">(</span><span class="token keyword">select</span> id <span class="token keyword">from</span> classes<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>行子查询:返回的结果是一行(一行多列)</li>
 </ul>
+<pre><code class="sql">-- 查出高于平均身高的信息
+select from students where height &gt;(select avg(height) from students);
+-- 查出能够对应上班级号的学生信息
+select from students where cls_id in(select id from classes);
+</code></pre>
 <h2 id="MySql高级"><a href="#MySql高级" class="headerlink" title="MySql高级"></a>MySql高级</h2><h3 id="删除异常"><a href="#删除异常" class="headerlink" title="删除异常"></a>删除异常</h3><p><img src="/2024/06/21/shu-ju-ku/%E5%88%A0%E9%99%A4%E5%BC%82%E5%B8%B8.png" alt="alt text"></p>
 <p>由于只存在<strong>商品信息一张表</strong>，其中既有商品信息又有<strong>分类名称</strong>和<strong>品牌名称</strong>。</p>
 <p>当把某个<strong>商品信息</strong>删除后，本不应该删除的 <strong>&lt;独立于商品信息的分类和品牌&gt;</strong> 等信息结果也随着删除商品信息而删除，那么此时存在<strong>删除异常</strong>。</p>
@@ -1030,41 +1059,45 @@
 </ul>
 </li>
 </ul>
-<h4 id="2-外键的使用"><a href="#2-外键的使用" class="headerlink" title="2.外键的使用"></a>2.外键的使用</h4><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 添加外键</span>
-<span class="token keyword">alter</span> <span class="token keyword">table</span> goods <span class="token keyword">add</span> <span class="token keyword">foreign</span> <span class="token keyword">key</span><span class="token punctuation">(</span>cate_id<span class="token punctuation">)</span> <span class="token keyword">references</span> goods_cates<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<h4 id="2-外键的使用"><a href="#2-外键的使用" class="headerlink" title="2.外键的使用"></a>2.外键的使用</h4><pre><code class="sql">-- 添加外键
+alter table goods add foreign key(cate_id) references goods_cates(id);
 
-<span class="token comment">-- 如何取消外键约束</span>
-<span class="token comment">-- 需要先获取外键约束名称，该名称系统会自动生成,可以通过查看表创建语句来获取名称</span>
-<span class="token keyword">show</span> <span class="token keyword">create</span> <span class="token keyword">table</span> goods<span class="token punctuation">;</span>
-<span class="token comment">-- 获取名称之后就可以根据名称来删除外键约束</span>
-<span class="token keyword">alter</span> <span class="token keyword">table</span> goods <span class="token keyword">drop</span> <span class="token keyword">foreign</span> <span class="token keyword">key</span> goods_ibfk_1<span class="token punctuation">;</span>
-<span class="token keyword">alter</span> <span class="token keyword">table</span> goods <span class="token keyword">drop</span> <span class="token keyword">foreign</span> <span class="token keyword">key</span> goods_ibfk_2<span class="token punctuation">;</span>
-<span class="token comment">-- 注意:使用到外键约束会极大的降低表更新的效率,所以在追求读写效率优先的场景下一般很少使用外键</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+-- 如何取消外键约束
+-- 需要先获取外键约束名称，该名称系统会自动生成,可以通过查看表创建语句来获取名称
+show create table goods;
+-- 获取名称之后就可以根据名称来删除外键约束
+alter table goods drop foreign key goods_ibfk_1;
+alter table goods drop foreign key goods_ibfk_2;
+-- 注意:使用到外键约束会极大的降低表更新的效率,所以在追求读写效率优先的场景下一般很少使用外键
+</code></pre>
 <ul>
-<li>在创建数据表的时候设置外键约束<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 创建数据表的同时直接创建外键</span>
-<span class="token keyword">create</span> <span class="token keyword">table</span> goods<span class="token punctuation">(</span>
-  id <span class="token keyword">int</span> <span class="token keyword">primary</span> <span class="token keyword">key</span> <span class="token keyword">auto_increment</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
-  name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">40</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token string">' '</span><span class="token punctuation">,</span>
-  price <span class="token keyword">decimal</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-  cate_id <span class="token keyword">int</span> <span class="token keyword">unsigned</span><span class="token punctuation">,</span>
-  brand_id <span class="token keyword">int</span> <span class="token keyword">unsigned</span><span class="token punctuation">,</span>
-  is_show <span class="token keyword">bit</span> <span class="token keyword">default</span> <span class="token number">1</span><span class="token punctuation">,</span>
-  is_saleoff <span class="token keyword">bit</span> <span class="token keyword">default</span> <span class="token number">0</span><span class="token punctuation">,</span>
-
-  <span class="token keyword">foreign</span> <span class="token keyword">key</span><span class="token punctuation">(</span>cate_id<span class="token punctuation">)</span><span class="token keyword">references</span> goods_cates<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">foreign</span> <span class="token keyword">key</span><span class="token punctuation">(</span>brand_id<span class="token punctuation">)</span> <span class="token keyword">references</span> goods_brands<span class="token punctuation">(</span>id<span class="token punctuation">)</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>在创建数据表的时候设置外键约束</li>
 </ul>
+<pre><code class="sql">-- 创建数据表的同时直接创建外键
+create table goods(
+  id int primary key auto_increment not null,
+  name varchar(40) default &#39; &#39;,
+  price decimal(5,2),
+  cate_id int unsigned,
+  brand_id int unsigned,
+  is_show bit default 1,
+  is_saleoff bit default 0,
+
+  foreign key(cate_id)references goods_cates(id),foreign key(brand_id) references goods_brands(id)
+);
+</code></pre>
 <h3 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h3><h4 id="1-什么是视图"><a href="#1-什么是视图" class="headerlink" title="1.什么是视图"></a>1.什么是视图</h4><p>视图就是一个能够把复杂SQL语句的功能封装起来的一个虚表。所以我们在创建视图的时候，主要的工作就落在创建这条SQL查询语句上</p>
 <p>视图是对若干张基本表的引用，一张虚表，不存储具体的数据(基本表数据发生了改变，视图也会跟着改变)</p>
 <p>视图的好处:方便操作，特别是查询操作，减少复杂的SQL语句，增强可读性，复用性;</p>
-<h4 id="2-视图的使用"><a href="#2-视图的使用" class="headerlink" title="2.视图的使用"></a>2.视图的使用</h4><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 定义(创建)视图</span>
-<span class="token keyword">create</span> <span class="token keyword">view</span> 视图名字<span class="token punctuation">(</span>一般使用v开头<span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token keyword">select</span>语句<span class="token punctuation">;</span>
-<span class="token comment">-- 查看视图</span>
-<span class="token keyword">show</span> <span class="token keyword">tables</span><span class="token punctuation">;</span>
-<span class="token comment">-- 使用视图</span>
-<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> v_goods_info<span class="token punctuation">,</span>
-<span class="token comment">-- 删除视图</span>
-<span class="token keyword">drop</span> <span class="token keyword">view</span> 视图名称<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="2-视图的使用"><a href="#2-视图的使用" class="headerlink" title="2.视图的使用"></a>2.视图的使用</h4><pre><code class="sql">-- 定义(创建)视图
+create view 视图名字(一般使用v开头) as select语句;
+-- 查看视图
+show tables;
+-- 使用视图
+select * from v_goods_info,
+-- 删除视图
+drop view 视图名称;
+</code></pre>
 <ul>
 <li>总结</li>
 </ul>
@@ -1105,58 +1138,60 @@
 <li>回滚事务</li>
 </ul>
 <p>放弃缓存中变更的数据 表示事务执行失败 应该回到开始事务前的状态<br><code>rollback;</code></p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">begin</span><span class="token punctuation">;</span>
-<span class="token keyword">update</span> students <span class="token keyword">set</span> age<span class="token operator">=</span><span class="token number">10</span> <span class="token keyword">where</span> id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token keyword">commit</span><span class="token punctuation">;</span>
-<span class="token comment">-- 至此才完成一次事务,真正修改了数据</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="sql">begin;
+update students set age=10 where id=1;
+commit;
+-- 至此才完成一次事务,真正修改了数据
+</code></pre>
 <h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><h4 id="1-索引的作用"><a href="#1-索引的作用" class="headerlink" title="1.索引的作用"></a>1.索引的作用</h4><p><strong>思考:</strong><br>如何在一个图书馆中找到一本书?<br>图书馆管理系统，大家要找书籍先在系统上查找到书籍所在的房屋编号和货架编号，然后就可以直接大摇大摆的去取书了。</p>
 <p>我们把这种能够帮助我们快速查询数据的线索就称之为索引<br>如果数据库本身是一个字典，<strong>那么索引就是这个字典的目录</strong></p>
 <p><strong>索引的本质</strong><br>索引是一种特殊的文件(InnoDB数据表上的索引是表空间的一个组成部分)，它们包含着对数据表里所有记录的位置信息。</p>
 <h4 id="2-索引的使用"><a href="#2-索引的使用" class="headerlink" title="2.索引的使用"></a>2.索引的使用</h4><p>查看表中已有索引</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">show</span> <span class="token keyword">index</span> <span class="token keyword">from</span> 表名<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="sql">show index from 表名;
+</code></pre>
 <p>创建索引</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> 表名 <span class="token keyword">add</span> <span class="token keyword">index</span> 索引名【可选】<span class="token punctuation">(</span>字段名<span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="sql">alter table 表名 add index 索引名【可选】(字段名,... );
+</code></pre>
 <p>删除索引</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">drop</span> <span class="token keyword">index</span> 索引名称 <span class="token keyword">on</span> 表名<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 1. 创建测试表：</span>
+<pre><code class="sql">drop index 索引名称 on 表名;
+</code></pre>
+<pre><code class="sql">-- 1. 创建测试表：
 
-<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> test <span class="token punctuation">(</span>
-    id <span class="token keyword">INT</span> <span class="token keyword">AUTO_INCREMENT</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">,</span>
-    title <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span>
+CREATE TABLE test (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(10)
+);
 
-<span class="token comment">-- 2. 插入数据：</span>
+-- 2. 插入数据：
 
-使用Python脚本或其他方式向<span class="token identifier"><span class="token punctuation">`</span>test<span class="token punctuation">`</span></span>表中插入数据。这里不展示具体的Python脚本，但请确保插入足够的数据以便观察索引的效果。
+使用Python脚本或其他方式向`test`表中插入数据。这里不展示具体的Python脚本，但请确保插入足够的数据以便观察索引的效果。
 
-<span class="token comment">-- 3. 没有索引时测试查询性能：</span>
+-- 3. 没有索引时测试查询性能：
 
-在测试之前，确保MySQL的profiling功能是开启的（如果您的MySQL版本支持）。但请注意，profiling在MySQL <span class="token number">8.0</span>及更高版本中已被弃用。
+在测试之前，确保MySQL的profiling功能是开启的（如果您的MySQL版本支持）。但请注意，profiling在MySQL 8.0及更高版本中已被弃用。
 
-<span class="token comment">-- 注意：MySQL 8.0+中SET profiling = 1; 已被弃用</span>
-<span class="token comment">-- 使用 EXPLAIN 替代</span>
-<span class="token keyword">EXPLAIN</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> test <span class="token keyword">WHERE</span> title <span class="token operator">=</span> <span class="token string">'some_title'</span><span class="token punctuation">;</span>
+-- 注意：MySQL 8.0+中SET profiling = 1; 已被弃用
+-- 使用 EXPLAIN 替代
+EXPLAIN SELECT * FROM test WHERE title = &#39;some_title&#39;;
 
-<span class="token comment">-- 如果您使用的是MySQL 8.0或更高版本，直接使用`EXPLAIN`命令来分析查询的执行计划。</span>
+-- 如果您使用的是MySQL 8.0或更高版本，直接使用`EXPLAIN`命令来分析查询的执行计划。
 
-<span class="token comment">-- 4. 为`title`字段创建索引：</span>
+-- 4. 为`title`字段创建索引：
 
-<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> test <span class="token keyword">ADD</span> <span class="token keyword">INDEX</span> idx_title <span class="token punctuation">(</span>title<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ALTER TABLE test ADD INDEX idx_title (title);
 
-<span class="token comment">-- 5. 有索引时测试查询性能：</span>
+-- 5. 有索引时测试查询性能：
 
-再次使用<span class="token identifier"><span class="token punctuation">`</span>EXPLAIN<span class="token punctuation">`</span></span>命令来查看查询的执行计划，或者使用其他性能分析工具（如<span class="token identifier"><span class="token punctuation">`</span>Performance Schema<span class="token punctuation">`</span></span>）来监控性能。
+再次使用`EXPLAIN`命令来查看查询的执行计划，或者使用其他性能分析工具（如`Performance Schema`）来监控性能。
 
-<span class="token keyword">EXPLAIN</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> test <span class="token keyword">WHERE</span> title <span class="token operator">=</span> <span class="token string">'some_title'</span><span class="token punctuation">;</span>
+EXPLAIN SELECT * FROM test WHERE title = &#39;some_title&#39;;
 
-<span class="token comment">-- 请注意，即使您使用的是支持profiling的MySQL版本，也建议优先使用`EXPLAIN`命令，因为它提供了更详细的信息，并且不需要在每次查询之前都开启profiling。</span>
+-- 请注意，即使您使用的是支持profiling的MySQL版本，也建议优先使用`EXPLAIN`命令，因为它提供了更详细的信息，并且不需要在每次查询之前都开启profiling。
 
-<span class="token comment">-- 6. 比较结果：</span>
+-- 6. 比较结果：
 
-<span class="token comment">-- 比较没有索引和有索引时查询的执行计划，观察索引如何影响查询性能。在有索引的情况下，您应该能看到查询速度的提升，特别是当查询条件能够充分利用索引时。</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+-- 比较没有索引和有索引时查询的执行计划，观察索引如何影响查询性能。在有索引的情况下，您应该能看到查询速度的提升，特别是当查询条件能够充分利用索引时。
+</code></pre>
 <ul>
 <li>优点:</li>
 </ul>
@@ -1243,14 +1278,16 @@
 </ul>
 <p>自主存取控制方法</p>
 <ol>
-<li>grant revoke<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">grant</span> <span class="token operator">&lt;</span>权限<span class="token operator">></span> <span class="token keyword">on</span> <span class="token keyword">table</span> <span class="token operator">&lt;</span>表名<span class="token operator">></span> <span class="token keyword">to</span> <span class="token operator">&lt;</span>用户<span class="token operator">></span>
-<span class="token keyword">revoke</span><span class="token operator">&lt;</span>权限<span class="token operator">></span> <span class="token keyword">on</span> <span class="token keyword">table</span> <span class="token operator">&lt;</span>表名<span class="token operator">></span> <span class="token keyword">from</span> <span class="token operator">&lt;</span>用户<span class="token operator">></span>
+<li>grant revoke</li>
+</ol>
+<pre><code class="sql">grant &lt;权限&gt; on table &lt;表名&gt; to &lt;用户&gt;
+revoke&lt;权限&gt; on table &lt;表名&gt; from &lt;用户&gt;
 
 用户、角色
 
 创建用户
-<span class="token keyword">create</span> <span class="token keyword">user</span> <span class="token operator">&lt;</span>username<span class="token operator">></span> <span class="token keyword">with</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-</ol>
+create user &lt;username&gt; with
+</code></pre>
 <h2 id="安全性控制"><a href="#安全性控制" class="headerlink" title="安全性控制"></a>安全性控制</h2><ul>
 <li>数据库安全性控制<ul>
 <li>用户身份鉴别<ul>
@@ -1261,48 +1298,57 @@
 </ul>
 </li>
 <li>存取控制</li>
-<li>自主存取控制方法(重点讲解)；字面意思就是我们用户可以自定义和分配其他用户的操作权限<pre class="line-numbers language-text" data-language="text"><code class="language-text">主要通过grant  revoke来进行控制
-由两个元素构成:  数据库对象 和 操作权限
-我们定义用户的存取权限 成为授权
-
-主要存取权限<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>自主存取控制方法(重点讲解)；字面意思就是我们用户可以自定义和分配其他用户的操作权限</li>
 </ul>
 </li>
 </ul>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">Reference权限代表是否允许创建外键
+<pre><code class="text">主要通过grant  revoke来进行控制
+由两个元素构成:  数据库对象 和 操作权限
+我们定义用户的存取权限 成为授权
+
+主要存取权限
+</code></pre>
+<pre><code class="text">Reference权限代表是否允许创建外键
 
 4、授权 Grant
 Grant单词翻译:
 vt.承认;同意;准许;授予
 n.拨款;补助金;授给物(如财产、授地、专有权、补助、拨款等)
 
-Grant &lt;权限> on 表名[(列名)] to 用户 With grant option
+Grant &lt;权限&gt; on 表名[(列名)] to 用户 With grant option
 授权命令是由数据库管理员使用的，若给用户分配权限时带 Withgrant option 子句，则普通用户获权后,可把自己的权限授予其他用户。
 
 grant all privilege on 视图或者表 to usr1;
 
 5回收权限 revoke 
-REVOKE &lt;权限> 0N &lt;数据对象> FR0M &lt;数据库用户名> cascade(级联)
+REVOKE &lt;权限&gt; 0N &lt;数据对象&gt; FR0M &lt;数据库用户名&gt; cascade(级联)
 
 revoke翻译:
-vt.撤销，取消;废除<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+vt.撤销，取消;废除
+</code></pre>
 <p><img src="/2024/06/21/shu-ju-ku/%E8%B5%8B%E4%BA%88%E6%9F%A5%E8%AF%A2%E6%9D%83%E9%99%90.png" alt="alt text"></p>
 <h2 id="数据库角色"><a href="#数据库角色" class="headerlink" title="数据库角色"></a>数据库角色</h2><p>数据库角色（Role）是数据库管理系统（DBMS）中用于管理权限的一种机制。通过角色，数据库管理员（DBA）可以为一组用户分配相同的权限，而无需单独为每个用户设置权限。这大大简化了权限管理过程，提高了安全性和可管理性。</p>
 <h3 id="角色的基本概念"><a href="#角色的基本概念" class="headerlink" title="角色的基本概念"></a>角色的基本概念</h3><ul>
 <li><strong>角色</strong>：代表了一类用户，如CEO、总监、普通职员等。通过角色，可以为这些用户组分配相同的权限。</li>
 </ul>
 <h3 id="角色的操作"><a href="#角色的操作" class="headerlink" title="角色的操作"></a>角色的操作</h3><h4 id="1-角色的创建"><a href="#1-角色的创建" class="headerlink" title="1. 角色的创建"></a>1. 角色的创建</h4><p>使用<code>CREATE ROLE</code>语句创建角色。例如：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> ROLE CEO<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="sql">CREATE ROLE CEO;
+</code></pre>
 <h4 id="2-角色授权"><a href="#2-角色授权" class="headerlink" title="2. 角色授权"></a>2. 角色授权</h4><p>使用<code>GRANT</code>语句为角色分配权限。例如，为<code>CEO</code>角色授予<code>Student</code>表上的<code>SELECT</code>权限：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">GRANT</span> <span class="token keyword">SELECT</span> <span class="token keyword">ON</span> Student <span class="token keyword">TO</span> CEO<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="sql">GRANT SELECT ON Student TO CEO;
+</code></pre>
 <p>如果要为多个角色分配权限，可以在<code>TO</code>子句后列出这些角色，用逗号分隔：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">GRANT</span> <span class="token keyword">SELECT</span> <span class="token keyword">ON</span> Student <span class="token keyword">TO</span> CEO<span class="token punctuation">,</span> Director<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="sql">GRANT SELECT ON Student TO CEO, Director;
+</code></pre>
 <h4 id="3-把角色授权给其他用户或角色"><a href="#3-把角色授权给其他用户或角色" class="headerlink" title="3. 把角色授权给其他用户或角色"></a>3. 把角色授权给其他用户或角色</h4><p>使用<code>GRANT</code>语句将角色授权给其他用户或角色。如果加上<code>WITH ADMIN OPTION</code>，则意味着被授权的用户或角色还可以将这个角色及其权限进一步授予其他用户或角色。例如：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">GRANT</span> CEO <span class="token keyword">TO</span> User1 <span class="token keyword">WITH</span> ADMIN <span class="token keyword">OPTION</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="sql">GRANT CEO TO User1 WITH ADMIN OPTION;
+</code></pre>
 <h4 id="4-角色权限的收回"><a href="#4-角色权限的收回" class="headerlink" title="4. 角色权限的收回"></a>4. 角色权限的收回</h4><p>使用<code>REVOKE</code>语句收回角色的权限。例如，从<code>CEO</code>角色中收回<code>Student</code>表上的<code>SELECT</code>权限：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">REVOKE</span> <span class="token keyword">SELECT</span> <span class="token keyword">ON</span> Student <span class="token keyword">FROM</span> CEO<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="sql">REVOKE SELECT ON Student FROM CEO;
+</code></pre>
 <p>如果要从用户或角色中收回角色本身，也需要使用<code>REVOKE</code>语句：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">REVOKE</span> CEO <span class="token keyword">FROM</span> User1<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="sql">REVOKE CEO FROM User1;
+</code></pre>
 <h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
 <li>在使用角色时，要确保遵循数据库的安全策略和最佳实践。</li>
 <li>不要为不必要的角色分配过多的权限，以减少潜在的安全风险。</li>
@@ -1321,73 +1367,73 @@ vt.撤销，取消;废除<span aria-hidden="true" class="line-numbers-rows"><spa
 </ol>
 <h3 id="1-3-python代码"><a href="#1-3-python代码" class="headerlink" title="1.3 python代码"></a>1.3 python代码</h3><p>在使用 <code>pymysql</code> 这个 Python 库与 MySQL 数据库进行交互时，通常需要遵循以下步骤。以下是详细的步骤说明：</p>
 <h4 id="①-导入-pymysql-模块"><a href="#①-导入-pymysql-模块" class="headerlink" title="① 导入 pymysql 模块"></a>① 导入 pymysql 模块</h4><p>在使用 <code>pymysql</code> 之前，首先需要导入该模块。</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pymysql<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="python">import pymysql
+</code></pre>
 <h4 id="②-创建连接对象"><a href="#②-创建连接对象" class="headerlink" title="② 创建连接对象"></a>② 创建连接对象</h4><p>调用 <code>pymysql</code> 模块中的 <code>connect()</code> 函数来创建连接对象。你需要提供一系列参数来配置你的连接。</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">conn <span class="token operator">=</span> pymysql<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>
-    host<span class="token operator">=</span><span class="token string">'localhost'</span><span class="token punctuation">,</span>       <span class="token comment"># 连接的mysql主机，如果本机是'localhost'</span>
-    port<span class="token operator">=</span><span class="token number">3306</span><span class="token punctuation">,</span>              <span class="token comment"># 连接的mysql主机的端口，默认是3306</span>
-    user<span class="token operator">=</span><span class="token string">'yourusername'</span><span class="token punctuation">,</span>    <span class="token comment"># 连接的用户名</span>
-    password<span class="token operator">=</span><span class="token string">'yourpassword'</span><span class="token punctuation">,</span><span class="token comment"># 连接的密码</span>
-    database<span class="token operator">=</span><span class="token string">'yourdb'</span><span class="token punctuation">,</span>      <span class="token comment"># 数据库的名称</span>
-    charset<span class="token operator">=</span><span class="token string">'utf8'</span>          <span class="token comment"># 通信采用的编码方式，推荐使用utf8</span>
-<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="python">conn = pymysql.connect(
+    host=&#39;localhost&#39;,       # 连接的mysql主机，如果本机是&#39;localhost&#39;
+    port=3306,              # 连接的mysql主机的端口，默认是3306
+    user=&#39;yourusername&#39;,    # 连接的用户名
+    password=&#39;yourpassword&#39;,# 连接的密码
+    database=&#39;yourdb&#39;,      # 数据库的名称
+    charset=&#39;utf8&#39;          # 通信采用的编码方式，推荐使用utf8
+)
+</code></pre>
 <h4 id="③-获取游标对象"><a href="#③-获取游标对象" class="headerlink" title="③ 获取游标对象"></a>③ 获取游标对象</h4><p>获取游标对象的目标是要执行 SQL 语句，完成对数据库的增、删、改、查操作。</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">cur <span class="token operator">=</span> conn<span class="token punctuation">.</span>cursor<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="python">cur = conn.cursor()
+</code></pre>
 <h4 id="④-使用游标执行-SQL-语句"><a href="#④-使用游标执行-SQL-语句" class="headerlink" title="④ 使用游标执行 SQL 语句"></a>④ 使用游标执行 SQL 语句</h4><p>使用游标对象的 <code>execute()</code> 方法来执行 SQL 语句。返回受影响的行数，主要用于执行insert、update、delete、select等语句</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 插入数据</span>
-sql <span class="token operator">=</span> <span class="token string">"INSERT INTO your_table (column1, column2) VALUES (%s, %s)"</span>
-cur<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token string">'value1'</span><span class="token punctuation">,</span> <span class="token string">'value2'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<pre><code class="python"># 插入数据
+sql = &quot;INSERT INTO your_table (column1, column2) VALUES (%s, %s)&quot;
+cur.execute(sql, (&#39;value1&#39;, &#39;value2&#39;))
 
-<span class="token comment"># 更新数据</span>
-sql <span class="token operator">=</span> <span class="token string">"UPDATE your_table SET column1=%s WHERE column2=%s"</span>
-cur<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token string">'new_value1'</span><span class="token punctuation">,</span> <span class="token string">'some_condition'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+# 更新数据
+sql = &quot;UPDATE your_table SET column1=%s WHERE column2=%s&quot;
+cur.execute(sql, (&#39;new_value1&#39;, &#39;some_condition&#39;))
 
-<span class="token comment"># 删除数据</span>
-sql <span class="token operator">=</span> <span class="token string">"DELETE FROM your_table WHERE column2=%s"</span>
-cur<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token string">'some_condition'</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+# 删除数据
+sql = &quot;DELETE FROM your_table WHERE column2=%s&quot;
+cur.execute(sql, (&#39;some_condition&#39;,))
 
-<span class="token comment"># 查询数据</span>
-sql <span class="token operator">=</span> <span class="token string">"SELECT * FROM your_table WHERE column2=%s"</span>
-cur<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token string">'some_condition'</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+# 查询数据
+sql = &quot;SELECT * FROM your_table WHERE column2=%s&quot;
+cur.execute(sql, (&#39;some_condition&#39;,))
+</code></pre>
 <h4 id="⑤-获取查询结果"><a href="#⑤-获取查询结果" class="headerlink" title="⑤ 获取查询结果"></a>⑤ 获取查询结果</h4><p>对于查询语句，可以使用游标对象的 <code>fetchone()</code> 或 <code>fetchall()</code> 方法来获取结果。</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 获取查询结果集中的一条数据</span>
-row <span class="token operator">=</span> cur<span class="token punctuation">.</span>fetchone<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>row<span class="token punctuation">)</span>  <span class="token comment"># 输出如: (1, '张三')</span>
+<pre><code class="python"># 获取查询结果集中的一条数据
+row = cur.fetchone()
+print(row)  # 输出如: (1, &#39;张三&#39;)
 
-<span class="token comment"># 获取查询结果集中的所有数据</span>
-rows <span class="token operator">=</span> cur<span class="token punctuation">.</span>fetchall<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>rows<span class="token punctuation">)</span>  <span class="token comment"># 输出如: [(1, '张三'), (2, '李四')]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+# 获取查询结果集中的所有数据
+rows = cur.fetchall()
+print(rows)  # 输出如: [(1, &#39;张三&#39;), (2, &#39;李四&#39;)]
+</code></pre>
 <p>注意：在调用 <code>fetchone()</code> 或 <code>fetchall()</code> 后，游标的位置会移动到下一条数据或末尾。如果你需要再次遍历结果集，通常需要重置游标位置或使用新的游标对象。</p>
 <h4 id="⑥-提交或回滚事务"><a href="#⑥-提交或回滚事务" class="headerlink" title="⑥ 提交或回滚事务"></a>⑥ 提交或回滚事务</h4><p>如果执行了修改数据（如 INSERT、UPDATE、DELETE）的 SQL 语句，并且你希望这些更改被保存到数据库中，那么你需要调用连接对象的 <code>commit()</code> 方法。如果希望在出错时撤销这些更改，可以调用 <code>rollback()</code> 方法。</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 提交事务</span>
-conn<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre><code class="python"># 提交事务
+conn.commit()
 
-<span class="token comment"># 或者回滚事务</span>
-conn<span class="token punctuation">.</span>rollback<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+# 或者回滚事务
+conn.rollback()
+</code></pre>
 <h4 id="⑦-关闭游标和连接"><a href="#⑦-关闭游标和连接" class="headerlink" title="⑦ 关闭游标和连接"></a>⑦ 关闭游标和连接</h4><p>在完成数据库操作后，需要关闭游标和连接以释放资源。</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 关闭游标</span>
-cur<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre><code class="python"># 关闭游标
+cur.close()
 
-<span class="token comment"># 关闭连接</span>
-conn<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+# 关闭连接
+conn.close()
+</code></pre>
 <p>注意：在实际应用中，应该使用 <code>try...except...finally</code> 语句块来确保即使在发生异常时也能正确地关闭游标和连接。</p>
 <h1 id="SQL语句参数化"><a href="#SQL语句参数化" class="headerlink" title="SQL语句参数化"></a>SQL语句参数化</h1><h2 id="1-SQL注入"><a href="#1-SQL注入" class="headerlink" title="1.SQL注入"></a>1.SQL注入</h2><p>什么是SQL注入?<br>用户提交带有恶意的数据与SQL语句进行字符串方式的拼接，从而影响了SQL语句的语义，最终产生数据泄露的现象。</p>
 <p>SQL注入是一种网络安全漏洞，攻击者可以通过在输入字段中插入恶意的SQL代码来访问或修改数据库中的数据。以下是一个简单的SQL注入案例，用于说明其工作原理和潜在危害。</p>
 <h3 id="案例背景"><a href="#案例背景" class="headerlink" title="案例背景"></a>案例背景</h3><p>假设我们有一个简单的用户登录页面，用户需要输入用户名和密码来登录系统。登录页面的后台代码可能使用类似以下的SQL查询来验证用户输入：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> users <span class="token keyword">WHERE</span> username<span class="token operator">=</span><span class="token string">'$username'</span> <span class="token operator">AND</span> password<span class="token operator">=</span><span class="token string">'$password'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="sql">SELECT * FROM users WHERE username=&#39;$username&#39; AND password=&#39;$password&#39;;
+</code></pre>
 <p>这里的<code>$username</code>和<code>$password</code>是用户输入的用户名和密码，它们被直接嵌入到SQL查询中。</p>
 <h3 id="SQL注入攻击"><a href="#SQL注入攻击" class="headerlink" title="SQL注入攻击"></a>SQL注入攻击</h3><ol>
 <li><p><strong>攻击者输入</strong>：<br>攻击者尝试在用户名或密码字段中输入特殊字符来修改原始的SQL查询。例如，攻击者可能在用户名字段中输入<code>&#39; OR &#39;1&#39;=&#39;1</code>（注意这里的单引号用于闭合原始查询中的<code>$username</code>变量），这样原始的SQL查询就会变为：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> users <span class="token keyword">WHERE</span> username<span class="token operator">=</span><span class="token string">''</span> <span class="token operator">OR</span> <span class="token string">'1'</span><span class="token operator">=</span><span class="token string">'1'</span> <span class="token operator">AND</span> password<span class="token operator">=</span><span class="token string">'$password'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="sql">SELECT * FROM users WHERE username=&#39;&#39; OR &#39;1&#39;=&#39;1&#39; AND password=&#39;$password&#39;;
+</code></pre>
 <p>由于<code>&#39;1&#39;=&#39;1&#39;</code>始终为真，因此这个查询会返回数据库中的所有用户记录，而不管密码是什么。</p>
 </li>
 <li><p><strong>结果</strong>：<br>因为SQL查询被篡改，攻击者能够绕过登录验证，并可能访问到系统内的敏感信息或执行其他恶意操作。</p>
@@ -1945,7 +1991,7 @@ conn<span class="token punctuation">.</span>close<span class="token punctuation"
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">432.3k</span>&nbsp;字
+                class="white-color">448.8k</span>&nbsp;字
             
             
             

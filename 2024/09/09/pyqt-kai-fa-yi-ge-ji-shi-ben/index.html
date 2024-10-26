@@ -487,14 +487,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.6k
+                    2.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    12 分
+                    14 分
                 </div>
                 
 
@@ -526,144 +526,144 @@
 <li><strong>语言模式</strong>：支持多种语言模式，如 Python、Java、HTML 等，以便于代码高亮。</li>
 </ol>
 <h4 id="二、环境搭建"><a href="#二、环境搭建" class="headerlink" title="二、环境搭建"></a>二、环境搭建</h4><p>在开始编码之前，确保你的 Python 环境中已安装 PyQt5。如果未安装，可以通过以下命令进行安装：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> PyQt5<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">pip install PyQt5
+</code></pre>
 <h4 id="三、核心组件实现"><a href="#三、核心组件实现" class="headerlink" title="三、核心组件实现"></a>三、核心组件实现</h4><h5 id="1-主窗口-Notebook"><a href="#1-主窗口-Notebook" class="headerlink" title="1. 主窗口 Notebook"></a>1. 主窗口 <code>Notebook</code></h5><p>主窗口类 <code>Notebook</code> 负责初始化整个应用的 UI 组件，包括菜单栏、工具栏、编辑区和状态栏。</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Notebook</span><span class="token punctuation">(</span>QMainWindow<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>initUI<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre><code class="python">class Notebook(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.initUI()
 
-    <span class="token keyword">def</span> <span class="token function">initUI</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>setWindowTitle<span class="token punctuation">(</span><span class="token string">"简易记事本"</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>resize<span class="token punctuation">(</span><span class="token number">800</span><span class="token punctuation">,</span> <span class="token number">600</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>languageModeList <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-            <span class="token string">"xb"</span><span class="token punctuation">:</span> <span class="token string">"qt记事本"</span><span class="token punctuation">,</span>
-            <span class="token string">"txt"</span><span class="token punctuation">:</span> <span class="token string">"txt"</span><span class="token punctuation">,</span>
-            <span class="token string">"py"</span><span class="token punctuation">:</span> <span class="token string">"python"</span><span class="token punctuation">,</span>
-            <span class="token string">"java"</span><span class="token punctuation">:</span> <span class="token string">"Java"</span><span class="token punctuation">,</span>
-            <span class="token string">"js"</span><span class="token punctuation">:</span> <span class="token string">"Javascript"</span><span class="token punctuation">,</span>
-            <span class="token string">"html"</span><span class="token punctuation">:</span> <span class="token string">"HTML"</span><span class="token punctuation">,</span>
-            <span class="token string">"css"</span><span class="token punctuation">:</span> <span class="token string">"CSS"</span><span class="token punctuation">,</span>
-            <span class="token string">"cpp"</span><span class="token punctuation">:</span> <span class="token string">"C++"</span><span class="token punctuation">,</span>
-            <span class="token string">"c"</span><span class="token punctuation">:</span> <span class="token string">"C"</span><span class="token punctuation">,</span>
-            <span class="token string">"hpp"</span><span class="token punctuation">:</span> <span class="token string">"C++"</span><span class="token punctuation">,</span>
-            <span class="token string">"h"</span><span class="token punctuation">:</span> <span class="token string">"C++"</span><span class="token punctuation">,</span>
-        <span class="token punctuation">&#125;</span>
-        self<span class="token punctuation">.</span>languageMode <span class="token operator">=</span> <span class="token string">"qt记事本"</span>
-        self<span class="token punctuation">.</span>currentFilePath <span class="token operator">=</span> <span class="token string">"未命名1.xb"</span>
-        self<span class="token punctuation">.</span>hasSaved <span class="token operator">=</span> <span class="token boolean">False</span>
-        self<span class="token punctuation">.</span>languageLabel <span class="token operator">=</span> QLabel<span class="token punctuation">(</span>text<span class="token operator">=</span><span class="token string-interpolation"><span class="token string">f"当前语言: </span><span class="token interpolation"><span class="token punctuation">&#123;</span>self<span class="token punctuation">.</span>languageMode<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">,</span> parent<span class="token operator">=</span>self<span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>addController<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>addShortCut<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+    def initUI(self):
+        self.setWindowTitle(&quot;简易记事本&quot;)
+        self.resize(800, 600)
+        self.languageModeList = &#123;
+            &quot;xb&quot;: &quot;qt记事本&quot;,
+            &quot;txt&quot;: &quot;txt&quot;,
+            &quot;py&quot;: &quot;python&quot;,
+            &quot;java&quot;: &quot;Java&quot;,
+            &quot;js&quot;: &quot;Javascript&quot;,
+            &quot;html&quot;: &quot;HTML&quot;,
+            &quot;css&quot;: &quot;CSS&quot;,
+            &quot;cpp&quot;: &quot;C++&quot;,
+            &quot;c&quot;: &quot;C&quot;,
+            &quot;hpp&quot;: &quot;C++&quot;,
+            &quot;h&quot;: &quot;C++&quot;,
+        &#125;
+        self.languageMode = &quot;qt记事本&quot;
+        self.currentFilePath = &quot;未命名1.xb&quot;
+        self.hasSaved = False
+        self.languageLabel = QLabel(text=f&quot;当前语言: &#123;self.languageMode&#125;&quot;, parent=self)
+        self.addController()
+        self.addShortCut()
+</code></pre>
 <h5 id="2-编辑区-CustomTextEdit"><a href="#2-编辑区-CustomTextEdit" class="headerlink" title="2. 编辑区 CustomTextEdit"></a>2. 编辑区 <code>CustomTextEdit</code></h5><p>编辑区是记事本应用的核心，我们通过继承 <code>QTextEdit</code> 来创建 <code>CustomTextEdit</code> 类，增加了字体大小调整的功能。</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">CustomTextEdit</span><span class="token punctuation">(</span>QTextEdit<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>font_size <span class="token operator">=</span> <span class="token number">14</span>
-        self<span class="token punctuation">.</span>max_font_size <span class="token operator">=</span> <span class="token number">30</span>
-        self<span class="token punctuation">.</span>min_font_size <span class="token operator">=</span> <span class="token number">8</span>
-        self<span class="token punctuation">.</span>canCtrl <span class="token operator">=</span> <span class="token boolean">True</span>
-        self<span class="token punctuation">.</span>setFontPointSize<span class="token punctuation">(</span>self<span class="token punctuation">.</span>font_size<span class="token punctuation">)</span>
+<pre><code class="python">class CustomTextEdit(QTextEdit):
+    def __init__(self):
+        super().__init__()
+        self.font_size = 14
+        self.max_font_size = 30
+        self.min_font_size = 8
+        self.canCtrl = True
+        self.setFontPointSize(self.font_size)
 
-    <span class="token keyword">def</span> <span class="token function">wheelEvent</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> event<span class="token punctuation">:</span> QWheelEvent<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        modifiers <span class="token operator">=</span> event<span class="token punctuation">.</span>modifiers<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">if</span> modifiers <span class="token operator">==</span> Qt<span class="token punctuation">.</span>ControlModifier <span class="token keyword">and</span> self<span class="token punctuation">.</span>canCtrl<span class="token punctuation">:</span>
-            delta <span class="token operator">=</span> event<span class="token punctuation">.</span>angleDelta<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>y<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            new_size <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>min_font_size<span class="token punctuation">,</span> <span class="token builtin">min</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>max_font_size<span class="token punctuation">,</span> self<span class="token punctuation">.</span>currentFont<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>pointSize<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> delta <span class="token operator">//</span> <span class="token number">120</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-            <span class="token builtin">str</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>toPlainText<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            self<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            self<span class="token punctuation">.</span>setFontPointSize<span class="token punctuation">(</span>new_size<span class="token punctuation">)</span>
-            self<span class="token punctuation">.</span>setPlainText<span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">)</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>wheelEvent<span class="token punctuation">(</span>event<span class="token punctuation">)</span>
+    def wheelEvent(self, event: QWheelEvent):
+        modifiers = event.modifiers()
+        if modifiers == Qt.ControlModifier and self.canCtrl:
+            delta = event.angleDelta().y()
+            new_size = max(self.min_font_size, min(self.max_font_size, self.currentFont().pointSize() + delta // 120))
+            str = self.toPlainText()
+            self.clear()
+            self.setFontPointSize(new_size)
+            self.setPlainText(str)
+        else:
+            super().wheelEvent(event)
 
-    <span class="token keyword">def</span> <span class="token function">setFontPointSize</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> size<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        font <span class="token operator">=</span> self<span class="token punctuation">.</span>currentFont<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        font<span class="token punctuation">.</span>setPointSize<span class="token punctuation">(</span>size<span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>setCurrentFont<span class="token punctuation">(</span>font<span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+    def setFontPointSize(self, size):
+        font = self.currentFont()
+        font.setPointSize(size)
+        self.setCurrentFont(font)
+        self.update()
+</code></pre>
 <h5 id="3-菜单和工具栏"><a href="#3-菜单和工具栏" class="headerlink" title="3. 菜单和工具栏"></a>3. 菜单和工具栏</h5><p>菜单和工具栏为用户提供了便捷的文件操作入口。我们创建了一个工具栏和一个文件菜单，用于文件操作。</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">addController</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    toolBar <span class="token operator">=</span> QToolBar<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
-    self<span class="token punctuation">.</span>file_menu <span class="token operator">=</span> QMenu<span class="token punctuation">(</span><span class="token string">"文件(F)"</span><span class="token punctuation">,</span> self<span class="token punctuation">)</span>
-    newfileAction <span class="token operator">=</span> QAction<span class="token punctuation">(</span><span class="token string">"新建(N)"</span><span class="token punctuation">,</span> self<span class="token punctuation">)</span>
-    openfileAction <span class="token operator">=</span> QAction<span class="token punctuation">(</span><span class="token string">"打开(O)"</span><span class="token punctuation">,</span> self<span class="token punctuation">)</span>
-    savefileAction <span class="token operator">=</span> QAction<span class="token punctuation">(</span><span class="token string">"保存(S)"</span><span class="token punctuation">,</span> self<span class="token punctuation">)</span>
-    saveAsfileAction <span class="token operator">=</span> QAction<span class="token punctuation">(</span><span class="token string">"另存为(A)"</span><span class="token punctuation">,</span> self<span class="token punctuation">)</span>
-    exitAction <span class="token operator">=</span> QAction<span class="token punctuation">(</span><span class="token string">"退出(X)"</span><span class="token punctuation">,</span> self<span class="token punctuation">)</span>
-    self<span class="token punctuation">.</span>file_menu<span class="token punctuation">.</span>addActions<span class="token punctuation">(</span><span class="token punctuation">[</span>newfileAction<span class="token punctuation">,</span> openfileAction<span class="token punctuation">,</span> savefileAction<span class="token punctuation">,</span> saveAsfileAction<span class="token punctuation">]</span><span class="token punctuation">)</span>
-    self<span class="token punctuation">.</span>file_menu<span class="token punctuation">.</span>addSeparator<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    self<span class="token punctuation">.</span>file_menu<span class="token punctuation">.</span>addAction<span class="token punctuation">(</span>exitAction<span class="token punctuation">)</span>
-    file_menu_button <span class="token operator">=</span> QPushButton<span class="token punctuation">(</span><span class="token string">"文件(F)"</span><span class="token punctuation">,</span> self<span class="token punctuation">)</span>
-    file_menu_button<span class="token punctuation">.</span>setMenu<span class="token punctuation">(</span>self<span class="token punctuation">.</span>file_menu<span class="token punctuation">)</span>
-    toolBar<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>file_menu_button<span class="token punctuation">)</span>
-    self<span class="token punctuation">.</span>addToolBar<span class="token punctuation">(</span>toolBar<span class="token punctuation">)</span>
-    self<span class="token punctuation">.</span>w <span class="token operator">=</span> CustomTextEdit<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    self<span class="token punctuation">.</span>w<span class="token punctuation">.</span>setPlaceholderText<span class="token punctuation">(</span><span class="token string">"请输入内容..."</span><span class="token punctuation">)</span>
-    self<span class="token punctuation">.</span>w<span class="token punctuation">.</span>document<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>contentsChanged<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>self<span class="token punctuation">.</span>checkModified<span class="token punctuation">)</span>
-    self<span class="token punctuation">.</span>setCentralWidget<span class="token punctuation">(</span>self<span class="token punctuation">.</span>w<span class="token punctuation">)</span>
-    self<span class="token punctuation">.</span>createStatusBar<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    self<span class="token punctuation">.</span>connectActions<span class="token punctuation">(</span>newfileAction<span class="token punctuation">,</span> openfileAction<span class="token punctuation">,</span> savefileAction<span class="token punctuation">,</span> saveAsfileAction<span class="token punctuation">,</span> exitAction<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="python">    def addController(self):
+        toolBar = QToolBar(self)
+        self.file_menu = QMenu(&quot;文件(F)&quot;, self)
+        newfileAction = QAction(&quot;新建(N)&quot;, self)
+        openfileAction = QAction(&quot;打开(O)&quot;, self)
+        savefileAction = QAction(&quot;保存(S)&quot;, self)
+        saveAsfileAction = QAction(&quot;另存为(A)&quot;, self)
+        exitAction = QAction(&quot;退出(X)&quot;, self)
+        self.file_menu.addActions([newfileAction, openfileAction, savefileAction, saveAsfileAction])
+        self.file_menu.addSeparator()
+        self.file_menu.addAction(exitAction)
+        file_menu_button = QPushButton(&quot;文件(F)&quot;, self)
+        file_menu_button.setMenu(self.file_menu)
+        toolBar.addWidget(file_menu_button)
+        self.addToolBar(toolBar)
+        self.w = CustomTextEdit()
+        self.w.setPlaceholderText(&quot;请输入内容...&quot;)
+        self.w.document().contentsChanged.connect(self.checkModified)
+        self.setCentralWidget(self.w)
+        self.createStatusBar()
+        self.connectActions(newfileAction, openfileAction, savefileAction, saveAsfileAction, exitAction)
+</code></pre>
 <h5 id="4-状态栏"><a href="#4-状态栏" class="headerlink" title="4. 状态栏"></a>4. 状态栏</h5><p>状态栏显示当前文件的路径和状态，如是否已保存。</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">createStatusBar</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    statusBar <span class="token operator">=</span> QStatusBar<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
-    statusBar<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>QPushButton<span class="token punctuation">(</span>text<span class="token operator">=</span><span class="token string">"状态栏"</span><span class="token punctuation">,</span> parent<span class="token operator">=</span>statusBar<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    statusBar<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>self<span class="token punctuation">.</span>languageLabel<span class="token punctuation">)</span>
-    self<span class="token punctuation">.</span>file_name_label <span class="token operator">=</span> QLabel<span class="token punctuation">(</span>text<span class="token operator">=</span>self<span class="token punctuation">.</span>currentFilePath <span class="token keyword">if</span> self<span class="token punctuation">.</span>hasSaved <span class="token keyword">else</span> self<span class="token punctuation">.</span>currentFilePath <span class="token operator">+</span> <span class="token string">" *"</span><span class="token punctuation">,</span> parent<span class="token operator">=</span>statusBar<span class="token punctuation">)</span>
-    statusBar<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>self<span class="token punctuation">.</span>file_name_label<span class="token punctuation">)</span>
-    statusBar<span class="token punctuation">.</span>setStyleSheet<span class="token punctuation">(</span><span class="token string">"QPushButton,QLabel&#123;border: none;background-color: rgb(0,0,0);color: white;font-size: 14px;font-weight: bold;padding: 5px;&#125; QStatusBar&#123;border: 1px solid #C0C0C0;background-color: rgb(0,0,0)&#125;"</span><span class="token punctuation">)</span>
-    self<span class="token punctuation">.</span>setStatusBar<span class="token punctuation">(</span>statusBar<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="python">    def createStatusBar(self):
+        statusBar = QStatusBar(self)
+        statusBar.addWidget(QPushButton(text=&quot;状态栏&quot;, parent=statusBar))
+        statusBar.addWidget(self.languageLabel)
+        self.file_name_label = QLabel(text=self.currentFilePath if self.hasSaved else self.currentFilePath + &quot; *&quot;, parent=statusBar)
+        statusBar.addWidget(self.file_name_label)
+        statusBar.setStyleSheet(&quot;QPushButton,QLabel&#123;border: none;background-color: rgb(0,0,0);color: white;font-size: 14px;font-weight: bold;padding: 5px;&#125; QStatusBar&#123;border: 1px solid #C0C0C0;background-color: rgb(0,0,0)&#125;&quot;)
+        self.setStatusBar(statusBar)
+</code></pre>
 <h5 id="5-文件操作"><a href="#5-文件操作" class="headerlink" title="5. 文件操作"></a>5. 文件操作</h5><p>文件操作是记事本应用的基础功能，包括新建文件、打开文件、保存文件和另存为。</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">saveFile</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">try</span><span class="token punctuation">:</span>
-        <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>currentFilePath<span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token builtin">file</span><span class="token punctuation">:</span>
-            <span class="token keyword">if</span> self<span class="token punctuation">.</span>languageMode <span class="token operator">==</span> <span class="token string">"qt记事本"</span><span class="token punctuation">:</span>
-                <span class="token builtin">file</span><span class="token punctuation">.</span>write<span class="token punctuation">(</span>self<span class="token punctuation">.</span>w<span class="token punctuation">.</span>toHtml<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-            <span class="token keyword">else</span><span class="token punctuation">:</span>
-                <span class="token builtin">file</span><span class="token punctuation">.</span>write<span class="token punctuation">(</span>self<span class="token punctuation">.</span>w<span class="token punctuation">.</span>toPlainText<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>hasSaved <span class="token operator">=</span> <span class="token boolean">True</span>
-        self<span class="token punctuation">.</span>file_name_label<span class="token punctuation">.</span>setText<span class="token punctuation">(</span>self<span class="token punctuation">.</span>currentFilePath<span class="token punctuation">)</span>
-        QMessageBox<span class="token punctuation">.</span>information<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"提示"</span><span class="token punctuation">,</span> <span class="token string">"文件已保存"</span><span class="token punctuation">)</span>
-    <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
-        QMessageBox<span class="token punctuation">.</span>critical<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"错误"</span><span class="token punctuation">,</span> <span class="token string-interpolation"><span class="token string">f"无法保存文件: </span><span class="token interpolation"><span class="token punctuation">&#123;</span>e<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<pre><code class="python">    def saveFile(self):
+        try:
+            with open(self.currentFilePath, &quot;w&quot;, encoding=&quot;utf-8&quot;) as file:
+                if self.languageMode == &quot;qt记事本&quot;:
+                    file.write(self.w.toHtml())
+                else:
+                    file.write(self.w.toPlainText())
+            self.hasSaved = True
+            self.file_name_label.setText(self.currentFilePath)
+            QMessageBox.information(self, &quot;提示&quot;, &quot;文件已保存&quot;)
+        except Exception as e:
+            QMessageBox.critical(self, &quot;错误&quot;, f&quot;无法保存文件: &#123;e&#125;&quot;)
 
-<span class="token keyword">def</span> <span class="token function">saveAsFile</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    options <span class="token operator">=</span> QFileDialog<span class="token punctuation">.</span>Options<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    file_name<span class="token punctuation">,</span> _ <span class="token operator">=</span> QFileDialog<span class="token punctuation">.</span>getSaveFileName<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"保存文件"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token string">"qt记事本文件(*.xb);;所有文件 (*)"</span><span class="token punctuation">,</span> options<span class="token operator">=</span>options<span class="token punctuation">)</span>
-    <span class="token keyword">if</span> file_name<span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>currentFilePath <span class="token operator">=</span> file_name
-        self<span class="token punctuation">.</span>saveFile<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    def saveAsFile(self):
+        options = QFileDialog.Options()
+        file_name, _ = QFileDialog.getSaveFileName(self, &quot;保存文件&quot;, &quot;&quot;, &quot;qt记事本文件(*.xb);;所有文件 (*)&quot;, options=options)
+        if file_name:
+            self.currentFilePath = file_name
+            self.saveFile()
 
-<span class="token keyword">def</span> <span class="token function">newFile</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    self<span class="token punctuation">.</span>w<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    self<span class="token punctuation">.</span>hasSaved <span class="token operator">=</span> <span class="token boolean">False</span>
-    self<span class="token punctuation">.</span>file_name_label<span class="token punctuation">.</span>setText<span class="token punctuation">(</span>self<span class="token punctuation">.</span>currentFilePath <span class="token operator">+</span> <span class="token string">" *"</span><span class="token punctuation">)</span>
-    self<span class="token punctuation">.</span>w<span class="token punctuation">.</span>canCtrl <span class="token operator">=</span> <span class="token boolean">False</span>
-    self<span class="token punctuation">.</span>setLanguageMode<span class="token punctuation">(</span><span class="token string">"qt记事本"</span><span class="token punctuation">)</span>
-    self<span class="token punctuation">.</span>w<span class="token punctuation">.</span>setPlaceholderText<span class="token punctuation">(</span><span class="token string">"请输入内容..."</span><span class="token punctuation">)</span>
+    def newFile(self):
+        self.w.clear()
+        self.hasSaved = False
+        self.file_name_label.setText(self.currentFilePath + &quot; *&quot;)
+        self.w.canCtrl = False
+        self.setLanguageMode(&quot;qt记事本&quot;)
+        self.w.setPlaceholderText(&quot;请输入内容...&quot;)
 
-<span class="token keyword">def</span> <span class="token function">openFile</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    options <span class="token operator">=</span> QFileDialog<span class="token punctuation">.</span>Options<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    file_name<span class="token punctuation">,</span> _ <span class="token operator">=</span> QFileDialog<span class="token punctuation">.</span>getOpenFileName<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"打开文件"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token string">"所有文件 (*);;qt记事本文件 (*.xb);;文本文件 (*.txt);;python文件 (*.py);;java文件 (*.java);;javascript文件 (*.js);;html文件 (*.html);;css文件 (*.css);;C++文件 (*.cpp *.hpp *.h)"</span><span class="token punctuation">,</span> options<span class="token operator">=</span>options<span class="token punctuation">)</span>
-    <span class="token keyword">if</span> file_name<span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>currentFilePath <span class="token operator">=</span> file_name
-        suffix <span class="token operator">=</span> file_name<span class="token punctuation">[</span>file_name<span class="token punctuation">.</span>rfind<span class="token punctuation">(</span><span class="token string">"."</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span> <span class="token punctuation">:</span><span class="token punctuation">]</span>
-        self<span class="token punctuation">.</span>setLanguageMode<span class="token punctuation">(</span>self<span class="token punctuation">.</span>languageModeList<span class="token punctuation">.</span>get<span class="token punctuation">(</span>suffix<span class="token punctuation">,</span> <span class="token string">"qt记事本"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token keyword">try</span><span class="token punctuation">:</span>
-            <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>file_name<span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token builtin">file</span><span class="token punctuation">:</span>
-                <span class="token keyword">if</span> suffix <span class="token operator">==</span> <span class="token string">"xb"</span><span class="token punctuation">:</span>
-                    self<span class="token punctuation">.</span>w<span class="token punctuation">.</span>setHtml<span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                <span class="token keyword">else</span><span class="token punctuation">:</span>
-                    self<span class="token punctuation">.</span>w<span class="token punctuation">.</span>canCtrl <span class="token operator">=</span> <span class="token boolean">True</span>
-                    self<span class="token punctuation">.</span>w<span class="token punctuation">.</span>setPlainText<span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
-            QMessageBox<span class="token punctuation">.</span>critical<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"错误"</span><span class="token punctuation">,</span> <span class="token string-interpolation"><span class="token string">f"无法打开文件: </span><span class="token interpolation"><span class="token punctuation">&#123;</span>e<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+    def openFile(self):
+        options = QFileDialog.Options()
+        file_name, _ = QFileDialog.getOpenFileName(self, &quot;打开文件&quot;, &quot;&quot;, &quot;所有文件 (*);;qt记事本文件 (*.xb);;文本文件 (*.txt);;python文件 (*.py);;java文件 (*.java);;javascript文件 (*.js);;html文件 (*.html);;css文件 (*.css);;C++文件 (*.cpp *.hpp *.h)&quot;, options=options)
+        if file_name:
+            self.currentFilePath = file_name
+            suffix = file_name[file_name.rfind(&quot;.&quot;) + 1 :]
+            self.setLanguageMode(self.languageModeList.get(suffix, &quot;qt记事本&quot;))
+            try:
+                with open(file_name, &quot;r&quot;, encoding=&quot;utf-8&quot;) as file:
+                    if suffix == &quot;xb&quot;:
+                        self.w.setHtml(file.read())
+                    else:
+                        self.w.canCtrl = True
+                        self.w.setPlainText(file.read())
+            except Exception as e:
+                QMessageBox.critical(self, &quot;错误&quot;, f&quot;无法打开文件: &#123;e&#125;&quot;)
+</code></pre>
 <h4 id="四、扩展功能"><a href="#四、扩展功能" class="headerlink" title="四、扩展功能"></a>四、扩展功能</h4><p>为了使记事本应用更加强大，我们可以考虑添加以下扩展功能：</p>
 <ol>
 <li><strong>文本格式化</strong>：提供文本加粗、斜体、下划线等格式化选项。</li>
@@ -674,275 +674,277 @@
 <h4 id="五、结论"><a href="#五、结论" class="headerlink" title="五、结论"></a>五、结论</h4><p>通过本文的介绍，我们成功构建了一个功能丰富的记事本应用。这个应用不仅包括了基本的文件操作，还支持字体大小调整和多种语言模式。你可以在此基础上继续扩展，增加更多实用功能，使其成为一个更加完善的文本编辑工具。</p>
 <p>希望这篇文章能帮助你更好地理解 PyQt5 的应用开发，为你的项目开发提供参考和启发。如果你有任何问题或想要进一步扩展这个项目，欢迎在评论区留言讨论。</p>
 <h4 id="六、完整代码"><a href="#六、完整代码" class="headerlink" title="六、完整代码"></a>六、完整代码</h4><p><strong>customTextEdit.py</strong></p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> sys
-<span class="token keyword">from</span> tkinter <span class="token keyword">import</span> font
-<span class="token keyword">from</span> PyQt5<span class="token punctuation">.</span>QtWidgets <span class="token keyword">import</span> <span class="token operator">*</span>
-<span class="token keyword">from</span> PyQt5<span class="token punctuation">.</span>QtCore <span class="token keyword">import</span> <span class="token operator">*</span>
-<span class="token keyword">from</span> PyQt5<span class="token punctuation">.</span>QtGui <span class="token keyword">import</span> <span class="token operator">*</span>
+<pre><code class="python">import sys
+from tkinter import font
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
 
 
-<span class="token keyword">class</span> <span class="token class-name">CustomTextEdit</span><span class="token punctuation">(</span>QTextEdit<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>font_size <span class="token operator">=</span> <span class="token number">14</span>  <span class="token comment"># 初始字体大小</span>
-        self<span class="token punctuation">.</span>max_font_size <span class="token operator">=</span> <span class="token number">30</span>  <span class="token comment"># 最大字体大小</span>
-        self<span class="token punctuation">.</span>min_font_size <span class="token operator">=</span> <span class="token number">8</span>  <span class="token comment"># 最小字体大小</span>
-        self<span class="token punctuation">.</span>canCtrl <span class="token operator">=</span> <span class="token boolean">True</span>  <span class="token comment"># 是否可以修改字体大小</span>
-        self<span class="token punctuation">.</span>setFontPointSize<span class="token punctuation">(</span>self<span class="token punctuation">.</span>font_size<span class="token punctuation">)</span>  <span class="token comment"># 应用初始字体大小</span>
+class CustomTextEdit(QTextEdit):
+    def __init__(self):
+        super().__init__()
+        self.font_size = 14  # 初始字体大小
+        self.max_font_size = 30  # 最大字体大小
+        self.min_font_size = 8  # 最小字体大小
+        self.canCtrl = True  # 是否可以修改字体大小
+        self.setFontPointSize(self.font_size)  # 应用初始字体大小
 
-    <span class="token keyword">def</span> <span class="token function">wheelEvent</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> event<span class="token punctuation">:</span> QWheelEvent<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"wheelEvent"</span><span class="token punctuation">,</span> event<span class="token punctuation">.</span>modifiers<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> event<span class="token punctuation">.</span>angleDelta<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>y<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token comment"># 获取当前的修饰符</span>
-        modifiers <span class="token operator">=</span> event<span class="token punctuation">.</span>modifiers<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    def wheelEvent(self, event: QWheelEvent):
+        print(&quot;wheelEvent&quot;, event.modifiers(), event.angleDelta().y())
+        # 获取当前的修饰符
+        modifiers = event.modifiers()
 
-        <span class="token keyword">if</span> modifiers <span class="token operator">==</span> Qt<span class="token punctuation">.</span>ControlModifier <span class="token keyword">and</span> self<span class="token punctuation">.</span>canCtrl<span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"ControlModifier"</span><span class="token punctuation">)</span>
-            <span class="token comment"># 仅按下 Control 键，修改显示大小</span>
-            delta <span class="token operator">=</span> event<span class="token punctuation">.</span>angleDelta<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>y<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            new_size <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>
-                self<span class="token punctuation">.</span>min_font_size<span class="token punctuation">,</span>
-                <span class="token builtin">min</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>max_font_size<span class="token punctuation">,</span> self<span class="token punctuation">.</span>currentFont<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>pointSize<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> delta <span class="token operator">//</span> <span class="token number">120</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-            <span class="token punctuation">)</span>
-            <span class="token builtin">str</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>toPlainText<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            self<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            self<span class="token punctuation">.</span>setFontPointSize<span class="token punctuation">(</span>new_size<span class="token punctuation">)</span>  <span class="token comment"># 设置新字体大小</span>
-            self<span class="token punctuation">.</span>setPlainText<span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">)</span>
-        <span class="token comment"># 检查是否按下 Ctrl 和 Shift 键</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>modifiers <span class="token operator">&amp;</span> <span class="token punctuation">(</span>Qt<span class="token punctuation">.</span>ControlModifier <span class="token operator">|</span> Qt<span class="token punctuation">.</span>ShiftModifier<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token punctuation">(</span>
-            Qt<span class="token punctuation">.</span>ControlModifier <span class="token operator">|</span> Qt<span class="token punctuation">.</span>ShiftModifier
-        <span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token comment"># 同时按下了 Control 和 Shift 修饰符，修改输入文字大小</span>
-            delta <span class="token operator">=</span> event<span class="token punctuation">.</span>angleDelta<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>y<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token keyword">if</span> delta <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span>
-                self<span class="token punctuation">.</span>font_size <span class="token operator">+=</span> <span class="token number">1</span>  <span class="token comment"># 增加字体大小</span>
-            <span class="token keyword">elif</span> delta <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">:</span>
-                self<span class="token punctuation">.</span>font_size <span class="token operator">-=</span> <span class="token number">1</span>  <span class="token comment"># 减小字体大小</span>
-                <span class="token keyword">if</span> self<span class="token punctuation">.</span>font_size <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">:</span>  <span class="token comment"># 限制最小字体大小</span>
-                    self<span class="token punctuation">.</span>font_size <span class="token operator">=</span> <span class="token number">1</span>
-            self<span class="token punctuation">.</span>setFontPointSize<span class="token punctuation">(</span>self<span class="token punctuation">.</span>font_size<span class="token punctuation">)</span>  <span class="token comment"># 更新字体大小</span>
-            self<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 刷新控件的显示</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>wheelEvent<span class="token punctuation">(</span>event<span class="token punctuation">)</span>  <span class="token comment"># 调用基类的事件处理</span>
+        if modifiers == Qt.ControlModifier and self.canCtrl:
+            print(&quot;ControlModifier&quot;)
+            # 仅按下 Control 键，修改显示大小
+            delta = event.angleDelta().y()
+            new_size = max(
+                self.min_font_size,
+                min(self.max_font_size, self.currentFont().pointSize() + delta // 120),
+            )
+            str = self.toPlainText()
+            self.clear()
+            self.setFontPointSize(new_size)  # 设置新字体大小
+            self.setPlainText(str)
+        # 检查是否按下 Ctrl 和 Shift 键
+        if (modifiers &amp; (Qt.ControlModifier | Qt.ShiftModifier)) == (
+            Qt.ControlModifier | Qt.ShiftModifier
+        ):
+            # 同时按下了 Control 和 Shift 修饰符，修改输入文字大小
+            delta = event.angleDelta().y()
+            if delta &gt; 0:
+                self.font_size += 1  # 增加字体大小
+            elif delta &lt; 0:
+                self.font_size -= 1  # 减小字体大小
+                if self.font_size &lt; 1:  # 限制最小字体大小
+                    self.font_size = 1
+            self.setFontPointSize(self.font_size)  # 更新字体大小
+            self.update()  # 刷新控件的显示
+        else:
+            super().wheelEvent(event)  # 调用基类的事件处理
 
-    <span class="token keyword">def</span> <span class="token function">setFontPointSize</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> size<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        font <span class="token operator">=</span> self<span class="token punctuation">.</span>currentFont<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        font<span class="token punctuation">.</span>setPointSize<span class="token punctuation">(</span>size<span class="token punctuation">)</span>  <span class="token comment"># 设置字体大小</span>
-        self<span class="token punctuation">.</span>setCurrentFont<span class="token punctuation">(</span>font<span class="token punctuation">)</span>  <span class="token comment"># 应用字体</span>
-        self<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 刷新控件的显示</span>
+    def setFontPointSize(self, size):
+        font = self.currentFont()
+        font.setPointSize(size)  # 设置字体大小
+        self.setCurrentFont(font)  # 应用字体
+        self.update()  # 刷新控件的显示
 
 
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
-    app <span class="token operator">=</span> QApplication<span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">)</span>
-    w <span class="token operator">=</span> CustomTextEdit<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    w<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span>app<span class="token punctuation">.</span>exec_<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+if __name__ == &quot;__main__&quot;:
+    app = QApplication(sys.argv)
+    w = CustomTextEdit()
+    w.show()
+    sys.exit(app.exec_())
+</code></pre>
 <p><strong>Notebook.py</strong></p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> PyQt5<span class="token punctuation">.</span>QtWidgets <span class="token keyword">import</span> <span class="token operator">*</span>
-<span class="token keyword">import</span> CustomTextEdit
+<pre><code class="python">from PyQt5.QtWidgets import *
+import CustomTextEdit
 
 
-<span class="token keyword">class</span> <span class="token class-name">Notebook</span><span class="token punctuation">(</span>QMainWindow<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>initUI<span class="token punctuation">(</span><span class="token punctuation">)</span>
+class Notebook(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.initUI()
 
-    <span class="token keyword">def</span> <span class="token function">initUI</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>setWindowTitle<span class="token punctuation">(</span><span class="token string">"简易记事本"</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>resize<span class="token punctuation">(</span><span class="token number">800</span><span class="token punctuation">,</span> <span class="token number">600</span><span class="token punctuation">)</span>
+    def initUI(self):
+        self.setWindowTitle(&quot;简易记事本&quot;)
+        self.resize(800, 600)
 
-        <span class="token comment"># 语言模式列表</span>
-        self<span class="token punctuation">.</span>languageModeList <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-            <span class="token string">"xb"</span><span class="token punctuation">:</span> <span class="token string">"qt记事本"</span><span class="token punctuation">,</span>
-            <span class="token string">"txt"</span><span class="token punctuation">:</span> <span class="token string">"txt"</span><span class="token punctuation">,</span>
-            <span class="token string">"py"</span><span class="token punctuation">:</span> <span class="token string">"python"</span><span class="token punctuation">,</span>
-            <span class="token string">"java"</span><span class="token punctuation">:</span> <span class="token string">"Java"</span><span class="token punctuation">,</span>
-            <span class="token string">"js"</span><span class="token punctuation">:</span> <span class="token string">"Javascript"</span><span class="token punctuation">,</span>
-            <span class="token string">"html"</span><span class="token punctuation">:</span> <span class="token string">"HTML"</span><span class="token punctuation">,</span>
-            <span class="token string">"css"</span><span class="token punctuation">:</span> <span class="token string">"CSS"</span><span class="token punctuation">,</span>
-            <span class="token string">"cpp"</span><span class="token punctuation">:</span> <span class="token string">"C++"</span><span class="token punctuation">,</span>
-            <span class="token string">"c"</span><span class="token punctuation">:</span> <span class="token string">"C"</span><span class="token punctuation">,</span>
-            <span class="token string">"hpp"</span><span class="token punctuation">:</span> <span class="token string">"C++"</span><span class="token punctuation">,</span>
-            <span class="token string">"h"</span><span class="token punctuation">:</span> <span class="token string">"C++"</span><span class="token punctuation">,</span>
-        <span class="token punctuation">&#125;</span>
+        # 语言模式列表
+        self.languageModeList = &#123;
+            &quot;xb&quot;: &quot;qt记事本&quot;,
+            &quot;txt&quot;: &quot;txt&quot;,
+            &quot;py&quot;: &quot;python&quot;,
+            &quot;java&quot;: &quot;Java&quot;,
+            &quot;js&quot;: &quot;Javascript&quot;,
+            &quot;html&quot;: &quot;HTML&quot;,
+            &quot;css&quot;: &quot;CSS&quot;,
+            &quot;cpp&quot;: &quot;C++&quot;,
+            &quot;c&quot;: &quot;C&quot;,
+            &quot;hpp&quot;: &quot;C++&quot;,
+            &quot;h&quot;: &quot;C++&quot;,
+        &#125;
 
-        self<span class="token punctuation">.</span>languageMode <span class="token operator">=</span> <span class="token string">"qt记事本"</span>  <span class="token comment"># 默认语言模式</span>
-        self<span class="token punctuation">.</span>currentFilePath <span class="token operator">=</span> <span class="token string">"未命名1.xb"</span>  <span class="token comment"># 默认文件路径</span>
-        self<span class="token punctuation">.</span>hasSaved <span class="token operator">=</span> <span class="token boolean">False</span>  <span class="token comment"># 是否已保存标志</span>
+        self.languageMode = &quot;qt记事本&quot;  # 默认语言模式
+        self.currentFilePath = &quot;未命名1.xb&quot;  # 默认文件路径
+        self.hasSaved = False  # 是否已保存标志
 
-        self<span class="token punctuation">.</span>languageLabel <span class="token operator">=</span> QLabel<span class="token punctuation">(</span>text<span class="token operator">=</span><span class="token string-interpolation"><span class="token string">f"当前语言: </span><span class="token interpolation"><span class="token punctuation">&#123;</span>self<span class="token punctuation">.</span>languageMode<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">,</span> parent<span class="token operator">=</span>self<span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>languageLabel<span class="token punctuation">.</span>setStyleSheet<span class="token punctuation">(</span>
-            <span class="token string">"QLabel&#123;color: white;font-size: 14px;font-weight: bold;padding: 5px;&#125;"</span>
-        <span class="token punctuation">)</span>
+        self.languageLabel = QLabel(text=f&quot;当前语言: &#123;self.languageMode&#125;&quot;, parent=self)
+        self.languageLabel.setStyleSheet(
+            &quot;QLabel&#123;color: white;font-size: 14px;font-weight: bold;padding: 5px;&#125;&quot;
+        )
 
-        self<span class="token punctuation">.</span>addController<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 添加组件</span>
-        self<span class="token punctuation">.</span>addShortCut<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 添加快捷键</span>
+        self.addController()  # 添加组件
+        self.addShortCut()  # 添加快捷键
 
-    <span class="token keyword">def</span> <span class="token function">addController</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token comment"># 创建工具栏</span>
-        toolBar <span class="token operator">=</span> QToolBar<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
-        toolBar<span class="token punctuation">.</span>setMovable<span class="token punctuation">(</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    def addController(self):
+        # 创建工具栏
+        toolBar = QToolBar(self)
+        toolBar.setMovable(True)
 
-        <span class="token comment"># 创建文件菜单</span>
-        self<span class="token punctuation">.</span>file_menu <span class="token operator">=</span> QMenu<span class="token punctuation">(</span><span class="token string">"文件(F)"</span><span class="token punctuation">,</span> self<span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>file_menu<span class="token punctuation">.</span>setStyleSheet<span class="token punctuation">(</span>
-            <span class="token string">"QMenu&#123;background-color: rgb(255,255,255);color: black;font-size: 14px;font-weight: bold;padding: 5px;&#125;"</span>
-        <span class="token punctuation">)</span>
+        # 创建文件菜单
+        self.file_menu = QMenu(&quot;文件(F)&quot;, self)
+        self.file_menu.setStyleSheet(
+            &quot;QMenu&#123;background-color: rgb(255,255,255);color: black;font-size: 14px;font-weight: bold;padding: 5px;&#125;&quot;
+        )
 
-        <span class="token comment"># 创建菜单项</span>
-        newfileAction <span class="token operator">=</span> QAction<span class="token punctuation">(</span><span class="token string">"新建(N)"</span><span class="token punctuation">,</span> self<span class="token punctuation">)</span>
-        openfileAction <span class="token operator">=</span> QAction<span class="token punctuation">(</span><span class="token string">"打开(O)"</span><span class="token punctuation">,</span> self<span class="token punctuation">)</span>
-        savefileAction <span class="token operator">=</span> QAction<span class="token punctuation">(</span><span class="token string">"保存(S)"</span><span class="token punctuation">,</span> self<span class="token punctuation">)</span>
-        saveAsfileAction <span class="token operator">=</span> QAction<span class="token punctuation">(</span><span class="token string">"另存为(A)"</span><span class="token punctuation">,</span> self<span class="token punctuation">)</span>
-        exitAction <span class="token operator">=</span> QAction<span class="token punctuation">(</span><span class="token string">"退出(X)"</span><span class="token punctuation">,</span> self<span class="token punctuation">)</span>
+        # 创建菜单项
+        newfileAction = QAction(&quot;新建(N)&quot;, self)
+        openfileAction = QAction(&quot;打开(O)&quot;, self)
+        savefileAction = QAction(&quot;保存(S)&quot;, self)
+        saveAsfileAction = QAction(&quot;另存为(A)&quot;, self)
+        exitAction = QAction(&quot;退出(X)&quot;, self)
 
-        <span class="token comment"># 添加动作到菜单</span>
-        self<span class="token punctuation">.</span>file_menu<span class="token punctuation">.</span>addActions<span class="token punctuation">(</span>
-            <span class="token punctuation">[</span>newfileAction<span class="token punctuation">,</span> openfileAction<span class="token punctuation">,</span> savefileAction<span class="token punctuation">,</span> saveAsfileAction<span class="token punctuation">]</span>
-        <span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>file_menu<span class="token punctuation">.</span>addSeparator<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>file_menu<span class="token punctuation">.</span>addAction<span class="token punctuation">(</span>exitAction<span class="token punctuation">)</span>
+        # 添加动作到菜单
+        self.file_menu.addActions(
+            [newfileAction, openfileAction, savefileAction, saveAsfileAction]
+        )
+        self.file_menu.addSeparator()
+        self.file_menu.addAction(exitAction)
 
-        <span class="token comment"># 创建菜单按钮并添加到工具栏</span>
-        file_menu_button <span class="token operator">=</span> QPushButton<span class="token punctuation">(</span><span class="token string">"文件(F)"</span><span class="token punctuation">,</span> self<span class="token punctuation">)</span>
-        file_menu_button<span class="token punctuation">.</span>setStyleSheet<span class="token punctuation">(</span>
-            <span class="token string">"QPushButton&#123;border: none;color: black;font-size: 14px;font-weight: bold;padding: 5px;&#125;"</span>
-        <span class="token punctuation">)</span>
-        file_menu_button<span class="token punctuation">.</span>setMenu<span class="token punctuation">(</span>self<span class="token punctuation">.</span>file_menu<span class="token punctuation">)</span>
-        toolBar<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>file_menu_button<span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>addToolBar<span class="token punctuation">(</span>toolBar<span class="token punctuation">)</span>
+        # 创建菜单按钮并添加到工具栏
+        file_menu_button = QPushButton(&quot;文件(F)&quot;, self)
+        file_menu_button.setStyleSheet(
+            &quot;QPushButton&#123;border: none;color: black;font-size: 14px;font-weight: bold;padding: 5px;&#125;&quot;
+        )
+        file_menu_button.setMenu(self.file_menu)
+        toolBar.addWidget(file_menu_button)
+        self.addToolBar(toolBar)
 
-        <span class="token comment"># 创建中心编辑区</span>
-        self<span class="token punctuation">.</span>w <span class="token operator">=</span> CustomTextEdit<span class="token punctuation">.</span>CustomTextEdit<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>w<span class="token punctuation">.</span>setPlaceholderText<span class="token punctuation">(</span><span class="token string">"请输入内容..."</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>w<span class="token punctuation">.</span>document<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>contentsChanged<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>self<span class="token punctuation">.</span>checkModified<span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>setCentralWidget<span class="token punctuation">(</span>self<span class="token punctuation">.</span>w<span class="token punctuation">)</span>
+        # 创建中心编辑区
+        self.w = CustomTextEdit.CustomTextEdit()
+        self.w.setPlaceholderText(&quot;请输入内容...&quot;)
+        self.w.document().contentsChanged.connect(self.checkModified)
+        self.setCentralWidget(self.w)
 
-        <span class="token comment"># 创建状态栏</span>
-        self<span class="token punctuation">.</span>createStatusBar<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        # 创建状态栏
+        self.createStatusBar()
 
-        <span class="token comment"># 信号与槽的连接</span>
-        self<span class="token punctuation">.</span>connectActions<span class="token punctuation">(</span>
-            newfileAction<span class="token punctuation">,</span> openfileAction<span class="token punctuation">,</span> savefileAction<span class="token punctuation">,</span> saveAsfileAction<span class="token punctuation">,</span> exitAction
-        <span class="token punctuation">)</span>
+        # 信号与槽的连接
+        self.connectActions(
+            newfileAction, openfileAction, savefileAction, saveAsfileAction, exitAction
+        )
 
-    <span class="token keyword">def</span> <span class="token function">createStatusBar</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        statusBar <span class="token operator">=</span> QStatusBar<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
-        statusBar<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>QPushButton<span class="token punctuation">(</span>text<span class="token operator">=</span><span class="token string">"状态栏"</span><span class="token punctuation">,</span> parent<span class="token operator">=</span>statusBar<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        statusBar<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>self<span class="token punctuation">.</span>languageLabel<span class="token punctuation">)</span>
+    def createStatusBar(self):
+        statusBar = QStatusBar(self)
+        statusBar.addWidget(QPushButton(text=&quot;状态栏&quot;, parent=statusBar))
+        statusBar.addWidget(self.languageLabel)
 
-        self<span class="token punctuation">.</span>file_name_label <span class="token operator">=</span> QLabel<span class="token punctuation">(</span>
-            text<span class="token operator">=</span>self<span class="token punctuation">.</span>currentFilePath <span class="token keyword">if</span> self<span class="token punctuation">.</span>hasSaved <span class="token keyword">else</span> self<span class="token punctuation">.</span>currentFilePath <span class="token operator">+</span> <span class="token string">" *"</span><span class="token punctuation">,</span>
-            parent<span class="token operator">=</span>statusBar<span class="token punctuation">,</span>
-        <span class="token punctuation">)</span>
-        statusBar<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>self<span class="token punctuation">.</span>file_name_label<span class="token punctuation">)</span>
+        self.file_name_label = QLabel(
+            text=self.currentFilePath if self.hasSaved else self.currentFilePath + &quot; *&quot;,
+            parent=statusBar,
+        )
+        statusBar.addWidget(self.file_name_label)
 
-        statusBar<span class="token punctuation">.</span>setStyleSheet<span class="token punctuation">(</span>
-            <span class="token string">"QPushButton,QLabel&#123;border: none;background-color: rgb(0,0,0);color: white;font-size: 14px;font-weight: bold;padding: 5px;&#125; QStatusBar&#123;border: 1px solid #C0C0C0;background-color: rgb(0,0,0)&#125;"</span>
-        <span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>setStatusBar<span class="token punctuation">(</span>statusBar<span class="token punctuation">)</span>
+        statusBar.setStyleSheet(
+            &quot;QPushButton,QLabel&#123;border: none;background-color: rgb(0,0,0);color: white;font-size: 14px;font-weight: bold;padding: 5px;&#125; QStatusBar&#123;border: 1px solid #C0C0C0;background-color: rgb(0,0,0)&#125;&quot;
+        )
+        self.setStatusBar(statusBar)
 
-    <span class="token keyword">def</span> <span class="token function">connectActions</span><span class="token punctuation">(</span>
-        self<span class="token punctuation">,</span>
-        newfileAction<span class="token punctuation">,</span>
-        openfileAction<span class="token punctuation">,</span>
-        savefileAction<span class="token punctuation">,</span>
-        saveAsfileAction<span class="token punctuation">,</span>
-        exitAction<span class="token punctuation">,</span>
-    <span class="token punctuation">)</span><span class="token punctuation">:</span>
-        openfileAction<span class="token punctuation">.</span>triggered<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>self<span class="token punctuation">.</span>openFile<span class="token punctuation">)</span>
-        savefileAction<span class="token punctuation">.</span>triggered<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>self<span class="token punctuation">.</span>saveFile<span class="token punctuation">)</span>
-        saveAsfileAction<span class="token punctuation">.</span>triggered<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>self<span class="token punctuation">.</span>saveAsFile<span class="token punctuation">)</span>
-        newfileAction<span class="token punctuation">.</span>triggered<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>self<span class="token punctuation">.</span>newFile<span class="token punctuation">)</span>
-        exitAction<span class="token punctuation">.</span>triggered<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>self<span class="token punctuation">.</span>close<span class="token punctuation">)</span>
+    def connectActions(
+        self,
+        newfileAction,
+        openfileAction,
+        savefileAction,
+        saveAsfileAction,
+        exitAction,
+    ):
+        openfileAction.triggered.connect(self.openFile)
+        savefileAction.triggered.connect(self.saveFile)
+        saveAsfileAction.triggered.connect(self.saveAsFile)
+        newfileAction.triggered.connect(self.newFile)
+        exitAction.triggered.connect(self.close)
 
-    <span class="token keyword">def</span> <span class="token function">addShortCut</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>file_menu<span class="token punctuation">.</span>actions<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>setShortcut<span class="token punctuation">(</span><span class="token string">"Ctrl+N"</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>file_menu<span class="token punctuation">.</span>actions<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>setShortcut<span class="token punctuation">(</span><span class="token string">"Ctrl+O"</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>file_menu<span class="token punctuation">.</span>actions<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span>setShortcut<span class="token punctuation">(</span><span class="token string">"Ctrl+S"</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>file_menu<span class="token punctuation">.</span>actions<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span>setShortcut<span class="token punctuation">(</span><span class="token string">"Ctrl+A"</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>file_menu<span class="token punctuation">.</span>actions<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">.</span>setShortcut<span class="token punctuation">(</span><span class="token string">"Ctrl+X"</span><span class="token punctuation">)</span>
+    def addShortCut(self):
+        self.file_menu.actions()[0].setShortcut(&quot;Ctrl+N&quot;)
+        self.file_menu.actions()[1].setShortcut(&quot;Ctrl+O&quot;)
+        self.file_menu.actions()[2].setShortcut(&quot;Ctrl+S&quot;)
+        self.file_menu.actions()[3].setShortcut(&quot;Ctrl+A&quot;)
+        self.file_menu.actions()[4].setShortcut(&quot;Ctrl+X&quot;)
 
-    <span class="token keyword">def</span> <span class="token function">checkModified</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>hasSaved <span class="token operator">=</span> <span class="token keyword">not</span> self<span class="token punctuation">.</span>w<span class="token punctuation">.</span>document<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>isModified<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>file_name_label<span class="token punctuation">.</span>setText<span class="token punctuation">(</span>
-            self<span class="token punctuation">.</span>currentFilePath <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token string">" *"</span> <span class="token keyword">if</span> <span class="token keyword">not</span> self<span class="token punctuation">.</span>hasSaved <span class="token keyword">else</span> <span class="token string">""</span><span class="token punctuation">)</span>
-        <span class="token punctuation">)</span>
+    def checkModified(self):
+        self.hasSaved = not self.w.document().isModified()
+        self.file_name_label.setText(
+            self.currentFilePath + (&quot; *&quot; if not self.hasSaved else &quot;&quot;)
+        )
 
-    <span class="token keyword">def</span> <span class="token function">setLanguageMode</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> languageMode<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>languageMode <span class="token operator">=</span> languageMode
-        self<span class="token punctuation">.</span>languageLabel<span class="token punctuation">.</span>setText<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"当前语言: </span><span class="token interpolation"><span class="token punctuation">&#123;</span>self<span class="token punctuation">.</span>languageMode<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+    def setLanguageMode(self, languageMode):
+        self.languageMode = languageMode
+        self.languageLabel.setText(f&quot;当前语言: &#123;self.languageMode&#125;&quot;)
 
-    <span class="token keyword">def</span> <span class="token function">saveFile</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">try</span><span class="token punctuation">:</span>
-            <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>currentFilePath<span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token builtin">file</span><span class="token punctuation">:</span>
-                <span class="token keyword">if</span> self<span class="token punctuation">.</span>languageMode <span class="token operator">==</span> <span class="token string">"qt记事本"</span><span class="token punctuation">:</span>
-                    <span class="token builtin">file</span><span class="token punctuation">.</span>write<span class="token punctuation">(</span>self<span class="token punctuation">.</span>w<span class="token punctuation">.</span>toHtml<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                <span class="token keyword">else</span><span class="token punctuation">:</span>
-                    <span class="token builtin">file</span><span class="token punctuation">.</span>write<span class="token punctuation">(</span>self<span class="token punctuation">.</span>w<span class="token punctuation">.</span>toPlainText<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-            self<span class="token punctuation">.</span>hasSaved <span class="token operator">=</span> <span class="token boolean">True</span>
-            self<span class="token punctuation">.</span>file_name_label<span class="token punctuation">.</span>setText<span class="token punctuation">(</span>self<span class="token punctuation">.</span>currentFilePath<span class="token punctuation">)</span>
-            QMessageBox<span class="token punctuation">.</span>information<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"提示"</span><span class="token punctuation">,</span> <span class="token string">"文件已保存"</span><span class="token punctuation">)</span>
-        <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
-            QMessageBox<span class="token punctuation">.</span>critical<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"错误"</span><span class="token punctuation">,</span> <span class="token string-interpolation"><span class="token string">f"无法保存文件: </span><span class="token interpolation"><span class="token punctuation">&#123;</span>e<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+    def saveFile(self):
+        try:
+            with open(self.currentFilePath, &quot;w&quot;, encoding=&quot;utf-8&quot;) as file:
+                if self.languageMode == &quot;qt记事本&quot;:
+                    file.write(self.w.toHtml())
+                else:
+                    file.write(self.w.toPlainText())
+            self.hasSaved = True
+            self.file_name_label.setText(self.currentFilePath)
+            QMessageBox.information(self, &quot;提示&quot;, &quot;文件已保存&quot;)
+        except Exception as e:
+            QMessageBox.critical(self, &quot;错误&quot;, f&quot;无法保存文件: &#123;e&#125;&quot;)
 
-    <span class="token keyword">def</span> <span class="token function">saveAsFile</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        options <span class="token operator">=</span> QFileDialog<span class="token punctuation">.</span>Options<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        file_name<span class="token punctuation">,</span> _ <span class="token operator">=</span> QFileDialog<span class="token punctuation">.</span>getSaveFileName<span class="token punctuation">(</span>
-            self<span class="token punctuation">,</span> <span class="token string">"保存文件"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token string">"qt记事本文件(*.xb);;所有文件 (*)"</span><span class="token punctuation">,</span> options<span class="token operator">=</span>options
-        <span class="token punctuation">)</span>
-        <span class="token keyword">if</span> file_name<span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>currentFilePath <span class="token operator">=</span> file_name
-            self<span class="token punctuation">.</span>saveFile<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 直接调用保存文件的方法</span>
+    def saveAsFile(self):
+        options = QFileDialog.Options()
+        file_name, _ = QFileDialog.getSaveFileName(
+            self, &quot;保存文件&quot;, &quot;&quot;, &quot;qt记事本文件(*.xb);;所有文件 (*)&quot;, options=options
+        )
+        if file_name:
+            self.currentFilePath = file_name
+            self.saveFile()  # 直接调用保存文件的方法
 
-    <span class="token keyword">def</span> <span class="token function">newFile</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>w<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>hasSaved <span class="token operator">=</span> <span class="token boolean">False</span>
-        self<span class="token punctuation">.</span>file_name_label<span class="token punctuation">.</span>setText<span class="token punctuation">(</span>self<span class="token punctuation">.</span>currentFilePath <span class="token operator">+</span> <span class="token string">" *"</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>w<span class="token punctuation">.</span>canCtrl <span class="token operator">=</span> <span class="token boolean">False</span>
-        self<span class="token punctuation">.</span>setLanguageMode<span class="token punctuation">(</span><span class="token string">"qt记事本"</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>w<span class="token punctuation">.</span>setPlaceholderText<span class="token punctuation">(</span><span class="token string">"请输入内容..."</span><span class="token punctuation">)</span>
+    def newFile(self):
+        self.w.clear()
+        self.hasSaved = False
+        self.file_name_label.setText(self.currentFilePath + &quot; *&quot;)
+        self.w.canCtrl = False
+        self.setLanguageMode(&quot;qt记事本&quot;)
+        self.w.setPlaceholderText(&quot;请输入内容...&quot;)
 
-    <span class="token keyword">def</span> <span class="token function">openFile</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        options <span class="token operator">=</span> QFileDialog<span class="token punctuation">.</span>Options<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        file_name<span class="token punctuation">,</span> _ <span class="token operator">=</span> QFileDialog<span class="token punctuation">.</span>getOpenFileName<span class="token punctuation">(</span>
-            self<span class="token punctuation">,</span>
-            <span class="token string">"打开文件"</span><span class="token punctuation">,</span>
-            <span class="token string">""</span><span class="token punctuation">,</span>
-            <span class="token string">"所有文件 (*);;qt记事本文件 (*.xb);;文本文件 (*.txt);;python文件 (*.py);;java文件 (*.java);;javascript文件 (*.js);;html文件 (*.html);;css文件 (*.css);;C++文件 (*.cpp *.hpp *.h)"</span><span class="token punctuation">,</span>
-            options<span class="token operator">=</span>options<span class="token punctuation">,</span>
-        <span class="token punctuation">)</span>
-        <span class="token keyword">if</span> file_name<span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>currentFilePath <span class="token operator">=</span> file_name
-            suffix <span class="token operator">=</span> file_name<span class="token punctuation">[</span>file_name<span class="token punctuation">.</span>rfind<span class="token punctuation">(</span><span class="token string">"."</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span> <span class="token punctuation">:</span><span class="token punctuation">]</span>
-            self<span class="token punctuation">.</span>setLanguageMode<span class="token punctuation">(</span>self<span class="token punctuation">.</span>languageModeList<span class="token punctuation">.</span>get<span class="token punctuation">(</span>suffix<span class="token punctuation">,</span> <span class="token string">"qt记事本"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-            <span class="token keyword">try</span><span class="token punctuation">:</span>
-                <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>file_name<span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token builtin">file</span><span class="token punctuation">:</span>
-                    <span class="token keyword">if</span> suffix <span class="token operator">==</span> <span class="token string">"xb"</span><span class="token punctuation">:</span>
-                        self<span class="token punctuation">.</span>w<span class="token punctuation">.</span>setHtml<span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                    <span class="token keyword">else</span><span class="token punctuation">:</span>
-                        self<span class="token punctuation">.</span>w<span class="token punctuation">.</span>canCtrl <span class="token operator">=</span> <span class="token boolean">True</span>
-                        self<span class="token punctuation">.</span>w<span class="token punctuation">.</span>setPlainText<span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-            <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
-                QMessageBox<span class="token punctuation">.</span>critical<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"错误"</span><span class="token punctuation">,</span> <span class="token string-interpolation"><span class="token string">f"无法打开文件: </span><span class="token interpolation"><span class="token punctuation">&#123;</span>e<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+    def openFile(self):
+        options = QFileDialog.Options()
+        file_name, _ = QFileDialog.getOpenFileName(
+            self,
+            &quot;打开文件&quot;,
+            &quot;&quot;,
+            &quot;所有文件 (*);;qt记事本文件 (*.xb);;文本文件 (*.txt);;python文件 (*.py);;java文件 (*.java);;javascript文件 (*.js);;html文件 (*.html);;css文件 (*.css);;C++文件 (*.cpp *.hpp *.h)&quot;,
+            options=options,
+        )
+        if file_name:
+            self.currentFilePath = file_name
+            suffix = file_name[file_name.rfind(&quot;.&quot;) + 1 :]
+            self.setLanguageMode(self.languageModeList.get(suffix, &quot;qt记事本&quot;))
+            try:
+                with open(file_name, &quot;r&quot;, encoding=&quot;utf-8&quot;) as file:
+                    if suffix == &quot;xb&quot;:
+                        self.w.setHtml(file.read())
+                    else:
+                        self.w.canCtrl = True
+                        self.w.setPlainText(file.read())
+            except Exception as e:
+                QMessageBox.critical(self, &quot;错误&quot;, f&quot;无法打开文件: &#123;e&#125;&quot;)
 
-    <span class="token keyword">def</span> <span class="token function">closeEvent</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> event<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> <span class="token keyword">not</span> self<span class="token punctuation">.</span>hasSaved<span class="token punctuation">:</span>
-            reply <span class="token operator">=</span> QMessageBox<span class="token punctuation">.</span>question<span class="token punctuation">(</span>
-                self<span class="token punctuation">,</span>
-                <span class="token string">"提示"</span><span class="token punctuation">,</span>
-                <span class="token string">"是否保存文件？"</span><span class="token punctuation">,</span>
-                QMessageBox<span class="token punctuation">.</span>Yes <span class="token operator">|</span> QMessageBox<span class="token punctuation">.</span>No <span class="token operator">|</span> QMessageBox<span class="token punctuation">.</span>Cancel<span class="token punctuation">,</span>
-                QMessageBox<span class="token punctuation">.</span>Cancel<span class="token punctuation">,</span>
-            <span class="token punctuation">)</span>
-            <span class="token keyword">if</span> reply <span class="token operator">==</span> QMessageBox<span class="token punctuation">.</span>Yes<span class="token punctuation">:</span>
-                self<span class="token punctuation">.</span>saveFile<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token keyword">elif</span> reply <span class="token operator">==</span> QMessageBox<span class="token punctuation">.</span>Cancel<span class="token punctuation">:</span>
-                event<span class="token punctuation">.</span>ignore<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token keyword">else</span><span class="token punctuation">:</span>
-                event<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            event<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    def closeEvent(self, event):
+        if not self.hasSaved:
+            reply = QMessageBox.question(
+                self,
+                &quot;提示&quot;,
+                &quot;是否保存文件？&quot;,
+                QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel,
+                QMessageBox.Cancel,
+            )
+            if reply == QMessageBox.Yes:
+                self.saveFile()
+            elif reply == QMessageBox.Cancel:
+                event.ignore()
+            else:
+                event.accept()
+        else:
+            event.accept()
+</code></pre>
+
                 
             </div>
             <hr/>
@@ -1469,7 +1471,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">432.3k</span>&nbsp;字
+                class="white-color">448.8k</span>&nbsp;字
             
             
             

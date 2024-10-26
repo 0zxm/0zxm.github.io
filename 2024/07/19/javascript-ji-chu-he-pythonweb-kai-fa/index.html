@@ -491,14 +491,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    7.8k
+                    8.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    32 分
+                    35 分
                 </div>
                 
 
@@ -523,12 +523,22 @@
             <div id="articleContent">
                 <h2 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h2><h3 id="一、JavaScript的介绍"><a href="#一、JavaScript的介绍" class="headerlink" title="一、JavaScript的介绍"></a>一、JavaScript的介绍</h3><p>JavaScript是运行在浏览器端的脚本语言，它的作用就是负责网页和用户的交互效果</p>
 <h3 id="二、Javascript的使用"><a href="#二、Javascript的使用" class="headerlink" title="二、Javascript的使用"></a>二、Javascript的使用</h3><ol>
-<li>行内式(主要用于事件)<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"button"</span> name<span class="token operator">=</span><span class="token string">""</span>onclick<span class="token operator">=</span><span class="token string">"alert('ok!');"</span><span class="token operator">></span>      <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
-<li>内嵌式<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">"text/javascript"</span><span class="token operator">></span>
-<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'ok !'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
-<li>外链式<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">"text/javascript"</span> src<span class="token operator">=</span><span class="token string">"js/index.js"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li>行内式(主要用于事件)</li>
 </ol>
+<pre><code class="javascript">&lt;input type=&quot;button&quot; name=&quot;&quot;onclick=&quot;alert(&#39;ok!&#39;);&quot;&gt;      
+</code></pre>
+<ol start="2">
+<li>内嵌式</li>
+</ol>
+<pre><code class="javascript">&lt;script type=&quot;text/javascript&quot;&gt;
+alert(&#39;ok !&#39;);
+&lt;/script&gt;  
+</code></pre>
+<ol start="3">
+<li>外链式</li>
+</ol>
+<pre><code class="javascript">&lt;script type=&quot;text/javascript&quot; src=&quot;js/index.js&quot;&gt;&lt;/script&gt;
+</code></pre>
 <h3 id="三、变量和数据类型"><a href="#三、变量和数据类型" class="headerlink" title="三、变量和数据类型"></a>三、变量和数据类型</h3><p>JavaScript 是一种<strong>弱类型语言</strong>，也就是说<strong>不需要指定变量的类型</strong><br>JavaScript的变量类型由它的值来决定，定义变量需要用关键字**’var’**,一条JavaScript语句应该以<code>;</code>结尾</p>
 <h4 id="6种数据类型-5种基本数据类型和1种复合数据类型"><a href="#6种数据类型-5种基本数据类型和1种复合数据类型" class="headerlink" title="6种数据类型(5种基本数据类型和1种复合数据类型):"></a>6种数据类型(5种基本数据类型和1种复合数据类型):</h4><ul>
 <li>5种基本数据类型<br>number 数字类型<br>string 字符串类型<br>boolean 布尔类型 true 或 false<br>undefined undefined类型，变量声明末初始化，它的值就是undefined<br>null null类型，表示空对象，在页面上获取不到对象，返回的值就是null</li>
@@ -555,58 +565,62 @@
 <h3 id="四、函数的定义和调用"><a href="#四、函数的定义和调用" class="headerlink" title="四、函数的定义和调用"></a>四、函数的定义和调用</h3><h4 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h4><ul>
 <li><code>js中的函数</code>:函数就是可以重复使用的代码块,使用关键字<code>function</code>定义函数</li>
 </ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">"text/javascript"</span><span class="token operator">></span>  
-<span class="token comment">// 函数定义</span>
-<span class="token keyword">function</span> <span class="token function">fnAlert</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'hello!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="带有参数有返回值的函数"><a href="#带有参数有返回值的函数" class="headerlink" title="带有参数有返回值的函数"></a>带有参数有返回值的函数</h5><ul>
-<li>js中有参数有返回值的函数:<br>定义函数时，函数如果有参数，参数放到小括号里面，函数如果有返回值，返回值通过 <code>return</code> 关键字来返回<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span> script type <span class="token operator">=</span> <span class="token string">"text/javascript"</span> <span class="token operator">></span>
-        <span class="token keyword">function</span> <span class="token function">fnAdd</span><span class="token punctuation">(</span><span class="token parameter">iNum01<span class="token punctuation">,</span> iNum02</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token keyword">var</span> iRs <span class="token operator">=</span> iNum1 <span class="token operator">+</span> iNum02<span class="token punctuation">;</span>
-            <span class="token keyword">return</span> iRs<span class="token punctuation">;</span>
-            <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'here!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-<span class="token keyword">var</span> iCount <span class="token operator">=</span> <span class="token function">fnAdd</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">alert</span><span class="token punctuation">(</span>iCount<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//弹出7&lt;/script></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-</ul>
-<h4 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h4><ul>
-<li>js中的函数调用:<br>函数调用就是函数名加小括号<br>比如:函数名(参数[参数可选]) <pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;
-&#x2F;&#x2F; 函数定义
+<pre><code class="javascript">&lt;script type=&quot;text/javascript&quot;&gt;  
+// 函数定义
 function fnAlert()&#123;
     alert(&#39;hello!&#39;);
 &#125;
-&#x2F;&#x2F; 函数调用
-fnAlert();
-&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+&lt;/script&gt;
+</code></pre>
+<h5 id="带有参数有返回值的函数"><a href="#带有参数有返回值的函数" class="headerlink" title="带有参数有返回值的函数"></a>带有参数有返回值的函数</h5><ul>
+<li>js中有参数有返回值的函数:<br>定义函数时，函数如果有参数，参数放到小括号里面，函数如果有返回值，返回值通过 <code>return</code> 关键字来返回</li>
 </ul>
+<pre><code class="javascript">&lt; script type = &quot;text/javascript&quot; &gt;
+        function fnAdd(iNum01, iNum02) &#123;
+            var iRs = iNum1 + iNum02;
+            return iRs;
+            alert(&#39;here!&#39;);
+        &#125;
+var iCount = fnAdd(3, 4);
+alert(iCount);//弹出7&lt;/script&gt;
+</code></pre>
+<h4 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h4><ul>
+<li>js中的函数调用:<br>函数调用就是函数名加小括号<br>比如:函数名(参数[参数可选])</li>
+</ul>
+<pre><code class="JavaScript">&lt;script type=&quot;text/javascript&quot;&gt;
+// 函数定义
+function fnAlert()&#123;
+    alert(&#39;hello!&#39;);
+&#125;
+// 函数调用
+fnAlert();
+&lt;/script&gt;
+</code></pre>
 <h3 id="五、变量的作用域"><a href="#五、变量的作用域" class="headerlink" title="五、变量的作用域"></a>五、变量的作用域</h3><h4 id="5-1-变量作用域的介绍"><a href="#5-1-变量作用域的介绍" class="headerlink" title="5.1 变量作用域的介绍"></a>5.1 变量作用域的介绍</h4><ul>
 <li>变量作用域:变量作用域就是变量的使用范围</li>
 <li>变量分为:局部变量、全局变量</li>
 </ul>
 <h4 id="5-2-局部变量"><a href="#5-2-局部变量" class="headerlink" title="5.2 局部变量"></a>5.2 局部变量</h4><p>局部变量就是在函数内使用的变量，只能在函数内部使用</p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;
+<pre><code class="JavaScript">&lt;script type=&quot;text/javascript&quot;&gt;
 function myalert()&#123;
-    &#x2F;&#x2F; 定义局部变量
-    var b&#x3D; 23;
+    // 定义局部变量
+    var b= 23;
     alert(b);
     &#125;
-    myalert();&#x2F;&#x2F;弹出23
-    alert(b);&#x2F;&#x2F; 函数外使用出错
-&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="5-3-全局变量"><a href="#5-3-全局变量" class="headerlink" title="5.3 全局变量"></a>5.3 全局变量</h4><pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;
-var b&#x3D; 23;
+    myalert();//弹出23
+    alert(b);// 函数外使用出错
+&lt;/script&gt;
+</code></pre>
+<h4 id="5-3-全局变量"><a href="#5-3-全局变量" class="headerlink" title="5.3 全局变量"></a>5.3 全局变量</h4><pre><code class="JavaScript">&lt;script type=&quot;text/javascript&quot;&gt;
+var b= 23;
 function myalert()&#123;
-    &#x2F;&#x2F; 定义局部变量
+    // 定义局部变量
     alert(b);
     &#125;
-    myalert();&#x2F;&#x2F;弹出23
-    alert(b);&#x2F;&#x2F; 函数外使用不出错
-&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+    myalert();//弹出23
+    alert(b);// 函数外使用不出错
+&lt;/script&gt;
+</code></pre>
 <h3 id="六、条件语句"><a href="#六、条件语句" class="headerlink" title="六、条件语句"></a>六、条件语句</h3><h4 id="6-1-条件语句的介绍"><a href="#6-1-条件语句的介绍" class="headerlink" title="6.1 条件语句的介绍"></a>6.1 条件语句的介绍</h4><ul>
 <li><strong>条件语句</strong>就是通过条件控制程序的走向</li>
 </ul>
@@ -692,26 +706,26 @@ function myalert()&#123;
 <li>获取标签元素</li>
 </ol>
 <p>可以使用<strong>内置对象document</strong>上的 <strong>getElementById方法</strong>来获取页面上设置了id属性的标签元素获取到的是一个html对象，然后将它赋值给一个变量</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>script<span class="token operator">></span>
-        <span class="token comment">//定义一个函数,方便调用</span>
-        <span class="token keyword">function</span> <span class="token function">fnLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token comment">//通过内置方法获取对应id的标签 如果没获取成功就返回null</span>
-            <span class="token keyword">var</span> oBtn <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"btn"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token function">alert</span><span class="token punctuation">(</span>oBtn<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-        <span class="token comment">//onload事件: 页面加载完成后触发</span>
-        window<span class="token punctuation">.</span>onload <span class="token operator">=</span> fnLoad<span class="token punctuation">;</span>
+<pre><code class="javascript">&lt;script&gt;
+        //定义一个函数,方便调用
+        function fnLoad() &#123;
+            //通过内置方法获取对应id的标签 如果没获取成功就返回null
+            var oBtn = document.getElementById(&quot;btn&quot;);
+            alert(oBtn);
+        &#125;
+        //onload事件: 页面加载完成后触发
+        window.onload = fnLoad;
 
-        <span class="token comment">// 匿名的写法</span>
-        window<span class="token punctuation">.</span><span class="token function-variable function">onload</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token comment">//通过内置方法获取对应id的标签 如果没获取成功就返回null</span>
-            <span class="token keyword">var</span> oBtn <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"btn"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token function">alert</span><span class="token punctuation">(</span>oBtn<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>   
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+        // 匿名的写法
+        window.onload = function () &#123;
+            //通过内置方法获取对应id的标签 如果没获取成功就返回null
+            var oBtn = document.getElementById(&quot;btn&quot;);
+            alert(oBtn);
+        &#125;   
+&lt;/script&gt;
 
-<span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"button"</span> value<span class="token operator">=</span><span class="token string">"按钮"</span> id<span class="token operator">=</span><span class="token string">"btn"</span><span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+&lt;input type=&quot;button&quot; value=&quot;按钮&quot; id=&quot;btn&quot;&gt;
+</code></pre>
 <ol start="2">
 <li>改变(设置)标签元素属性</li>
 </ol>
@@ -719,44 +733,44 @@ function myalert()&#123;
 <li>使用获取到的标签对象直接修改属性</li>
 </ul>
 <p>标签属性和样式修改</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>script<span class="token operator">></span>
-	<span class="token comment">// 获取标签对象</span>
-	<span class="token keyword">var</span> oBtn <span class="token operator">=</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"btn"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 修改标签属性</span>
-	oBtn<span class="token punctuation">.</span>value <span class="token operator">=</span><span class="token string">"username"</span><span class="token punctuation">;</span>
-	<span class="token comment">// 修改样式属性</span>
-	oBtn<span class="token punctuation">.</span>style<span class="token punctuation">.</span>background <span class="token operator">=</span><span class="token string">"red"</span><span class="token punctuation">,</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+<pre><code class="javascript">&lt;script&gt;
+    // 获取标签对象
+    var oBtn =document.getElementById(&quot;btn&quot;);// 修改标签属性
+    oBtn.value =&quot;username&quot;;
+    // 修改样式属性
+    oBtn.style.background =&quot;red&quot;,
+&lt;/script&gt;
 
-<span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"button"</span> value<span class="token operator">=</span><span class="token string">"按钮"</span> id<span class="token operator">=</span><span class="token string">"btn"</span><span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+&lt;input type=&quot;button&quot; value=&quot;按钮&quot; id=&quot;btn&quot;&gt;
+</code></pre>
 <p>属性名在js中的写法</p>
 <ol>
 <li>html的属性和is里面属性大多数写法一样，但是“class”属性写成“className”<br>“font-size”改 “style.fontSize”</li>
 <li>“style” 属性里面的属性，有横杠的改成驼峰式，比如:“font-size”改成“style.fontSize”</li>
 </ol>
 <h3 id="八、操作标签元素"><a href="#八、操作标签元素" class="headerlink" title="八、操作标签元素"></a>八、操作标签元素</h3><h4 id="8-1-读取或者设置标签包裹的内容"><a href="#8-1-读取或者设置标签包裹的内容" class="headerlink" title="8.1 读取或者设置标签包裹的内容"></a>8.1 读取或者设置标签包裹的内容</h4><p><strong>innerHTML</strong>可以读取或者设置标签包裹的内容</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">"mydiv"</span><span class="token operator">></span>我是一个标签<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+<pre><code class="javascript">&lt;div id=&quot;mydiv&quot;&gt;我是一个标签&lt;/div&gt;
 
-<span class="token operator">&lt;</span>script<span class="token operator">></span>
-    <span class="token comment">// 获取标签对象</span>
-    <span class="token keyword">var</span> oDiv <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"mydiv"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 获取标签中的内容</span>
-    <span class="token function">alert</span><span class="token punctuation">(</span>oDiv<span class="token punctuation">.</span>innerHTML<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">//设置标签中的内容</span>
-    oDiv<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">"你好阳光"</span><span class="token punctuation">;</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+&lt;script&gt;
+    // 获取标签对象
+    var oDiv = document.getElementById(&quot;mydiv&quot;);
+    // 获取标签中的内容
+    alert(oDiv.innerHTML);
+    //设置标签中的内容
+    oDiv.innerHTML = &quot;你好阳光&quot;;
+&lt;/script&gt;
+</code></pre>
 <h3 id="九、数组及操作方法"><a href="#九、数组及操作方法" class="headerlink" title="九、数组及操作方法"></a>九、数组及操作方法</h3><h4 id="9-1-数组的介绍"><a href="#9-1-数组的介绍" class="headerlink" title="9.1 数组的介绍"></a>9.1 数组的介绍</h4><ul>
 <li>什么是数组:</li>
 </ul>
 <p>数组就是一组数据的集合</p>
 <p>javascript 中，数组里面的数据可以是不同类型的数据，好比 python 里面的列表</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//数组的定义:</span>
-<span class="token comment">// 实例化对象方式创建</span>
-<span class="token keyword">var</span> aList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment">// 字面量方式创建，推荐使用</span>
-<span class="token keyword">var</span> aList2 <span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token string">'asd'</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="javascript">//数组的定义:
+// 实例化对象方式创建
+var aList = new Array(1,2,3);
+// 字面量方式创建，推荐使用
+var aList2 =[1,2,3,&#39;asd&#39;];
+</code></pre>
 <ul>
 <li>多维数组</li>
 </ul>
@@ -764,67 +778,65 @@ function myalert()&#123;
 <h4 id="9-2-数组的操作"><a href="#9-2-数组的操作" class="headerlink" title="9.2 数组的操作"></a>9.2 数组的操作</h4><ul>
 <li>获取数组长度</li>
 </ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> aList <span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token function">alert</span><span class="token punctuation">(</span>aList<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//弹出4</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
+<pre><code class="javascript">var aList =[1,2,3,4];
+alert(aList.length);//弹出4
+</code></pre>
 <ul>
 <li>根据下标获取元素</li>
 </ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> aList <span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token function">alert</span><span class="token punctuation">(</span>aList<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//弹出1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
+<pre><code class="javascript">var aList =[1,2,3,4];
+alert(aList[0]);//弹出1
+</code></pre>
 <ul>
 <li>从数组的尾部插入或删除数据</li>
 </ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> aList<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-aList<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">alert</span><span class="token punctuation">(</span>aList<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//弹出1,2,3,4,5</span>
-aList<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">alert</span><span class="token punctuation">(</span>aList<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//弹出1,2,3,4</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="javascript">var aList=[1,2,3,4];
+aList.push(5);
+alert(aList);//弹出1,2,3,4,5
+aList.pop();
+alert(aList);//弹出1,2,3,4
+</code></pre>
 <ul>
 <li>根据下标添加(或删除)元素</li>
 </ul>
 <p><code>数组.splice(start, num, elementl,,elementN)</code><br>参数解析。<br>①start:必需开始删除的索引<br>②num:可选，删除数组元素的个数<br>③elementN:可选，在start索引位置要插入的新元素<br>此方法会删除从<strong>start索引</strong>开始的<strong>num</strong>个元素，并将<strong>elementN</strong>参数插入到start索引位置</p>
 <h3 id="十、循环"><a href="#十、循环" class="headerlink" title="十、循环"></a>十、循环</h3><h4 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h4><p>for 循环代码示例:</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> array<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span>，<span class="token number">4</span>，<span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<pre><code class="javascript">var array=[1，4，5];
 
-<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> index<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>index<span class="token operator">&lt;</span> array<span class="token punctuation">.</span>length<span class="token punctuation">;</span> index<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">var</span> result <span class="token operator">=</span> array<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token function">alert</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+for(var index=0;index&lt; array.length; index++)&#123;
+    var result = array[index];
+    alert(result);
+&#125;
+</code></pre>
 <h4 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h4><p>while循环代码示例</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> array<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span>，<span class="token number">4</span>，<span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">var</span> index<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token keyword">while</span><span class="token punctuation">(</span>index<span class="token operator">&lt;</span>array<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">var</span> result <span class="token operator">=</span> array<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token function">alert</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	 index<span class="token operator">++</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
+<pre><code class="javascript">var array=[1，4，5];
+var index=0;
+while(index&lt;array.length)&#123;
+    var result = array[index];
+    alert(result);
+     index++;
+&#125;
+</code></pre>
 <h4 id="do-while循环"><a href="#do-while循环" class="headerlink" title="do while循环"></a>do while循环</h4><p>do-while循环代码示例:</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> array<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span>，<span class="token number">4</span>，<span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">var</span> index<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token keyword">do</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">var</span> result <span class="token operator">=</span> array<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token function">alert</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	index<span class="token operator">++</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token keyword">while</span><span class="token punctuation">(</span>index<span class="token operator">&lt;</span> array<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="javascript">var array=[1，4，5];
+var index= 0;
+do &#123;
+    var result = array[index];
+    alert(result);
+    index++;
+&#125;while(index&lt; array.length);
+</code></pre>
 <h3 id="十一、字符串拼接"><a href="#十一、字符串拼接" class="headerlink" title="十一、字符串拼接"></a>十一、字符串拼接</h3><h4 id="使用-拼接"><a href="#使用-拼接" class="headerlink" title="使用+拼接"></a>使用<code>+</code>拼接</h4><p>字符串拼接使用:”+”运算符</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> iNum1 <span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">;</span>
-<span class="token keyword">var</span> fNum2 <span class="token operator">=</span> <span class="token number">11.1</span><span class="token punctuation">;</span>
-<span class="token keyword">var</span> sStr<span class="token operator">=</span><span class="token string">'abc'</span><span class="token punctuation">;</span>
+<pre><code class="javascript">var iNum1 =10;
+var fNum2 = 11.1;
+var sStr=&#39;abc&#39;;
 
-result <span class="token operator">=</span>iNum1 <span class="token operator">+</span> fNum2<span class="token punctuation">;</span>
-<span class="token function">alert</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//弹出21.1</span>
+result =iNum1 + fNum2;
+alert(result);//弹出21.1
 
-result <span class="token operator">=</span> fNum2 <span class="token operator">+</span> sStr<span class="token punctuation">;</span> <span class="token comment">//把数字类型转换成字符串拼接</span>
-<span class="token function">alert</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//弹出11.1abc</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+result = fNum2 + sStr; //把数字类型转换成字符串拼接
+alert(result);//弹出11.1abc
+</code></pre>
 <p>隐式类型转换:数字和字符串拼接会自动进行类型转换，把数字类型转成字符串类型进行拼接</p>
 <h3 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h3><p>能够实现反复执行的定时器</p>
 <h4 id="1-定时器的介绍"><a href="#1-定时器的介绍" class="headerlink" title="1. 定时器的介绍"></a>1. 定时器的介绍</h4><p>定时器的作用:定时器就是在一段特定的时间后执行某段程序代码</p>
@@ -872,72 +884,66 @@ result <span class="token operator">=</span> fNum2 <span class="token operator">
 </li>
 </ol>
 <h3 id="Javascript的事件"><a href="#Javascript的事件" class="headerlink" title="Javascript的事件"></a>Javascript的事件</h3><h4 id="onload事件-被动触发"><a href="#onload事件-被动触发" class="headerlink" title="onload事件(被动触发)"></a>onload事件(被动触发)</h4><p>当页面完全加载完成后触发，可以用来触发自定义函数</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>script<span class="token operator">></span>
-        <span class="token comment">//定义一个函数,方便调用</span>
-        <span class="token keyword">function</span> <span class="token function">fnLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token comment">//通过内置方法获取对应id的标签 如果没获取成功就返回null</span>
-            <span class="token keyword">var</span> oBtn <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"btn"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token function">alert</span><span class="token punctuation">(</span>oBtn<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-        <span class="token comment">//onload事件: 页面加载完成后触发</span>
-        window<span class="token punctuation">.</span>onload <span class="token operator">=</span> fnLoad<span class="token punctuation">;</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="javascript">&lt;script&gt;
+        //定义一个函数,方便调用
+        function fnLoad() &#123;
+            //通过内置方法获取对应id的标签 如果没获取成功就返回null
+            var oBtn = document.getElementById(&quot;btn&quot;);
+            alert(oBtn);
+        &#125;
+        //onload事件: 页面加载完成后触发
+        window.onload = fnLoad;
+&lt;/script&gt;
+</code></pre>
 <h4 id="onclick事件-主动触发"><a href="#onclick事件-主动触发" class="headerlink" title="onclick事件(主动触发)"></a>onclick事件(主动触发)</h4><p>按钮点击触发</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">    <span class="token operator">&lt;</span>script<span class="token operator">></span>
-        <span class="token comment">//定义一个函数,方便调用</span>
-        <span class="token keyword">function</span> <span class="token function">fnLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token comment">//通过内置方法获取对应id的标签 如果没获取成功就返回null</span>
-            <span class="token keyword">var</span> oBtn <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"btn"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token function">alert</span><span class="token punctuation">(</span>oBtn<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>head<span class="token operator">></span>
+<pre><code class="javascript">    &lt;script&gt;
+        //定义一个函数,方便调用
+        function fnLoad() &#123;
+            //通过内置方法获取对应id的标签 如果没获取成功就返回null
+            var oBtn = document.getElementById(&quot;btn&quot;);
+            alert(oBtn);
+        &#125;
+    &lt;/script&gt;
+&lt;/head&gt;
 
-<span class="token operator">&lt;</span>body<span class="token operator">></span>
-        <span class="token comment">//onclick事件，点击触发</span>
-    <span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"button"</span> value<span class="token operator">=</span><span class="token string">"按钮"</span> id<span class="token operator">=</span><span class="token string">"btn"</span> onclick<span class="token operator">=</span><span class="token function">fnLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>body<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
+&lt;body&gt;
+        //onclick事件，点击触发
+    &lt;input type=&quot;button&quot; value=&quot;按钮&quot; id=&quot;btn&quot; onclick=fnLoad()&gt;
+&lt;/body&gt;
+</code></pre>
 <h3 id="JavaScript对象"><a href="#JavaScript对象" class="headerlink" title="JavaScript对象"></a>JavaScript对象</h3><h4 id="JavaScript对象的介绍"><a href="#JavaScript对象的介绍" class="headerlink" title="JavaScript对象的介绍"></a>JavaScript对象的介绍</h4><p><strong>JavaScript对象:</strong></p>
 <p>JavaScript 中的所有事物都是对象:字符串、数值、数组、函数等都可以认为是对象，此外，JavaScript 允许自定义对象，对象可以拥有属性和方法</p>
 <p><strong>创建自定义javascript对象有两种方式</strong>:</p>
 <p>①通过顶级Object类型来实例化一个对象</p>
 <p>②通过对象字面量创建一个对象</p>
-<h4 id="Object类创建自定义对象"><a href="#Object类创建自定义对象" class="headerlink" title="Object类创建自定义对象"></a>Object类创建自定义对象</h4><pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&lt;script&gt;
-	var person &#x3D;new Object();
-	&#x2F;&#x2F; 添加属性
-	person.name &#x3D; &#39;tom&#39;;
-	person.age &#x3D; &#39;25&#39;;
-	&#x2F;&#x2F; 添加方法
-	person.sayName &#x3D; function()&#123;
+<h4 id="Object类创建自定义对象"><a href="#Object类创建自定义对象" class="headerlink" title="Object类创建自定义对象"></a>Object类创建自定义对象</h4><pre><code class="JavaScript">&lt;script&gt;
+    var person =new Object();
+    // 添加属性
+    person.name = &#39;tom&#39;;
+    person.age = &#39;25&#39;;
+    // 添加方法
+    person.sayName = function()&#123;
         alert(this.name);
     &#125;
-	&#x2F;&#x2F; 调用属性和方法
-	alert(person.age);
-	person.sayName();
-&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    // 调用属性和方法
+    alert(person.age);
+    person.sayName();
+&lt;/script&gt;
+</code></pre>
+<h4 id="对象字面量创建对象"><a href="#对象字面量创建对象" class="headerlink" title="对象字面量创建对象"></a>对象字面量创建对象</h4><pre><code class="javascript">&lt;script&gt;
+        var person2 = &#123;
+            name: &quot;Rose&quot;.
+             age: 18,
+            sayName: function () &#123;
+                alert(&#39;My name is&#39; + this.name);
+                &#125;
+            &#125;
 
-
-
-<h4 id="对象字面量创建对象"><a href="#对象字面量创建对象" class="headerlink" title="对象字面量创建对象"></a>对象字面量创建对象</h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>script<span class="token operator">></span>
-        <span class="token keyword">var</span> person2 <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-            <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Rose"</span><span class="token punctuation">.</span>
-    		 <span class="token literal-property property">age</span><span class="token operator">:</span> <span class="token number">18</span><span class="token punctuation">,</span>
-            <span class="token function-variable function">sayName</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'My name is'</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            	<span class="token punctuation">&#125;</span>
-            <span class="token punctuation">&#125;</span>
-
-                <span class="token comment">// 调用属性和方法</span>
-                <span class="token function">alert</span><span class="token punctuation">(</span>person2<span class="token punctuation">.</span>age<span class="token punctuation">)</span>
-                person2<span class="token punctuation">.</span><span class="token function">sayName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
+                // 调用属性和方法
+                alert(person2.age)
+                person2.sayName();
+    &lt;/script&gt;
+</code></pre>
 <h2 id="jQuery库"><a href="#jQuery库" class="headerlink" title="jQuery库"></a>jQuery库</h2><h3 id="一、jQuery的介绍"><a href="#一、jQuery的介绍" class="headerlink" title="一、jQuery的介绍"></a>一、jQuery的介绍</h3><h4 id="1-1-jQuery的定义"><a href="#1-1-jQuery的定义" class="headerlink" title="1.1 jQuery的定义"></a>1.1 jQuery的定义</h4><p>jQuery是对JavaScript的封装，它是免费、开源的JavaScript函数库,jQuery 极大地简化了 JavaScript 编程</p>
 <h4 id="1-2jQuery的作用"><a href="#1-2jQuery的作用" class="headerlink" title="1.2jQuery的作用"></a>1.2jQuery的作用</h4><p>jQuery和JavaScript它们的作用一样,都是负责网页行为操作,增加网页和用户的交互效果的，只不过jQuery<br>简化了JavaScript编程，jQuery实现交互效果更简单</p>
 <h4 id="1-3-jQuery的优点"><a href="#1-3-jQuery的优点" class="headerlink" title="1.3 jQuery的优点"></a>1.3 jQuery的优点</h4><ul>
@@ -946,51 +952,51 @@ result <span class="token operator">=</span> fNum2 <span class="token operator">
 <li><p>jQuery简化了 JavaScript 编程，代码编写更加简单</p>
 </li>
 </ul>
-<h3 id="二、-jQuery的使用"><a href="#二、-jQuery的使用" class="headerlink" title="二、 jQuery的使用"></a>二、 jQuery的使用</h3><h4 id="2-1-jQuery的引入"><a href="#2-1-jQuery的引入" class="headerlink" title="2.1 jQuery的引入"></a>2.1 jQuery的引入</h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"js/jquery-1.12.4.min.js"</span><span class="token operator">></span> <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<h3 id="二、-jQuery的使用"><a href="#二、-jQuery的使用" class="headerlink" title="二、 jQuery的使用"></a>二、 jQuery的使用</h3><h4 id="2-1-jQuery的引入"><a href="#2-1-jQuery的引入" class="headerlink" title="2.1 jQuery的引入"></a>2.1 jQuery的引入</h4><pre><code class="javascript">&lt;script src=&quot;js/jquery-1.12.4.min.js&quot;&gt; &lt;/script&gt;
+</code></pre>
 <p><strong>jQuery的入口函数：</strong><br>我们知道使用js获取标签元素，需要页面加载完成以后再获取，我们通过使用onload事件来获取标签元素而jquery提供了<strong>ready函数</strong>来解决这个问题，保证获取标签元素没有问题，它的速度比原生的<strong>window.onload</strong>更快</p>
 <h4 id="2-2-jQuery的入口函数"><a href="#2-2-jQuery的入口函数" class="headerlink" title="2.2 jQuery的入口函数"></a>2.2 jQuery的入口函数</h4><p>jQuery入口函数有两种写法:</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//完整写法</span>
-<span class="token function">$</span><span class="token punctuation">(</span>document<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ready</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token comment">//...</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment">// 简化写法</span>
-<span class="token function">$</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token comment">//...</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre><code class="javascript">//完整写法
+$(document).ready(function()&#123;
+    //...
+&#125;);
+// 简化写法
+$(function()&#123;
+    //...
+&#125;);
 
 
-<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 导入jQuery文件 <span class="token operator">--</span><span class="token operator">></span>
-    <span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"../../jquery-1.12.4.js"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+&lt;!-- 导入jQuery文件 --&gt;
+    &lt;script src=&quot;../../jquery-1.12.4.js&quot;&gt;&lt;/script&gt;
 
-    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 入口函数 <span class="token operator">--</span><span class="token operator">></span>
-    <span class="token operator">&lt;</span>script<span class="token operator">></span>
-        <span class="token comment">//原生js代码</span>
-        <span class="token comment">// window.onload = function () &#123;</span>
-        <span class="token comment">//     var oDiv = document.getElementById("mydiv");</span>
-        <span class="token comment">//     alert(oDiv);</span>
-        <span class="token comment">// &#125;</span>
+    &lt;!-- 入口函数 --&gt;
+    &lt;script&gt;
+        //原生js代码
+        // window.onload = function () &#123;
+        //     var oDiv = document.getElementById(&quot;mydiv&quot;);
+        //     alert(oDiv);
+        // &#125;
 
-        <span class="token comment">// jQuery的获取标签的方式</span>
-        <span class="token function">$</span><span class="token punctuation">(</span>document<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ready</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token comment">//jQuery获取标签的方式和css中是一样的</span>
-            <span class="token keyword">var</span> $mydiv <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#mydiv"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token function">alert</span><span class="token punctuation">(</span>$mydiv<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-		 <span class="token function">$</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token comment">//jQuery获取标签的方式和css中是一样的</span>
-            <span class="token keyword">var</span> $mydiv <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#mydiv"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token function">alert</span><span class="token punctuation">(</span>$mydiv<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+        // jQuery的获取标签的方式
+        $(document).ready(function () &#123;
+            //jQuery获取标签的方式和css中是一样的
+            var $mydiv = $(&quot;#mydiv&quot;);
+            alert($mydiv);
+        &#125;)
+         $((function () &#123;
+            //jQuery获取标签的方式和css中是一样的
+            var $mydiv = $(&quot;#mydiv&quot;);
+            alert($mydiv);
+        &#125;)
+    &lt;/script&gt;
+</code></pre>
 <h3 id="三、jQuery选择器"><a href="#三、jQuery选择器" class="headerlink" title="三、jQuery选择器"></a>三、jQuery选择器</h3><p><strong>jQuery选择器的介绍:</strong><br>jquery选择器就是快速选择标签元素，获取标签的，选择规则和css选择器一样</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#myId'</span><span class="token punctuation">)</span><span class="token comment">//选择id为myId的标签</span>
-<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'.myClass'</span><span class="token punctuation">)</span><span class="token comment">//选择class为myClass的标签</span>
-<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span> <span class="token comment">//选择所有的1i标签</span>
-<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#ul1 li span'</span><span class="token punctuation">)</span><span class="token comment">//选择id为ul1标签下的所有li标签下的span标签</span>
-<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'input[name=first]'</span><span class="token punctuation">)</span><span class="token comment">// 选择name属性等于first的input标签</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="javascript">$(&#39;#myId&#39;)//选择id为myId的标签
+$(&#39;.myClass&#39;)//选择class为myClass的标签
+$(&#39;li&#39;) //选择所有的1i标签
+$(&#39;#ul1 li span&#39;)//选择id为ul1标签下的所有li标签下的span标签
+$(&#39;input[name=first]&#39;)// 选择name属性等于first的input标签
+</code></pre>
 <h3 id="四、jQuery的选择集过滤"><a href="#四、jQuery的选择集过滤" class="headerlink" title="四、jQuery的选择集过滤"></a>四、jQuery的选择集过滤</h3><p>选择集过滤的介绍:选择集过滤就是在选择标签的集合里面过滤自己需要的标签</p>
 <p>选择集过滤的操作:</p>
 <ol>
@@ -999,27 +1005,27 @@ result <span class="token operator">=</span> fNum2 <span class="token operator">
 <li><p>②eq(索引)方法，表示选取指定索引的标签</p>
 </li>
 </ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>script<span class="token operator">></span>
-	<span class="token function">$</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-	<span class="token comment">// has方法的使用</span>
-	<span class="token keyword">var</span> $div <span class="token operator">=</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"div"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span><span class="token string">"#mytext"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token comment">// 设置样式</span>
-	$div<span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string-property property">"background"</span><span class="token operator">:</span><span class="token string">"red"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token comment">// eq方法的使用</span>
-	<span class="token keyword">var</span> $div <span class="token operator">=</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"div"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token comment">// 设置样式$div.css(&#123;"background":"yellow"&#125;);</span>
-	<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+<pre><code class="javascript">&lt;script&gt;
+    $(function()&#123;
+    // has方法的使用
+    var $div =$(&quot;div&quot;).has(&quot;#mytext&quot;);
+    // 设置样式
+    $div.css(&#123;&quot;background&quot;:&quot;red&quot;&#125;);
+    // eq方法的使用
+    var $div =$(&quot;div&quot;).eq(1);
+    // 设置样式$div.css(&#123;&quot;background&quot;:&quot;yellow&quot;&#125;);
+    &#125;);
+&lt;/script&gt;
 
-<span class="token operator">&lt;</span>div<span class="token operator">></span>
-	这是第一个div
-	<span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"text"</span> id<span class="token operator">=</span><span class="token string">"mytext"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
-<span class="token operator">&lt;</span>div<span class="token operator">></span>
+&lt;div&gt;
+    这是第一个div
+    &lt;input type=&quot;text&quot; id=&quot;mytext&quot;&gt;&lt;/div&gt;
+&lt;div&gt;
 这是第二个div
-	<span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"text"</span><span class="token operator">></span>
-	<span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"button"</span><span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+    &lt;input type=&quot;text&quot;&gt;
+    &lt;input type=&quot;button&quot;&gt;
+&lt;/div&gt;
+</code></pre>
 <h3 id="五、选择集转移"><a href="#五、选择集转移" class="headerlink" title="五、选择集转移"></a>五、选择集转移</h3><p><strong>选择集转移介绍:</strong><br>选择集转移就是以选择的标签为参照，然后获取转移后的标签</p>
 <p>选择集转移操作:<br><code>$(&#39;#box&#39;).prev(); </code>表示选择id是box元素的上一个的同级元素</p>
 <p><code>$(&#39;#box&#39;).prevAll(); </code>表示选择id是box元素的上面所有的同级元素</p>
@@ -1029,88 +1035,88 @@ result <span class="token operator">=</span> fNum2 <span class="token operator">
 <p><code>$(&#39;#box&#39;).children(); </code>表示选择id是box元素的所有子元素</p>
 <p><code>$(&#39;#box&#39;).siblings(); </code>表示选择id是box元素的其它同级元素</p>
 <p><code>$(&#39;#box&#39;).find(&#39;.myClass&#39;);</code>表示选择id是box元素的class属性等于myClass的元素</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">    <span class="token operator">&lt;</span>script<span class="token operator">></span>
-        <span class="token function">$</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token keyword">var</span> $div <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#div01'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 确保 HTML 中有 ID 为 'div01' 的元素</span>
-            $div<span class="token punctuation">.</span><span class="token function">prev</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token string-property property">'color'</span><span class="token operator">:</span> <span class="token string">'red'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            $div<span class="token punctuation">.</span><span class="token function">prevAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token string-property property">'text-indent'</span><span class="token operator">:</span> <span class="token string">'50px'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            $div<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token string-property property">'color'</span><span class="token operator">:</span> <span class="token string">'blue'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            $div<span class="token punctuation">.</span><span class="token function">nextAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token string-property property">'text-indent'</span><span class="token operator">:</span> <span class="token string">'80px'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            $div<span class="token punctuation">.</span><span class="token function">siblings</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token string-property property">'text-decoration'</span><span class="token operator">:</span> <span class="token string">'underline'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            $div<span class="token punctuation">.</span><span class="token function">parent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token string-property property">'background'</span><span class="token operator">:</span> <span class="token string">'gray'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            $div<span class="token punctuation">.</span><span class="token function">children</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token string-property property">'color'</span><span class="token operator">:</span> <span class="token string">'red'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            $div<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">'.sp02'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token string-property property">'font-size'</span><span class="token operator">:</span> <span class="token string">'30px'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre><code class="javascript">    &lt;script&gt;
+        $(function () &#123;
+            var $div = $(&#39;#div01&#39;); // 确保 HTML 中有 ID 为 &#39;div01&#39; 的元素
+            $div.prev().css(&#123; &#39;color&#39;: &#39;red&#39; &#125;);
+            $div.prevAll().css(&#123; &#39;text-indent&#39;: &#39;50px&#39; &#125;);
+            $div.next().css(&#123; &#39;color&#39;: &#39;blue&#39; &#125;);
+            $div.nextAll().css(&#123; &#39;text-indent&#39;: &#39;80px&#39; &#125;);
+            $div.siblings().css(&#123; &#39;text-decoration&#39;: &#39;underline&#39; &#125;);
+            $div.parent().css(&#123; &#39;background&#39;: &#39;gray&#39; &#125;);
+            $div.children().css(&#123; &#39;color&#39;: &#39;red&#39; &#125;);
+            $div.find(&#39;.sp02&#39;).css(&#123; &#39;font-size&#39;: &#39;30px&#39; &#125;);
+        &#125;);
 
-    <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+    &lt;/script&gt;
 
-<span class="token operator">&lt;</span>div<span class="token operator">></span>
-        <span class="token operator">&lt;</span>h2<span class="token operator">></span>这是第一个h2标签<span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">></span>
-        <span class="token operator">&lt;</span>p<span class="token operator">></span>这是第一个段落<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span>
-        <span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">"div01"</span><span class="token operator">></span>
-            这是一个<span class="token operator">&lt;</span>span<span class="token operator">></span>div<span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span><span class="token operator">&lt;</span>span <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"sp02"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span>第二个span<span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span>
-        <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
-        <span class="token operator">&lt;</span>h2<span class="token operator">></span>这是第二个h2标签<span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">></span>
-        <span class="token operator">&lt;</span>p<span class="token operator">></span>这是第二个段落<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+&lt;div&gt;
+        &lt;h2&gt;这是第一个h2标签&lt;/h2&gt;
+        &lt;p&gt;这是第一个段落&lt;/p&gt;
+        &lt;div id=&quot;div01&quot;&gt;
+            这是一个&lt;span&gt;div&lt;/span&gt;&lt;span class=&quot;sp02&quot;&gt;&lt;/span&gt;第二个span&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;h2&gt;这是第二个h2标签&lt;/h2&gt;
+        &lt;p&gt;这是第二个段落&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
 <h3 id="六、获取和设置元素内容"><a href="#六、获取和设置元素内容" class="headerlink" title="六、获取和设置元素内容"></a>六、获取和设置元素内容</h3><h4 id="6-1-html方法的使用"><a href="#6-1-html方法的使用" class="headerlink" title="6.1 html方法的使用"></a>6.1 html方法的使用</h4><p>jquery中的html方法可以获取和设置标签的内容</p>
 <h4 id="6-2-append方法追加内容"><a href="#6-2-append方法追加内容" class="headerlink" title="6.2 append方法追加内容"></a>6.2 append方法追加内容</h4><p>&#x2F;&#x2F; 追加html内容</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>script<span class="token operator">></span>
-	<span class="token function">$</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-	<span class="token keyword">var</span> $div <span class="token operator">=</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#div1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token comment">//获取标签的html内容</span>
-	<span class="token keyword">var</span> result <span class="token operator">=</span>$div<span class="token punctuation">.</span><span class="token function">html</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token function">alert</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token comment">//设置标签的html内容，之前的内容会清除</span>
-   $div<span class="token punctuation">.</span><span class="token function">html</span><span class="token punctuation">(</span><span class="token string">"&lt;span style='color:red'>你好&lt;/span>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token comment">// 追加html内容</span>
-	$div<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"&lt;span style='color:red'>你好&lt;/span>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+<pre><code class="javascript">&lt;script&gt;
+    $(function()&#123;
+    var $div =$(&quot;#div1&quot;);
+    //获取标签的html内容
+    var result =$div.html();
+    alert(result);
+    //设置标签的html内容，之前的内容会清除
+   $div.html(&quot;&lt;span style=&#39;color:red&#39;&gt;你好&lt;/span&gt;&quot;);
+   // 追加html内容
+    $div.append(&quot;&lt;span style=&#39;color:red&#39;&gt;你好&lt;/span&gt;&quot;);
+    &#125;);
+&lt;/script&gt;
 
-<span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">"div1"</span><span class="token operator">></span>
-	<span class="token operator">&lt;</span>p<span class="token operator">></span>hello<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+&lt;div id=&quot;div1&quot;&gt;
+    &lt;p&gt;hello&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
 <h3 id="七、-获取和设置元素属性"><a href="#七、-获取和设置元素属性" class="headerlink" title="七、 获取和设置元素属性"></a>七、 获取和设置元素属性</h3><h4 id="7-1-元素-标签属性"><a href="#7-1-元素-标签属性" class="headerlink" title="7.1 元素&amp;标签属性"></a>7.1 元素&amp;标签属性</h4><p><strong>元素属性:</strong><br>标签样式: height, width,font-size,background等样式相关的</p>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">&lt;style>
-p</span><span class="token punctuation">&#123;</span>
-    <span class="token property">width</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span>
-    <span class="token property">height</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span>
-    <span class="token property">background</span><span class="token punctuation">:</span>red<span class="token punctuation">;</span>
-    <span class="token property">font-size</span><span class="token punctuation">:</span> 30px<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
+<pre><code class="css">&lt;style&gt;
+p&#123;
+    width: 100px;
+    height: 100px;
+    background:red;
+    font-size: 30px;
+&#125;
 
-&lt;/style><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+&lt;/style&gt;
+</code></pre>
 <p><strong>标签属性:</strong> type,value,id等标签中的属性</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>按钮<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mybtn<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="html">&lt;input type=&quot;button&quot; value=&quot;按钮&quot; id=&quot;mybtn&quot;&gt;
+</code></pre>
 <h4 id="7-2-获取和设置元素属性"><a href="#7-2-获取和设置元素属性" class="headerlink" title="7.2 获取和设置元素属性"></a>7.2 获取和设置元素属性</h4><p>**获取和修改标签样式:**使用css方法可以给标签设置样式属性<br>**获取和修改标签属性:**设置标签的其它属性可以使用prop方法</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
-   <span class="token function">$</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-       <span class="token comment">// 获取标签对象</span>
-       <span class="token keyword">var</span> $myp <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-       <span class="token comment">//获取标签样式</span>
-       <span class="token keyword">var</span> $px <span class="token operator">=</span> $myp<span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token string">"font-size"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-       <span class="token function">alert</span><span class="token punctuation">(</span>$px<span class="token punctuation">)</span><span class="token punctuation">;</span>
-       <span class="token comment">//设置标签样式</span>
-       $myp<span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token string-property property">"font-size"</span><span class="token operator">:</span> <span class="token string">"30px"</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-       <span class="token comment">// 获取标签属性</span>
-       <span class="token keyword">var</span> $mybtn <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-       <span class="token keyword">var</span> $mytype <span class="token operator">=</span> $mybtn<span class="token punctuation">.</span><span class="token function">prop</span><span class="token punctuation">(</span><span class="token string">"type"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-       <span class="token function">alert</span><span class="token punctuation">(</span>$mytype<span class="token punctuation">)</span><span class="token punctuation">;</span>
-       <span class="token comment">// 设置标签属性</span>
-       $mybtn<span class="token punctuation">.</span><span class="token function">prop</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-           <span class="token string-property property">"value"</span><span class="token operator">:</span> <span class="token string">"heima"</span>
-       <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> $mybtn<span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token string">"itcast"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-   </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<pre><code class="html"> &lt;script&gt;
+    $(function () &#123;
+        // 获取标签对象
+        var $myp = $(&quot;p&quot;);
+        //获取标签样式
+        var $px = $myp.css(&quot;font-size&quot;);
+        alert($px);
+        //设置标签样式
+        $myp.css(&#123; &quot;font-size&quot;: &quot;30px&quot; &#125;);
+        // 获取标签属性
+        var $mybtn = $(&quot;input&quot;);
+        var $mytype = $mybtn.prop(&quot;type&quot;);
+        alert($mytype);
+        // 设置标签属性
+        $mybtn.prop(&#123;
+            &quot;value&quot;: &quot;heima&quot;
+        &#125;); $mybtn.val(&quot;itcast&quot;);
+    &#125;)
+    &lt;/script&gt;
 
-   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span> itcast<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span> <span class="token punctuation">></span></span>
-   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>按钮<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mybtn<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+    &lt;p&gt; itcast&lt;/p &gt;
+    &lt;input type=&quot;button&quot; value=&quot;按钮&quot; id=&quot;mybtn&quot;&gt;  
+</code></pre>
 <p>**<code>val方法</code>**可以简便设置value属性</p>
 <h3 id="八、jQuery事件"><a href="#八、jQuery事件" class="headerlink" title="八、jQuery事件"></a>八、jQuery事件</h3><h4 id="8-1-常见的事件"><a href="#8-1-常见的事件" class="headerlink" title="8.1 常见的事件"></a>8.1 常见的事件</h4><p><code>click()</code> 鼠标单击</p>
 <p><code>blur() </code>元素失去焦点</p>
@@ -1118,139 +1124,139 @@ p</span><span class="token punctuation">&#123;</span>
 <p><code>mouseover() </code>鼠标进入(进入子元素也触发)</p>
 <p><code>mouseout()</code> 鼠标离开(离开子元素也触发)</p>
 <p><code>ready()</code> DOM加载完成，(与JavaScript的onload事件不同，onload事件要所有资源加载完才触发，ready事件只要代码文档加载完就触发)</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>jQuery常用事件<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>../../jquery-1.12.4.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;jQuery常用事件&lt;/title&gt;
+    &lt;script src=&quot;../../jquery-1.12.4.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
 
-        <span class="token comment">// ready()DOM加载完成</span>
-        <span class="token function">$</span><span class="token punctuation">(</span>document<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ready</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+        // ready()DOM加载完成
+        $(document).ready(function () &#123;
+            alert(&#39;1&#39;);
+        &#125;)
 
-        <span class="token function">$</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token comment">// 获取标签对象</span>
-            <span class="token keyword">var</span> $mytext <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#text1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">var</span> $mybtn <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#btn1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        $(function () &#123;
+            // 获取标签对象
+            var $mytext = $(&#39;#text1&#39;);
+            var $mybtn = $(&#39;#btn1&#39;);
 
-            <span class="token comment">// click()鼠标单击</span>
-            $mybtn<span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"点击按钮"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+            // click()鼠标单击
+            $mybtn.click(function () &#123;
+                alert(&quot;点击按钮&quot;);
+            &#125;)
 
-            <span class="token comment">// focus()元素获得焦点</span>
-            $mytext<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                <span class="token comment">//this是原生js写法</span>
-                <span class="token keyword">this</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>background <span class="token operator">=</span> <span class="token string">'red'</span><span class="token punctuation">;</span>
-                <span class="token comment">//jQuery写法</span>
-                <span class="token function">$</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-                    <span class="token string-property property">'background'</span><span class="token operator">:</span> <span class="token string">'red'</span>
-                <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+            // focus()元素获得焦点
+            $mytext.focus(function () &#123;
+                //this是原生js写法
+                this.style.background = &#39;red&#39;;
+                //jQuery写法
+                $(this).css(&#123;
+                    &#39;background&#39;: &#39;red&#39;
+                &#125;);
+            &#125;)
 
-            <span class="token comment">// blur()元素失去焦点</span>
-            $mytext<span class="token punctuation">.</span><span class="token function">blur</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                <span class="token function">$</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-                    <span class="token string-property property">'background'</span><span class="token operator">:</span> <span class="token string">'white'</span>
-                <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-            <span class="token comment">// mouseover()鼠标进入(进入子元素也触发)</span>
-            <span class="token keyword">var</span> $mydiv <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            $mydiv<span class="token punctuation">.</span><span class="token function">mouseover</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                <span class="token function">$</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-                    <span class="token string-property property">'background'</span><span class="token operator">:</span> <span class="token string">'blue'</span>
-                <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+            // blur()元素失去焦点
+            $mytext.blur(function () &#123;
+                $(this).css(&#123;
+                    &#39;background&#39;: &#39;white&#39;
+                &#125;);
+            &#125;)
+            // mouseover()鼠标进入(进入子元素也触发)
+            var $mydiv = $(&#39;div&#39;);
+            $mydiv.mouseover(function () &#123;
+                $(this).css(&#123;
+                    &#39;background&#39;: &#39;blue&#39;
+                &#125;);
+            &#125;)
 
 
-            <span class="token comment">// mouseout()鼠标离开(离开子元素也触发)</span>
-            <span class="token keyword">var</span> $mydiv <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            $mydiv<span class="token punctuation">.</span><span class="token function">mouseout</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                <span class="token function">$</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-                    <span class="token string-property property">'background'</span><span class="token operator">:</span> <span class="token string">'white'</span>
-                <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+            // mouseout()鼠标离开(离开子元素也触发)
+            var $mydiv = $(&#39;div&#39;);
+            $mydiv.mouseout(function () &#123;
+                $(this).css(&#123;
+                    &#39;background&#39;: &#39;white&#39;
+                &#125;);
+            &#125;)
 
-        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+        &#125;)
+    &lt;/script&gt;
+&lt;/head&gt;
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>按钮<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>btn1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+&lt;body&gt;
+    &lt;div&gt;
+        &lt;input type=&quot;text&quot; name=&quot;&quot; id=&quot;text1&quot;&gt;
+        &lt;input type=&quot;button&quot; value=&quot;按钮&quot; id=&quot;btn1&quot;&gt;
+    &lt;/div&gt;
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+&lt;/body&gt;
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&lt;/html&gt;
+</code></pre>
+<h3 id="九、事件代理"><a href="#九、事件代理" class="headerlink" title="九、事件代理"></a>九、事件代理</h3><h4 id="9-1-事件冒泡"><a href="#9-1-事件冒泡" class="headerlink" title="9.1 事件冒泡"></a>9.1 事件冒泡</h4><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
 
-<h3 id="九、事件代理"><a href="#九、事件代理" class="headerlink" title="九、事件代理"></a>九、事件代理</h3><h4 id="9-1-事件冒泡"><a href="#9-1-事件冒泡" class="headerlink" title="9.1 事件冒泡"></a>9.1 事件冒泡</h4><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;事件冒泡&lt;/title&gt;
+    &lt;script src=&quot;../../jquery-1.12.4.js&quot;&gt;&lt;/script&gt;
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>事件冒泡<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>../../jquery-1.12.4.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    &lt;script&gt;
+        $(function () &#123;
+            //获取标签对象
+            var $mydiv1 = $(&#39;#div1&#39;);
+            var $mydiv2 = $(&#39;#div2&#39;);
 
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
-        <span class="token function">$</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token comment">//获取标签对象</span>
-            <span class="token keyword">var</span> $mydiv1 <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#div1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">var</span> $mydiv2 <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#div2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //绑定事件
+            $mydiv1.click(function () &#123;
+                // alert(&quot;div1 父标签被点击了&quot;);
+                console.log(&#39;父标签div1被点击了&#39;);
+            &#125;);
+            $mydiv2.click(function () &#123;
+                // alert(&quot;div2 子标签被点击了&quot;);
+                console.log(&#39;子标签div2被点击了&#39;);
+            &#125;);
 
-            <span class="token comment">//绑定事件</span>
-            $mydiv1<span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                <span class="token comment">// alert("div1 父标签被点击了");</span>
-                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'父标签div1被点击了'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            $mydiv2<span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                <span class="token comment">// alert("div2 子标签被点击了");</span>
-                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'子标签div2被点击了'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        &#125;)
+    &lt;/script&gt;
+&lt;/head&gt;
 
-        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
-
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>div1<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">width</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span><span class="token property">height</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span><span class="token property">background</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>div2<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">background-color</span><span class="token punctuation">:</span> green<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>
+&lt;body&gt;
+    &lt;div id=&quot;div1&quot; style=&quot;width: 100px;height: 100px;background: red;&quot;&gt;
+        &lt;div id=&quot;div2&quot; style=&quot;background-color: green;&quot;&gt;
             itcast
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+&lt;/html&gt;
+</code></pre>
 <p>子元素绑定了click事件,点击子元素时也会触发父元素的click事件</p>
 <h4 id="9-2-什么是事件代理"><a href="#9-2-什么是事件代理" class="headerlink" title="9.2 什么是事件代理?"></a>9.2 什么是事件代理?</h4><p><strong>事件代理:</strong></p>
 <p>事件代理就是利用事件冒泡的原理(事件冒泡就是事件会向它的父级一级一级传递),把事件加到父级上通过判断事件来源，执行相应的子元素的操作</p>
 <p><strong>事件代理的好处:</strong><br>事件代理首先可以极大减少事件绑定次数，提高性能,其次可以让新加入的子元素也可以拥有相同的操作</p>
-<h4 id="9-3-事件代理的使用"><a href="#9-3-事件代理的使用" class="headerlink" title="9.3 事件代理的使用"></a>9.3 事件代理的使用</h4><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
-	<span class="token function">$</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-	$list <span class="token operator">=</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#list'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token comment">//父元素u1 来代理 子元素1i的点击事件</span>
-    $list<span class="token punctuation">.</span><span class="token function">delegate</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">,</span><span class="token string">'click'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token comment">//$(this)表示当前点击的子元素对象</span>
-        <span class="token function">$</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token literal-property property">background</span><span class="token operator">:</span><span class="token string">'red'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>list<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>5<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<h4 id="9-3-事件代理的使用"><a href="#9-3-事件代理的使用" class="headerlink" title="9.3 事件代理的使用"></a>9.3 事件代理的使用</h4><pre><code class="html">&lt;script&gt;
+    $(function()&#123;
+    $list =$(&#39;#list&#39;);
+    //父元素u1 来代理 子元素1i的点击事件
+    $list.delegate(&#39;li&#39;,&#39;click&#39;,function()&#123;
+        //$(this)表示当前点击的子元素对象
+        $(this).css(&#123;background:&#39;red&#39;&#125;);
+        &#125;);
+    &#125;)
+&lt;/script&gt;
+&lt;ul id=&quot;list&quot;&gt;
+    &lt;li&gt;1&lt;/li&gt;
+    &lt;li&gt;2&lt;/li&gt;
+    &lt;li&gt;3&lt;/li&gt;
+    &lt;li&gt;4&lt;/li&gt;
+    &lt;li&gt;5&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
 <p><strong>事件代理的写法:</strong></p>
 <p>这里实际上只对<code>&lt;li&gt;</code>的父标签<code>&lt;ul&gt;</code>进行了1次事件绑定了</p>
 <p><strong>delegate方法参数说明:</strong></p>
@@ -1275,10 +1281,11 @@ p</span><span class="token punctuation">&#123;</span>
 <li><p>对象格式的JSON数据，使用一对大括号()，大括号里面放入<code>key:value</code>形式的键值对，多个键值对使用<strong>逗号</strong>分隔</p>
 </li>
 <li><p>对象格式的JSON数据:</p>
-  <pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
-    <span class="token property">"name"</span> <span class="token operator">:</span> <span class="token string">"tom"</span><span class="token punctuation">,</span>
-    <span class="token property">"age"</span><span class="token operator">:</span><span class="token number">18</span><span class="token punctuation">,</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code class="json">&#123;
+    &quot;name&quot; : &quot;tom&quot;,
+    &quot;age&quot;:18,
+&#125;
+</code></pre>
 </li>
 <li><p>格式说明:<br>  JOSN中的(key)属性名称和字符串值需要用双引号引起来，用单引号或者不用引号会导致读取数据错误</p>
 </li>
@@ -1286,43 +1293,42 @@ p</span><span class="token punctuation">&#123;</span>
 <h4 id="数组格式"><a href="#数组格式" class="headerlink" title="数组格式"></a>数组格式</h4><p><strong>数组格式:</strong></p>
 <p>数组格式的JSON数据，使用一对中括号[]，中括号里面的数据使用逗号分隔</p>
 <p><strong>数组格式的JSON数据:</strong></p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">[</span><span class="token string">"tom"</span><span class="token punctuation">,</span><span class="token number">18</span><span class="token punctuation">,</span><span class="token string">"programmer"</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="json">[&quot;tom&quot;,18,&quot;programmer&quot;]
+</code></pre>
 <p><strong>实际开发的JSON格式比较复杂:</strong></p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
-<span class="token property">"name"</span> <span class="token operator">:</span><span class="token string">"jack"</span><span class="token punctuation">,</span>
-<span class="token property">"age"</span><span class="token operator">:</span><span class="token number">29</span><span class="token punctuation">,</span>
-<span class="token property">"hobby"</span> <span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">"reading"</span><span class="token punctuation">,</span><span class="token string">"travel"</span><span class="token punctuation">,</span><span class="token string">"photography"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-<span class="token property">"school"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
-<span class="token property">"name"</span><span class="token operator">:</span><span class="token string">"Merrimack College"</span><span class="token punctuation">,</span>
-<span class="token property">"location"</span><span class="token operator">:</span><span class="token string">"North Andover, MA"</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="json">&#123;
+&quot;name&quot; :&quot;jack&quot;,
+&quot;age&quot;:29,
+&quot;hobby&quot; :[&quot;reading&quot;,&quot;travel&quot;,&quot;photography&quot;],
+&quot;school&quot;:&#123;
+&quot;name&quot;:&quot;Merrimack College&quot;,
+&quot;location&quot;:&quot;North Andover, MA&quot;
+&#125;
+</code></pre>
 <h4 id="json格式字符串转换成JavaScript对象"><a href="#json格式字符串转换成JavaScript对象" class="headerlink" title="json格式字符串转换成JavaScript对象"></a>json格式字符串转换成JavaScript对象</h4><p>JSON本质上是字符串，如果在js中操作JSON数据，可以将JSON字符串转化为JavaScript对象</p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">var sJson &#x3D;&#39;&#123;&quot;name&quot;:&quot;tom&quot;,&quot;age&quot;:18&#125;&#39;;
-var oPerson&#x3D;JSON.parse(sJson);
-&#x2F;&#x2F; 操作属性
+<pre><code class="JavaScript">var sJson =&#39;&#123;&quot;name&quot;:&quot;tom&quot;,&quot;age&quot;:18&#125;&#39;;
+var oPerson=JSON.parse(sJson);
+// 操作属性
 alert(oPerson.name);
-alert(oPerson.age);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+alert(oPerson.age);
+</code></pre>
+<pre><code class="JavaScript">&lt;script&gt;
+        //对象格式的json数据
+        var sJson1 = &#39;&#123;&quot;name&quot;:&quot;tom&quot;,&quot;age&quot;:18&#125;&#39;;
+        //数组格式的json数据
+        var sJson2 = &#39;[&#123;&quot;name&quot;:&quot;tom&quot;,&quot;age&quot;:18&#125;,&#123;&quot;name&quot;:&quot;jack&quot;,&quot;age&quot;:50&#125;]&#39;;
 
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&lt;script&gt;
-        &#x2F;&#x2F;对象格式的json数据
-        var sJson1 &#x3D; &#39;&#123;&quot;name&quot;:&quot;tom&quot;,&quot;age&quot;:18&#125;&#39;;
-        &#x2F;&#x2F;数组格式的json数据
-        var sJson2 &#x3D; &#39;[&#123;&quot;name&quot;:&quot;tom&quot;,&quot;age&quot;:18&#125;,&#123;&quot;name&quot;:&quot;jack&quot;,&quot;age&quot;:50&#125;]&#39;;
-
-        &#x2F;&#x2F; 浏览器获取对象格式的josn数据转换成JavaScript对象
-        var oPerson &#x3D; JSON.parse(sJson1);
+        // 浏览器获取对象格式的josn数据转换成JavaScript对象
+        var oPerson = JSON.parse(sJson1);
         console.log(oPerson.name);
 
-        &#x2F;&#x2F;浏览器获取数组格式的josn数据转换成数组
-        var aArry &#x3D; JSON.parse(sJson2);
+        //浏览器获取数组格式的josn数据转换成数组
+        var aArry = JSON.parse(sJson2);
         console.log(aArry);
 
-        &#x2F;&#x2F;服务器获取对象格式的josn数据转换成字典，数组格式的josn数据转换列表
-    &lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
+        //服务器获取对象格式的josn数据转换成字典，数组格式的josn数据转换列表
+    &lt;/script&gt;
+</code></pre>
 <h3 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h3><h4 id="ajax的介绍"><a href="#ajax的介绍" class="headerlink" title="ajax的介绍"></a>ajax的介绍</h4><ul>
 <li><p>它可以让 <strong>javascript</strong> 发送 <strong>ajax</strong> 是<code>Asynchronous JavaScript and XML</code>的简写，ajax一个前后台配合的技术异步的 http 请求，与后台通信进行数据的获取，<strong>ajax 最大的优点是实现局部刷新</strong></p>
 </li>
@@ -1345,69 +1351,69 @@ alert(oPerson.age);<span aria-hidden="true" class="line-numbers-rows"><span></sp
 <p>  async 设置是否异步，默认值是”true’，表示异步，一般不用写</p>
 </li>
 </ul>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>ajax<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;ajax&lt;/title&gt;
+&lt;/head&gt;
 
 
-<span class="token comment">&lt;!-- 接口参考网址 http://doc.tianqiapi.com/603579
-查询天气网址'https://www.tianqiapi.com/api/ --></span>
+&lt;!-- 接口参考网址 http://doc.tianqiapi.com/603579
+查询天气网址&#39;https://www.tianqiapi.com/api/ --&gt;
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
-    <span class="token comment">&lt;!-- 页面搭建 --></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>天气查询<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">></span></span>请输入查询的城市<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>input-text<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>查询<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value javascript language-javascript"><span class="token function">searchWeather</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">></span></span>查询结果<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>城市:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>city<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>天气:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>weather<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span>
-    <span class="token comment">&lt;!-- ajax --></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span> ../../jquery-1.12.4.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
-        <span class="token keyword">function</span> <span class="token function">searchWeather</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+&lt;body&gt;
+    &lt;!-- 页面搭建 --&gt;
+    &lt;h1&gt;天气查询&lt;/h1&gt;
+    &lt;h3&gt;请输入查询的城市&lt;/h3&gt;
+    &lt;input type=&quot;text&quot; id=&quot;input-text&quot;&gt;
+    &lt;input type=&quot;button&quot; value=&quot;查询&quot; onclick=&quot;searchWeather()&quot;&gt;
+    &lt;h3&gt;查询结果&lt;/h3&gt;
+    &lt;ul&gt;
+        &lt;li&gt;城市:&lt;span id=&quot;city&quot;&gt;&lt;/span&gt;&lt;/li&gt;
+        &lt;li&gt;天气:&lt;span id=&quot;weather&quot;&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;!-- ajax --&gt;
+    &lt;script src=&quot; ../../jquery-1.12.4.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+        function searchWeather() &#123;
 
-            <span class="token keyword">var</span> city <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#input-text"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            var city = $(&quot;#input-text&quot;).val();
 
-            $<span class="token punctuation">.</span><span class="token function">ajax</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-                <span class="token comment">// url 请求地址</span>
-                <span class="token literal-property property">url</span><span class="token operator">:</span> <span class="token string">'https://tianqiapi.com/api/'</span><span class="token punctuation">,</span>
+            $.ajax(&#123;
+                // url 请求地址
+                url: &#39;https://tianqiapi.com/api/&#39;,
 
-                <span class="token comment">// type 请求方式，默认是'GET'，常用的还有'POST'</span>
-                <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
+                // type 请求方式，默认是&#39;GET&#39;，常用的还有&#39;POST&#39;
+                type: &#39;get&#39;,
 
-                <span class="token comment">// dataType 设置返回的数据格式，常用的是'json'格式</span>
-                <span class="token literal-property property">dataType</span><span class="token operator">:</span> <span class="token string">'json'</span><span class="token punctuation">,</span>
+                // dataType 设置返回的数据格式，常用的是&#39;json&#39;格式
+                dataType: &#39;json&#39;,
 
-                <span class="token comment">// data 设置发送给服务器的数据，没有参数不需要设置</span>
-                <span class="token comment">// city=北京</span>
-                <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token string">"city="</span> <span class="token operator">+</span> city<span class="token punctuation">,</span>
+                // data 设置发送给服务器的数据，没有参数不需要设置
+                // city=北京
+                data: &quot;city=&quot; + city,
 
-                <span class="token comment">//success 设置请求成功后的回调函数    resp服务器返回的数据</span>
-                <span class="token function-variable function">success</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">resp</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                    <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#city"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span>resp<span class="token punctuation">.</span>city<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#weather"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span>resp<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>wea<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">&#125;</span> <span class="token punctuation">,</span>
-                <span class="token comment">// error 设置请求失败后的回调函数</span>
-                <span class="token function-variable function">error</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'获取失败'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-                <span class="token comment">// async 设置是否异步，默认值是'true'，表示异步，一般不用写</span>
-                <span class="token literal-property property">async</span><span class="token operator">:</span> <span class="token boolean">true</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-        <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+                //success 设置请求成功后的回调函数    resp服务器返回的数据
+                success: function (resp) &#123;
+                    $(&quot;#city&quot;).text(resp.city);
+                    $(&quot;#weather&quot;).text(resp.data[0].wea);
+                &#125; ,
+                // error 设置请求失败后的回调函数
+                error: function () &#123;
+                    alert(&#39;获取失败&#39;);
+                &#125;,
+                // async 设置是否异步，默认值是&#39;true&#39;，表示异步，一般不用写
+                async: true
+            &#125;)
+        &#125;;
+    &lt;/script&gt;
+&lt;/body&gt;
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+&lt;/html&gt;
+</code></pre>
 <h2 id="Web框架"><a href="#Web框架" class="headerlink" title="Web框架"></a>Web框架</h2><h3 id="web框架概述"><a href="#web框架概述" class="headerlink" title="web框架概述"></a>web框架概述</h3><p><strong>web框架和web服务器的关系</strong></p>
 <p>前面已经学习过web服务器,我们知道web服务器主要是接收用户的http请求根据用户的请求返回不同的资源数据，但是之前我们开发的是静态web服务器返回的都是静态资源数据，假如我们想要web服务器返回动态资源那么该如何进行处理呢 ?</p>
 <p><strong>web框架:</strong><br>使用web框架专门负责处理用户的动态资源请求,这个web框架其实就是一个为web服务器提供服务的<strong>应用程序</strong>，简称web框架</p>
@@ -1977,7 +1983,7 @@ alert(oPerson.age);<span aria-hidden="true" class="line-numbers-rows"><span></sp
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">432.3k</span>&nbsp;字
+                class="white-color">448.8k</span>&nbsp;字
             
             
             

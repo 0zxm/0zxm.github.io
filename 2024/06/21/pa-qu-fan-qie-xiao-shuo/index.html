@@ -487,14 +487,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.2k
+                    3.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    19 分
                 </div>
                 
 
@@ -521,40 +521,41 @@
 <h4 id="1-找网络接口"><a href="#1-找网络接口" class="headerlink" title="1.找网络接口"></a>1.找网络接口</h4><p>右键检查,清空网络日志,刷新,找到6893843740742386183document类型请求标头URL确实是<a target="_blank" rel="noopener" href="https://fanqienovel.com/reader/6893843740742386183,%E6%B2%A1%E6%9C%89%E5%81%9A%E5%85%B6%E4%BB%96%E6%8E%AA%E6%96%BD,%E6%89%80%E4%BB%A5%E7%9B%B4%E6%8E%A5%E7%94%A8requests%E5%BA%93%E4%BC%AA%E8%A3%85%E8%AE%BF%E9%97%AE,%E8%BF%99%E4%B8%80%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B">https://fanqienovel.com/reader/6893843740742386183,没有做其他措施,所以直接用requests库伪装访问,这一部分代码如下</a></p>
 <p><img src="/2024/06/21/pa-qu-fan-qie-xiao-shuo/image-20240126232926232-1706330347599-1.png"></p>
 <blockquote>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># cap01_url = 'https://fanqienovel.com/reader/6893843740742386183?enter_from=reader'</span>
-<span class="token comment"># cap02_url = 'https://fanqienovel.com/reader/6893843740834660878?enter_from=reader'</span>
-<span class="token comment"># cap03_url = 'https://fanqienovel.com/reader/6893843740910158344?enter_from=reader'</span>
-观察发现<span class="token punctuation">,</span>网页之间并没有直接关联
+<pre><code class="py"># cap01_url = &#39;https://fanqienovel.com/reader/6893843740742386183?enter_from=reader&#39;
+# cap02_url = &#39;https://fanqienovel.com/reader/6893843740834660878?enter_from=reader&#39;
+# cap03_url = &#39;https://fanqienovel.com/reader/6893843740910158344?enter_from=reader&#39;
+观察发现,网页之间并没有直接关联
 
-<span class="token keyword">import</span> requests
+import requests
 
-cap01_url <span class="token operator">=</span> <span class="token string">'https://fanqienovel.com/reader/6893843740742386183?enter_from=reader'</span>
-<span class="token comment"># cap02_url = 'https://fanqienovel.com/reader/6893843740834660878?enter_from=reader'</span>
-<span class="token comment"># cap03_url = 'https://fanqienovel.com/reader/6893843740910158344?enter_from=reader'</span>
+cap01_url = &#39;https://fanqienovel.com/reader/6893843740742386183?enter_from=reader&#39;
+# cap02_url = &#39;https://fanqienovel.com/reader/6893843740834660878?enter_from=reader&#39;
+# cap03_url = &#39;https://fanqienovel.com/reader/6893843740910158344?enter_from=reader&#39;
 
 
-headers <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">'User-Agent'</span><span class="token punctuation">:</span>
-            <span class="token string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0'</span><span class="token punctuation">&#125;</span>
+headers = &#123;&#39;User-Agent&#39;:
+            &#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0&#39;&#125;
 
-response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token operator">=</span>cap01_url<span class="token punctuation">,</span> headers<span class="token operator">=</span>headers<span class="token punctuation">)</span>
+response = requests.get(url=cap01_url, headers=headers)
 
-<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>text<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+print(response.text)
+</code></pre>
 </blockquote>
 <h4 id="2-接下来就使用xpath提取数据了"><a href="#2-接下来就使用xpath提取数据了" class="headerlink" title="2.接下来就使用xpath提取数据了"></a>2.接下来就使用xpath提取数据了</h4><p>“””先不要管乱码问题待会解决”””</p>
 <p>通过观察层级结构,我们使用xpath语法  &#x2F;&#x2F;div[@class&#x3D;”muye-reader-content noselect”]&#x2F;div&#x2F;&#x2F;p   获得文章内容,</p>
 <p>同时保存了章节标题  &#x2F;&#x2F;h1[@class &#x3D; “muye-reader-title”],先把这一部分内容获取到</p>
 <blockquote>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">tree <span class="token operator">=</span> etree<span class="token punctuation">.</span>HTML<span class="token punctuation">(</span>response<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+<pre><code class="python">tree = etree.HTML(response.text)
 
-title <span class="token operator">=</span> tree<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string">'//h1[@class = "muye-reader-title"]/text()'</span><span class="token punctuation">)</span>
+title = tree.xpath(&#39;//h1[@class = &quot;muye-reader-title&quot;]/text()&#39;)
 
-content_tags <span class="token operator">=</span> tree<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string">'//div[@class="muye-reader-content noselect"]/div//p/text()'</span><span class="token punctuation">)</span>
+content_tags = tree.xpath(&#39;//div[@class=&quot;muye-reader-content noselect&quot;]/div//p/text()&#39;)
 
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>content_tags<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">for</span> content_tag <span class="token keyword">in</span> content_tags<span class="token punctuation">:</span>
- <span class="token keyword">print</span><span class="token punctuation">(</span>content_tag<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">type</span><span class="token punctuation">(</span>title<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+print(len(content_tags))
+for content_tag in content_tags:
+ print(content_tag)
+print(type(title))
+</code></pre>
 </blockquote>
 <p><img src="/2024/06/21/pa-qu-fan-qie-xiao-shuo/image-20240126220945788.png" alt="image-20240126220945788"></p>
 <p>获取内容如图,具有乱码</p>
@@ -563,153 +564,155 @@ content_tags <span class="token operator">=</span> tree<span class="token punctu
 <p><img src="/2024/06/21/pa-qu-fan-qie-xiao-shuo/image-20240126221529195.png" alt="image-20240126221529195"></p>
 <p>于是这一段代码为:</p>
 <blockquote>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">CODE_ST <span class="token operator">=</span> <span class="token number">58344</span>  <span class="token comment"># 十六进制e3e8的十进制</span>
-CODE_ED <span class="token operator">=</span> <span class="token number">58715</span>  <span class="token comment"># 十六进制e55b的十进制</span>
-charset <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'D'</span><span class="token punctuation">,</span> <span class="token string">'在'</span><span class="token punctuation">,</span> <span class="token string">'主'</span><span class="token punctuation">,</span> <span class="token string">'特'</span><span class="token punctuation">,</span> <span class="token string">'家'</span><span class="token punctuation">,</span> <span class="token string">'军'</span><span class="token punctuation">,</span> <span class="token string">'然'</span><span class="token punctuation">,</span> <span class="token string">'表'</span><span class="token punctuation">,</span> <span class="token string">'场'</span><span class="token punctuation">,</span> <span class="token string">'4'</span><span class="token punctuation">,</span> <span class="token string">'要'</span><span class="token punctuation">,</span> <span class="token string">'只'</span><span class="token punctuation">,</span> <span class="token string">'v'</span><span class="token punctuation">,</span> <span class="token string">'和'</span><span class="token punctuation">,</span> <span class="token string">'?'</span><span class="token punctuation">,</span> <span class="token string">'6'</span><span class="token punctuation">,</span> <span class="token string">'别'</span><span class="token punctuation">,</span> <span class="token string">'还'</span><span class="token punctuation">,</span> <span class="token string">'g'</span><span class="token punctuation">,</span>
-        <span class="token string">'现'</span><span class="token punctuation">,</span> <span class="token string">'儿'</span><span class="token punctuation">,</span> <span class="token string">'岁'</span><span class="token punctuation">,</span> <span class="token string">'?'</span><span class="token punctuation">,</span> <span class="token string">'?'</span><span class="token punctuation">,</span> <span class="token string">'此'</span><span class="token punctuation">,</span> <span class="token string">'象'</span><span class="token punctuation">,</span> <span class="token string">'月'</span><span class="token punctuation">,</span> <span class="token string">'3'</span><span class="token punctuation">,</span> <span class="token string">'出'</span><span class="token punctuation">,</span> <span class="token string">'战'</span><span class="token punctuation">,</span> <span class="token string">'工'</span><span class="token punctuation">,</span> <span class="token string">'相'</span><span class="token punctuation">,</span> <span class="token string">'o'</span><span class="token punctuation">,</span> <span class="token string">'男'</span><span class="token punctuation">,</span> <span class="token string">'首'</span><span class="token punctuation">,</span> <span class="token string">'失'</span><span class="token punctuation">,</span> <span class="token string">'世'</span><span class="token punctuation">,</span> <span class="token string">'F'</span><span class="token punctuation">,</span>
-        <span class="token string">'都'</span><span class="token punctuation">,</span> <span class="token string">'平'</span><span class="token punctuation">,</span> <span class="token string">'文'</span><span class="token punctuation">,</span> <span class="token string">'什'</span><span class="token punctuation">,</span> <span class="token string">'V'</span><span class="token punctuation">,</span> <span class="token string">'O'</span><span class="token punctuation">,</span> <span class="token string">'将'</span><span class="token punctuation">,</span> <span class="token string">'真'</span><span class="token punctuation">,</span> <span class="token string">'T'</span><span class="token punctuation">,</span> <span class="token string">'那'</span><span class="token punctuation">,</span> <span class="token string">'当'</span><span class="token punctuation">,</span> <span class="token string">'?'</span><span class="token punctuation">,</span> <span class="token string">'会'</span><span class="token punctuation">,</span> <span class="token string">'立'</span><span class="token punctuation">,</span> <span class="token string">'些'</span><span class="token punctuation">,</span> <span class="token string">'u'</span><span class="token punctuation">,</span> <span class="token string">'是'</span><span class="token punctuation">,</span> <span class="token string">'十'</span><span class="token punctuation">,</span> <span class="token string">'张'</span><span class="token punctuation">,</span>
-        <span class="token string">'学'</span><span class="token punctuation">,</span> <span class="token string">'气'</span><span class="token punctuation">,</span> <span class="token string">'大'</span><span class="token punctuation">,</span> <span class="token string">'爱'</span><span class="token punctuation">,</span> <span class="token string">'两'</span><span class="token punctuation">,</span> <span class="token string">'命'</span><span class="token punctuation">,</span> <span class="token string">'全'</span><span class="token punctuation">,</span> <span class="token string">'后'</span><span class="token punctuation">,</span> <span class="token string">'东'</span><span class="token punctuation">,</span> <span class="token string">'性'</span><span class="token punctuation">,</span> <span class="token string">'通'</span><span class="token punctuation">,</span> <span class="token string">'被'</span><span class="token punctuation">,</span> <span class="token string">'1'</span><span class="token punctuation">,</span> <span class="token string">'它'</span><span class="token punctuation">,</span> <span class="token string">'乐'</span><span class="token punctuation">,</span> <span class="token string">'接'</span><span class="token punctuation">,</span> <span class="token string">'而'</span><span class="token punctuation">,</span> <span class="token string">'感'</span><span class="token punctuation">,</span>
-        <span class="token string">'车'</span><span class="token punctuation">,</span> <span class="token string">'山'</span><span class="token punctuation">,</span> <span class="token string">'公'</span><span class="token punctuation">,</span> <span class="token string">'了'</span><span class="token punctuation">,</span> <span class="token string">'常'</span><span class="token punctuation">,</span> <span class="token string">'以'</span><span class="token punctuation">,</span> <span class="token string">'何'</span><span class="token punctuation">,</span> <span class="token string">'可'</span><span class="token punctuation">,</span> <span class="token string">'话'</span><span class="token punctuation">,</span> <span class="token string">'先'</span><span class="token punctuation">,</span> <span class="token string">'p'</span><span class="token punctuation">,</span> <span class="token string">'i'</span><span class="token punctuation">,</span> <span class="token string">'叫'</span><span class="token punctuation">,</span> <span class="token string">'轻'</span><span class="token punctuation">,</span> <span class="token string">'M'</span><span class="token punctuation">,</span> <span class="token string">'士'</span><span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">,</span> <span class="token string">'着'</span><span class="token punctuation">,</span> <span class="token string">'变'</span><span class="token punctuation">,</span>
-        <span class="token string">'尔'</span><span class="token punctuation">,</span> <span class="token string">'快'</span><span class="token punctuation">,</span> <span class="token string">'l'</span><span class="token punctuation">,</span> <span class="token string">'个'</span><span class="token punctuation">,</span> <span class="token string">'说'</span><span class="token punctuation">,</span> <span class="token string">'少'</span><span class="token punctuation">,</span> <span class="token string">'色'</span><span class="token punctuation">,</span> <span class="token string">'里'</span><span class="token punctuation">,</span> <span class="token string">'安'</span><span class="token punctuation">,</span> <span class="token string">'花'</span><span class="token punctuation">,</span> <span class="token string">'远'</span><span class="token punctuation">,</span> <span class="token string">'7'</span><span class="token punctuation">,</span> <span class="token string">'难'</span><span class="token punctuation">,</span> <span class="token string">'师'</span><span class="token punctuation">,</span> <span class="token string">'放'</span><span class="token punctuation">,</span> <span class="token string">'t'</span><span class="token punctuation">,</span> <span class="token string">'报'</span><span class="token punctuation">,</span> <span class="token string">'认'</span><span class="token punctuation">,</span>
-        <span class="token string">'面'</span><span class="token punctuation">,</span> <span class="token string">'道'</span><span class="token punctuation">,</span> <span class="token string">'S'</span><span class="token punctuation">,</span> <span class="token string">'?'</span><span class="token punctuation">,</span> <span class="token string">'克'</span><span class="token punctuation">,</span> <span class="token string">'地'</span><span class="token punctuation">,</span> <span class="token string">'度'</span><span class="token punctuation">,</span> <span class="token string">'I'</span><span class="token punctuation">,</span> <span class="token string">'好'</span><span class="token punctuation">,</span> <span class="token string">'机'</span><span class="token punctuation">,</span> <span class="token string">'U'</span><span class="token punctuation">,</span> <span class="token string">'民'</span><span class="token punctuation">,</span> <span class="token string">'写'</span><span class="token punctuation">,</span> <span class="token string">'把'</span><span class="token punctuation">,</span> <span class="token string">'万'</span><span class="token punctuation">,</span> <span class="token string">'同'</span><span class="token punctuation">,</span> <span class="token string">'水'</span><span class="token punctuation">,</span> <span class="token string">'新'</span><span class="token punctuation">,</span> <span class="token string">'没'</span><span class="token punctuation">,</span>
-        <span class="token string">'书'</span><span class="token punctuation">,</span> <span class="token string">'电'</span><span class="token punctuation">,</span> <span class="token string">'吃'</span><span class="token punctuation">,</span> <span class="token string">'像'</span><span class="token punctuation">,</span> <span class="token string">'斯'</span><span class="token punctuation">,</span> <span class="token string">'5'</span><span class="token punctuation">,</span> <span class="token string">'为'</span><span class="token punctuation">,</span> <span class="token string">'y'</span><span class="token punctuation">,</span> <span class="token string">'白'</span><span class="token punctuation">,</span> <span class="token string">'几'</span><span class="token punctuation">,</span> <span class="token string">'日'</span><span class="token punctuation">,</span> <span class="token string">'教'</span><span class="token punctuation">,</span> <span class="token string">'看'</span><span class="token punctuation">,</span> <span class="token string">'但'</span><span class="token punctuation">,</span> <span class="token string">'第'</span><span class="token punctuation">,</span> <span class="token string">'加'</span><span class="token punctuation">,</span> <span class="token string">'候'</span><span class="token punctuation">,</span> <span class="token string">'作'</span><span class="token punctuation">,</span>
-        <span class="token string">'上'</span><span class="token punctuation">,</span> <span class="token string">'拉'</span><span class="token punctuation">,</span> <span class="token string">'住'</span><span class="token punctuation">,</span> <span class="token string">'有'</span><span class="token punctuation">,</span> <span class="token string">'法'</span><span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">,</span> <span class="token string">'事'</span><span class="token punctuation">,</span> <span class="token string">'应'</span><span class="token punctuation">,</span> <span class="token string">'位'</span><span class="token punctuation">,</span> <span class="token string">'利'</span><span class="token punctuation">,</span> <span class="token string">'你'</span><span class="token punctuation">,</span> <span class="token string">'声'</span><span class="token punctuation">,</span> <span class="token string">'身'</span><span class="token punctuation">,</span> <span class="token string">'国'</span><span class="token punctuation">,</span> <span class="token string">'问'</span><span class="token punctuation">,</span> <span class="token string">'马'</span><span class="token punctuation">,</span> <span class="token string">'女'</span><span class="token punctuation">,</span> <span class="token string">'他'</span><span class="token punctuation">,</span>
-        <span class="token string">'Y'</span><span class="token punctuation">,</span> <span class="token string">'比'</span><span class="token punctuation">,</span> <span class="token string">'父'</span><span class="token punctuation">,</span> <span class="token string">'x'</span><span class="token punctuation">,</span> <span class="token string">'A'</span><span class="token punctuation">,</span> <span class="token string">'H'</span><span class="token punctuation">,</span> <span class="token string">'N'</span><span class="token punctuation">,</span> <span class="token string">'s'</span><span class="token punctuation">,</span> <span class="token string">'X'</span><span class="token punctuation">,</span> <span class="token string">'边'</span><span class="token punctuation">,</span> <span class="token string">'美'</span><span class="token punctuation">,</span> <span class="token string">'对'</span><span class="token punctuation">,</span> <span class="token string">'所'</span><span class="token punctuation">,</span> <span class="token string">'金'</span><span class="token punctuation">,</span> <span class="token string">'活'</span><span class="token punctuation">,</span> <span class="token string">'回'</span><span class="token punctuation">,</span> <span class="token string">'意'</span><span class="token punctuation">,</span> <span class="token string">'到'</span><span class="token punctuation">,</span> <span class="token string">'z'</span><span class="token punctuation">,</span>
-        <span class="token string">'从'</span><span class="token punctuation">,</span> <span class="token string">'j'</span><span class="token punctuation">,</span> <span class="token string">'知'</span><span class="token punctuation">,</span> <span class="token string">'又'</span><span class="token punctuation">,</span> <span class="token string">'内'</span><span class="token punctuation">,</span> <span class="token string">'因'</span><span class="token punctuation">,</span> <span class="token string">'点'</span><span class="token punctuation">,</span> <span class="token string">'Q'</span><span class="token punctuation">,</span> <span class="token string">'三'</span><span class="token punctuation">,</span> <span class="token string">'定'</span><span class="token punctuation">,</span> <span class="token string">'8'</span><span class="token punctuation">,</span> <span class="token string">'R'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'正'</span><span class="token punctuation">,</span> <span class="token string">'或'</span><span class="token punctuation">,</span> <span class="token string">'夫'</span><span class="token punctuation">,</span> <span class="token string">'向'</span><span class="token punctuation">,</span> <span class="token string">'德'</span><span class="token punctuation">,</span> <span class="token string">'听'</span><span class="token punctuation">,</span>
-        <span class="token string">'更'</span><span class="token punctuation">,</span> <span class="token string">'?'</span><span class="token punctuation">,</span> <span class="token string">'得'</span><span class="token punctuation">,</span> <span class="token string">'告'</span><span class="token punctuation">,</span> <span class="token string">'并'</span><span class="token punctuation">,</span> <span class="token string">'本'</span><span class="token punctuation">,</span> <span class="token string">'q'</span><span class="token punctuation">,</span> <span class="token string">'过'</span><span class="token punctuation">,</span> <span class="token string">'记'</span><span class="token punctuation">,</span> <span class="token string">'L'</span><span class="token punctuation">,</span> <span class="token string">'让'</span><span class="token punctuation">,</span> <span class="token string">'打'</span><span class="token punctuation">,</span> <span class="token string">'f'</span><span class="token punctuation">,</span> <span class="token string">'人'</span><span class="token punctuation">,</span> <span class="token string">'就'</span><span class="token punctuation">,</span> <span class="token string">'者'</span><span class="token punctuation">,</span> <span class="token string">'去'</span><span class="token punctuation">,</span> <span class="token string">'原'</span><span class="token punctuation">,</span> <span class="token string">'满'</span><span class="token punctuation">,</span>
-        <span class="token string">'体'</span><span class="token punctuation">,</span> <span class="token string">'做'</span><span class="token punctuation">,</span> <span class="token string">'经'</span><span class="token punctuation">,</span> <span class="token string">'K'</span><span class="token punctuation">,</span> <span class="token string">'走'</span><span class="token punctuation">,</span> <span class="token string">'如'</span><span class="token punctuation">,</span> <span class="token string">'孩'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'G'</span><span class="token punctuation">,</span> <span class="token string">'给'</span><span class="token punctuation">,</span> <span class="token string">'使'</span><span class="token punctuation">,</span> <span class="token string">'物'</span><span class="token punctuation">,</span> <span class="token string">'?'</span><span class="token punctuation">,</span> <span class="token string">'最'</span><span class="token punctuation">,</span> <span class="token string">'笑'</span><span class="token punctuation">,</span> <span class="token string">'部'</span><span class="token punctuation">,</span> <span class="token string">'?'</span><span class="token punctuation">,</span> <span class="token string">'员'</span><span class="token punctuation">,</span> <span class="token string">'等'</span><span class="token punctuation">,</span>
-        <span class="token string">'受'</span><span class="token punctuation">,</span> <span class="token string">'k'</span><span class="token punctuation">,</span> <span class="token string">'行'</span><span class="token punctuation">,</span> <span class="token string">'一'</span><span class="token punctuation">,</span> <span class="token string">'条'</span><span class="token punctuation">,</span> <span class="token string">'果'</span><span class="token punctuation">,</span> <span class="token string">'动'</span><span class="token punctuation">,</span> <span class="token string">'光'</span><span class="token punctuation">,</span> <span class="token string">'门'</span><span class="token punctuation">,</span> <span class="token string">'头'</span><span class="token punctuation">,</span> <span class="token string">'见'</span><span class="token punctuation">,</span> <span class="token string">'往'</span><span class="token punctuation">,</span> <span class="token string">'自'</span><span class="token punctuation">,</span> <span class="token string">'解'</span><span class="token punctuation">,</span> <span class="token string">'成'</span><span class="token punctuation">,</span> <span class="token string">'处'</span><span class="token punctuation">,</span> <span class="token string">'天'</span><span class="token punctuation">,</span> <span class="token string">'能'</span><span class="token punctuation">,</span>
-        <span class="token string">'于'</span><span class="token punctuation">,</span> <span class="token string">'名'</span><span class="token punctuation">,</span> <span class="token string">'其'</span><span class="token punctuation">,</span> <span class="token string">'发'</span><span class="token punctuation">,</span> <span class="token string">'总'</span><span class="token punctuation">,</span> <span class="token string">'母'</span><span class="token punctuation">,</span> <span class="token string">'的'</span><span class="token punctuation">,</span> <span class="token string">'死'</span><span class="token punctuation">,</span> <span class="token string">'手'</span><span class="token punctuation">,</span> <span class="token string">'入'</span><span class="token punctuation">,</span> <span class="token string">'路'</span><span class="token punctuation">,</span> <span class="token string">'进'</span><span class="token punctuation">,</span> <span class="token string">'心'</span><span class="token punctuation">,</span> <span class="token string">'来'</span><span class="token punctuation">,</span> <span class="token string">'h'</span><span class="token punctuation">,</span> <span class="token string">'时'</span><span class="token punctuation">,</span> <span class="token string">'力'</span><span class="token punctuation">,</span> <span class="token string">'多'</span><span class="token punctuation">,</span>
-        <span class="token string">'开'</span><span class="token punctuation">,</span> <span class="token string">'己'</span><span class="token punctuation">,</span> <span class="token string">'许'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'至'</span><span class="token punctuation">,</span> <span class="token string">'由'</span><span class="token punctuation">,</span> <span class="token string">'很'</span><span class="token punctuation">,</span> <span class="token string">'界'</span><span class="token punctuation">,</span> <span class="token string">'n'</span><span class="token punctuation">,</span> <span class="token string">'小'</span><span class="token punctuation">,</span> <span class="token string">'与'</span><span class="token punctuation">,</span> <span class="token string">'Z'</span><span class="token punctuation">,</span> <span class="token string">'想'</span><span class="token punctuation">,</span> <span class="token string">'代'</span><span class="token punctuation">,</span> <span class="token string">'么'</span><span class="token punctuation">,</span> <span class="token string">'分'</span><span class="token punctuation">,</span> <span class="token string">'生'</span><span class="token punctuation">,</span> <span class="token string">'口'</span><span class="token punctuation">,</span>
-        <span class="token string">'再'</span><span class="token punctuation">,</span> <span class="token string">'妈'</span><span class="token punctuation">,</span> <span class="token string">'望'</span><span class="token punctuation">,</span> <span class="token string">'次'</span><span class="token punctuation">,</span> <span class="token string">'西'</span><span class="token punctuation">,</span> <span class="token string">'风'</span><span class="token punctuation">,</span> <span class="token string">'种'</span><span class="token punctuation">,</span> <span class="token string">'带'</span><span class="token punctuation">,</span> <span class="token string">'J'</span><span class="token punctuation">,</span> <span class="token string">'?'</span><span class="token punctuation">,</span> <span class="token string">'实'</span><span class="token punctuation">,</span> <span class="token string">'情'</span><span class="token punctuation">,</span> <span class="token string">'才'</span><span class="token punctuation">,</span> <span class="token string">'这'</span><span class="token punctuation">,</span> <span class="token string">'?'</span><span class="token punctuation">,</span> <span class="token string">'E'</span><span class="token punctuation">,</span> <span class="token string">'我'</span><span class="token punctuation">,</span> <span class="token string">'神'</span><span class="token punctuation">,</span> <span class="token string">'格'</span><span class="token punctuation">,</span>
-        <span class="token string">'长'</span><span class="token punctuation">,</span> <span class="token string">'觉'</span><span class="token punctuation">,</span> <span class="token string">'间'</span><span class="token punctuation">,</span> <span class="token string">'年'</span><span class="token punctuation">,</span> <span class="token string">'眼'</span><span class="token punctuation">,</span> <span class="token string">'无'</span><span class="token punctuation">,</span> <span class="token string">'不'</span><span class="token punctuation">,</span> <span class="token string">'亲'</span><span class="token punctuation">,</span> <span class="token string">'关'</span><span class="token punctuation">,</span> <span class="token string">'结'</span><span class="token punctuation">,</span> <span class="token string">'0'</span><span class="token punctuation">,</span> <span class="token string">'友'</span><span class="token punctuation">,</span> <span class="token string">'信'</span><span class="token punctuation">,</span> <span class="token string">'下'</span><span class="token punctuation">,</span> <span class="token string">'却'</span><span class="token punctuation">,</span> <span class="token string">'重'</span><span class="token punctuation">,</span> <span class="token string">'己'</span><span class="token punctuation">,</span> <span class="token string">'老'</span><span class="token punctuation">,</span>
-        <span class="token string">'2'</span><span class="token punctuation">,</span> <span class="token string">'音'</span><span class="token punctuation">,</span> <span class="token string">'字'</span><span class="token punctuation">,</span> <span class="token string">'m'</span><span class="token punctuation">,</span> <span class="token string">'呢'</span><span class="token punctuation">,</span> <span class="token string">'明'</span><span class="token punctuation">,</span> <span class="token string">'之'</span><span class="token punctuation">,</span> <span class="token string">'前'</span><span class="token punctuation">,</span> <span class="token string">'高'</span><span class="token punctuation">,</span> <span class="token string">'P'</span><span class="token punctuation">,</span> <span class="token string">'B'</span><span class="token punctuation">,</span> <span class="token string">'目'</span><span class="token punctuation">,</span> <span class="token string">'太'</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">,</span> <span class="token string">'9'</span><span class="token punctuation">,</span> <span class="token string">'起'</span><span class="token punctuation">,</span> <span class="token string">'稜'</span><span class="token punctuation">,</span> <span class="token string">'她'</span><span class="token punctuation">,</span> <span class="token string">'也'</span><span class="token punctuation">,</span>
-        <span class="token string">'W'</span><span class="token punctuation">,</span> <span class="token string">'用'</span><span class="token punctuation">,</span> <span class="token string">'方'</span><span class="token punctuation">,</span> <span class="token string">'子'</span><span class="token punctuation">,</span> <span class="token string">'英'</span><span class="token punctuation">,</span> <span class="token string">'每'</span><span class="token punctuation">,</span> <span class="token string">'理'</span><span class="token punctuation">,</span> <span class="token string">'便'</span><span class="token punctuation">,</span> <span class="token string">'西'</span><span class="token punctuation">,</span> <span class="token string">'数'</span><span class="token punctuation">,</span> <span class="token string">'期'</span><span class="token punctuation">,</span> <span class="token string">'中'</span><span class="token punctuation">,</span> <span class="token string">'C'</span><span class="token punctuation">,</span> <span class="token string">'外'</span><span class="token punctuation">,</span> <span class="token string">'样'</span><span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'海'</span><span class="token punctuation">,</span> <span class="token string">'们'</span><span class="token punctuation">,</span>
-        <span class="token string">'任'</span><span class="token punctuation">]</span>
+<pre><code class="python">CODE_ST = 58344  # 十六进制e3e8的十进制
+CODE_ED = 58715  # 十六进制e55b的十进制
+charset = [&#39;D&#39;, &#39;在&#39;, &#39;主&#39;, &#39;特&#39;, &#39;家&#39;, &#39;军&#39;, &#39;然&#39;, &#39;表&#39;, &#39;场&#39;, &#39;4&#39;, &#39;要&#39;, &#39;只&#39;, &#39;v&#39;, &#39;和&#39;, &#39;?&#39;, &#39;6&#39;, &#39;别&#39;, &#39;还&#39;, &#39;g&#39;,
+        &#39;现&#39;, &#39;儿&#39;, &#39;岁&#39;, &#39;?&#39;, &#39;?&#39;, &#39;此&#39;, &#39;象&#39;, &#39;月&#39;, &#39;3&#39;, &#39;出&#39;, &#39;战&#39;, &#39;工&#39;, &#39;相&#39;, &#39;o&#39;, &#39;男&#39;, &#39;首&#39;, &#39;失&#39;, &#39;世&#39;, &#39;F&#39;,
+        &#39;都&#39;, &#39;平&#39;, &#39;文&#39;, &#39;什&#39;, &#39;V&#39;, &#39;O&#39;, &#39;将&#39;, &#39;真&#39;, &#39;T&#39;, &#39;那&#39;, &#39;当&#39;, &#39;?&#39;, &#39;会&#39;, &#39;立&#39;, &#39;些&#39;, &#39;u&#39;, &#39;是&#39;, &#39;十&#39;, &#39;张&#39;,
+        &#39;学&#39;, &#39;气&#39;, &#39;大&#39;, &#39;爱&#39;, &#39;两&#39;, &#39;命&#39;, &#39;全&#39;, &#39;后&#39;, &#39;东&#39;, &#39;性&#39;, &#39;通&#39;, &#39;被&#39;, &#39;1&#39;, &#39;它&#39;, &#39;乐&#39;, &#39;接&#39;, &#39;而&#39;, &#39;感&#39;,
+        &#39;车&#39;, &#39;山&#39;, &#39;公&#39;, &#39;了&#39;, &#39;常&#39;, &#39;以&#39;, &#39;何&#39;, &#39;可&#39;, &#39;话&#39;, &#39;先&#39;, &#39;p&#39;, &#39;i&#39;, &#39;叫&#39;, &#39;轻&#39;, &#39;M&#39;, &#39;士&#39;, &#39;w&#39;, &#39;着&#39;, &#39;变&#39;,
+        &#39;尔&#39;, &#39;快&#39;, &#39;l&#39;, &#39;个&#39;, &#39;说&#39;, &#39;少&#39;, &#39;色&#39;, &#39;里&#39;, &#39;安&#39;, &#39;花&#39;, &#39;远&#39;, &#39;7&#39;, &#39;难&#39;, &#39;师&#39;, &#39;放&#39;, &#39;t&#39;, &#39;报&#39;, &#39;认&#39;,
+        &#39;面&#39;, &#39;道&#39;, &#39;S&#39;, &#39;?&#39;, &#39;克&#39;, &#39;地&#39;, &#39;度&#39;, &#39;I&#39;, &#39;好&#39;, &#39;机&#39;, &#39;U&#39;, &#39;民&#39;, &#39;写&#39;, &#39;把&#39;, &#39;万&#39;, &#39;同&#39;, &#39;水&#39;, &#39;新&#39;, &#39;没&#39;,
+        &#39;书&#39;, &#39;电&#39;, &#39;吃&#39;, &#39;像&#39;, &#39;斯&#39;, &#39;5&#39;, &#39;为&#39;, &#39;y&#39;, &#39;白&#39;, &#39;几&#39;, &#39;日&#39;, &#39;教&#39;, &#39;看&#39;, &#39;但&#39;, &#39;第&#39;, &#39;加&#39;, &#39;候&#39;, &#39;作&#39;,
+        &#39;上&#39;, &#39;拉&#39;, &#39;住&#39;, &#39;有&#39;, &#39;法&#39;, &#39;r&#39;, &#39;事&#39;, &#39;应&#39;, &#39;位&#39;, &#39;利&#39;, &#39;你&#39;, &#39;声&#39;, &#39;身&#39;, &#39;国&#39;, &#39;问&#39;, &#39;马&#39;, &#39;女&#39;, &#39;他&#39;,
+        &#39;Y&#39;, &#39;比&#39;, &#39;父&#39;, &#39;x&#39;, &#39;A&#39;, &#39;H&#39;, &#39;N&#39;, &#39;s&#39;, &#39;X&#39;, &#39;边&#39;, &#39;美&#39;, &#39;对&#39;, &#39;所&#39;, &#39;金&#39;, &#39;活&#39;, &#39;回&#39;, &#39;意&#39;, &#39;到&#39;, &#39;z&#39;,
+        &#39;从&#39;, &#39;j&#39;, &#39;知&#39;, &#39;又&#39;, &#39;内&#39;, &#39;因&#39;, &#39;点&#39;, &#39;Q&#39;, &#39;三&#39;, &#39;定&#39;, &#39;8&#39;, &#39;R&#39;, &#39;b&#39;, &#39;正&#39;, &#39;或&#39;, &#39;夫&#39;, &#39;向&#39;, &#39;德&#39;, &#39;听&#39;,
+        &#39;更&#39;, &#39;?&#39;, &#39;得&#39;, &#39;告&#39;, &#39;并&#39;, &#39;本&#39;, &#39;q&#39;, &#39;过&#39;, &#39;记&#39;, &#39;L&#39;, &#39;让&#39;, &#39;打&#39;, &#39;f&#39;, &#39;人&#39;, &#39;就&#39;, &#39;者&#39;, &#39;去&#39;, &#39;原&#39;, &#39;满&#39;,
+        &#39;体&#39;, &#39;做&#39;, &#39;经&#39;, &#39;K&#39;, &#39;走&#39;, &#39;如&#39;, &#39;孩&#39;, &#39;c&#39;, &#39;G&#39;, &#39;给&#39;, &#39;使&#39;, &#39;物&#39;, &#39;?&#39;, &#39;最&#39;, &#39;笑&#39;, &#39;部&#39;, &#39;?&#39;, &#39;员&#39;, &#39;等&#39;,
+        &#39;受&#39;, &#39;k&#39;, &#39;行&#39;, &#39;一&#39;, &#39;条&#39;, &#39;果&#39;, &#39;动&#39;, &#39;光&#39;, &#39;门&#39;, &#39;头&#39;, &#39;见&#39;, &#39;往&#39;, &#39;自&#39;, &#39;解&#39;, &#39;成&#39;, &#39;处&#39;, &#39;天&#39;, &#39;能&#39;,
+        &#39;于&#39;, &#39;名&#39;, &#39;其&#39;, &#39;发&#39;, &#39;总&#39;, &#39;母&#39;, &#39;的&#39;, &#39;死&#39;, &#39;手&#39;, &#39;入&#39;, &#39;路&#39;, &#39;进&#39;, &#39;心&#39;, &#39;来&#39;, &#39;h&#39;, &#39;时&#39;, &#39;力&#39;, &#39;多&#39;,
+        &#39;开&#39;, &#39;己&#39;, &#39;许&#39;, &#39;d&#39;, &#39;至&#39;, &#39;由&#39;, &#39;很&#39;, &#39;界&#39;, &#39;n&#39;, &#39;小&#39;, &#39;与&#39;, &#39;Z&#39;, &#39;想&#39;, &#39;代&#39;, &#39;么&#39;, &#39;分&#39;, &#39;生&#39;, &#39;口&#39;,
+        &#39;再&#39;, &#39;妈&#39;, &#39;望&#39;, &#39;次&#39;, &#39;西&#39;, &#39;风&#39;, &#39;种&#39;, &#39;带&#39;, &#39;J&#39;, &#39;?&#39;, &#39;实&#39;, &#39;情&#39;, &#39;才&#39;, &#39;这&#39;, &#39;?&#39;, &#39;E&#39;, &#39;我&#39;, &#39;神&#39;, &#39;格&#39;,
+        &#39;长&#39;, &#39;觉&#39;, &#39;间&#39;, &#39;年&#39;, &#39;眼&#39;, &#39;无&#39;, &#39;不&#39;, &#39;亲&#39;, &#39;关&#39;, &#39;结&#39;, &#39;0&#39;, &#39;友&#39;, &#39;信&#39;, &#39;下&#39;, &#39;却&#39;, &#39;重&#39;, &#39;己&#39;, &#39;老&#39;,
+        &#39;2&#39;, &#39;音&#39;, &#39;字&#39;, &#39;m&#39;, &#39;呢&#39;, &#39;明&#39;, &#39;之&#39;, &#39;前&#39;, &#39;高&#39;, &#39;P&#39;, &#39;B&#39;, &#39;目&#39;, &#39;太&#39;, &#39;e&#39;, &#39;9&#39;, &#39;起&#39;, &#39;稜&#39;, &#39;她&#39;, &#39;也&#39;,
+        &#39;W&#39;, &#39;用&#39;, &#39;方&#39;, &#39;子&#39;, &#39;英&#39;, &#39;每&#39;, &#39;理&#39;, &#39;便&#39;, &#39;西&#39;, &#39;数&#39;, &#39;期&#39;, &#39;中&#39;, &#39;C&#39;, &#39;外&#39;, &#39;样&#39;, &#39;a&#39;, &#39;海&#39;, &#39;们&#39;,
+        &#39;任&#39;]
 
-<span class="token keyword">def</span> <span class="token function">interpreter</span><span class="token punctuation">(</span>cc<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 原字符减去e338获取到另一套字体的该编码字符</span>
- bias <span class="token operator">=</span> cc <span class="token operator">-</span> CODE_ST
- <span class="token keyword">if</span> charset<span class="token punctuation">[</span>bias<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'?'</span><span class="token punctuation">:</span>  <span class="token comment"># 特殊处理</span>
-     <span class="token keyword">return</span> <span class="token builtin">chr</span><span class="token punctuation">(</span>cc<span class="token punctuation">)</span>
- <span class="token keyword">return</span> charset<span class="token punctuation">[</span>bias<span class="token punctuation">]</span>
+def interpreter(cc):  # 原字符减去e338获取到另一套字体的该编码字符
+ bias = cc - CODE_ST
+ if charset[bias] == &#39;?&#39;:  # 特殊处理
+     return chr(cc)
+ return charset[bias]
 
 
-<span class="token comment"># 获取小说章节</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>title<span class="token punctuation">)</span>
-content <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-<span class="token keyword">for</span> content_tag <span class="token keyword">in</span> content_tags<span class="token punctuation">:</span>
- para <span class="token operator">=</span> <span class="token string">''</span>
- <span class="token keyword">for</span> char <span class="token keyword">in</span> content_tag<span class="token punctuation">:</span>
-     cc <span class="token operator">=</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>char<span class="token punctuation">)</span>
-     <span class="token keyword">if</span> CODE_ST <span class="token operator">&lt;=</span> cc <span class="token operator">&lt;=</span> CODE_ED<span class="token punctuation">:</span>
-         ch <span class="token operator">=</span> interpreter<span class="token punctuation">(</span>cc<span class="token punctuation">)</span>
-         para <span class="token operator">+=</span> ch
-     <span class="token keyword">else</span><span class="token punctuation">:</span>
-         para <span class="token operator">+=</span> char  <span class="token comment"># 这里应该是拼接字符，而不是其ASCII码</span>
- content<span class="token punctuation">.</span>append<span class="token punctuation">(</span>para<span class="token punctuation">)</span>
+# 获取小说章节
+print(title)
+content = []
+for content_tag in content_tags:
+ para = &#39;&#39;
+ for char in content_tag:
+     cc = ord(char)
+     if CODE_ST &lt;= cc &lt;= CODE_ED:
+         ch = interpreter(cc)
+         para += ch
+     else:
+         para += char  # 这里应该是拼接字符，而不是其ASCII码
+ content.append(para)
 
-<span class="token keyword">print</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span>
+print(content)
 
-<span class="token keyword">for</span> para <span class="token keyword">in</span> content<span class="token punctuation">:</span>
- fp<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">'    '</span><span class="token punctuation">)</span>
- fp<span class="token punctuation">.</span>write<span class="token punctuation">(</span>para<span class="token punctuation">)</span>
- fp<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+for para in content:
+ fp.write(&#39;    &#39;)
+ fp.write(para)
+ fp.write(&#39;\n&#39;)
+</code></pre>
 </blockquote>
 <p>到这按理说应该去找底部下一章节按钮的超链接,但是番茄给我们反爬了,没有有用信息</p>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">只能去网络接口里面找,在点击下一张之后,发现网络请求中有一个请求返回的json数据不仅有内容还有下一页的**ItemID**,所以解析获得,然后拼接到本身url(替换原本的id,  *注意:原本的url里面的参数可以删去部分,不影响返回,最后的url是这样*https://fanqienovel.com/api/reader/full?itemId=6893843740834660878)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="text">只能去网络接口里面找,在点击下一张之后,发现网络请求中有一个请求返回的json数据不仅有内容还有下一页的**ItemID**,所以解析获得,然后拼接到本身url(替换原本的id,  *注意:原本的url里面的参数可以删去部分,不影响返回,最后的url是这样*https://fanqienovel.com/api/reader/full?itemId=6893843740834660878)
+</code></pre>
 <p>注意,经过实验下一张的编号是itemId,而不是nextitemId</p>
 <p><img src="/2024/06/21/pa-qu-fan-qie-xiao-shuo/image-20240126232926232-1706330347599-1.png"></p>
 <blockquote>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">cap01_url <span class="token operator">=</span> <span class="token string">'https://fanqienovel.com/api/reader/full?itemId=6893843740834660878'</span>
-<span class="token comment"># cap02_url = 'https://fanqienovel.com/reader/6893843740834660878?enter_from=reader'</span>
-<span class="token comment"># cap03_url = 'https://fanqienovel.com/reader/6893843740910158344?enter_from=reader'</span>
+<pre><code class="python">cap01_url = &#39;https://fanqienovel.com/api/reader/full?itemId=6893843740834660878&#39;
+# cap02_url = &#39;https://fanqienovel.com/reader/6893843740834660878?enter_from=reader&#39;
+# cap03_url = &#39;https://fanqienovel.com/reader/6893843740910158344?enter_from=reader&#39;
 
-fp <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'人类不死以后.txt'</span><span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+fp = open(&#39;人类不死以后.txt&#39;, &#39;a&#39;, encoding=&#39;utf-8&#39;)
 
-headers <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">'User-Agent'</span><span class="token punctuation">:</span>
-            <span class="token string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0'</span><span class="token punctuation">&#125;</span>
+headers = &#123;&#39;User-Agent&#39;:
+            &#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0&#39;&#125;
 
-response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token operator">=</span>cap01_url<span class="token punctuation">,</span> headers<span class="token operator">=</span>headers<span class="token punctuation">)</span>
+response = requests.get(url=cap01_url, headers=headers)
 
-data <span class="token operator">=</span> response<span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span>
+data = response.json()
 
-json_obj <span class="token operator">=</span> response<span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 解析JSON数据为Python字典</span>
+json_obj = response.json()  # 解析JSON数据为Python字典
 
-next_id <span class="token operator">=</span> json_obj<span class="token punctuation">[</span><span class="token string">'data'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'chapterData'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'nextItemId'</span><span class="token punctuation">]</span> <span class="token comment"># 解嵌套</span>
+next_id = json_obj[&#39;data&#39;][&#39;chapterData&#39;][&#39;nextItemId&#39;] # 解嵌套
 
-next_url <span class="token operator">=</span> <span class="token string">'https://fanqienovel.com/api/reader/full?itemId='</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>next_id<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+next_url = &#39;https://fanqienovel.com/api/reader/full?itemId=&#39; + str(next_id)
+</code></pre>
 </blockquote>
 <p>到此,所以需要的信息已经爬完了,只需要处理循环逻辑,保存文件就行</p>
 <p>最后全部代码如下,做了一些修改</p>
 <blockquote>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">"""
+<pre><code class="text">&quot;&quot;&quot;
 # Time: 2024/1/22/22:59
 # Theme: 爬虫程序
 # Author: 0zxm
 # E-mail: m15813109801@163.com
 # Dependencies: urllib.request, lxml
-"""
+&quot;&quot;&quot;
 import requests
 from lxml import etree
 
 CODE_ST = 58344  # 十六进制e3e8的十进制
 CODE_ED = 58715  # 十六进制e55b的十进制
-charset = ['D', '在', '主', '特', '家', '军', '然', '表', '场', '4', '要', '只', 'v', '和', '?', '6', '别', '还', 'g',
-     '现', '儿', '岁', '?', '?', '此', '象', '月', '3', '出', '战', '工', '相', 'o', '男', '首', '失', '世', 'F',
-     '都', '平', '文', '什', 'V', 'O', '将', '真', 'T', '那', '当', '?', '会', '立', '些', 'u', '是', '十', '张',
-     '学', '气', '大', '爱', '两', '命', '全', '后', '东', '性', '通', '被', '1', '它', '乐', '接', '而', '感',
-     '车', '山', '公', '了', '常', '以', '何', '可', '话', '先', 'p', 'i', '叫', '轻', 'M', '士', 'w', '着', '变',
-     '尔', '快', 'l', '个', '说', '少', '色', '里', '安', '花', '远', '7', '难', '师', '放', 't', '报', '认',
-     '面', '道', 'S', '?', '克', '地', '度', 'I', '好', '机', 'U', '民', '写', '把', '万', '同', '水', '新', '没',
-     '书', '电', '吃', '像', '斯', '5', '为', 'y', '白', '几', '日', '教', '看', '但', '第', '加', '候', '作',
-     '上', '拉', '住', '有', '法', 'r', '事', '应', '位', '利', '你', '声', '身', '国', '问', '马', '女', '他',
-     'Y', '比', '父', 'x', 'A', 'H', 'N', 's', 'X', '边', '美', '对', '所', '金', '活', '回', '意', '到', 'z',
-     '从', 'j', '知', '又', '内', '因', '点', 'Q', '三', '定', '8', 'R', 'b', '正', '或', '夫', '向', '德', '听',
-     '更', '?', '得', '告', '并', '本', 'q', '过', '记', 'L', '让', '打', 'f', '人', '就', '者', '去', '原', '满',
-     '体', '做', '经', 'K', '走', '如', '孩', 'c', 'G', '给', '使', '物', '?', '最', '笑', '部', '?', '员', '等',
-     '受', 'k', '行', '一', '条', '果', '动', '光', '门', '头', '见', '往', '自', '解', '成', '处', '天', '能',
-     '于', '名', '其', '发', '总', '母', '的', '死', '手', '入', '路', '进', '心', '来', 'h', '时', '力', '多',
-     '开', '己', '许', 'd', '至', '由', '很', '界', 'n', '小', '与', 'Z', '想', '代', '么', '分', '生', '口',
-     '再', '妈', '望', '次', '西', '风', '种', '带', 'J', '?', '实', '情', '才', '这', '?', 'E', '我', '神', '格',
-     '长', '觉', '间', '年', '眼', '无', '不', '亲', '关', '结', '0', '友', '信', '下', '却', '重', '己', '老',
-     '2', '音', '字', 'm', '呢', '明', '之', '前', '高', 'P', 'B', '目', '太', 'e', '9', '起', '稜', '她', '也',
-     'W', '用', '方', '子', '英', '每', '理', '便', '西', '数', '期', '中', 'C', '外', '样', 'a', '海', '们',
-     '任']
+charset = [&#39;D&#39;, &#39;在&#39;, &#39;主&#39;, &#39;特&#39;, &#39;家&#39;, &#39;军&#39;, &#39;然&#39;, &#39;表&#39;, &#39;场&#39;, &#39;4&#39;, &#39;要&#39;, &#39;只&#39;, &#39;v&#39;, &#39;和&#39;, &#39;?&#39;, &#39;6&#39;, &#39;别&#39;, &#39;还&#39;, &#39;g&#39;,
+     &#39;现&#39;, &#39;儿&#39;, &#39;岁&#39;, &#39;?&#39;, &#39;?&#39;, &#39;此&#39;, &#39;象&#39;, &#39;月&#39;, &#39;3&#39;, &#39;出&#39;, &#39;战&#39;, &#39;工&#39;, &#39;相&#39;, &#39;o&#39;, &#39;男&#39;, &#39;首&#39;, &#39;失&#39;, &#39;世&#39;, &#39;F&#39;,
+     &#39;都&#39;, &#39;平&#39;, &#39;文&#39;, &#39;什&#39;, &#39;V&#39;, &#39;O&#39;, &#39;将&#39;, &#39;真&#39;, &#39;T&#39;, &#39;那&#39;, &#39;当&#39;, &#39;?&#39;, &#39;会&#39;, &#39;立&#39;, &#39;些&#39;, &#39;u&#39;, &#39;是&#39;, &#39;十&#39;, &#39;张&#39;,
+     &#39;学&#39;, &#39;气&#39;, &#39;大&#39;, &#39;爱&#39;, &#39;两&#39;, &#39;命&#39;, &#39;全&#39;, &#39;后&#39;, &#39;东&#39;, &#39;性&#39;, &#39;通&#39;, &#39;被&#39;, &#39;1&#39;, &#39;它&#39;, &#39;乐&#39;, &#39;接&#39;, &#39;而&#39;, &#39;感&#39;,
+     &#39;车&#39;, &#39;山&#39;, &#39;公&#39;, &#39;了&#39;, &#39;常&#39;, &#39;以&#39;, &#39;何&#39;, &#39;可&#39;, &#39;话&#39;, &#39;先&#39;, &#39;p&#39;, &#39;i&#39;, &#39;叫&#39;, &#39;轻&#39;, &#39;M&#39;, &#39;士&#39;, &#39;w&#39;, &#39;着&#39;, &#39;变&#39;,
+     &#39;尔&#39;, &#39;快&#39;, &#39;l&#39;, &#39;个&#39;, &#39;说&#39;, &#39;少&#39;, &#39;色&#39;, &#39;里&#39;, &#39;安&#39;, &#39;花&#39;, &#39;远&#39;, &#39;7&#39;, &#39;难&#39;, &#39;师&#39;, &#39;放&#39;, &#39;t&#39;, &#39;报&#39;, &#39;认&#39;,
+     &#39;面&#39;, &#39;道&#39;, &#39;S&#39;, &#39;?&#39;, &#39;克&#39;, &#39;地&#39;, &#39;度&#39;, &#39;I&#39;, &#39;好&#39;, &#39;机&#39;, &#39;U&#39;, &#39;民&#39;, &#39;写&#39;, &#39;把&#39;, &#39;万&#39;, &#39;同&#39;, &#39;水&#39;, &#39;新&#39;, &#39;没&#39;,
+     &#39;书&#39;, &#39;电&#39;, &#39;吃&#39;, &#39;像&#39;, &#39;斯&#39;, &#39;5&#39;, &#39;为&#39;, &#39;y&#39;, &#39;白&#39;, &#39;几&#39;, &#39;日&#39;, &#39;教&#39;, &#39;看&#39;, &#39;但&#39;, &#39;第&#39;, &#39;加&#39;, &#39;候&#39;, &#39;作&#39;,
+     &#39;上&#39;, &#39;拉&#39;, &#39;住&#39;, &#39;有&#39;, &#39;法&#39;, &#39;r&#39;, &#39;事&#39;, &#39;应&#39;, &#39;位&#39;, &#39;利&#39;, &#39;你&#39;, &#39;声&#39;, &#39;身&#39;, &#39;国&#39;, &#39;问&#39;, &#39;马&#39;, &#39;女&#39;, &#39;他&#39;,
+     &#39;Y&#39;, &#39;比&#39;, &#39;父&#39;, &#39;x&#39;, &#39;A&#39;, &#39;H&#39;, &#39;N&#39;, &#39;s&#39;, &#39;X&#39;, &#39;边&#39;, &#39;美&#39;, &#39;对&#39;, &#39;所&#39;, &#39;金&#39;, &#39;活&#39;, &#39;回&#39;, &#39;意&#39;, &#39;到&#39;, &#39;z&#39;,
+     &#39;从&#39;, &#39;j&#39;, &#39;知&#39;, &#39;又&#39;, &#39;内&#39;, &#39;因&#39;, &#39;点&#39;, &#39;Q&#39;, &#39;三&#39;, &#39;定&#39;, &#39;8&#39;, &#39;R&#39;, &#39;b&#39;, &#39;正&#39;, &#39;或&#39;, &#39;夫&#39;, &#39;向&#39;, &#39;德&#39;, &#39;听&#39;,
+     &#39;更&#39;, &#39;?&#39;, &#39;得&#39;, &#39;告&#39;, &#39;并&#39;, &#39;本&#39;, &#39;q&#39;, &#39;过&#39;, &#39;记&#39;, &#39;L&#39;, &#39;让&#39;, &#39;打&#39;, &#39;f&#39;, &#39;人&#39;, &#39;就&#39;, &#39;者&#39;, &#39;去&#39;, &#39;原&#39;, &#39;满&#39;,
+     &#39;体&#39;, &#39;做&#39;, &#39;经&#39;, &#39;K&#39;, &#39;走&#39;, &#39;如&#39;, &#39;孩&#39;, &#39;c&#39;, &#39;G&#39;, &#39;给&#39;, &#39;使&#39;, &#39;物&#39;, &#39;?&#39;, &#39;最&#39;, &#39;笑&#39;, &#39;部&#39;, &#39;?&#39;, &#39;员&#39;, &#39;等&#39;,
+     &#39;受&#39;, &#39;k&#39;, &#39;行&#39;, &#39;一&#39;, &#39;条&#39;, &#39;果&#39;, &#39;动&#39;, &#39;光&#39;, &#39;门&#39;, &#39;头&#39;, &#39;见&#39;, &#39;往&#39;, &#39;自&#39;, &#39;解&#39;, &#39;成&#39;, &#39;处&#39;, &#39;天&#39;, &#39;能&#39;,
+     &#39;于&#39;, &#39;名&#39;, &#39;其&#39;, &#39;发&#39;, &#39;总&#39;, &#39;母&#39;, &#39;的&#39;, &#39;死&#39;, &#39;手&#39;, &#39;入&#39;, &#39;路&#39;, &#39;进&#39;, &#39;心&#39;, &#39;来&#39;, &#39;h&#39;, &#39;时&#39;, &#39;力&#39;, &#39;多&#39;,
+     &#39;开&#39;, &#39;己&#39;, &#39;许&#39;, &#39;d&#39;, &#39;至&#39;, &#39;由&#39;, &#39;很&#39;, &#39;界&#39;, &#39;n&#39;, &#39;小&#39;, &#39;与&#39;, &#39;Z&#39;, &#39;想&#39;, &#39;代&#39;, &#39;么&#39;, &#39;分&#39;, &#39;生&#39;, &#39;口&#39;,
+     &#39;再&#39;, &#39;妈&#39;, &#39;望&#39;, &#39;次&#39;, &#39;西&#39;, &#39;风&#39;, &#39;种&#39;, &#39;带&#39;, &#39;J&#39;, &#39;?&#39;, &#39;实&#39;, &#39;情&#39;, &#39;才&#39;, &#39;这&#39;, &#39;?&#39;, &#39;E&#39;, &#39;我&#39;, &#39;神&#39;, &#39;格&#39;,
+     &#39;长&#39;, &#39;觉&#39;, &#39;间&#39;, &#39;年&#39;, &#39;眼&#39;, &#39;无&#39;, &#39;不&#39;, &#39;亲&#39;, &#39;关&#39;, &#39;结&#39;, &#39;0&#39;, &#39;友&#39;, &#39;信&#39;, &#39;下&#39;, &#39;却&#39;, &#39;重&#39;, &#39;己&#39;, &#39;老&#39;,
+     &#39;2&#39;, &#39;音&#39;, &#39;字&#39;, &#39;m&#39;, &#39;呢&#39;, &#39;明&#39;, &#39;之&#39;, &#39;前&#39;, &#39;高&#39;, &#39;P&#39;, &#39;B&#39;, &#39;目&#39;, &#39;太&#39;, &#39;e&#39;, &#39;9&#39;, &#39;起&#39;, &#39;稜&#39;, &#39;她&#39;, &#39;也&#39;,
+     &#39;W&#39;, &#39;用&#39;, &#39;方&#39;, &#39;子&#39;, &#39;英&#39;, &#39;每&#39;, &#39;理&#39;, &#39;便&#39;, &#39;西&#39;, &#39;数&#39;, &#39;期&#39;, &#39;中&#39;, &#39;C&#39;, &#39;外&#39;, &#39;样&#39;, &#39;a&#39;, &#39;海&#39;, &#39;们&#39;,
+     &#39;任&#39;]
 
 
 # 解析章节加密内容
 def interpreter(cc):  # 原字符减去e338获取到另一套字体的该编码字符
 bias = cc - CODE_ST
-if charset[bias] == '?':  # 特殊处理
+if charset[bias] == &#39;?&#39;:  # 特殊处理
   return chr(cc)
 return charset[bias]
 
 
-cap_url = 'https://fanqienovel.com/api/reader/full?itemId=6893843740742386183'
-cap02_url = 'https://fanqienovel.com/reader/6893843740910158344'
-# cap02_url = 'https://fanqienovel.com/reader/6893843740834660878?enter_from=reader'
-# cap03_url = 'https://fanqienovel.com/reader/6893843740910158344?enter_from=reader'
+cap_url = &#39;https://fanqienovel.com/api/reader/full?itemId=6893843740742386183&#39;
+cap02_url = &#39;https://fanqienovel.com/reader/6893843740910158344&#39;
+# cap02_url = &#39;https://fanqienovel.com/reader/6893843740834660878?enter_from=reader&#39;
+# cap03_url = &#39;https://fanqienovel.com/reader/6893843740910158344?enter_from=reader&#39;
 
-fp = open('人类不死以后.txt', 'a', encoding='utf-8')
+fp = open(&#39;人类不死以后.txt&#39;, &#39;a&#39;, encoding=&#39;utf-8&#39;)
 
-headers = &#123;'User-Agent':
-         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0'&#125;
+headers = &#123;&#39;User-Agent&#39;:
+         &#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0&#39;&#125;
 
-"""第一章爬取"""
-content_url = 'http://fanqienovel.com/reader/6893843740742386183'
+&quot;&quot;&quot;第一章爬取&quot;&quot;&quot;
+content_url = &#39;http://fanqienovel.com/reader/6893843740742386183&#39;
 response = requests.get(url=content_url, headers=headers)
 tree = etree.HTML(response.text)
 
-title = tree.xpath('//h1[@class = "muye-reader-title"]/text()')
-fp.write(title[0] + '\n')
+title = tree.xpath(&#39;//h1[@class = &quot;muye-reader-title&quot;]/text()&#39;)
+fp.write(title[0] + &#39;\n&#39;)
 
-content_tags = tree.xpath('//div[@class="muye-reader-content noselect"]/div//p/text()')
+content_tags = tree.xpath(&#39;//div[@class=&quot;muye-reader-content noselect&quot;]/div//p/text()&#39;)
 # 获取小说章节
 # print(title)
 content = []
 for content_tag in content_tags:
-para = ''
+para = &#39;&#39;
 for char in content_tag:
   cc = ord(char)
   if CODE_ST &lt;= cc &lt;= CODE_ED:
@@ -720,11 +723,11 @@ for char in content_tag:
 content.append(para)
 
 # print(content)
-print('正在下载第1章')
+print(&#39;正在下载第1章&#39;)
 for para in content:
-fp.write('    ')
+fp.write(&#39;    &#39;)
 fp.write(para)
-fp.write('\n')
+fp.write(&#39;\n&#39;)
 
 index = 1
 while True:
@@ -735,11 +738,11 @@ data = response.json()
 
 json_obj = response.json()  # 解析JSON数据为Python字典
 
-next_id = json_obj['data']['chapterData']['nextItemId']  # 解嵌套
+next_id = json_obj[&#39;data&#39;][&#39;chapterData&#39;][&#39;nextItemId&#39;]  # 解嵌套
 
-next_id_url = 'https://fanqienovel.com/api/reader/full?itemId=' + str(next_id)
+next_id_url = &#39;https://fanqienovel.com/api/reader/full?itemId=&#39; + str(next_id)
 
-next_content_url = 'http://fanqienovel.com/reader/' + str(next_id)
+next_content_url = &#39;http://fanqienovel.com/reader/&#39; + str(next_id)
 
 # print(next_id_url)
 
@@ -750,17 +753,17 @@ response = requests.get(url=next_content_url, headers=headers)
 
 tree = etree.HTML(response.text)
 
-title = tree.xpath('//h1[@class = "muye-reader-title"]/text()')
-fp.write(title[0] + '\n')
+title = tree.xpath(&#39;//h1[@class = &quot;muye-reader-title&quot;]/text()&#39;)
+fp.write(title[0] + &#39;\n&#39;)
 
-content_tags = tree.xpath('//div[@class="muye-reader-content noselect"]/div//p/text()')
+content_tags = tree.xpath(&#39;//div[@class=&quot;muye-reader-content noselect&quot;]/div//p/text()&#39;)
 
 # print(len(content_tags))
 
 # 获取小说章节
 content = []
 for content_tag in content_tags:
-  para = ''
+  para = &#39;&#39;
   for char in content_tag:
       cc = ord(char)
       if CODE_ST &lt;= cc &lt;= CODE_ED:
@@ -774,11 +777,11 @@ for content_tag in content_tags:
 index += 1
 
 for para in content:
-  fp.write('    ')
+  fp.write(&#39;    &#39;)
   fp.write(para)
-  fp.write('\n')
-print('正在下载第' + str(index) + '章')
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  fp.write(&#39;\n&#39;)
+print(&#39;正在下载第&#39; + str(index) + &#39;章&#39;)
+</code></pre>
 </blockquote>
 <p><img src="/2024/06/21/pa-qu-fan-qie-xiao-shuo/image-20240127095944844-1706320789213-1.png" alt="image-20240127095944844"></p>
 <p>特别鸣谢</p>
@@ -1303,7 +1306,7 @@ print('正在下载第' + str(index) + '章')
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">432.3k</span>&nbsp;字
+                class="white-color">448.8k</span>&nbsp;字
             
             
             

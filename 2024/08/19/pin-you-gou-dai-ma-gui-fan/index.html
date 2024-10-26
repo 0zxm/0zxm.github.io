@@ -494,7 +494,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    13 分
+                    12 分
                 </div>
                 
 
@@ -524,104 +524,104 @@
 <h4 id="CSS-规范"><a href="#CSS-规范" class="headerlink" title="CSS 规范"></a>CSS 规范</h4><p>统一规范团队 CSS 代码书写风格和使用 CSS 预编译语言语法风格，提供常用媒体查询语句和浏览器私有属性引用，并从业务层面统一规范常用模块的引用。</p>
 <h4 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h4><p>从 <code>目录</code>、<code>图片</code>、<code>HTML/CSS文件</code>、<code>ClassName</code> 的命名等层面约定规范团队的命名习惯，增强团队代码的可读性。</p>
 <h2 id="2-HTML-规范"><a href="#2-HTML-规范" class="headerlink" title="2. HTML 规范"></a>2. HTML 规范</h2><h3 id="DOCTYPE-声明"><a href="#DOCTYPE-声明" class="headerlink" title="DOCTYPE 声明"></a>DOCTYPE 声明</h3><p>HTML 文件必须加上 DOCTYPE 声明，并统一使用 HTML5 的文档声明：</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+</code></pre>
 <p><strong>HTML5 标准模版</strong></p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>zh-CN<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>HTML5标准模版<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh-CN&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;title&gt;HTML5标准模版&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
 <h3 id="页面语言-lang"><a href="#页面语言-lang" class="headerlink" title="页面语言 lang"></a>页面语言 lang</h3><p>推荐使用属性值 <code>cmn-Hans-CN</code>（简体, 中国大陆），但是考虑浏览器和操作系统的兼容性，目前仍然使用 <code>zh-CN</code> 属性值</p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;html lang&#x3D;&quot;zh-CN&quot;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code>&lt;html lang=&quot;zh-CN&quot;&gt;
+</code></pre>
 <p>更多地区语言参考：</p>
-<pre class="line-numbers language-none"><code class="language-none">zh-SG 中文 (简体, 新加坡)   对应 cmn-Hans-SG 普通话 (简体, 新加坡)
+<pre><code>zh-SG 中文 (简体, 新加坡)   对应 cmn-Hans-SG 普通话 (简体, 新加坡)
 zh-HK 中文 (繁体, 香港)     对应 cmn-Hant-HK 普通话 (繁体, 香港)
 zh-MO 中文 (繁体, 澳门)     对应 cmn-Hant-MO 普通话 (繁体, 澳门)
-zh-TW 中文 (繁体, 台湾)     对应 cmn-Hant-TW 普通话 (繁体, 台湾)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
+zh-TW 中文 (繁体, 台湾)     对应 cmn-Hant-TW 普通话 (繁体, 台湾)
+</code></pre>
 <h3 id="charset-字符集合"><a href="#charset-字符集合" class="headerlink" title="charset 字符集合"></a>charset 字符集合</h3><p>一般情况下统一使用 “UTF-8” 编码</p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code>&lt;meta charset=&quot;UTF-8&quot;&gt;
+</code></pre>
 <p>由于历史原因，有些业务可能会使用 “GBK” 编码</p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;meta charset&#x3D;&quot;GBK&quot;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code>&lt;meta charset=&quot;GBK&quot;&gt;
+</code></pre>
 <p>请尽量统一写成标准的 “UTF-8”，不要写成 “utf-8” 或 “utf8” 或 “UTF8”。根据 <a target="_blank" rel="noopener" href="http://www.ietf.org/rfc/rfc3629">IETF 对 UTF-8 的定义</a>，其编码标准的写法是 “UTF-8”；而 UTF8 或 utf8 的写法只是出现在某些编程系统中，如 .NET framework 的类 System.Text.Encoding 中的一个属性名就叫 UTF8。</p>
 <h3 id="书写风格"><a href="#书写风格" class="headerlink" title="书写风格"></a>书写风格</h3><h4 id="HTML-代码大小写"><a href="#HTML-代码大小写" class="headerlink" title="HTML 代码大小写"></a>HTML 代码大小写</h4><p>HTML 标签名、类名、标签属性和大部分属性值统一用小写</p>
 <p><em>推荐：</em></p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;div class&#x3D;&quot;demo&quot;&gt;&lt;&#x2F;div&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code>&lt;div class=&quot;demo&quot;&gt;&lt;/div&gt;
+</code></pre>
 <p><em>不推荐：</em></p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;div class&#x3D;&quot;DEMO&quot;&gt;&lt;&#x2F;div&gt;
+<pre><code>&lt;div class=&quot;DEMO&quot;&gt;&lt;/div&gt;
 
-&lt;DIV CLASS&#x3D;&quot;DEMO&quot;&gt;&lt;&#x2F;DIV&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+&lt;DIV CLASS=&quot;DEMO&quot;&gt;&lt;/DIV&gt;
+</code></pre>
 <h3 id="类型属性"><a href="#类型属性" class="headerlink" title="类型属性"></a>类型属性</h3><p>不需要为 CSS、JS 指定类型属性，HTML5 中默认已包含</p>
 <p><em>推荐：</em></p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&quot; &gt;
-&lt;script src&#x3D;&quot;&quot;&gt;&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;&quot; &gt;
+&lt;script src=&quot;&quot;&gt;&lt;/script&gt;
+</code></pre>
 <p><em>不推荐：</em></p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;link rel&#x3D;&quot;stylesheet&quot; type&#x3D;&quot;text&#x2F;css&quot; href&#x3D;&quot;&quot; &gt;
-&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&quot; &gt;&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
+<pre><code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;&quot; &gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;&quot; &gt;&lt;/script&gt;
+</code></pre>
 <h3 id="元素属性"><a href="#元素属性" class="headerlink" title="元素属性"></a>元素属性</h3><ul>
 <li>元素属性值使用双引号语法</li>
 <li>元素属性值可以写上的都写上</li>
 </ul>
 <p><em>推荐：</em></p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;input type&#x3D;&quot;text&quot;&gt;
-&lt;input type&#x3D;&quot;radio&quot; name&#x3D;&quot;name&quot; checked&#x3D;&quot;checked&quot; &gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
+<pre><code>&lt;input type=&quot;text&quot;&gt;
+&lt;input type=&quot;radio&quot; name=&quot;name&quot; checked=&quot;checked&quot; &gt;
+</code></pre>
 <p><em>不推荐：</em></p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;input type&#x3D;text&gt;
-&lt;input type&#x3D;&#39;text&#39;&gt;
-&lt;input type&#x3D;&quot;radio&quot; name&#x3D;&quot;name&quot; checked &gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<pre><code>&lt;input type=text&gt;
+&lt;input type=&#39;text&#39;&gt;
+&lt;input type=&quot;radio&quot; name=&quot;name&quot; checked &gt;
+</code></pre>
 <h3 id="特殊字符引用"><a href="#特殊字符引用" class="headerlink" title="特殊字符引用"></a>特殊字符引用</h3><p>文本可以和字符引用混合出现。这种方法可以用来转义在文本中不能合法出现的字符。</p>
 <p>在 HTML 中不能使用小于号 “&lt;” 和大于号 “&gt;”特殊字符，浏览器会将它们作为标签解析，若要正确显示，在 HTML 源代码中使用字符实体</p>
 <p><em>推荐：</em></p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;a href&#x3D;&quot;#&quot;&gt;more&gt;&gt;&lt;&#x2F;a&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code>&lt;a href=&quot;#&quot;&gt;more&amp;gt;&amp;gt;&lt;/a&gt;
+</code></pre>
 <p><em>不推荐：</em></p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;a href&#x3D;&quot;#&quot;&gt;more&gt;&gt;&lt;&#x2F;a&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code>&lt;a href=&quot;#&quot;&gt;more&gt;&gt;&lt;/a&gt;
+</code></pre>
 <h3 id="代码缩进"><a href="#代码缩进" class="headerlink" title="代码缩进"></a>代码缩进</h3><p>统一使用四个空格进行代码缩进，使得各编辑器表现一致（各编辑器有相关配置）</p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;div class&#x3D;&quot;jdc&quot;&gt;
-    &lt;a href&#x3D;&quot;#&quot;&gt;&lt;&#x2F;a&gt;
-&lt;&#x2F;div&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<pre><code>&lt;div class=&quot;jdc&quot;&gt;
+    &lt;a href=&quot;#&quot;&gt;&lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
 <h3 id="代码嵌套"><a href="#代码嵌套" class="headerlink" title="代码嵌套"></a>代码嵌套</h3><p>元素嵌套规范，每个块状元素独立一行，内联元素可选</p>
 <p><em>推荐：</em></p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;div&gt;
-    &lt;h1&gt;&lt;&#x2F;h1&gt;
-    &lt;p&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;div&gt;
-&lt;p&gt;&lt;span&gt;&lt;&#x2F;span&gt;&lt;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;p&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code>&lt;div&gt;
+    &lt;h1&gt;&lt;/h1&gt;
+    &lt;p&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;
+</code></pre>
 <p><em>不推荐：</em></p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;div&gt;
-    &lt;h1&gt;&lt;&#x2F;h1&gt;&lt;p&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;div&gt;
+<pre><code>&lt;div&gt;
+    &lt;h1&gt;&lt;/h1&gt;&lt;p&gt;&lt;/p&gt;
+&lt;/div&gt;
 &lt;p&gt;
-    &lt;span&gt;&lt;&#x2F;span&gt;
-    &lt;span&gt;&lt;&#x2F;span&gt;
-&lt;&#x2F;p&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+    &lt;span&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;/span&gt;
+&lt;/p&gt;
+</code></pre>
 <p>段落元素与标题元素只能嵌套内联元素</p>
 <p><em>推荐：</em></p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;h1&gt;&lt;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;h1&gt;
-&lt;p&gt;&lt;span&gt;&lt;&#x2F;span&gt;&lt;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;p&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
+<pre><code>&lt;h1&gt;&lt;span&gt;&lt;/span&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;
+</code></pre>
 <p><em>不推荐：</em></p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;h1&gt;&lt;div&gt;&lt;&#x2F;div&gt;&lt;&#x2F;h1&gt;
-&lt;p&gt;&lt;div&gt;&lt;&#x2F;div&gt;&lt;div&gt;&lt;&#x2F;div&gt;&lt;&#x2F;p&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
+<pre><code>&lt;h1&gt;&lt;div&gt;&lt;/div&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;/p&gt;
+</code></pre>
 <h2 id="3-图片规范"><a href="#3-图片规范" class="headerlink" title="3. 图片规范"></a>3. 图片规范</h2><h3 id="内容图"><a href="#内容图" class="headerlink" title="内容图"></a>内容图</h3><p>内容图多以商品图等照片类图片形式存在，颜色较为丰富，文件体积较大</p>
 <ul>
 <li>优先考虑 JPEG 格式，条件允许的话优先考虑 WebP 格式</li>
@@ -637,147 +637,147 @@ zh-TW 中文 (繁体, 台湾)     对应 cmn-Hant-TW 普通话 (繁体, 台湾)<
 <li>条件允许的，优先考虑 WebP 代替 PNG 和 JPEG 格式</li>
 </ul>
 <h2 id="4-CSS-规范"><a href="#4-CSS-规范" class="headerlink" title="4. CSS 规范"></a>4. CSS 规范</h2><h3 id="代码格式化"><a href="#代码格式化" class="headerlink" title="代码格式化"></a>代码格式化</h3><p>样式书写一般有两种：一种是紧凑格式 (Compact)</p>
-<pre class="line-numbers language-none"><code class="language-none">.jdc&#123; display: block;width: 50px;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code>.jdc&#123; display: block;width: 50px;&#125;
+</code></pre>
 <p>一种是展开格式（Expanded）</p>
-<pre class="line-numbers language-none"><code class="language-none">.jdc &#123;
+<pre><code>.jdc &#123;
     display: block;
     width: 50px;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
+&#125;
+</code></pre>
 <p><strong>团队约定</strong></p>
 <p>统一使用展开格式书写样式</p>
 <h3 id="代码大小写"><a href="#代码大小写" class="headerlink" title="代码大小写"></a>代码大小写</h3><p>样式选择器，属性名，属性值关键字全部使用小写字母书写，属性字符串允许使用大小写。</p>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;* 推荐 *&#x2F;
+<pre><code>/* 推荐 */
 .jdc&#123;
-	display:block;
+    display:block;
 &#125;
 
-&#x2F;* 不推荐 *&#x2F;
+/* 不推荐 */
 .JDC&#123;
-	DISPLAY:BLOCK;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+    DISPLAY:BLOCK;
+&#125;
+</code></pre>
 <h3 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h3><ul>
 <li>尽量少用通用选择器 <code>*</code></li>
 <li>不使用 ID 选择器</li>
 <li>不使用无具体语义定义的标签选择器</li>
 </ul>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token comment">/* 推荐 */</span>
-<span class="token selector">.jdc</span> <span class="token punctuation">&#123;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token selector">.jdc li</span> <span class="token punctuation">&#123;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token selector">.jdc li p</span> <span class="token punctuation">&#123;</span>
-<span class="token punctuation">&#125;</span>
+<pre><code class="css">/* 推荐 */
+.jdc &#123;
+&#125;
+.jdc li &#123;
+&#125;
+.jdc li p &#123;
+&#125;
 
-<span class="token comment">/* 不推荐 */</span>
-<span class="token selector">*</span> <span class="token punctuation">&#123;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token selector">#jdc</span> <span class="token punctuation">&#123;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token selector">.jdc div</span> <span class="token punctuation">&#123;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+/* 不推荐 */
+* &#123;
+&#125;
+#jdc &#123;
+&#125;
+.jdc div &#123;
+&#125;
+</code></pre>
 <h3 id="代码缩进-1"><a href="#代码缩进-1" class="headerlink" title="代码缩进"></a>代码缩进</h3><p>统一使用四个空格进行代码缩进，使得各编辑器表现一致（各编辑器有相关配置）</p>
-<pre class="line-numbers language-none"><code class="language-none">.jdc &#123;
+<pre><code>.jdc &#123;
     width: 100%;
     height: 100%;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
+&#125;
+</code></pre>
 <h3 id="分号"><a href="#分号" class="headerlink" title="分号"></a>分号</h3><p>每个属性声明末尾都要加分号；</p>
-<pre class="line-numbers language-none"><code class="language-none">.jdc &#123;
+<pre><code>.jdc &#123;
     width: 100%;
     height: 100%;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
+&#125;
+</code></pre>
 <h3 id="代码易读性"><a href="#代码易读性" class="headerlink" title="代码易读性"></a>代码易读性</h3><p>左括号与类名之间一个空格，冒号与属性值之间一个空格</p>
 <p><em>推荐：</em></p>
-<pre class="line-numbers language-none"><code class="language-none">.jdc &#123;
+<pre><code>.jdc &#123;
     width: 100%;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+&#125;
+</code></pre>
 <p><em>不推荐：</em></p>
-<pre class="line-numbers language-none"><code class="language-none">.jdc&#123;
+<pre><code>.jdc&#123;
     width:100%;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+&#125;
+</code></pre>
 <p>逗号分隔的取值，逗号之后一个空格</p>
 <p><em>推荐：</em></p>
-<pre class="line-numbers language-none"><code class="language-none">.jdc &#123;
+<pre><code>.jdc &#123;
     box-shadow: 1px 1px 1px #333, 2px 2px 2px #ccc;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+&#125;
+</code></pre>
 <p><em>不推荐：</em></p>
-<pre class="line-numbers language-none"><code class="language-none">.jdc &#123;
+<pre><code>.jdc &#123;
     box-shadow: 1px 1px 1px #333,2px 2px 2px #ccc;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+&#125;
+</code></pre>
 <p>为单个 css 选择器或新申明开启新行</p>
 <p><em>推荐：</em></p>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.jdc,
+<pre><code class="css">.jdc,
 .jdc_logo,
-.jdc_hd</span> <span class="token punctuation">&#123;</span>
-  <span class="token property">color</span><span class="token punctuation">:</span> #ff0<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token selector">.nav</span> <span class="token punctuation">&#123;</span>
-  <span class="token property">color</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+.jdc_hd &#123;
+  color: #ff0;
+&#125;
+.nav &#123;
+  color: #fff;
+&#125;
+</code></pre>
 <p><em>不推荐：</em></p>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.jdc,
+<pre><code class="css">.jdc,
 jdc_logo,
-.jdc_hd</span> <span class="token punctuation">&#123;</span>
-  <span class="token property">color</span><span class="token punctuation">:</span> #ff0<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token selector">.nav</span> <span class="token punctuation">&#123;</span>
-  <span class="token property">color</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+.jdc_hd &#123;
+  color: #ff0;
+&#125;
+.nav &#123;
+  color: #fff;
+&#125;
+</code></pre>
 <p>颜色值 <code>rgb()</code> <code>rgba()</code> <code>hsl()</code> <code>hsla()</code> <code>rect()</code> 中不需有空格，且取值不要带有不必要的 0</p>
 <p><em>推荐：</em></p>
-<pre class="line-numbers language-none"><code class="language-none">.jdc &#123;
+<pre><code>.jdc &#123;
     color: rgba(255,255,255,.5);
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+&#125;
+</code></pre>
 <p><em>不推荐：</em></p>
-<pre class="line-numbers language-none"><code class="language-none">.jdc &#123;
+<pre><code>.jdc &#123;
     color: rgba( 255, 255, 255, 0.5 );
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+&#125;
+</code></pre>
 <p>属性值十六进制数值能用简写的尽量用简写</p>
 <p><em>推荐：</em></p>
-<pre class="line-numbers language-none"><code class="language-none">.jdc &#123;
+<pre><code>.jdc &#123;
     color: #fff;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+&#125;
+</code></pre>
 <p><em>不推荐：</em></p>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.jdc</span> <span class="token punctuation">&#123;</span>
-  <span class="token property">color</span><span class="token punctuation">:</span> #ffffff<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="css">.jdc &#123;
+  color: #ffffff;
+&#125;
+</code></pre>
 <p>不要为 <code>0</code> 指明单位</p>
 <p><em>推荐：</em></p>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.jdc</span> <span class="token punctuation">&#123;</span>
-  <span class="token property">margin</span><span class="token punctuation">:</span> 0 10px<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="css">.jdc &#123;
+  margin: 0 10px;
+&#125;
+</code></pre>
 <p><em>不推荐：</em></p>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.jdc</span> <span class="token punctuation">&#123;</span>
-  <span class="token property">margin</span><span class="token punctuation">:</span> 0px 10px<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="css">.jdc &#123;
+  margin: 0px 10px;
+&#125;
+</code></pre>
 <h3 id="属性值引号"><a href="#属性值引号" class="headerlink" title="属性值引号"></a>属性值引号</h3><p>css 属性值需要用到引号时，统一使用单引号</p>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token comment">/* 推荐 */</span>
-<span class="token selector">.jdc</span> <span class="token punctuation">&#123;</span>
-  <span class="token property">font-family</span><span class="token punctuation">:</span> <span class="token string">"Hiragino Sans GB"</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
+<pre><code class="css">/* 推荐 */
+.jdc &#123;
+  font-family: &quot;Hiragino Sans GB&quot;;
+&#125;
 
-<span class="token comment">/* 不推荐 */</span>
-<span class="token selector">.jdc</span> <span class="token punctuation">&#123;</span>
-  <span class="token property">font-family</span><span class="token punctuation">:</span> <span class="token string">"Hiragino Sans GB"</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+/* 不推荐 */
+.jdc &#123;
+  font-family: &quot;Hiragino Sans GB&quot;;
+&#125;
+</code></pre>
 <h3 id="属性书写顺序"><a href="#属性书写顺序" class="headerlink" title="属性书写顺序"></a>属性书写顺序</h3><p>建议遵循以下顺序：</p>
 <ol>
 <li>布局定位属性：display &#x2F; position &#x2F; float &#x2F; clear &#x2F; visibility &#x2F; overflow（建议 display 第一个写，毕竟关系到模式）</li>
@@ -785,24 +785,24 @@ jdc_logo,
 <li>文本属性：color &#x2F; font &#x2F; text-decoration &#x2F; text-align &#x2F; vertical-align &#x2F; white- space &#x2F; break-word</li>
 <li>其他属性（CSS3）：content &#x2F; cursor &#x2F; border-radius &#x2F; box-shadow &#x2F; text-shadow &#x2F; background:linear-gradient …</li>
 </ol>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.jdc</span> <span class="token punctuation">&#123;</span>
-  <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
-  <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
-  <span class="token property">float</span><span class="token punctuation">:</span> left<span class="token punctuation">;</span>
-  <span class="token property">width</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span>
-  <span class="token property">height</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span>
-  <span class="token property">margin</span><span class="token punctuation">:</span> 0 10px<span class="token punctuation">;</span>
-  <span class="token property">padding</span><span class="token punctuation">:</span> 20px 0<span class="token punctuation">;</span>
-  <span class="token property">font-family</span><span class="token punctuation">:</span> Arial<span class="token punctuation">,</span> <span class="token string">"Helvetica Neue"</span><span class="token punctuation">,</span> Helvetica<span class="token punctuation">,</span> sans-serif<span class="token punctuation">;</span>
-  <span class="token property">color</span><span class="token punctuation">:</span> #333<span class="token punctuation">;</span>
-  <span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">rgba</span><span class="token punctuation">(</span>0<span class="token punctuation">,</span> 0<span class="token punctuation">,</span> 0<span class="token punctuation">,</span> 0.5<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token property">-webkit-border-radius</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span>
-  <span class="token property">-moz-border-radius</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span>
-  <span class="token property">-o-border-radius</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span>
-  <span class="token property">-ms-border-radius</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span>
-  <span class="token property">border-radius</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="css">.jdc &#123;
+  display: block;
+  position: relative;
+  float: left;
+  width: 100px;
+  height: 100px;
+  margin: 0 10px;
+  padding: 20px 0;
+  font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif;
+  color: #333;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -o-border-radius: 10px;
+  -ms-border-radius: 10px;
+  border-radius: 10px;
+&#125;
+</code></pre>
 <p><a target="_blank" rel="noopener" href="https://www.mozilla.org/css/base/content.css">mozilla 官方属性顺序推荐</a></p>
 <h2 id="命名规范-1"><a href="#命名规范-1" class="headerlink" title="命名规范"></a>命名规范</h2><p>由历史原因及个人习惯引起的 DOM 结构、命名不统一，导致不同成员在维护同一页面时，效率低下，迭代、维护成本极高。</p>
 <h3 id="目录命名"><a href="#目录命名" class="headerlink" title="目录命名"></a>目录命名</h3><ul>
@@ -816,18 +816,18 @@ jdc_logo,
 <h3 id="ClassName-命名"><a href="#ClassName-命名" class="headerlink" title="ClassName 命名"></a>ClassName 命名</h3><p>ClassName 的命名应该尽量精短、明确，必须以<strong>字母开头命名</strong>，且<strong>全部字母为小写</strong>，单词之间<strong>统一使用下划线</strong> “_” 连接</p>
 <p>.nav_top</p>
 <h4 id="常用命名推荐"><a href="#常用命名推荐" class="headerlink" title="常用命名推荐"></a>常用命名推荐</h4><p><strong>注意</strong>：ad、banner、gg、guanggao 等有机会和广告挂勾的不建议直接用来做 ClassName，因为有些浏览器插件（Chrome 的广告拦截插件等）会直接过滤这些类名，因此</p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;div class&#x3D;&quot;ad&quot;&gt;&lt;&#x2F;div&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code>&lt;div class=&quot;ad&quot;&gt;&lt;/div&gt;
+</code></pre>
 <p>这种广告的英文或拼音类名不应该出现</p>
 <p>另外，<strong>敏感不和谐字眼</strong>也不应该出现，如：</p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;div class&#x3D;&quot;fuck&quot;&gt;&lt;&#x2F;div&gt;
-&lt;div class&#x3D;&quot;jer&quot;&gt;&lt;&#x2F;div&gt;
-&lt;div class&#x3D;&quot;sm&quot;&gt;&lt;&#x2F;div&gt;
-&lt;div class&#x3D;&quot;gcd&quot;&gt;&lt;&#x2F;div&gt;
-&lt;div class&#x3D;&quot;ass&quot;&gt;&lt;&#x2F;div&gt;
-&lt;div class&#x3D;&quot;KMT&quot;&gt;&lt;&#x2F;div&gt;
-...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code>&lt;div class=&quot;fuck&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;jer&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;sm&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;gcd&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;ass&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;KMT&quot;&gt;&lt;/div&gt;
+...
+</code></pre>
 <table>
 <thead>
 <tr>
@@ -1771,7 +1771,7 @@ jdc_logo,
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">432.3k</span>&nbsp;字
+                class="white-color">448.8k</span>&nbsp;字
             
             
             

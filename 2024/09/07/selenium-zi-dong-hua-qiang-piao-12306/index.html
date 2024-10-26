@@ -491,14 +491,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    9 分
                 </div>
                 
 
@@ -590,220 +590,222 @@
 <p>当然，下面我将重点介绍每个步骤的关键点，并附上相应的代码片段。</p>
 <h3 id="1-获取站点编码"><a href="#1-获取站点编码" class="headerlink" title="1. 获取站点编码"></a>1. 获取站点编码</h3><p>关键点：从 12306 的 JS 文件中解析站点的三字码。</p>
 <p>代码片段：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">get_station_codes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    code_url <span class="token operator">=</span> <span class="token string">"https://kyfw.12306.cn/otn/resources/js/framework/station_name.js"</span>
-    response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>code_url<span class="token punctuation">)</span>
-    code_data <span class="token operator">=</span> response<span class="token punctuation">.</span>text<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span>  <span class="token comment"># 优化：去除尾部的双引号和换行符</span>
-    list_code <span class="token operator">=</span> code_data<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"|"</span><span class="token punctuation">)</span>
-    station_codes <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span><span class="token builtin">zip</span><span class="token punctuation">(</span>list_code<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">,</span> list_code<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 优化：直接跳过索引获取站点名称和代码</span>
-    <span class="token keyword">return</span> station_codes<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="py">def get_station_codes():
+    code_url = &quot;https://kyfw.12306.cn/otn/resources/js/framework/station_name.js&quot;
+    response = requests.get(code_url)
+    code_data = response.text[20:-2]  # 优化：去除尾部的双引号和换行符
+    list_code = code_data.split(&quot;|&quot;)
+    station_codes = dict(zip(list_code[1::5], list_code[2::5]))  # 优化：直接跳过索引获取站点名称和代码
+    return station_codes
+</code></pre>
 <h3 id="2-用户输入"><a href="#2-用户输入" class="headerlink" title="2. 用户输入"></a>2. 用户输入</h3><p>关键点：提示用户输入起始站、终点站和出发日期，然后转换为 12306 需要的编码。</p>
 <p>代码片段：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">get_user_input</span><span class="token punctuation">(</span>code_dic<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    from_station <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"输入起始站：\n"</span><span class="token punctuation">)</span>
-    to_station <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"输入终点站：\n"</span><span class="token punctuation">)</span>
-    time <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"输入时间，例如：2024-09-18:\n"</span><span class="token punctuation">)</span>
-    <span class="token keyword">return</span> code_dic<span class="token punctuation">.</span>get<span class="token punctuation">(</span>from_station<span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">,</span> code_dic<span class="token punctuation">.</span>get<span class="token punctuation">(</span>to_station<span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">,</span> time<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="py">def get_user_input(code_dic):
+    from_station = input(&quot;输入起始站：\n&quot;)
+    to_station = input(&quot;输入终点站：\n&quot;)
+    time = input(&quot;输入时间，例如：2024-09-18:\n&quot;)
+    return code_dic.get(from_station, &quot;&quot;), code_dic.get(to_station, &quot;&quot;), time
+</code></pre>
 <h3 id="3-获取火车票信息"><a href="#3-获取火车票信息" class="headerlink" title="3. 获取火车票信息"></a>3. 获取火车票信息</h3><p>关键点：构建请求 URL，模拟浏览器发送 HTTP 请求获取数据。</p>
 <p>代码片段：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">get_train_info</span><span class="token punctuation">(</span>from_station<span class="token punctuation">,</span> to_station<span class="token punctuation">,</span> time<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    train_url <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>time<span class="token punctuation">&#125;</span></span><span class="token string">&amp;leftTicketDTO.from_station=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>from_station<span class="token punctuation">&#125;</span></span><span class="token string">&amp;leftTicketDTO.to_station=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>to_station<span class="token punctuation">&#125;</span></span><span class="token string">&amp;purpose_codes=ADULT"</span></span>
-    headers <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-        <span class="token string">"User-Agent"</span><span class="token punctuation">:</span> <span class="token string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"</span>
-    <span class="token punctuation">&#125;</span>
-    response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token operator">=</span>train_url<span class="token punctuation">,</span> headers<span class="token operator">=</span>headers<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> response<span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="py">def get_train_info(from_station, to_station, time):
+    train_url = f&quot;https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=&#123;time&#125;&amp;leftTicketDTO.from_station=&#123;from_station&#125;&amp;leftTicketDTO.to_station=&#123;to_station&#125;&amp;purpose_codes=ADULT&quot;
+    headers = &#123;
+        &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36&quot;
+    &#125;
+    response = requests.get(url=train_url, headers=headers)
+    return response.json()
+</code></pre>
 <h3 id="4-打印火车票信息"><a href="#4-打印火车票信息" class="headerlink" title="4. 打印火车票信息"></a>4. 打印火车票信息</h3><p>关键点：解析服务器返回的 JSON 数据，并使用<code>PrettyTable</code>格式化输出。</p>
 <p>代码片段：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">print_train_info</span><span class="token punctuation">(</span>json_data<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    table <span class="token operator">=</span> PrettyTable<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    table<span class="token punctuation">.</span>field_names <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'车次'</span><span class="token punctuation">,</span> <span class="token string">'出发时间'</span><span class="token punctuation">,</span> <span class="token string">'到达时间'</span><span class="token punctuation">,</span> <span class="token string">'历时'</span><span class="token punctuation">,</span> <span class="token string">'一等座'</span><span class="token punctuation">,</span> <span class="token string">'二等座'</span><span class="token punctuation">,</span> <span class="token string">'特等座'</span><span class="token punctuation">]</span>
-    <span class="token keyword">if</span> json_data<span class="token punctuation">[</span><span class="token string">'httpstatus'</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">200</span><span class="token punctuation">:</span>
-        result <span class="token operator">=</span> json_data<span class="token punctuation">[</span><span class="token string">'data'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'result'</span><span class="token punctuation">]</span>
-        <span class="token keyword">for</span> item <span class="token keyword">in</span> result<span class="token punctuation">:</span>
-            details <span class="token operator">=</span> item<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'|'</span><span class="token punctuation">)</span>
-            table<span class="token punctuation">.</span>add_row<span class="token punctuation">(</span><span class="token punctuation">[</span>details<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">30</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">32</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>table<span class="token punctuation">)</span>
-    <span class="token keyword">else</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"获取响应数据失败,状态码为</span><span class="token interpolation"><span class="token punctuation">&#123;</span>json_data<span class="token punctuation">[</span><span class="token string">'httpstatus'</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="py">def print_train_info(json_data):
+    table = PrettyTable()
+    table.field_names = [&#39;车次&#39;, &#39;出发时间&#39;, &#39;到达时间&#39;, &#39;历时&#39;, &#39;一等座&#39;, &#39;二等座&#39;, &#39;特等座&#39;]
+    if json_data[&#39;httpstatus&#39;] == 200:
+        result = json_data[&#39;data&#39;][&#39;result&#39;]
+        for item in result:
+            details = item.split(&#39;|&#39;)
+            table.add_row([details[3], details[8], details[9], details[10], details[30], details[31], details[32]])
+        print(table)
+    else:
+        print(f&quot;获取响应数据失败,状态码为&#123;json_data[&#39;httpstatus&#39;]&#125;&quot;)
+</code></pre>
 <h3 id="5-Selenium-自动化"><a href="#5-Selenium-自动化" class="headerlink" title="5. Selenium 自动化"></a>5. Selenium 自动化</h3><p>关键点：使用 Selenium 模拟用户在网页上的操作，如填写表单、点击按钮等。</p>
 <p>代码片段：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token comment"># 获取站点编码</span>
-    code_dic <span class="token operator">=</span> get_station_codes<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre><code class="py">def main():
+    # 获取站点编码
+    code_dic = get_station_codes()
 
-    <span class="token comment"># 获取用户输入</span>
-    from_station_code<span class="token punctuation">,</span> to_station_code<span class="token punctuation">,</span> time <span class="token operator">=</span> get_user_input<span class="token punctuation">(</span>code_dic<span class="token punctuation">)</span>
+    # 获取用户输入
+    from_station_code, to_station_code, time = get_user_input(code_dic)
 
-    <span class="token comment"># 使用Selenium打开网页</span>
-    browser <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Edge<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    browser<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'https://kyfw.12306.cn/otn/leftTicket/init'</span><span class="token punctuation">)</span>
+    # 使用Selenium打开网页
+    browser = webdriver.Edge()
+    browser.get(&#39;https://kyfw.12306.cn/otn/leftTicket/init&#39;)
 
-    <span class="token comment"># 填写查询表单</span>
-    start_station <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#fromStationText'</span><span class="token punctuation">)</span>
-    start_station<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span><span class="token string">"广州南"</span><span class="token punctuation">)</span>
-    start_station<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span>Keys<span class="token punctuation">.</span>ENTER<span class="token punctuation">)</span>
+    # 填写查询表单
+    start_station = browser.find_element(By.CSS_SELECTOR, &#39;#fromStationText&#39;)
+    start_station.send_keys(&quot;广州南&quot;)
+    start_station.send_keys(Keys.ENTER)
 
-    end_station <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#toStationText'</span><span class="token punctuation">)</span>
-    end_station<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span><span class="token string">"韶关"</span><span class="token punctuation">)</span>
-    end_station<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span>Keys<span class="token punctuation">.</span>ENTER<span class="token punctuation">)</span>
+    end_station = browser.find_element(By.CSS_SELECTOR, &#39;#toStationText&#39;)
+    end_station.send_keys(&quot;韶关&quot;)
+    end_station.send_keys(Keys.ENTER)
 
-    date <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#train_date'</span><span class="token punctuation">)</span>
-    date<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span><span class="token string">"2024-09-18"</span><span class="token punctuation">)</span>
-    date<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span>Keys<span class="token punctuation">.</span>ENTER<span class="token punctuation">)</span>
+    date = browser.find_element(By.CSS_SELECTOR, &#39;#train_date&#39;)
+    date.send_keys(&quot;2024-09-18&quot;)
+    date.send_keys(Keys.ENTER)
 
-    <span class="token comment"># 点击查询</span>
-    browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#query_ticket'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    # 点击查询
+    browser.find_element(By.CSS_SELECTOR, &#39;#query_ticket&#39;).click()
 
-    <span class="token comment"># 等待查询结果</span>
-    t<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>  <span class="token comment"># 优化：使用更明确的等待条件</span>
+    # 等待查询结果
+    t.sleep(5)  # 优化：使用更明确的等待条件
 
-    <span class="token comment"># 处理查询结果</span>
-    <span class="token comment"># 省略：根据实际情况处理查询结果</span>
+    # 处理查询结果
+    # 省略：根据实际情况处理查询结果
 
-    <span class="token comment"># 关闭浏览器</span>
-    browser<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    # 关闭浏览器
+    browser.quit()
+</code></pre>
+<h3 id="6-完整代码"><a href="#6-完整代码" class="headerlink" title="6. 完整代码"></a>6. 完整代码</h3><pre><code class="py"># coding=gbk
+import time as t
+import requests
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from prettytable import PrettyTable
+import re
 
-<h3 id="6-完整代码"><a href="#6-完整代码" class="headerlink" title="6. 完整代码"></a>6. 完整代码</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># coding=gbk</span>
-<span class="token keyword">import</span> time <span class="token keyword">as</span> t
-<span class="token keyword">import</span> requests
-<span class="token keyword">from</span> selenium <span class="token keyword">import</span> webdriver
-<span class="token keyword">from</span> selenium<span class="token punctuation">.</span>webdriver<span class="token punctuation">.</span>common<span class="token punctuation">.</span>by <span class="token keyword">import</span> By
-<span class="token keyword">from</span> selenium<span class="token punctuation">.</span>webdriver<span class="token punctuation">.</span>common<span class="token punctuation">.</span>keys <span class="token keyword">import</span> Keys
-<span class="token keyword">from</span> prettytable <span class="token keyword">import</span> PrettyTable
-<span class="token keyword">import</span> re
+# 获取站点对应的三字码
+def get_station_codes():
+    code_url = &quot;https://kyfw.12306.cn/otn/resources/js/framework/station_name.js&quot;
+    response = requests.get(code_url)
+    code_data = response.text[20:-2]  # 优化：去除尾部的双引号和换行符
+    list_code = code_data.split(&quot;|&quot;)
+    station_codes = dict(zip(list_code[1::5], list_code[2::5]))  # 优化：直接跳过索引获取站点名称和代码
+    return station_codes
 
-<span class="token comment"># 获取站点对应的三字码</span>
-<span class="token keyword">def</span> <span class="token function">get_station_codes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    code_url <span class="token operator">=</span> <span class="token string">"https://kyfw.12306.cn/otn/resources/js/framework/station_name.js"</span>
-    response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>code_url<span class="token punctuation">)</span>
-    code_data <span class="token operator">=</span> response<span class="token punctuation">.</span>text<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span>  <span class="token comment"># 优化：去除尾部的双引号和换行符</span>
-    list_code <span class="token operator">=</span> code_data<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"|"</span><span class="token punctuation">)</span>
-    station_codes <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span><span class="token builtin">zip</span><span class="token punctuation">(</span>list_code<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">,</span> list_code<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 优化：直接跳过索引获取站点名称和代码</span>
-    <span class="token keyword">return</span> station_codes
+# 用户输入起始站、终点站和时间，转化为编码
+def get_user_input(code_dic):
+    from_station = input(&quot;输入起始站：\n&quot;)
+    to_station = input(&quot;输入终点站：\n&quot;)
+    time = input(&quot;输入时间，例如：2024-09-18:\n&quot;)
+    return code_dic.get(from_station, &quot;&quot;), code_dic.get(to_station, &quot;&quot;), time
 
-<span class="token comment"># 用户输入起始站、终点站和时间，转化为编码</span>
-<span class="token keyword">def</span> <span class="token function">get_user_input</span><span class="token punctuation">(</span>code_dic<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    from_station <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"输入起始站：\n"</span><span class="token punctuation">)</span>
-    to_station <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"输入终点站：\n"</span><span class="token punctuation">)</span>
-    time <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"输入时间，例如：2024-09-18:\n"</span><span class="token punctuation">)</span>
-    <span class="token keyword">return</span> code_dic<span class="token punctuation">.</span>get<span class="token punctuation">(</span>from_station<span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">,</span> code_dic<span class="token punctuation">.</span>get<span class="token punctuation">(</span>to_station<span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">,</span> time
+# 获取火车票信息
+def get_train_info(from_station, to_station, time):
+    train_url = f&quot;https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=&#123;time&#125;&amp;leftTicketDTO.from_station=&#123;from_station&#125;&amp;leftTicketDTO.to_station=&#123;to_station&#125;&amp;purpose_codes=ADULT&quot;
+    headers = &#123;
+        &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36&quot;
+    &#125;
+    response = requests.get(url=train_url, headers=headers)
+    return response.json()
 
-<span class="token comment"># 获取火车票信息</span>
-<span class="token keyword">def</span> <span class="token function">get_train_info</span><span class="token punctuation">(</span>from_station<span class="token punctuation">,</span> to_station<span class="token punctuation">,</span> time<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    train_url <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>time<span class="token punctuation">&#125;</span></span><span class="token string">&amp;leftTicketDTO.from_station=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>from_station<span class="token punctuation">&#125;</span></span><span class="token string">&amp;leftTicketDTO.to_station=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>to_station<span class="token punctuation">&#125;</span></span><span class="token string">&amp;purpose_codes=ADULT"</span></span>
-    headers <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-        <span class="token string">"User-Agent"</span><span class="token punctuation">:</span> <span class="token string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"</span>
-    <span class="token punctuation">&#125;</span>
-    response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token operator">=</span>train_url<span class="token punctuation">,</span> headers<span class="token operator">=</span>headers<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> response<span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span>
+# 打印火车票信息
+def print_train_info(json_data):
+    table = PrettyTable()
+    table.field_names = [&#39;车次&#39;, &#39;出发时间&#39;, &#39;到达时间&#39;, &#39;历时&#39;, &#39;一等座&#39;, &#39;二等座&#39;, &#39;特等座&#39;]
+    if json_data[&#39;httpstatus&#39;] == 200:
+        result = json_data[&#39;data&#39;][&#39;result&#39;]
+        for item in result:
+            details = item.split(&#39;|&#39;)
+            table.add_row([details[3], details[8], details[9], details[10], details[30], details[31], details[32]])
+        print(table)
+    else:
+        print(f&quot;获取响应数据失败,状态码为&#123;json_data[&#39;httpstatus&#39;]&#125;&quot;)
 
-<span class="token comment"># 打印火车票信息</span>
-<span class="token keyword">def</span> <span class="token function">print_train_info</span><span class="token punctuation">(</span>json_data<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    table <span class="token operator">=</span> PrettyTable<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    table<span class="token punctuation">.</span>field_names <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'车次'</span><span class="token punctuation">,</span> <span class="token string">'出发时间'</span><span class="token punctuation">,</span> <span class="token string">'到达时间'</span><span class="token punctuation">,</span> <span class="token string">'历时'</span><span class="token punctuation">,</span> <span class="token string">'一等座'</span><span class="token punctuation">,</span> <span class="token string">'二等座'</span><span class="token punctuation">,</span> <span class="token string">'特等座'</span><span class="token punctuation">]</span>
-    <span class="token keyword">if</span> json_data<span class="token punctuation">[</span><span class="token string">'httpstatus'</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">200</span><span class="token punctuation">:</span>
-        result <span class="token operator">=</span> json_data<span class="token punctuation">[</span><span class="token string">'data'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'result'</span><span class="token punctuation">]</span>
-        <span class="token keyword">for</span> item <span class="token keyword">in</span> result<span class="token punctuation">:</span>
-            details <span class="token operator">=</span> item<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'|'</span><span class="token punctuation">)</span>
-            table<span class="token punctuation">.</span>add_row<span class="token punctuation">(</span><span class="token punctuation">[</span>details<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">30</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">32</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>table<span class="token punctuation">)</span>
-    <span class="token keyword">else</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"获取响应数据失败,状态码为</span><span class="token interpolation"><span class="token punctuation">&#123;</span>json_data<span class="token punctuation">[</span><span class="token string">'httpstatus'</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+# 主函数
+def main():
+    # 获取站点编码
+    code_dic = get_station_codes()
 
-<span class="token comment"># 主函数</span>
-<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token comment"># 获取站点编码</span>
-    code_dic <span class="token operator">=</span> get_station_codes<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    # 获取用户输入
+    from_station, to_station, time = get_user_input(code_dic)
 
-    <span class="token comment"># 获取用户输入</span>
-    from_station<span class="token punctuation">,</span> to_station<span class="token punctuation">,</span> time <span class="token operator">=</span> get_user_input<span class="token punctuation">(</span>code_dic<span class="token punctuation">)</span>
+    # 获取火车票信息
+    json_data = get_train_info(from_station, to_station, time)
 
-    <span class="token comment"># 获取火车票信息</span>
-    json_data <span class="token operator">=</span> get_train_info<span class="token punctuation">(</span>from_station<span class="token punctuation">,</span> to_station<span class="token punctuation">,</span> time<span class="token punctuation">)</span>
+    # 打印火车票信息
+    print_train_info(json_data)
 
-    <span class="token comment"># 打印火车票信息</span>
-    print_train_info<span class="token punctuation">(</span>json_data<span class="token punctuation">)</span>
+    # 使用Selenium打开网页
+    browser = webdriver.Edge()
+    browser.get(&#39;https://kyfw.12306.cn/otn/leftTicket/init?linktypeid=dc&#39;)
 
-    <span class="token comment"># 使用Selenium打开网页</span>
-    browser <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Edge<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    browser<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'https://kyfw.12306.cn/otn/leftTicket/init?linktypeid=dc'</span><span class="token punctuation">)</span>
+    # 填写查询表单
+    start_station = browser.find_element(By.CSS_SELECTOR, &#39;#fromStationText&#39;)
+    start_station.clear()
+    start_station.send_keys(&quot;广州南&quot;)
+    start_station.send_keys(Keys.ENTER)
 
-    <span class="token comment"># 填写查询表单</span>
-    start_station <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#fromStationText'</span><span class="token punctuation">)</span>
-    start_station<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    start_station<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span><span class="token string">"广州南"</span><span class="token punctuation">)</span>
-    start_station<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span>Keys<span class="token punctuation">.</span>ENTER<span class="token punctuation">)</span>
+    end_station = browser.find_element(By.CSS_SELECTOR, &#39;#toStationText&#39;)
+    end_station.clear()
+    end_station.send_keys(&quot;韶关&quot;)
+    end_station.send_keys(Keys.ENTER)
 
-    end_station <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#toStationText'</span><span class="token punctuation">)</span>
-    end_station<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    end_station<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span><span class="token string">"韶关"</span><span class="token punctuation">)</span>
-    end_station<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span>Keys<span class="token punctuation">.</span>ENTER<span class="token punctuation">)</span>
+    date = browser.find_element(By.CSS_SELECTOR, &#39;#train_date&#39;)
+    date.clear()
+    date.send_keys(&quot;2024-09-18&quot;)
+    date.send_keys(Keys.ENTER)
 
-    date <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#train_date'</span><span class="token punctuation">)</span>
-    date<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    date<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span><span class="token string">"2024-09-18"</span><span class="token punctuation">)</span>
-    date<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span>Keys<span class="token punctuation">.</span>ENTER<span class="token punctuation">)</span>
+    # 点击查询
+    browser.find_element(By.CSS_SELECTOR, &#39;#query_ticket&#39;).click()
 
-    <span class="token comment"># 点击查询</span>
-    browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#query_ticket'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    # 等待查询结果
+    t.sleep(5)  # 优化：使用更明确的等待条件
 
-    <span class="token comment"># 等待查询结果</span>
-    t<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>  <span class="token comment"># 优化：使用更明确的等待条件</span>
+    # 处理查询结果
+    elements = browser.find_elements(By.CSS_SELECTOR, &#39;#queryLeftTable tr:nth-child(7) .btn72&#39;)
+    if elements:
+        elements[0].click()
 
-    <span class="token comment"># 处理查询结果</span>
-    elements <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_elements<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#queryLeftTable tr:nth-child(7) .btn72'</span><span class="token punctuation">)</span>
-    <span class="token keyword">if</span> elements<span class="token punctuation">:</span>
-        elements<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    # 扫码登陆
+    saoma = browser.find_element(By.CSS_SELECTOR, &#39;#login &gt; div.login-box &gt; ul &gt; li.login-hd-account &gt; a&#39;)
+    saoma.click()
 
-    <span class="token comment"># 扫码登陆</span>
-    saoma <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#login > div.login-box > ul > li.login-hd-account > a'</span><span class="token punctuation">)</span>
-    saoma<span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    t.sleep(5)  # 优化：使用更明确的等待条件
 
-    t<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>  <span class="token comment"># 优化：使用更明确的等待条件</span>
+    # 登录操作
+    J_userName = browser.find_element(By.CSS_SELECTOR, &#39;#J-userName&#39;)
+    J_userName.clear()
+    J_userName.send_keys(&quot;Ozxmss&quot;)
 
-    <span class="token comment"># 登录操作</span>
-    J_userName <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#J-userName'</span><span class="token punctuation">)</span>
-    J_userName<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    J_userName<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span><span class="token string">"Ozxmss"</span><span class="token punctuation">)</span>
+    J_password = browser.find_element(By.CSS_SELECTOR, &#39;#J-password&#39;)
+    J_password.clear()
+    J_password.send_keys(&quot;xubin159753123&quot;)
 
-    J_password <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#J-password'</span><span class="token punctuation">)</span>
-    J_password<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    J_password<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span><span class="token string">"xubin159753123"</span><span class="token punctuation">)</span>
+    J_loginmodalBtn = browser.find_element(By.CSS_SELECTOR, &#39;#J-login&#39;)
+    J_loginmodalBtn.click()
 
-    J_loginmodalBtn <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#J-login'</span><span class="token punctuation">)</span>
-    J_loginmodalBtn<span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    # 点击预订
+    browser.find_element(By.CSS_SELECTOR, &#39;#normalPassenger_0&#39;).click()
+    t.sleep(1)
+    browser.find_element(By.CSS_SELECTOR, &#39;#dialog_xsertcj_cancel&#39;).click()
 
-    <span class="token comment"># 点击预订</span>
-    browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#normalPassenger_0'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    t<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
-    browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#dialog_xsertcj_cancel'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    # 修改成人票
+    ticket_type_select = browser.find_element(By.CSS_SELECTOR, &#39;#ticketType_1&#39;)
+    ticket_type_select.click()
 
-    <span class="token comment"># 修改成人票</span>
-    ticket_type_select <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#ticketType_1'</span><span class="token punctuation">)</span>
-    ticket_type_select<span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    # 选择成人票
+    adult_ticket_option = browser.find_element(By.CSS_SELECTOR, &#39;#ticketType_1 &gt; option[value=&quot;1&quot;]&#39;)
+    adult_ticket_option.click()
 
-    <span class="token comment"># 选择成人票</span>
-    adult_ticket_option <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#ticketType_1 > option[value="1"]'</span><span class="token punctuation">)</span>
-    adult_ticket_option<span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    t.sleep(1)
+    browser.find_element(By.CSS_SELECTOR, &#39;#submitOrder_id&#39;).click()
 
-    t<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
-    browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#submitOrder_id'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    qr_submit_id = browser.find_element(By.CSS_SELECTOR, &#39;#qr_submit_id&#39;)
+    if qr_submit_id:
+        qr_submit_id.click()
+    input(&quot;输入任意字符后回车继续...&quot;)
 
-    qr_submit_id <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#qr_submit_id'</span><span class="token punctuation">)</span>
-    <span class="token keyword">if</span> qr_submit_id<span class="token punctuation">:</span>
-        qr_submit_id<span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"输入任意字符后回车继续..."</span><span class="token punctuation">)</span>
+    # 关闭浏览器
+    browser.quit()
 
-    <span class="token comment"># 关闭浏览器</span>
-    browser<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
 
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
-    main<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -1334,7 +1336,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">432.3k</span>&nbsp;字
+                class="white-color">448.8k</span>&nbsp;字
             
             
             

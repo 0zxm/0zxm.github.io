@@ -487,14 +487,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.7k
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    8 分
                 </div>
                 
 
@@ -533,28 +533,28 @@
 <img src="/2024/08/25/pa-chong-zhong-shi-yong-da-ma-ping-tai/验证码接口.png" alt="image-20240825194351890" style="zoom:67%;">
 
 <p>所以我们先编写如下代码，将图片保存本地，<strong>使用Session对象是为了保证验证码和请求是同一次会话</strong></p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> requests
+<pre><code class="python">import requests
 
-<span class="token comment"># 爬取优质资源网</span>
-session <span class="token operator">=</span> requests<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span>
+# 爬取优质资源网
+session = requests.Session()
 
-urls <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-    <span class="token string">"data"</span><span class="token punctuation">:</span> <span class="token string">"http://www.1080zyk.com/index.php?m=vod-search"</span><span class="token punctuation">,</span>
-    <span class="token string">"yanzenma"</span><span class="token punctuation">:</span> <span class="token string">"https://www.1080zyk.com/inc/common/code.php?a=search&amp;s="</span><span class="token punctuation">,</span>
-<span class="token punctuation">&#125;</span>
+urls = &#123;
+    &quot;data&quot;: &quot;http://www.1080zyk.com/index.php?m=vod-search&quot;,
+    &quot;yanzenma&quot;: &quot;https://www.1080zyk.com/inc/common/code.php?a=search&amp;s=&quot;,
+&#125;
 
-<span class="token keyword">for</span> key<span class="token punctuation">,</span> url <span class="token keyword">in</span> urls<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">if</span> key <span class="token operator">==</span> <span class="token string">"data"</span><span class="token punctuation">:</span>
-        data <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">"wd"</span><span class="token punctuation">:</span> <span class="token string">"python"</span><span class="token punctuation">,</span> <span class="token string">"submit"</span><span class="token punctuation">:</span> <span class="token string">"search"</span><span class="token punctuation">&#125;</span>
-        response <span class="token operator">=</span> session<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token punctuation">,</span> data<span class="token operator">=</span>data<span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
-    <span class="token keyword">elif</span> key <span class="token operator">==</span> <span class="token string">"yanzenma"</span><span class="token punctuation">:</span>
-        response <span class="token operator">=</span> session<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
-        <span class="token comment"># response是一张图片</span>
-        <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"./yanzenma.jpg"</span><span class="token punctuation">,</span> <span class="token string">"wb"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
-            f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>response<span class="token punctuation">.</span>content<span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"验证码已保存到yanzenma.jpg"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+for key, url in urls.items():
+    if key == &quot;data&quot;:
+        data = &#123;&quot;wd&quot;: &quot;python&quot;, &quot;submit&quot;: &quot;search&quot;&#125;
+        response = session.post(url, data=data)
+        print(response.text)
+    elif key == &quot;yanzenma&quot;:
+        response = session.get(url)
+        # response是一张图片
+        with open(&quot;./yanzenma.jpg&quot;, &quot;wb&quot;) as f:
+            f.write(response.content)
+        print(&quot;验证码已保存到yanzenma.jpg&quot;)
+</code></pre>
 <h2 id="超级鹰平台的使用"><a href="#超级鹰平台的使用" class="headerlink" title="超级鹰平台的使用"></a>超级鹰平台的使用</h2><p>然后登陆到<strong>超级鹰打码平台</strong>，下载相应语言的接口示例</p>
 <p><img src="/2024/08/25/pa-chong-zhong-shi-yong-da-ma-ping-tai/python%E6%8E%A5%E5%8F%A3%E5%AE%9E%E4%BE%8B.png" alt="image-20240825205458702"></p>
 <p>把python源文件解压到项目目录下，修改里面的参数，自己去超级鹰网站生成软件id，填入替换96001</p>
@@ -566,20 +566,20 @@ urls <span class="token operator">=</span> <span class="token punctuation">&#123
 <h2 id="JavaScript逆向"><a href="#JavaScript逆向" class="headerlink" title="JavaScript逆向"></a>JavaScript逆向</h2><p><img src="/2024/08/25/pa-chong-zhong-shi-yong-da-ma-ping-tai/js.png" alt="image-20240826095006734"></p>
 <p>检查验证码页面,发现主要内容是一段js代码实现检验功能,于是,我们把这段代码给复制下来,交给<code>fittencode</code>解释.</p>
 <h3 id="fittenCode插件"><a href="#fittenCode插件" class="headerlink" title="fittenCode插件"></a>fittenCode插件</h3><p>结果如下:</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">".ldg_verify_submit"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-            <span class="token keyword">const</span> code <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">".mac_verify"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">const</span> type <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#code_type"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            $<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"/inc/ajax.php?ac=code_check&amp;code="</span> <span class="token operator">+</span> code <span class="token operator">+</span> <span class="token string">"&amp;type="</span> <span class="token operator">+</span> type <span class="token operator">+</span> <span class="token string">"&amp;rnd="</span> <span class="token operator">+</span> Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">r</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                <span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>data<span class="token punctuation">.</span>code <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                    location<span class="token punctuation">.</span><span class="token function">reload</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
-                    <span class="token function">alert</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">&#125;</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-帮我解释一下这段代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="javascript">$(&quot;.ldg_verify_submit&quot;).click(() =&gt; &#123;
+            const code = $(&quot;.mac_verify&quot;).val();
+            const type = $(&quot;#code_type&quot;).val();
+            $.get(&quot;/inc/ajax.php?ac=code_check&amp;code=&quot; + code + &quot;&amp;type=&quot; + type + &quot;&amp;rnd=&quot; + Math.random(), function (r) &#123;
+                const data = JSON.parse(r);
+                if (data.code == 1) &#123;
+                    location.reload();
+                &#125; else &#123;
+                    alert(data.msg);
+                &#125;
+            &#125;);
+        &#125;)
+帮我解释一下这段代码
+</code></pre>
 <p>这段代码是一个使用jQuery编写的JavaScript代码片段，主要功能是处理一个验证提交按钮的点击事件。以下是对这段代码的详细解释：</p>
 <ol>
 <li><p><code>$(&quot;.ldg_verify_submit&quot;).click(() =&gt; &#123; ... &#125;)</code>：</p>
@@ -622,117 +622,115 @@ urls <span class="token operator">=</span> <span class="token punctuation">&#123
 <p>总结来说，这段代码的功能是当用户点击验证提交按钮时，获取用户输入的验证码和验证码类型，然后通过AJAX请求将这些信息发送到服务器进行验证。根据服务器的响应，决定是重新加载页面（验证成功）还是显示错误信息（验证失败）。</p>
 <p>于是我们将参数拼接,对<code>https://www.1080zyk.com/inc/ajax.php?ac=code_check&amp;code=3991&amp;type=search&amp;rnd=1</code>发起请求,最后得到响应数据为<code>&#123;&quot;code&quot;:1,&quot;msg&quot;:&quot;ok&quot;&#125;</code>,然后reload页面,发现,可以正常获得响应,于是,补充下列代码</p>
 <p><img src="/2024/08/25/pa-chong-zhong-shi-yong-da-ma-ping-tai/%E6%AD%A3%E5%B8%B8%E5%93%8D%E5%BA%94.png" alt="image-20240826100747246"></p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 校验验证码url</span>
-url <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"http://www.1080zyk.com/inc/ajax.php?ac=code_check&amp;code=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>code<span class="token punctuation">&#125;</span></span><span class="token string">&amp;type=search&amp;rnd=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">100000</span><span class="token punctuation">,</span> <span class="token number">999999</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span></span><span class="token string">"</span></span>
+<pre><code class="python"># 校验验证码url
+url = f&quot;http://www.1080zyk.com/inc/ajax.php?ac=code_check&amp;code=&#123;code&#125;&amp;type=search&amp;rnd=&#123;random.randint(100000, 999999)&#125;&quot;
 
-response_code <span class="token operator">=</span> session<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
-<span class="token keyword">if</span> response_code<span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">"code"</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>	<span class="token comment"># 注意,不是字符串1</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"验证码正确"</span><span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>session<span class="token punctuation">.</span>get<span class="token punctuation">(</span>urls<span class="token punctuation">[</span><span class="token string">"data"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>text<span class="token punctuation">)</span>
-<span class="token keyword">else</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"验证码错误"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+response_code = session.get(url)
+if response_code.json()[&quot;code&quot;] == 1:	# 注意,不是字符串1
+    print(&quot;验证码正确&quot;)
+    print(session.get(urls[&quot;data&quot;]).text)
+else:
+    print(&quot;验证码错误&quot;)
+</code></pre>
 <p>最后,加入选择下载项和保存本地的代码,就完成了</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> random
-<span class="token keyword">import</span> requests
-<span class="token keyword">import</span> lxml<span class="token punctuation">.</span>etree
-<span class="token keyword">from</span> 超级鹰接口 <span class="token keyword">import</span> Chaojiying_Client
+<pre><code class="python">import random
+import requests
+import lxml.etree
+from 超级鹰接口 import Chaojiying_Client
 
-<span class="token comment"># 初始化会话</span>
-session <span class="token operator">=</span> requests<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span>
+# 初始化会话
+session = requests.Session()
 
-headers <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-    <span class="token string">"User-Agent"</span><span class="token punctuation">:</span> <span class="token string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36 Edg/128.0.0.0"</span><span class="token punctuation">,</span>
-    <span class="token string">"Referer"</span><span class="token punctuation">:</span> <span class="token string">"https://www.1080zyk.com/index.php?m=vod-search"</span><span class="token punctuation">,</span>
-    <span class="token string">"Cookie"</span><span class="token punctuation">:</span> <span class="token string">"_ga=GA1.1.838502423.1724576396; PHPSESSID=o15hha1hpqlbddfon13h85rt37; _ga_20DNV0Q96J=GS1.1.1724591590.4.1.1724591970.0.0.0"</span><span class="token punctuation">,</span>
-<span class="token punctuation">&#125;</span>
+headers = &#123;
+    &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36 Edg/128.0.0.0&quot;,
+    &quot;Referer&quot;: &quot;https://www.1080zyk.com/index.php?m=vod-search&quot;,
+    &quot;Cookie&quot;: &quot;_ga=GA1.1.838502423.1724576396; PHPSESSID=o15hha1hpqlbddfon13h85rt37; _ga_20DNV0Q96J=GS1.1.1724591590.4.1.1724591970.0.0.0&quot;,
+&#125;
 
-urls <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-    <span class="token string">"data"</span><span class="token punctuation">:</span> <span class="token string">"http://www.1080zyk.com/index.php?m=vod-search"</span><span class="token punctuation">,</span>
-    <span class="token string">"yanzenma"</span><span class="token punctuation">:</span> <span class="token string">"https://www.1080zyk.com/inc/common/code.php?a=search&amp;s="</span><span class="token punctuation">,</span>
-<span class="token punctuation">&#125;</span>
-
-
-<span class="token keyword">def</span> <span class="token function">fetch_captcha</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    response <span class="token operator">=</span> session<span class="token punctuation">.</span>get<span class="token punctuation">(</span>urls<span class="token punctuation">[</span><span class="token string">"yanzenma"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-    <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"./yanzenma.jpg"</span><span class="token punctuation">,</span> <span class="token string">"wb"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
-        f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>response<span class="token punctuation">.</span>content<span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"验证码已保存到yanzenma.jpg"</span><span class="token punctuation">)</span>
+urls = &#123;
+    &quot;data&quot;: &quot;http://www.1080zyk.com/index.php?m=vod-search&quot;,
+    &quot;yanzenma&quot;: &quot;https://www.1080zyk.com/inc/common/code.php?a=search&amp;s=&quot;,
+&#125;
 
 
-<span class="token keyword">def</span> <span class="token function">recognize_captcha</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    chaojiying <span class="token operator">=</span> Chaojiying_Client<span class="token punctuation">(</span>
-        <span class="token string">"0zxmss"</span><span class="token punctuation">,</span> <span class="token string">"Xubin159753123"</span><span class="token punctuation">,</span> <span class="token string">"962795"</span>
-    <span class="token punctuation">)</span>  <span class="token comment"># 用户中心>>软件ID 生成一个替换 96001</span>
-    im <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span>
-        <span class="token string">"./yanzenma.jpg"</span><span class="token punctuation">,</span> <span class="token string">"rb"</span>
-    <span class="token punctuation">)</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 本地图片文件路径 来替换 a.jpg 有时WIN系统须要//</span>
-    result <span class="token operator">=</span> chaojiying<span class="token punctuation">.</span>PostPic<span class="token punctuation">(</span>im<span class="token punctuation">,</span> <span class="token number">1902</span><span class="token punctuation">)</span><span class="token punctuation">.</span>get<span class="token punctuation">(</span>
-        <span class="token string">"pic_str"</span>
-    <span class="token punctuation">)</span>  <span class="token comment"># 1902 验证码类型  官方网站>>价格体系 3.4+版 print 后要加()</span>
-    <span class="token keyword">return</span> result
+def fetch_captcha():
+    response = session.get(urls[&quot;yanzenma&quot;])
+    with open(&quot;./yanzenma.jpg&quot;, &quot;wb&quot;) as f:
+        f.write(response.content)
+    print(&quot;验证码已保存到yanzenma.jpg&quot;)
 
 
-<span class="token keyword">def</span> <span class="token function">verify_captcha</span><span class="token punctuation">(</span>code<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    url <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"http://www.1080zyk.com/inc/ajax.php?ac=code_check&amp;code=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>code<span class="token punctuation">&#125;</span></span><span class="token string">&amp;type=search&amp;rnd=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">100000</span><span class="token punctuation">,</span> <span class="token number">999999</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span></span><span class="token string">"</span></span>
-    response_code <span class="token operator">=</span> session<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> response_code<span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span>
+def recognize_captcha():
+    chaojiying = Chaojiying_Client(
+        &quot;0zxmss&quot;, &quot;Xubin159753123&quot;, &quot;962795&quot;
+    )  # 用户中心&gt;&gt;软件ID 生成一个替换 96001
+    im = open(
+        &quot;./yanzenma.jpg&quot;, &quot;rb&quot;
+    ).read()  # 本地图片文件路径 来替换 a.jpg 有时WIN系统须要//
+    result = chaojiying.PostPic(im, 1902).get(
+        &quot;pic_str&quot;
+    )  # 1902 验证码类型  官方网站&gt;&gt;价格体系 3.4+版 print 后要加()
+    return result
 
 
-<span class="token keyword">def</span> <span class="token function">search_data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    data <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">"wd"</span><span class="token punctuation">:</span> <span class="token string">"你好"</span><span class="token punctuation">,</span> <span class="token string">"submit"</span><span class="token punctuation">:</span> <span class="token string">"search"</span><span class="token punctuation">&#125;</span>
-    response <span class="token operator">=</span> session<span class="token punctuation">.</span>post<span class="token punctuation">(</span>urls<span class="token punctuation">[</span><span class="token string">"data"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> data<span class="token operator">=</span>data<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> response<span class="token punctuation">.</span>text
+def verify_captcha(code):
+    url = f&quot;http://www.1080zyk.com/inc/ajax.php?ac=code_check&amp;code=&#123;code&#125;&amp;type=search&amp;rnd=&#123;random.randint(100000, 999999)&#125;&quot;
+    response_code = session.get(url)
+    return response_code.json()
 
 
-<span class="token keyword">def</span> <span class="token function">parse_data</span><span class="token punctuation">(</span>html<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    tree <span class="token operator">=</span> lxml<span class="token punctuation">.</span>etree<span class="token punctuation">.</span>HTML<span class="token punctuation">(</span>html<span class="token punctuation">,</span> <span class="token boolean">None</span><span class="token punctuation">)</span>
-    base_xpath <span class="token operator">=</span> <span class="token string">"//div[@class='xing_vb']/ul/li"</span>
-    items <span class="token operator">=</span> tree<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span>base_xpath<span class="token punctuation">)</span>
-
-    nums <span class="token operator">=</span> <span class="token punctuation">[</span>
-        <span class="token punctuation">&#123;</span><span class="token string">"标题"</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"类别"</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"地区"</span><span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">"评分"</span><span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">"更新时间"</span><span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-        <span class="token punctuation">&#123;</span>
-            <span class="token string">"链接"</span><span class="token punctuation">:</span> <span class="token string">"span[2]/a/@href"</span><span class="token punctuation">,</span>
-            <span class="token string">"标题"</span><span class="token punctuation">:</span> <span class="token string">"span[2]/a/text()"</span><span class="token punctuation">,</span>
-            <span class="token string">"类别"</span><span class="token punctuation">:</span> <span class="token string">"span[3]/text()"</span><span class="token punctuation">,</span>
-            <span class="token string">"地区"</span><span class="token punctuation">:</span> <span class="token string">"span[4]/text()"</span><span class="token punctuation">,</span>
-            <span class="token string">"评分"</span><span class="token punctuation">:</span> <span class="token string">"span[5]/text()"</span><span class="token punctuation">,</span>
-            <span class="token string">"更新时间"</span><span class="token punctuation">:</span> <span class="token string">"span[6]/text()"</span><span class="token punctuation">,</span>
-        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    <span class="token punctuation">]</span>
-
-    index <span class="token operator">=</span> <span class="token number">1</span>
-    <span class="token keyword">for</span> item <span class="token keyword">in</span> items<span class="token punctuation">:</span>
-        <span class="token keyword">if</span> index <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
-            <span class="token keyword">for</span> name<span class="token punctuation">,</span> num <span class="token keyword">in</span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                name_value <span class="token operator">=</span> item<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"./span[</span><span class="token interpolation"><span class="token punctuation">&#123;</span>num<span class="token punctuation">&#125;</span></span><span class="token string">]/text()"</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
-                <span class="token keyword">print</span><span class="token punctuation">(</span>name_value<span class="token punctuation">)</span>
-            index <span class="token operator">+=</span> <span class="token number">1</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            <span class="token keyword">for</span> name<span class="token punctuation">,</span> path <span class="token keyword">in</span> nums<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                name_value <span class="token operator">=</span> item<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"./</span><span class="token interpolation"><span class="token punctuation">&#123;</span>path<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
-                <span class="token keyword">print</span><span class="token punctuation">(</span>name_value<span class="token punctuation">)</span>
+def search_data():
+    data = &#123;&quot;wd&quot;: &quot;你好&quot;, &quot;submit&quot;: &quot;search&quot;&#125;
+    response = session.post(urls[&quot;data&quot;], data=data)
+    return response.text
 
 
-<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    fetch_captcha<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token comment"># code = recognize_captcha()</span>
-    code <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"请输入验证码："</span><span class="token punctuation">)</span>
-    result <span class="token operator">=</span> verify_captcha<span class="token punctuation">(</span>code<span class="token punctuation">)</span>
-    <span class="token keyword">if</span> result<span class="token punctuation">[</span><span class="token string">"code"</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"验证码正确"</span><span class="token punctuation">)</span>
-        html <span class="token operator">=</span> search_data<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        parse_data<span class="token punctuation">(</span>html<span class="token punctuation">)</span>
-    <span class="token keyword">else</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"验证码错误"</span><span class="token punctuation">)</span>
+def parse_data(html):
+    tree = lxml.etree.HTML(html, None)
+    base_xpath = &quot;//div[@class=&#39;xing_vb&#39;]/ul/li&quot;
+    items = tree.xpath(base_xpath)
+
+    nums = [
+        &#123;&quot;标题&quot;: 1, &quot;类别&quot;: 2, &quot;地区&quot;: 3, &quot;评分&quot;: 4, &quot;更新时间&quot;: 5&#125;,
+        &#123;
+            &quot;链接&quot;: &quot;span[2]/a/@href&quot;,
+            &quot;标题&quot;: &quot;span[2]/a/text()&quot;,
+            &quot;类别&quot;: &quot;span[3]/text()&quot;,
+            &quot;地区&quot;: &quot;span[4]/text()&quot;,
+            &quot;评分&quot;: &quot;span[5]/text()&quot;,
+            &quot;更新时间&quot;: &quot;span[6]/text()&quot;,
+        &#125;,
+    ]
+
+    index = 1
+    for item in items:
+        if index == 1:
+            for name, num in nums[0].items():
+                name_value = item.xpath(f&quot;./span[&#123;num&#125;]/text()&quot;)[0]
+                print(name_value)
+            index += 1
+        else:
+            for name, path in nums[1].items():
+                name_value = item.xpath(f&quot;./&#123;path&#125;&quot;)[0]
+                print(name_value)
 
 
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
-    main<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+def main():
+    fetch_captcha()
+    # code = recognize_captcha()
+    code = input(&quot;请输入验证码：&quot;)
+    result = verify_captcha(code)
+    if result[&quot;code&quot;] == 1:
+        print(&quot;验证码正确&quot;)
+        html = search_data()
+        parse_data(html)
+    else:
+        print(&quot;验证码错误&quot;)
 
 
-
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
 
                 
             </div>
@@ -1256,7 +1254,7 @@ urls <span class="token operator">=</span> <span class="token punctuation">&#123
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">432.3k</span>&nbsp;字
+                class="white-color">448.8k</span>&nbsp;字
             
             
             

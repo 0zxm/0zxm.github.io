@@ -487,14 +487,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.9k
+                    6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    22 分
+                    23 分
                 </div>
                 
 
@@ -587,22 +587,21 @@
 <li>接收数据<code>recv</code><br>参数 1: 表示每次接收数据的大小，单位是字节</li>
 <li>关闭套接字<code>socket</code>表示通信完成</li>
 </ol>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> socket
+<pre><code class="python">import socket
 
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
-    <span class="token comment"># 1.创建客户端套接字对象</span>
-    tcp_client_socket <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_STREAM<span class="token punctuation">)</span>
-    <span class="token comment"># 2.和客户端套接字建立连接</span>
-    tcp_client_socket<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">"127.0.0.1"</span><span class="token punctuation">,</span> <span class="token number">8080</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token comment"># 3.发送数据</span>
-    tcp_client_socket<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span>encoding<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token comment"># 4.接受数据  recv阻塞程序</span>
-    recv_data <span class="token operator">=</span> tcp_client_socket<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>recv_data<span class="token punctuation">.</span>decode<span class="token punctuation">(</span>encoding<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token comment"># 5.关闭连接</span>
-    tcp_client_socket<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+if __name__ == &quot;__main__&quot;:
+    # 1.创建客户端套接字对象
+    tcp_client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # 2.和客户端套接字建立连接
+    tcp_client_socket.connect((&quot;127.0.0.1&quot;, 8080))
+    # 3.发送数据
+    tcp_client_socket.send(&quot;hello&quot;.encode(encoding=&quot;utf-8&quot;))
+    # 4.接受数据  recv阻塞程序
+    recv_data = tcp_client_socket.recv(1024)
+    print(recv_data.decode(encoding=&quot;utf-8&quot;))
+    # 5.关闭连接
+    tcp_client_socket.close()
+</code></pre>
 <h3 id="开发-TCP-服务端程序"><a href="#开发-TCP-服务端程序" class="headerlink" title="开发 TCP 服务端程序"></a>开发 TCP 服务端程序</h3><h4 id="TCP-服务端程序开发流程介绍"><a href="#TCP-服务端程序开发流程介绍" class="headerlink" title="TCP 服务端程序开发流程介绍"></a>TCP 服务端程序开发流程介绍</h4><ol>
 <li>创建服务端端套接字对象</li>
 <li>绑定 IP 地址和端口号</li>
@@ -690,33 +689,32 @@
 <li>关闭 accept 返回的套接字意味着和<code>这个客户端已经通信完毕</code></li>
 <li><code>当客户端的套接字调用close后,服务器端的recv会解阻塞,返回的数据长度为0</code>,服务端可以通过返回数据的长度来判断客户端是否已经下线，反之<code>服务端关闭套接字，客户端的recv也会解阻塞，返回的数据长度也为0</code></li>
 </ol>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> socket
+<pre><code class="python">import socket
 
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
-    <span class="token comment"># 1. 创建服务端端套接字对象  #参数1: IPv4 参数2: 流式协议</span>
-    tcp_server_socket <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_STREAM<span class="token punctuation">)</span>
-    <span class="token comment"># 设置端口复用</span>
-    tcp_server_socket<span class="token punctuation">.</span>setsockopt<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>SOL_SOCKET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SO_REUSEADDR<span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
-    <span class="token comment"># 2. 绑定IP地址和端口号</span>
-    <span class="token comment"># tcp_server_socket.bind(("192.168.128.73", 8888))</span>
-    tcp_server_socket<span class="token punctuation">.</span>bind<span class="token punctuation">(</span>
-        <span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">,</span> <span class="token number">8080</span><span class="token punctuation">)</span>
-    <span class="token punctuation">)</span>  <span class="token comment"># 如果bind中的参数第一个ip地址元素设置为""，默认为本机ip地址</span>
-    <span class="token comment"># 3. 设置监听</span>
-    tcp_server_socket<span class="token punctuation">.</span>listen<span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span>  <span class="token comment"># 服务端等待排队连接的最大数量</span>
-    <span class="token comment"># 4. 等待接受客户端的连接请求 accept阻塞等待  返回一个用以和客户端的socke,客户端的地址</span>
-    conn_socket<span class="token punctuation">,</span> ip_port <span class="token operator">=</span> tcp_server_socket<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"客户端地址:"</span><span class="token punctuation">,</span> ip_port<span class="token punctuation">)</span>
-    <span class="token comment"># 5. 接收数据</span>
-    recv_data <span class="token operator">=</span> conn_socket<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"接收到的数据"</span><span class="token punctuation">,</span> recv_data<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token comment"># 6. 发送数据</span>
-    conn_socket<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">"客户端发送的数据我收到了"</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token comment"># 7. 关闭套接字</span>
-    conn_socket<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    tcp_server_socket<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+if __name__ == &quot;__main__&quot;:
+    # 1. 创建服务端端套接字对象  #参数1: IPv4 参数2: 流式协议
+    tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # 设置端口复用
+    tcp_server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, True)
+    # 2. 绑定IP地址和端口号
+    # tcp_server_socket.bind((&quot;192.168.128.73&quot;, 8888))
+    tcp_server_socket.bind(
+        (&quot;&quot;, 8080)
+    )  # 如果bind中的参数第一个ip地址元素设置为&quot;&quot;，默认为本机ip地址
+    # 3. 设置监听
+    tcp_server_socket.listen(128)  # 服务端等待排队连接的最大数量
+    # 4. 等待接受客户端的连接请求 accept阻塞等待  返回一个用以和客户端的socke,客户端的地址
+    conn_socket, ip_port = tcp_server_socket.accept()
+    print(&quot;客户端地址:&quot;, ip_port)
+    # 5. 接收数据
+    recv_data = conn_socket.recv(1024)
+    print(&quot;接收到的数据&quot;, recv_data.decode(&quot;utf-8&quot;))
+    # 6. 发送数据
+    conn_socket.send(&quot;客户端发送的数据我收到了&quot;.encode(&quot;utf-8&quot;))
+    # 7. 关闭套接字
+    conn_socket.close()
+    tcp_server_socket.close()
+</code></pre>
 <h3 id="socket-之-send-和-recv-原理剖析"><a href="#socket-之-send-和-recv-原理剖析" class="headerlink" title="socket 之 send 和 recv 原理剖析"></a>socket 之 send 和 recv 原理剖析</h3><ol>
 <li>TCP socket 的发送和接收缓冲区<br>当创建一个 TCP socket 对象的时候会有一个<code>发送缓冲区</code>和一个<code>接收缓冲区</code>，这个发送和接收缓冲区指的就是内存中的一片空间。</li>
 <li>send 原理剖析<br><code>问:</code>send 是不是直接把数据发给服务端?<br><code>答:</code>不是，要想发数据，必须得通过网卡发送数据，应用程序是无法直接通过网卡发送数据的，它需要调用操作系统接口也就是说，应用程序把发送的数据先写入到发送缓冲区(内存中的一片空间)，再由操作系统控制网卡把发送缓冲区的数据发送给服务端网卡</li>
@@ -822,45 +820,45 @@
 <p><img src="/2024/09/02/python-wang-luo-bian-cheng/tcp_pro.png" alt="alt text"></p>
 </li>
 </ol>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> socket
+<pre><code class="python">import socket
 
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
-    <span class="token comment"># 创建socket</span>
-    tcp_server_socket <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_STREAM<span class="token punctuation">)</span>
-    tcp_server_socket<span class="token punctuation">.</span>setsockopt<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>SOL_SOCKET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SO_REUSEADDR<span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
-    <span class="token comment"># 绑定地址</span>
-    tcp_server_socket<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">,</span> <span class="token number">8080</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token comment"># 设置监听</span>
-    tcp_server_socket<span class="token punctuation">.</span>listen<span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span>
+if __name__ == &quot;__main__&quot;:
+    # 创建socket
+    tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    tcp_server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, True)
+    # 绑定地址
+    tcp_server_socket.bind((&quot;&quot;, 8080))
+    # 设置监听
+    tcp_server_socket.listen(128)
 
-    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
-        <span class="token comment"># 2.获取浏览器发送到Http请求信息</span>
-        <span class="token comment"># 建立连接</span>
-        client_socket<span class="token punctuation">,</span> client_addr <span class="token operator">=</span> tcp_server_socket<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token comment"># 获取浏览器请求消息</span>
-        client_request_data <span class="token operator">=</span> client_socket<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>client_request_data<span class="token punctuation">)</span>
-        <span class="token comment"># 3. 读取固定页面数据,把页面数据组装成HTTP响应报文数据发送给浏览器</span>
-        <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>
-            <span class="token string">"python/jupyter_notebooks/python高级编程/网络编程/python搭建静态Web服务器/login.html"</span><span class="token punctuation">,</span>
-            <span class="token string">"rb"</span><span class="token punctuation">,</span>
-        <span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
-            file_data <span class="token operator">=</span> f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    while True:
+        # 2.获取浏览器发送到Http请求信息
+        # 建立连接
+        client_socket, client_addr = tcp_server_socket.accept()
+        # 获取浏览器请求消息
+        client_request_data = client_socket.recv(1024).decode()
+        print(client_request_data)
+        # 3. 读取固定页面数据,把页面数据组装成HTTP响应报文数据发送给浏览器
+        with open(
+            &quot;python/jupyter_notebooks/python高级编程/网络编程/python搭建静态Web服务器/login.html&quot;,
+            &quot;rb&quot;,
+        ) as f:
+            file_data = f.read()
 
-        <span class="token comment"># 应答行</span>
-        response_line <span class="token operator">=</span> <span class="token string">"HTTP/1.1 200 OK\r\n"</span>
-        <span class="token comment"># 应答头</span>
-        response_header <span class="token operator">=</span> <span class="token string">"Server:pythonWeb\r\n"</span>
-        <span class="token comment"># 应答体</span>
-        response_body <span class="token operator">=</span> file_data
-        response_data <span class="token operator">=</span> <span class="token punctuation">(</span>
-            response_line <span class="token operator">+</span> response_header <span class="token operator">+</span> <span class="token string">"\r\n"</span>
-        <span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> response_body
+        # 应答行
+        response_line = &quot;HTTP/1.1 200 OK\r\n&quot;
+        # 应答头
+        response_header = &quot;Server:pythonWeb\r\n&quot;
+        # 应答体
+        response_body = file_data
+        response_data = (
+            response_line + response_header + &quot;\r\n&quot;
+        ).encode() + response_body
 
-        client_socket<span class="token punctuation">.</span>send<span class="token punctuation">(</span>response_data<span class="token punctuation">)</span>
-        <span class="token comment"># 4.HTTP响应报文数据发送完成以后，关闭服务于客户端的套接宇</span>
-        client_socket<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+        client_socket.send(response_data)
+        # 4.HTTP响应报文数据发送完成以后，关闭服务于客户端的套接宇
+        client_socket.close()
+</code></pre>
 <h3 id="3-静态-Web-服务器-返回指定页面数据"><a href="#3-静态-Web-服务器-返回指定页面数据" class="headerlink" title="3.静态 Web 服务器-返回指定页面数据"></a>3.静态 Web 服务器-返回指定页面数据</h3><p>分析步骤:</p>
 <ol>
 <li>获取用户请求资源的路径</li>
@@ -896,274 +894,272 @@
 </li>
 </ol>
 <p>这些步骤用于处理客户端请求的静态资源文件，并生成相应的 HTTP 响应</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> socket
+<pre><code class="python">import socket
 
-<span class="token comment"># 1. 获取用户请求资源的路径</span>
-<span class="token comment"># 2. 根据请求资源的路径，读取指定文件的数据</span>
-<span class="token comment"># 3. 组装指定文件数据的响应报文，发送给浏览器</span>
-<span class="token comment"># 4. 判断请求的文件在服务端不存在，组装404状态的响应报文，发送给浏览器</span>
+# 1. 获取用户请求资源的路径
+# 2. 根据请求资源的路径，读取指定文件的数据
+# 3. 组装指定文件数据的响应报文，发送给浏览器
+# 4. 判断请求的文件在服务端不存在，组装404状态的响应报文，发送给浏览器
 
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
-    <span class="token comment"># 创建socket</span>
-    tcp_server_socket <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_STREAM<span class="token punctuation">)</span>
-    tcp_server_socket<span class="token punctuation">.</span>setsockopt<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>SOL_SOCKET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SO_REUSEADDR<span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
-    <span class="token comment"># 绑定地址</span>
-    tcp_server_socket<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">,</span> <span class="token number">8080</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token comment"># 设置监听</span>
-    tcp_server_socket<span class="token punctuation">.</span>listen<span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span>
+if __name__ == &quot;__main__&quot;:
+    # 创建socket
+    tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    tcp_server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, True)
+    # 绑定地址
+    tcp_server_socket.bind((&quot;&quot;, 8080))
+    # 设置监听
+    tcp_server_socket.listen(128)
 
-    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
-        <span class="token comment"># 2.获取浏览器发送到Http请求信息</span>
-        <span class="token comment"># 建立连接</span>
-        client_socket<span class="token punctuation">,</span> client_addr <span class="token operator">=</span> tcp_server_socket<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token comment"># 获取浏览器请求消息</span>
-        client_request_data <span class="token operator">=</span> client_socket<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>client_request_data<span class="token punctuation">)</span>
+    while True:
+        # 2.获取浏览器发送到Http请求信息
+        # 建立连接
+        client_socket, client_addr = tcp_server_socket.accept()
+        # 获取浏览器请求消息
+        client_request_data = client_socket.recv(1024).decode()
+        print(client_request_data)
 
-        <span class="token comment"># 获取用户请求的资源路径</span>
-        request_data <span class="token operator">=</span> client_request_data<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"request_data"</span><span class="token punctuation">,</span> request_data<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-        request_path <span class="token operator">=</span> request_data<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+        # 获取用户请求的资源路径
+        request_data = client_request_data.split(&quot; &quot;)
+        print(&quot;request_data&quot;, request_data[1])
+        request_path = request_data[1]
 
-        <span class="token keyword">if</span> request_path <span class="token operator">==</span> <span class="token string">"/"</span><span class="token punctuation">:</span>
-            request_path <span class="token operator">=</span> <span class="token string">"login.html"</span>
-        <span class="token keyword">try</span><span class="token punctuation">:</span>
-            <span class="token comment"># 3. 读取固定页面数据,把页面数据组装成HTTP响应报文数据发送给浏览器</span>
-            <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>
-                <span class="token string">"python/jupyter_notebooks/python高级编程/网络编程/python搭建静态Web服务器/"</span>
-                <span class="token operator">+</span> request_path<span class="token punctuation">,</span>
-                <span class="token string">"rb"</span><span class="token punctuation">,</span>
-            <span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
-                file_data <span class="token operator">=</span> f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
-            <span class="token comment"># 应答行</span>
-            response_line <span class="token operator">=</span> <span class="token string">"HTTP/1.1 404 Not Found\r\n"</span>
-            <span class="token comment"># 应答头</span>
-            response_header <span class="token operator">=</span> <span class="token string">"Server:pythonWeb\r\n"</span>
-            <span class="token comment"># 应答体</span>
-            response_body <span class="token operator">=</span> <span class="token string">"404 Not Found sorry"</span>
-            response_data <span class="token operator">=</span> <span class="token punctuation">(</span>
-                response_line <span class="token operator">+</span> response_header <span class="token operator">+</span> <span class="token string">"\r\n"</span> <span class="token operator">+</span> response_body
-            <span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            client_socket<span class="token punctuation">.</span>send<span class="token punctuation">(</span>response_data<span class="token punctuation">)</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            <span class="token comment"># 应答行</span>
-            response_line <span class="token operator">=</span> <span class="token string">"HTTP/1.1 200 OK\r\n"</span>
-            <span class="token comment"># 应答头</span>
-            response_header <span class="token operator">=</span> <span class="token string">"Server:pythonWeb\r\n"</span>
-            <span class="token comment"># 应答体</span>
-            response_body <span class="token operator">=</span> file_data
-            response_data <span class="token operator">=</span> <span class="token punctuation">(</span>
-                response_line <span class="token operator">+</span> response_header <span class="token operator">+</span> <span class="token string">"\r\n"</span>
-            <span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> response_body
+        if request_path == &quot;/&quot;:
+            request_path = &quot;login.html&quot;
+        try:
+            # 3. 读取固定页面数据,把页面数据组装成HTTP响应报文数据发送给浏览器
+            with open(
+                &quot;python/jupyter_notebooks/python高级编程/网络编程/python搭建静态Web服务器/&quot;
+                + request_path,
+                &quot;rb&quot;,
+            ) as f:
+                file_data = f.read()
+        except Exception as e:
+            # 应答行
+            response_line = &quot;HTTP/1.1 404 Not Found\r\n&quot;
+            # 应答头
+            response_header = &quot;Server:pythonWeb\r\n&quot;
+            # 应答体
+            response_body = &quot;404 Not Found sorry&quot;
+            response_data = (
+                response_line + response_header + &quot;\r\n&quot; + response_body
+            ).encode()
+            client_socket.send(response_data)
+        else:
+            # 应答行
+            response_line = &quot;HTTP/1.1 200 OK\r\n&quot;
+            # 应答头
+            response_header = &quot;Server:pythonWeb\r\n&quot;
+            # 应答体
+            response_body = file_data
+            response_data = (
+                response_line + response_header + &quot;\r\n&quot;
+            ).encode() + response_body
 
-            client_socket<span class="token punctuation">.</span>send<span class="token punctuation">(</span>response_data<span class="token punctuation">)</span>
-            <span class="token comment"># 4.HTTP响应报文数据发送完成以后，关闭服务于客户端的套接宇</span>
-        <span class="token keyword">finally</span><span class="token punctuation">:</span>
-            client_socket<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+            client_socket.send(response_data)
+            # 4.HTTP响应报文数据发送完成以后，关闭服务于客户端的套接宇
+        finally:
+            client_socket.close()
+</code></pre>
 <h3 id="4-多任务版"><a href="#4-多任务版" class="headerlink" title="4.多任务版"></a>4.多任务版</h3><ul>
 <li>多线程 当客户端和服务端建立连接成功，创建子线程，使用子线程专门处理客户端的请求，防止主线程阻塞</li>
 <li>多进程</li>
 </ul>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> socket
-<span class="token keyword">import</span> threading
+<pre><code class="python">import socket
+import threading
 
-<span class="token comment"># 1. 获取用户请求资源的路径</span>
-<span class="token comment"># 2. 根据请求资源的路径，读取指定文件的数据</span>
-<span class="token comment"># 3. 组装指定文件数据的响应报文，发送给浏览器</span>
-<span class="token comment"># 4. 判断请求的文件在服务端不存在，组装404状态的响应报文，发送给浏览器</span>
-
-
-<span class="token keyword">def</span> <span class="token function">handle_client_request</span><span class="token punctuation">(</span>client_socket<span class="token punctuation">)</span><span class="token punctuation">:</span>
-
-    <span class="token comment"># 获取浏览器请求消息</span>
-    client_request_data <span class="token operator">=</span> client_socket<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>client_request_data<span class="token punctuation">)</span>
-
-    <span class="token comment"># 获取用户请求的资源路径</span>
-    request_data <span class="token operator">=</span> client_request_data<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"request_data"</span><span class="token punctuation">,</span> request_data<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-    <span class="token comment"># 判断客户端是否关闭</span>
-    <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>request_data<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
-        client_socket<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"客户端关闭"</span><span class="token punctuation">)</span>
-        <span class="token keyword">return</span>
-    request_path <span class="token operator">=</span> request_data<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
-
-    <span class="token keyword">if</span> request_path <span class="token operator">==</span> <span class="token string">"/"</span><span class="token punctuation">:</span>
-        request_path <span class="token operator">=</span> <span class="token string">"login.html"</span>
-    <span class="token keyword">try</span><span class="token punctuation">:</span>
-        <span class="token comment"># 3. 读取固定页面数据,把页面数据组装成HTTP响应报文数据发送给浏览器</span>
-        <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>
-            <span class="token string">"python/jupyter_notebooks/python高级编程/网络编程/python搭建静态Web服务器/"</span>
-            <span class="token operator">+</span> request_path<span class="token punctuation">,</span>
-            <span class="token string">"rb"</span><span class="token punctuation">,</span>
-        <span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
-            file_data <span class="token operator">=</span> f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
-        <span class="token comment"># 应答行</span>
-        response_line <span class="token operator">=</span> <span class="token string">"HTTP/1.1 404 Not Found\r\n"</span>
-        <span class="token comment"># 应答头</span>
-        response_header <span class="token operator">=</span> <span class="token string">"Server:pythonWeb\r\n"</span>
-        <span class="token comment"># 应答体</span>
-        response_body <span class="token operator">=</span> <span class="token string">"404 Not Found sorry"</span>
-        response_data <span class="token operator">=</span> <span class="token punctuation">(</span>
-            response_line <span class="token operator">+</span> response_header <span class="token operator">+</span> <span class="token string">"\r\n"</span> <span class="token operator">+</span> response_body
-        <span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        client_socket<span class="token punctuation">.</span>send<span class="token punctuation">(</span>response_data<span class="token punctuation">)</span>
-    <span class="token keyword">else</span><span class="token punctuation">:</span>
-        <span class="token comment"># 应答行</span>
-        response_line <span class="token operator">=</span> <span class="token string">"HTTP/1.1 200 OK\r\n"</span>
-        <span class="token comment"># 应答头</span>
-        response_header <span class="token operator">=</span> <span class="token string">"Server:pythonWeb\r\n"</span>
-        <span class="token comment"># 应答体</span>
-        response_body <span class="token operator">=</span> file_data
-        response_data <span class="token operator">=</span> <span class="token punctuation">(</span>
-            response_line <span class="token operator">+</span> response_header <span class="token operator">+</span> <span class="token string">"\r\n"</span>
-        <span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> response_body
-
-        client_socket<span class="token punctuation">.</span>send<span class="token punctuation">(</span>response_data<span class="token punctuation">)</span>
-        <span class="token comment"># 4.HTTP响应报文数据发送完成以后，关闭服务于客户端的套接宇</span>
-    <span class="token keyword">finally</span><span class="token punctuation">:</span>
-        client_socket<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+# 1. 获取用户请求资源的路径
+# 2. 根据请求资源的路径，读取指定文件的数据
+# 3. 组装指定文件数据的响应报文，发送给浏览器
+# 4. 判断请求的文件在服务端不存在，组装404状态的响应报文，发送给浏览器
 
 
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
-    <span class="token comment"># 创建socket</span>
-    tcp_server_socket <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_STREAM<span class="token punctuation">)</span>
-    tcp_server_socket<span class="token punctuation">.</span>setsockopt<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>SOL_SOCKET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SO_REUSEADDR<span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
-    <span class="token comment"># 绑定地址</span>
-    tcp_server_socket<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">,</span> <span class="token number">8080</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token comment"># 设置监听</span>
-    tcp_server_socket<span class="token punctuation">.</span>listen<span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span>
+def handle_client_request(client_socket):
 
-    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
-        <span class="token comment"># 2.获取浏览器发送到Http请求信息</span>
-        <span class="token comment"># 建立连接</span>
-        client_socket<span class="token punctuation">,</span> client_addr <span class="token operator">=</span> tcp_server_socket<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    # 获取浏览器请求消息
+    client_request_data = client_socket.recv(1024).decode()
+    print(client_request_data)
 
-        <span class="token comment"># 创建子线程</span>
-        sub_thread <span class="token operator">=</span> threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>
-            target<span class="token operator">=</span>handle_client_request<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>client_socket<span class="token punctuation">,</span><span class="token punctuation">)</span>
-        <span class="token punctuation">)</span>
-        sub_thread<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    # 获取用户请求的资源路径
+    request_data = client_request_data.split(&quot; &quot;)
+    print(&quot;request_data&quot;, request_data[1])
+    # 判断客户端是否关闭
+    if len(request_data) == 1:
+        client_socket.close()
+        print(&quot;客户端关闭&quot;)
+        return
+    request_path = request_data[1]
 
+    if request_path == &quot;/&quot;:
+        request_path = &quot;login.html&quot;
+    try:
+        # 3. 读取固定页面数据,把页面数据组装成HTTP响应报文数据发送给浏览器
+        with open(
+            &quot;python/jupyter_notebooks/python高级编程/网络编程/python搭建静态Web服务器/&quot;
+            + request_path,
+            &quot;rb&quot;,
+        ) as f:
+            file_data = f.read()
+    except Exception as e:
+        # 应答行
+        response_line = &quot;HTTP/1.1 404 Not Found\r\n&quot;
+        # 应答头
+        response_header = &quot;Server:pythonWeb\r\n&quot;
+        # 应答体
+        response_body = &quot;404 Not Found sorry&quot;
+        response_data = (
+            response_line + response_header + &quot;\r\n&quot; + response_body
+        ).encode()
+        client_socket.send(response_data)
+    else:
+        # 应答行
+        response_line = &quot;HTTP/1.1 200 OK\r\n&quot;
+        # 应答头
+        response_header = &quot;Server:pythonWeb\r\n&quot;
+        # 应答体
+        response_body = file_data
+        response_data = (
+            response_line + response_header + &quot;\r\n&quot;
+        ).encode() + response_body
+
+        client_socket.send(response_data)
+        # 4.HTTP响应报文数据发送完成以后，关闭服务于客户端的套接宇
+    finally:
+        client_socket.close()
+
+
+if __name__ == &quot;__main__&quot;:
+    # 创建socket
+    tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    tcp_server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, True)
+    # 绑定地址
+    tcp_server_socket.bind((&quot;&quot;, 8080))
+    # 设置监听
+    tcp_server_socket.listen(128)
+
+    while True:
+        # 2.获取浏览器发送到Http请求信息
+        # 建立连接
+        client_socket, client_addr = tcp_server_socket.accept()
+
+        # 创建子线程
+        sub_thread = threading.Thread(
+            target=handle_client_request, args=(client_socket,)
+        )
+        sub_thread.start()
+</code></pre>
 <h3 id="5-静态-Web-服务器-面向对象开发"><a href="#5-静态-Web-服务器-面向对象开发" class="headerlink" title="5.静态 Web 服务器-面向对象开发"></a>5.静态 Web 服务器-面向对象开发</h3><p>分析步骤:<br>把提供服务的 Web 服务器抽象成一个类(HTTPWebServer)提供 Web 服务器的初始化方法，在初始化方法里面创建 Socket 对象</p>
 <h4 id="5-1-知识要点"><a href="#5-1-知识要点" class="headerlink" title="5.1 知识要点"></a>5.1 知识要点</h4><ol>
 <li>把提供服务的 Web 服务器抽象成一个类(HTTPWebServer)<code>class HttpWebServer(object):</code></li>
 <li>提供 Web 服务器的初始化方法，在初始化方法里面创建 socket 对象<code>def __init__ (self):</code><br>初始化服务端套接字，设置监听，代码省略..</li>
 <li>提供一个开启 Web 服务器的方法，让 Web 服务器处理客户端请求操作<code>def start(self):</code></li>
 </ol>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> socket
-<span class="token keyword">import</span> sys
-<span class="token keyword">import</span> threading
-<span class="token keyword">import</span> pdb
+<pre><code class="python">import socket
+import sys
+import threading
+import pdb
 
 
-<span class="token keyword">class</span> <span class="token class-name">HttpWebServer</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> port<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">None</span><span class="token punctuation">:</span>
-        <span class="token comment"># 创建socket</span>
-        self<span class="token punctuation">.</span>tcp_server_socket <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_STREAM<span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>tcp_server_socket<span class="token punctuation">.</span>setsockopt<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>SOL_SOCKET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SO_REUSEADDR<span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
-        <span class="token comment"># 绑定地址</span>
-        self<span class="token punctuation">.</span>tcp_server_socket<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token comment"># 设置监听</span>
-        self<span class="token punctuation">.</span>tcp_server_socket<span class="token punctuation">.</span>listen<span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span>
+class HttpWebServer:
+    def __init__(self, port) -&gt; None:
+        # 创建socket
+        self.tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.tcp_server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, True)
+        # 绑定地址
+        self.tcp_server_socket.bind((&quot;&quot;, port))
+        # 设置监听
+        self.tcp_server_socket.listen(128)
 
-    <span class="token keyword">def</span> <span class="token function">handle_client_request</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> client_socket<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    def handle_client_request(self, client_socket):
 
-        <span class="token comment"># pdb.set_trace()</span>
-        <span class="token comment"># 获取浏览器请求消息</span>
-        client_request_data <span class="token operator">=</span> client_socket<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>client_request_data<span class="token punctuation">)</span>
+        # pdb.set_trace()
+        # 获取浏览器请求消息
+        client_request_data = client_socket.recv(1024).decode()
+        print(client_request_data)
 
-        <span class="token comment"># 获取用户请求的资源路径</span>
-        request_data <span class="token operator">=</span> client_request_data<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"request_data"</span><span class="token punctuation">,</span> request_data<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-        <span class="token comment"># 判断客户端是否关闭</span>
-        <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>request_data<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
-            client_socket<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"客户端关闭"</span><span class="token punctuation">)</span>
-            <span class="token keyword">return</span>
-        request_path <span class="token operator">=</span> request_data<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+        # 获取用户请求的资源路径
+        request_data = client_request_data.split(&quot; &quot;)
+        print(&quot;request_data&quot;, request_data[1])
+        # 判断客户端是否关闭
+        if len(request_data) == 1:
+            client_socket.close()
+            print(&quot;客户端关闭&quot;)
+            return
+        request_path = request_data[1]
 
-        <span class="token keyword">if</span> request_path <span class="token operator">==</span> <span class="token string">"/"</span><span class="token punctuation">:</span>
-            request_path <span class="token operator">=</span> <span class="token string">"/login.html"</span>
-        <span class="token keyword">try</span><span class="token punctuation">:</span>
-            <span class="token comment"># 3. 读取固定页面数据,把页面数据组装成HTTP响应报文数据发送给浏览器</span>
-            <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>
-                <span class="token string">"D:/MyCode/VSCode/python/jupyter_notebooks/python高级编程/网络编程/python搭建静态Web服务器"</span>
-                <span class="token operator">+</span> request_path<span class="token punctuation">,</span>
-                <span class="token string">"rb"</span><span class="token punctuation">,</span>
-            <span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
-                file_data <span class="token operator">=</span> f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
-            <span class="token comment"># 应答行</span>
-            response_line <span class="token operator">=</span> <span class="token string">"HTTP/1.1 404 Not Found\r\n"</span>
-            <span class="token comment"># 应答头</span>
-            response_header <span class="token operator">=</span> <span class="token string">"Server:pythonWeb\r\n"</span>
-            <span class="token comment"># 应答体</span>
-            response_body <span class="token operator">=</span> <span class="token string">"404 Not Found sorry"</span>
-            response_data <span class="token operator">=</span> <span class="token punctuation">(</span>
-                response_line <span class="token operator">+</span> response_header <span class="token operator">+</span> <span class="token string">"\r\n"</span> <span class="token operator">+</span> response_body
-            <span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            client_socket<span class="token punctuation">.</span>send<span class="token punctuation">(</span>response_data<span class="token punctuation">)</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            <span class="token comment"># 应答行</span>
-            response_line <span class="token operator">=</span> <span class="token string">"HTTP/1.1 200 OK\r\n"</span>
-            <span class="token comment"># 应答头</span>
-            response_header <span class="token operator">=</span> <span class="token string">"Server:pythonWeb\r\n"</span>
-            <span class="token comment"># 应答体</span>
-            response_body <span class="token operator">=</span> file_data
-            response_data <span class="token operator">=</span> <span class="token punctuation">(</span>
-                response_line <span class="token operator">+</span> response_header <span class="token operator">+</span> <span class="token string">"\r\n"</span>
-            <span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> response_body
+        if request_path == &quot;/&quot;:
+            request_path = &quot;/login.html&quot;
+        try:
+            # 3. 读取固定页面数据,把页面数据组装成HTTP响应报文数据发送给浏览器
+            with open(
+                &quot;D:/MyCode/VSCode/python/jupyter_notebooks/python高级编程/网络编程/python搭建静态Web服务器&quot;
+                + request_path,
+                &quot;rb&quot;,
+            ) as f:
+                file_data = f.read()
+        except Exception as e:
+            print(e)
+            # 应答行
+            response_line = &quot;HTTP/1.1 404 Not Found\r\n&quot;
+            # 应答头
+            response_header = &quot;Server:pythonWeb\r\n&quot;
+            # 应答体
+            response_body = &quot;404 Not Found sorry&quot;
+            response_data = (
+                response_line + response_header + &quot;\r\n&quot; + response_body
+            ).encode()
+            client_socket.send(response_data)
+        else:
+            # 应答行
+            response_line = &quot;HTTP/1.1 200 OK\r\n&quot;
+            # 应答头
+            response_header = &quot;Server:pythonWeb\r\n&quot;
+            # 应答体
+            response_body = file_data
+            response_data = (
+                response_line + response_header + &quot;\r\n&quot;
+            ).encode() + response_body
 
-            client_socket<span class="token punctuation">.</span>send<span class="token punctuation">(</span>response_data<span class="token punctuation">)</span>
-            <span class="token comment"># 4.HTTP响应报文数据发送完成以后，关闭服务于客户端的套接宇</span>
-        <span class="token keyword">finally</span><span class="token punctuation">:</span>
-            client_socket<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            client_socket.send(response_data)
+            # 4.HTTP响应报文数据发送完成以后，关闭服务于客户端的套接宇
+        finally:
+            client_socket.close()
 
-    <span class="token keyword">def</span> <span class="token function">start</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
-            <span class="token comment"># 2.获取浏览器发送到Http请求信息</span>
-            <span class="token comment"># 建立连接</span>
-            client_socket<span class="token punctuation">,</span> client_addr <span class="token operator">=</span> self<span class="token punctuation">.</span>tcp_server_socket<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    def start(self):
+        while True:
+            # 2.获取浏览器发送到Http请求信息
+            # 建立连接
+            client_socket, client_addr = self.tcp_server_socket.accept()
 
-            <span class="token comment"># 创建子线程</span>
-            sub_thread <span class="token operator">=</span> threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>
-                target<span class="token operator">=</span>self<span class="token punctuation">.</span>handle_client_request<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>client_socket<span class="token punctuation">,</span><span class="token punctuation">)</span>
-            <span class="token punctuation">)</span>
-            sub_thread<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-
-<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">)</span>
-    <span class="token keyword">if</span> <span class="token keyword">not</span> <span class="token builtin">len</span><span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"格式错误1 python xxx.py port_id"</span><span class="token punctuation">)</span>
-        <span class="token keyword">return</span>
-    <span class="token keyword">if</span> <span class="token keyword">not</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>isdigit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"格式错误2 python xxx.py port_id"</span><span class="token punctuation">)</span>
-        <span class="token keyword">return</span>
-
-    port <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-    <span class="token comment"># 创建一个服务器对象</span>
-    my_web_server <span class="token operator">=</span> HttpWebServer<span class="token punctuation">(</span>port<span class="token punctuation">)</span>
-    <span class="token comment"># 开启服务器</span>
-    my_web_server<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            # 创建子线程
+            sub_thread = threading.Thread(
+                target=self.handle_client_request, args=(client_socket,)
+            )
+            sub_thread.start()
 
 
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
-    main<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+def main():
+    print(sys.argv)
+    if not len(sys.argv) == 2:
+        print(&quot;格式错误1 python xxx.py port_id&quot;)
+        return
+    if not sys.argv[1].isdigit():
+        print(&quot;格式错误2 python xxx.py port_id&quot;)
+        return
 
-<h3 id="6-命令行动态设定端口号"><a href="#6-命令行动态设定端口号" class="headerlink" title="6.命令行动态设定端口号"></a>6.命令行动态设定端口号</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> sys
+    port = int(sys.argv[1])
+    # 创建一个服务器对象
+    my_web_server = HttpWebServer(port)
+    # 开启服务器
+    my_web_server.start()
 
-<span class="token keyword">print</span><span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">)</span> <span class="token comment"># 命令行的参数列表 例如 python test.py 8080</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h3 id="6-命令行动态设定端口号"><a href="#6-命令行动态设定端口号" class="headerlink" title="6.命令行动态设定端口号"></a>6.命令行动态设定端口号</h3><pre><code class="python">import sys
+
+print(sys.argv) # 命令行的参数列表 例如 python test.py 8080
+</code></pre>
 
                 
             </div>
@@ -1695,7 +1691,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">432.3k</span>&nbsp;字
+                class="white-color">448.8k</span>&nbsp;字
             
             
             

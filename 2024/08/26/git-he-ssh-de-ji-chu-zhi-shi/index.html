@@ -565,18 +565,18 @@
 <li><p>打开命令行或终端，并切换到你的本地 Git 仓库目录。</p>
 </li>
 <li><p>使用以下命令创建并切换到新的分支：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout <span class="token parameter variable">-b</span> <span class="token operator">&lt;</span>branch_name<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">git checkout -b &lt;branch_name&gt;
+</code></pre>
 <p>这个命令会创建一个名为 <code>&lt;branch_name&gt;</code> 的新分支，并将你的工作目录切换到这个新分支上。</p>
 </li>
 <li><p>如果你想将新分支推送到远程仓库，可以使用以下命令：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push origin <span class="token operator">&lt;</span>branch_name<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">git push origin &lt;branch_name&gt;
+</code></pre>
 <p>这个命令会将新分支推送到远程仓库中，并在远程仓库上创建一个同名的分支。</p>
 </li>
 <li><p>如果你只是想在本地创建一个新分支，而不需要将其推送到远程仓库，可以简单地使用以下命令：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> branch <span class="token operator">&lt;</span>branch_name<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">git branch &lt;branch_name&gt;
+</code></pre>
 <p>这个命令会在本地创建一个名为 <code>&lt;branch_name&gt;</code> 的新分支，但不会切换到这个分支上。</p>
 </li>
 </ol>
@@ -600,17 +600,20 @@
 <p>更新 Git 版本和清除 Git 缓存是两个独立的操作。以下是针对这两个操作的具体步骤：</p>
 <h3 id="更新-Git-版本："><a href="#更新-Git-版本：" class="headerlink" title="更新 Git 版本："></a>更新 Git 版本：</h3><ol>
 <li><p><strong>检查当前 Git 版本</strong>： 在命令行中输入以下命令可以查看当前安装的 Git 版本：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token parameter variable">--version</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="bash">git --version
+</code></pre>
 </li>
 <li><p><strong>下载最新版本的 Git</strong>： 访问 Git 官方网站（<a target="_blank" rel="noopener" href="https://git-scm.com/%EF%BC%89%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC%E7%9A%84">https://git-scm.com/）下载最新版本的</a> Git 安装程序，并按照安装指南进行安装。</p>
 </li>
 <li><p><strong>更新 Git 版本</strong>： 安装完成后，可以再次输入以下命令检查 Git 版本，确认已成功更新：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token parameter variable">--version</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<pre><code class="bash">git --version
+</code></pre>
+</li>
 </ol>
 <h3 id="清除-Git-缓存："><a href="#清除-Git-缓存：" class="headerlink" title="清除 Git 缓存："></a>清除 Git 缓存：</h3><ol>
 <li><p><strong>清除 Git 缓存</strong>： 在命令行中输入以下命令可以清除 Git 的缓存：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clean <span class="token parameter variable">-xdf</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">git clean -xdf
+</code></pre>
 <p>这个命令会清除未跟踪文件和目录，<code>-x</code> 选项表示同时删除忽略的文件，<code>-d</code> 选项表示同时删除未跟踪的目录，<code>-f</code> 选项表示强制执行清除操作。</p>
 </li>
 <li><p><strong>重新执行 Git 操作</strong>： 清除完 Git 缓存后，可以尝试重新执行之前的 Git 操作，看看问题是否得到解决。</p>
@@ -637,13 +640,13 @@
 <li>保存<code>.gitignore</code>文件。</li>
 <li>将<code>.gitignore</code>文件添加到 Git 仓库中，使用以下命令：</li>
 </ol>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">add</span> .gitignore<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">git add .gitignore
+</code></pre>
 <ol>
 <li>提交更改到 Git 仓库，使用以下命令：</li>
 </ol>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Add .gitignore file"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">git commit -m &quot;Add .gitignore file&quot;
+</code></pre>
 <p>这样，Git 就会开始忽略在<code>.gitignore</code>文件中列出的文件或文件夹，不会将它们包含在版本控制中。</p>
 <p>Ask GPT-4 Turbo</p>
 <p>在你提供的输出中，<code>git commit</code> 命令提示你输入一个提交信息来描述你所做的更改。同时，它也显示了你当前所在的分支（<code>main</code>）以及该分支与远程仓库（<code>origin/main</code>）的同步状态。此外，它还列出了即将被提交的更改，这些更改包括一个被修改的文件，但该文件的名字看起来像是由于编码问题而出现了乱码。</p>
@@ -655,9 +658,9 @@
 <li><strong>设置正确的字符编码</strong>：确保你的终端或命令行界面使用了正确的字符编码。在 Linux 和 macOS 上，通常是 UTF-8。在 Windows 上，可能是 GBK 或其他编码，但 UTF-8 也是一个常见的选择。你可以检查并修改终端的字符编码设置。</li>
 <li><strong>使用 Git 的配置</strong>：Git 也允许你设置用于文件名和日志消息的字符编码。你可以通过运行以下命令来设置 Git 的字符编码为 UTF-8（或其他你选择的编码）：</li>
 </ol>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> i18n.commitencoding utf-8
-<span class="token function">git</span> config <span class="token parameter variable">--global</span> i18n.logoutputencoding utf-8<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
+<pre><code class="bash">git config --global i18n.commitencoding utf-8
+git config --global i18n.logoutputencoding utf-8
+</code></pre>
 <p>这些设置会影响 Git 如何解释和显示文件名和提交信息。</p>
 <ol start="5">
 <li><strong>重新提交</strong>：在解决了文件名乱码问题后，你可以再次运行<code>git commit</code>命令并输入一个有意义的提交信息来完成提交。</li>
@@ -684,13 +687,13 @@
 <li><code>-C &quot;密钥名称&quot;</code>：为密钥添加一个注释（通常是你的电子邮件地址或其他标识符），方便识别密钥。</li>
 </ul>
 <p>完整的命令示例如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen <span class="token parameter variable">-t</span> rsa <span class="token parameter variable">-b</span> <span class="token number">4096</span> <span class="token parameter variable">-C</span> <span class="token string">"your_email@example.com"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;
+</code></pre>
 <p>执行这个命令后，<code>ssh-keygen</code> 会提示你输入保存密钥的文件路径和 passphrase（可选）。按照提示操作即可生成 SSH 密钥对。</p>
 <p>生成的密钥对通常会保存在 <code>~/.ssh</code> 目录下，默认情况下，公钥文件名为 <code>id_rsa.pub</code>，私钥文件名为 <code>id_rsa</code>。</p>
 <p>如果你需要将生成的公钥添加到 GitHub 或其他 Git 托管服务，可以使用以下命令查看公钥内容：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> ~/.ssh/id_rsa.pub<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">cat ~/.ssh/id_rsa.pub
+</code></pre>
 <p>然后将输出的内容复制到 Git 托管服务的 SSH 密钥设置页面中。</p>
 <ol>
 <li><p><strong>将公钥添加到 Git 托管服务</strong>：</p>
@@ -715,13 +718,16 @@
 </ul>
 </li>
 <li><p><strong>配置本地 Git 仓库使用 SSH URL</strong>： 确保你的本地 Git 仓库配置了使用 SSH URL 进行远程操作。例如：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote set-url origin git@github.com:username/repo.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="bash">git remote set-url origin git@github.com:username/repo.git
+</code></pre>
 </li>
 <li><p><strong>测试 SSH 连接</strong>： 你可以使用以下命令测试 SSH 连接是否成功：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> <span class="token parameter variable">-T</span> git@github.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">ssh -T git@github.com
+</code></pre>
 <p>如果连接成功，你会看到类似如下的输出：</p>
-<pre class="line-numbers language-none"><code class="language-none">Hi username! You&#39;ve successfully authenticated, but GitHub does not provide shell access.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<pre><code>Hi username! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
+</code></pre>
+</li>
 </ol>
 <h3 id="私钥"><a href="#私钥" class="headerlink" title="私钥"></a>私钥</h3><p>私钥（Private Key）在 SSH 密钥对中扮演着至关重要的角色。私钥是保密的，不应该与任何人共享。它的主要用途包括：</p>
 <ol>
@@ -734,10 +740,13 @@
 <li><p><strong>远程登录</strong>： 当你使用 <code>ssh user@host</code> 命令连接到远程服务器时，SSH 客户端会使用你的私钥进行身份验证。如果服务器上配置了你的公钥，并且和你本机上的私钥匹配，你就可以成功登录。</p>
 </li>
 <li><p><strong>Git 操作</strong>： 当你使用 SSH URL 进行 Git 操作（如 <code>git push</code> 或 <code>git pull</code>）时，Git 会使用你的私钥进行身份验证。例如：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone git@github.com:username/repo.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="bash">git clone git@github.com:username/repo.git
+</code></pre>
 </li>
 <li><p><strong>文件传输</strong>： 当你使用 SCP 或 SFTP 进行安全的文件传输时，SSH 会使用你的私钥进行身份验证。例如：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">scp</span> localfile user@host:/remote/directory<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<pre><code class="bash">scp localfile user@host:/remote/directory
+</code></pre>
+</li>
 </ul>
 <p><strong>保护私钥的安全</strong>：</p>
 <p>由于私钥的敏感性，必须采取适当的措施来保护它：</p>
@@ -745,7 +754,8 @@
 <li><p><strong>设置 Passphrase</strong>： 在生成 SSH 密钥对时，<code>ssh-keygen</code> 会提示你设置一个 Passphrase。Passphrase 用于加密私钥文件，增加一层额外的安全保护。即使私钥文件被盗，没有 Passphrase 也无法使用。</p>
 </li>
 <li><p><strong>限制访问权限</strong>： 确保私钥文件的访问权限设置为仅限你本人访问。你可以使用以下命令设置权限：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> <span class="token number">600</span> ~/.ssh/id_rsa<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="bash">chmod 600 ~/.ssh/id_rsa
+</code></pre>
 </li>
 <li><p><strong>定期更换密钥</strong>： 定期生成新的 SSH 密钥对，并删除旧的密钥对，以减少密钥泄露的风险。</p>
 </li>
@@ -754,23 +764,25 @@
 <h3 id="know-host-文件"><a href="#know-host-文件" class="headerlink" title="know_host 文件"></a>know_host 文件</h3><p>在 SSH 密钥文件夹（通常是 <code>~/.ssh</code>）中，<code>known_hosts</code> 文件用于存储你已经连接过的远程主机的公钥指纹。这个文件的作用是防止中间人攻击（Man-in-the-Middle Attack）。</p>
 <p>当你第一次连接到一个新的远程主机时，SSH 客户端会提示你确认主机的指纹，并将其存储在 <code>known_hosts</code> 文件中。以后每次连接到这个主机时，SSH 客户端会检查主机的指纹是否与 <code>known_hosts</code> 文件中的记录匹配。如果不匹配，SSH 客户端会发出警告，提示你可能存在安全风险。</p>
 <p><code>known_hosts</code> 文件的格式通常如下：</p>
-<pre class="line-numbers language-none"><code class="language-none">主机名,IP地址 公钥类型 公钥<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code>主机名,IP地址 公钥类型 公钥
+</code></pre>
 <p>例如：</p>
-<pre class="line-numbers language-none"><code class="language-none">github.com,192.30.255.113 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmd...<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code>github.com,192.30.255.113 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmd...
+</code></pre>
 <p><code>known_hosts</code> 文件中的条目可以手动编辑，但通常不建议这样做，除非你确切知道自己在做什么。</p>
 <p>至于 <code>known_hosts.old</code> 文件，它通常是在更新 <code>known_hosts</code> 文件时生成的备份文件。例如，当你更新 SSH 客户端或操作系统时，可能会重新生成 <code>known_hosts</code> 文件，并将旧文件重命名为 <code>known_hosts.old</code>。</p>
 <p><strong>处理 <code>known_hosts</code> 文件的常见操作</strong>：</p>
 <ol>
 <li><p><strong>查看 <code>known_hosts</code> 文件内容</strong>：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> ~/.ssh/known_hosts<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="bash">cat ~/.ssh/known_hosts
+</code></pre>
 </li>
 <li><p><strong>删除特定主机的条目</strong>： 如果你需要删除某个主机的条目，可以使用文本编辑器手动编辑 <code>known_hosts</code> 文件，或者使用以下命令：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen <span class="token parameter variable">-R</span> 主机名或IP地址<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">ssh-keygen -R 主机名或IP地址
+</code></pre>
 <p>例如：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen <span class="token parameter variable">-R</span> github.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="bash">ssh-keygen -R github.com
+</code></pre>
 </li>
 <li><p><strong>重新连接主机</strong>： 删除条目后，当你再次连接到该主机时，SSH 客户端会提示你确认新的主机指纹，并将其添加到 <code>known_hosts</code> 文件中。</p>
 </li>
@@ -782,12 +794,14 @@
 <p>具体步骤如下：</p>
 <ol>
 <li><p><strong>第一次连接到新主机</strong>： 当你第一次使用 <code>ssh user@host</code> 命令连接到一个新的远程主机时，你会看到类似如下的提示：</p>
-<pre class="line-numbers language-none"><code class="language-none">The authenticity of host &#39;host (IP地址)&#39; can&#39;t be established.
+<pre><code>The authenticity of host &#39;host (IP地址)&#39; can&#39;t be established.
 RSA key fingerprint is SHA256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.
-Are you sure you want to continue connecting (yes&#x2F;no)?<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+Are you sure you want to continue connecting (yes/no)?
+</code></pre>
 </li>
 <li><p><strong>确认主机指纹</strong>： 你需要输入 <code>yes</code> 来确认主机的指纹，并将其添加到 <code>known_hosts</code> 文件中。此时，SSH 客户端会显示类似如下的消息：</p>
-<pre class="line-numbers language-none"><code class="language-none">Warning: Permanently added &#39;host,IP地址&#39; (RSA) to the list of known hosts.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>Warning: Permanently added &#39;host,IP地址&#39; (RSA) to the list of known hosts.
+</code></pre>
 </li>
 <li><p><strong>指纹存储在 <code>known_hosts</code> 文件中</strong>： 确认后，主机的公钥指纹会被存储在 <code>~/.ssh/known_hosts</code> 文件中。以后每次连接到这个主机时，SSH 客户端会检查主机的指纹是否与 <code>known_hosts</code> 文件中的记录匹配。</p>
 </li>
@@ -802,17 +816,19 @@ Are you sure you want to continue connecting (yes&#x2F;no)?<span aria-hidden="tr
 </li>
 <li><p><strong>扩展浅克隆</strong>：</p>
 <p>如果你在后续操作中需要更多的历史记录，可以使用以下命令扩展浅克隆：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token parameter variable">--depth</span> <span class="token operator">&lt;</span>new-depth<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">git fetch --depth &lt;new-depth&gt;
+</code></pre>
 <p>例如，如果你最初进行了 <code>--depth 1</code> 的浅克隆，并希望获取更多的历史记录：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token parameter variable">--depth</span> <span class="token number">10</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<pre><code class="bash">git fetch --depth 10
+</code></pre>
+</li>
 </ul>
 <p>通过这些命令，你可以根据需要灵活地使用浅克隆和扩展浅克隆，以平衡速度和完整性</p>
 <h4 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h4><p><code>git status</code>: 查看状态,确定一下是否有没有 track 的子模块</p>
 <h4 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h4><p><code>git config</code>: 用于配置 git 信息,便于查找是谁提交的修改,追根溯源</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> user.email <span class="token string">"example@163.com"</span>
-<span class="token function">git</span> config <span class="token parameter variable">--global</span> user.name "usr'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
+<pre><code class="bash">git config --global user.email &quot;example@163.com&quot;
+git config --global user.name &quot;usr&#39;
+</code></pre>
 <h4 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h4><p><code>git checkout -b test</code>: 创建新分支 test 并切换到新分支</p>
 <ul>
 <li>在某个特定的分支（例如 <code>feature</code> 分支）的基础上创建一个新的分支。以下是具体步骤：</li>
@@ -820,26 +836,26 @@ Are you sure you want to continue connecting (yes&#x2F;no)?<span aria-hidden="tr
 <ol>
 <li><strong>切换到基础分支</strong>： 首先，你需要切换到你希望作为基础的分支。例如，假设你想在 <code>feature</code> 分支的基础上创建新分支：</li>
 </ol>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout feature<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">git checkout feature
+</code></pre>
 <ol start="2">
 <li><strong>创建并切换到新分支</strong>： 然后，你可以使用 <code>git checkout -b</code> 命令创建一个新的分支，并立即切换到该分支。例如，假设你要创建一个名为 <code>test</code> 的新分支：</li>
 </ol>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout <span class="token parameter variable">-b</span> <span class="token builtin class-name">test</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">git checkout -b test
+</code></pre>
 <h4 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h4><p>把文件暂存更改,也可以直接使用 Vscdoe 的图形化界面(<code>+</code>号按钮)</p>
 <h4 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h4><p>提交更改到本地仓库,也可以直接使用 Vscdoe 的图形化界面(<strong>蓝色大框”√ 提交”</strong>)<br><code>git commit -m “[提交标题]详细”</code> 推荐提交信息格式</p>
 <h4 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h4><ul>
 <li><strong>推送本地分支到远程仓库</strong>：</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push origin2 master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">git push origin2 master
+</code></pre>
 <p>这将把本地的 <code>master</code> 分支推送到名为 <code>origin2</code> 的远程仓库。</p>
 <p><code>git push --set-upstream origin test</code><br>第一次提交新分支需要发布分支,使用上面的代码,也可以直接使用 Vscode 的图形化界面(<strong>发布分支</strong>)<br>后续可直接使用<code>git push</code></p>
 <p><strong>-f: 表示强制提交</strong></p>
 <h3 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h3><p><strong>从远程仓库拉取更新</strong>：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> pull origin master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">git pull origin master
+</code></pre>
 <p>这将从名为 <code>origin</code>的远程仓库拉取 <code>master</code> 分支的更新。</p>
 <h4 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h4><p><code>git reset --soft HEAD^</code>: 回退到上一次提交</p>
 <h3 id="git-进阶命令"><a href="#git-进阶命令" class="headerlink" title="git 进阶命令"></a>git 进阶命令</h3><h4 id="git-remote"><a href="#git-remote" class="headerlink" title="git remote"></a>git remote</h4><ul>
@@ -848,50 +864,60 @@ Are you sure you want to continue connecting (yes&#x2F;no)?<span aria-hidden="tr
 </ul>
 <h4 id="git-fetch"><a href="#git-fetch" class="headerlink" title="git fetch"></a>git fetch</h4><p><code>git fetch</code> 命令用于从远程仓库下载最新的更改，但不会自动合并或修改当前工作目录中的内容。它只是更新本地仓库的远程跟踪分支，使你能够查看远程仓库的最新状态。</p>
 <p><strong>基本用法</strong>：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>远程仓库<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">git fetch &lt;远程仓库&gt;
+</code></pre>
 <p>其中 <code>&lt;远程仓库&gt;</code> 是远程仓库的名称，通常是 <code>origin</code>。</p>
 <p><strong>示例</strong>：</p>
 <p>假设你有一个名为 <code>origin</code> 的远程仓库，并且希望获取最新的更改：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch origin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">git fetch origin
+</code></pre>
 <p><strong>常用选项</strong>：</p>
 <ul>
 <li><p><code>--all</code>：获取所有远程仓库的更新。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token parameter variable">--all</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="bash">git fetch --all
+</code></pre>
 </li>
 <li><p><code>--prune</code>：在获取更新之前，删除本地已经不存在的远程分支的跟踪分支。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token parameter variable">--prune</span> origin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="bash">git fetch --prune origin
+</code></pre>
 </li>
 <li><p><code>--tags</code>：获取所有的标签（tags）。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token parameter variable">--tags</span> origin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<pre><code class="bash">git fetch --tags origin
+</code></pre>
+</li>
 </ul>
 <h4 id="查看更新"><a href="#查看更新" class="headerlink" title="查看更新"></a><strong>查看更新</strong></h4><p>在执行 <code>git fech</code> 之后，你可以使用以下命令查看远程分支的更新：</p>
 <ul>
 <li><p><code>git branch -r</code>：查看所有远程跟踪分支。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> branch <span class="token parameter variable">-r</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="bash">git branch -r
+</code></pre>
 </li>
 <li><p><code>git log &lt;本地分支&gt;..&lt;远程跟踪分支&gt;</code>：查看远程跟踪分支相对于本地分支的差异。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> log master<span class="token punctuation">..</span>origin/master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<pre><code class="bash">git log master..origin/master
+</code></pre>
+</li>
 </ul>
 <h4 id="合并更新"><a href="#合并更新" class="headerlink" title="合并更新"></a><strong>合并更新</strong></h4><p><code>git fetch</code> 不会自动合并或修改当前工作目录中的内容。如果你希望将远程分支的更新合并到本地分支，可以使用 <code>git merge</code> 或 <code>git pull</code> 命令。例如：</p>
 <ul>
 <li><p><code>git merge</code>：将远程跟踪分支合并到当前分支,用于将两个分支的历史合并。它会创建一个新的合并提交，并保留合并前两个分支的历史。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge origin/master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="bash">git merge origin/master
+</code></pre>
 </li>
 <li><p><code>git pull</code>：相当于 <code>git fetch</code> 加上 <code>git merge</code>。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> pull origin master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<pre><code class="bash">git pull origin master
+</code></pre>
+</li>
 </ul>
 <h4 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h4><p><code>git rebase</code> 是一种不同于 <code>git merge</code> 的合并更改的方式。<code>git rebase</code> 通过将当前分支的提交重新应用到目标分支的最新提交之上，从而改变提交历史，使其更加线性和整洁。</p>
 <p><strong>基本用法</strong>：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> rebase <span class="token operator">&lt;</span>目标分支<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">git rebase &lt;目标分支&gt;
+</code></pre>
 <p>其中 <code>&lt;目标分支&gt;</code> 是你希望将当前分支的提交重新应用到的分支。</p>
 <p><strong>示例</strong>：</p>
 <p>假设你在一个名为 <code>feature</code> 的分支上工作，并且希望将其提交重新应用到 <code>master</code> 分支的最新提交之上：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout feature
-<span class="token function">git</span> rebase master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
+<pre><code class="bash">git checkout feature
+git rebase master
+</code></pre>
 <p><strong>工作原理</strong>：</p>
 <ol>
 <li><strong>找到两个分支的共同祖先</strong>：<code>git rebase</code> 首先找到当前分支和目标分支的共同祖先。</li>
@@ -901,13 +927,13 @@ Are you sure you want to continue connecting (yes&#x2F;no)?<span aria-hidden="tr
 </ol>
 <p><strong>冲突解决</strong>：</p>
 <p>如果在重新应用提交的过程中发生冲突，<code>git rebase</code> 会暂停并提示你解决冲突。解决冲突后，使用以下命令继续 rebase 过程：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">add</span> <span class="token operator">&lt;</span>冲突文件<span class="token operator">></span>
-<span class="token function">git</span> rebase <span class="token parameter variable">--continue</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
+<pre><code class="bash">git add &lt;冲突文件&gt;
+git rebase --continue
+</code></pre>
 <p><strong>中断 rebase</strong>：</p>
 <p>如果你希望中断 rebase 过程并恢复到 rebase 之前的状态，可以使用以下命令：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> rebase <span class="token parameter variable">--abort</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">git rebase --abort
+</code></pre>
 <p><strong>优缺点</strong>：</p>
 <p><strong>优点</strong>：</p>
 <ul>
@@ -922,18 +948,21 @@ Are you sure you want to continue connecting (yes&#x2F;no)?<span aria-hidden="tr
 <p><strong>示例流程</strong>：</p>
 <ol>
 <li><p><strong>切换到当前分支</strong>：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout feature<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="bash">git checkout feature
+</code></pre>
 </li>
 <li><p><strong>执行 rebase</strong>：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> rebase master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="bash">git rebase master
+</code></pre>
 </li>
 <li><p><strong>解决冲突（如果需要）</strong>：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">add</span> <span class="token operator">&lt;</span>冲突文件<span class="token operator">></span>
-<span class="token function">git</span> rebase <span class="token parameter variable">--continue</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre><code class="bash">git add &lt;冲突文件&gt;
+git rebase --continue
+</code></pre>
 </li>
 <li><p><strong>完成 rebase</strong>：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> rebase <span class="token parameter variable">--continue</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">git rebase --continue
+</code></pre>
 <h4 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h4><p>要将某个特定的提交(通过其哈希值识别)引入当前分支，可以使用以下命令</p>
 <p><code>git cherry-pick &lt;commit_hash&gt;</code></p>
 </li>
@@ -950,99 +979,112 @@ Are you sure you want to continue connecting (yes&#x2F;no)?<span aria-hidden="tr
 <li>递归地处理所有嵌套的子模块。</li>
 </ul>
 <p>这个命令通常在你克隆一个包含子模块的仓库后使用，以确保所有子模块都被正确初始化和更新到指定状态。例如：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone --recurse-submodules <span class="token operator">&lt;</span>主仓库URL<span class="token operator">></span>
-<span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>主仓库目录<span class="token operator">></span>
-<span class="token function">git</span> submodule update <span class="token parameter variable">--init</span> <span class="token parameter variable">--recursive</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="bash">git clone --recurse-submodules &lt;主仓库URL&gt;
+cd &lt;主仓库目录&gt;
+git submodule update --init --recursive
+</code></pre>
 <h3 id="gitee-和-github-不同配置"><a href="#gitee-和-github-不同配置" class="headerlink" title="gitee 和 github 不同配置"></a>gitee 和 github 不同配置</h3><p>Gitee（码云）和 GitHub 是两个不同的 Git 托管服务，虽然它们都支持 Git 协议，但在某些情况下，你可能需要为它们配置不同的 Git 设置。以下是一些常见的配置需求和方法：</p>
 <ol>
 <li><p><strong>不同的远程仓库 URL</strong>： 如果你在 Gitee 和 GitHub 上都有仓库，并且希望在同一个本地仓库中管理它们，你需要为每个远程仓库配置不同的 URL。例如：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> github https://github.com/username/repo.git
-<span class="token function">git</span> remote <span class="token function">add</span> gitee https://gitee.com/username/repo.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
+<pre><code class="bash">git remote add github https://github.com/username/repo.git
+git remote add gitee https://gitee.com/username/repo.git
+</code></pre>
 <p>这样，你可以使用不同的远程名称来区分它们：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push github master
-<span class="token function">git</span> push gitee master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre><code class="bash">git push github master
+git push gitee master
+</code></pre>
 </li>
 <li><p><strong>不同的用户配置</strong>： 如果你在 Gitee 和 GitHub 上使用不同的用户名和电子邮件地址，可以在本地仓库中配置不同的用户信息。例如：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config user.name <span class="token string">"GitHub User"</span>
-<span class="token function">git</span> config user.email <span class="token string">"github@example.com"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
+<pre><code class="bash">git config user.name &quot;GitHub User&quot;
+git config user.email &quot;github@example.com&quot;
+</code></pre>
 <p>然后在另一个仓库中：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config user.name <span class="token string">"Gitee User"</span>
-<span class="token function">git</span> config user.email <span class="token string">"gitee@example.com"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre><code class="bash">git config user.name &quot;Gitee User&quot;
+git config user.email &quot;gitee@example.com&quot;
+</code></pre>
 </li>
 <li><p><strong>不同的 SSH 密钥</strong>： 如果你在 Gitee 和 GitHub 上使用不同的 SSH 密钥，可以在 <code>~/.ssh/config</code> 文件中为每个主机配置不同的密钥。例如：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># GitHub</span>
+<pre><code class="bash"># GitHub
 Host github.com
     HostName github.com
     IdentityFile ~/.ssh/id_rsa_github
-    User <span class="token function">git</span>
+    User git
 
-<span class="token comment"># Gitee</span>
+# Gitee
 Host gitee.com
     HostName gitee.com
     IdentityFile ~/.ssh/id_rsa_gitee
-    User <span class="token function">git</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    User git
+</code></pre>
 </li>
 <li><p><strong>不同的 Git 配置文件</strong>： 如果你希望为 Gitee 和 GitHub 使用不同的 Git 配置文件，可以在克隆仓库时指定不同的配置文件。例如：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">GIT_CONFIG</span><span class="token operator">=~</span>/github.gitconfig <span class="token function">git</span> clone https://github.com/username/repo.git
-<span class="token assign-left variable">GIT_CONFIG</span><span class="token operator">=~</span>/gitee.gitconfig <span class="token function">git</span> clone https://gitee.com/username/repo.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<pre><code class="bash">GIT_CONFIG=~/github.gitconfig git clone https://github.com/username/repo.git
+GIT_CONFIG=~/gitee.gitconfig git clone https://gitee.com/username/repo.git
+</code></pre>
+</li>
 </ol>
 <h3 id="git-配置文件"><a href="#git-配置文件" class="headerlink" title="git 配置文件"></a>git 配置文件</h3><p>Git 配置文件用于存储 Git 的全局或本地配置选项，例如用户名、电子邮件地址、别名等。</p>
 <p><strong>生成 SSH 密钥</strong>：</p>
 <ol>
 <li><p><strong>生成 GitHub 的 SSH 密钥</strong>：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen <span class="token parameter variable">-t</span> rsa <span class="token parameter variable">-b</span> <span class="token number">4096</span> <span class="token parameter variable">-C</span> <span class="token string">"your_email@example.com"</span> <span class="token parameter variable">-f</span> ~/.ssh/id_rsa_github<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot; -f ~/.ssh/id_rsa_github
+</code></pre>
 <p>这将生成两个文件：<code>~/.ssh/id_rsa_github</code>（私钥）和 <code>~/.ssh/id_rsa_github.pub</code>（公钥）。</p>
 </li>
 <li><p><strong>生成 Gitee 的 SSH 密钥</strong>：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen <span class="token parameter variable">-t</span> rsa <span class="token parameter variable">-b</span> <span class="token number">4096</span> <span class="token parameter variable">-C</span> <span class="token string">"your_email@example.com"</span> <span class="token parameter variable">-f</span> ~/.ssh/id_rsa_gitee<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot; -f ~/.ssh/id_rsa_gitee
+</code></pre>
 <p>这将生成两个文件：<code>~/.ssh/id_rsa_gitee</code>（私钥）和 <code>~/.ssh/id_rsa_gitee.pub</code>（公钥）。</p>
 </li>
 </ol>
 <p><strong>配置 SSH 客户端</strong>：</p>
 <p>在 <code>~/.ssh/config</code> 文件中为每个主机配置不同的密钥。例如：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># GitHub</span>
+<pre><code class="bash"># GitHub
 Host github.com
     HostName github.com
     IdentityFile ~/.ssh/id_rsa_github
-    User <span class="token function">git</span>
+    User git
 
-<span class="token comment"># Gitee</span>
+# Gitee
 Host gitee.com
     HostName gitee.com
     IdentityFile ~/.ssh/id_rsa_gitee
-    User <span class="token function">git</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+    User git
+</code></pre>
 <p><strong>配置 Git</strong>：</p>
 <p>如果你希望为不同的仓库使用不同的 Git 配置文件，可以在克隆仓库时指定不同的配置文件。例如：</p>
 <ol>
 <li><p><strong>克隆 GitHub 仓库并使用特定的配置文件</strong>：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">GIT_CONFIG</span><span class="token operator">=~</span>/github.gitconfig <span class="token function">git</span> clone git@github.com:username/repo.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="bash">GIT_CONFIG=~/github.gitconfig git clone git@github.com:username/repo.git
+</code></pre>
 </li>
 <li><p><strong>克隆 Gitee 仓库并使用特定的配置文件</strong>：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">GIT_CONFIG</span><span class="token operator">=~</span>/gitee.gitconfig <span class="token function">git</span> clone git@gitee.com:username/repo.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<pre><code class="bash">GIT_CONFIG=~/gitee.gitconfig git clone git@gitee.com:username/repo.git
+</code></pre>
+</li>
 </ol>
 <p><strong>创建和编辑 Git 配置文件</strong>：</p>
 <ol>
 <li><p><strong>创建 GitHub 的 Git 配置文件</strong>：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">touch</span> ~/github.gitconfig<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="bash">touch ~/github.gitconfig
+</code></pre>
 </li>
 <li><p><strong>编辑 GitHub 的 Git 配置文件</strong>：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>user<span class="token punctuation">]</span>
-    name <span class="token operator">=</span> GitHub User
-    email <span class="token operator">=</span> github@example.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre><code class="bash">[user]
+    name = GitHub User
+    email = github@example.com
+</code></pre>
 </li>
 <li><p><strong>创建 Gitee 的 Git 配置文件</strong>：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">touch</span> ~/gitee.gitconfig<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="bash">touch ~/gitee.gitconfig
+</code></pre>
 </li>
 <li><p><strong>编辑 Gitee 的 Git 配置文件</strong>：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>user<span class="token punctuation">]</span>
-    name <span class="token operator">=</span> Gitee User
-    email <span class="token operator">=</span> gitee@example.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<pre><code class="bash">[user]
+    name = Gitee User
+    email = gitee@example.com
+</code></pre>
+</li>
 </ol>
 
                 
@@ -1571,7 +1613,7 @@ Host gitee.com
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">432.3k</span>&nbsp;字
+                class="white-color">448.8k</span>&nbsp;字
             
             
             

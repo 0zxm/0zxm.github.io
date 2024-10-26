@@ -483,14 +483,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    15.4k
+                    15.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    60 分
+                    61 分
                 </div>
                 
 
@@ -518,9 +518,9 @@
 <li>POSIX接口规范<br>POSIX接口规范，全称为“可移植操作系统接口”（Portable Operating System Interface），是由IEEE（电气和电子工程师协会）和ISO&#x2F;IEC联合制定的一组操作系统接口规范。其主要目的在于实现不同操作系统之间的兼容性和互操作性，使得开发人员能够跨平台编写和运行应用程序，而无需进行大量的代码修改。</li>
 </ul>
 <h2 id="第二章-linux基本命令"><a href="#第二章-linux基本命令" class="headerlink" title="第二章 linux基本命令"></a>第二章 linux基本命令</h2><h3 id="期末考试方式"><a href="#期末考试方式" class="headerlink" title="期末考试方式"></a>期末考试方式</h3><p>使用<code>exam</code>命令,输入数字选择选项或题目,答案默认保存,若想修改之前的答案,输入对应题号就行</p>
-<h3 id="1-连接到学校主机10-188-2-251的帐号密码"><a href="#1-连接到学校主机10-188-2-251的帐号密码" class="headerlink" title="1.连接到学校主机10.188.2.251的帐号密码"></a>1.连接到学校主机10.188.2.251的帐号密码</h3><pre class="line-numbers language-text" data-language="text"><code class="language-text">账号:s223174
-密码:welcome<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
+<h3 id="1-连接到学校主机10-188-2-251的帐号密码"><a href="#1-连接到学校主机10-188-2-251的帐号密码" class="headerlink" title="1.连接到学校主机10.188.2.251的帐号密码"></a>1.连接到学校主机10.188.2.251的帐号密码</h3><pre><code class="text">账号:s223174
+密码:welcome
+</code></pre>
 <h3 id="2-nano指令操作文件"><a href="#2-nano指令操作文件" class="headerlink" title="2.nano指令操作文件"></a>2.nano指令操作文件</h3><p>查看和编辑文件</p>
 <h3 id="3-环境变量"><a href="#3-环境变量" class="headerlink" title="3.环境变量"></a>3.环境变量</h3><ol>
 <li>PATH环境变量: 当shell执行时去哪找可执行文件,依次查找</li>
@@ -528,31 +528,31 @@
 <li>LANG环境变量: 与shell交互使用的语言</li>
 <li>HOME环境变量: 当前用户工作目录</li>
 </ol>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">locale <span class="token parameter variable">-a</span> 指令
-列出所有系统安装的语言<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
+<pre><code class="shell">locale -a 指令
+列出所有系统安装的语言
+</code></pre>
 <p><img src="/2024/06/21/linux-zhi-ling/image-20240314232303614.png" alt="image-20240314232303614"></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">修改<span class="token environment constant">PS1</span>环境变量---shell提示符样式
-<span class="token assign-left variable"><span class="token environment constant">PS1</span></span><span class="token operator">=</span><span class="token string">'HAPPY: \u $ '</span>
-<span class="token punctuation">\</span>u是特殊参数,表示用户名<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="shell">修改PS1环境变量---shell提示符样式
+PS1=&#39;HAPPY: \u $ &#39;
+\u是特殊参数,表示用户名
+</code></pre>
 <p><img src="/2024/06/21/linux-zhi-ling/image-20240314232634341.png" alt="image-20240314232634341"></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">添加当前目录<span class="token punctuation">(</span>.<span class="token punctuation">)</span>到<span class="token environment constant">PATH</span>变量
-注意:<span class="token environment constant">PATH</span>变量以冒号分割<span class="token punctuation">(</span>:<span class="token punctuation">)</span>,修改<span class="token environment constant">PATH</span>环境变量只对本次生效,想要永久生效,可以修改.profile文件
-<span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="shell">添加当前目录(.)到PATH变量
+注意:PATH变量以冒号分割(:),修改PATH环境变量只对本次生效,想要永久生效,可以修改.profile文件
+PATH=$PATH:.
+</code></pre>
 <p><img src="/2024/06/21/linux-zhi-ling/image-20240314232909211.png" alt="image-20240314232909211"></p>
 <h3 id="4-echo命令"><a href="#4-echo命令" class="headerlink" title="4.echo命令"></a>4.echo命令</h3><p>类似于打印命令</p>
 <p><img src="/2024/06/21/linux-zhi-ling/image-20240314233218047.png" alt="image-20240314233218047"></p>
 <h3 id="5-alias命令"><a href="#5-alias命令" class="headerlink" title="5.alias命令"></a>5.alias命令</h3><p>alias可以起别名或者修改命令默认的执行方式</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">alias</span> 别名<span class="token operator">=</span>源名
-例子alias <span class="token assign-left variable">list</span><span class="token operator">=</span>ls
+<pre><code class="shell">alias 别名=源名
+例子alias list=ls
 
-alias命令展示所有已取<span class="token punctuation">(</span>默认<span class="token punctuation">)</span>别名
+alias命令展示所有已取(默认)别名
 
 unalias取消别名
-<span class="token builtin class-name">unalias</span> list<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+unalias list
+</code></pre>
 <p><img src="/2024/06/21/linux-zhi-ling/image-20240314233930938.png" alt="image-20240314233930938"></p>
 <h3 id="6-Linux中的源字符"><a href="#6-Linux中的源字符" class="headerlink" title="6.Linux中的源字符"></a>6.Linux中的源字符</h3><ul>
 <li>$美元符: 表示取值</li>
@@ -622,7 +622,8 @@ unalias取消别名
 <li><p><code>wall</code>广播命令<br>您可以使用<code>wall</code>命令来向所有登录用户发送消息。例如，要发送一句话给所有登录用户，您可以在终端中输入以下命令：</p>
 </li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"这是一条消息"</span> <span class="token operator">|</span> wall<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="shell">echo &quot;这是一条消息&quot; | wall
+</code></pre>
 <p>这将向所有登录用户显示消息“这是一条消息”。请注意，您需要具有适当的权限才能向所有用户发送消息。</p>
 <ul>
 <li><p><code>w</code>或<code>who</code>查看所有当前登陆用户<br><img src="/2024/06/21/linux-zhi-ling/who.png" alt="alt text"></p>
@@ -672,7 +673,8 @@ unalias取消别名
 <h3 id="10-链接命令"><a href="#10-链接命令" class="headerlink" title="10.链接命令"></a>10.链接命令</h3><ol>
 <li>软链接<br>类似于Windows下的快捷方式，当一个源文件的目录层级比较深，我们想要方便使用它可以给源文件创建一个软链接,方便文件操作<br><img src="/2024/06/21/linux-zhi-ling/link.png" alt="alt text"></li>
 </ol>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ln</span> <span class="token parameter variable">-s</span> 源文件路径 软链接名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="shell">ln -s 源文件路径 软链接名字
+</code></pre>
 <table>
 <thead>
 <tr>
@@ -809,11 +811,13 @@ unalias取消别名
 <ul>
 <li>Linux系统中把一切可以用字节流传输的都看作一个文件</li>
 <li>Linux系统里面的文件系统类型ext2 xfs jfs ext3 ext4</li>
-<li>Windows系统里的文件系统类型: ntfs fat32<br><img src="/2024/06/21/linux-zhi-ling/unix_device.png" alt="alt text"><pre class="line-numbers language-text" data-language="text"><code class="language-text">第一块SATA硬盘./dev/sda
+<li>Windows系统里的文件系统类型: ntfs fat32<br><img src="/2024/06/21/linux-zhi-ling/unix_device.png" alt="alt text"></li>
+</ul>
+<pre><code class="text">第一块SATA硬盘./dev/sda
 第二块SATA硬盘 /dev/sdb
 fdisk /dev/sdb  分区指令
-mkfs -t  ext4 /dev/sdb  格式化指令,-t参数表示要创建什么样的文件系统<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
-</ul>
+mkfs -t  ext4 /dev/sdb  格式化指令,-t参数表示要创建什么样的文件系统
+</code></pre>
 <h3 id="Linux系统下的重要文件"><a href="#Linux系统下的重要文件" class="headerlink" title="Linux系统下的重要文件"></a>Linux系统下的重要文件</h3><ul>
 <li><code>/etc/passwd</code>: 每个用户在该文件中都有一行记录，其中包含了用户的登录名、密码（通常是一个指向加密密码的指针）、用户ID、组ID、用户信息、用户主目录和默认shell等信息<ol>
 <li>&#x2F;usr&#x2F;bin&#x2F;chsh可以改变默认用户登陆的shell</li>
@@ -829,11 +833,13 @@ mkfs -t  ext4 /dev/sdb  格式化指令,-t参数表示要创建什么样的文�
 </ul>
 <h3 id="mount挂载命令"><a href="#mount挂载命令" class="headerlink" title="mount挂载命令"></a><code>mount</code>挂载命令</h3><ul>
 <li>mount [-t vfstype][-o options] device dir</li>
-<li>vfstype :vfat(window fat32 format)、ext3、ext4、iso9660(cdrom format)<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mount</span> /dev/sdc1 /mnt
-<span class="token function">umount</span> .mnt
-<span class="token function">umount</span> /dev/sdc1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<img src="/2024/06/21/linux-zhi-ling/mount.png" alt="alt text"></li>
+<li>vfstype :vfat(window fat32 format)、ext3、ext4、iso9660(cdrom format)</li>
 </ul>
+<pre><code class="shell">mount /dev/sdc1 /mnt
+umount .mnt
+umount /dev/sdc1
+</code></pre>
+<p><img src="/2024/06/21/linux-zhi-ling/mount.png" alt="alt text"></p>
 <h3 id="Types-of-Files文件种类"><a href="#Types-of-Files文件种类" class="headerlink" title="Types of Files文件种类"></a>Types of Files文件种类</h3><ul>
 <li><code>Simple/ordinary Files(普通文件)</code></li>
 <li><code>Directory Files(目录文件)</code><br> 目录文件只包含两个字段:一个包含目录下的所有文件名,另一个是索引节点号<br> <img src="/2024/06/21/linux-zhi-ling/direct.png" alt="alt text"></li>
@@ -863,23 +869,43 @@ mkfs -t  ext4 /dev/sdb  格式化指令,-t参数表示要创建什么样的文�
 <h3 id="Linux下的目录结构"><a href="#Linux下的目录结构" class="headerlink" title="Linux下的目录结构"></a>Linux下的目录结构</h3><p><img src="/2024/06/21/linux-zhi-ling/directory_struct.jpg" alt="alt text"></p>
 <h3 id="和文件操作相关的命令"><a href="#和文件操作相关的命令" class="headerlink" title="和文件操作相关的命令"></a>和文件操作相关的命令</h3><ul>
 <li><code>df</code>命令  显示分区使用情况(挂载)<br><img src="/2024/06/21/linux-zhi-ling/df.png" alt="alt text"></li>
-<li><code>du</code>命令  查看文件分配的存储空间大小<br><img src="/2024/06/21/linux-zhi-ling/du.png" alt="alt text"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">du</span> <span class="token parameter variable">-s</span> /etc
-<span class="token comment"># 查看目录占用空间</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
-<li><code>mkdir</code>命令  创建目录<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> <span class="token parameter variable">-p</span> dira/dirb
-参数p表示创建路径上的所有目录<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
-<li><code>rmdir</code>命令  只能删除空目录<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> dira
-<span class="token function">rmdir</span> dira<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
-<li><code>ls</code>命令 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> <span class="token parameter variable">-a</span> 目录或文件名
+<li><code>du</code>命令  查看文件分配的存储空间大小<br><img src="/2024/06/21/linux-zhi-ling/du.png" alt="alt text"></li>
+</ul>
+<pre><code class="shell">du -s /etc
+# 查看目录占用空间
+</code></pre>
+<ul>
+<li><code>mkdir</code>命令  创建目录</li>
+</ul>
+<pre><code class="shell">mkdir -p dira/dirb
+参数p表示创建路径上的所有目录
+</code></pre>
+<ul>
+<li><code>rmdir</code>命令  只能删除空目录</li>
+</ul>
+<pre><code class="shell">mkdir dira
+rmdir dira
+</code></pre>
+<ul>
+<li><code>ls</code>命令</li>
+</ul>
+<pre><code class="shell">ls -a 目录或文件名
 参数a表示显示出所有以.开头的隐藏文件
-<span class="token function">ls</span> <span class="token parameter variable">-l</span> 目录或文件名
-参数l表示以列表的形式列出详细信息<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<img src="/2024/06/21/linux-zhi-ling/ls-l.png" alt="alt text"><br>第一个字段第一个字符表示文件类型,<code>-</code>表示普通文件<br>第二个字段: 链接数,有多少个条目指向了这个文件的索引节点<br>第三个字段:所属用户<br>第四个字段:所属组<br>第五个字段:大小(以字节为单位)<br>第六个字段:文件最后修改时间<br>第七个字段:文件名<br><img src="/2024/06/21/linux-zhi-ling/Determining_File_Attributes.png" alt="alt text"></li>
+ls -l 目录或文件名
+参数l表示以列表的形式列出详细信息
+</code></pre>
+<p><img src="/2024/06/21/linux-zhi-ling/ls-l.png" alt="alt text"><br>第一个字段第一个字符表示文件类型,<code>-</code>表示普通文件<br>第二个字段: 链接数,有多少个条目指向了这个文件的索引节点<br>第三个字段:所属用户<br>第四个字段:所属组<br>第五个字段:大小(以字节为单位)<br>第六个字段:文件最后修改时间<br>第七个字段:文件名<br><img src="/2024/06/21/linux-zhi-ling/Determining_File_Attributes.png" alt="alt text"></p>
+<ul>
 <li><code>touch</code>命令  创建文件或修改文件最后修改时间<br>如果文件不存在,则创建文件,否则修改最后修改时间</li>
-<li><code>rm</code>命令  删除文件或目录<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> <span class="token parameter variable">-i</span> file1
+<li><code>rm</code>命令  删除文件或目录</li>
+</ul>
+<pre><code class="shell">rm -i file1
 参数i表示交互式的
-<span class="token function">rm</span> <span class="token parameter variable">-rf</span> dirb
+rm -rf dirb
 参数r表示递归删除子目录在删除所有文件
-参数f表示强制删除<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+参数f表示强制删除
+</code></pre>
+<ul>
 <li><code>mv</code>命令  移动文件或者文件重命名</li>
 <li><code>file</code>命令  查看文件详细信息</li>
 </ul>
@@ -923,12 +949,14 @@ mkfs -t  ext4 /dev/sdb  格式化指令,-t参数表示要创建什么样的文�
 <p>所以,对于每个文件,三个身份和三种权限组成九个权限位<br><img src="/2024/06/21/linux-zhi-ling/file_permission.png" alt="alt text"></p>
 <ul>
 <li>目录也有权限<ol>
-<li>目录的x执行权限:所有要进入到目录里的操作,包括(<code>cd</code>命令,<code>touch</code>命令,删除目录里的文件)<br>目录文件只包含两个字段:一个包含目录下的所有文件名,另一个是索引节点号<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 想要查看目录权限要加参数d</span>
-<span class="token function">ls</span> <span class="token parameter variable">-ld</span> dira<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<img src="/2024/06/21/linux-zhi-ling/ls_view_dir.png" alt="alt text"></li>
+<li>目录的x执行权限:所有要进入到目录里的操作,包括(<code>cd</code>命令,<code>touch</code>命令,删除目录里的文件)<br>目录文件只包含两个字段:一个包含目录下的所有文件名,另一个是索引节点号</li>
 </ol>
 </li>
 </ul>
+<pre><code class="shell"># 想要查看目录权限要加参数d
+ls -ld dira
+</code></pre>
+<p><img src="/2024/06/21/linux-zhi-ling/ls_view_dir.png" alt="alt text"></p>
 <h3 id="2-改变权限或者所属组的命令"><a href="#2-改变权限或者所属组的命令" class="headerlink" title="2. 改变权限或者所属组的命令"></a>2. 改变权限或者所属组的命令</h3><ul>
 <li><code>chgrp  组1 文件或目录路径</code>: 改变组</li>
 <li><code>chown newowner 文件</code>: 改变所属用户</li>
@@ -938,16 +966,22 @@ mkfs -t  ext4 /dev/sdb  格式化指令,-t参数表示要创建什么样的文�
 <h3 id="3-Changing-File-Access-Privileges"><a href="#3-Changing-File-Access-Privileges" class="headerlink" title="3.Changing File Access Privileges"></a>3.Changing File Access Privileges</h3><p><code>chmod  权限语句 文件或目录对象</code>命令:改变文件权限位<br>权限语句由三部分组成:</p>
 <ul>
 <li>例如 <code>u-x</code><br>第一部分是要修改谁的权限:a表示所有,u表示owner,g表示group,o表示others,ugo也表示所有<br><img src="/2024/06/21/linux-zhi-ling/chmod.png" alt="alt text"></li>
-<li>也可以用八进制数来代替权限语句,能够一次性设定所有文件权限位<br>如要给一个文件设置rwxr-x—权限,每三位(111 101 000)转化成八进制数就是750,所以命令就是<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> <span class="token number">750</span> hello<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<img src="/2024/06/21/linux-zhi-ling/rm_file_withoutpermisn.png" alt="alt text"></li>
+<li>也可以用八进制数来代替权限语句,能够一次性设定所有文件权限位<br>如要给一个文件设置rwxr-x—权限,每三位(111 101 000)转化成八进制数就是750,所以命令就是</li>
 </ul>
+<pre><code class="shell">chmod 750 hello
+</code></pre>
+<p><img src="/2024/06/21/linux-zhi-ling/rm_file_withoutpermisn.png" alt="alt text"></p>
 <h3 id="Default-file-access-privileges-默认文件权限"><a href="#Default-file-access-privileges-默认文件权限" class="headerlink" title="Default file access privileges 默认文件权限"></a>Default file access privileges 默认文件权限</h3><ul>
 <li>通过掩码值umask来设定默认访问权限</li>
-<li><code>umask</code>命令  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 显示掩码值</span>
-input: <span class="token builtin class-name">umask</span>
+<li><code>umask</code>命令</li>
+</ul>
+<pre><code class="shell"># 显示掩码值
+input: umask
 ouput: 0022
-<span class="token comment"># 设置掩码值</span>
-input: <span class="token builtin class-name">umask</span> 077<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+# 设置掩码值
+input: umask 077
+</code></pre>
+<ul>
 <li>umask怎么决定文件访问权限<ol>
 <li>The access permission value onexecutable file or directory iscomputed by(针对目录或者可执行文件): <code>file access permission=777-mask</code></li>
 <li>The access permission value on otherfile is computed by(对于普通文件):<code>file access permission = 666-mask</code><br><img src="/2024/06/21/linux-zhi-ling/umask01.png" alt="alt text"></li>
@@ -957,16 +991,21 @@ input: <span class="token builtin class-name">umask</span> 077<span aria-hidden=
 <p><img src="/2024/06/21/linux-zhi-ling/umask02.png" alt="alt text"></p>
 <h3 id="三个特殊权限位"><a href="#三个特殊权限位" class="headerlink" title="三个特殊权限位"></a>三个特殊权限位</h3><ul>
 <li><p><code>SUID</code>位<br><img src="/2024/06/21/linux-zhi-ling/suid.png" alt="alt text"><br>If this bit is set for a file containing an executable program for a command,the command takes on the privileges of the owner of the file when it executes.</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span><span class="token operator">!</span>-- 设置suid位 --<span class="token operator">></span>
-<span class="token function">sudo</span> <span class="token function">chmod</span> u+s /usr/bin/passwd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre><code class="shell">&lt;!-- 设置suid位 --&gt;
+sudo chmod u+s /usr/bin/passwd
+</code></pre>
 </li>
 <li><p><code>SGID</code>位<br>执行命令时,会把身份临时切换成同组成员(groups)</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span><span class="token operator">!</span>-- 设置sgid位 --<span class="token operator">></span>
-<span class="token function">sudo</span> <span class="token function">chmod</span> g+s /usr/bin/passwd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<pre><code class="shell">&lt;!-- 设置sgid位 --&gt;
+sudo chmod g+s /usr/bin/passwd
+</code></pre>
+</li>
 <li><p><code>STICKY</code>黏着位(对于目录)<br> 设置黏着位意味着在对于一些共享目录(所有人都能创建文件)时,不同用户只能删除自己的文件</p>
- <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span><span class="token operator">!</span>-- 设置/取消设置黏着位 --<span class="token operator">></span>
-<span class="token function">chmod</span> +t /tmp
-<span class="token function">chmod</span> <span class="token parameter variable">-t</span> /tmp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<pre><code class="shell">&lt;!-- 设置/取消设置黏着位 --&gt;
+chmod +t /tmp
+chmod -t /tmp
+</code></pre>
+</li>
 </ul>
 <h2 id="第六章-File-Processing"><a href="#第六章-File-Processing" class="headerlink" title="第六章 File Processing"></a>第六章 File Processing</h2><h3 id="view-complete-file"><a href="#view-complete-file" class="headerlink" title="view complete file"></a>view complete file</h3><h4 id="显示文件全部内容"><a href="#显示文件全部内容" class="headerlink" title="显示文件全部内容"></a>显示文件全部内容</h4><ul>
 <li><code>cat</code>命令 <ol>
@@ -1001,13 +1040,15 @@ input: <span class="token builtin class-name">umask</span> 077<span aria-hidden=
 <li><code>wc</code> 查看文件大小的命令(Determining file size)<br> <img src="/2024/06/21/linux-zhi-ling/wc.png" alt="alt text"><ol>
 <li>参数<code>-l</code>表示只显示行数</li>
 <li><code>-w</code>只显示单词数</li>
-<li><code>-c</code>表示只显示字符数<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">wc</span> <span class="token parameter variable">-l</span> /tmp/hello.cpp
-
-<span class="token comment"># 查看系统里有多少个用户</span>
-<span class="token function">wc</span> <span class="token parameter variable">-l</span> /etc/passwd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><code>-c</code>表示只显示字符数</li>
 </ol>
 </li>
 </ul>
+<pre><code class="shell">wc -l /tmp/hello.cpp
+
+# 查看系统里有多少个用户
+wc -l /etc/passwd
+</code></pre>
 <h4 id="比较两个文本文件"><a href="#比较两个文本文件" class="headerlink" title="比较两个文本文件"></a>比较两个文本文件</h4><ul>
 <li><code>diff</code>命令<br>diff [options] [file1] [file2]</li>
 </ul>
@@ -1017,10 +1058,16 @@ input: <span class="token builtin class-name">umask</span> 077<span aria-hidden=
 <li>expression:<ul>
 <li><code>-name</code> pattern</li>
 <li><code>-size</code> +&#x2F;-N  加号&#x2F;减号表示 大小&#x2F;小于 大于N的文件</li>
-<li><code>-exec</code> or <code>-ok</code> CMD 表示对find找到的结果每一个都执行一条命令CMD,exec和ok的区别在于ok每一次都要询问 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">find</span> /tmp  <span class="token punctuation">\</span><span class="token punctuation">(</span> <span class="token parameter variable">-name</span> <span class="token string">"*.txt"</span> <span class="token parameter variable">-a</span> <span class="token parameter variable">-size</span> <span class="token number">0</span> <span class="token punctuation">\</span><span class="token punctuation">)</span> <span class="token parameter variable">-exec</span> <span class="token function">ls</span> <span class="token parameter variable">-l</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token punctuation">\</span><span class="token punctuation">;</span> <span class="token operator"><span class="token file-descriptor important">2</span>></span>/dev/null<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
- <img src="/2024/06/21/linux-zhi-ling/find_exec.png" alt="alt text"></li>
-<li><code>\( 组合 \)</code> 使用括号来把多个条件组合在一起 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">find</span> /tmp  <span class="token punctuation">\</span><span class="token punctuation">(</span> <span class="token parameter variable">-name</span> <span class="token string">"*.txt"</span> <span class="token parameter variable">-a</span> <span class="token parameter variable">-size</span> <span class="token number">0</span> <span class="token punctuation">\</span><span class="token punctuation">)</span> <span class="token operator"><span class="token file-descriptor important">2</span>></span>/dev/null<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li><code>-exec</code> or <code>-ok</code> CMD 表示对find找到的结果每一个都执行一条命令CMD,exec和ok的区别在于ok每一次都要询问</li>
 </ul>
+<pre><code class="shell">find /tmp  \( -name &quot;*.txt&quot; -a -size 0 \) -exec ls -l &#123;&#125; \; 2&gt;/dev/null
+</code></pre>
+<p> <img src="/2024/06/21/linux-zhi-ling/find_exec.png" alt="alt text"></p>
+<ul>
+<li><code>\( 组合 \)</code> 使用括号来把多个条件组合在一起</li>
+</ul>
+<pre><code class="shell">find /tmp  \( -name &quot;*.txt&quot; -a -size 0 \) 2&gt;/dev/null
+</code></pre>
 </li>
 </ul>
 <ol>
@@ -1061,8 +1108,16 @@ input: <span class="token builtin class-name">umask</span> 077<span aria-hidden=
 <li>参数<ul>
 <li><code>-k3</code> 表示按第3个字段来排序</li>
 <li><code>-n</code> 默认按字符串来排，看编码，想要把字段当作数字来排序，加参数<code>-n</code></li>
-<li><code>-r</code> 逆序排列 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sort</span> <span class="token parameter variable">-nrk4</span> /tmp/student_record<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
-<li><code>-t&quot;分隔符&quot;</code> sort命令默认按空格分割字段，参数<code>-t</code>可以切换分隔符 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sort</span> <span class="token parameter variable">-nrk4</span> -t<span class="token string">":"</span> /tmp/student_record<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li><code>-r</code> 逆序排列</li>
+</ul>
+<pre><code class="shell">sort -nrk4 /tmp/student_record
+</code></pre>
+<ul>
+<li><code>-t&quot;分隔符&quot;</code> sort命令默认按空格分割字段，参数<code>-t</code>可以切换分隔符</li>
+</ul>
+<pre><code class="shell">sort -nrk4 -t&quot;:&quot; /tmp/student_record
+</code></pre>
+<ul>
 <li><code>-f</code> 表示不区分大小写</li>
 </ul>
 </li>
@@ -1073,7 +1128,11 @@ input: <span class="token builtin class-name">umask</span> 077<span aria-hidden=
 <li>cut -flist [-dchar][-s][file-list]</li>
 <li>参数<ul>
 <li><code>-f参数1,参数2...</code>  表示切割出第（参数）列字段</li>
-<li><code>-d&quot;分隔符&quot;</code> <code>cut</code>命令默认使用<code>TAB制表符</code>来作为分隔符，加<code>-d</code>参数可以修改分隔符<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cut</span> -d<span class="token string">":"</span> <span class="token parameter variable">-f2</span> /etc/passwd <span class="token operator">|</span> <span class="token function">head</span> <span class="token parameter variable">-3</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li><code>-d&quot;分隔符&quot;</code> <code>cut</code>命令默认使用<code>TAB制表符</code>来作为分隔符，加<code>-d</code>参数可以修改分隔符</li>
+</ul>
+<pre><code class="shell">cut -d&quot;:&quot; -f2 /etc/passwd | head -3
+</code></pre>
+<ul>
 <li><code>-c参数1,参数2</code> 表示切割出第（参数）列字符</li>
 </ul>
 </li>
@@ -1233,19 +1292,19 @@ input: <span class="token builtin class-name">umask</span> 077<span aria-hidden=
 </ul>
 </li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">awk</span> <span class="token string">'/\&lt;CS/&#123;print $1,$2&#125;'</span> /tmp/student_record
+<pre><code class="shell">awk &#39;/\&lt;CS/&#123;print $1,$2&#125;&#39; /tmp/student_record
 
-<span class="token function">awk</span> <span class="token string">'$2~/^D/&#123;print $1,$2&#125;'</span>
-<span class="token comment"># $2~/^D/：这是一个条件，它检查第二列（由字段分隔符分隔，默认为空格或制表符）是否以字母 "D" 开头,~ 是 awk 中用于模式匹配的操作符</span>
+awk &#39;$2~/^D/&#123;print $1,$2&#125;&#39;
+# $2~/^D/：这是一个条件，它检查第二列（由字段分隔符分隔，默认为空格或制表符）是否以字母 &quot;D&quot; 开头,~ 是 awk 中用于模式匹配的操作符
 
-<span class="token function">awk</span> -F: <span class="token string">'$2 !~ /916/ &#123;print $1&#125;'</span> /tmp/donors
-<span class="token comment">#这条命令将根据冒号分隔符(:)来解析文件中的内容，并打印出第二个字段中不包含916区号的人的名字。</span>
+awk -F: &#39;$2 !~ /916/ &#123;print $1&#125;&#39; /tmp/donors
+#这条命令将根据冒号分隔符(:)来解析文件中的内容，并打印出第二个字段中不包含916区号的人的名字。
 
-<span class="token function">awk</span> <span class="token string">'&#123;print NR ": " $0&#125;'</span> /tmp/donors
-<span class="token comment"># 请将"文件名"替换为您要处理的文件名。这条命令将打印出每条记录的行号（记录号）后面跟着记录的内容。记录号由NR内置变量提供，表示当前处理的记录的序号。</span>
+awk &#39;&#123;print NR &quot;: &quot; $0&#125;&#39; /tmp/donors
+# 请将&quot;文件名&quot;替换为您要处理的文件名。这条命令将打印出每条记录的行号（记录号）后面跟着记录的内容。记录号由NR内置变量提供，表示当前处理的记录的序号。
 
- <span class="token function">awk</span>  -F<span class="token string">'[: ]'</span> <span class="token string">'$7 &lt;= 85 &#123;print $1,$2,$4&#125;'</span> /tmp/donors<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+ awk  -F&#39;[: ]&#39; &#39;$7 &lt;= 85 &#123;print $1,$2,$4&#125;&#39; /tmp/donors
+</code></pre>
 <ul>
 <li><code>tr</code>命令(映射替换)<ul>
 <li>tr 被映射域 映射域(可用区间表示)<br> <img src="/2024/06/21/linux-zhi-ling/tr.png" alt="alt text"></li>
@@ -1446,11 +1505,12 @@ input: <span class="token builtin class-name">umask</span> 077<span aria-hidden=
 <ul>
 <li><code>/dev/null</code> 空设备,一般不关心的错误输出就丢到空设备文件中</li>
 </ul>
-<h4 id="多种重定向结合"><a href="#多种重定向结合" class="headerlink" title="多种重定向结合"></a>多种重定向结合</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">find</span> /tmp <span class="token parameter variable">-name</span> <span class="token string">"*.cpp"</span> <span class="token operator"><span class="token file-descriptor important">2</span>></span>/dev/null <span class="token operator">></span>result 
-<span class="token comment"># 即丢弃结果也保存正常输出文件</span>
+<h4 id="多种重定向结合"><a href="#多种重定向结合" class="headerlink" title="多种重定向结合"></a>多种重定向结合</h4><pre><code class="shell">find /tmp -name &quot;*.cpp&quot; 2&gt;/dev/null &gt;result 
+# 即丢弃结果也保存正常输出文件
 
-<span class="token function">find</span> /tmp <span class="token parameter variable">-name</span> <span class="token string">"*.cpp"</span> <span class="token operator">>&amp;</span>result 
-<span class="token comment"># 把标准输出和标准错误输出都保存到文件result中</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+find /tmp -name &quot;*.cpp&quot; &gt;&amp;result 
+# 把标准输出和标准错误输出都保存到文件result中
+</code></pre>
 <ul>
 <li><p>Redirecting stdin and stdout in OneCommand<br> Command <input-file> out-file</input-file></p>
 </li>
@@ -1468,11 +1528,12 @@ input: <span class="token builtin class-name">umask</span> 077<span aria-hidden=
 </ul>
 <h3 id="KISS原则"><a href="#KISS原则" class="headerlink" title="KISS原则"></a><code>KISS</code>原则</h3><p>Linux设计时,遵循<code>KISS(Keep It Simple Stupid)</code>原则</p>
 <h3 id="匿名-管道命令"><a href="#匿名-管道命令" class="headerlink" title="(匿名)管道命令"></a>(匿名)管道命令</h3><p>管道<code>|</code>相当于一个容器,可以把命令执行的结果存储到里面,在释放出来</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">tree /bin/ <span class="token operator">|</span> <span class="token function">more</span>
-<span class="token comment"># 统计当前登陆主机人数</span>
-<span class="token function">who</span> <span class="token operator">|</span> <span class="token function">wc</span> <span class="token parameter variable">-l</span> 
+<pre><code class="shell">tree /bin/ | more
+# 统计当前登陆主机人数
+who | wc -l 
 
-<span class="token function">du</span> /tmp/* <span class="token operator"><span class="token file-descriptor important">2</span>></span> /dev/null <span class="token operator">|</span> <span class="token function">sort</span> <span class="token parameter variable">-n</span> <span class="token parameter variable">-k1</span> <span class="token operator">|</span> <span class="token function">tail</span> -3<span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'&#123;print$2&#125;'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+du /tmp/* 2&gt; /dev/null | sort -n -k1 | tail -3| awk &#39;&#123;print$2&#125;&#39;
+</code></pre>
 <ul>
 <li><code>tee</code>命令<br> 接收上一条命令的输出,拷贝保存到一个文件中,并把输出传入下一个管道命令的输入<br> <img src="/2024/06/21/linux-zhi-ling/tee.png" alt="alt text"></li>
 </ul>
@@ -1580,8 +1641,9 @@ input: <span class="token builtin class-name">umask</span> 077<span aria-hidden=
 </li>
 </ul>
 <p><img src="/2024/06/21/linux-zhi-ling/ps.png" alt="alt text"></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 修改进程优先级(普通用户只能降低优先级--->给nice_value赋正值)</span>
-<span class="token function">nice</span> <span class="token parameter variable">-n</span> <span class="token parameter variable">-20</span> <span class="token function">ps</span> <span class="token parameter variable">-l</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre><code class="shell"># 修改进程优先级(普通用户只能降低优先级---&gt;给nice_value赋正值)
+nice -n -20 ps -l 
+</code></pre>
 <p><img src="/2024/06/21/linux-zhi-ling/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6.png" alt="alt text"></p>
 <p><strong>Shell命令</strong>可以是内部的（内建的）或外部的。</p>
 <ul>
@@ -1676,9 +1738,11 @@ input: <span class="token builtin class-name">umask</span> 077<span aria-hidden=
 <li><strong>其他系统中的应用</strong>：在Android系统中，前台进程也是极其重要的，它代表当前正在与用户交互的应用程序。这类进程在系统资源分配中通常享有优先级，以确保流畅的用户体验。<br>总的来说，前台进程是计算机系统中直接与用户进行交互的进程，它具有高度的交互性和实时性要求。在不同的操作系统和应用场景中，前台进程的具体表现和管理方式可能会有所不同。</li>
 </ol>
 <ul>
-<li>执行命令时指定其为后台进程<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">/tmp/loop <span class="token operator">&amp;</span>
-<span class="token comment"># 此时后台进程loop不断输出数字,按CTRL+C无效,因为是后台进程</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<li>执行命令时指定其为后台进程</li>
 </ul>
+<pre><code class="shell">/tmp/loop &amp;
+# 此时后台进程loop不断输出数字,按CTRL+C无效,因为是后台进程
+</code></pre>
 <p><strong>jobs命令</strong>是Linux系统中的一个内置命令，它用于显示当前shell中正在运行或已经挂起的任务列表。</p>
 <ol>
 <li><p><strong>基本功能</strong>：</p>
@@ -1744,8 +1808,8 @@ input: <span class="token builtin class-name">umask</span> 077<span aria-hidden=
 </li>
 </ul>
 <h4 id="kill命令"><a href="#kill命令" class="headerlink" title="kill命令"></a><code>kill</code>命令</h4><p><code>kill</code> 命令在 Unix 和 Linux 系统中用于向进程发送信号。其基本语法是：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> <span class="token punctuation">[</span>-信号编号<span class="token punctuation">]</span> 进程ID<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">kill [-信号编号] 进程ID
+</code></pre>
 <ul>
 <li><code>信号编号</code> 是一个可选参数，用于指定要发送给进程的信号。如果省略，则默认信号是 SIGTERM（软件终止信号，通常为编号 15）。</li>
 <li><code>进程ID</code> 是要发送信号的进程的 ID。</li>
@@ -1763,8 +1827,8 @@ input: <span class="token builtin class-name">umask</span> 077<span aria-hidden=
 </ul>
 <p>请注意，向进程发送某些信号，尤其是 KILL（信号 9），应该谨慎进行，因为它可以在不给进程机会适当清理资源的情况下突然终止进程。</p>
 <p>如果你想向多个进程发送信号，可以通过空格分隔指定多个 PID，如下所示：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> <span class="token parameter variable">-SIGTERM</span> <span class="token number">1234</span> <span class="token number">5678</span> <span class="token number">9012</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">kill -SIGTERM 1234 5678 9012
+</code></pre>
 <p>此命令将 SIGTERM 信号发送给 PID 为 1234、5678 和 9012 的进程。</p>
 <h4 id="信号的处理"><a href="#信号的处理" class="headerlink" title="信号的处理"></a>信号的处理</h4><p>命令和进程的异常终止（续）</p>
 <p><code>kill</code>命令的主要目的是向进程发送信号（软件中断）。进程在接收到信号时可以采取以下三种行动之一：</p>
@@ -1803,10 +1867,11 @@ input: <span class="token builtin class-name">umask</span> 077<span aria-hidden=
 <li>解释型: python或java,读一行命令,解释执行一行</li>
 </ul>
 <p><img src="/2024/06/21/linux-zhi-ling/shellscript.png" alt="alt text"></p>
-<h3 id="编写shell脚本"><a href="#编写shell脚本" class="headerlink" title="编写shell脚本"></a>编写shell脚本</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> first.sh
+<h3 id="编写shell脚本"><a href="#编写shell脚本" class="headerlink" title="编写shell脚本"></a>编写shell脚本</h3><pre><code class="shell">vim first.sh
 
-<span class="token function">date</span>
-<span class="token builtin class-name">echo</span> <span class="token string">"Hello world"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+date
+echo &quot;Hello world&quot;
+</code></pre>
 <p>shell脚本有三种执行方式</p>
 <ol>
 <li><code>bash first.sh</code> 指定运行shell来执行脚本</li>
@@ -1820,19 +1885,22 @@ input: <span class="token builtin class-name">umask</span> 077<span aria-hidden=
 <li>环境变量(子进程无法修改父进程的环境变量)<br> 使用<code>env</code>命令直接显示环境变量</li>
 <li>用户自定义变量</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#! /usr/bin/bash</span>
-<span class="token comment"># 定义变量,不能加空格</span>
-<span class="token assign-left variable">nam</span><span class="token operator">=</span><span class="token string">"Jack"</span>
-<span class="token comment"># 不能使用双引号</span>
-<span class="token builtin class-name">echo</span> <span class="token string">"Hello, <span class="token variable">$nam</span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code class="shell">#! /usr/bin/bash
+# 定义变量,不能加空格
+nam=&quot;Jack&quot;
+# 不能使用双引号
+echo &quot;Hello, $nam&quot;
+</code></pre>
 <ul>
 <li><code>readonly</code>: 把一个变量变成只读</li>
 <li><code>export</code>: 把一个用户定义变量变成环境变量</li>
-<li><code>source</code>: 允许脚本修改环境变量值(使用<code>source</code>或者<code>.</code>执行脚本文件时,不会再创建子进程来执行,使用当前shell进程来解释执行脚本)<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#! /usr/bin/bash</span>
-<span class="token comment"># 设置父(当前)进程环境变量值</span>
-<span class="token assign-left variable"><span class="token environment constant">PS1</span></span><span class="token operator">=</span><span class="token string">'Study Hard/$'</span>
-<span class="token comment"># 执行时使用 . first.sh  或者 source first.sh</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><code>source</code>: 允许脚本修改环境变量值(使用<code>source</code>或者<code>.</code>执行脚本文件时,不会再创建子进程来执行,使用当前shell进程来解释执行脚本)</li>
 </ul>
+<pre><code class="shell">#! /usr/bin/bash
+# 设置父(当前)进程环境变量值
+PS1=&#39;Study Hard/$&#39;
+# 执行时使用 . first.sh  或者 source first.sh
+</code></pre>
 <h3 id="内置的环境变量"><a href="#内置的环境变量" class="headerlink" title="内置的环境变量"></a>内置的环境变量</h3><ol>
 <li><p><code>PATH</code></p>
 <ul>
@@ -1939,26 +2007,27 @@ input: <span class="token builtin class-name">umask</span> 077<span aria-hidden=
 <td>最近后台进程的PID</td>
 </tr>
 </tbody></table>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Study Hard:<span class="token variable">$cat</span> first.sh
+<pre><code class="shell">Study Hard:$cat first.sh
 
-<span class="token comment">#!/bin/bash</span>
-<span class="token builtin class-name">echo</span> <span class="token variable">$0</span>
-<span class="token builtin class-name">echo</span> <span class="token variable">$1</span>
-<span class="token builtin class-name">echo</span> <span class="token variable">$2</span>
+#!/bin/bash
+echo $0
+echo $1
+echo $2
 
-Study Hard:<span class="token variable">$first</span>.sh a b c
+Study Hard:$first.sh a b c
 
 ./first.sh
 a
 b
 
-Study Hard:<span class="token variable">$vim</span> first.sh
-Study Hard:<span class="token variable">$cat</span> first.sh
+Study Hard:$vim first.sh
+Study Hard:$cat first.sh
 
-<span class="token comment">#!/bin/bashecho $1</span>
+#!/bin/bashecho $1
 
-Study Hard:<span class="token variable">$first</span>.sh Tom
-Tom<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+Study Hard:$first.sh Tom
+Tom
+</code></pre>
 <h3 id="shell变量的数据类型"><a href="#shell变量的数据类型" class="headerlink" title="shell变量的数据类型"></a>shell变量的数据类型</h3><p><strong>变量声明</strong></p>
 <p><strong>语法：</strong></p>
 <ul>
@@ -1980,36 +2049,38 @@ Tom<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
 <li><code>-x</code>：将“名称”标记为环境变量</li>
 </ul>
 <p>shell变量被默认为是字符串类型</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Input: <span class="token assign-left variable">a</span><span class="token operator">=</span><span class="token number">1</span>
-Input: <span class="token assign-left variable">b</span><span class="token operator">=</span><span class="token number">2</span>
-Input: <span class="token assign-left variable">c</span><span class="token operator">=</span><span class="token variable">$a</span>+<span class="token variable">$b</span>
-Input: <span class="token builtin class-name">echo</span> <span class="token variable">$c</span>
+<pre><code class="shell">Input: a=1
+Input: b=2
+Input: c=$a+$b
+Input: echo $c
 
-Output: <span class="token number">1</span>+2
+Output: 1+2
 
-<span class="token comment"># 正确输出加法公式</span>
-Input: <span class="token builtin class-name">declare</span> <span class="token parameter variable">-i</span> z
-Input: <span class="token assign-left variable">z</span><span class="token operator">=</span>a+b
-Iuput: <span class="token builtin class-name">echo</span> <span class="token variable">$z</span>
-Output: <span class="token number">3</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+# 正确输出加法公式
+Input: declare -i z
+Input: z=a+b
+Iuput: echo $z
+Output: 3
+</code></pre>
 <h3 id="算数拓展"><a href="#算数拓展" class="headerlink" title="算数拓展"></a>算数拓展</h3><ol>
 <li><code>$()</code>: 这是命令替换（Command Substitution）的语法。当你想要将命令的输出赋值给一个变量，或者将命令的输出作为另一个命令的参数时，你会使用它。<code>$()</code> 的结果会被替换为括号内命令的输出。例如：</li>
 </ol>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">files</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">ls</span><span class="token variable">)</span></span>
-<span class="token builtin class-name">echo</span> <span class="token variable">$files</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre><code class="bash">files=$(ls)
+echo $files
+</code></pre>
 <p>在这个例子中，<code>ls</code> 命令的输出会被赋值给变量 <code>files</code>，然后 <code>echo</code> 命令会打印出这个输出。</p>
 <p>另外，<code>$()</code> 是反引号（<code>...</code>）的现代替代方式，两者在功能上是等价的。例如：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">files</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">ls</span><span class="token variable">`</span></span>
-<span class="token builtin class-name">echo</span> <span class="token variable">$files</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
+<pre><code class="bash">files=`ls`
+echo $files
+</code></pre>
 <ol start="2">
 <li><code>$((...))</code>: 这是算术扩展（Arithmetic Expansion）的语法。当你需要在 Bash 脚本中执行算术运算时，你会使用它。<code>$((...))</code> 的结果会被替换为括号内算术表达式的结果。例如：</li>
 </ol>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">a</span><span class="token operator">=</span><span class="token number">5</span>
-<span class="token assign-left variable">b</span><span class="token operator">=</span><span class="token number">10</span>
-<span class="token assign-left variable">sum</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span>a <span class="token operator">+</span> b<span class="token variable">))</span></span>
-<span class="token builtin class-name">echo</span> <span class="token variable">$sum</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code class="bash">a=5
+b=10
+sum=$((a + b))
+echo $sum
+</code></pre>
 <p>在这个例子中，算术表达式 <code>a + b</code> 的结果（即 15）会被赋值给变量 <code>sum</code>，然后 <code>echo</code> 命令会打印出这个结果。</p>
 <h3 id="命令替换-把命令结果存储成变量"><a href="#命令替换-把命令结果存储成变量" class="headerlink" title="命令替换(把命令结果存储成变量)"></a>命令替换(把命令结果存储成变量)</h3><ul>
 <li><strong>变量名&#x3D;`cmd`</strong></li>
@@ -2020,18 +2091,18 @@ Output: <span class="token number">3</span><span aria-hidden="true" class="line-
 </ul>
 <p><img src="/2024/06/21/linux-zhi-ling/%E5%91%BD%E4%BB%A4%E6%9B%BF%E6%8D%A2.png" alt="alt text"></p>
 <h3 id="变量的输入输出"><a href="#变量的输入输出" class="headerlink" title="变量的输入输出"></a>变量的输入输出</h3><h4 id="变量的输入"><a href="#变量的输入" class="headerlink" title="变量的输入"></a>变量的输入</h4><p><code>read</code> 是一个在Linux中常用的命令，用于从标准输入或其他文件描述符中读取输入并赋值给变量。它的基本语法如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">read</span> <span class="token punctuation">[</span>选项<span class="token punctuation">]</span> 变量名<span class="token punctuation">(</span>列表<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">read [选项] 变量名(列表)
+</code></pre>
 <p>其中：</p>
 <ul>
 <li><code>选项</code> 是可选的，可以用来指定read命令的特定行为。</li>
 <li><code>变量名</code> 是要将输入赋值给的变量。</li>
 </ul>
 <p>示例：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"Please enter your name:"</span>
-<span class="token builtin class-name">read</span> name
-<span class="token builtin class-name">echo</span> <span class="token string">"Hello, <span class="token variable">$name</span>. Welcome!"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="bash">echo &quot;Please enter your name:&quot;
+read name
+echo &quot;Hello, $name. Welcome!&quot;
+</code></pre>
 <p>在这个示例中，当用户输入其名字并按下回车后，<code>read</code> 命令将输入的内容赋值给变量 <code>name</code>，然后 <code>echo</code> 命令使用这个变量进行输出。</p>
 <p>常用选项包括：</p>
 <ul>
@@ -2043,16 +2114,16 @@ Output: <span class="token number">3</span><span aria-hidden="true" class="line-
 </ul>
 <p><img src="/2024/06/21/linux-zhi-ling/read.png" alt="alt text"></p>
 <h4 id="变量的输出-echo"><a href="#变量的输出-echo" class="headerlink" title="变量的输出-&gt;echo"></a>变量的输出-&gt;<code>echo</code></h4><p><code>echo</code> 命令用于在终端中显示文本或变量的内容。它的基本语法如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token punctuation">[</span>选项<span class="token punctuation">]</span> <span class="token punctuation">[</span>字符串或变量<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">echo [选项] [字符串或变量]
+</code></pre>
 <p>其中：</p>
 <ul>
 <li><code>[选项]</code> 是可选的，可以用来指定特定行为，比如 <code>-e</code> 用于解释转义字符。</li>
 <li><code>[字符串或变量]</code> 是要显示的文本或变量的内容。</li>
 </ul>
 <p>示例：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"Hello, World!"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<pre><code class="bash">echo &quot;Hello, World!&quot;
+</code></pre>
 <p>在这个示例中，<code>echo</code> 命令会在终端中显示 “Hello, World!”。</p>
 <p>常用选项包括：</p>
 <ul>
@@ -2069,19 +2140,27 @@ Output: <span class="token number">3</span><span aria-hidden="true" class="line-
 <li><code>let</code>命令<br><img src="/2024/06/21/linux-zhi-ling/expr&let.png" alt="alt text"></li>
 </ul>
 <h4 id="小数"><a href="#小数" class="headerlink" title="小数"></a>小数</h4><ul>
-<li><code>bc</code>命令: 默认从标准输入读取小数<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">a</span><span class="token operator">=</span><span class="token number">1.1</span>
-<span class="token assign-left variable">b</span><span class="token operator">=</span><span class="token number">2.1</span>
-<span class="token builtin class-name">echo</span> <span class="token variable">$a</span> + <span class="token variable">$b</span> <span class="token operator">|</span> <span class="token function">bc</span>
-<span class="token comment"># 从标准输出中通过管道变成标准输入在交给bc命令</span>
+<li><code>bc</code>命令: 默认从标准输入读取小数</li>
+</ul>
+<pre><code class="shell">a=1.1
+b=2.1
+echo $a + $b | bc
+# 从标准输出中通过管道变成标准输入在交给bc命令
 
-Output: <span class="token number">3.2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-</ul>
+Output: 3.2
+</code></pre>
 <h3 id="Homework"><a href="#Homework" class="headerlink" title="Homework"></a>Homework</h3><ul>
-<li>Write a script that take a directory as a command-line argument and output the names of all directories within that directory.(1.sh)<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">dirname</span><span class="token operator">=</span><span class="token variable">$1</span>
-<span class="token function">ls</span> <span class="token parameter variable">-l</span> <span class="token variable">$dirname</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'/^d/&#123;print $9&#125;'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
-<li>Write a script that read a text filename from the keybard, sort the file and display it with the line number(2.sh)<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">read</span> <span class="token parameter variable">-p</span> <span class="token string">"Please input a file name:"</span> filename
-<span class="token function">sort</span> <span class="token variable">$filename</span> <span class="token operator">|</span> <span class="token function">nl</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<li>Write a script that take a directory as a command-line argument and output the names of all directories within that directory.(1.sh)</li>
 </ul>
+<pre><code class="shell">dirname=$1
+ls -l $dirname | awk &#39;/^d/&#123;print $9&#125;&#39;
+</code></pre>
+<ul>
+<li>Write a script that read a text filename from the keybard, sort the file and display it with the line number(2.sh)</li>
+</ul>
+<pre><code class="shell">read -p &quot;Please input a file name:&quot; filename
+sort $filename | nl
+</code></pre>
 <h3 id="shell脚本的注释"><a href="#shell脚本的注释" class="headerlink" title="shell脚本的注释"></a>shell脚本的注释</h3><p><code>#</code>用来注释一行,类似于python(除第一行外)</p>
 <h3 id="编写shell脚本-1"><a href="#编写shell脚本-1" class="headerlink" title="编写shell脚本"></a>编写shell脚本</h3><h4 id="shell表达式"><a href="#shell表达式" class="headerlink" title="shell表达式"></a>shell表达式</h4><p><img src="/2024/06/21/linux-zhi-ling/shell%E8%A1%A8%E8%BE%BE%E5%BC%8F.png" alt="alt text"></p>
 <ul>
@@ -2103,422 +2182,447 @@ Output: <span class="token number">3.2</span><span aria-hidden="true" class="lin
 </li>
 </ul>
 <p>对表达式求值有两种方式</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token keyword">if</span> <span class="token builtin class-name">test</span> <span class="token variable">$a</span> <span class="token parameter variable">-eq</span> <span class="token variable">$b</span>
+<pre><code class="shell">if test $a -eq $b
 
-<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$a</span> <span class="token parameter variable">-eq</span> <span class="token variable">$b</span> <span class="token punctuation">]</span>
-<span class="token comment"># 要有空格</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="if结构"><a href="#if结构" class="headerlink" title="if结构"></a>if结构</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash  </span>
+if [ $a -eq $b ]
+# 要有空格
+</code></pre>
+<h4 id="if结构"><a href="#if结构" class="headerlink" title="if结构"></a>if结构</h4><pre><code class="shell">#!/bin/bash  
   
-<span class="token assign-left variable">num1</span><span class="token operator">=</span><span class="token number">10</span>  
-<span class="token assign-left variable">num2</span><span class="token operator">=</span><span class="token number">20</span>  
+num1=10  
+num2=20  
   
-<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$num1</span> <span class="token parameter variable">-lt</span> <span class="token variable">$num2</span> <span class="token punctuation">]</span>  
-<span class="token keyword">then</span>  
-    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$num1</span> is less than <span class="token variable">$num2</span>"</span>  
-<span class="token keyword">fi</span>
+if [ $num1 -lt $num2 ]  
+then  
+    echo &quot;$num1 is less than $num2&quot;  
+fi
 
 
-<span class="token comment">#! /usr/bin/bash</span>
-<span class="token builtin class-name">read</span> a
-<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$a</span> <span class="token parameter variable">-eq</span> <span class="token number">0</span> <span class="token punctuation">]</span>
-<span class="token keyword">then</span> <span class="token builtin class-name">echo</span> <span class="token string">'zero'</span>
-<span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token variable">$a</span> <span class="token parameter variable">-gt</span> <span class="token number">0</span> <span class="token punctuation">]</span>
-<span class="token keyword">then</span> <span class="token builtin class-name">echo</span> <span class="token string">"is Postive"</span>
-<span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token variable">$a</span> <span class="token parameter variable">-lt</span> <span class="token number">0</span> <span class="token punctuation">]</span>
-<span class="token keyword">then</span> <span class="token builtin class-name">echo</span> <span class="token string">" is Negative"</span>
-<span class="token keyword">fi</span>
-<span class="token comment"># if.sh</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+#! /usr/bin/bash
+read a
+if [ $a -eq 0 ]
+then echo &#39;zero&#39;
+elif [ $a -gt 0 ]
+then echo &quot;is Postive&quot;
+elif [ $a -lt 0 ]
+then echo &quot; is Negative&quot;
+fi
+# if.sh
+</code></pre>
 <h4 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h4><p><img src="/2024/06/21/linux-zhi-ling/%E5%BE%AA%E7%8E%AF%E8%AF%BB%E5%8F%96.png" alt="alt text"></p>
 <h5 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h5><p><img src="/2024/06/21/linux-zhi-ling/if%E7%BB%93%E6%9E%84.png" alt="alt text"></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># for循环格式 in可以不写,表示从命令行取参数列表</span>
-<span class="token keyword">for</span> variable <span class="token punctuation">[</span>in argument-list<span class="token punctuation">]</span>
-<span class="token keyword">do</span>
+<pre><code class="shell"># for循环格式 in可以不写,表示从命令行取参数列表
+for variable [in argument-list]
+do
    command-list
-<span class="token keyword">done</span>
-<span class="token comment"># 实例</span>
-<span class="token keyword">for</span> <span class="token for-or-select variable">name</span> <span class="token keyword">in</span> tom jack marry
-<span class="token keyword">do</span>
-   <span class="token builtin class-name">echo</span> <span class="token string">"hello <span class="token variable">$name</span>"</span>
-<span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+done
+# 实例
+for name in tom jack marry
+do
+   echo &quot;hello $name&quot;
+done
+</code></pre>
 <ul>
-<li><p>题目： 输出命令行参数之和</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#! /bin/bash</span>
-<span class="token assign-left variable">sum</span><span class="token operator">=</span><span class="token number">0</span>
-<span class="token keyword">for</span> i 
-<span class="token keyword">do</span> 
-   <span class="token assign-left variable">sum</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">expr</span> $sum + $i<span class="token variable">`</span></span>
-<span class="token keyword">done</span>
-<span class="token builtin class-name">echo</span> <span class="token variable">$sum</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li><p>题目: 从1加到100,输出结果</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">read</span> n
-<span class="token assign-left variable">sum</span><span class="token operator">=</span><span class="token number">0</span>
-<span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">seq</span> <span class="token number">1</span> $n<span class="token variable">)</span></span>
-<span class="token keyword">do</span>
-        <span class="token assign-left variable">sum</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">expr</span> $sum + $i<span class="token variable">`</span></span>
-<span class="token keyword">done</span>
-<span class="token builtin class-name">echo</span> <span class="token variable">$sum</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-<li><p>题目: 批量的给文件改名</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash  </span>
-  
-<span class="token builtin class-name">read</span> <span class="token parameter variable">-p</span> <span class="token string">"请输入目录（默认为当前目录）: "</span> <span class="token function">dir</span>  
-<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token parameter variable">-z</span> <span class="token string">"<span class="token variable">$dir</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>  
-    <span class="token assign-left variable">dir</span><span class="token operator">=</span><span class="token string">"./"</span>  <span class="token comment"># 如果目录为空，则默认为当前目录  </span>
-<span class="token keyword">fi</span>  
-  
-<span class="token assign-left variable">i</span><span class="token operator">=</span><span class="token number">1</span>  
-<span class="token keyword">for</span> <span class="token for-or-select variable">filename</span> <span class="token keyword">in</span> <span class="token string">"<span class="token variable">$dir</span>"</span>*.txt<span class="token punctuation">;</span> <span class="token keyword">do</span>  <span class="token comment"># 注意这里使用引号包围变量和模式  </span>
-    <span class="token builtin class-name">echo</span> <span class="token string">"重命名 <span class="token variable">$filename</span> 到 <span class="token variable">$i</span>.txt，y 或 n"</span>  
-    <span class="token builtin class-name">read</span> choice  
-    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$choice</span>"</span> <span class="token operator">=</span> <span class="token string">"y"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>  
-        <span class="token function">mv</span> <span class="token string">"<span class="token variable">$filename</span>"</span> <span class="token string">"<span class="token variable">$dir</span><span class="token variable">$i</span>.txt"</span>  <span class="token comment"># 确保重命名后的文件路径正确  </span>
-        <span class="token assign-left variable">i</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token variable">))</span></span>  
-    <span class="token keyword">fi</span>  
-<span class="token keyword">done</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>题目： 输出命令行参数之和</li>
 </ul>
-<h5 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h5><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token keyword">while</span> expression
-<span class="token keyword">do</span>
-   command-list
-<span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="shell">#! /bin/bash
+sum=0
+for i 
+do 
+   sum=`expr $sum + $i`
+done
+echo $sum
+</code></pre>
 <ul>
-<li>题目: 输入密码检验<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#/bin/bash</span>
-<span class="token assign-left variable">passwd</span><span class="token operator">=</span><span class="token string">"007"</span>
-<span class="token builtin class-name">read</span> <span class="token parameter variable">-p</span> <span class="token string">"Please input your password"</span> password
-<span class="token comment"># 变量要加双引号,防止用户输入出现空格导致异常</span>
-<span class="token keyword">while</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$password</span>"</span> <span class="token operator">!=</span> <span class="token string">"<span class="token variable">$passwd</span>"</span> <span class="token punctuation">]</span>
-<span class="token keyword">do</span>
-        <span class="token builtin class-name">read</span> <span class="token parameter variable">-p</span> <span class="token string">"Please input your password"</span> password
-<span class="token keyword">done</span>
-<span class="token builtin class-name">echo</span> <span class="token string">"Congradulations!"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>题目: 从1加到100,输出结果</li>
+</ul>
+<pre><code class="shell">read n
+sum=0
+for i in $(seq 1 $n)
+do
+        sum=`expr $sum + $i`
+done
+echo $sum
+</code></pre>
+<ul>
+<li>题目: 批量的给文件改名</li>
+</ul>
+<pre><code class="shell">#!/bin/bash  
+  
+read -p &quot;请输入目录（默认为当前目录）: &quot; dir  
+if [ -z &quot;$dir&quot; ]; then  
+    dir=&quot;./&quot;  # 如果目录为空，则默认为当前目录  
+fi  
+  
+i=1  
+for filename in &quot;$dir&quot;*.txt; do  # 注意这里使用引号包围变量和模式  
+    echo &quot;重命名 $filename 到 $i.txt，y 或 n&quot;  
+    read choice  
+    if [ &quot;$choice&quot; = &quot;y&quot; ]; then  
+        mv &quot;$filename&quot; &quot;$dir$i.txt&quot;  # 确保重命名后的文件路径正确  
+        i=$((i+1))  
+    fi  
+done
+</code></pre>
+<h5 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h5><pre><code class="shell">while expression
+do
+   command-list
+done
+</code></pre>
+<ul>
+<li>题目: 输入密码检验</li>
+</ul>
+<pre><code class="shell">#/bin/bash
+passwd=&quot;007&quot;
+read -p &quot;Please input your password&quot; password
+# 变量要加双引号,防止用户输入出现空格导致异常
+while [ &quot;$password&quot; != &quot;$passwd&quot; ]
+do
+        read -p &quot;Please input your password&quot; password
+done
+echo &quot;Congradulations!&quot;
+</code></pre>
+<ul>
 <li>while循环中的break和continue<br><img src="/2024/06/21/linux-zhi-ling/break_continue.png" alt="alt text"></li>
 </ul>
-<h4 id="case分支语句"><a href="#case分支语句" class="headerlink" title="case分支语句"></a>case分支语句</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 格式</span>
-<span class="token keyword">case</span> test-string <span class="token keyword">in</span>
-pattern1<span class="token punctuation">)</span>   command-list1
-            <span class="token punctuation">;</span><span class="token punctuation">;</span>
+<h4 id="case分支语句"><a href="#case分支语句" class="headerlink" title="case分支语句"></a>case分支语句</h4><pre><code class="shell"># 格式
+case test-string in
+pattern1)   command-list1
+            ;;
 
-pattern2<span class="token punctuation">)</span>   command-list2
-            <span class="token punctuation">;</span><span class="token punctuation">;</span>
-patternN<span class="token punctuation">)</span>   command-listN
-            <span class="token punctuation">;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
+pattern2)   command-list2
+            ;;
+patternN)   command-listN
+            ;;
+</code></pre>
 <h2 id="PTA习题"><a href="#PTA习题" class="headerlink" title="PTA习题"></a>PTA习题</h2><p><img src="/2024/06/21/linux-zhi-ling/%E4%B9%A0%E9%A2%9801.png" alt="alt text"></p>
 <ul>
-<li><code>解答</code><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">read</span> a b other  
-<span class="token assign-left variable">sum</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span>a <span class="token operator">+</span> b<span class="token variable">))</span></span>  
-<span class="token builtin class-name">echo</span> <span class="token variable">$sum</span>
-
-<span class="token comment"># 解法2</span>
-<span class="token builtin class-name">read</span> a b other  
-<span class="token assign-left variable">sum</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">expr</span> $a + $b<span class="token variable">`</span></span>  
-<span class="token builtin class-name">echo</span> <span class="token variable">$sum</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><code>解答</code></li>
 </ul>
+<pre><code class="shell">read a b other  
+sum=$((a + b))  
+echo $sum
+
+# 解法2
+read a b other  
+sum=`expr $a + $b`  
+echo $sum
+</code></pre>
 <p><img src="/2024/06/21/linux-zhi-ling/%E4%B9%A0%E9%A2%9802.png" alt="alt text"></p>
 <ul>
-<li><code>解答</code><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash  </span>
-<span class="token comment"># 提示用户输入密码  </span>
-<span class="token builtin class-name">echo</span> <span class="token parameter variable">-n</span> <span class="token string">"输入密码password: "</span>  
-<span class="token builtin class-name">read</span> <span class="token parameter variable">-s</span> password  <span class="token comment"># -s 选项使输入不回显到屏幕上  </span>
-<span class="token builtin class-name">echo</span>  <span class="token comment"># 打印一个空行以分隔密码输入和后续输出  </span>
-  
-<span class="token comment"># 检查密码是否正确  </span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$password</span>"</span> <span class="token operator">=</span> <span class="token string">"pta12345"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>  
-    <span class="token builtin class-name">echo</span> <span class="token string">"密码正确"</span>  
-<span class="token keyword">else</span>  
-    <span class="token builtin class-name">echo</span> <span class="token string">"密码错误"</span>  
-<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><code>解答</code></li>
 </ul>
+<pre><code class="shell">#!/bin/bash  
+# 提示用户输入密码  
+echo -n &quot;输入密码password: &quot;  
+read -s password  # -s 选项使输入不回显到屏幕上  
+echo  # 打印一个空行以分隔密码输入和后续输出  
+  
+# 检查密码是否正确  
+if [ &quot;$password&quot; = &quot;pta12345&quot; ]; then  
+    echo &quot;密码正确&quot;  
+else  
+    echo &quot;密码错误&quot;  
+fi
+</code></pre>
 <p><img src="/2024/06/21/linux-zhi-ling/%E4%B9%A0%E9%A2%9803.png" alt="alt text"></p>
 <ul>
-<li><code>解答</code><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">read</span> n
-<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$n</span> <span class="token parameter variable">-eq</span> <span class="token number">0</span> <span class="token parameter variable">-o</span> <span class="token variable">$n</span> <span class="token parameter variable">-eq</span> <span class="token number">1</span> <span class="token punctuation">]</span>
-<span class="token keyword">then</span> 
-    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$n</span> indian boy."</span>
-<span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token variable">$n</span> <span class="token parameter variable">-gt</span> <span class="token number">1</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span> 
-    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$n</span> indian boys."</span>
-<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><code>解答</code></li>
 </ul>
+<pre><code class="shell">read n
+if [ $n -eq 0 -o $n -eq 1 ]
+then 
+    echo &quot;$n indian boy.&quot;
+elif [ $n -gt 1 ]; then 
+    echo &quot;$n indian boys.&quot;
+fi
+</code></pre>
 <p><img src="/2024/06/21/linux-zhi-ling/%E4%B9%A0%E9%A2%9804.png" alt="alt text"></p>
 <ul>
-<li><code>解答</code><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">read</span> n
-<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$n</span> <span class="token parameter variable">-lt</span> <span class="token number">0</span> <span class="token parameter variable">-o</span> <span class="token variable">$n</span> <span class="token parameter variable">-gt</span> <span class="token number">100</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-    <span class="token builtin class-name">echo</span> <span class="token string">"输入整数小于0或大于100"</span>
-<span class="token keyword">else</span>
-    <span class="token builtin class-name">echo</span> <span class="token string">"输入整数在0到100之间（含）"</span>
-<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><code>解答</code></li>
 </ul>
+<pre><code class="shell">read n
+if [ $n -lt 0 -o $n -gt 100 ]; then
+    echo &quot;输入整数小于0或大于100&quot;
+else
+    echo &quot;输入整数在0到100之间（含）&quot;
+fi
+</code></pre>
 <p><img src="/2024/06/21/linux-zhi-ling/%E4%B9%A0%E9%A2%9805.png" alt="alt text"></p>
 <ul>
-<li><code>解答</code><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">read</span> a
-<span class="token comment"># 算数拓展</span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable"><span class="token variable">$((</span>$a <span class="token operator">%</span> <span class="token number">2</span><span class="token variable">))</span></span> <span class="token parameter variable">-eq</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$a</span>是偶数"</span>
-<span class="token keyword">else</span>
-    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$a</span>是奇数"</span>
-<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><code>解答</code></li>
 </ul>
+<pre><code class="shell">read a
+# 算数拓展
+if [ $(($a % 2)) -eq 0 ]; then
+    echo &quot;$a是偶数&quot;
+else
+    echo &quot;$a是奇数&quot;
+fi
+</code></pre>
 <p><img src="/2024/06/21/linux-zhi-ling/%E4%B9%A0%E9%A2%9806.png" alt="alt text"></p>
 <ul>
-<li><code>解答</code><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
-
-<span class="token comment"># 读取用户输入的文件名</span>
-<span class="token builtin class-name">read</span> <span class="token parameter variable">-p</span> <span class="token string">"请输入文件名："</span> filename
-
-<span class="token comment"># 判断文件是否为目录</span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token parameter variable">-d</span> <span class="token string">"<span class="token variable">$filename</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-    <span class="token builtin class-name">echo</span> <span class="token string">"Yes"</span>
-<span class="token keyword">else</span>
-    <span class="token builtin class-name">echo</span> <span class="token string">"No"</span>
-<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><code>解答</code></li>
 </ul>
+<pre><code class="shell">#!/bin/bash
+
+# 读取用户输入的文件名
+read -p &quot;请输入文件名：&quot; filename
+
+# 判断文件是否为目录
+if [ -d &quot;$filename&quot; ]; then
+    echo &quot;Yes&quot;
+else
+    echo &quot;No&quot;
+fi
+</code></pre>
 <p><img src="/2024/06/21/linux-zhi-ling/%E4%B9%A0%E9%A2%9807.png" alt="alt text"></p>
 <ul>
-<li><code>解答</code><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">sum</span><span class="token operator">=</span><span class="token number">0</span>
-
-<span class="token keyword">while</span> <span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
-    <span class="token builtin class-name">read</span> num    <span class="token comment"># 读取用户输入的数字</span>
-    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$num</span> <span class="token parameter variable">-eq</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-        <span class="token builtin class-name">break</span>   <span class="token comment"># 如果输入为0，跳出循环</span>
-    <span class="token keyword">fi</span>
-    <span class="token assign-left variable">sum</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span>sum <span class="token operator">+</span> num<span class="token variable">))</span></span>  <span class="token comment"># 求和</span>
-<span class="token keyword">done</span>
-
-<span class="token builtin class-name">echo</span> <span class="token variable">$sum</span>   <span class="token comment"># 输出求和结果</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><code>解答</code></li>
 </ul>
+<pre><code class="shell">sum=0
+
+while true; do
+    read num    # 读取用户输入的数字
+    if [ $num -eq 0 ]; then
+        break   # 如果输入为0，跳出循环
+    fi
+    sum=$((sum + num))  # 求和
+done
+
+echo $sum   # 输出求和结果
+</code></pre>
 <p><img src="/2024/06/21/linux-zhi-ling/%E4%B9%A0%E9%A2%9808.png" alt="alt text"></p>
 <ul>
-<li><code>解答</code><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">chance</span><span class="token operator">=</span><span class="token number">3</span>
-<span class="token keyword">while</span> <span class="token punctuation">[</span> <span class="token variable">$chance</span> <span class="token parameter variable">-gt</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
-    <span class="token builtin class-name">read</span> <span class="token parameter variable">-p</span> <span class="token string">"Enter password: "</span> <span class="token function">passwd</span>
-    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$passwd</span>"</span> <span class="token operator">=</span> <span class="token string">"zust"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-        <span class="token builtin class-name">echo</span> <span class="token string">"Success"</span>
-        <span class="token builtin class-name">exit</span>
-    <span class="token keyword">else</span>
-        <span class="token builtin class-name">echo</span> <span class="token string">"Password error"</span>
-        <span class="token assign-left variable">chance</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span>chance <span class="token operator">-</span> <span class="token number">1</span><span class="token variable">))</span></span>
-        <span class="token builtin class-name">continue</span>
-    <span class="token keyword">fi</span>
-<span class="token keyword">done</span>
-<span class="token builtin class-name">echo</span> <span class="token string">"Login failed"</span>
-<span class="token builtin class-name">exit</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><code>解答</code></li>
 </ul>
-<h1 id="期末考试exam程序源代码"><a href="#期末考试exam程序源代码" class="headerlink" title="期末考试exam程序源代码"></a>期末考试exam程序源代码</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+<pre><code class="shell">chance=3
+while [ $chance -gt 0 ]; do
+    read -p &quot;Enter password: &quot; passwd
+    if [ &quot;$passwd&quot; = &quot;zust&quot; ]; then
+        echo &quot;Success&quot;
+        exit
+    else
+        echo &quot;Password error&quot;
+        chance=$((chance - 1))
+        continue
+    fi
+done
+echo &quot;Login failed&quot;
+exit
+</code></pre>
+<h1 id="期末考试exam程序源代码"><a href="#期末考试exam程序源代码" class="headerlink" title="期末考试exam程序源代码"></a>期末考试exam程序源代码</h1><pre><code class="shell">#!/bin/bash
 
-<span class="token assign-left variable">paperdir</span><span class="token operator">=</span><span class="token string">"/tmp"</span>
-<span class="token assign-left variable">select_first</span><span class="token operator">=</span>True
-<span class="token assign-left variable">command_first</span><span class="token operator">=</span>True
+paperdir=&quot;/tmp&quot;
+select_first=True
+command_first=True
 
-<span class="token function-name function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token function">clear</span>
+main() &#123;
+        clear
 
-        <span class="token keyword">while</span> <span class="token boolean">true</span>
-        <span class="token keyword">do</span>
-                <span class="token function">cat</span> <span class="token operator">&lt;&lt;-</span> <span class="token string">MENU
+        while true
+        do
+                cat &lt;&lt;- MENU
                         1) select
                         2) command
                         3) script
                         0) quit
-MENU</span>
-                <span class="token builtin class-name">read</span> <span class="token parameter variable">-p</span> <span class="token string">"please input your selection:"</span> section
-                <span class="token builtin class-name">echo</span>
-                <span class="token keyword">case</span> <span class="token string">"<span class="token variable">$section</span>"</span> <span class="token keyword">in</span>
-                        <span class="token number">1</span><span class="token punctuation">)</span> selection<span class="token punctuation">;</span><span class="token punctuation">;</span>
-                        <span class="token number">2</span><span class="token punctuation">)</span> <span class="token builtin class-name">command</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                        <span class="token number">3</span><span class="token punctuation">)</span> script <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                        <span class="token number">0</span><span class="token punctuation">)</span> <span class="token builtin class-name">exit</span> <span class="token number">0</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                        *<span class="token punctuation">)</span> <span class="token builtin class-name">echo</span> <span class="token string">"input error!"</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                <span class="token keyword">esac</span>
-        <span class="token keyword">done</span>
-<span class="token punctuation">&#125;</span>
+MENU
+                read -p &quot;please input your selection:&quot; section
+                echo
+                case &quot;$section&quot; in
+                        1) selection;;
+                        2) command ;;
+                        3) script ;;
+                        0) exit 0 ;;
+                        *) echo &quot;input error!&quot; ;;
+                esac
+        done
+&#125;
 
 
 
-<span class="token function-name function">selection</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token assign-left variable">paper</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$paperdir</span>/p1"</span>
-        <span class="token function">grep</span> <span class="token string">"^#"</span> <span class="token variable">$paper</span>
-        <span class="token assign-left variable">select_ans</span><span class="token operator">=~</span>/1.ans
-        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$select_first</span>"</span> <span class="token operator">=</span> <span class="token string">"True"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-                <span class="token assign-left variable">snum</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">grep</span> <span class="token parameter variable">-c</span> <span class="token string">'^[0-9]\&#123;1,2\&#125;\.'</span> $paperdir/p1<span class="token variable">`</span></span>
-                gen_ans <span class="token number">1</span> <span class="token variable">$snum</span>
-        <span class="token keyword">fi</span>
-        <span class="token assign-left variable">select_first</span><span class="token operator">=</span>False
-        <span class="token assign-left variable">curr</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token boolean">true</span>
-        <span class="token keyword">do</span>
-                <span class="token builtin class-name">echo</span>
-                <span class="token assign-left variable">pid</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">sed</span> <span class="token parameter variable">-n</span> <span class="token string">"<span class="token variable">$&#123;curr&#125;</span>p"</span> $select_ans <span class="token operator">|</span> <span class="token function">cut</span> -d<span class="token string">'.'</span> <span class="token parameter variable">-f1</span><span class="token variable">`</span></span>
-                <span class="token function">sed</span> <span class="token parameter variable">-n</span> <span class="token string">"/^<span class="token variable">$pid</span>\./,/^$/p"</span> <span class="token variable">$paper</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">"s/^[0-9]\&#123;1,2\&#125;./<span class="token variable">$curr</span>./"</span>
-                <span class="token assign-left variable">youranswer</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">grep</span> <span class="token string">"^"</span>$pid<span class="token string">"\."</span> $select_ans <span class="token operator">|</span> <span class="token function">cut</span> <span class="token parameter variable">-f2</span> -d<span class="token string">" "</span><span class="token variable">`</span></span>
-                <span class="token builtin class-name">read</span> <span class="token parameter variable">-p</span> <span class="token string">"input your answer(<span class="token variable">$youranswer</span>): "</span> answer
-                <span class="token keyword">case</span> <span class="token variable">$answer</span> <span class="token keyword">in</span>
-                <span class="token number">0</span><span class="token punctuation">)</span>
+selection() &#123;
+        paper=&quot;$paperdir/p1&quot;
+        grep &quot;^#&quot; $paper
+        select_ans=~/1.ans
+        if [ &quot;$select_first&quot; = &quot;True&quot; ]; then
+                snum=`grep -c &#39;^[0-9]\&#123;1,2\&#125;\.&#39; $paperdir/p1`
+                gen_ans 1 $snum
+        fi
+        select_first=False
+        curr=1;
+        while true
+        do
+                echo
+                pid=`sed -n &quot;$&#123;curr&#125;p&quot; $select_ans | cut -d&#39;.&#39; -f1`
+                sed -n &quot;/^$pid\./,/^$/p&quot; $paper | sed &quot;s/^[0-9]\&#123;1,2\&#125;./$curr./&quot;
+                youranswer=`grep &quot;^&quot;$pid&quot;\.&quot; $select_ans | cut -f2 -d&quot; &quot;`
+                read -p &quot;input your answer($youranswer): &quot; answer
+                case $answer in
+                0)
                         main
-                        <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                <span class="token punctuation">[</span><span class="token number">1</span>-9<span class="token punctuation">]</span><span class="token operator">|</span><span class="token punctuation">[</span><span class="token number">1</span>-2<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span>-9<span class="token punctuation">]</span><span class="token punctuation">)</span>
-                        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$curr</span> <span class="token parameter variable">-ge</span> <span class="token number">1</span> <span class="token parameter variable">-a</span> <span class="token variable">$curr</span> <span class="token parameter variable">-le</span> <span class="token variable">$snum</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-                                <span class="token assign-left variable">curr</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$answer</span>"</span>
-                        <span class="token keyword">fi</span>
-                        <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                <span class="token punctuation">[</span>a-d<span class="token punctuation">]</span><span class="token operator">|</span><span class="token punctuation">[</span>A-D<span class="token punctuation">]</span><span class="token punctuation">)</span>
-                        <span class="token assign-left variable">answer</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token builtin class-name">echo</span> $answer <span class="token operator">|</span> <span class="token function">tr</span> <span class="token string">"[a-z]"</span> <span class="token string">"[A-Z]"</span><span class="token variable">`</span></span>
-                        <span class="token function">sed</span>  <span class="token parameter variable">-i</span> <span class="token string">"s/^<span class="token variable">$pid</span>\. .*/<span class="token variable">$pid</span>\. <span class="token variable">$answer</span>/"</span> <span class="token variable">$select_ans</span>
-                        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$curr</span> <span class="token parameter variable">-lt</span> <span class="token variable">$snum</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-                                <span class="token assign-left variable">curr</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">expr</span> $curr + <span class="token number">1</span><span class="token variable">`</span></span>
-                        <span class="token keyword">fi</span>
-                        <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                -<span class="token punctuation">)</span>
-                        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$curr</span> <span class="token parameter variable">-gt</span> <span class="token number">1</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-                                <span class="token assign-left variable">curr</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">expr</span> $curr - <span class="token number">1</span><span class="token variable">`</span></span>
-                        <span class="token keyword">fi</span>
-                        <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                <span class="token string">""</span><span class="token punctuation">)</span>
-                        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$curr</span> <span class="token parameter variable">-lt</span> <span class="token variable">$snum</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-                                <span class="token assign-left variable">curr</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">expr</span> $curr + <span class="token number">1</span><span class="token variable">`</span></span>
-                        <span class="token keyword">fi</span>
-                        <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                *<span class="token punctuation">)</span>
-                        <span class="token builtin class-name">echo</span> <span class="token string">"input the correct problem number or answer!"</span>
-                        <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                <span class="token keyword">esac</span>
-        <span class="token keyword">done</span>
-<span class="token punctuation">&#125;</span>
+                        ;;
+                [1-9]|[1-2][0-9])
+                        if [ $curr -ge 1 -a $curr -le $snum ]; then
+                                curr=&quot;$answer&quot;
+                        fi
+                        ;;
+                [a-d]|[A-D])
+                        answer=`echo $answer | tr &quot;[a-z]&quot; &quot;[A-Z]&quot;`
+                        sed  -i &quot;s/^$pid\. .*/$pid\. $answer/&quot; $select_ans
+                        if [ $curr -lt $snum ]; then
+                                curr=`expr $curr + 1`
+                        fi
+                        ;;
+                -)
+                        if [ $curr -gt 1 ]; then
+                                curr=`expr $curr - 1`
+                        fi
+                        ;;
+                &quot;&quot;)
+                        if [ $curr -lt $snum ]; then
+                                curr=`expr $curr + 1`
+                        fi
+                        ;;
+                *)
+                        echo &quot;input the correct problem number or answer!&quot;
+                        ;;
+                esac
+        done
+&#125;
 
-<span class="token function-name function">command</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token assign-left variable">paper</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$paperdir</span>/p2"</span>
-        <span class="token assign-left variable">cmd_ans</span><span class="token operator">=~</span>/2.ans
-        <span class="token function">grep</span> <span class="token string">"^#"</span> <span class="token variable">$paper</span>
-        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$command_first</span>"</span> <span class="token operator">=</span> <span class="token string">"True"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-                <span class="token assign-left variable">cnum</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">grep</span> <span class="token parameter variable">-c</span> <span class="token string">'^[0-9]\&#123;1,2\&#125;\.'</span> $paperdir/p2<span class="token variable">`</span></span>
-                <span class="token comment">#gen_ans 2 8 $cnum</span>
-                gen_ans <span class="token number">2</span> <span class="token variable">$cnum</span>
-        <span class="token keyword">fi</span>
-        <span class="token assign-left variable">command_first</span><span class="token operator">=</span>False
-        <span class="token assign-left variable">curr</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token boolean">true</span>
-        <span class="token keyword">do</span>
-                <span class="token builtin class-name">echo</span>
-                <span class="token assign-left variable">pid</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">sed</span> <span class="token parameter variable">-n</span> <span class="token string">"<span class="token variable">$&#123;curr&#125;</span>p"</span> $cmd_ans <span class="token operator">|</span> <span class="token function">cut</span> -d<span class="token string">'.'</span> <span class="token parameter variable">-f1</span><span class="token variable">`</span></span>
-                <span class="token function">sed</span> <span class="token parameter variable">-n</span> <span class="token string">"/^<span class="token variable">$pid</span>\./,/^$/p"</span> <span class="token variable">$paper</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">"s/^<span class="token variable">$pid</span>\./<span class="token variable">$curr</span>./"</span>
-                <span class="token builtin class-name">echo</span> <span class="token parameter variable">-n</span> <span class="token string">"ANS: "</span>
-                <span class="token function">grep</span> <span class="token string">"^<span class="token variable">$pid</span>\."</span> <span class="token variable">$cmd_ans</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">"s/^<span class="token variable">$pid</span>\.//"</span>
-                <span class="token builtin class-name">echo</span>
-                <span class="token builtin class-name">read</span> <span class="token parameter variable">-rep</span> <span class="token string">"input your answer: "</span> answer
-                <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$curr</span> <span class="token parameter variable">-eq</span> <span class="token variable">$cnum</span> <span class="token punctuation">]</span>
-                <span class="token keyword">then</span>
-                   <span class="token builtin class-name">echo</span> <span class="token string">'============  Last problem. This is my bottom line. ================'</span>
-                <span class="token keyword">fi</span>
-                <span class="token keyword">case</span> <span class="token variable">$answer</span> <span class="token keyword">in</span>
-                <span class="token number">0</span><span class="token punctuation">)</span>
+command() &#123;
+        paper=&quot;$paperdir/p2&quot;
+        cmd_ans=~/2.ans
+        grep &quot;^#&quot; $paper
+        if [ &quot;$command_first&quot; = &quot;True&quot; ]; then
+                cnum=`grep -c &#39;^[0-9]\&#123;1,2\&#125;\.&#39; $paperdir/p2`
+                #gen_ans 2 8 $cnum
+                gen_ans 2 $cnum
+        fi
+        command_first=False
+        curr=1;
+        while true
+        do
+                echo
+                pid=`sed -n &quot;$&#123;curr&#125;p&quot; $cmd_ans | cut -d&#39;.&#39; -f1`
+                sed -n &quot;/^$pid\./,/^$/p&quot; $paper | sed &quot;s/^$pid\./$curr./&quot;
+                echo -n &quot;ANS: &quot;
+                grep &quot;^$pid\.&quot; $cmd_ans | sed &quot;s/^$pid\.//&quot;
+                echo
+                read -rep &quot;input your answer: &quot; answer
+                if [ $curr -eq $cnum ]
+                then
+                   echo &#39;============  Last problem. This is my bottom line. ================&#39;
+                fi
+                case $answer in
+                0)
                         main
-                        <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                <span class="token punctuation">[</span><span class="token number">1</span>-9<span class="token punctuation">]</span><span class="token operator">|</span><span class="token number">1</span><span class="token punctuation">[</span><span class="token number">0</span>-9<span class="token punctuation">]</span><span class="token punctuation">)</span>
-                        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$answer</span> <span class="token parameter variable">-le</span> <span class="token variable">$cnum</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-                                <span class="token assign-left variable">curr</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$answer</span>"</span>
-                        <span class="token keyword">fi</span>
-                        <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                -<span class="token punctuation">)</span>
-                        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$curr</span> <span class="token parameter variable">-gt</span> <span class="token number">1</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-                                <span class="token assign-left variable">curr</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">expr</span> $curr - <span class="token number">1</span><span class="token variable">`</span></span>
-                        <span class="token keyword">fi</span>
-                        <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                <span class="token string">""</span><span class="token punctuation">)</span>
-                        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$curr</span> <span class="token parameter variable">-lt</span> <span class="token variable">$cnum</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-                                <span class="token assign-left variable">curr</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">expr</span> $curr + <span class="token number">1</span><span class="token variable">`</span></span>
-                        <span class="token keyword">fi</span>
-                        <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                *<span class="token punctuation">)</span>
+                        ;;
+                [1-9]|1[0-9])
+                        if [ $answer -le $cnum ]; then
+                                curr=&quot;$answer&quot;
+                        fi
+                        ;;
+                -)
+                        if [ $curr -gt 1 ]; then
+                                curr=`expr $curr - 1`
+                        fi
+                        ;;
+                &quot;&quot;)
+                        if [ $curr -lt $cnum ]; then
+                                curr=`expr $curr + 1`
+                        fi
+                        ;;
+                *)
 
-                        <span class="token comment">#answer=$&#123;answer//\\/\\\\&#125;</span>
-                        <span class="token assign-left variable">answer</span><span class="token operator">=</span><span class="token variable">$&#123;answer<span class="token operator">/</span><span class="token operator">/</span><span class="token operator">#</span><span class="token operator">/</span>\\<span class="token operator">#</span>&#125;</span>
-                        <span class="token assign-left variable">answer</span><span class="token operator">=</span><span class="token variable">$&#123;answer<span class="token operator">/</span><span class="token operator">/</span>&amp;<span class="token operator">/</span>\\&amp;&#125;</span>
-                        <span class="token builtin class-name">echo</span> <span class="token variable">$answer</span>
-                        <span class="token function">sed</span>  <span class="token parameter variable">-i</span> <span class="token string">"s#^<span class="token variable">$pid</span>\. .*#<span class="token variable">$pid</span>\. <span class="token variable">$answer</span>#"</span> <span class="token variable">$cmd_ans</span>
-                        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$curr</span> <span class="token parameter variable">-lt</span> <span class="token variable">$cnum</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-                                <span class="token assign-left variable">curr</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">expr</span> $curr + <span class="token number">1</span><span class="token variable">`</span></span>
-                        <span class="token keyword">fi</span>
-                        <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                <span class="token keyword">esac</span>
-        <span class="token keyword">done</span>
-<span class="token punctuation">&#125;</span>
+                        #answer=$&#123;answer//\\/\\\\&#125;
+                        answer=$&#123;answer//#/\\#&#125;
+                        answer=$&#123;answer//&amp;/\\&amp;&#125;
+                        echo $answer
+                        sed  -i &quot;s#^$pid\. .*#$pid\. $answer#&quot; $cmd_ans
+                        if [ $curr -lt $cnum ]; then
+                                curr=`expr $curr + 1`
+                        fi
+                        ;;
+                esac
+        done
+&#125;
 
-<span class="token function-name function">script</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token assign-left variable">paper</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$paperdir</span>/p3"</span>
-        <span class="token function">grep</span> <span class="token string">"^#"</span> <span class="token variable">$paper</span>
-        <span class="token assign-left variable">curr</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token assign-left variable">scnum</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">grep</span> <span class="token parameter variable">-c</span> <span class="token string">'^[0-9]\&#123;1,2\&#125;\.'</span> $paperdir/p3<span class="token variable">`</span></span>
-        <span class="token keyword">while</span> <span class="token boolean">true</span>
-        <span class="token keyword">do</span>
-                <span class="token builtin class-name">echo</span>
-                <span class="token function">sed</span> <span class="token parameter variable">-n</span> <span class="token string">"/^<span class="token variable">$curr</span>\./,/^$/p"</span> <span class="token variable">$paper</span>
-                <span class="token builtin class-name">read</span> <span class="token parameter variable">-p</span> <span class="token string">"input your selection( n(nano)/v(vim) to edit the file ): "</span> answer
-                <span class="token keyword">case</span> <span class="token variable">$answer</span> <span class="token keyword">in</span>
-                <span class="token number">0</span><span class="token punctuation">)</span>
+script() &#123;
+        paper=&quot;$paperdir/p3&quot;
+        grep &quot;^#&quot; $paper
+        curr=1;
+        scnum=`grep -c &#39;^[0-9]\&#123;1,2\&#125;\.&#39; $paperdir/p3`
+        while true
+        do
+                echo
+                sed -n &quot;/^$curr\./,/^$/p&quot; $paper
+                read -p &quot;input your selection( n(nano)/v(vim) to edit the file ): &quot; answer
+                case $answer in
+                0)
                         main
-                        <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                <span class="token punctuation">[</span><span class="token number">1</span>-<span class="token variable">$scnum</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-                        <span class="token assign-left variable">curr</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$answer</span>"</span>
-                        <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                -<span class="token punctuation">)</span>
-                        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$curr</span> <span class="token parameter variable">-gt</span> <span class="token number">1</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-                                <span class="token assign-left variable">curr</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">expr</span> $curr - <span class="token number">1</span><span class="token variable">`</span></span>
-                        <span class="token keyword">fi</span>
-                        <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                n<span class="token punctuation">)</span>
-                        <span class="token function">nano</span> ~/<span class="token variable">$curr</span>.sh
-                        <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                <span class="token function">v</span><span class="token punctuation">)</span>
-                        <span class="token function">vim</span> ~/<span class="token variable">$curr</span>.sh
-                        <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                <span class="token string">""</span><span class="token punctuation">)</span>
-                        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$curr</span> <span class="token parameter variable">-lt</span> <span class="token variable">$scnum</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-                                <span class="token assign-left variable">curr</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">expr</span> $curr + <span class="token number">1</span><span class="token variable">`</span></span>
-                        <span class="token keyword">fi</span>
-                        <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                *<span class="token punctuation">)</span>
-                        <span class="token builtin class-name">echo</span> <span class="token string">"input the correct number"</span>
-                        <span class="token punctuation">;</span><span class="token punctuation">;</span>
-                <span class="token keyword">esac</span>
-        <span class="token keyword">done</span>
-<span class="token punctuation">&#125;</span>
+                        ;;
+                [1-$scnum])
+                        curr=&quot;$answer&quot;
+                        ;;
+                -)
+                        if [ $curr -gt 1 ]; then
+                                curr=`expr $curr - 1`
+                        fi
+                        ;;
+                n)
+                        nano ~/$curr.sh
+                        ;;
+                v)
+                        vim ~/$curr.sh
+                        ;;
+                &quot;&quot;)
+                        if [ $curr -lt $scnum ]; then
+                                curr=`expr $curr + 1`
+                        fi
+                        ;;
+                *)
+                        echo &quot;input the correct number&quot;
+                        ;;
+                esac
+        done
+&#125;
 
-<span class="token function-name function">makefile</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token assign-left variable">paper</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$paperdir</span>/p4"</span>
-        <span class="token function">cat</span> <span class="token variable">$paper</span>
-        <span class="token builtin class-name">read</span> <span class="token parameter variable">-p</span> <span class="token string">"press 0 to quit or any other key to start edit the makefile...: "</span> choice
-        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$choice</span> <span class="token operator">=</span> <span class="token string">"0"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+makefile() &#123;
+        paper=&quot;$paperdir/p4&quot;
+        cat $paper
+        read -p &quot;press 0 to quit or any other key to start edit the makefile...: &quot; choice
+        if [ $choice = &quot;0&quot; ]; then
                 main
-        <span class="token keyword">else</span>
-                <span class="token function">vi</span> makefile
+        else
+                vi makefile
                 main
-        <span class="token keyword">fi</span>
-<span class="token punctuation">&#125;</span>
+        fi
+&#125;
 
-<span class="token function-name function">gen_ans</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token assign-left variable">ans_file</span><span class="token operator">=~</span>/<span class="token variable">$1</span>.ans
-        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token parameter variable">-f</span> <span class="token string">"<span class="token variable">$ans_file</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-                <span class="token builtin class-name">return</span>
-                <span class="token builtin class-name">echo</span> <span class="token parameter variable">-ne</span>  <span class="token string">"There is a answer sheet in your home directory.<span class="token entity" title="\n">\n</span>Do you want to recreate it? (y/n): "</span>
-                <span class="token builtin class-name">read</span> ans
-                <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$ans</span>"</span> <span class="token operator">=</span> <span class="token string">"Y"</span> <span class="token parameter variable">-o</span> <span class="token string">"<span class="token variable">$ans</span>"</span> <span class="token operator">=</span> <span class="token string">"y"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-                        <span class="token function">shuf</span> <span class="token parameter variable">-i</span> <span class="token number">1</span>-<span class="token variable">$2</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/$/. /'</span>  <span class="token operator">></span> <span class="token variable">$ans_file</span>
-                <span class="token keyword">fi</span>
-        <span class="token keyword">else</span>
-                <span class="token function">shuf</span> <span class="token parameter variable">-i</span> <span class="token number">1</span>-<span class="token variable">$2</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/$/. /'</span>  <span class="token operator">>></span> <span class="token variable">$ans_file</span>
-        <span class="token keyword">fi</span>
-        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$#</span> <span class="token parameter variable">-gt</span> <span class="token number">2</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-                <span class="token function">seq</span> <span class="token variable"><span class="token variable">`</span><span class="token function">expr</span> $2 + <span class="token number">1</span><span class="token variable">`</span></span> <span class="token variable">$3</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/$/. /'</span>  <span class="token operator">>></span> <span class="token variable">$ans_file</span>
-        <span class="token keyword">fi</span>
+gen_ans() &#123;
+        ans_file=~/$1.ans
+        if [ -f &quot;$ans_file&quot; ]; then
+                return
+                echo -ne  &quot;There is a answer sheet in your home directory.\nDo you want to recreate it? (y/n): &quot;
+                read ans
+                if [ &quot;$ans&quot; = &quot;Y&quot; -o &quot;$ans&quot; = &quot;y&quot; ]; then
+                        shuf -i 1-$2 | sed &#39;s/$/. /&#39;  &gt; $ans_file
+                fi
+        else
+                shuf -i 1-$2 | sed &#39;s/$/. /&#39;  &gt;&gt; $ans_file
+        fi
+        if [ $# -gt 2 ]; then
+                seq `expr $2 + 1` $3 | sed &#39;s/$/. /&#39;  &gt;&gt; $ans_file
+        fi
 
-        <span class="token comment">#seq -f '%g. ' 1 $2  >> $select_ans</span>
-<span class="token punctuation">&#125;</span>
+        #seq -f &#39;%g. &#39; 1 $2  &gt;&gt; $select_ans
+&#125;
 
-main<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+main
+</code></pre>
 
                 
             </div>
@@ -3038,7 +3142,7 @@ main<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">432.3k</span>&nbsp;字
+                class="white-color">448.8k</span>&nbsp;字
             
             
             

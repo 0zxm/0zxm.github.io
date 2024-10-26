@@ -487,14 +487,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3k
+                    3.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    13 分
+                    14 分
                 </div>
                 
 
@@ -588,12 +588,12 @@
 <li>cmake参数: <code>cmake -G &lt;generator-name&gt; -T &lt;toolset-spec&gt; -A &lt;platform-name&gt;&lt;path-to-source&gt;</code></li>
 <li>通过指定<code>-G&quot;MinGW Makefiles&quot;</code>来指定<strong>cmake使用gcc</strong></li>
 </ul>
-<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake">cmake -B build -G <span class="token string">"MinGW Makefiles"</span>
+<pre><code class="cmake">cmake -B build -G &quot;MinGW Makefiles&quot;
 cmake --build build
 运行
 cd build 
-hello.exe<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+hello.exe
+</code></pre>
 <h3 id="7-Linux下使用CMake构建项目"><a href="#7-Linux下使用CMake构建项目" class="headerlink" title="7. Linux下使用CMake构建项目"></a>7. Linux下使用CMake构建项目</h3><ul>
 <li><p>Linux下安装cmake</p>
 <ul>
@@ -653,254 +653,250 @@ hello.exe<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
 <li><code>list(REVERSE &lt;list&gt;)</code>反转list</li>
 <li><code>list(SORT &lt;list&gt; [..])</code> 排序list</li>
 </ul>
-<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20</span><span class="token punctuation">)</span>
-<span class="token comment"># 打印信息</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"Hello, CMake!"</span><span class="token punctuation">)</span>
-<span class="token comment"># 多行</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"This is a message
-on multiple lines."</span><span class="token punctuation">)</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span>[[This is 
-message]]<span class="token punctuation">)</span>
+<pre><code class="cmake">cmake_minimum_required(VERSION 3.20)
+# 打印信息
+message(&quot;Hello, CMake!&quot;)
+# 多行
+message(&quot;This is a message
+on multiple lines.&quot;)
+message([[This is 
+message]])
 
-<span class="token comment">#  获取cmake的信息 $&#123;&#125;</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"CMAKE_VERSION: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">CMAKE_VERSION</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+#  获取cmake的信息 $&#123;&#125;
+message(&quot;CMAKE_VERSION: $&#123;CMAKE_VERSION&#125;&quot;)
 
-<span class="token comment"># set()方法</span>
-<span class="token keyword">set</span><span class="token punctuation">(</span>VAR1 <span class="token string">"value1"</span><span class="token punctuation">)</span>
-<span class="token keyword">set</span><span class="token punctuation">(</span><span class="token string">"my var"</span> <span class="token string">"value2"</span><span class="token punctuation">)</span>  <span class="token comment"># 注意空格,输出时要加转义符\</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"VAR1: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">VAR1</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>    
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"my var: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">my</span>\ <span class="token variable">var</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-<span class="token comment"># 设置多个值</span>
-<span class="token keyword">set</span><span class="token punctuation">(</span>LISTVALUE a1 a2<span class="token punctuation">)</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"LISTVALUE: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">LISTVALUE</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>  <span class="token comment"># 输出 a1;a2</span>
-<span class="token keyword">set</span><span class="token punctuation">(</span>LISTVALUE a1;a2<span class="token punctuation">)</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"LISTVALUE: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">LISTVALUE</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>  <span class="token comment"># 输出 a1;a2</span>
+# set()方法
+set(VAR1 &quot;value1&quot;)
+set(&quot;my var&quot; &quot;value2&quot;)  # 注意空格,输出时要加转义符\
+message(&quot;VAR1: $&#123;VAR1&#125;&quot;)    
+message(&quot;my var: $&#123;my\ var&#125;&quot;)
+# 设置多个值
+set(LISTVALUE a1 a2)
+message(&quot;LISTVALUE: $&#123;LISTVALUE&#125;&quot;)  # 输出 a1;a2
+set(LISTVALUE a1;a2)
+message(&quot;LISTVALUE: $&#123;LISTVALUE&#125;&quot;)  # 输出 a1;a2
 
-<span class="token comment"># 系统变量</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span>$<span class="token variable">ENV</span>&#123;PATH<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token keyword">set</span><span class="token punctuation">(</span><span class="token variable">ENV</span>&#123;CXX<span class="token punctuation">&#125;</span> G++<span class="token punctuation">)</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span>$<span class="token variable">ENV</span>&#123;CXX<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+# 系统变量
+message($ENV&#123;PATH&#125;)
+set(ENV&#123;CXX&#125; G++)
+message($ENV&#123;CXX&#125;)
 
-<span class="token comment"># unset()方法</span>
-<span class="token keyword">unset</span><span class="token punctuation">(</span><span class="token variable">ENV</span>&#123;CXX<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token comment"># message($ENV&#123;CXX&#125;) 保错</span>
+# unset()方法
+unset(ENV&#123;CXX&#125;)
+# message($ENV&#123;CXX&#125;) 保错
 
-<span class="token comment"># list方法</span>
-<span class="token keyword">list</span><span class="token punctuation">(</span>APPEND mylist a b c<span class="token punctuation">)</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"mylist: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">mylist</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>    <span class="token comment"># a;b;c</span>
-<span class="token keyword">list</span><span class="token punctuation">(</span>LENGTH mylist len<span class="token punctuation">)</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"mylist length: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">len</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-<span class="token keyword">list</span><span class="token punctuation">(</span>GET mylist <span class="token number">1</span> elem<span class="token punctuation">)</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"mylist[1]: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">elem</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-<span class="token keyword">list</span><span class="token punctuation">(</span>REMOVE_AT mylist <span class="token number">1</span><span class="token punctuation">)</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"mylist after remove: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">mylist</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-<span class="token keyword">list</span><span class="token punctuation">(</span>INSERT mylist <span class="token number">1</span> x y z<span class="token punctuation">)</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"mylist after insert: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">mylist</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-<span class="token keyword">list</span><span class="token punctuation">(</span>FIND mylist x index<span class="token punctuation">)</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"index of x in mylist: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">index</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-<span class="token keyword">list</span><span class="token punctuation">(</span>SUBLIST mylist <span class="token number">1</span> <span class="token number">3</span> sublist<span class="token punctuation">)</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"sublist: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">sublist</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-<span class="token keyword">list</span><span class="token punctuation">(</span>REVERSE sublist<span class="token punctuation">)</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"reverse sublist: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">sublist</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-<span class="token keyword">list</span><span class="token punctuation">(</span>SORT sublist<span class="token punctuation">)</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"sorted sublist: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">sublist</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-<span class="token keyword">list</span><span class="token punctuation">(</span>POP_FRONT sublist elem<span class="token punctuation">)</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"pop front elem: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">elem</span><span class="token punctuation">&#125;</span></span>, sublist: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">sublist</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-<span class="token keyword">list</span><span class="token punctuation">(</span>POP_BACK sublist elem<span class="token punctuation">)</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"pop back elem: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">elem</span><span class="token punctuation">&#125;</span></span>, sublist: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">sublist</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-<span class="token keyword">list</span><span class="token punctuation">(</span>JOIN sublist <span class="token string">";"</span> str<span class="token punctuation">)</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"joined sublist: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">str</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+# list方法
+list(APPEND mylist a b c)
+message(&quot;mylist: $&#123;mylist&#125;&quot;)    # a;b;c
+list(LENGTH mylist len)
+message(&quot;mylist length: $&#123;len&#125;&quot;)
+list(GET mylist 1 elem)
+message(&quot;mylist[1]: $&#123;elem&#125;&quot;)
+list(REMOVE_AT mylist 1)
+message(&quot;mylist after remove: $&#123;mylist&#125;&quot;)
+list(INSERT mylist 1 x y z)
+message(&quot;mylist after insert: $&#123;mylist&#125;&quot;)
+list(FIND mylist x index)
+message(&quot;index of x in mylist: $&#123;index&#125;&quot;)
+list(SUBLIST mylist 1 3 sublist)
+message(&quot;sublist: $&#123;sublist&#125;&quot;)
+list(REVERSE sublist)
+message(&quot;reverse sublist: $&#123;sublist&#125;&quot;)
+list(SORT sublist)
+message(&quot;sorted sublist: $&#123;sublist&#125;&quot;)
+list(POP_FRONT sublist elem)
+message(&quot;pop front elem: $&#123;elem&#125;, sublist: $&#123;sublist&#125;&quot;)
+list(POP_BACK sublist elem)
+message(&quot;pop back elem: $&#123;elem&#125;, sublist: $&#123;sublist&#125;&quot;)
+list(JOIN sublist &quot;;&quot; str)
+message(&quot;joined sublist: $&#123;str&#125;&quot;)
+</code></pre>
 <h2 id="第三章-流程控制"><a href="#第三章-流程控制" class="headerlink" title="第三章 流程控制"></a>第三章 流程控制</h2><h3 id="if-条件流程控制"><a href="#if-条件流程控制" class="headerlink" title="if 条件流程控制"></a>if 条件流程控制</h3><ul>
 <li>条件if语句</li>
 </ul>
-<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">if</span><span class="token punctuation">(</span>&lt;condition<span class="token punctuation">></span><span class="token punctuation">)</span>&lt;commands<span class="token punctuation">></span>
-<span class="token keyword">elseif</span><span class="token punctuation">(</span>&lt;condition<span class="token punctuation">></span><span class="token punctuation">)</span>&lt;commands<span class="token punctuation">></span>
-<span class="token keyword">else</span><span class="token punctuation">(</span><span class="token punctuation">)</span>&lt;commands<span class="token punctuation">></span>
-<span class="token keyword">endif</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="cmake">if(&lt;condition&gt;)&lt;commands&gt;
+elseif(&lt;condition&gt;)&lt;commands&gt;
+else()&lt;commands&gt;
+endif()
+</code></pre>
 <h3 id="loop-循环流程控制"><a href="#loop-循环流程控制" class="headerlink" title="loop 循环流程控制"></a>loop 循环流程控制</h3><ul>
 <li>For循环</li>
 </ul>
-<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">foreach</span><span class="token punctuation">(</span>&lt;loop_var<span class="token punctuation">></span> RANGE &lt;max<span class="token punctuation">></span><span class="token punctuation">)</span>
-&lt;commands<span class="token punctuation">></span>
-<span class="token keyword">endforeach</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre><code class="cmake">foreach(&lt;loop_var&gt; RANGE &lt;max&gt;)
+&lt;commands&gt;
+endforeach()
 
-<span class="token keyword">foreach</span><span class="token punctuation">(</span>&lt;loop_var<span class="token punctuation">></span> RANGE &lt;min<span class="token punctuation">></span> &lt;max<span class="token punctuation">></span> [&lt;step<span class="token punctuation">></span>]<span class="token punctuation">)</span>
-<span class="token keyword">foreach</span><span class="token punctuation">(</span>&lt;loop variable<span class="token punctuation">></span> IN [LISTS &lt;lists<span class="token punctuation">></span>] [ITEMS &lt;items<span class="token punctuation">></span>]<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+foreach(&lt;loop_var&gt; RANGE &lt;min&gt; &lt;max&gt; [&lt;step&gt;])
+foreach(&lt;loop variable&gt; IN [LISTS &lt;lists&gt;] [ITEMS &lt;items&gt;])
+</code></pre>
 <ul>
 <li>While循环</li>
 </ul>
-<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">while</span><span class="token punctuation">(</span>&lt;condition<span class="token punctuation">></span><span class="token punctuation">)</span>
-&lt;commands<span class="token punctuation">></span>
-<span class="token keyword">endwhile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="cmake">while(&lt;condition&gt;)
+&lt;commands&gt;
+endwhile()
+</code></pre>
 <ul>
 <li>break和continue使用类似其他语言</li>
 </ul>
-<h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20.0</span><span class="token punctuation">)</span>
-<span class="token keyword">set</span> <span class="token punctuation">(</span>VARBOOL <span class="token boolean">TRUE</span><span class="token punctuation">)</span>
+<h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><pre><code class="cmake">cmake_minimum_required(VERSION 3.20.0)
+set (VARBOOL TRUE)
 
-<span class="token keyword">if</span><span class="token punctuation">(</span>VARBOOL<span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span>STATUS <span class="token string">"VARBOOL is true"</span><span class="token punctuation">)</span>
-<span class="token keyword">else</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span>STATUS <span class="token string">"VARBOOL is false"</span><span class="token punctuation">)</span>
-<span class="token keyword">endif</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+if(VARBOOL)
+    message(STATUS &quot;VARBOOL is true&quot;)
+else()
+    message(STATUS &quot;VARBOOL is false&quot;)
+endif()
 
-<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">NOT</span> VARBOOL<span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span>STATUS <span class="token string">"VARBOOL is true"</span><span class="token punctuation">)</span>
-<span class="token keyword">else</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span>STATUS <span class="token string">"VARBOOL is false"</span><span class="token punctuation">)</span>
-<span class="token keyword">endif</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+if(NOT VARBOOL)
+    message(STATUS &quot;VARBOOL is true&quot;)
+else()
+    message(STATUS &quot;VARBOOL is false&quot;)
+endif()
 
-<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">NOT</span> VARBOOL <span class="token operator">OR</span> VARBOOL<span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token boolean">TRUE</span><span class="token punctuation">)</span>
-<span class="token keyword">else</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token boolean">FALSE</span><span class="token punctuation">)</span>
-<span class="token keyword">endif</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+if(NOT VARBOOL OR VARBOOL)
+    message(TRUE)
+else()
+    message(FALSE)
+endif()
 
-<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">NOT</span> VARBOOL <span class="token operator">AND</span> VARBOOL<span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token boolean">TRUE</span><span class="token punctuation">)</span>
-<span class="token keyword">else</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token boolean">FALSE</span><span class="token punctuation">)</span>
-<span class="token keyword">endif</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+if(NOT VARBOOL AND VARBOOL)
+    message(TRUE)
+else()
+    message(FALSE)
+endif()
 
-<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">LESS</span> <span class="token number">2</span><span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"1 is less than 2"</span><span class="token punctuation">)</span>
-<span class="token keyword">else</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">endif</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+if(1 LESS 2)
+    message(&quot;1 is less than 2&quot;)
+else()
+endif()
     
-<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token string">"ok"</span> <span class="token operator">LESS</span> <span class="token number">233</span><span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"ok is less than 233"</span><span class="token punctuation">)</span>
-<span class="token keyword">else</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">endif</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span>
+if(&quot;ok&quot; LESS 233)
+    message(&quot;ok is less than 233&quot;)
+else()
+endif(&quot;&quot;)
 
-<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token string">"2"</span> <span class="token operator">EQUAL</span> <span class="token number">2</span><span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"'2' is equal to 2"</span><span class="token punctuation">)</span>
-<span class="token keyword">else</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">endif</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+if(&quot;2&quot; EQUAL 2)
+    message(&quot;&#39;2&#39; is equal to 2&quot;)
+else()
+endif()
 
-<span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20</span><span class="token punctuation">)</span>
+cmake_minimum_required(VERSION 3.20)
 
-<span class="token keyword">foreach</span><span class="token punctuation">(</span>i RANGE <span class="token number">1</span> <span class="token number">5</span><span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token punctuation">$&#123;</span>i<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token keyword">endforeach</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+foreach(i RANGE 1 5)
+    message($&#123;i&#125;)
+endforeach()
 
-<span class="token keyword">set</span><span class="token punctuation">(</span>MY_LIST <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span><span class="token punctuation">)</span>
-<span class="token keyword">foreach</span><span class="token punctuation">(</span>i <span class="token punctuation">$&#123;</span>MY_LIST<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token punctuation">$&#123;</span>i<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token keyword">endforeach</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+set(MY_LIST 1 2 3 4 5)
+foreach(i $&#123;MY_LIST&#125;)
+    message($&#123;i&#125;)
+endforeach()
 
-<span class="token keyword">foreach</span><span class="token punctuation">(</span>VAR IN LISTS MY_LIST ITEMS <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span><span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token punctuation">$&#123;</span>VAR<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+foreach(VAR IN LISTS MY_LIST ITEMS 1 2 3 4 5)
+    message($&#123;VAR&#125;)
     
-<span class="token keyword">endforeach</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+endforeach()
 
-<span class="token comment"># zip</span>
-<span class="token keyword">set</span><span class="token punctuation">(</span>L1 one two three four<span class="token punctuation">)</span>
-<span class="token keyword">set</span><span class="token punctuation">(</span>L2 <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span><span class="token punctuation">)</span>
-<span class="token keyword">foreach</span><span class="token punctuation">(</span>num IN ZIP_LISTS L1 L2<span class="token punctuation">)</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"word = <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">num_0</span><span class="token punctuation">&#125;</span></span>, num = <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">num_1</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-<span class="token keyword">endforeach</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+# zip
+set(L1 one two three four)
+set(L2 1 2 3 4 5)
+foreach(num IN ZIP_LISTS L1 L2)
+message(&quot;word = $&#123;num_0&#125;, num = $&#123;num_1&#125;&quot;)
+endforeach()
+</code></pre>
 <h2 id="第四章-函数"><a href="#第四章-函数" class="headerlink" title="第四章 函数"></a>第四章 函数</h2><p><strong>定义函数的语法</strong></p>
-<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">function</span><span class="token punctuation">(</span>&lt;name<span class="token punctuation">></span> [&lt;argument<span class="token punctuation">></span>...]<span class="token punctuation">)</span>
-&lt;commands<span class="token punctuation">></span><span class="token keyword">endfunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
+<pre><code class="cmake">function(&lt;name&gt; [&lt;argument&gt;...])
+&lt;commands&gt;endfunction()
+</code></pre>
 <p>函数参数<strong>第一个参数是函数名称</strong></p>
-<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20.0</span><span class="token punctuation">)</span>
+<pre><code class="cmake">cmake_minimum_required(VERSION 3.20.0)
 
-<span class="token keyword">function</span><span class="token punctuation">(</span>MyFunc FirstArg<span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"MyFunc Name: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">CMAKE_CURRENT_FUNCTION</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"FirstArg: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">FirstArg</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-    <span class="token keyword">set</span><span class="token punctuation">(</span>FirstArg <span class="token string">"New value"</span><span class="token punctuation">)</span> 
-    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"FirstArg again: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">FirstArg</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"ARGV0: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">ARGV0</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>  <span class="token comment"># 注意: CMake 默认的 ARGV0, ARGV1 等在这里可能没有定义</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"ARGV1: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">ARGV1</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"ARGV2: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">ARGV2</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-<span class="token keyword">endfunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+function(MyFunc FirstArg)
+    message(&quot;MyFunc Name: $&#123;CMAKE_CURRENT_FUNCTION&#125;&quot;)
+    message(&quot;FirstArg: $&#123;FirstArg&#125;&quot;)
+    set(FirstArg &quot;New value&quot;) 
+    message(&quot;FirstArg again: $&#123;FirstArg&#125;&quot;)
+    message(&quot;ARGV0: $&#123;ARGV0&#125;&quot;)  # 注意: CMake 默认的 ARGV0, ARGV1 等在这里可能没有定义
+    message(&quot;ARGV1: $&#123;ARGV1&#125;&quot;)
+    message(&quot;ARGV2: $&#123;ARGV2&#125;&quot;)
+endfunction()
 
-<span class="token keyword">set</span><span class="token punctuation">(</span>FirstArg <span class="token string">"first value"</span><span class="token punctuation">)</span>
-<span class="token function">MyFunc</span><span class="token punctuation">(</span><span class="token punctuation">$&#123;</span>FirstArg<span class="token punctuation">&#125;</span> <span class="token string">"value"</span><span class="token punctuation">)</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"FirstArg: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">FirstArg</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>    <span class="token comment"># 并没有修改,作用域问题</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+set(FirstArg &quot;first value&quot;)
+MyFunc($&#123;FirstArg&#125; &quot;value&quot;)
+message(&quot;FirstArg: $&#123;FirstArg&#125;&quot;)    # 并没有修改,作用域问题
+</code></pre>
 <h2 id="第五章-Scope作用域"><a href="#第五章-Scope作用域" class="headerlink" title="第五章 Scope作用域"></a>第五章 Scope作用域</h2><p>CMake 有两种作用域</p>
 <ol>
 <li>Function scope 函数作用域</li>
 <li>Directory scope 当从<code>add_subdirectory()</code>命令执行嵌套目录中的CMakeLists.txt列表文件时，注意父CMakeLists.txt其中的变量可以被子CMakeLists.txt使用</li>
 </ol>
-<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20.0</span><span class="token punctuation">)</span>
+<pre><code class="cmake">cmake_minimum_required(VERSION 3.20.0)
 
-<span class="token comment"># 定义输出函数</span>
-<span class="token keyword">function</span><span class="token punctuation">(</span>outFunc<span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"-> out: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">Var</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-    <span class="token keyword">set</span><span class="token punctuation">(</span>Var <span class="token number">2</span><span class="token punctuation">)</span>
-    <span class="token function">InFunc</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"&lt;- out: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">Var</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-<span class="token keyword">endfunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+# 定义输出函数
+function(outFunc)
+    message(&quot;-&gt; out: $&#123;Var&#125;&quot;)
+    set(Var 2)
+    InFunc()
+    message(&quot;&lt;- out: $&#123;Var&#125;&quot;)
+endfunction()
 
-<span class="token comment"># 定义输入函数</span>
-<span class="token keyword">function</span><span class="token punctuation">(</span>InFunc<span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"-> In: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">Var</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-    <span class="token keyword">set</span><span class="token punctuation">(</span>Var <span class="token number">3</span><span class="token punctuation">)</span>
-    <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"&lt;- In: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">Var</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-<span class="token keyword">endfunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+# 定义输入函数
+function(InFunc)
+    message(&quot;-&gt; In: $&#123;Var&#125;&quot;)
+    set(Var 3)
+    message(&quot;&lt;- In: $&#123;Var&#125;&quot;)
+endfunction()
 
-<span class="token comment"># 设置全局变量</span>
-<span class="token keyword">set</span><span class="token punctuation">(</span>Var <span class="token number">1</span><span class="token punctuation">)</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"-> Global: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">Var</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
+# 设置全局变量
+set(Var 1)
+message(&quot;-&gt; Global: $&#123;Var&#125;&quot;)
 
-<span class="token comment"># 调用输出函数</span>
-<span class="token function">outFunc</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+# 调用输出函数
+outFunc()
 
-<span class="token comment"># 输出全局变量的值</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"&lt;- Global: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">Var</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+# 输出全局变量的值
+message(&quot;&lt;- Global: $&#123;Var&#125;&quot;)
+</code></pre>
 <h2 id="第六章-宏"><a href="#第六章-宏" class="headerlink" title="第六章 宏"></a>第六章 宏</h2><p><strong>CMake中的宏</strong>,<code>宏是直接把代码替换到调用处</code></p>
-<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">macro</span><span class="token punctuation">(</span>&lt;name<span class="token punctuation">></span> [&lt;argument<span class="token punctuation">></span>...]<span class="token punctuation">)</span>
-&lt;commands<span class="token punctuation">></span>
-<span class="token keyword">endmacro</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="cmake">macro(&lt;name&gt; [&lt;argument&gt;...])
+&lt;commands&gt;
+endmacro()
+</code></pre>
 <p>注意:尽量不要写宏，只要会读就好</p>
-<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.15</span><span class="token punctuation">)</span>
+<pre><code class="cmake">cmake_minimum_required(VERSION 3.15)
 
-<span class="token keyword">macro</span><span class="token punctuation">(</span>Test MyVar<span class="token punctuation">)</span>
-<span class="token keyword">set</span><span class="token punctuation">(</span><span class="token punctuation">$&#123;</span>MyVar<span class="token punctuation">&#125;</span> <span class="token string">"new Value"</span><span class="token punctuation">)</span>   <span class="token comment"># 创建了一个新的变量并赋值</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"args <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">MyVar</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>   
-<span class="token keyword">endmacro</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+macro(Test MyVar)
+set($&#123;MyVar&#125; &quot;new Value&quot;)   # 创建了一个新的变量并赋值
+message(&quot;args $&#123;MyVar&#125;&quot;)   
+endmacro()
 
-<span class="token keyword">set</span> <span class="token punctuation">(</span>MyVar <span class="token string">"old Value"</span><span class="token punctuation">)</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"before macro <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">MyVar</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span>
-<span class="token function">Test</span><span class="token punctuation">(</span>MyVar<span class="token punctuation">)</span>
-<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"after macro <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">MyVar</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
+set (MyVar &quot;old Value&quot;)
+message(&quot;before macro $&#123;MyVar&#125;&quot;)
+Test(MyVar)
+message(&quot;after macro $&#123;MyVar&#125;&quot;)
+</code></pre>
 <h2 id="第七章-CMake构建项目的四种方式"><a href="#第七章-CMake构建项目的四种方式" class="headerlink" title="第七章 CMake构建项目的四种方式"></a>第七章 CMake构建项目的四种方式</h2><h4 id="第一节-直接写入源码路径的方式"><a href="#第一节-直接写入源码路径的方式" class="headerlink" title="第一节: 直接写入源码路径的方式"></a>第一节: 直接写入源码路径的方式</h4><ul>
 <li><code>add_executable</code>中直接写入相对路径,在源码中引入头文件时需要写<strong>相对路径</strong></li>
 </ul>
-<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20</span><span class="token punctuation">)</span>
+<pre><code class="cmake">cmake_minimum_required(VERSION 3.20)
 
-<span class="token keyword">project</span><span class="token punctuation">(</span>animal CXX<span class="token punctuation">)</span>
+project(animal CXX)
 
-<span class="token keyword">add_executable</span><span class="token punctuation">(</span>Animal main.cpp animal/dog.cpp<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+add_executable(Animal main.cpp animal/dog.cpp)
+</code></pre>
 <h4 id="第二节-调用子目录cmake脚本的方法"><a href="#第二节-调用子目录cmake脚本的方法" class="headerlink" title="第二节: 调用子目录cmake脚本的方法"></a>第二节: 调用子目录cmake脚本的方法</h4><ul>
 <li>include方法可以引入子目录中的cmake后缀的配置文件</li>
 <li>将配置加入add_executable中</li>
 </ul>
-<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token comment"># animal.cmake</span>
-<span class="token keyword">set</span><span class="token punctuation">(</span>animal_sources animal/cat.cpp animal/dog.cpp<span class="token punctuation">)</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-
-
-<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token comment"># cmakelists.txt</span>
-<span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20</span><span class="token punctuation">)</span>
-<span class="token keyword">project</span><span class="token punctuation">(</span>animal CXX<span class="token punctuation">)</span>
-<span class="token keyword">include</span><span class="token punctuation">(</span>animal/animal.cmake<span class="token punctuation">)</span>
-<span class="token keyword">add_executable</span><span class="token punctuation">(</span>Animal main.cpp <span class="token punctuation">$&#123;</span>animal_sources<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<pre><code class="cmake"># animal.cmake
+set(animal_sources animal/cat.cpp animal/dog.cpp) 
+</code></pre>
+<pre><code class="cmake"># cmakelists.txt
+cmake_minimum_required(VERSION 3.20)
+project(animal CXX)
+include(animal/animal.cmake)
+add_executable(Animal main.cpp $&#123;animal_sources&#125;)
+</code></pre>
 <h4 id="第三节-CMakeLists嵌套"><a href="#第三节-CMakeLists嵌套" class="headerlink" title="第三节:CMakeLists嵌套"></a>第三节:CMakeLists嵌套</h4><ul>
 <li><code>target_include_directories</code> 头文件目录的声明</li>
 <li><code>target_link_libraries</code> 连接库文件</li>
@@ -935,43 +931,43 @@ message]]<span class="token punctuation">)</span>
 <li><code>add_library(animal SHARED $&#123;SRC&#125;)</code>生成动态库</li>
 <li><code>$&#123;LIBRARY_OUTPUT-PATH&#125;</code>导出目录</li>
 </ul>
-<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20</span><span class="token punctuation">)</span>
-<span class="token keyword">project</span><span class="token punctuation">(</span>Animal CXX<span class="token punctuation">)</span>
+<pre><code class="cmake">cmake_minimum_required(VERSION 3.20)
+project(Animal CXX)
 
 
-<span class="token comment"># 把源文件加入到变量中</span>
-<span class="token keyword">file</span><span class="token punctuation">(</span>GLOB SRC <span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/src/*.cpp<span class="token punctuation">)</span>
-<span class="token keyword">include_directories</span><span class="token punctuation">(</span><span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/include<span class="token punctuation">)</span>
+# 把源文件加入到变量中
+file(GLOB SRC $&#123;PROJECT_SOURCE_DIR&#125;/src/*.cpp)
+include_directories($&#123;PROJECT_SOURCE_DIR&#125;/include)
 
-<span class="token comment"># 生成静态库</span>
-<span class="token comment"># set(LIBRARY_OUTPUT_PATH $&#123;PROJECT_SOURCE_DIR&#125;/a)</span>
-<span class="token comment"># add_library(Animal STATIC $&#123;SRC&#125;)</span>
+# 生成静态库
+# set(LIBRARY_OUTPUT_PATH $&#123;PROJECT_SOURCE_DIR&#125;/a)
+# add_library(Animal STATIC $&#123;SRC&#125;)
 
-<span class="token comment"># 生成动态库</span>
-<span class="token keyword">set</span><span class="token punctuation">(</span><span class="token variable">LIBRARY_OUTPUT_PATH</span> <span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/so<span class="token punctuation">)</span>
-<span class="token keyword">add_library</span><span class="token punctuation">(</span>Animal <span class="token namespace">SHARED</span> <span class="token punctuation">$&#123;</span>SRC<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+# 生成动态库
+set(LIBRARY_OUTPUT_PATH $&#123;PROJECT_SOURCE_DIR&#125;/so)
+add_library(Animal SHARED $&#123;SRC&#125;)
+</code></pre>
 <h3 id="4-cmake使用动态库和静态库"><a href="#4-cmake使用动态库和静态库" class="headerlink" title="4. cmake使用动态库和静态库"></a>4. cmake使用动态库和静态库</h3><p>静态库调用流程</p>
 <ol>
 <li>引入头文件</li>
 <li>连接静态库</li>
 <li>生成可执行二进制文件</li>
 </ol>
-<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20</span><span class="token punctuation">)</span>
-<span class="token keyword">project</span><span class="token punctuation">(</span>Animal CXX<span class="token punctuation">)</span>
+<pre><code class="cmake">cmake_minimum_required(VERSION 3.20)
+project(Animal CXX)
 
-<span class="token comment"># 导入头文件</span>
-<span class="token keyword">include_directories</span><span class="token punctuation">(</span><span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/include<span class="token punctuation">)</span>
-<span class="token comment"># 链接静态库</span>
-<span class="token comment"># link_directories($&#123;PROJECT_SOURCE_DIR&#125;/a)</span>
-<span class="token comment"># link_libraries(Animal)</span>
-<span class="token comment"># add_executable(app main.cpp)</span>
+# 导入头文件
+include_directories($&#123;PROJECT_SOURCE_DIR&#125;/include)
+# 链接静态库
+# link_directories($&#123;PROJECT_SOURCE_DIR&#125;/a)
+# link_libraries(Animal)
+# add_executable(app main.cpp)
 
-<span class="token comment"># 链接动态库</span>
-<span class="token keyword">link_directories</span><span class="token punctuation">(</span><span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/so<span class="token punctuation">)</span>
-<span class="token keyword">add_executable</span><span class="token punctuation">(</span>app main.cpp<span class="token punctuation">)</span>
-<span class="token keyword">target_link_libraries</span><span class="token punctuation">(</span>app <span class="token namespace">PUBLIC</span> Animal<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+# 链接动态库
+link_directories($&#123;PROJECT_SOURCE_DIR&#125;/so)
+add_executable(app main.cpp)
+target_link_libraries(app PUBLIC Animal)
+</code></pre>
 <p><code>生成完成后,可以把可执行文件放到动态库目录下,确保能找到</code></p>
 <h2 id="第九章-cmake和源文件交互"><a href="#第九章-cmake和源文件交互" class="headerlink" title="第九章 cmake和源文件交互"></a>第九章 cmake和源文件交互</h2><ul>
 <li><p>在项目下新建<code>config.h.in</code>文件,里面用宏定义cmake变量<code>#define CMAKE_CXX_STANDARD $&#123;CMAKE_CXX_STANDARD&#125;   // 和源文件交互</code></p>
@@ -983,22 +979,22 @@ message]]<span class="token punctuation">)</span>
 <li><p>然后就可以在源文件中使用宏</p>
 </li>
 </ul>
-<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.20</span><span class="token punctuation">)</span>
-<span class="token keyword">project</span><span class="token punctuation">(</span>Animal CXX<span class="token punctuation">)</span>
+<pre><code class="cmake">cmake_minimum_required(VERSION 3.20)
+project(Animal CXX)
 
-<span class="token comment"># 设置c++版本</span>
-<span class="token keyword">set</span><span class="token punctuation">(</span><span class="token variable">CMAKE_CXX_STANDARD</span> <span class="token number">11</span><span class="token punctuation">)</span>
-<span class="token keyword">set</span><span class="token punctuation">(</span><span class="token variable">CMAKE_CXX_STANDARD_REQUIRED</span> <span class="token boolean">ON</span><span class="token punctuation">)</span>
+# 设置c++版本
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-<span class="token keyword">configure_file</span><span class="token punctuation">(</span>config.h.in config.h<span class="token punctuation">)</span>
-<span class="token keyword">add_subdirectory</span><span class="token punctuation">(</span>animal<span class="token punctuation">)</span>
+configure_file(config.h.in config.h)
+add_subdirectory(animal)
 
-<span class="token keyword">add_executable</span><span class="token punctuation">(</span>Animal main.cpp<span class="token punctuation">)</span>
+add_executable(Animal main.cpp)
 
-<span class="token keyword">target_link_libraries</span><span class="token punctuation">(</span>Animal <span class="token namespace">PUBLIC</span> AnimalLib<span class="token punctuation">)</span>
+target_link_libraries(Animal PUBLIC AnimalLib)
 
-<span class="token keyword">target_include_directories</span><span class="token punctuation">(</span>Animal <span class="token namespace">PUBLIC</span> <span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_BINARY_DIR</span><span class="token punctuation">&#125;</span> <span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/animal<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+target_include_directories(Animal PUBLIC $&#123;PROJECT_BINARY_DIR&#125; $&#123;PROJECT_SOURCE_DIR&#125;/animal)
+</code></pre>
 <h2 id="第十章-cmake条件编译"><a href="#第十章-cmake条件编译" class="headerlink" title="第十章 cmake条件编译"></a>第十章 cmake条件编译</h2><ul>
 <li>通过不同传入参数编译不同的文件<ol>
 <li>用option定义变量</li>
@@ -1536,7 +1532,7 @@ message]]<span class="token punctuation">)</span>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">432.3k</span>&nbsp;字
+                class="white-color">448.8k</span>&nbsp;字
             
             
             
