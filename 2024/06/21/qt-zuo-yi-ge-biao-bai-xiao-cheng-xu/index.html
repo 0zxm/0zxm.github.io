@@ -483,14 +483,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.6k
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    7 分
                 </div>
                 
 
@@ -526,79 +526,78 @@
 <p><img src="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/image-20240128090322689.png" alt="image-20240128090322689"></p>
 <h3 id="关键部分讲解"><a href="#关键部分讲解" class="headerlink" title="关键部分讲解"></a>关键部分讲解</h3><h4 id="添加动画"><a href="#添加动画" class="headerlink" title="添加动画"></a>添加动画</h4><p>使用了qt写好的qmovie类,创建时指定动画资源,设置好播放速度,窗口创建就会开始播放,默认循环播放</p>
 <blockquote>
-<pre><code class="c++"> //添加马里奥动画
- QMovie * mario = new QMovie(&quot;:/mario.gif&quot;);
- ui-&gt;marioLabel-&gt;setMovie(mario);
- ui-&gt;marioLabel-&gt;setScaledContents(true); // 将内容缩放以适应控件大小
- //设置播放速度
- mario-&gt;setSpeed(150);
- mario-&gt;start();
-</code></pre>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;添加马里奥动画
+QMovie * mario &#x3D; new QMovie(&quot;:&#x2F;mario.gif&quot;);
+ui-&gt;marioLabel-&gt;setMovie(mario);
+ui-&gt;marioLabel-&gt;setScaledContents(true); &#x2F;&#x2F; 将内容缩放以适应控件大小
+&#x2F;&#x2F;设置播放速度
+mario-&gt;setSpeed(150);
+mario-&gt;start();
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
 <h4 id="循环逻辑"><a href="#循环逻辑" class="headerlink" title="循环逻辑"></a>循环逻辑</h4><p>这里使用connect链接按钮的点击事件,若是接受了,会弹出一个自定义的yes_next窗口,里面是我写好的从多处收集来的情诗和句子,背景我使用了爱心图片填充</p>
 <p>如果用户点击了不接受,就会创建一个循环对话框,一直监听信号,直到用户点击yes,在弹出yes_next对话框</p>
 <blockquote>
-<pre><code class="c++">// 连接按钮的点击事件
- QObject::connect(ui-&gt;pushButton_Yes, &amp;QPushButton::clicked, [=]()&#123;
-     Yes_Next *y = new Yes_Next;
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 连接按钮的点击事件
+ QObject::connect(ui-&gt;pushButton_Yes, &amp;QPushButton::clicked, [&#x3D;]()&#123;
+     Yes_Next *y &#x3D; new Yes_Next;
      y-&gt;setVisible(true);
      y-&gt;setWindowFlag(Qt::WindowStaysOnTopHint);
-     //y-&gt;setGeometry(100, 100, 400, 400); // 设置窗口位置和大小
+     &#x2F;&#x2F;y-&gt;setGeometry(100, 100, 400, 400); &#x2F;&#x2F; 设置窗口位置和大小
      y-&gt;setGeometry(600,150,400,600);
      y-&gt;show();
      y-&gt;raise();
      this-&gt;close();
-     //exit(0);
+     &#x2F;&#x2F;exit(0);
  &#125;);
- QObject::connect(ui-&gt;pushButton_No, &amp;QPushButton::clicked, [=]()&#123;
+ QObject::connect(ui-&gt;pushButton_No, &amp;QPushButton::clicked, [&#x3D;]()&#123;
 
-     // 用户点击了 &quot;No&quot; 按钮，继续循环
+     &#x2F;&#x2F; 用户点击了 &quot;No&quot; 按钮，继续循环
      while (true) &#123;
          QDialog loopDialog;
          loopDialog.setWindowTitle(&quot;循环对话框&quot;);
          loopDialog.setWindowFlag(Qt::WindowStaysOnTopHint);
          loopDialog.setModal(true);
-         loopDialog.setFixedSize(350, 100); // 设置固定大小
+         loopDialog.setFixedSize(350, 100); &#x2F;&#x2F; 设置固定大小
 
-         QLabel *label = new QLabel(&amp;loopDialog);
-         label-&gt;setText(&quot;你在考虑下,接不接受&quot;); // 确保文本正确设置
+         QLabel *label &#x3D; new QLabel(&amp;loopDialog);
+         label-&gt;setText(&quot;你在考虑下,接不接受&quot;); &#x2F;&#x2F; 确保文本正确设置
          label-&gt;show();
-         label-&gt;setGeometry(120, 10, 150, 35); // 设置位置和大小
-         //label-&gt;setStyleSheet(&quot;border: 1px solid black&quot;); // 添加边框以显示位置
-         QPalette palette = label-&gt;palette();
-         palette.setColor(QPalette::Text, QColor(0, 0, 255)); // 设置文本颜色为蓝色
+         label-&gt;setGeometry(120, 10, 150, 35); &#x2F;&#x2F; 设置位置和大小
+         &#x2F;&#x2F;label-&gt;setStyleSheet(&quot;border: 1px solid black&quot;); &#x2F;&#x2F; 添加边框以显示位置
+         QPalette palette &#x3D; label-&gt;palette();
+         palette.setColor(QPalette::Text, QColor(0, 0, 255)); &#x2F;&#x2F; 设置文本颜色为蓝色
          label-&gt;setPalette(palette);
 
-         QPushButton *btnYesLoop = new QPushButton(&quot;Yes&quot;, &amp;loopDialog);
-         QPushButton *btnNoLoop = new QPushButton(&quot;No&quot;, &amp;loopDialog);
+         QPushButton *btnYesLoop &#x3D; new QPushButton(&quot;Yes&quot;, &amp;loopDialog);
+         QPushButton *btnNoLoop &#x3D; new QPushButton(&quot;No&quot;, &amp;loopDialog);
          btnYesLoop-&gt;setGeometry(50, 50, 100, 30);
          btnNoLoop-&gt;setGeometry(200, 50, 100, 30);
 
-         // 设置父子关系
+         &#x2F;&#x2F; 设置父子关系
          btnYesLoop-&gt;setParent(&amp;loopDialog);
          btnNoLoop-&gt;setParent(&amp;loopDialog);
 
-         // 连接按钮的点击事件
+         &#x2F;&#x2F; 连接按钮的点击事件
          QObject::connect(btnYesLoop, &amp;QPushButton::clicked, &amp;loopDialog, &amp;QDialog::accept);
          QObject::connect(btnNoLoop, &amp;QPushButton::clicked, &amp;loopDialog, &amp;QDialog::reject);
 
-         // 显示循环对话框
-         if (loopDialog.exec() == QDialog::Accepted) &#123;
-             // 用户点击了 &quot;Yes&quot; 按钮，退出循环
-             Yes_Next *y = new Yes_Next;
-             y-&gt;setGeometry(600, 150, 400, 400); // 设置窗口位置和大小
+         &#x2F;&#x2F; 显示循环对话框
+         if (loopDialog.exec() &#x3D;&#x3D; QDialog::Accepted) &#123;
+             &#x2F;&#x2F; 用户点击了 &quot;Yes&quot; 按钮，退出循环
+             Yes_Next *y &#x3D; new Yes_Next;
+             y-&gt;setGeometry(600, 150, 400, 400); &#x2F;&#x2F; 设置窗口位置和大小
              y-&gt;show();
              y-&gt;raise();
              this-&gt;close();
-             //exit(0);
+             &#x2F;&#x2F;exit(0);
              break;
          &#125;
      &#125;
- &#125;);
-</code></pre>
+ &#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
 <h4 id="yes-next窗口"><a href="#yes-next窗口" class="headerlink" title="yes_next窗口"></a>yes_next窗口</h4><blockquote>
-<pre><code class="c++">#include &quot;yes_next.h&quot;
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &quot;yes_next.h&quot;
 #include &quot;ui_yes_next.h&quot;
 
 Yes_Next::Yes_Next(QWidget *parent)
@@ -608,31 +607,31 @@ Yes_Next::Yes_Next(QWidget *parent)
  ui-&gt;setupUi(this);
  this-&gt;setWindowTitle(&quot;poems&quot;);
 
- /*使用HTML标记：你可以使用HTML标记来在QLabel中显示换行文字。例如，你可以使用&lt;br&gt;标记来表示换行。示例代码如下：
+ &#x2F;*使用HTML标记：你可以使用HTML标记来在QLabel中显示换行文字。例如，你可以使用&lt;br&gt;标记来表示换行。示例代码如下：
      ui-&gt;label-&gt;setText(&quot;第一行文字&lt;br&gt;第二行文字&quot;);
  使用QLabel的setWordWrap方法：你可以使用setWordWrap方法来启用QLabel的自动换行功能。示例代码如下：
      ui-&gt;label-&gt;setText(&quot;这是一段很长的文字，当文字超出label的大小时会自动换行&quot;);
      ui-&gt;label-&gt;setWordWrap(true);
- 这两种方法都可以用来在QLabel中显示换行文字。你可以根据你的需求选择其中一种方法*/
+ 这两种方法都可以用来在QLabel中显示换行文字。你可以根据你的需求选择其中一种方法*&#x2F;
 
- QString poem = &quot;&lt;br&gt;莎士比亚的《十四行诗》：&lt;br&gt;“我能否将你比作夏日？&lt;br&gt;但你比夏日更可爱也更温柔。”&lt;br&gt;&quot;
+ QString poem &#x3D; &quot;&lt;br&gt;莎士比亚的《十四行诗》：&lt;br&gt;“我能否将你比作夏日？&lt;br&gt;但你比夏日更可爱也更温柔。”&lt;br&gt;&quot;
                 &quot;&lt;br&gt;杰拉尔德的《未与你共度一切》：&lt;br&gt;“我曾遇到过无数生灵，曾看过无数美景，&lt;br&gt;这一切却未与你共度，&lt;br&gt;这都会是我的损失；&lt;br&gt;这些事情我都想与你共度，&quot;
                 &quot;&lt;br&gt;这一切才会是我的收获。”&lt;br&gt;&lt;br&gt;波伏娃的《越洋情书》：&lt;br&gt;“唯有你也想见我的时候，我们的见面才有意义。”&lt;br&gt;&lt;br&gt;“犹如飞蛾扑向星星，又如黑夜追求黎明。”&lt;br&gt;&lt;br&gt;“见你第一眼我就沦陷了。”&lt;br&gt;&lt;br&gt;“他是我的南北，&quot;
                 &quot;我的西东，我的工作日，我的礼拜天，我的正午，我的深夜，我的言语，我的歌声。我认为爱可以不朽。”&quot;;
 
  ui-&gt;label-&gt;setText(poem);
  ui-&gt;label-&gt;setStyleSheet(&quot;background-color: pink; font-style: italic; font-family: 华文楷体;&quot;);
- QFont font = ui-&gt;label-&gt;font(); // 获取label的当前字体
- font.setPointSize(16); // 设置字体大小为16
- ui-&gt;label-&gt;setFont(font); // 应用新的字体
+ QFont font &#x3D; ui-&gt;label-&gt;font(); &#x2F;&#x2F; 获取label的当前字体
+ font.setPointSize(16); &#x2F;&#x2F; 设置字体大小为16
+ ui-&gt;label-&gt;setFont(font); &#x2F;&#x2F; 应用新的字体
  ui-&gt;label-&gt;setWordWrap(true);
 
- // 设置背景图片
- QString imagePath = &quot;url(:/loveheart.jfif)&quot;; // 替换成你的图片路径
+ &#x2F;&#x2F; 设置背景图片
+ QString imagePath &#x3D; &quot;url(:&#x2F;loveheart.jfif)&quot;; &#x2F;&#x2F; 替换成你的图片路径
  this-&gt;setStyleSheet(&quot;background-image: &quot;+ imagePath + &quot;; background-position: center; background-attachment: fixed;&quot;);
- /*使用background-size属性来指定背景图片的大小和填充方式。例如，你可以设置为background-size: cover;
-     * 来让背景图片覆盖整个窗口，或者设置为background-size: contain;来让背景图片完整显示在窗口内，不进行裁剪。*/
-    //background-repeat: no-repeat不重复
+ &#x2F;*使用background-size属性来指定背景图片的大小和填充方式。例如，你可以设置为background-size: cover;
+     * 来让背景图片覆盖整个窗口，或者设置为background-size: contain;来让背景图片完整显示在窗口内，不进行裁剪。*&#x2F;
+    &#x2F;&#x2F;background-repeat: no-repeat不重复
 &#125;
 
 
@@ -640,7 +639,7 @@ Yes_Next::~Yes_Next()
 &#123;
     delete ui;
 &#125;
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
 <p>这个窗口里面有使用到一些html和qss之类的知识,我都在注释中写了,看注释就可以</p>
 <h4 id="Qt打包成品"><a href="#Qt打包成品" class="headerlink" title="Qt打包成品"></a>Qt打包成品</h4><p>如果不打包的话,这个程序只能在qt框架中使用,到别人的电脑上不一定能用(缺少依赖环境),所以最好把成品打包,再发给别人</p>
@@ -1179,7 +1178,7 @@ Yes_Next::~Yes_Next()
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">448.8k</span>&nbsp;字
+                class="white-color">432.3k</span>&nbsp;字
             
             
             

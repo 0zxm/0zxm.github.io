@@ -1312,30 +1312,27 @@
 </ul>
 <h2 id="实验题命令"><a href="#实验题命令" class="headerlink" title="实验题命令"></a>实验题命令</h2><h3 id="rip路由配置"><a href="#rip路由配置" class="headerlink" title="rip路由配置"></a>rip路由配置</h3><p>RIP (Routing Information Protocol) 是一种基于距离向量的路由选择协议。<br>其工作原理是：每个路由器都维护一个到所有可能目的地的路由表，包括下一跳路由器和到目的地的跳数。RIP路由器会周期性地或者当网络拓扑变化时向其所有邻接路由器发送自己的路由表。配置示例：</p>
 <ul>
-<li>配置rip路由：</li>
+<li>配置rip路由：<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Router<span class="token operator">></span>enable
+Router<span class="token comment">#configure terminal</span>
+Router<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#router rip</span>
+Router<span class="token punctuation">(</span>config-router<span class="token punctuation">)</span><span class="token comment">#network 192.168.1.0</span>
+Router<span class="token punctuation">(</span>config-router<span class="token punctuation">)</span><span class="token comment">#exit</span>
+Router<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#exit</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
-<pre><code class="shell">Router&gt;enable
-Router#configure terminal
-Router(config)#router rip
-Router(config-router)#network 192.168.1.0
-Router(config-router)#exit
-Router(config)#exit
-</code></pre>
 <ol>
 <li><strong>如何构建交换转发表</strong> 交换机使用 MAC 地址表（也被称为转发表或者 CAM 表）进行帧的转发或者过滤。当交换机接收到一个帧，<strong>它会记录源 MAC 地址和接口</strong>，并将其添加到 <strong>MAC 地址表</strong>中。如果目的 MAC 地址在表中，<strong>交换机就可以直接转发帧到对应的接口</strong>。如果没有，交换机将帧发送到所有的接口（除了源接口）。</li>
 </ol>
 <p><code>VLAN</code> 和<strong>配置</strong>VLAN（Virtual Local Area Network）是一种在物理网络中创建独立广播域的技术。同一个 VLAN 中的主机可以相互通信，但是不同 VLAN 中的主机默认是无法相互通信的。配置示例：</p>
-<pre><code class="shell">Switch&gt;enable 从用户执行模式（User EXEC mode）进入到特权执行
-Switch#configure terminal  特权执行模式进入到全局配置模式
-Switch(config)#vlan 10 #在交换机上创建一个编号为10的VLAN
-Switch(config-vlan)#name VLAN10 #这个命令为VLAN 10设置一个名字（VLAN10）。
-Switch(config-vlan)#exit
-Switch(config)#interface fa0/1
-Switch(config-if)#switchport mode access #设置FastEthernet0/1接口为接入模式。接入模式意味着这个接口只能属于一个VLAN。
-Switch(config-if)#switchport access vlan 10 #这个命令将FastEthernet0/1接口分配到VLAN 10。
-Switch(config-if)#exit 
-Switch(config)#exit
-</code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Switch<span class="token operator">></span>enable 从用户执行模式（User EXEC mode）进入到特权执行
+Switch<span class="token comment">#configure terminal  特权执行模式进入到全局配置模式</span>
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#vlan 10 #在交换机上创建一个编号为10的VLAN</span>
+Switch<span class="token punctuation">(</span>config-vlan<span class="token punctuation">)</span><span class="token comment">#name VLAN10 #这个命令为VLAN 10设置一个名字（VLAN10）。</span>
+Switch<span class="token punctuation">(</span>config-vlan<span class="token punctuation">)</span><span class="token comment">#exit</span>
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#interface fa0/1</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#switchport mode access #设置FastEthernet0/1接口为接入模式。接入模式意味着这个接口只能属于一个VLAN。</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#switchport access vlan 10 #这个命令将FastEthernet0/1接口分配到VLAN 10。</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#exit </span>
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#exit</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ol>
 <li><p><strong>跨 VLAN 转发</strong> 默认情况下，VLAN 是隔离的，也就是说，不同的 VLAN 之间是不能通信的。但是，我们可以通过使用<strong>三层交换机</strong>来实现跨 VLAN 的通信。实际上，这就是在进行路由操作，因为不同的 VLAN 相当于不同的子网。</p>
 </li>
@@ -1343,40 +1340,39 @@ Switch(config)#exit
 </li>
 </ol>
 <p>启用三层交换实现跨vlan转发实验：</p>
-<pre><code class="shell">Switch&gt;enable
-Switch#configure terminal
-Switch(config)#ip routing #启用路由功能
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Switch<span class="token operator">></span>enable
+Switch<span class="token comment">#configure terminal</span>
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#ip routing #启用路由功能</span>
  
-#配置vlan10
-Switch(config)#vlan 10
-Switch(config-vlan)#exit
-#配置vlan20
-Switch(config)#vlan 20
-Switch(config-vlan)#exit
+<span class="token comment">#配置vlan10</span>
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#vlan 10</span>
+Switch<span class="token punctuation">(</span>config-vlan<span class="token punctuation">)</span><span class="token comment">#exit</span>
+<span class="token comment">#配置vlan20</span>
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#vlan 20</span>
+Switch<span class="token punctuation">(</span>config-vlan<span class="token punctuation">)</span><span class="token comment">#exit</span>
  
  
-Switch(config)#interface vlan 10
-Switch(config-if)#ip address 192.168.10.1 255.255.255.0  # 为VLAN10配置SVI
-Switch(config-if)#no shutdown #启动接口
-Switch(config-if)#exit
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#interface vlan 10</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#ip address 192.168.10.1 255.255.255.0  # 为VLAN10配置SVI</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#no shutdown #启动接口</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#exit</span>
  
-Switch(config)#interface vlan 20
-Switch(config-if)#ip address 192.168.20.1 255.255.255.0
-Switch(config-if)#no shutdown
-Switch(config-if)#exit
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#interface vlan 20</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#ip address 192.168.20.1 255.255.255.0</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#no shutdown</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#exit</span>
  
-Switch(config)#interface fa0/1
-Switch(config-if)#switchport mode access
-Switch(config-if)#switchport access vlan 10
-Switch(config-if)#exit
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#interface fa0/1</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#switchport mode access</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#switchport access vlan 10</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#exit</span>
  
-Switch(config)#interface fa0/2
-Switch(config-if)#switchport mode access
-Switch(config-if)#switchport access vlan 20
-Switch(config-if)#exit
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#interface fa0/2</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#switchport mode access</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#switchport access vlan 20</span>
+Switch<span class="token punctuation">(</span>config-if<span class="token punctuation">)</span><span class="token comment">#exit</span>
  
-Switch(config)#exit
-</code></pre>
+Switch<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token comment">#exit</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>简单来说，交换机通过 VLAN 10 和 VLAN 20 分别在 fa0&#x2F;1 和 fa0&#x2F;2 端口上接收到的数据包，会基于数据包的目标 IP 地址，通过配置的 SVI（交换机虚拟接口，即<strong>各 VLAN 的默认网关</strong>）进行路由。</p>
 <p>例如，如果一个数据包在 VLAN 10 （通过 fa0&#x2F;1 端口）进入，目标 IP 是 VLAN 20 中的一个 IP，那么交换机会把这个数据包路由到 VLAN 20（通过 fa0&#x2F;2 端口）去。</p>
 <p>需要注意的是，虽然现在 VLAN 10 和 VLAN 20 可以互相通信，但是这还不意味着 VLAN 内部的主机已经配置好了。主机需要设置正确的 IP 地址、子网掩码、以及<strong>默认网关（对应所在 VLAN 的 默认网关！）</strong>。否则，主机还是无法跨 VLAN 通信。</p>
@@ -1899,7 +1895,7 @@ Switch(config)#exit
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">448.8k</span>&nbsp;字
+                class="white-color">432.3k</span>&nbsp;字
             
             
             
