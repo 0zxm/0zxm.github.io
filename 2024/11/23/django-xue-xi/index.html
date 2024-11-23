@@ -1,0 +1,539 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Django学习 | 0zxm</title><meta name="author" content="0zxm"><meta name="copyright" content="0zxm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Django框架的学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django学习">
+<meta property="og:url" content="https://0zxm.github.io/2024/11/23/django-xue-xi/index.html">
+<meta property="og:site_name" content="0zxm">
+<meta property="og:description" content="Django框架的学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://0zxm.github.io/img/default_cover.jpg">
+<meta property="article:published_time" content="2024-11-23T05:51:37.000Z">
+<meta property="article:modified_time" content="2024-11-23T08:33:54.427Z">
+<meta property="article:author" content="0zxm">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="web框架">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0zxm.github.io/img/default_cover.jpg"><link rel="shortcut icon" href="/favicon.png"><link rel="canonical" href="https://0zxm.github.io/2024/11/23/django-xue-xi/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Django学习',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-11-23 16:33:54'
+}</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">48</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/src/"><i class="fa-fw fas fa-cloud"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comment"></i><span> 说说</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/default_cover.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">0zxm</span></a><a class="nav-page-title" href="/"><span class="site-name">Django学习</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/src/"><i class="fa-fw fas fa-cloud"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comment"></i><span> 说说</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Django学习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-23T05:51:37.000Z" title="发表于 2024-11-23 13:51:37">2024-11-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T08:33:54.427Z" title="更新于 2024-11-23 16:33:54">2024-11-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/web%E5%BC%80%E5%8F%91/">web开发</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Django-快速入门"><a href="#Django-快速入门" class="headerlink" title="Django 快速入门"></a>Django 快速入门</h2><ol>
+<li>使用最新版本 Django4.2LTS 版本,3 年内不需要更换版本</li>
+<li>由浅入深讲解，浅显易懂</li>
+<li>课程大纲全面包含 Django 框架知识点，内容丰富全面细致</li>
+<li>知识点结合项目实战实现全栈项目应用</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1fh4y1Z7jp">视频教程</a></p>
+<p>Django 官网(文档): <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/">https://docs.djangoproject.com/zh-hans/</a></p>
+<p>Django 是一个开放源代码的 Web 应用框架，由 Python 写成。采用了 MTV 的框架模式，即<code>模型M，视图V和模版T</code></p>
+<p>它最初是被开发来用于管理劳伦斯出版集团旗下的一些以新闻内容为主的网站的，即是 CMS(内容管理系统)软件。</p>
+<p>并于 2005 年 7 月在 BSD 许可证下发布。这套框架是以比利时的吉普赛爵士吉他手 Django Reinhardt 来命名的。</p>
+<p>2020 年，Django 3.0 发布</p>
+<p>2022 年，Django 4.0 发布。Django4.0 将支持 Python3.8、3.9 与 3.10</p>
+<p>2023 年，Django 4.2LTS 发布，长期支持版本，会维护 3 年，在企业中我们建议使用 LTS 版本</p>
+<p>Django 每 2 年会推出全新的大版本。</p>
+<h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><h3 id="1-创建虚拟环境"><a href="#1-创建虚拟环境" class="headerlink" title="1. 创建虚拟环境"></a>1. 创建虚拟环境</h3><ol>
+<li><p>打开<code>cmd</code></p>
+</li>
+<li><p>安装<code>virtualenv</code>,使用<code>pip install virtualenv virtualenvwrapper-win</code>,Linux 下不用写<code>-win</code></p>
+</li>
+<li><p><code>workon</code> 查看虚拟环境</p>
+<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">workon<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><code>mkvirtualenv</code>创建新的虚拟环境</p>
+<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">mkvirtualenv env<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><code>rmvirtualenv</code>删除虚拟环境</p>
+</li>
+<li><p><code>workon env</code>进入虚拟环境(使用 cmd 才行)</p>
+</li>
+</ol>
+<h4 id="python-m-venv"><a href="#python-m-venv" class="headerlink" title="python -m venv"></a><code>python -m venv</code></h4><ul>
+<li><p><strong>内置方法</strong>：<code>venv</code> 是 Python 标准库中的模块，因此不需要额外安装。</p>
+</li>
+<li><p><strong>基本功能</strong>：创建一个轻量级的虚拟环境，隔离项目的依赖包。</p>
+</li>
+<li><p>命令示例</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">python <span class="token parameter variable">-m</span> venv myenv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>平台兼容性</strong>：可以在所有支持的 Python 环境中使用。</p>
+</li>
+<li><p><strong>灵活性</strong>：适用于简单的虚拟环境需求，使用简单明了。</p>
+</li>
+</ul>
+<h4 id="mkvirtualenv"><a href="#mkvirtualenv" class="headerlink" title="mkvirtualenv"></a><code>mkvirtualenv</code></h4><ul>
+<li><p><strong>来自第三方库</strong>：<code>mkvirtualenv</code> 是 <code>virtualenvwrapper</code> 的一部分，<code>virtualenvwrapper</code> 是一个为 <code>virtualenv</code> 提供更高层次的封装的工具。</p>
+</li>
+<li><p><strong>附加功能</strong>：提供了更多的功能，如项目管理、容易的环境切换、环境的创建和删除等，支持管理多个虚拟环境。</p>
+</li>
+<li><p><strong>依赖</strong>：需要先安装 <code>virtualenv</code> 和 <code>virtualenvwrapper</code>，这可能需要额外的配置。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mkvirtualenv myenv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>命名规则</strong>：自带命名规则和其他一些便利的功能，使得管理虚拟环境更加便捷。</p>
+</li>
+</ul>
+<h3 id="2-安装-django-可以在虚拟环境中"><a href="#2-安装-django-可以在虚拟环境中" class="headerlink" title="2. 安装 django(可以在虚拟环境中)"></a>2. 安装 django(可以在虚拟环境中)</h3><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">pip install django==4<span class="token punctuation">.</span>2 <span class="token operator">-</span>i https:<span class="token operator">/</span><span class="token operator">/</span>pypi<span class="token punctuation">.</span>tuna<span class="token punctuation">.</span>tsinghua<span class="token punctuation">.</span>edu<span class="token punctuation">.</span>cn/simple<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>(4.2 是 LTS 长期支持版本,推荐使用，如不写则会安装最新版本)</p>
+<p>测试是否安装成功</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip show django<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="3-创建-Django-项目"><a href="#3-创建-Django-项目" class="headerlink" title="3. 创建 Django 项目"></a>3. 创建 Django 项目</h3><p>方式一: 进入到指定要存放项目的目录，执行 <code>django-admin startproject HelloDjango</code> 来创建一个名字为 HelloDjango 的工程</p>
+<p>方式二:使用 Pycharm 专业版创建 Django 项目.</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2024/11/23/django-xue-xi/pycharm%E5%88%9B%E5%BB%BAdjango%E9%A1%B9%E7%9B%AE.png" alt="image-20241123150020267"></p>
+<pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">manage.py：
+	这是Django项目的核心命令行工具。通过这个文件，您可以启动开发服务器、运行数据库迁移、创建数据库表、清理数据库等。例如，python manage.py runserver 会启动开发服务器。
+
+HelloDjango/：
+	这是项目的根目录，通常与项目的主模块同名。
+
+HelloDjango/__init__.py：
+	这个文件使得Python将HelloDjango目录视为一个包。即使这个文件是空的，它也是必需的，因为它告诉Python解释器这个目录应该被视为Python的包。
+
+HelloDjango/settings.py：
+	这个文件包含了项目的配置信息。它定义了Django如何运行，包括数据库配置、时区、使用的应用程序、中间件、模板配置等。
+
+HelloDjango/urls.py：
+	这个文件定义了项目的URL路由。它告诉Django对于每个请求的URL，应该调用哪个视图函数来处理。
+
+HelloDjango/wsgi.py：
+	这个文件是Web服务器网关接口（WSGI）的入口点，用于部署Django项目到生产服务器。WSGI是一个Python标准，用于在服务器和Web应用程序之间传递信息。
+
+HelloDjango/asgi.py：
+	这个文件定义了异步服务器网关接口（ASGI）的入口点。ASGI是Django 3.0引入的，用于支持异步Web应用，这对于提高性能和处理大量并发连接非常有用，特别是在需要长轮询和WebSockets的应用中(类似Tornado异步框架)。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="创建带应用的项目"><a href="#创建带应用的项目" class="headerlink" title="创建带应用的项目"></a>创建带应用的项目</h3><ol>
+<li><p><strong>使用 Django 创建一个带有应用的项目</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装 Django</span>
+pip <span class="token function">install</span> django
+
+<span class="token comment"># 创建一个 Django 项目</span>
+django-admin startproject myproject
+
+<span class="token comment"># 进入项目目录</span>
+<span class="token builtin class-name">cd</span> myproject
+
+<span class="token comment"># 创建一个 Django 应用</span>
+python manage.py startapp myapp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>使用 Flask 创建一个带有应用的项目</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装 Flask</span>
+pip <span class="token function">install</span> Flask
+
+<span class="token comment"># 创建项目目录</span>
+<span class="token function">mkdir</span> myproject
+<span class="token builtin class-name">cd</span> myproject
+
+<span class="token comment"># 创建应用文件</span>
+<span class="token function">touch</span> app.py<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>使用 Node.js 和 Express 创建一个应用项目</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装 Express 生成器</span>
+<span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> express-generator
+
+<span class="token comment"># 创建一个 Express 应用</span>
+express myapp
+
+<span class="token comment"># 进入应用目录并安装依赖</span>
+<span class="token builtin class-name">cd</span> myapp
+<span class="token function">npm</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>使用 Vue CLI 创建一个 Vue.js 项目</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装 Vue CLI</span>
+<span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> @vue/cli
+
+<span class="token comment"># 创建一个 Vue 项目</span>
+vue create myproject<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<h3 id="settings-py"><a href="#settings-py" class="headerlink" title="settings.py"></a>settings.py</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> pathlib <span class="token keyword">import</span> Path
+
+<span class="token comment"># 项目根目录</span>
+<span class="token comment"># Build paths inside the project like this: BASE_DIR / 'subdir'.</span>
+BASE_DIR <span class="token operator">=</span> Path<span class="token punctuation">(</span>__file__<span class="token punctuation">)</span><span class="token punctuation">.</span>resolve<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>parent<span class="token punctuation">.</span>parent
+
+
+<span class="token comment"># Quick-start development settings - unsuitable for production</span>
+<span class="token comment"># See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/</span>
+
+<span class="token comment"># SECURITY WARNING: keep the secret key used in production secret!</span>
+<span class="token comment"># 密钥</span>
+SECRET_KEY <span class="token operator">=</span> <span class="token string">'django-insecure-*x+ln#hax3c-a26$cc*cl2+w#h(6^=%_0reqp^ju!fr$galzd6'</span>
+
+<span class="token comment"># SECURITY WARNING: don't run with debug turned on in production!</span>
+<span class="token comment"># 是否使用调试模式, 开发环境建议设置为True, 生产(上线部署)环境设置为False</span>
+DEBUG <span class="token operator">=</span> <span class="token boolean">True</span>
+
+<span class="token comment"># 允许访问的主机</span>
+<span class="token comment"># * 表示允许所有主机访问,允许任何电脑访问(局域网)</span>
+<span class="token comment"># 上线后可以指定哪些允许</span>
+ALLOWED_HOSTS <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"*"</span><span class="token punctuation">]</span>
+
+
+<span class="token comment"># Application definition</span>
+<span class="token comment"># 定义应用</span>
+INSTALLED_APPS <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token string">'django.contrib.admin'</span><span class="token punctuation">,</span>
+    <span class="token string">'django.contrib.auth'</span><span class="token punctuation">,</span>
+    <span class="token string">'django.contrib.contenttypes'</span><span class="token punctuation">,</span>
+    <span class="token string">'django.contrib.sessions'</span><span class="token punctuation">,</span>
+    <span class="token string">'django.contrib.messages'</span><span class="token punctuation">,</span>
+    <span class="token string">'django.contrib.staticfiles'</span><span class="token punctuation">,</span>
+
+    <span class="token comment"># 自定义应用</span>
+    <span class="token string">"user"</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span>
+
+<span class="token comment"># 中间件</span>
+MIDDLEWARE <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token string">'django.middleware.security.SecurityMiddleware'</span><span class="token punctuation">,</span>
+    <span class="token string">'django.contrib.sessions.middleware.SessionMiddleware'</span><span class="token punctuation">,</span>
+    <span class="token string">'django.middleware.common.CommonMiddleware'</span><span class="token punctuation">,</span>
+    <span class="token string">'django.middleware.csrf.CsrfViewMiddleware'</span><span class="token punctuation">,</span>
+    <span class="token string">'django.contrib.auth.middleware.AuthenticationMiddleware'</span><span class="token punctuation">,</span>
+    <span class="token string">'django.contrib.messages.middleware.MessageMiddleware'</span><span class="token punctuation">,</span>
+    <span class="token string">'django.middleware.clickjacking.XFrameOptionsMiddleware'</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span>
+
+<span class="token comment"># 根路由路径</span>
+ROOT_URLCONF <span class="token operator">=</span> <span class="token string">'DjangoPro1.urls'</span>
+
+<span class="token comment"># 模板配置</span>
+TEMPLATES <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token string">'BACKEND'</span><span class="token punctuation">:</span> <span class="token string">'django.template.backends.django.DjangoTemplates'</span><span class="token punctuation">,</span>
+        <span class="token string">'DIRS'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token string">'APP_DIRS'</span><span class="token punctuation">:</span> <span class="token boolean">True</span><span class="token punctuation">,</span>
+        <span class="token string">'OPTIONS'</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
+            <span class="token string">'context_processors'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+                <span class="token string">'django.template.context_processors.debug'</span><span class="token punctuation">,</span>
+                <span class="token string">'django.template.context_processors.request'</span><span class="token punctuation">,</span>
+                <span class="token string">'django.contrib.auth.context_processors.auth'</span><span class="token punctuation">,</span>
+                <span class="token string">'django.contrib.messages.context_processors.messages'</span><span class="token punctuation">,</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span>
+
+<span class="token comment"># wsgi目录</span>
+WSGI_APPLICATION <span class="token operator">=</span> <span class="token string">'DjangoPro1.wsgi.application'</span>
+
+
+<span class="token comment"># Database</span>
+<span class="token comment"># https://docs.djangoproject.com/en/4.2/ref/settings/#databases</span>
+<span class="token comment"># 数据库</span>
+DATABASES <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token string">'default'</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment"># 只支持关系型数据库</span>
+        <span class="token string">'ENGINE'</span><span class="token punctuation">:</span> <span class="token string">'django.db.backends.sqlite3'</span><span class="token punctuation">,</span>
+        <span class="token string">'NAME'</span><span class="token punctuation">:</span> BASE_DIR <span class="token operator">/</span> <span class="token string">'db.sqlite3'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+
+<span class="token comment"># Password validation</span>
+<span class="token comment"># https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators</span>
+<span class="token comment"># 密码验证</span>
+AUTH_PASSWORD_VALIDATORS <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token string">'NAME'</span><span class="token punctuation">:</span> <span class="token string">'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token string">'NAME'</span><span class="token punctuation">:</span> <span class="token string">'django.contrib.auth.password_validation.MinimumLengthValidator'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token string">'NAME'</span><span class="token punctuation">:</span> <span class="token string">'django.contrib.auth.password_validation.CommonPasswordValidator'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token string">'NAME'</span><span class="token punctuation">:</span> <span class="token string">'django.contrib.auth.password_validation.NumericPasswordValidator'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span>
+
+
+<span class="token comment"># Internationalization</span>
+<span class="token comment"># https://docs.djangoproject.com/en/4.2/topics/i18n/</span>
+<span class="token comment"># 国际化</span>
+LANGUAGE_CODE <span class="token operator">=</span> <span class="token string">'en-us'</span> <span class="token comment"># zh-hans 中文</span>
+
+TIME_ZONE <span class="token operator">=</span> <span class="token string">'UTC'</span>
+
+USE_I18N <span class="token operator">=</span> <span class="token boolean">True</span>
+
+USE_TZ <span class="token operator">=</span> <span class="token boolean">True</span>
+
+
+<span class="token comment"># Static files (CSS, JavaScript, Images)</span>
+<span class="token comment"># https://docs.djangoproject.com/en/4.2/howto/static-files/</span>
+<span class="token comment"># 静态文件</span>
+STATIC_URL <span class="token operator">=</span> <span class="token string">'static/'</span>
+
+<span class="token comment"># Default primary key field type</span>
+<span class="token comment"># https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field</span>
+<span class="token comment"># 默认主键类型a</span>
+DEFAULT_AUTO_FIELD <span class="token operator">=</span> <span class="token string">'django.db.models.BigAutoField'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="4-测试服务器的启动"><a href="#4-测试服务器的启动" class="headerlink" title="4. 测试服务器的启动"></a>4. 测试服务器的启动</h3><p><code>python manage.py runserver [ip:port]</code></p>
+<pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">可以直接进行服务运行 默认执行起来的端口是8000
+
+也可以自己指定ip和端口:
+1.监听机器所有可用 ip(电脑可能有多个内网ip或多个外网ip)
+	python manage.py runserver 0.0.0.0:8000
+
+2.同时在settings.py中将
+	ALLOWED_HOSTS=['*']
+
+3.在其他局域网电脑上可以通过在浏览器输入 Django项目所在电脑的 IP:8000 来访问<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="5-数据迁移"><a href="#5-数据迁移" class="headerlink" title="5. 数据迁移"></a>5. 数据迁移</h3><p><code>迁移的概念:就是将模型迁移到数据库的过程</code></p>
+<p>生成迁移文件: python manage.py makemigrations</p>
+<p>执行迁移: python manage.py migrate</p>
+<blockquote>
+<p>不需要初始化迁移文件夹,每个应用默认有迁移文件夹 migrations</p>
+</blockquote>
+<h3 id="6-创建应用"><a href="#6-创建应用" class="headerlink" title="6. 创建应用"></a>6. 创建应用</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">python manage.py startapp App<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>创建名称为 App 的应用<br>使用应用前需要将应用配置到项目中，<strong>在<code>settings.py</code>中将应用加入到<code>INSTALLED_APPS</code>选项中</strong></p>
+<pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">应用目录介绍:
+__init__·py:
+	其中暂无内容，使得app成为一个包
+admin.py:
+	管理站点模型的声明文件，默认为空
+apps.py:
+	应用信息定义文件，在其中生成了AppConfig，该类用于定义应用名等数据
+models.py:
+	添加模型层数据类文件
+views.py:
+	定义URL相应函数
+migrations包:
+	自动生成，生成迁移文件的
+tests.py:
+	测试代码文件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="7-基本视图"><a href="#7-基本视图" class="headerlink" title="7. 基本视图"></a>7. 基本视图</h3><p><code>首先我们在应用的views.py中建立一个路由响应函数</code></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>http <span class="token keyword">import</span> HttpResponse
+<span class="token keyword">def</span> <span class="token function">welcome</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment"># 视图函数需要带参数request</span>
+	<span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span><span class="token string">'HelloDjango'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment"># 渲染模板的方式(在你的应用新建一个templates文件夹,里面放index.html)</span>
+    <span class="token comment"># return render(request, 'index.html')</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>然后在项目根目录下的urls.py文件中注册路由函数,当有前端请求对应路径时,会交给路由函数处理</code></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>contrib <span class="token keyword">import</span> admin
+<span class="token keyword">from</span> django<span class="token punctuation">.</span>urls <span class="token keyword">import</span> path<span class="token punctuation">,</span>include
+<span class="token keyword">from</span> user<span class="token punctuation">.</span>views <span class="token keyword">import</span> <span class="token operator">*</span>
+
+urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token comment"># 视图函数对应路由</span>
+    <span class="token comment"># 直接访问视图函数,没有访问子路由</span>
+    path<span class="token punctuation">(</span><span class="token string">'welcome/'</span><span class="token punctuation">,</span> welcome<span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token comment"># welcome指你的路由响应函数</span>
+    path<span class="token punctuation">(</span><span class="token string">'admin/'</span><span class="token punctuation">,</span> admin<span class="token punctuation">.</span>site<span class="token punctuation">.</span>urls<span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这样当请求<code>127.0.0.1:8000/welcome/</code>时,会获得 HelloDjango 响应</p>
+<h4 id="使用子路由的响应"><a href="#使用子路由的响应" class="headerlink" title="使用子路由的响应"></a>使用子路由的响应</h4><p><code>在应用app中新建urls.py,结构与根目录下urls.py类似</code></p>
+<p><code>app/urls.py</code></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>urls <span class="token keyword">import</span> path
+<span class="token keyword">from</span> user<span class="token punctuation">.</span>views <span class="token keyword">import</span> <span class="token operator">*</span>
+<span class="token comment"># 子路由</span>
+
+urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token comment"># url路由写法(正则)</span>
+    <span class="token comment"># url(r'^index/'index),</span>
+
+    <span class="token comment"># v2.0,v3.0,v4.x版本的路由写法</span>
+    path<span class="token punctuation">(</span><span class="token string">'welcome/'</span><span class="token punctuation">,</span>welcome<span class="token punctuation">,</span>name<span class="token operator">=</span><span class="token string">'welcome'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    path<span class="token punctuation">(</span><span class="token string">'welcome2/'</span><span class="token punctuation">,</span>welcome2<span class="token punctuation">,</span>name<span class="token operator">=</span><span class="token string">'welcome2'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span>
+
+<span class="token comment"># 子路由写法如下</span>
+urlpatterns <span class="token operator">=</span><span class="token punctuation">[</span>
+	<span class="token comment"># django1.8，2.0正则表达式写法:不再使用,不推荐</span>
+    <span class="token comment"># url(r'^index/$',index),</span>
+	<span class="token comment"># Djangov2.0，v3.0，v4.0写法:常用</span>
+    path<span class="token punctuation">(</span><span class="token string">r'hello/'</span><span class="token punctuation">,</span>hello<span class="token punctuation">,</span>name<span class="token operator">=</span><span class="token string">'hello'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment"># name是这条路由的名字,以后做重定向会用</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>接着我们在 urls.py 中进行注册</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 1.直接访问视图</span>
+<span class="token comment"># path(r'hello/',hello, name='hello'),</span>
+<span class="token comment"># 2.导入App中的子路由urls.py文件</span>
+path<span class="token punctuation">(</span><span class="token string">'app/'</span><span class="token punctuation">,</span>include<span class="token punctuation">(</span><span class="token string">'App.urls'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># 3.使用命名空间</span>
+<span class="token comment">#path('app/',include(('App.urls','App'),namespace='App'))</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这样当我们访问<code>127.0.0.1:8000/app/welcome</code>会返回 welcome,访问<code>127.0.0.1:8000/app/welcome2</code>会返回 welcome2</p>
+<h3 id="前后端交互"><a href="#前后端交互" class="headerlink" title="前后端交互"></a>前后端交互</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2024/11/23/django-xue-xi/%E5%89%8D%E5%90%8E%E7%AB%AF%E4%BA%A4%E4%BA%92.png" alt="	"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2024/11/23/django-xue-xi/Django%E6%A1%86%E6%9E%B6%E6%B5%81%E7%A8%8B.png" alt="image-20241123155328362"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://0zxm.github.io">0zxm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://0zxm.github.io/2024/11/23/django-xue-xi/">https://0zxm.github.io/2024/11/23/django-xue-xi/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://0zxm.github.io" target="_blank">0zxm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a><a class="post-meta__tags" href="/tags/web%E6%A1%86%E6%9E%B6/">web框架</a></div><div class="post-share"><div class="social-share" data-image="/img/default_cover.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2024/11/21/python-zhong-de-import/" title="python中的import"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">python中的import</div></div><div class="info-2"><div class="info-item-1">介绍python中的import机制及其使用方法</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2024/11/21/python-zhong-de-import/" title="python中的import"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-21</div><div class="info-item-2">python中的import</div></div><div class="info-2"><div class="info-item-1">介绍python中的import机制及其使用方法</div></div></div></a><a class="pagination-related" href="/2024/09/09/pyqt-kai-fa-yi-ge-ji-shi-ben/" title="pyqt开发一个记事本"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-09</div><div class="info-item-2">pyqt开发一个记事本</div></div><div class="info-2"><div class="info-item-1">构建一个功能丰富的记事本应用：深入 PyQt5</div></div></div></a><a class="pagination-related" href="/2024/09/02/python-wang-luo-bian-cheng/" title="python网络编程"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-02</div><div class="info-item-2">python网络编程</div></div><div class="info-2"><div class="info-item-1">使用python进行网络编程开发</div></div></div></a><a class="pagination-related" href="/2024/09/07/selenium-zi-dong-hua-qiang-piao-12306/" title="selenium自动化抢票12306"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-07</div><div class="info-item-2">selenium自动化抢票12306</div></div><div class="info-2"><div class="info-item-1">自动化脚本模拟浏览器抢票</div></div></div></a><a class="pagination-related" href="/2024/08/04/scrapy-kuang-jia/" title="scrapy框架"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-04</div><div class="info-item-2">scrapy框架</div></div><div class="info-2"><div class="info-item-1">python爬虫scrapy框架</div></div></div></a><a class="pagination-related" href="/2024/09/03/shu-ju-wa-jue/" title="数据挖掘"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-03</div><div class="info-item-2">数据挖掘</div></div><div class="info-2"><div class="info-item-1">数据挖掘课程笔记</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">0zxm</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">48</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/0zxm"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/0zxm" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:m15813109801@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="http://0zxm.github.io" target="_blank" title="博客"><i class="fab fa-algolia" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Django-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="toc-text">Django 快速入门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83"><span class="toc-text">配置环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-text">1. 创建虚拟环境</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#python-m-venv"><span class="toc-text">python -m venv</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mkvirtualenv"><span class="toc-text">mkvirtualenv</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85-django-%E5%8F%AF%E4%BB%A5%E5%9C%A8%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E4%B8%AD"><span class="toc-text">2. 安装 django(可以在虚拟环境中)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BA-Django-%E9%A1%B9%E7%9B%AE"><span class="toc-text">3. 创建 Django 项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%B8%A6%E5%BA%94%E7%94%A8%E7%9A%84%E9%A1%B9%E7%9B%AE"><span class="toc-text">创建带应用的项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#settings-py"><span class="toc-text">settings.py</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%B5%8B%E8%AF%95%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%90%AF%E5%8A%A8"><span class="toc-text">4. 测试服务器的启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB"><span class="toc-text">5. 数据迁移</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8"><span class="toc-text">6. 创建应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E5%9F%BA%E6%9C%AC%E8%A7%86%E5%9B%BE"><span class="toc-text">7. 基本视图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%AD%90%E8%B7%AF%E7%94%B1%E7%9A%84%E5%93%8D%E5%BA%94"><span class="toc-text">使用子路由的响应</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E5%90%8E%E7%AB%AF%E4%BA%A4%E4%BA%92"><span class="toc-text">前后端交互</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/11/23/django-xue-xi/" title="Django学习"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Django学习"/></a><div class="content"><a class="title" href="/2024/11/23/django-xue-xi/" title="Django学习">Django学习</a><time datetime="2024-11-23T05:51:37.000Z" title="发表于 2024-11-23 13:51:37">2024-11-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/21/python-zhong-de-import/" title="python中的import"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="python中的import"/></a><div class="content"><a class="title" href="/2024/11/21/python-zhong-de-import/" title="python中的import">python中的import</a><time datetime="2024-11-21T06:01:33.000Z" title="发表于 2024-11-21 14:01:33">2024-11-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/06/qt-xie-yi-ge-you-xiang-cheng-xu/" title="Qt写一个邮箱程序"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Qt写一个邮箱程序"/></a><div class="content"><a class="title" href="/2024/11/06/qt-xie-yi-ge-you-xiang-cheng-xu/" title="Qt写一个邮箱程序">Qt写一个邮箱程序</a><time datetime="2024-11-06T03:42:54.000Z" title="发表于 2024-11-06 11:42:54">2024-11-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/26/hexo-geng-huan-zhu-ti-butterfly/" title="Hexo更换主题butterfly"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo更换主题butterfly"/></a><div class="content"><a class="title" href="/2024/10/26/hexo-geng-huan-zhu-ti-butterfly/" title="Hexo更换主题butterfly">Hexo更换主题butterfly</a><time datetime="2024-10-26T12:14:16.000Z" title="发表于 2024-10-26 20:14:16">2024-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/14/javascript-xue-xi/" title="JavaScript学习"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JavaScript学习"/></a><div class="content"><a class="title" href="/2024/10/14/javascript-xue-xi/" title="JavaScript学习">JavaScript学习</a><time datetime="2024-10-14T12:36:08.000Z" title="发表于 2024-10-14 20:36:08">2024-10-14</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/footer.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2024 By 0zxm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
