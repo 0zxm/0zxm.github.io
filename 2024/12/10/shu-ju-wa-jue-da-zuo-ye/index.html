@@ -1,0 +1,792 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>0zxm | 0zxm</title><meta name="author" content="0zxm"><meta name="copyright" content="0zxm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据挖掘大作业1.数据处理在数据预处理阶段，删除无关特征和处理缺失值是非常重要的一步，以确保模型的性能。以下是一些常见的方法和实用示例： 删除无关特征 特征选择: 基于相关性分析和特征重要性评估来删除无关特征。  相关性分析: 可以使用皮尔逊相关系数、协方差矩阵等方法来检查特征与目标变量之间的相关性。通常选择与目标变量相关性较高的特征。  import pandas as pd  # 假设 df">
+<meta property="og:type" content="article">
+<meta property="og:title" content="0zxm">
+<meta property="og:url" content="https://0zxm.github.io/2024/12/10/shu-ju-wa-jue-da-zuo-ye/index.html">
+<meta property="og:site_name" content="0zxm">
+<meta property="og:description" content="数据挖掘大作业1.数据处理在数据预处理阶段，删除无关特征和处理缺失值是非常重要的一步，以确保模型的性能。以下是一些常见的方法和实用示例： 删除无关特征 特征选择: 基于相关性分析和特征重要性评估来删除无关特征。  相关性分析: 可以使用皮尔逊相关系数、协方差矩阵等方法来检查特征与目标变量之间的相关性。通常选择与目标变量相关性较高的特征。  import pandas as pd  # 假设 df">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://0zxm.github.io/img/cover2.jpg">
+<meta property="article:published_time" content="2024-12-10T12:01:27.338Z">
+<meta property="article:modified_time" content="2024-12-12T12:37:42.009Z">
+<meta property="article:author" content="0zxm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0zxm.github.io/img/cover2.jpg"><link rel="shortcut icon" href="/favicon.png"><link rel="canonical" href="https://0zxm.github.io/2024/12/10/shu-ju-wa-jue-da-zuo-ye/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '0zxm',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-12-12 20:37:42'
+}</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/src/"><i class="fa-fw fas fa-cloud"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comment"></i><span> 说说</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover2.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">0zxm</span></a><a class="nav-page-title" href="/"><span class="site-name">0zxm</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/src/"><i class="fa-fw fas fa-cloud"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comment"></i><span> 说说</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">无标题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-10T12:01:27.338Z" title="发表于 2024-12-10 20:01:27">2024-12-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-12T12:37:42.009Z" title="更新于 2024-12-12 20:37:42">2024-12-12</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">4.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>16分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="数据挖掘大作业"><a href="#数据挖掘大作业" class="headerlink" title="数据挖掘大作业"></a>数据挖掘大作业</h2><h3 id="1-数据处理"><a href="#1-数据处理" class="headerlink" title="1.数据处理"></a>1.数据处理</h3><p>在数据预处理阶段，删除无关特征和处理缺失值是非常重要的一步，以确保模型的性能。以下是一些常见的方法和实用示例：</p>
+<h4 id="删除无关特征"><a href="#删除无关特征" class="headerlink" title="删除无关特征"></a>删除无关特征</h4><ol>
+<li><p><strong>特征选择</strong>: 基于相关性分析和特征重要性评估来删除无关特征。</p>
+<ul>
+<li><strong>相关性分析</strong>: 可以使用皮尔逊相关系数、协方差矩阵等方法来检查特征与目标变量之间的相关性。通常选择与目标变量相关性较高的特征。</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+
+<span class="token comment"># 假设 df 是你的数据框</span>
+correlation_matrix <span class="token operator">=</span> df<span class="token punctuation">.</span>corr<span class="token punctuation">(</span><span class="token punctuation">)</span>
+relevant_features <span class="token operator">=</span> correlation_matrix<span class="token punctuation">[</span><span class="token string">'target'</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token builtin">abs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>sort_values<span class="token punctuation">(</span>ascending<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+<span class="token comment"># 选择相关性高于某个阈值的特征</span>
+selected_features <span class="token operator">=</span> relevant_features<span class="token punctuation">[</span>relevant_features <span class="token operator">></span> <span class="token number">0.3</span><span class="token punctuation">]</span><span class="token punctuation">.</span>index<span class="token punctuation">.</span>tolist<span class="token punctuation">(</span><span class="token punctuation">)</span>
+df_selected <span class="token operator">=</span> df<span class="token punctuation">[</span>selected_features<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>模型的重要性评估</strong>: 使用模型（如随机森林、Lasso回归等）来评估特征的重要性，选择重要特征。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>ensemble <span class="token keyword">import</span> RandomForestClassifier
+
+model <span class="token operator">=</span> RandomForestClassifier<span class="token punctuation">(</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+feature_importance <span class="token operator">=</span> model<span class="token punctuation">.</span>feature_importances_
+features <span class="token operator">=</span> X_train<span class="token punctuation">.</span>columns
+important_features <span class="token operator">=</span> <span class="token punctuation">[</span>features<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>feature_importance<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">if</span> feature_importance<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0.1</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<h4 id="处理缺失值"><a href="#处理缺失值" class="headerlink" title="处理缺失值"></a>处理缺失值</h4><ol>
+<li><p><strong>删除缺失值</strong>:</p>
+<ul>
+<li>如果缺失值占很小比例，可以直接删除包含缺失值的行。</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">df<span class="token punctuation">.</span>dropna<span class="token punctuation">(</span>inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>填充缺失值</strong>:</p>
+<ul>
+<li>使用均值、中位数、众数等统计量填充缺失值，适用于数值型特征。</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">df<span class="token punctuation">.</span>fillna<span class="token punctuation">(</span>df<span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>  <span class="token comment"># 用均值填充</span>
+<span class="token comment"># 或者使用中位数</span>
+df<span class="token punctuation">.</span>fillna<span class="token punctuation">(</span>df<span class="token punctuation">.</span>median<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>  <span class="token comment"># 用中位数填充</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>对于分类特征，可以使用众数进行填充。</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">df<span class="token punctuation">[</span><span class="token string">'category_feature'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>fillna<span class="token punctuation">(</span>df<span class="token punctuation">[</span><span class="token string">'category_feature'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>mode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>插值法</strong>:</p>
+<ul>
+<li>对于时间序列数据，可以使用插值法填充缺失值。</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">df<span class="token punctuation">[</span><span class="token string">'value'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>interpolate<span class="token punctuation">(</span>method<span class="token operator">=</span><span class="token string">'linear'</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>使用机器学习模型进行缺失值填充</strong>:</p>
+<ul>
+<li>训练一个模型使用其余已知特征来预测缺失值。这种方法通常更复杂，但在某些情况下可能会更有效。</li>
+</ul>
+</li>
+</ol>
+<h4 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h4><p>下面是一个综合示例：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>model_selection <span class="token keyword">import</span> train_test_split
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>ensemble <span class="token keyword">import</span> RandomForestClassifier
+
+<span class="token comment"># 假设导入了数据</span>
+df <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">'data.csv'</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 删除无关特征</span>
+df<span class="token punctuation">.</span>drop<span class="token punctuation">(</span>columns<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'unnecessary_feature1'</span><span class="token punctuation">,</span> <span class="token string">'unnecessary_feature2'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 处理缺失值</span>
+<span class="token comment"># 对于数值型特征，使用均值填充</span>
+df<span class="token punctuation">.</span>fillna<span class="token punctuation">(</span>df<span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+<span class="token comment"># 对于分类特征，使用众数填充</span>
+df<span class="token punctuation">[</span><span class="token string">'category_feature'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>fillna<span class="token punctuation">(</span>df<span class="token punctuation">[</span><span class="token string">'category_feature'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>mode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 特征选择</span>
+X <span class="token operator">=</span> df<span class="token punctuation">.</span>drop<span class="token punctuation">(</span>columns<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'target'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 预测变量</span>
+y <span class="token operator">=</span> df<span class="token punctuation">[</span><span class="token string">'target'</span><span class="token punctuation">]</span>  <span class="token comment"># 目标</span>
+
+<span class="token comment"># 进一步选择特征（假设已经分离出了X_train和y_train）</span>
+model <span class="token operator">=</span> RandomForestClassifier<span class="token punctuation">(</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+feature_importance <span class="token operator">=</span> model<span class="token punctuation">.</span>feature_importances_
+features <span class="token operator">=</span> X<span class="token punctuation">.</span>columns
+important_features <span class="token operator">=</span> <span class="token punctuation">[</span>features<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>feature_importance<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">if</span> feature_importance<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0.1</span><span class="token punctuation">]</span>
+X_selected <span class="token operator">=</span> X<span class="token punctuation">[</span>important_features<span class="token punctuation">]</span>  <span class="token comment"># 选择重要特征</span>
+
+<span class="token comment"># 接下来就可以进行模型训练和评估了</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-可视化"><a href="#2-可视化" class="headerlink" title="2.可视化"></a>2.可视化</h3><p>可视化特征对结果的影响是理解模型和数据的重要步骤。以下是一些常用的方法和示例，帮助你可视化特征与目标变量之间的关系。</p>
+<h4 id="散点图-Scatter-Plot"><a href="#散点图-Scatter-Plot" class="headerlink" title="散点图 (Scatter Plot)"></a>散点图 (Scatter Plot)</h4><p>对于数值型特征，可以使用散点图来展示特征与目标之间的关系。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+
+<span class="token comment"># 假设 df 是你的数据框，'feature' 是特征名，'target' 是目标变量</span>
+plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>df<span class="token punctuation">[</span><span class="token string">'feature'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> df<span class="token punctuation">[</span><span class="token string">'target'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> alpha<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Scatter plot of Feature vs Target'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'Feature'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'Target'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>grid<span class="token punctuation">(</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="箱线图-Box-Plot"><a href="#箱线图-Box-Plot" class="headerlink" title="箱线图 (Box Plot)"></a>箱线图 (Box Plot)</h4><p>箱线图能够显示特征的分布情况和离群值，适用于分类目标变量的情况。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> seaborn <span class="token keyword">as</span> sns
+
+<span class="token comment"># 假设 'feature' 是特征名，'target' 是目标变量</span>
+plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>boxplot<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">'target'</span><span class="token punctuation">,</span> y<span class="token operator">=</span><span class="token string">'feature'</span><span class="token punctuation">,</span> data<span class="token operator">=</span>df<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Box plot of Feature by Target Class'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="小提琴图-Violin-Plot"><a href="#小提琴图-Violin-Plot" class="headerlink" title="小提琴图 (Violin Plot)"></a>小提琴图 (Violin Plot)</h4><p>小提琴图类似于箱线图，但提供了更丰富的信息，包括数据的分布形状。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>violinplot<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">'target'</span><span class="token punctuation">,</span> y<span class="token operator">=</span><span class="token string">'feature'</span><span class="token punctuation">,</span> data<span class="token operator">=</span>df<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Violin plot of Feature by Target Class'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="特征重要性图-Feature-Importance-Plot"><a href="#特征重要性图-Feature-Importance-Plot" class="headerlink" title="特征重要性图 (Feature Importance Plot)"></a>特征重要性图 (Feature Importance Plot)</h4><p>对于基于树的模型（如随机森林）可以绘制特征重要性图，以显示各个特征对预测的影响。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>ensemble <span class="token keyword">import</span> RandomForestClassifier
+
+<span class="token comment"># 假设你有 X 和 y</span>
+model <span class="token operator">=</span> RandomForestClassifier<span class="token punctuation">(</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+
+feature_importances <span class="token operator">=</span> model<span class="token punctuation">.</span>feature_importances_
+features <span class="token operator">=</span> X<span class="token punctuation">.</span>columns
+
+plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>barh<span class="token punctuation">(</span>features<span class="token punctuation">,</span> feature_importances<span class="token punctuation">,</span> color<span class="token operator">=</span><span class="token string">'skyblue'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Feature Importance from Random Forest'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'Importance'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'Features'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="相关性热图-Correlation-Heatmap"><a href="#相关性热图-Correlation-Heatmap" class="headerlink" title="相关性热图 (Correlation Heatmap)"></a>相关性热图 (Correlation Heatmap)</h4><p>热图可以显示所有特征与目标变量之间的相关性，便于整体查看。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+correlation_matrix <span class="token operator">=</span> df<span class="token punctuation">.</span>corr<span class="token punctuation">(</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>heatmap<span class="token punctuation">(</span>correlation_matrix<span class="token punctuation">,</span> annot<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> fmt<span class="token operator">=</span><span class="token string">".2f"</span><span class="token punctuation">,</span> cmap<span class="token operator">=</span><span class="token string">'coolwarm'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Correlation Heatmap'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="工具使用"><a href="#工具使用" class="headerlink" title="工具使用"></a>工具使用</h4><p>使用像 <code>SHAP</code> 或 <code>LIME</code> 这样的库可以帮助可视化特征对个别预测结果的影响。</p>
+<h5 id="SHAP-SHapley-Additive-exPlanations"><a href="#SHAP-SHapley-Additive-exPlanations" class="headerlink" title="SHAP (SHapley Additive exPlanations)"></a>SHAP (SHapley Additive exPlanations)</h5><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> shap
+
+<span class="token comment"># 训练模型</span>
+model <span class="token operator">=</span> RandomForestClassifier<span class="token punctuation">(</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+
+<span class="token comment"># 创建SHAP解释器</span>
+explainer <span class="token operator">=</span> shap<span class="token punctuation">.</span>TreeExplainer<span class="token punctuation">(</span>model<span class="token punctuation">)</span>
+shap_values <span class="token operator">=</span> explainer<span class="token punctuation">.</span>shap_values<span class="token punctuation">(</span>X<span class="token punctuation">)</span>
+
+<span class="token comment"># 可视化</span>
+shap<span class="token punctuation">.</span>summary_plot<span class="token punctuation">(</span>shap_values<span class="token punctuation">,</span> X<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="LIME-Local-Interpretable-Model-agnostic-Explanations"><a href="#LIME-Local-Interpretable-Model-agnostic-Explanations" class="headerlink" title="LIME (Local Interpretable Model-agnostic Explanations)"></a>LIME (Local Interpretable Model-agnostic Explanations)</h5><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> lime <span class="token keyword">import</span> lime_tabular
+
+<span class="token comment"># 训练LIME解释器</span>
+explainer <span class="token operator">=</span> lime_tabular<span class="token punctuation">.</span>LimeTabularExplainer<span class="token punctuation">(</span>X<span class="token punctuation">.</span>values<span class="token punctuation">,</span> feature_names<span class="token operator">=</span>X<span class="token punctuation">.</span>columns<span class="token punctuation">.</span>tolist<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> class_names<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'target'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+i <span class="token operator">=</span> <span class="token number">0</span>  <span class="token comment"># 选择要解释的样本</span>
+exp <span class="token operator">=</span> explainer<span class="token punctuation">.</span>explain_instance<span class="token punctuation">(</span>X<span class="token punctuation">.</span>values<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> model<span class="token punctuation">.</span>predict_proba<span class="token punctuation">)</span>
+exp<span class="token punctuation">.</span>show_in_notebook<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-特征选择"><a href="#3-特征选择" class="headerlink" title="3. 特征选择"></a>3. 特征选择</h3><p><code>去掉一些不重要的特征后重新训练模型</code>是完全可行的，并且通常是推荐的做法。这个过程被称为<code>特征选择（Feature Selection）</code>。特征选择有以下几个好处：</p>
+<ol>
+<li><p><strong>减少过拟合</strong>：减少特征的数量可以降低模型过拟合的风险，特别是在特征数量多于训练样本的情况下。</p>
+</li>
+<li><p><strong>提高模型性能</strong>：移除不重要的特征可以减少模型训练和预测时的噪声干扰，从而可能提高模型的泛化能力。</p>
+</li>
+<li><p><strong>减少计算成本</strong>：较少的特征意味着模型训练和预测时需要的计算资源和时间更少。</p>
+</li>
+<li><p><strong>提高可解释性</strong>：特征选择可以帮助你理解哪些特征对模型的预测结果有实质性的影响，从而提高模型的可解释性。</p>
+</li>
+</ol>
+<p>以下是进行特征选择并重新训练模型的步骤：</p>
+<ol>
+<li><p><strong>训练随机森林模型</strong>：使用全部特征训练一个随机森林模型。</p>
+</li>
+<li><p><strong>评估特征重要性</strong>：使用模型的<code>feature_importances_</code>属性来评估每个特征的重要性。</p>
+</li>
+<li><p><strong>选择特征</strong>：根据特征重要性分数，选择一个阈值来决定哪些特征是重要的，哪些可以被移除。</p>
+</li>
+<li><p><strong>创建新的特征集</strong>：使用被选为重要的特征创建一个新的特征集。</p>
+</li>
+<li><p><strong>重新训练模型</strong>：使用新的特征集重新训练模型。</p>
+</li>
+<li><p><strong>评估模型性能</strong>：评估新模型的性能，确保移除特征后模型性能没有显著下降。</p>
+</li>
+<li><p><strong>迭代优化</strong>：如果需要，可以迭代这个过程，进一步调整特征选择的阈值，或者尝试不同的特征选择方法。</p>
+</li>
+</ol>
+<p>以下是一个简单的代码示例，展示了如何根据特征重要性重新训练模型：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>ensemble <span class="token keyword">import</span> RandomForestClassifier
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>model_selection <span class="token keyword">import</span> train_test_split
+
+<span class="token comment"># 假设df是你的DataFrame，其中包含了你的数据</span>
+X <span class="token operator">=</span> df<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>  <span class="token comment"># 特征</span>
+y <span class="token operator">=</span> df<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>   <span class="token comment"># 标签</span>
+
+<span class="token comment"># 将数据集分为训练集和测试集</span>
+X_train<span class="token punctuation">,</span> X_test<span class="token punctuation">,</span> y_train<span class="token punctuation">,</span> y_test <span class="token operator">=</span> train_test_split<span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> test_size<span class="token operator">=</span><span class="token number">0.3</span><span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 训练随机森林模型</span>
+forest <span class="token operator">=</span> RandomForestClassifier<span class="token punctuation">(</span>n_estimators<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+forest<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+
+<span class="token comment"># 获取特征重要性</span>
+importances <span class="token operator">=</span> forest<span class="token punctuation">.</span>feature_importances_
+
+<span class="token comment"># 将特征重要性从高到低排序</span>
+indices <span class="token operator">=</span> np<span class="token punctuation">.</span>argsort<span class="token punctuation">(</span>importances<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+<span class="token comment"># 设置阈值，选择重要性较高的特征</span>
+threshold <span class="token operator">=</span> <span class="token number">0.05</span>  <span class="token comment"># 这个阈值可以根据实际情况调整</span>
+selected_features <span class="token operator">=</span> X_train<span class="token punctuation">.</span>columns<span class="token punctuation">[</span>importances <span class="token operator">></span> threshold<span class="token punctuation">]</span>
+
+<span class="token comment"># 使用选择的特征创建新的特征集</span>
+X_train_selected <span class="token operator">=</span> X_train<span class="token punctuation">[</span>selected_features<span class="token punctuation">]</span>
+X_test_selected <span class="token operator">=</span> X_test<span class="token punctuation">[</span>selected_features<span class="token punctuation">]</span>
+
+<span class="token comment"># 使用新的特征集重新训练模型</span>
+forest_selected <span class="token operator">=</span> RandomForestClassifier<span class="token punctuation">(</span>n_estimators<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+forest_selected<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train_selected<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+
+<span class="token comment"># 评估新模型的性能</span>
+<span class="token comment"># 可以使用交叉验证、准确率、F1分数等指标来评估模型性能</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在实际应用中，你可能需要根据模型的性能和业务需求来调整特征选择的策略和阈值。</p>
+<h3 id="4-最终代码-ipynb"><a href="#4-最终代码-ipynb" class="headerlink" title="4. 最终代码(ipynb)"></a>4. 最终代码(ipynb)</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># %% [markdown]</span>
+<span class="token comment"># #### Random Forest 随机森林算法预测房车保险</span>
+<span class="token comment"># </span>
+<span class="token comment"># ##### 一、数据预处理</span>
+<span class="token comment"># </span>
+
+<span class="token comment"># %%</span>
+<span class="token comment"># join()方法</span>
+<span class="token comment"># 该方法用于将序列中的元素以指定的字符连接成一个新的字符串。</span>
+<span class="token comment"># 语法：str.join(sequence)</span>
+
+fruit <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'apple'</span><span class="token punctuation">,</span> <span class="token string">'banana'</span><span class="token punctuation">,</span> <span class="token string">'orange'</span><span class="token punctuation">]</span>
+result <span class="token operator">=</span> <span class="token string">'-'</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>fruit<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+
+<span class="token comment"># %% [markdown]</span>
+<span class="token comment"># - 从 `dictionary.txt` 中读取特征信息,并保存到 csv 文件的头部</span>
+<span class="token comment"># - 将原始数据变成 csv 格式，并保存到本地</span>
+<span class="token comment"># </span>
+
+<span class="token comment"># %%</span>
+<span class="token keyword">def</span> <span class="token function">get_header</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    header <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    header_file <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"./tic/dictionary.txt"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span>
+    <span class="token comment"># 读取第4行到第90行作为header</span>
+    <span class="token keyword">for</span> line <span class="token keyword">in</span> header_file<span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">:</span><span class="token number">89</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+        header<span class="token punctuation">.</span>append<span class="token punctuation">(</span>line<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    header_file<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> header
+
+<span class="token keyword">def</span> <span class="token function">save_data_as_csv</span><span class="token punctuation">(</span>header<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    ticdata <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"./tic/ticdata2000.txt"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span>
+    pridict <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"./tic/ticeval2000.txt"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span>
+    
+    pridict_csv <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"./tic/ticeval2000.csv"</span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span>
+    ticdata_csv <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"./tic/ticdata2000.csv"</span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span>
+    ticdata_csv<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>header<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"\n"</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> line <span class="token keyword">in</span> ticdata<span class="token punctuation">:</span>
+        line <span class="token operator">=</span> line<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"\t"</span><span class="token punctuation">,</span> <span class="token string">","</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"\n"</span>
+        ticdata_csv<span class="token punctuation">.</span>write<span class="token punctuation">(</span>line<span class="token punctuation">)</span>
+    ticdata_csv<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    ticdata<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">for</span> line <span class="token keyword">in</span> pridict<span class="token punctuation">:</span>
+        line <span class="token operator">=</span> line<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"\t"</span><span class="token punctuation">,</span> <span class="token string">","</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"\n"</span>
+        pridict_csv<span class="token punctuation">.</span>write<span class="token punctuation">(</span>line<span class="token punctuation">)</span>
+    pridict_csv<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    pridict<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+save_data_as_csv<span class="token punctuation">(</span>get_header<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>get_header<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># %% [markdown]</span>
+<span class="token comment"># - `查看数据集`</span>
+<span class="token comment"># </span>
+
+<span class="token comment"># %%</span>
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+turing_data <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">'./tic/ticdata2000.csv'</span><span class="token punctuation">)</span>
+turing_data<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment"># 输出数据集的前几行</span>
+<span class="token comment"># print(turing_data.shape) # 输出数据集的大小</span>
+
+<span class="token comment"># %%</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>turing_data<span class="token punctuation">.</span>columns<span class="token punctuation">)</span> <span class="token comment"># 输出数据集的列名</span>
+
+<span class="token comment"># %%</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>turing_data<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># 输出数据集的基本信息</span>
+
+<span class="token comment"># %%</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>turing_data<span class="token punctuation">.</span>describe<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># 输出数据集的描述性统计</span>
+
+<span class="token comment"># %%</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>turing_data<span class="token punctuation">.</span>isnull<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># 输出数据集的缺失值统计</span>
+
+<span class="token comment"># %%</span>
+<span class="token triple-quoted-string string">"""
+在数据预处理阶段，删除无关特征和处理缺失值是非常重要的一步，以确保模型的性能。以下是一些常见的方法和实用示例：
+
+**删除无关特征**
+
+1. 特征选择: 基于相关性分析和特征重要性评估来删除无关特征。
+   - 相关性分析: 可以使用皮尔逊相关系数、协方差矩阵等方法来检查特征与目标变量之间的相关性。通常选择与目标变量相关性较高的特征。
+
+```python
+import pandas as pd
+
+# 假设 df 是你的数据框
+correlation_matrix = df.corr()
+relevant_features = correlation_matrix['target'].abs().sort_values(ascending=False)
+# 选择相关性高于某个阈值的特征
+selected_features = relevant_features[relevant_features > 0.3].index.tolist()
+df_selected = df[selected_features]
+```
+
+2. 模型的重要性评估: 使用模型（如随机森林、Lasso 回归等）来评估特征的重要性，选择重要特征。
+
+```python
+from sklearn.ensemble import RandomForestClassifier
+
+model = RandomForestClassifier()
+model.fit(X_train, y_train)
+feature_importance = model.feature_importances_
+features = X_train.columns
+important_features = [features[i] for i in range(len(feature_importance)) if feature_importance[i] > 0.1]
+```
+
+**处理缺失值**
+
+1. 删除缺失值:
+   - 如果缺失值占很小比例，可以直接删除包含缺失值的行。
+
+```python
+df.dropna(inplace=True)
+```
+
+2. 填充缺失值:
+   - 使用均值、中位数、众数等统计量填充缺失值，适用于数值型特征。
+
+```python
+df.fillna(df.mean(), inplace=True)  # 用均值填充
+# 或者使用中位数
+df.fillna(df.median(), inplace=True)  # 用中位数填充
+```
+
+    - 对于分类特征，可以使用众数进行填充。
+
+```python
+df['category_feature'].fillna(df['category_feature'].mode()[0], inplace=True)
+```
+
+3. 插值法:
+   - 对于时间序列数据，可以使用插值法填充缺失值。
+
+```python
+df['value'].interpolate(method='linear', inplace=True)
+```
+
+4. 使用机器学习模型进行缺失值填充:
+   - 训练一个模型使用其余已知特征来预测缺失值。这种方法通常更复杂，但在某些情况下可能会更有效。
+     """</span>
+
+<span class="token comment"># %% [markdown]</span>
+<span class="token comment"># `可以看出,数据没有缺失值,且数据量较大,可以进行分析`</span>
+<span class="token comment"># </span>
+
+<span class="token comment"># %%</span>
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>ensemble <span class="token keyword">import</span> RandomForestClassifier
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>model_selection <span class="token keyword">import</span> train_test_split<span class="token punctuation">,</span> GridSearchCV<span class="token punctuation">,</span> StratifiedKFold
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>metrics <span class="token keyword">import</span> classification_report
+<span class="token keyword">from</span> imblearn<span class="token punctuation">.</span>over_sampling <span class="token keyword">import</span> ADASYN
+<span class="token keyword">from</span> matplotlib <span class="token keyword">import</span> pyplot <span class="token keyword">as</span> plt
+<span class="token comment"># 假设 turing_data 已经被定义并准备好了</span>
+x <span class="token operator">=</span> turing_data<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>  <span class="token comment"># 特征(去掉最后一列)</span>
+y <span class="token operator">=</span> turing_data<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>  <span class="token comment"># 标签(最后一列)</span>
+
+<span class="token comment"># 将数据集分为训练集和测试集，测试集大小为30%</span>
+X_train<span class="token punctuation">,</span> X_test<span class="token punctuation">,</span> y_train<span class="token punctuation">,</span> y_test <span class="token operator">=</span> train_test_split<span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> test_size<span class="token operator">=</span><span class="token number">0.3</span><span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">42</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 使用ADASYN进行过采样</span>
+adasyn <span class="token operator">=</span> ADASYN<span class="token punctuation">(</span>random_state<span class="token operator">=</span><span class="token number">42</span><span class="token punctuation">)</span>
+X_train<span class="token punctuation">,</span> y_train <span class="token operator">=</span> adasyn<span class="token punctuation">.</span>fit_resample<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span> 
+
+<span class="token comment"># 训练随机森林模型并获取特征重要性</span>
+forest <span class="token operator">=</span> RandomForestClassifier<span class="token punctuation">(</span>n_estimators<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">42</span><span class="token punctuation">)</span>
+forest<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+
+num_iterations <span class="token operator">=</span> <span class="token number">10</span>  <span class="token comment"># 迭代次数</span>
+threshold <span class="token operator">=</span> <span class="token number">0.005</span>  <span class="token comment"># 初始阈值0.005</span>
+
+<span class="token comment"># 使用分层交叉验证</span>
+skf <span class="token operator">=</span> StratifiedKFold<span class="token punctuation">(</span>n_splits<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> iteration <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>num_iterations<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 重新计算特征重要性</span>
+    importances <span class="token operator">=</span> forest<span class="token punctuation">.</span>feature_importances_
+    
+    <span class="token comment"># 根据阈值选择特征</span>
+    selected_features <span class="token operator">=</span> X_train<span class="token punctuation">.</span>columns<span class="token punctuation">[</span>importances <span class="token operator">></span> threshold<span class="token punctuation">]</span>
+    
+    <span class="token comment"># 使用选定的特征创建新的特征集</span>
+    X_train_selected <span class="token operator">=</span> X_train<span class="token punctuation">[</span>selected_features<span class="token punctuation">]</span>
+    X_test_selected <span class="token operator">=</span> X_test<span class="token punctuation">[</span>selected_features<span class="token punctuation">]</span>
+
+    <span class="token comment"># 参数调优的网格</span>
+    param_grid <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">'n_estimators'</span><span class="token punctuation">:</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">'max_depth'</span><span class="token punctuation">:</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">'min_samples_split'</span><span class="token punctuation">:</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">'min_samples_leaf'</span><span class="token punctuation">:</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">'max_features'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"sqrt"</span><span class="token punctuation">,</span> <span class="token string">"log2"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment"># 使用GridSearchCV进行参数调优</span>
+    grid_search <span class="token operator">=</span> GridSearchCV<span class="token punctuation">(</span>estimator<span class="token operator">=</span>RandomForestClassifier<span class="token punctuation">(</span>random_state<span class="token operator">=</span><span class="token number">42</span><span class="token punctuation">)</span><span class="token punctuation">,</span> param_grid<span class="token operator">=</span>param_grid<span class="token punctuation">,</span> cv<span class="token operator">=</span>skf<span class="token punctuation">,</span>n_jobs<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment"># 多线程</span>
+    grid_search<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train_selected<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+
+    <span class="token comment"># 获取最佳参数</span>
+    best_params <span class="token operator">=</span> grid_search<span class="token punctuation">.</span>best_params_
+
+    <span class="token comment"># 使用最佳参数和选定的特征重新训练模型</span>
+    forest_selected <span class="token operator">=</span> RandomForestClassifier<span class="token punctuation">(</span><span class="token operator">**</span>best_params<span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">42</span><span class="token punctuation">)</span>
+    forest_selected<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train_selected<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+
+    <span class="token comment"># 评估模型性能</span>
+    score <span class="token operator">=</span> forest_selected<span class="token punctuation">.</span>score<span class="token punctuation">(</span>X_test_selected<span class="token punctuation">,</span> y_test<span class="token punctuation">)</span>
+    y_pred <span class="token operator">=</span> forest_selected<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>X_test_selected<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>classification_report<span class="token punctuation">(</span>y_test<span class="token punctuation">,</span> y_pred<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'Iteration </span><span class="token interpolation"><span class="token punctuation">&#123;</span>iteration <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">&#125;</span></span><span class="token string">, Accuracy: </span><span class="token interpolation"><span class="token punctuation">&#123;</span>score<span class="token punctuation">&#125;</span></span><span class="token string">'</span></span><span class="token punctuation">)</span>
+    
+    <span class="token comment"># 基于性能调整阈值</span>
+    <span class="token keyword">if</span> score <span class="token operator">&lt;</span> <span class="token number">0.8</span><span class="token punctuation">:</span>  <span class="token comment"># 假设我们的目标准确率是0.8</span>
+        threshold <span class="token operator">*=</span> <span class="token number">0.9</span>  <span class="token comment"># 降低阈值以选择更多特征</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        threshold <span class="token operator">*=</span> <span class="token number">1.1</span>  <span class="token comment"># 提高阈值以选择更少特征</span>
+
+<span class="token comment"># 最终模型已经训练完成，可以使用forest_selected进行预测或进一步分析</span>
+<span class="token comment"># 在计算特征重要性之后，添加可视化</span>
+plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+importances <span class="token operator">=</span> forest<span class="token punctuation">.</span>feature_importances_
+indices <span class="token operator">=</span> np<span class="token punctuation">.</span>argsort<span class="token punctuation">(</span>importances<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>  <span class="token comment"># 降序排列特征</span>
+
+<span class="token comment"># 绘制特征重要性条形图</span>
+plt<span class="token punctuation">.</span>barh<span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span>X_train<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> importances<span class="token punctuation">[</span>indices<span class="token punctuation">]</span><span class="token punctuation">,</span> align<span class="token operator">=</span><span class="token string">'center'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>yticks<span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span>X_train<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> X_train<span class="token punctuation">.</span>columns<span class="token punctuation">[</span>indices<span class="token punctuation">]</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'Feature Importance'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Feature Importance for Random Forest Model'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token comment"># %%</span>
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>ensemble <span class="token keyword">import</span> RandomForestClassifier
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>model_selection <span class="token keyword">import</span> train_test_split<span class="token punctuation">,</span> GridSearchCV<span class="token punctuation">,</span> StratifiedKFold
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>metrics <span class="token keyword">import</span> classification_report
+<span class="token keyword">from</span> imblearn<span class="token punctuation">.</span>over_sampling <span class="token keyword">import</span> ADASYN
+<span class="token keyword">from</span> matplotlib <span class="token keyword">import</span> pyplot <span class="token keyword">as</span> plt
+
+<span class="token comment"># 假设 turing_data 已经被定义并准备好了</span>
+x <span class="token operator">=</span> turing_data<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>  <span class="token comment"># 特征(去掉最后一列)</span>
+y <span class="token operator">=</span> turing_data<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>  <span class="token comment"># 标签(最后一列)</span>
+
+<span class="token comment"># 将数据集分为训练集和测试集，测试集大小为30%</span>
+X_train<span class="token punctuation">,</span> X_test<span class="token punctuation">,</span> y_train<span class="token punctuation">,</span> y_test <span class="token operator">=</span> train_test_split<span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> test_size<span class="token operator">=</span><span class="token number">0.3</span><span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">42</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 使用ADASYN进行过采样</span>
+adasyn <span class="token operator">=</span> ADASYN<span class="token punctuation">(</span>random_state<span class="token operator">=</span><span class="token number">42</span><span class="token punctuation">)</span>
+X_train<span class="token punctuation">,</span> y_train <span class="token operator">=</span> adasyn<span class="token punctuation">.</span>fit_resample<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span> 
+
+<span class="token comment"># 训练随机森林模型并获取特征重要性</span>
+forest <span class="token operator">=</span> RandomForestClassifier<span class="token punctuation">(</span>n_estimators<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">42</span><span class="token punctuation">)</span>
+forest<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+
+num_iterations <span class="token operator">=</span> <span class="token number">10</span>  <span class="token comment"># 迭代次数</span>
+threshold <span class="token operator">=</span> <span class="token number">0.005</span>  <span class="token comment"># 初始阈值</span>
+
+<span class="token comment"># 使用分层交叉验证</span>
+skf <span class="token operator">=</span> StratifiedKFold<span class="token punctuation">(</span>n_splits<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> iteration <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>num_iterations<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 重新计算特征重要性</span>
+    importances <span class="token operator">=</span> forest<span class="token punctuation">.</span>feature_importances_
+    
+    <span class="token comment"># 根据阈值选择特征</span>
+    selected_features <span class="token operator">=</span> X_train<span class="token punctuation">.</span>columns<span class="token punctuation">[</span>importances <span class="token operator">></span> threshold<span class="token punctuation">]</span>
+    
+    <span class="token comment"># 使用选定的特征创建新的特征集</span>
+    X_train_selected <span class="token operator">=</span> X_train<span class="token punctuation">[</span>selected_features<span class="token punctuation">]</span>
+    X_test_selected <span class="token operator">=</span> X_test<span class="token punctuation">[</span>selected_features<span class="token punctuation">]</span>
+
+    <span class="token comment"># 参数调优的网格</span>
+    param_grid <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">'n_estimators'</span><span class="token punctuation">:</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">,</span> <span class="token number">650</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">'max_depth'</span><span class="token punctuation">:</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">'min_samples_split'</span><span class="token punctuation">:</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">'min_samples_leaf'</span><span class="token punctuation">:</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">'max_features'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"sqrt"</span><span class="token punctuation">,</span> <span class="token string">"log2"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment"># 使用GridSearchCV进行参数调优</span>
+    grid_search <span class="token operator">=</span> GridSearchCV<span class="token punctuation">(</span>estimator<span class="token operator">=</span>RandomForestClassifier<span class="token punctuation">(</span>random_state<span class="token operator">=</span><span class="token number">42</span><span class="token punctuation">)</span><span class="token punctuation">,</span> param_grid<span class="token operator">=</span>param_grid<span class="token punctuation">,</span> cv<span class="token operator">=</span>skf<span class="token punctuation">,</span>n_jobs<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    grid_search<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train_selected<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+
+    <span class="token comment"># 获取最佳参数</span>
+    best_params <span class="token operator">=</span> grid_search<span class="token punctuation">.</span>best_params_
+
+    <span class="token comment"># 使用最佳参数和选定的特征重新训练模型</span>
+    forest_selected <span class="token operator">=</span> RandomForestClassifier<span class="token punctuation">(</span><span class="token operator">**</span>best_params<span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">42</span><span class="token punctuation">)</span>
+    forest_selected<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train_selected<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+
+    <span class="token comment"># 评估模型性能</span>
+    score <span class="token operator">=</span> forest_selected<span class="token punctuation">.</span>score<span class="token punctuation">(</span>X_test_selected<span class="token punctuation">,</span> y_test<span class="token punctuation">)</span> <span class="token comment"># 测试集上的准确率</span>
+    y_pred <span class="token operator">=</span> forest_selected<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>X_test_selected<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>classification_report<span class="token punctuation">(</span>y_test<span class="token punctuation">,</span> y_pred<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'Iteration </span><span class="token interpolation"><span class="token punctuation">&#123;</span>iteration <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">&#125;</span></span><span class="token string">, Accuracy: </span><span class="token interpolation"><span class="token punctuation">&#123;</span>score<span class="token punctuation">&#125;</span></span><span class="token string">'</span></span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 基于性能调整阈值</span>
+    <span class="token keyword">if</span> score <span class="token operator">&lt;</span> <span class="token number">0.9</span><span class="token punctuation">:</span>  <span class="token comment"># 假设我们的目标准确率是0.9</span>
+        threshold <span class="token operator">*=</span> <span class="token number">0.9</span>  <span class="token comment"># 降低阈值以选择更多特征</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        threshold <span class="token operator">*=</span> <span class="token number">1.1</span>  <span class="token comment"># 提高阈值以选择更少特征</span>
+
+<span class="token triple-quoted-string string">""" # 最终模型已经训练完成，可以使用forest_selected进行预测或进一步分析
+# 在计算特征重要性之后，添加可视化
+plt.figure(figsize=(30, 18))
+importances = forest.feature_importances_
+indices = np.argsort(importances)[::-1]  # 降序排列特征
+
+# 绘制特征重要性条形图
+plt.barh(range(X_train.shape[1]), importances[indices], align='center')
+plt.yticks(range(X_train.shape[1]), X_train.columns[indices])
+plt.xlabel('Feature Importance')
+plt.title('Feature Importance for Random Forest Model')
+plt.show()
+ """</span>
+<span class="token comment"># 最终模型已经训练完成，可以使用forest_selected进行预测或进一步分析</span>
+<span class="token comment"># 在计算特征重要性之后，添加可视化</span>
+plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 调整图形大小以适应显示十个特征</span>
+importances <span class="token operator">=</span> forest<span class="token punctuation">.</span>feature_importances_
+indices <span class="token operator">=</span> np<span class="token punctuation">.</span>argsort<span class="token punctuation">(</span>importances<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>  <span class="token comment"># 降序排列特征</span>
+
+<span class="token comment"># 只选择前10个最重要的特征</span>
+top_indices <span class="token operator">=</span> indices<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">10</span><span class="token punctuation">]</span>
+
+<span class="token comment"># 绘制特征重要性条形图</span>
+plt<span class="token punctuation">.</span>barh<span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span> importances<span class="token punctuation">[</span>top_indices<span class="token punctuation">]</span><span class="token punctuation">,</span> align<span class="token operator">=</span><span class="token string">'center'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>yticks<span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span> X_train<span class="token punctuation">.</span>columns<span class="token punctuation">[</span>top_indices<span class="token punctuation">]</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'Feature Importance'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Top 10 Feature Importance for Random Forest Model'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token comment"># %%</span>
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>metrics <span class="token keyword">import</span> accuracy_score<span class="token punctuation">,</span> precision_score<span class="token punctuation">,</span> recall_score<span class="token punctuation">,</span> f1_score
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>ensemble <span class="token keyword">import</span> RandomForestClassifier
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>model_selection <span class="token keyword">import</span> train_test_split
+
+<span class="token comment"># 最佳参数(从0 - 500)是max_depth=7, n_estimators=450, min_samples_split=2, min_samples_leaf=1, max_features='sqrt'    </span>
+rfc <span class="token operator">=</span> RandomForestClassifier<span class="token punctuation">(</span>max_depth<span class="token operator">=</span><span class="token number">7</span><span class="token punctuation">,</span> n_estimators<span class="token operator">=</span><span class="token number">800</span><span class="token punctuation">,</span> min_samples_split<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> min_samples_leaf<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> max_features<span class="token operator">=</span><span class="token string">'sqrt'</span><span class="token punctuation">)</span>
+rfc<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+y_pred <span class="token operator">=</span> rfc<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>X_test<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Accuracy:"</span><span class="token punctuation">,</span> accuracy_score<span class="token punctuation">(</span>y_test<span class="token punctuation">,</span> y_pred<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Precision:"</span><span class="token punctuation">,</span> precision_score<span class="token punctuation">(</span>y_test<span class="token punctuation">,</span> y_pred<span class="token punctuation">,</span> average<span class="token operator">=</span><span class="token string">'weighted'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Recall:"</span><span class="token punctuation">,</span> recall_score<span class="token punctuation">(</span>y_test<span class="token punctuation">,</span> y_pred<span class="token punctuation">,</span> average<span class="token operator">=</span><span class="token string">'weighted'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"F1-score:"</span><span class="token punctuation">,</span> f1_score<span class="token punctuation">(</span>y_test<span class="token punctuation">,</span> y_pred<span class="token punctuation">,</span> average<span class="token operator">=</span><span class="token string">'weighted'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 预测 预测集</span>
+pridict_data <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">'./tic/ticeval2000.csv'</span><span class="token punctuation">,</span>header<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span>
+<span class="token comment"># print(pridict_data.head())</span>
+pridict_data <span class="token operator">=</span> pridict_data<span class="token punctuation">.</span>values
+<span class="token keyword">print</span><span class="token punctuation">(</span>pridict_data<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>
+
+<span class="token comment"># 预测结果</span>
+y_pred <span class="token operator">=</span> rfc<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>pridict_data<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>y_pred<span class="token punctuation">)</span>
+f <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'./tic/tictgts2000.txt'</span><span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span>
+gts <span class="token operator">=</span> f<span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span>
+f<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># 计算准确率</span>
+count <span class="token operator">=</span> <span class="token number">0</span>
+positive <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>y_pred<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> y_pred<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token builtin">int</span><span class="token punctuation">(</span>gts<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        count <span class="token operator">+=</span> <span class="token number">1</span>
+    <span class="token keyword">if</span> <span class="token builtin">int</span><span class="token punctuation">(</span>gts<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
+        positive <span class="token operator">+=</span> <span class="token number">1</span>
+        
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"猜中率:"</span><span class="token punctuation">,</span> count<span class="token operator">/</span>positive<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://0zxm.github.io">0zxm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://0zxm.github.io/2024/12/10/shu-ju-wa-jue-da-zuo-ye/">https://0zxm.github.io/2024/12/10/shu-ju-wa-jue-da-zuo-ye/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://0zxm.github.io" target="_blank">0zxm</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/cover2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2024/12/06/da-duan-cun-chu-he-xiao-duan/" title="大端存储和小端"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">大端存储和小端</div></div><div class="info-2"><div class="info-item-1">大端存储和小端存储的区别</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">0zxm</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/0zxm"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/0zxm" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:m15813109801@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="http://0zxm.github.io" target="_blank" title="博客"><i class="fab fa-algolia" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%A4%A7%E4%BD%9C%E4%B8%9A"><span class="toc-text">数据挖掘大作业</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="toc-text">1.数据处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%97%A0%E5%85%B3%E7%89%B9%E5%BE%81"><span class="toc-text">删除无关特征</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E7%BC%BA%E5%A4%B1%E5%80%BC"><span class="toc-text">处理缺失值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-text">示例代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-text">2.可视化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%A3%E7%82%B9%E5%9B%BE-Scatter-Plot"><span class="toc-text">散点图 (Scatter Plot)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%B1%E7%BA%BF%E5%9B%BE-Box-Plot"><span class="toc-text">箱线图 (Box Plot)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%8F%E6%8F%90%E7%90%B4%E5%9B%BE-Violin-Plot"><span class="toc-text">小提琴图 (Violin Plot)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E9%87%8D%E8%A6%81%E6%80%A7%E5%9B%BE-Feature-Importance-Plot"><span class="toc-text">特征重要性图 (Feature Importance Plot)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%80%A7%E7%83%AD%E5%9B%BE-Correlation-Heatmap"><span class="toc-text">相关性热图 (Correlation Heatmap)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8"><span class="toc-text">工具使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#SHAP-SHapley-Additive-exPlanations"><span class="toc-text">SHAP (SHapley Additive exPlanations)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#LIME-Local-Interpretable-Model-agnostic-Explanations"><span class="toc-text">LIME (Local Interpretable Model-agnostic Explanations)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9"><span class="toc-text">3. 特征选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9C%80%E7%BB%88%E4%BB%A3%E7%A0%81-ipynb"><span class="toc-text">4. 最终代码(ipynb)</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/12/10/shu-ju-wa-jue-da-zuo-ye/" title="无标题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无标题"/></a><div class="content"><a class="title" href="/2024/12/10/shu-ju-wa-jue-da-zuo-ye/" title="无标题">无标题</a><time datetime="2024-12-10T12:01:27.338Z" title="发表于 2024-12-10 20:01:27">2024-12-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/06/da-duan-cun-chu-he-xiao-duan/" title="大端存储和小端"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="大端存储和小端"/></a><div class="content"><a class="title" href="/2024/12/06/da-duan-cun-chu-he-xiao-duan/" title="大端存储和小端">大端存储和小端</a><time datetime="2024-12-06T09:08:33.000Z" title="发表于 2024-12-06 17:08:33">2024-12-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/04/promise-ji-zhu/" title="Promise技术"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Promise技术"/></a><div class="content"><a class="title" href="/2024/12/04/promise-ji-zhu/" title="Promise技术">Promise技术</a><time datetime="2024-12-04T15:46:37.000Z" title="发表于 2024-12-04 23:46:37">2024-12-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/02/ajax/" title="Ajax"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Ajax"/></a><div class="content"><a class="title" href="/2024/12/02/ajax/" title="Ajax">Ajax</a><time datetime="2024-12-02T15:46:37.000Z" title="发表于 2024-12-02 23:46:37">2024-12-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/02/markdown-yu-fa-gui-ze/" title="markdown的使用说明"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="markdown的使用说明"/></a><div class="content"><a class="title" href="/2024/12/02/markdown-yu-fa-gui-ze/" title="markdown的使用说明">markdown的使用说明</a><time datetime="2024-12-02T03:24:58.000Z" title="发表于 2024-12-02 11:24:58">2024-12-02</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/footer.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2024 By 0zxm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
