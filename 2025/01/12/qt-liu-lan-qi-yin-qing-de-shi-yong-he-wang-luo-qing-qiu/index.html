@@ -1,0 +1,433 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Qt浏览器引擎的使用和网络请求 | 0zxm</title><meta name="author" content="0zxm"><meta name="copyright" content="0zxm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="使用 Qt(c++)框架发送网络请求，并使用浏览器引擎展示网页内容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qt浏览器引擎的使用和网络请求">
+<meta property="og:url" content="https://0zxm.github.io/2025/01/12/qt-liu-lan-qi-yin-qing-de-shi-yong-he-wang-luo-qing-qiu/index.html">
+<meta property="og:site_name" content="0zxm">
+<meta property="og:description" content="使用 Qt(c++)框架发送网络请求，并使用浏览器引擎展示网页内容。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://0zxm.github.io/img/default_cover.jpg">
+<meta property="article:published_time" content="2025-01-12T03:04:20.000Z">
+<meta property="article:modified_time" content="2025-01-12T03:53:37.269Z">
+<meta property="article:author" content="0zxm">
+<meta property="article:tag" content="Qt">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0zxm.github.io/img/default_cover.jpg"><link rel="shortcut icon" href="/favicon.png"><link rel="canonical" href="https://0zxm.github.io/2025/01/12/qt-liu-lan-qi-yin-qing-de-shi-yong-he-wang-luo-qing-qiu/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: 0zxm","link":"链接: ","source":"来源: 0zxm","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Qt浏览器引擎的使用和网络请求',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-01-12 11:53:37'
+}</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">47</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/src/"><i class="fa-fw fas fa-cloud"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comment"></i><span> 说说</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/default_cover.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">0zxm</span></a><a class="nav-page-title" href="/"><span class="site-name">Qt浏览器引擎的使用和网络请求</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/src/"><i class="fa-fw fas fa-cloud"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comment"></i><span> 说说</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Qt浏览器引擎的使用和网络请求</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-12T03:04:20.000Z" title="发表于 2025-01-12 11:04:20">2025-01-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-01-12T03:53:37.269Z" title="更新于 2025-01-12 11:53:37">2025-01-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/GUI%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/">GUI程序开发</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Qt-网络请求"><a href="#Qt-网络请求" class="headerlink" title="Qt 网络请求"></a>Qt 网络请求</h2><p>在 Qt 中,发送网络请求可以有多种方式，例如使用 QTcpSocket 类，QHttp 类，QNetworkAccessManager 类等。我们在这里使用 QNetworkAccessManager 类来发送网络请求。</p>
+<h3 id="网络请求流程"><a href="#网络请求流程" class="headerlink" title="网络请求流程"></a>网络请求流程</h3><ol>
+<li>创建 <code>QNetworkAccessManager</code> 对象。</li>
+<li>创建 <code>QNetworkRequest</code> 对象，设置请求的 <code>URL</code>。</li>
+<li>使用 <code>QNetworkAccessManager 对象发起网络请求，并设置相应的回调函数</code>。</li>
+<li>等待网络请求完成。</li>
+<li>处理网络请求的结果。</li>
+</ol>
+<h3 id="QUrl-类"><a href="#QUrl-类" class="headerlink" title="QUrl 类"></a>QUrl 类</h3><p><code>QUrl</code> 是 Qt 框架中用于处理和解析统一资源定位符（URL）的类。它可以表示一个 URL，并提供了一系列的方法来访问和修改 URL 的各个组成部分，比如协议（scheme）、主机名（host）、端口号（port）、路径（path）、查询字符串（query）和片段（fragment）等。</p>
+<h4 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h4><ul>
+<li><strong>解析 URL</strong>：将字符串解析为 URL 的各个组成部分。</li>
+<li><strong>构建 URL</strong>：从各个组成部分构建一个完整的 URL。</li>
+<li><strong>访问和修改 URL 组件</strong>：提供方法访问和修改 URL 的各个部分。</li>
+<li><strong>编码和解码</strong>：对 URL 进行编码和解码，确保 URL 符合规范。</li>
+</ul>
+<h4 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h4><ul>
+<li><p><strong>构造函数</strong>：</p>
+<ul>
+<li><code>QUrl()</code>：创建一个空的 URL。</li>
+<li><code>QUrl(const QString &amp;url, QUrl::ParsingMode mode = QUrl::TolerantMode)</code>：从字符串创建一个 URL。</li>
+<li><code>QUrl(const QUrl &amp;other)</code>：从另一个 <code>QUrl</code> 对象创建一个 URL。</li>
+</ul>
+</li>
+<li><p><strong>访问 URL 组件</strong>：</p>
+<ul>
+<li><code>scheme()</code>：返回 URL 的协议部分。</li>
+<li><code>host()</code>：返回 URL 的主机名部分。</li>
+<li><code>port(int defaultPort = -1)</code>：返回 URL 的端口号部分。</li>
+<li><code>path()</code>：返回 URL 的路径部分。</li>
+<li><code>query()</code>：返回 URL 的查询字符串部分。</li>
+<li><code>fragment()</code>：返回 URL 的片段部分。</li>
+</ul>
+</li>
+<li><p><strong>修改 URL 组件</strong>：</p>
+<ul>
+<li><code>setScheme(const QString &amp;scheme)</code>：设置 URL 的协议部分。</li>
+<li><code>setHost(const QString &amp;host)</code>：设置 URL 的主机名部分。</li>
+<li><code>setPort(int port)</code>：设置 URL 的端口号部分。</li>
+<li><code>setPath(const QString &amp;path)</code>：设置 URL 的路径部分。</li>
+<li><code>setQuery(const QString &amp;query)</code>：设置 URL 的查询字符串部分。</li>
+<li><code>setFragment(const QString &amp;fragment)</code>：设置 URL 的片段部分。</li>
+</ul>
+</li>
+<li><p><strong>编码和解码</strong>：</p>
+<ul>
+<li><code>toEncoded(QUrl::FormattingOptions options = QUrl::FullyEncoded)</code>：将 URL 编码为字节序列。</li>
+<li><code>fromEncoded(const QByteArray &amp;encodedUrl, QUrl::ParsingMode mode = QUrl::TolerantMode)</code>：从编码的字节序列创建一个 URL。</li>
+</ul>
+</li>
+<li><p><strong>其他方法</strong>：</p>
+<ul>
+<li><code>isValid()</code>：检查 URL 是否有效。</li>
+<li><code>isEmpty()</code>：检查 URL 是否为空。</li>
+<li><code>isLocalFile()</code>：检查 URL 是否表示本地文件。</li>
+<li><code>toLocalFile()</code>：将 URL 转换为本地文件路径。</li>
+</ul>
+</li>
+</ul>
+<h3 id="QNetworkAccessManager-类"><a href="#QNetworkAccessManager-类" class="headerlink" title="QNetworkAccessManager 类"></a>QNetworkAccessManager 类</h3><p><code>QNetworkAccessManager</code> 类是 Qt 框架中用于管理网络请求的类。它负责发送网络请求，接收网络响应，并管理网络连接。</p>
+<h4 id="主要功能-1"><a href="#主要功能-1" class="headerlink" title="主要功能"></a>主要功能</h4><ul>
+<li><strong>发送网络请求</strong>：使用 <code>QNetworkAccessManager</code> 对象发起网络请求，并设置相应的回调函数。</li>
+<li><strong>接收网络响应</strong>：当网络请求完成时，<code>QNetworkAccessManager</code> 对象会调用相应的回调函数，并将网络响应传递给回调函数。</li>
+<li><strong>管理网络连接</strong>：<code>QNetworkAccessManager</code> 对象会自动管理网络连接，包括创建连接、发送数据、接收数据、关闭连接等。</li>
+</ul>
+<h4 id="常用方法-1"><a href="#常用方法-1" class="headerlink" title="常用方法"></a>常用方法</h4><ul>
+<li><p><strong>构造函数</strong>：</p>
+<ul>
+<li><code>QNetworkAccessManager()</code>：创建一个空的 <code>QNetworkAccessManager</code> 对象。</li>
+</ul>
+</li>
+<li><p><strong>发送网络请求</strong>：</p>
+<ul>
+<li><code>QNetworkReply *get(const QNetworkRequest &amp;request)</code>：发送一个 HTTP GET 请求。</li>
+<li><code>QNetworkReply *post(const QNetworkRequest &amp;request, const QByteArray &amp;data)</code>：发送一个 HTTP POST 请求。</li>
+<li><code>QNetworkReply *head(const QNetworkRequest &amp;request)</code>：发送一个 HTTP HEAD 请求。</li>
+<li><code>QNetworkReply *put(const QNetworkRequest &amp;request, const QByteArray &amp;data)</code>：发送一个 HTTP PUT 请求。</li>
+<li><code>QNetworkReply *deleteResource(const QNetworkRequest &amp;request)</code>：发送一个 HTTP DELETE 请求。</li>
+<li><code>QNetworkReply *sendCustomRequest(const QNetworkRequest &amp;request, const QByteArray &amp;verb, const QByteArray &amp;data)</code>：发送一个自定义请求。</li>
+</ul>
+</li>
+<li><p><strong>设置回调函数</strong>：</p>
+<ul>
+<li><code>void setOperation(QNetworkAccessManager::Operation operation, const QNetworkRequest &amp;request, QNetworkAccessManager::OperationCallback callback = 0)</code>：设置网络请求的操作类型和请求信息，并设置相应的回调函数。</li>
+<li><code>void finished(QNetworkReply *reply)</code>：当网络请求完成时，调用此回调函数。</li>
+<li><code>void networkAccessibleChanged(QNetworkAccessManager::NetworkAccessibility accessibility)</code>：当网络连接状态改变时，调用此回调函数。</li>
+</ul>
+</li>
+<li><p><strong>其他方法</strong>：</p>
+<ul>
+<li><code>QNetworkConfigurationManager *configurationManager()</code>：返回 <code>QNetworkConfigurationManager</code> 对象，用于管理网络配置。</li>
+<li><code>QNetworkCookieJar *cookieJar()</code>：返回 <code>QNetworkCookieJar</code> 对象，用于管理网络 cookie。</li>
+<li><code>QNetworkDiskCache *cache()</code>：返回 <code>QNetworkDiskCache</code> 对象，用于管理网络缓存。</li>
+<li><code>QNetworkReply *createRequest(QNetworkAccessManager::Operation operation, const QNetworkRequest &amp;request)</code>：创建一个网络请求。</li>
+<li><code>void setCache(QNetworkDiskCache *cache)</code>：设置 <code>QNetworkDiskCache</code> 对象，用于管理网络缓存。</li>
+<li><code>void setCookieJar(QNetworkCookieJar *cookieJar)</code>：设置 <code>QNetworkCookieJar</code> 对象，用于管理网络 cookie。</li>
+</ul>
+</li>
+</ul>
+<h2 id="QtWebEngine-引擎"><a href="#QtWebEngine-引擎" class="headerlink" title="QtWebEngine 引擎"></a>QtWebEngine 引擎</h2><p>在 Qt 中，有几种方法可以渲染浏览器界面，主要取决于你使用的 Qt 版本和具体需求。以下是一些常见的方法：</p>
+<h3 id="1-使用-QWebEngineView（推荐）"><a href="#1-使用-QWebEngineView（推荐）" class="headerlink" title="1. 使用 QWebEngineView（推荐）"></a>1. 使用 <code>QWebEngineView</code>（推荐）</h3><p><code>QWebEngineView</code> 是基于 Chromium 浏览器引擎的控件，适用于 Qt 5.4 及以后的版本。它提供了强大的网页渲染能力，支持 HTML5、CSS3 和 JavaScript。</p>
+<blockquote>
+<p>首先使用<code>MSVC2019</code>创建项目,然后在<code>.pro</code>文件中添加 <code>QT += webenginewidgets</code></p>
+</blockquote>
+<h4 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h4><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QApplication></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QWebEngineView></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    QApplication <span class="token function">app</span><span class="token punctuation">(</span>argc<span class="token punctuation">,</span> argv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    QWebEngineView view<span class="token punctuation">;</span>
+    view<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span><span class="token function">QUrl</span><span class="token punctuation">(</span><span class="token string">"https://www.example.com"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    view<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> app<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-使用-QWebView（已废弃）"><a href="#2-使用-QWebView（已废弃）" class="headerlink" title="2. 使用 QWebView（已废弃）"></a>2. 使用 <code>QWebView</code>（已废弃）</h3><p><code>QWebView</code> 是基于 WebKit 的控件，适用于 Qt 5.0 到 5.4 的版本。从 Qt 5.6 开始，<code>QWebView</code> 被废弃，推荐使用 <code>QWebEngineView</code>。</p>
+<h4 id="示例代码-1"><a href="#示例代码-1" class="headerlink" title="示例代码"></a>示例代码</h4><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QApplication></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QWebView></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    QApplication <span class="token function">app</span><span class="token punctuation">(</span>argc<span class="token punctuation">,</span> argv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    QWebView view<span class="token punctuation">;</span>
+    view<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span><span class="token function">QUrl</span><span class="token punctuation">(</span><span class="token string">"https://www.example.com"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    view<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> app<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-使用-QAxWidget（仅限-Windows）"><a href="#3-使用-QAxWidget（仅限-Windows）" class="headerlink" title="3. 使用 QAxWidget（仅限 Windows）"></a>3. 使用 <code>QAxWidget</code>（仅限 Windows）</h3><p>如果你使用的是 Qt 5.6 以后的 mingw 版本，由于 <code>QWebEngine</code> 不支持 mingw，可以使用 <code>QAxWidget</code> 控件来嵌入 IE 浏览器。</p>
+<h4 id="示例代码-2"><a href="#示例代码-2" class="headerlink" title="示例代码"></a>示例代码</h4><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QApplication></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QAxWidget></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    QApplication <span class="token function">app</span><span class="token punctuation">(</span>argc<span class="token punctuation">,</span> argv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    QAxWidget <span class="token operator">*</span>axWidget <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">QAxWidget</span><span class="token punctuation">(</span><span class="token string">"Shell.Explorer"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    axWidget<span class="token operator">-></span><span class="token function">dynamicCall</span><span class="token punctuation">(</span><span class="token string">"Navigate2(const QString&amp;)"</span><span class="token punctuation">,</span> <span class="token string">"https://www.example.com"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    axWidget<span class="token operator">-></span><span class="token function">resize</span><span class="token punctuation">(</span><span class="token number">800</span><span class="token punctuation">,</span> <span class="token number">600</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    axWidget<span class="token operator">-></span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> app<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="4-使用-QtWebEngine-模块"><a href="#4-使用-QtWebEngine-模块" class="headerlink" title="4. 使用 QtWebEngine 模块"></a>4. 使用 <code>QtWebEngine</code> 模块</h3><p><code>QtWebEngine</code> 模块提供了 C++ 类和 QML 类型，用于呈现 HTML、XHTML 和 SVG 文档，支持 CSS 和 JavaScript。</p>
+<h4 id="示例代码-3"><a href="#示例代码-3" class="headerlink" title="示例代码"></a>示例代码</h4><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QApplication></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QWebEngineView></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    QApplication <span class="token function">app</span><span class="token punctuation">(</span>argc<span class="token punctuation">,</span> argv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    QWebEngineView <span class="token operator">*</span>view <span class="token operator">=</span> <span class="token keyword">new</span> QWebEngineView<span class="token punctuation">;</span>
+    view<span class="token operator">-></span><span class="token function">load</span><span class="token punctuation">(</span><span class="token function">QUrl</span><span class="token punctuation">(</span><span class="token string">"https://www.example.com"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    view<span class="token operator">-></span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> app<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="5-使用-QUltralight（轻量级替代品）"><a href="#5-使用-QUltralight（轻量级替代品）" class="headerlink" title="5. 使用 QUltralight（轻量级替代品）"></a>5. 使用 <code>QUltralight</code>（轻量级替代品）</h3><p><code>QUltralight</code> 是 <code>Qt WebEngine</code> 和 <code>Qt WebKit</code> 的一个轻量级替代品，提供了一个可嵌入到应用程序中的 Web 界面。</p>
+<h4 id="示例代码-4"><a href="#示例代码-4" class="headerlink" title="示例代码"></a>示例代码</h4><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QApplication></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QUltralightView></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    QApplication <span class="token function">app</span><span class="token punctuation">(</span>argc<span class="token punctuation">,</span> argv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    QUltralightView view<span class="token punctuation">;</span>
+    view<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span><span class="token function">QUrl</span><span class="token punctuation">(</span><span class="token string">"https://www.example.com"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    view<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> app<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>**推荐使用 <code>QWebEngineView</code>**：适用于大多数现代 Qt 应用程序，支持最新的 Web 技术。</li>
+<li>**使用 <code>QWebView</code>**：仅适用于旧版本的 Qt（5.0-5.4）。</li>
+<li>**使用 <code>QAxWidget</code>**：仅限 Windows 平台，适用于不支持 <code>QWebEngine</code> 的 mingw 版本。</li>
+<li>**使用 <code>QUltralight</code>**：轻量级替代品，适用于需要更小体积的应用程序。</li>
+</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="QNetworkAccessManager的使用"><a href="#QNetworkAccessManager的使用" class="headerlink" title="QNetworkAccessManager的使用"></a>QNetworkAccessManager的使用</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token class-name">Widget</span><span class="token double-colon punctuation">::</span><span class="token function">Widget</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent<span class="token punctuation">)</span>
+    <span class="token operator">:</span> <span class="token function">QWidget</span><span class="token punctuation">(</span>parent<span class="token punctuation">)</span>
+    <span class="token punctuation">,</span> <span class="token function">ui</span><span class="token punctuation">(</span><span class="token keyword">new</span> Ui<span class="token double-colon punctuation">::</span>Widget<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    ui<span class="token operator">-></span><span class="token function">setupUi</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    networkacessmanager <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">QNetworkAccessManager</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ui<span class="token operator">-></span>textBrowser<span class="token operator">-></span><span class="token function">setStyleSheet</span><span class="token punctuation">(</span><span class="token string">"border : 2px solid blue"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ui<span class="token operator">-></span>textBrowser<span class="token operator">-></span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"请在下方输入你的url地址"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">connect</span><span class="token punctuation">(</span>networkacessmanager<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QNetworkAccessManager<span class="token double-colon punctuation">::</span>finished<span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">]</span><span class="token punctuation">(</span> QNetworkReply <span class="token operator">*</span>reply<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>reply<span class="token operator">-></span><span class="token function">error</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> QNetworkReply<span class="token double-colon punctuation">::</span>NoError<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            QByteArray data <span class="token operator">=</span> reply<span class="token operator">-></span><span class="token function">readAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">qDebug</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">"Page content:"</span> <span class="token operator">&lt;&lt;</span> data<span class="token punctuation">;</span>
+            ui<span class="token operator">-></span>textBrowser<span class="token operator">-></span><span class="token function">append</span><span class="token punctuation">(</span><span class="token class-name">QString</span><span class="token double-colon punctuation">::</span><span class="token function">fromUtf8</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            cout <span class="token operator">&lt;&lt;</span> <span class="token string">"append"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">else</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token function">qDebug</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">"Error:"</span> <span class="token operator">&lt;&lt;</span> reply<span class="token operator">-></span><span class="token function">errorString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        reply<span class="token operator">-></span><span class="token function">deleteLater</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+
+<span class="token comment">/* ...... */</span>
+<span class="token keyword">void</span> <span class="token class-name">Widget</span><span class="token double-colon punctuation">::</span><span class="token function">on_pushButton_clicked</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    QString urlstr <span class="token operator">=</span> ui<span class="token operator">-></span>lineEdit<span class="token operator">-></span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trimmed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> urlstr <span class="token punctuation">;</span>
+    QUrl <span class="token function">url</span><span class="token punctuation">(</span>urlstr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>url<span class="token punctuation">.</span><span class="token function">isValid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        networkacessmanager<span class="token operator">-></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token function">QNetworkRequest</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 向url发送请求</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="QWebEngineWidget使用"><a href="#QWebEngineWidget使用" class="headerlink" title="QWebEngineWidget使用"></a>QWebEngineWidget使用</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"widget.h"</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QApplication></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QWebEngineView></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    QApplication <span class="token function">a</span><span class="token punctuation">(</span>argc<span class="token punctuation">,</span> argv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Widget w<span class="token punctuation">;</span>
+    w<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span><span class="token function">QUrl</span><span class="token punctuation">(</span><span class="token string">"https://baidu.com"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    w<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> a<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://0zxm.github.io">0zxm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://0zxm.github.io/2025/01/12/qt-liu-lan-qi-yin-qing-de-shi-yong-he-wang-luo-qing-qiu/">https://0zxm.github.io/2025/01/12/qt-liu-lan-qi-yin-qing-de-shi-yong-he-wang-luo-qing-qiu/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://0zxm.github.io" target="_blank">0zxm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Qt/">Qt</a></div><div class="post-share"><div class="social-share" data-image="/img/default_cover.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/01/09/cpp-wang-luo-tong-xin-zhi-feng-zhuang-http-xie-yi/" title="cpp网络通信之封装http协议"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">cpp网络通信之封装http协议</div></div><div class="info-2"><div class="info-item-1">使用WinSock2的API封装出http协议便于使用</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/01/01/qlabel-tian-jia-dian-ji-chu-li/" title="QLabel添加点击处理"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-01</div><div class="info-item-2">QLabel添加点击处理</div></div><div class="info-2"><div class="info-item-1">Qt框架中添加QLabel的点击事件</div></div></div></a><a class="pagination-related" href="/2024/11/06/qt-xie-yi-ge-you-xiang-cheng-xu/" title="Qt写一个邮箱程序"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-06</div><div class="info-item-2">Qt写一个邮箱程序</div></div><div class="info-2"><div class="info-item-1">使用Qt(c++)框架开发一个图形化邮件发送界面程序</div></div></div></a><a class="pagination-related" href="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/" title="qt做一个表白小程序"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-21</div><div class="info-item-2">qt做一个表白小程序</div></div><div class="info-2"><div class="info-item-1">使用Qt(c++)框架开发一个图形化界面程序</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">0zxm</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">47</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/0zxm"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/0zxm" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:m15813109801@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="http://0zxm.github.io" target="_blank" title="博客"><i class="fab fa-algolia" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Qt-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82"><span class="toc-text">Qt 网络请求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B"><span class="toc-text">网络请求流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#QUrl-%E7%B1%BB"><span class="toc-text">QUrl 类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="toc-text">主要功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">常用方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#QNetworkAccessManager-%E7%B1%BB"><span class="toc-text">QNetworkAccessManager 类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD-1"><span class="toc-text">主要功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-1"><span class="toc-text">常用方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QtWebEngine-%E5%BC%95%E6%93%8E"><span class="toc-text">QtWebEngine 引擎</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BD%BF%E7%94%A8-QWebEngineView%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-text">1. 使用 QWebEngineView（推荐）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-text">示例代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8-QWebView%EF%BC%88%E5%B7%B2%E5%BA%9F%E5%BC%83%EF%BC%89"><span class="toc-text">2. 使用 QWebView（已废弃）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81-1"><span class="toc-text">示例代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BD%BF%E7%94%A8-QAxWidget%EF%BC%88%E4%BB%85%E9%99%90-Windows%EF%BC%89"><span class="toc-text">3. 使用 QAxWidget（仅限 Windows）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81-2"><span class="toc-text">示例代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%BD%BF%E7%94%A8-QtWebEngine-%E6%A8%A1%E5%9D%97"><span class="toc-text">4. 使用 QtWebEngine 模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81-3"><span class="toc-text">示例代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E4%BD%BF%E7%94%A8-QUltralight%EF%BC%88%E8%BD%BB%E9%87%8F%E7%BA%A7%E6%9B%BF%E4%BB%A3%E5%93%81%EF%BC%89"><span class="toc-text">5. 使用 QUltralight（轻量级替代品）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81-4"><span class="toc-text">示例代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text">代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#QNetworkAccessManager%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">QNetworkAccessManager的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#QWebEngineWidget%E4%BD%BF%E7%94%A8"><span class="toc-text">QWebEngineWidget使用</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/01/12/qt-liu-lan-qi-yin-qing-de-shi-yong-he-wang-luo-qing-qiu/" title="Qt浏览器引擎的使用和网络请求"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Qt浏览器引擎的使用和网络请求"/></a><div class="content"><a class="title" href="/2025/01/12/qt-liu-lan-qi-yin-qing-de-shi-yong-he-wang-luo-qing-qiu/" title="Qt浏览器引擎的使用和网络请求">Qt浏览器引擎的使用和网络请求</a><time datetime="2025-01-12T03:04:20.000Z" title="发表于 2025-01-12 11:04:20">2025-01-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/09/cpp-wang-luo-tong-xin-zhi-feng-zhuang-http-xie-yi/" title="cpp网络通信之封装http协议"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="cpp网络通信之封装http协议"/></a><div class="content"><a class="title" href="/2025/01/09/cpp-wang-luo-tong-xin-zhi-feng-zhuang-http-xie-yi/" title="cpp网络通信之封装http协议">cpp网络通信之封装http协议</a><time datetime="2025-01-09T02:57:34.000Z" title="发表于 2025-01-09 10:57:34">2025-01-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/07/c-wang-luo-tong-xin/" title="C++网络通信"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++网络通信"/></a><div class="content"><a class="title" href="/2025/01/07/c-wang-luo-tong-xin/" title="C++网络通信">C++网络通信</a><time datetime="2025-01-07T02:30:30.000Z" title="发表于 2025-01-07 10:30:30">2025-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/05/mindspore-shou-xie-shu-zi-shi-bie/" title="Mindspore手写数字识别"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mindspore手写数字识别"/></a><div class="content"><a class="title" href="/2025/01/05/mindspore-shou-xie-shu-zi-shi-bie/" title="Mindspore手写数字识别">Mindspore手写数字识别</a><time datetime="2025-01-05T11:41:03.000Z" title="发表于 2025-01-05 19:41:03">2025-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/01/tong-xin-yuan-fa-hua-tuo-yuan-ji-yuan-li/" title="同心圆法画椭圆及原理"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="同心圆法画椭圆及原理"/></a><div class="content"><a class="title" href="/2025/01/01/tong-xin-yuan-fa-hua-tuo-yuan-ji-yuan-li/" title="同心圆法画椭圆及原理">同心圆法画椭圆及原理</a><time datetime="2025-01-01T14:50:03.000Z" title="发表于 2025-01-01 22:50:03">2025-01-01</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/footer.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By 0zxm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
