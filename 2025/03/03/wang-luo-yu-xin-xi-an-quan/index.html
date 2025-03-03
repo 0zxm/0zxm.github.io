@@ -1,0 +1,272 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>网络信息安全和密码学 | 0zxm</title><meta name="author" content="0zxm"><meta name="copyright" content="0zxm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="网络信息安全和密码学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络信息安全和密码学">
+<meta property="og:url" content="https://0zxm.github.io/2025/03/03/wang-luo-yu-xin-xi-an-quan/index.html">
+<meta property="og:site_name" content="0zxm">
+<meta property="og:description" content="网络信息安全和密码学">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://0zxm.github.io/img/default_cover.jpg">
+<meta property="article:published_time" content="2025-03-03T11:06:28.000Z">
+<meta property="article:modified_time" content="2025-03-03T12:19:15.615Z">
+<meta property="article:author" content="0zxm">
+<meta property="article:tag" content="密码学">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0zxm.github.io/img/default_cover.jpg"><link rel="shortcut icon" href="/favicon.png"><link rel="canonical" href="https://0zxm.github.io/2025/03/03/wang-luo-yu-xin-xi-an-quan/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: 0zxm","link":"链接: ","source":"来源: 0zxm","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '网络信息安全和密码学',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-03-03 20:19:15'
+}</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">52</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">61</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/src/"><i class="fa-fw fas fa-cloud"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comment"></i><span> 说说</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/default_cover.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">0zxm</span></a><a class="nav-page-title" href="/"><span class="site-name">网络信息安全和密码学</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/src/"><i class="fa-fw fas fa-cloud"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comment"></i><span> 说说</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">网络信息安全和密码学</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-03-03T11:06:28.000Z" title="发表于 2025-03-03 19:06:28">2025-03-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-03T12:19:15.615Z" title="更新于 2025-03-03 20:19:15">2025-03-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/">理论知识</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="网络安全实践和密码学原理"><a href="#网络安全实践和密码学原理" class="headerlink" title="网络安全实践和密码学原理"></a>网络安全实践和密码学原理</h1><h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><ul>
+<li><p><code>网络空间安全</code>：是指保护网络空间环境、组织和用户资产的一系列工具、政策、安全理念、安全防护措施、指导方针、风险管理方法、行动、培训、最佳实践、保证和技术的集合。</p>
+<ul>
+<li><code>组织和用户的资产</code>：包括连接的计算设备、人员、基础设施、应用、服务、通信系统系统，以及网络空间环境中的所有传输和&#x2F;或存储的信息。</li>
+<li><code>网络空间安全</code>力求确保组织和用户的资产在网络空间环境中免受相关安全风险，实现和维护安全属性。总体安全目标包括：可用性(availability) 、完整性(integrity)，包括数据真实性（ <em>authenticity</em> ）和不可否认性(nonrepudiation)、 机密性(confidentiality)</li>
+</ul>
+</li>
+<li><p><code>信息安全</code>：指保护信息的保密性、完整性和可用性。此外，还可能涉及真实性、可问责性、不可否认性和可靠性等其他属性。</p>
+</li>
+<li><p><code>网络安全</code>：保护网络及其服务免受未经授权的修改、破坏或泄露，并确保网络能够正确执行关键功能，没有产生有害副作用。</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1W14y1k7dr/">杜跃进：数据安全是数字化时代安全的基本性问题</a></p>
+<h3 id="第一章-计算机与网络安全概念"><a href="#第一章-计算机与网络安全概念" class="headerlink" title="第一章 计算机与网络安全概念"></a>第一章 计算机与网络安全概念</h3><ul>
+<li><code>计算机安全</code>：对于一个自动化的信息系统，采取保护措施确保信息系统资源(包括硬件、软件、固件、信息&#x2F;数据和通信)的完整性、可用性和保密性。</li>
+</ul>
+<p>这个定义给出了计算机安全最核心的三个关键目标：就是所谓的<code>CIA三元组</code></p>
+<ul>
+<li><p><code>保密性(Confidentiality)</code>该术语包含两个相关的概念: </p>
+<ul>
+<li>数据保密性： 确保隐私或秘密信息不向非授权者泄露，也不被非授权者使用。</li>
+<li>隐私性：确保个人能够控制或确定与其自身相关的哪些信息是可以被收集的、被保存的，这些信息可以由谁来公开以及向谁公开。</li>
+</ul>
+</li>
+<li><p><code>完整性(Integrity)</code>该术语包含两个相关的概念:</p>
+<ul>
+<li>数据完整性 确保信息和程序只能以特定和授权的方式进行改变。</li>
+<li>系统完整性 确保系统以一种正常方式来执行预定的功能，免于有意或无意的非授权操纵。</li>
+</ul>
+</li>
+<li><p><code>可用性(Availabiity)：</code>确保系统能工作迅速，对授权用户不能拒绝服务。确保及时和可靠地访问与使用信息。可用性的缺失是对信息和信息系统访问和使用的中断。</p>
+</li>
+</ul>
+<p>虽然CIA三元组对于安全目标的定义已经很清晰，但在某些安全领域中，还需要一些额外的安全概念来呈现更完整的安全定义:</p>
+<ul>
+<li><code>真实性(Authenticity)</code>：一个实体是真实性的、可被验证的和可被信任的特性。对传输信息来说，信息和信息的来源是正确的。也就是说，能够验证那个用户是否是他声称的那个人，以及系统的每个输入是否均来自可信任的信源。</li>
+<li><code>可追溯性(Accountability)</code>：这一安全目标要求实体的行为可以唯一追溯到该实体。这一属性支持不可否认性、阻止、故障隔离、入侵检测和预防、事后恢复，以及法律诉讼。因为无法得到真正安全的系统，我们必须能够追查到对安全泄露负有责任的一方。系统必须保留他们活动的记录，以允许事后的审计分析，进而跟踪安全事件或解决争执。</li>
+</ul>
+<p>下图是<code>网络与计算机安全的基本需求</code>：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250303195200737.png" alt="image-20250303195200737"></p>
+<p><strong>OSI安全架构</strong></p>
+<p>OSI安全架构主要关注安全攻击、安全机制和安全服务，它们简短地定义如下:</p>
+<ul>
+<li>安全攻击：任何危及信息系统安全的行为。</li>
+<li>安全机制：用来检测、阻止攻击或从攻击状态恢复到正常状态的过程(或实现该过程的设备)。</li>
+<li>安全服务：加强数据处理系统和信息传输的安全性的一种处理过程或通信服务，目的在于利用一种或多种安全机制进行反攻击。</li>
+</ul>
+<p><strong>安全攻击</strong></p>
+<p>安全攻击是安全威胁的具体体现</p>
+<p>安全威胁可以分为内部威胁和外部威胁，70%-80%的安全事件来自于内部。安全威胁也可以分为自然威胁和人为威胁，精心设计的人为威胁最大。人为威胁分为无意威胁(偶然事故)和有意威胁(恶意攻击)，恶意攻击分为<code>主动攻击</code>和<code>被动攻击</code></p>
+<ol>
+<li><code>被动攻击的特性是对传输进行窃听和监测。</code>攻击者的目标是获得传输的信息信息内容的泄露和流量分析都属于被动攻击。</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250303200121388.png" alt="image-20250303200121388"></p>
+<p>假如信源和信宿在网络通信的过程中，被某一中间设备窃听了信息，但是没有对数据信息更改，对于信源和信宿双方来说，信息并没有问题，能正常使用，所以难以检测。</p>
+<p><code>第二种被动攻击是流量分析</code>，它有些微妙。假设我们已使用方法隐藏了消息内容或其他信息流量，攻击者即使截获了消息也无法从消息中获得信息。<code>加密是隐藏内容的常用技巧。</code>但即使我们对消息进行了恰当的加密保护，攻击者仍具有可能获取这些消息的一些模式。攻击者可以确定通信主机的身份和位置，可以观察到传输消息的频率和长度。攻击者可以利用这些信息来判断通信的某些性质。</p>
+<p>这时候可以<code>改变传输信息的模式</code>，假设平时传输信息都是在晚上发送，并且是较小数据的信息，那么就可以在白天发送无意义字符来混淆视线</p>
+<ol start="2">
+<li><code>主动攻击包括对数据流进行修改或伪造数据流</code>，具体分为四类:伪装、重放、消息修改和拒绝服务。</li>
+</ol>
+<ul>
+<li>伪装是指某实体假装成其他实体。伪装攻击通常还包含其他形式的主动攻击。例如，截获认证信息，并在认证信息完成合法验证之后进行重放，无权限的实体就可通过冒充有权限的实体获得额外的权限。</li>
+<li>重放是指攻击者未经授权地将截获的信息再次发送。</li>
+<li>消息修改指未经授权地修改合法消息的一部分，或延迟消息的传输，或改变消息的顺序,例如,将消息“Allow John Smith to read confidential file accounts”修改为“Allow Fred Brownto read confidential file accounts”.</li>
+<li>拒绝服务阻止或禁止对通信设施的正常使用或管理。这种攻击可能针对的是具体的目标。比如，某实体可能会查禁所有发向某目的地(如安全审计服务)的消息。拒绝服务的另一种形式是破坏整个网络，或者使网络失效，或者使网络过载以降低其性能。</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250303200951941.png" alt="image-20250303200951941"></p>
+<p><strong>安全服务</strong></p>
+<p><code>X.800</code>将安全服务定义为: 在通信开放系统中，为系统或数据传输提供足够安全的协议层服务。RFC4949中给出的定义可能更清晰:安全服务是一种由系统提供的对系统资源进行特殊保护的处理或通信服务;安全服务通过安全机制来实现安全策略。</p>
+<p>X.800将这些服务分为5类共14个特定服务(参见表1.2)。下面逐类进行讨论。</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250303201650738.png" alt="image-20250303201650738" style="zoom:80%;">
+
+<p><strong>安全机制</strong></p>
+<p>表1.3列出了X.800中定义的安全机制。</p>
+<p>由表可知，这些安全机制分为两类:一类在特定的协议层实现，如TCP或应用层协议;另一类不属于任何协议层或安全服务。本书将在后文中详述这些机制，在此暂时只讨论加密机制的定义。X.800对可逆和不可逆加密机制进行了区分。可逆加密机制是一种单纯的加密算法，数据可以加密和解密。不可逆加密机制包括用于数字签名和消息认证应用中的散列算法与消息认证码。</p>
+<p>根据X.800中的定义，表14给出了安全服务和安全机制的关系</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250303201909908.png" alt="image-20250303201909908"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://0zxm.github.io">0zxm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://0zxm.github.io/2025/03/03/wang-luo-yu-xin-xi-an-quan/">https://0zxm.github.io/2025/03/03/wang-luo-yu-xin-xi-an-quan/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://0zxm.github.io" target="_blank">0zxm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a></div><div class="post-share"><div class="social-share" data-image="/img/default_cover.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/02/15/pyqt-xie-yi-ge-dai-ban-cheng-xu/" title="pyqt写一个待办程序"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">pyqt写一个待办程序</div></div><div class="info-2"><div class="info-item-1">构建一个功能丰富的待办应用：深入PyQt5</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">0zxm</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">52</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">61</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/0zxm"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/0zxm" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:m15813109801@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="http://0zxm.github.io" target="_blank" title="博客"><i class="fab fa-algolia" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E8%B7%B5%E5%92%8C%E5%AF%86%E7%A0%81%E5%AD%A6%E5%8E%9F%E7%90%86"><span class="toc-text">网络安全实践和密码学原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%A7%88"><span class="toc-text">概览</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%A6%82%E5%BF%B5"><span class="toc-text">第一章 计算机与网络安全概念</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/03/03/wang-luo-yu-xin-xi-an-quan/" title="网络信息安全和密码学"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="网络信息安全和密码学"/></a><div class="content"><a class="title" href="/2025/03/03/wang-luo-yu-xin-xi-an-quan/" title="网络信息安全和密码学">网络信息安全和密码学</a><time datetime="2025-03-03T11:06:28.000Z" title="发表于 2025-03-03 19:06:28">2025-03-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/15/pyqt-xie-yi-ge-dai-ban-cheng-xu/" title="pyqt写一个待办程序"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="pyqt写一个待办程序"/></a><div class="content"><a class="title" href="/2025/02/15/pyqt-xie-yi-ge-dai-ban-cheng-xu/" title="pyqt写一个待办程序">pyqt写一个待办程序</a><time datetime="2025-02-15T05:34:39.000Z" title="发表于 2025-02-15 13:34:39">2025-02-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/14/cpp-mian-shi-ti/" title="Cpp面试题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Cpp面试题"/></a><div class="content"><a class="title" href="/2025/02/14/cpp-mian-shi-ti/" title="Cpp面试题">Cpp面试题</a><time datetime="2025-02-14T03:02:20.000Z" title="发表于 2025-02-14 11:02:20">2025-02-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/15/django-he-vue3-qian-hou-duan-fen-chi-kai-fa/" title="Django和Vue3前后端补充知识点"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Django和Vue3前后端补充知识点"/></a><div class="content"><a class="title" href="/2025/01/15/django-he-vue3-qian-hou-duan-fen-chi-kai-fa/" title="Django和Vue3前后端补充知识点">Django和Vue3前后端补充知识点</a><time datetime="2025-01-15T05:51:37.000Z" title="发表于 2025-01-15 13:51:37">2025-01-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/12/vue3-typescript/" title="Vue3+Typescript"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vue3+Typescript"/></a><div class="content"><a class="title" href="/2025/01/12/vue3-typescript/" title="Vue3+Typescript">Vue3+Typescript</a><time datetime="2025-01-12T05:46:38.000Z" title="发表于 2025-01-12 13:46:38">2025-01-12</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/footer.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By 0zxm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
