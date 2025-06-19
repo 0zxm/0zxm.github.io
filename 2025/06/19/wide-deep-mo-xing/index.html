@@ -1,0 +1,900 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Wide&amp;Deep模型 | 0zxm</title><meta name="author" content="0zxm"><meta name="copyright" content="0zxm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="机器学习大作业实现过程的笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wide&amp;Deep模型">
+<meta property="og:url" content="https://0zxm.github.io/2025/06/19/wide-deep-mo-xing/index.html">
+<meta property="og:site_name" content="0zxm">
+<meta property="og:description" content="机器学习大作业实现过程的笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://0zxm.github.io/img/cover2.jpg">
+<meta property="article:published_time" content="2025-06-19T05:30:40.000Z">
+<meta property="article:modified_time" content="2025-06-19T06:23:18.094Z">
+<meta property="article:author" content="0zxm">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="神经网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0zxm.github.io/img/cover2.jpg"><link rel="shortcut icon" href="/favicon.png"><link rel="canonical" href="https://0zxm.github.io/2025/06/19/wide-deep-mo-xing/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: 0zxm","link":"链接: ","source":"来源: 0zxm","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Wide&Deep模型',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-06-19 14:23:18'
+}</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">59</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/src/"><i class="fa-fw fas fa-cloud"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comment"></i><span> 说说</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover2.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">0zxm</span></a><a class="nav-page-title" href="/"><span class="site-name">Wide&amp;Deep模型</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/src/"><i class="fa-fw fas fa-cloud"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comment"></i><span> 说说</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Wide&amp;Deep模型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-06-19T05:30:40.000Z" title="发表于 2025-06-19 13:30:40">2025-06-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-06-19T06:23:18.094Z" title="更新于 2025-06-19 14:23:18">2025-06-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">5.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>24分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1606.07792">论文arxiv.org</a>   <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1UB4y1u7hk">Wide&amp;Deep模型讲解</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42363032/article/details/115935964">推荐系统经典模型 Wide &amp; Deep 详解 (全网之最)_wide&amp;deep-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/896553">【王喆-推荐系统】模型篇-(task5)wide&amp;deep模型-阿里云开发者社区</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/tardis/zm/art/132708525?source_id=1005">Wide&amp;Deep模型原理与实现</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/164502624">(64 封私信) 一文读懂Embedding的概念，以及它和深度学习的关系 - 知乎</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1z54y1i7WA/">Mindspore官方代码讲解</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gi4y1U7Gw">讲解论文</a>   <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42363032/article/details/115935964">推荐系统经典模型 Wide &amp; Deep 详解 (全网之最)_wide&amp;deep-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41882890/article/details/107008400">过拟合(overfitting)和欠拟合(underfitting)出现原因及如何避免方案-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.doubao.com/thread/w54c9f676fd231492">https://www.doubao.com/thread/w54c9f676fd231492</a></p>
+<h2 id="1-什么是Wide-Deep模型"><a href="#1-什么是Wide-Deep模型" class="headerlink" title="1.什么是Wide&amp;Deep模型"></a>1.什么是Wide&amp;Deep模型</h2><p>Wide &amp; Deep 模型是 Google 在 2016 年提出的一种结合了记忆和泛化的机器学习模型，它融合了 Wide（宽）模型和 Deep（深）模型的优势，主要用于处理结构化数据，在推荐系统、广告点击率预估等领域应用广泛。</p>
+<ol>
+<li><strong>模型结构</strong><ul>
+<li><strong><code>Wide 部分</code></strong> ：<ul>
+<li>主要是一个线性模型，它能够学习到记忆式的特征组合，例如在推荐系统中，可以记忆特定用户和特定物品之间的直接关联。这些特征组合通常是通过手工设计或者交叉特征的方式得到的。例如，将用户的年龄、性别与物品的类别组合成新的特征，像 “年龄在 20 - 30 岁的女性用户购买化妆品的次数” 这样的特征组合。</li>
+<li>Wide 模型通过<strong>逻辑回归（对于分类问题）</strong>或线性回归（对于回归问题）来拟合这些线性特征。它的优势在于可以很好地利用已有的知识，对于一些通过经验可以预知的特征组合能够很好地拟合，避免了复杂模型可能带来的过拟合问题。</li>
+</ul>
+</li>
+<li><strong><code>Deep 部分</code></strong> ：<ul>
+<li>这部分是一个前馈神经网络，用于学习特征的复杂组合和非线性关系。它将原始特征进行嵌入（embedding），将高维、稀疏的特征转换为低维、稠密的向量表示。例如，对于用户的 ID、物品的类别等稀疏特征，通过嵌入操作可以将其映射到一个连续的向量空间。</li>
+<li>然后，这些嵌入后的特征会通过多层神经网络进行处理，每一层神经网络的节点通过激活函数（如 ReLU）引入非线性，从而能够学习到数据中复杂的模式。例如，在广告点击率预估中，Deep 部分可以学习到用户的各种特征（如浏览历史、兴趣爱好等）与广告特征（如广告内容、投放位置等）之间的复杂交互关系。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>联合训练</strong><ul>
+<li><code>Wide &amp; Deep 模型</code>的 Wide 部分和 Deep 部分是<code>联合训练</code>的。它们共享相同的输入特征，然后通过一个联合损失函数（如分类问题中的对数损失函数、回归问题中的均方误差函数）进行训练。</li>
+<li>在训练过程中，Wide 部分的权重和 Deep 部分的神经网络参数会同时更新。这种联合训练的方式使得模型<code>既可以利用 Wide 模型的记忆能力，又能够发挥 Deep 模型的泛化能力</code>，从而在处理既有明确特征关联又有复杂交互关系的数据时表现出色。</li>
+</ul>
+</li>
+<li><strong>应用场景示例</strong><ul>
+<li><strong>推荐系统</strong> ：在<code>推荐商品或内容</code>时，Wide 部分可以根据用户过去的行为记录（如购买历史、浏览记录等）中已知的特征组合（如用户经常购买某一品牌的商品）来做出快速的推荐判断。而 Deep 部分可以深入挖掘用户和物品的潜在特征，比如用户的潜在兴趣爱好可能并未直接体现在其历史记录中，但通过学习其他用户的相似行为和物品特征的复杂关系，可以发现并推荐更符合用户潜在兴趣的商品或内容。</li>
+<li><strong>广告点击率预估</strong> ：对于预测用户是否会点击某个广告，Wide 部分可以利用已经确定的用户特征（如用户的地理位置、设备类型等）与广告特征（如广告的类别、广告主的行业等）的简单组合来初步估计点击率。Deep 部分则可以捕捉到更深层次的用户意图和广告内容的匹配度等复杂因素，从而更精准地预估广告点击率。</li>
+</ul>
+</li>
+<li><strong>模型优势</strong><ul>
+<li><strong>结合记忆和泛化</strong> ：Wide 模型记忆已知的特征组合，能够很好地处理规则明确的部分；Deep 模型学习复杂的特征交互，能够发现潜在的模式，避免了单一模型可能存在的局限性，提高了模型的准确性和泛化能力。</li>
+<li><strong>适应多种业务场景</strong> ：在很多实际业务场景中，既有一些明确的业务规则可以利用（通过 Wide 模型），又存在许多复杂的用户行为和特征交互（通过 Deep 模型），Wide &amp; Deep 模型能够很好地适应这些场景，为实际应用提供更有效的解决方案。</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-怎么基于MindSpore来实现"><a href="#2-怎么基于MindSpore来实现" class="headerlink" title="2.怎么基于MindSpore来实现"></a>2.怎么基于MindSpore来实现</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># Copyright 2020 Huawei Technologies Co., Ltd</span>
+<span class="token comment">#</span>
+<span class="token comment"># Licensed under the Apache License, Version 2.0 (the "License");</span>
+<span class="token comment"># you may not use this file except in compliance with the License.</span>
+<span class="token comment"># You may obtain a copy of the License at</span>
+<span class="token comment">#</span>
+<span class="token comment"># http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="token comment">#</span>
+<span class="token comment"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="token comment"># distributed under the License is distributed on an "AS IS" BASIS,</span>
+<span class="token comment"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="token comment"># See the License for the specific language governing permissions and</span>
+<span class="token comment"># limitations under the License.</span>
+<span class="token comment"># ============================================================================</span>
+<span class="token triple-quoted-string string">"""wide and deep model"""</span>
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">from</span> mindspore <span class="token keyword">import</span> nn<span class="token punctuation">,</span> context
+<span class="token keyword">from</span> mindspore <span class="token keyword">import</span> Parameter<span class="token punctuation">,</span> ParameterTuple
+<span class="token keyword">import</span> mindspore<span class="token punctuation">.</span>common<span class="token punctuation">.</span>dtype <span class="token keyword">as</span> mstype
+<span class="token keyword">from</span> mindspore<span class="token punctuation">.</span>ops <span class="token keyword">import</span> functional <span class="token keyword">as</span> F
+<span class="token keyword">from</span> mindspore<span class="token punctuation">.</span>ops <span class="token keyword">import</span> composite <span class="token keyword">as</span> C
+<span class="token keyword">from</span> mindspore<span class="token punctuation">.</span>ops <span class="token keyword">import</span> operations <span class="token keyword">as</span> P
+<span class="token keyword">from</span> mindspore<span class="token punctuation">.</span>nn <span class="token keyword">import</span> Dropout
+<span class="token keyword">from</span> mindspore<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>optim <span class="token keyword">import</span> Adam<span class="token punctuation">,</span> FTRL<span class="token punctuation">,</span> LazyAdam
+<span class="token keyword">from</span> mindspore<span class="token punctuation">.</span>common<span class="token punctuation">.</span>initializer <span class="token keyword">import</span> Uniform<span class="token punctuation">,</span> initializer
+<span class="token keyword">from</span> mindspore<span class="token punctuation">.</span>context <span class="token keyword">import</span> ParallelMode
+<span class="token keyword">from</span> mindspore<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>wrap<span class="token punctuation">.</span>grad_reducer <span class="token keyword">import</span> DistributedGradReducer
+<span class="token keyword">from</span> mindspore<span class="token punctuation">.</span>communication<span class="token punctuation">.</span>management <span class="token keyword">import</span> get_group_size
+
+np_type <span class="token operator">=</span> np<span class="token punctuation">.</span>float32
+ms_type <span class="token operator">=</span> mstype<span class="token punctuation">.</span>float32
+
+
+<span class="token keyword">def</span> <span class="token function">init_method</span><span class="token punctuation">(</span>method<span class="token punctuation">,</span> shape<span class="token punctuation">,</span> name<span class="token punctuation">,</span> max_val<span class="token operator">=</span><span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''
+    parameter init method
+    '''</span>
+    <span class="token keyword">if</span> method <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token string">'uniform'</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+        params <span class="token operator">=</span> Parameter<span class="token punctuation">(</span>initializer<span class="token punctuation">(</span>
+            Uniform<span class="token punctuation">(</span>max_val<span class="token punctuation">)</span><span class="token punctuation">,</span> shape<span class="token punctuation">,</span> ms_type<span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token operator">=</span>name<span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> method <span class="token operator">==</span> <span class="token string">"one"</span><span class="token punctuation">:</span>
+        params <span class="token operator">=</span> Parameter<span class="token punctuation">(</span>initializer<span class="token punctuation">(</span><span class="token string">"ones"</span><span class="token punctuation">,</span> shape<span class="token punctuation">,</span> ms_type<span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token operator">=</span>name<span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> method <span class="token operator">==</span> <span class="token string">'zero'</span><span class="token punctuation">:</span>
+        params <span class="token operator">=</span> Parameter<span class="token punctuation">(</span>initializer<span class="token punctuation">(</span><span class="token string">"zeros"</span><span class="token punctuation">,</span> shape<span class="token punctuation">,</span> ms_type<span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token operator">=</span>name<span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> method <span class="token operator">==</span> <span class="token string">"normal"</span><span class="token punctuation">:</span>
+        params <span class="token operator">=</span> Parameter<span class="token punctuation">(</span>initializer<span class="token punctuation">(</span><span class="token string">"normal"</span><span class="token punctuation">,</span> shape<span class="token punctuation">,</span> ms_type<span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token operator">=</span>name<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> params
+
+
+<span class="token keyword">def</span> <span class="token function">init_var_dict</span><span class="token punctuation">(</span>init_args<span class="token punctuation">,</span> in_vars<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''
+    var init function
+    '''</span>
+    var_map <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+    _<span class="token punctuation">,</span> _max_val <span class="token operator">=</span> init_args
+    <span class="token keyword">for</span> _<span class="token punctuation">,</span> iterm <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>in_vars<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        key<span class="token punctuation">,</span> shape<span class="token punctuation">,</span> method <span class="token operator">=</span> iterm
+        <span class="token keyword">if</span> key <span class="token keyword">not</span> <span class="token keyword">in</span> var_map<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> method <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token string">'random'</span><span class="token punctuation">,</span> <span class="token string">'uniform'</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+                var_map<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> Parameter<span class="token punctuation">(</span>initializer<span class="token punctuation">(</span>
+                    Uniform<span class="token punctuation">(</span>_max_val<span class="token punctuation">)</span><span class="token punctuation">,</span> shape<span class="token punctuation">,</span> ms_type<span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token operator">=</span>key<span class="token punctuation">)</span>
+            <span class="token keyword">elif</span> method <span class="token operator">==</span> <span class="token string">"one"</span><span class="token punctuation">:</span>
+                var_map<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> Parameter<span class="token punctuation">(</span>initializer<span class="token punctuation">(</span>
+                    <span class="token string">"ones"</span><span class="token punctuation">,</span> shape<span class="token punctuation">,</span> ms_type<span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token operator">=</span>key<span class="token punctuation">)</span>
+            <span class="token keyword">elif</span> method <span class="token operator">==</span> <span class="token string">"zero"</span><span class="token punctuation">:</span>
+                var_map<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> Parameter<span class="token punctuation">(</span>initializer<span class="token punctuation">(</span>
+                    <span class="token string">"zeros"</span><span class="token punctuation">,</span> shape<span class="token punctuation">,</span> ms_type<span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token operator">=</span>key<span class="token punctuation">)</span>
+            <span class="token keyword">elif</span> method <span class="token operator">==</span> <span class="token string">'normal'</span><span class="token punctuation">:</span>
+                var_map<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> Parameter<span class="token punctuation">(</span>initializer<span class="token punctuation">(</span>
+                    <span class="token string">"normal"</span><span class="token punctuation">,</span> shape<span class="token punctuation">,</span> ms_type<span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token operator">=</span>key<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> var_map
+
+
+<span class="token comment"># 全连接层：每个神经元都和上一层全部输出相连接，然后加上偏置项</span>
+<span class="token keyword">class</span> <span class="token class-name">DenseLayer</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Cell<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    Dense Layer for Deep Layer of WideDeep Model;
+    Containing: activation, matmul, bias_add;
+    Args:
+    """</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> input_dim<span class="token punctuation">,</span> output_dim<span class="token punctuation">,</span> weight_bias_init<span class="token punctuation">,</span> act_str<span class="token punctuation">,</span>
+                 keep_prob<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">,</span> use_activation<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> convert_dtype<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> drop_out<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span>DenseLayer<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        weight_init<span class="token punctuation">,</span> bias_init <span class="token operator">=</span> weight_bias_init
+        self<span class="token punctuation">.</span>weight <span class="token operator">=</span> init_method<span class="token punctuation">(</span>
+            weight_init<span class="token punctuation">,</span> <span class="token punctuation">[</span>input_dim<span class="token punctuation">,</span> output_dim<span class="token punctuation">]</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">"weight"</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>bias <span class="token operator">=</span> init_method<span class="token punctuation">(</span>bias_init<span class="token punctuation">,</span> <span class="token punctuation">[</span>output_dim<span class="token punctuation">]</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">"bias"</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>act_func <span class="token operator">=</span> self<span class="token punctuation">.</span>_init_activation<span class="token punctuation">(</span>act_str<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>matmul <span class="token operator">=</span> P<span class="token punctuation">.</span>MatMul<span class="token punctuation">(</span>transpose_b<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>bias_add <span class="token operator">=</span> P<span class="token punctuation">.</span>BiasAdd<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>cast <span class="token operator">=</span> P<span class="token punctuation">.</span>Cast<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>dropout <span class="token operator">=</span> Dropout<span class="token punctuation">(</span>keep_prob<span class="token operator">=</span>keep_prob<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>use_activation <span class="token operator">=</span> use_activation
+        self<span class="token punctuation">.</span>convert_dtype <span class="token operator">=</span> convert_dtype
+        self<span class="token punctuation">.</span>drop_out <span class="token operator">=</span> drop_out
+
+    <span class="token comment"># 设置激活函数</span>
+    <span class="token keyword">def</span> <span class="token function">_init_activation</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> act_str<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        act_str <span class="token operator">=</span> act_str<span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> act_str <span class="token operator">==</span> <span class="token string">"relu"</span><span class="token punctuation">:</span>
+            act_func <span class="token operator">=</span> P<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">elif</span> act_str <span class="token operator">==</span> <span class="token string">"sigmoid"</span><span class="token punctuation">:</span>
+            act_func <span class="token operator">=</span> P<span class="token punctuation">.</span>Sigmoid<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">elif</span> act_str <span class="token operator">==</span> <span class="token string">"tanh"</span><span class="token punctuation">:</span>
+            act_func <span class="token operator">=</span> P<span class="token punctuation">.</span>Tanh<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> act_func
+
+    <span class="token keyword">def</span> <span class="token function">construct</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">'''
+        Construct Dense layer
+        '''</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>training <span class="token keyword">and</span> self<span class="token punctuation">.</span>drop_out<span class="token punctuation">:</span>
+            x <span class="token operator">=</span> self<span class="token punctuation">.</span>dropout<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>convert_dtype<span class="token punctuation">:</span>
+            x <span class="token operator">=</span> self<span class="token punctuation">.</span>cast<span class="token punctuation">(</span>x<span class="token punctuation">,</span> mstype<span class="token punctuation">.</span>float16<span class="token punctuation">)</span>
+            weight <span class="token operator">=</span> self<span class="token punctuation">.</span>cast<span class="token punctuation">(</span>self<span class="token punctuation">.</span>weight<span class="token punctuation">,</span> mstype<span class="token punctuation">.</span>float16<span class="token punctuation">)</span>
+            bias <span class="token operator">=</span> self<span class="token punctuation">.</span>cast<span class="token punctuation">(</span>self<span class="token punctuation">.</span>bias<span class="token punctuation">,</span> mstype<span class="token punctuation">.</span>float16<span class="token punctuation">)</span>
+            wx <span class="token operator">=</span> self<span class="token punctuation">.</span>matmul<span class="token punctuation">(</span>x<span class="token punctuation">,</span> weight<span class="token punctuation">)</span>
+            wx <span class="token operator">=</span> self<span class="token punctuation">.</span>bias_add<span class="token punctuation">(</span>wx<span class="token punctuation">,</span> bias<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> self<span class="token punctuation">.</span>use_activation<span class="token punctuation">:</span>
+                wx <span class="token operator">=</span> self<span class="token punctuation">.</span>act_func<span class="token punctuation">(</span>wx<span class="token punctuation">)</span>
+            wx <span class="token operator">=</span> self<span class="token punctuation">.</span>cast<span class="token punctuation">(</span>wx<span class="token punctuation">,</span> mstype<span class="token punctuation">.</span>float32<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            wx <span class="token operator">=</span> self<span class="token punctuation">.</span>matmul<span class="token punctuation">(</span>x<span class="token punctuation">,</span> self<span class="token punctuation">.</span>weight<span class="token punctuation">)</span>
+            wx <span class="token operator">=</span> self<span class="token punctuation">.</span>bias_add<span class="token punctuation">(</span>wx<span class="token punctuation">,</span> self<span class="token punctuation">.</span>bias<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> self<span class="token punctuation">.</span>use_activation<span class="token punctuation">:</span>
+                wx <span class="token operator">=</span> self<span class="token punctuation">.</span>act_func<span class="token punctuation">(</span>wx<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> wx
+
+
+<span class="token keyword">class</span> <span class="token class-name">WideDeepModel</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Cell<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+        From paper: " Wide &amp; Deep Learning for Recommender Systems"
+        Args:
+            config (Class): The default config of Wide&amp;Deep
+    """</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> config<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span>WideDeepModel<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>batch_size <span class="token operator">=</span> config<span class="token punctuation">.</span>batch_size
+        host_device_mix <span class="token operator">=</span> <span class="token builtin">bool</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>host_device_mix<span class="token punctuation">)</span>
+        parameter_server <span class="token operator">=</span> <span class="token builtin">bool</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>parameter_server<span class="token punctuation">)</span>
+        parallel_mode <span class="token operator">=</span> context<span class="token punctuation">.</span>get_auto_parallel_context<span class="token punctuation">(</span><span class="token string">"parallel_mode"</span><span class="token punctuation">)</span>
+        is_auto_parallel <span class="token operator">=</span> parallel_mode <span class="token keyword">in</span> <span class="token punctuation">(</span>ParallelMode<span class="token punctuation">.</span>SEMI_AUTO_PARALLEL<span class="token punctuation">,</span> ParallelMode<span class="token punctuation">.</span>AUTO_PARALLEL<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> is_auto_parallel<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>batch_size <span class="token operator">=</span> self<span class="token punctuation">.</span>batch_size <span class="token operator">*</span> get_group_size<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        is_field_slice <span class="token operator">=</span> config<span class="token punctuation">.</span>field_slice
+        sparse <span class="token operator">=</span> config<span class="token punctuation">.</span>sparse
+        self<span class="token punctuation">.</span>field_size <span class="token operator">=</span> config<span class="token punctuation">.</span>field_size
+        self<span class="token punctuation">.</span>vocab_size <span class="token operator">=</span> config<span class="token punctuation">.</span>vocab_size
+        self<span class="token punctuation">.</span>vocab_cache_size <span class="token operator">=</span> config<span class="token punctuation">.</span>vocab_cache_size
+        self<span class="token punctuation">.</span>emb_dim <span class="token operator">=</span> config<span class="token punctuation">.</span>emb_dim
+        self<span class="token punctuation">.</span>deep_layer_dims_list <span class="token operator">=</span> config<span class="token punctuation">.</span>deep_layer_dim
+        self<span class="token punctuation">.</span>deep_layer_act <span class="token operator">=</span> config<span class="token punctuation">.</span>deep_layer_act
+        self<span class="token punctuation">.</span>init_args <span class="token operator">=</span> config<span class="token punctuation">.</span>init_args
+        self<span class="token punctuation">.</span>weight_init<span class="token punctuation">,</span> self<span class="token punctuation">.</span>bias_init <span class="token operator">=</span> config<span class="token punctuation">.</span>weight_bias_init
+        self<span class="token punctuation">.</span>weight_bias_init <span class="token operator">=</span> config<span class="token punctuation">.</span>weight_bias_init
+        self<span class="token punctuation">.</span>emb_init <span class="token operator">=</span> config<span class="token punctuation">.</span>emb_init
+        self<span class="token punctuation">.</span>drop_out <span class="token operator">=</span> config<span class="token punctuation">.</span>dropout_flag
+        self<span class="token punctuation">.</span>keep_prob <span class="token operator">=</span> config<span class="token punctuation">.</span>keep_prob
+        self<span class="token punctuation">.</span>deep_input_dims <span class="token operator">=</span> self<span class="token punctuation">.</span>field_size <span class="token operator">*</span> self<span class="token punctuation">.</span>emb_dim
+        self<span class="token punctuation">.</span>layer_dims <span class="token operator">=</span> self<span class="token punctuation">.</span>deep_layer_dims_list <span class="token operator">+</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+        self<span class="token punctuation">.</span>all_dim_list <span class="token operator">=</span> <span class="token punctuation">[</span>self<span class="token punctuation">.</span>deep_input_dims<span class="token punctuation">]</span> <span class="token operator">+</span> self<span class="token punctuation">.</span>layer_dims
+
+        init_acts <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token string">'Wide_b'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>emb_init<span class="token punctuation">)</span><span class="token punctuation">]</span>
+        var_map <span class="token operator">=</span> init_var_dict<span class="token punctuation">(</span>self<span class="token punctuation">.</span>init_args<span class="token punctuation">,</span> init_acts<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>wide_b <span class="token operator">=</span> var_map<span class="token punctuation">[</span><span class="token string">"Wide_b"</span><span class="token punctuation">]</span>
+        self<span class="token punctuation">.</span>dense_layer_1 <span class="token operator">=</span> DenseLayer<span class="token punctuation">(</span>self<span class="token punctuation">.</span>all_dim_list<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                                        self<span class="token punctuation">.</span>all_dim_list<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                                        self<span class="token punctuation">.</span>weight_bias_init<span class="token punctuation">,</span>
+                                        self<span class="token punctuation">.</span>deep_layer_act<span class="token punctuation">,</span>
+                                        convert_dtype<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> drop_out<span class="token operator">=</span>config<span class="token punctuation">.</span>dropout_flag<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>dense_layer_2 <span class="token operator">=</span> DenseLayer<span class="token punctuation">(</span>self<span class="token punctuation">.</span>all_dim_list<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                                        self<span class="token punctuation">.</span>all_dim_list<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                                        self<span class="token punctuation">.</span>weight_bias_init<span class="token punctuation">,</span>
+                                        self<span class="token punctuation">.</span>deep_layer_act<span class="token punctuation">,</span>
+                                        convert_dtype<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> drop_out<span class="token operator">=</span>config<span class="token punctuation">.</span>dropout_flag<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>dense_layer_3 <span class="token operator">=</span> DenseLayer<span class="token punctuation">(</span>self<span class="token punctuation">.</span>all_dim_list<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                                        self<span class="token punctuation">.</span>all_dim_list<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                                        self<span class="token punctuation">.</span>weight_bias_init<span class="token punctuation">,</span>
+                                        self<span class="token punctuation">.</span>deep_layer_act<span class="token punctuation">,</span>
+                                        convert_dtype<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> drop_out<span class="token operator">=</span>config<span class="token punctuation">.</span>dropout_flag<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>dense_layer_4 <span class="token operator">=</span> DenseLayer<span class="token punctuation">(</span>self<span class="token punctuation">.</span>all_dim_list<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                                        self<span class="token punctuation">.</span>all_dim_list<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                                        self<span class="token punctuation">.</span>weight_bias_init<span class="token punctuation">,</span>
+                                        self<span class="token punctuation">.</span>deep_layer_act<span class="token punctuation">,</span>
+                                        convert_dtype<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> drop_out<span class="token operator">=</span>config<span class="token punctuation">.</span>dropout_flag<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>dense_layer_5 <span class="token operator">=</span> DenseLayer<span class="token punctuation">(</span>self<span class="token punctuation">.</span>all_dim_list<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                                        self<span class="token punctuation">.</span>all_dim_list<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                                        self<span class="token punctuation">.</span>weight_bias_init<span class="token punctuation">,</span>
+                                        self<span class="token punctuation">.</span>deep_layer_act<span class="token punctuation">,</span>
+                                        use_activation<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> convert_dtype<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> drop_out<span class="token operator">=</span>config<span class="token punctuation">.</span>dropout_flag<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>wide_mul <span class="token operator">=</span> P<span class="token punctuation">.</span>Mul<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>deep_mul <span class="token operator">=</span> P<span class="token punctuation">.</span>Mul<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>reduce_sum <span class="token operator">=</span> P<span class="token punctuation">.</span>ReduceSum<span class="token punctuation">(</span>keep_dims<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>reshape <span class="token operator">=</span> P<span class="token punctuation">.</span>Reshape<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>deep_reshape <span class="token operator">=</span> P<span class="token punctuation">.</span>Reshape<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>square <span class="token operator">=</span> P<span class="token punctuation">.</span>Square<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>shape <span class="token operator">=</span> P<span class="token punctuation">.</span>Shape<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>tile <span class="token operator">=</span> P<span class="token punctuation">.</span>Tile<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>concat <span class="token operator">=</span> P<span class="token punctuation">.</span>Concat<span class="token punctuation">(</span>axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>cast <span class="token operator">=</span> P<span class="token punctuation">.</span>Cast<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>unique <span class="token operator">=</span> P<span class="token punctuation">.</span>Unique<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>shard<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>wide_gatherv2 <span class="token operator">=</span> P<span class="token punctuation">.</span>Gather<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>deep_gatherv2 <span class="token operator">=</span> P<span class="token punctuation">.</span>Gather<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> is_auto_parallel <span class="token keyword">and</span> sparse <span class="token keyword">and</span> <span class="token keyword">not</span> is_field_slice<span class="token punctuation">:</span>
+            target <span class="token operator">=</span> <span class="token string">'DEVICE'</span>
+            <span class="token keyword">if</span> host_device_mix<span class="token punctuation">:</span>
+                target <span class="token operator">=</span> <span class="token string">'CPU'</span>
+            self<span class="token punctuation">.</span>wide_embeddinglookup <span class="token operator">=</span> nn<span class="token punctuation">.</span>EmbeddingLookup<span class="token punctuation">(</span>self<span class="token punctuation">.</span>vocab_size<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> target<span class="token operator">=</span>target<span class="token punctuation">,</span>
+                                                           slice_mode<span class="token operator">=</span>nn<span class="token punctuation">.</span>EmbeddingLookup<span class="token punctuation">.</span>TABLE_ROW_SLICE<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> config<span class="token punctuation">.</span>deep_table_slice_mode <span class="token operator">==</span> <span class="token string">"column_slice"</span><span class="token punctuation">:</span>
+                self<span class="token punctuation">.</span>deep_embeddinglookup <span class="token operator">=</span> nn<span class="token punctuation">.</span>EmbeddingLookup<span class="token punctuation">(</span>self<span class="token punctuation">.</span>vocab_size<span class="token punctuation">,</span> self<span class="token punctuation">.</span>emb_dim<span class="token punctuation">,</span> target<span class="token operator">=</span>target<span class="token punctuation">,</span>
+                                                               slice_mode<span class="token operator">=</span>nn<span class="token punctuation">.</span>EmbeddingLookup<span class="token punctuation">.</span>TABLE_COLUMN_SLICE<span class="token punctuation">)</span>
+                self<span class="token punctuation">.</span>dense_layer_1<span class="token punctuation">.</span>dropout<span class="token punctuation">.</span>dropout<span class="token punctuation">.</span>shard<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> get_group_size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                self<span class="token punctuation">.</span>dense_layer_1<span class="token punctuation">.</span>matmul<span class="token punctuation">.</span>shard<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> get_group_size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>get_group_size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                self<span class="token punctuation">.</span>dense_layer_1<span class="token punctuation">.</span>matmul<span class="token punctuation">.</span>add_prim_attr<span class="token punctuation">(</span><span class="token string">"field_size"</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>field_size<span class="token punctuation">)</span>
+                self<span class="token punctuation">.</span>deep_mul<span class="token punctuation">.</span>shard<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> get_group_size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                self<span class="token punctuation">.</span>deep_reshape<span class="token punctuation">.</span>add_prim_attr<span class="token punctuation">(</span><span class="token string">"skip_redistribution"</span><span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                self<span class="token punctuation">.</span>deep_embeddinglookup <span class="token operator">=</span> nn<span class="token punctuation">.</span>EmbeddingLookup<span class="token punctuation">(</span>self<span class="token punctuation">.</span>vocab_size<span class="token punctuation">,</span> self<span class="token punctuation">.</span>emb_dim<span class="token punctuation">,</span> target<span class="token operator">=</span>target<span class="token punctuation">,</span>
+                                                               slice_mode<span class="token operator">=</span>nn<span class="token punctuation">.</span>EmbeddingLookup<span class="token punctuation">.</span>TABLE_ROW_SLICE<span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>reduce_sum<span class="token punctuation">.</span>add_prim_attr<span class="token punctuation">(</span><span class="token string">"cross_batch"</span><span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>embedding_table <span class="token operator">=</span> self<span class="token punctuation">.</span>deep_embeddinglookup<span class="token punctuation">.</span>embedding_table
+        <span class="token keyword">elif</span> is_auto_parallel <span class="token keyword">and</span> host_device_mix <span class="token keyword">and</span> is_field_slice <span class="token keyword">and</span> config<span class="token punctuation">.</span>full_batch <span class="token keyword">and</span> config<span class="token punctuation">.</span>manual_shape<span class="token punctuation">:</span>
+            manual_shapes <span class="token operator">=</span> <span class="token builtin">tuple</span><span class="token punctuation">(</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token keyword">for</span> s <span class="token keyword">in</span> config<span class="token punctuation">.</span>manual_shape<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>deep_embeddinglookup <span class="token operator">=</span> nn<span class="token punctuation">.</span>EmbeddingLookup<span class="token punctuation">(</span>self<span class="token punctuation">.</span>vocab_size<span class="token punctuation">,</span> self<span class="token punctuation">.</span>emb_dim<span class="token punctuation">,</span>
+                                                           slice_mode<span class="token operator">=</span>nn<span class="token punctuation">.</span>EmbeddingLookup<span class="token punctuation">.</span>FIELD_SLICE<span class="token punctuation">,</span>
+                                                           manual_shapes<span class="token operator">=</span>manual_shapes<span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>wide_embeddinglookup <span class="token operator">=</span> nn<span class="token punctuation">.</span>EmbeddingLookup<span class="token punctuation">(</span>self<span class="token punctuation">.</span>vocab_size<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span>
+                                                           slice_mode<span class="token operator">=</span>nn<span class="token punctuation">.</span>EmbeddingLookup<span class="token punctuation">.</span>FIELD_SLICE<span class="token punctuation">,</span>
+                                                           manual_shapes<span class="token operator">=</span>manual_shapes<span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>deep_mul<span class="token punctuation">.</span>shard<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> get_group_size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> get_group_size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>wide_mul<span class="token punctuation">.</span>shard<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> get_group_size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> get_group_size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>reduce_sum<span class="token punctuation">.</span>shard<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> get_group_size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>dense_layer_1<span class="token punctuation">.</span>dropout<span class="token punctuation">.</span>dropout<span class="token punctuation">.</span>shard<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> get_group_size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>dense_layer_1<span class="token punctuation">.</span>matmul<span class="token punctuation">.</span>shard<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> get_group_size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>get_group_size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>embedding_table <span class="token operator">=</span> self<span class="token punctuation">.</span>deep_embeddinglookup<span class="token punctuation">.</span>embedding_table
+        <span class="token keyword">elif</span> parameter_server<span class="token punctuation">:</span>
+            cache_enable <span class="token operator">=</span> self<span class="token punctuation">.</span>vocab_cache_size <span class="token operator">></span> <span class="token number">0</span>
+            target <span class="token operator">=</span> <span class="token string">'DEVICE'</span> <span class="token keyword">if</span> cache_enable <span class="token keyword">else</span> <span class="token string">'CPU'</span>
+            <span class="token keyword">if</span> <span class="token keyword">not</span> cache_enable<span class="token punctuation">:</span>
+                sparse <span class="token operator">=</span> <span class="token boolean">True</span>
+            <span class="token keyword">if</span> is_auto_parallel <span class="token keyword">and</span> config<span class="token punctuation">.</span>full_batch <span class="token keyword">and</span> cache_enable<span class="token punctuation">:</span>
+                self<span class="token punctuation">.</span>deep_embeddinglookup <span class="token operator">=</span> nn<span class="token punctuation">.</span>EmbeddingLookup<span class="token punctuation">(</span>self<span class="token punctuation">.</span>vocab_size<span class="token punctuation">,</span> self<span class="token punctuation">.</span>emb_dim<span class="token punctuation">,</span> target<span class="token operator">=</span>target<span class="token punctuation">,</span>
+                                                               slice_mode<span class="token operator">=</span>nn<span class="token punctuation">.</span>EmbeddingLookup<span class="token punctuation">.</span>TABLE_ROW_SLICE<span class="token punctuation">,</span>
+                                                               sparse<span class="token operator">=</span>sparse<span class="token punctuation">,</span> vocab_cache_size<span class="token operator">=</span>self<span class="token punctuation">.</span>vocab_cache_size<span class="token punctuation">)</span>
+                self<span class="token punctuation">.</span>wide_embeddinglookup <span class="token operator">=</span> nn<span class="token punctuation">.</span>EmbeddingLookup<span class="token punctuation">(</span>self<span class="token punctuation">.</span>vocab_size<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> target<span class="token operator">=</span>target<span class="token punctuation">,</span>
+                                                               slice_mode<span class="token operator">=</span>nn<span class="token punctuation">.</span>EmbeddingLookup<span class="token punctuation">.</span>TABLE_ROW_SLICE<span class="token punctuation">,</span>
+                                                               sparse<span class="token operator">=</span>sparse<span class="token punctuation">,</span> vocab_cache_size<span class="token operator">=</span>self<span class="token punctuation">.</span>vocab_cache_size<span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                self<span class="token punctuation">.</span>deep_embeddinglookup <span class="token operator">=</span> nn<span class="token punctuation">.</span>EmbeddingLookup<span class="token punctuation">(</span>self<span class="token punctuation">.</span>vocab_size<span class="token punctuation">,</span> self<span class="token punctuation">.</span>emb_dim<span class="token punctuation">,</span> target<span class="token operator">=</span>target<span class="token punctuation">,</span>
+                                                               sparse<span class="token operator">=</span>sparse<span class="token punctuation">,</span> vocab_cache_size<span class="token operator">=</span>self<span class="token punctuation">.</span>vocab_cache_size<span class="token punctuation">)</span>
+                self<span class="token punctuation">.</span>wide_embeddinglookup <span class="token operator">=</span> nn<span class="token punctuation">.</span>EmbeddingLookup<span class="token punctuation">(</span>self<span class="token punctuation">.</span>vocab_size<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> target<span class="token operator">=</span>target<span class="token punctuation">,</span> sparse<span class="token operator">=</span>sparse<span class="token punctuation">,</span>
+                                                               vocab_cache_size<span class="token operator">=</span>self<span class="token punctuation">.</span>vocab_cache_size<span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>embedding_table <span class="token operator">=</span> self<span class="token punctuation">.</span>deep_embeddinglookup<span class="token punctuation">.</span>embedding_table
+            self<span class="token punctuation">.</span>deep_embeddinglookup<span class="token punctuation">.</span>embedding_table<span class="token punctuation">.</span>set_param_ps<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>wide_embeddinglookup<span class="token punctuation">.</span>embedding_table<span class="token punctuation">.</span>set_param_ps<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>deep_embeddinglookup <span class="token operator">=</span> nn<span class="token punctuation">.</span>EmbeddingLookup<span class="token punctuation">(</span>self<span class="token punctuation">.</span>vocab_size<span class="token punctuation">,</span> self<span class="token punctuation">.</span>emb_dim<span class="token punctuation">,</span>
+                                                           target<span class="token operator">=</span><span class="token string">'DEVICE'</span><span class="token punctuation">,</span> sparse<span class="token operator">=</span>sparse<span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>wide_embeddinglookup <span class="token operator">=</span> nn<span class="token punctuation">.</span>EmbeddingLookup<span class="token punctuation">(</span>self<span class="token punctuation">.</span>vocab_size<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span>
+                                                           target<span class="token operator">=</span><span class="token string">'DEVICE'</span><span class="token punctuation">,</span> sparse<span class="token operator">=</span>sparse<span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>embedding_table <span class="token operator">=</span> self<span class="token punctuation">.</span>deep_embeddinglookup<span class="token punctuation">.</span>embedding_table
+
+    <span class="token keyword">def</span> <span class="token function">construct</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> id_hldr<span class="token punctuation">,</span> wt_hldr<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        Args:
+            id_hldr: batch ids;
+            wt_hldr: batch weights;
+        """</span>
+        <span class="token comment"># Wide layer</span>
+        wide_id_weight <span class="token operator">=</span> self<span class="token punctuation">.</span>wide_embeddinglookup<span class="token punctuation">(</span>id_hldr<span class="token punctuation">)</span>
+        <span class="token comment"># Deep layer</span>
+        deep_id_embs <span class="token operator">=</span> self<span class="token punctuation">.</span>deep_embeddinglookup<span class="token punctuation">(</span>id_hldr<span class="token punctuation">)</span>
+        <span class="token triple-quoted-string string">"""wt_hldr作为权重掩码（mask = reshape(wt_hldr, (batch_size, field_size, 1))），过滤无效特征，提升稀疏数据下的训练效率，与论文中处理稀疏输入的思路一致。"""</span>
+        mask <span class="token operator">=</span> self<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span>wt_hldr<span class="token punctuation">,</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span>batch_size<span class="token punctuation">,</span> self<span class="token punctuation">.</span>field_size<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token comment"># Wide layer</span>
+        wx <span class="token operator">=</span> self<span class="token punctuation">.</span>wide_mul<span class="token punctuation">(</span>wide_id_weight<span class="token punctuation">,</span> mask<span class="token punctuation">)</span>
+        <span class="token triple-quoted-string string">"""通过 wide_embeddinglookup 获取特征的嵌入值，结合 mask 和 wide_b 偏置项，经过 reduce_sum 和 reshape 得到最终输出。形状 -> (batch_size, 1)，表示每个样本的 Wide 部分预测值。"""</span>
+        wide_out <span class="token operator">=</span> self<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span>self<span class="token punctuation">.</span>reduce_sum<span class="token punctuation">(</span>wx<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> self<span class="token punctuation">.</span>wide_b<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token comment"># Deep layer</span>
+        vx <span class="token operator">=</span> self<span class="token punctuation">.</span>deep_mul<span class="token punctuation">(</span>deep_id_embs<span class="token punctuation">,</span> mask<span class="token punctuation">)</span>
+        deep_in <span class="token operator">=</span> self<span class="token punctuation">.</span>deep_reshape<span class="token punctuation">(</span>vx<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>field_size <span class="token operator">*</span> self<span class="token punctuation">.</span>emb_dim<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        deep_in <span class="token operator">=</span> self<span class="token punctuation">.</span>dense_layer_1<span class="token punctuation">(</span>deep_in<span class="token punctuation">)</span>
+        deep_in <span class="token operator">=</span> self<span class="token punctuation">.</span>dense_layer_2<span class="token punctuation">(</span>deep_in<span class="token punctuation">)</span>
+        deep_in <span class="token operator">=</span> self<span class="token punctuation">.</span>dense_layer_3<span class="token punctuation">(</span>deep_in<span class="token punctuation">)</span>
+        deep_in <span class="token operator">=</span> self<span class="token punctuation">.</span>dense_layer_4<span class="token punctuation">(</span>deep_in<span class="token punctuation">)</span>
+        <span class="token triple-quoted-string string">"""输入经过 5 个全连接层（dense_layer_1 至 dense_layer_5），每层包含激活函数和 Dropout（除最后一层）。"""</span>
+        deep_out <span class="token operator">=</span> self<span class="token punctuation">.</span>dense_layer_5<span class="token punctuation">(</span>deep_in<span class="token punctuation">)</span>
+        <span class="token comment"># 在这里直接将Wide层和Deep层相加，默认是1:1</span>
+        out <span class="token operator">=</span> wide_out <span class="token operator">+</span> deep_out
+        <span class="token keyword">return</span> out<span class="token punctuation">,</span> self<span class="token punctuation">.</span>embedding_table
+
+
+<span class="token keyword">class</span> <span class="token class-name">NetWithLossClass</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Cell<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    <span class="token triple-quoted-string string">""""
+    Provide WideDeep training loss through network.
+    Args:
+        network (Cell): The training network
+        config (Class): WideDeep config
+    """</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> network<span class="token punctuation">,</span> config<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span>NetWithLossClass<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>auto_prefix<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+        host_device_mix <span class="token operator">=</span> <span class="token builtin">bool</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>host_device_mix<span class="token punctuation">)</span>
+        parameter_server <span class="token operator">=</span> <span class="token builtin">bool</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>parameter_server<span class="token punctuation">)</span>
+        sparse <span class="token operator">=</span> config<span class="token punctuation">.</span>sparse
+        parallel_mode <span class="token operator">=</span> context<span class="token punctuation">.</span>get_auto_parallel_context<span class="token punctuation">(</span><span class="token string">"parallel_mode"</span><span class="token punctuation">)</span>
+        is_auto_parallel <span class="token operator">=</span> parallel_mode <span class="token keyword">in</span> <span class="token punctuation">(</span>ParallelMode<span class="token punctuation">.</span>SEMI_AUTO_PARALLEL<span class="token punctuation">,</span> ParallelMode<span class="token punctuation">.</span>AUTO_PARALLEL<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>no_l2loss <span class="token operator">=</span> <span class="token punctuation">(</span>is_auto_parallel <span class="token keyword">if</span> <span class="token punctuation">(</span>host_device_mix <span class="token keyword">or</span> config<span class="token punctuation">.</span>field_slice<span class="token punctuation">)</span>
+                          <span class="token keyword">else</span> parameter_server<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> sparse<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>no_l2loss <span class="token operator">=</span> <span class="token boolean">True</span>
+        self<span class="token punctuation">.</span>network <span class="token operator">=</span> network
+        self<span class="token punctuation">.</span>l2_coef <span class="token operator">=</span> config<span class="token punctuation">.</span>l2_coef
+        self<span class="token punctuation">.</span>loss <span class="token operator">=</span> P<span class="token punctuation">.</span>SigmoidCrossEntropyWithLogits<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>square <span class="token operator">=</span> P<span class="token punctuation">.</span>Square<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>reduceMean_false <span class="token operator">=</span> P<span class="token punctuation">.</span>ReduceMean<span class="token punctuation">(</span>keep_dims<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> is_auto_parallel<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>reduceMean_false<span class="token punctuation">.</span>add_prim_attr<span class="token punctuation">(</span><span class="token string">"cross_batch"</span><span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>reduceSum_false <span class="token operator">=</span> P<span class="token punctuation">.</span>ReduceSum<span class="token punctuation">(</span>keep_dims<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">construct</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> batch_ids<span class="token punctuation">,</span> batch_wts<span class="token punctuation">,</span> label<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">'''
+        Construct NetWithLossClass
+        '''</span>
+        predict<span class="token punctuation">,</span> embedding_table <span class="token operator">=</span> self<span class="token punctuation">.</span>network<span class="token punctuation">(</span>batch_ids<span class="token punctuation">,</span> batch_wts<span class="token punctuation">)</span>
+        log_loss <span class="token operator">=</span> self<span class="token punctuation">.</span>loss<span class="token punctuation">(</span>predict<span class="token punctuation">,</span> label<span class="token punctuation">)</span>
+        wide_loss <span class="token operator">=</span> self<span class="token punctuation">.</span>reduceMean_false<span class="token punctuation">(</span>log_loss<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>no_l2loss<span class="token punctuation">:</span>
+            deep_loss <span class="token operator">=</span> wide_loss
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            l2_loss_v <span class="token operator">=</span> self<span class="token punctuation">.</span>reduceSum_false<span class="token punctuation">(</span>self<span class="token punctuation">.</span>square<span class="token punctuation">(</span>embedding_table<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span>
+            deep_loss <span class="token operator">=</span> self<span class="token punctuation">.</span>reduceMean_false<span class="token punctuation">(</span>log_loss<span class="token punctuation">)</span> <span class="token operator">+</span> self<span class="token punctuation">.</span>l2_coef <span class="token operator">*</span> l2_loss_v
+
+        <span class="token keyword">return</span> wide_loss<span class="token punctuation">,</span> deep_loss
+
+
+<span class="token keyword">class</span> <span class="token class-name">IthOutputCell</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Cell<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> network<span class="token punctuation">,</span> output_index<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span>IthOutputCell<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>network <span class="token operator">=</span> network
+        self<span class="token punctuation">.</span>output_index <span class="token operator">=</span> output_index
+
+    <span class="token keyword">def</span> <span class="token function">construct</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x1<span class="token punctuation">,</span> x2<span class="token punctuation">,</span> x3<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        predict <span class="token operator">=</span> self<span class="token punctuation">.</span>network<span class="token punctuation">(</span>x1<span class="token punctuation">,</span> x2<span class="token punctuation">,</span> x3<span class="token punctuation">)</span><span class="token punctuation">[</span>self<span class="token punctuation">.</span>output_index<span class="token punctuation">]</span>
+        <span class="token keyword">return</span> predict
+
+
+<span class="token keyword">class</span> <span class="token class-name">TrainStepWrap</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Cell<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    Encapsulation class of WideDeep network training.
+    Append Adam and FTRL optimizers to the training network after that construct
+    function can be called to create the backward graph.
+    Args:
+        network (Cell): The training network. Note that loss function should have been added.
+        sens (Number): The adjust parameter. Default: 1024.0
+        host_device_mix (Bool): Whether run in host and device mix mode. Default: False
+        parameter_server (Bool): Whether run in parameter server mode. Default: False
+    """</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> network<span class="token punctuation">,</span> sens<span class="token operator">=</span><span class="token number">1024.0</span><span class="token punctuation">,</span> host_device_mix<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> parameter_server<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+                 sparse<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> cache_enable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span>TrainStepWrap<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        parallel_mode <span class="token operator">=</span> context<span class="token punctuation">.</span>get_auto_parallel_context<span class="token punctuation">(</span><span class="token string">"parallel_mode"</span><span class="token punctuation">)</span>
+        is_auto_parallel <span class="token operator">=</span> parallel_mode <span class="token keyword">in</span> <span class="token punctuation">(</span>ParallelMode<span class="token punctuation">.</span>SEMI_AUTO_PARALLEL<span class="token punctuation">,</span> ParallelMode<span class="token punctuation">.</span>AUTO_PARALLEL<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>network <span class="token operator">=</span> network
+        self<span class="token punctuation">.</span>network<span class="token punctuation">.</span>set_train<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>trainable_params <span class="token operator">=</span> network<span class="token punctuation">.</span>trainable_params<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        weights_w <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        weights_d <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token keyword">for</span> params <span class="token keyword">in</span> self<span class="token punctuation">.</span>trainable_params<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> <span class="token string">'wide'</span> <span class="token keyword">in</span> params<span class="token punctuation">.</span>name<span class="token punctuation">:</span>
+                weights_w<span class="token punctuation">.</span>append<span class="token punctuation">(</span>params<span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                weights_d<span class="token punctuation">.</span>append<span class="token punctuation">(</span>params<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>weights_w <span class="token operator">=</span> ParameterTuple<span class="token punctuation">(</span>weights_w<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>weights_d <span class="token operator">=</span> ParameterTuple<span class="token punctuation">(</span>weights_d<span class="token punctuation">)</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>sparse <span class="token keyword">and</span> is_auto_parallel<span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">(</span>parameter_server <span class="token keyword">and</span> <span class="token keyword">not</span> cache_enable<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>optimizer_d <span class="token operator">=</span> LazyAdam<span class="token punctuation">(</span>
+                self<span class="token punctuation">.</span>weights_d<span class="token punctuation">,</span> learning_rate<span class="token operator">=</span><span class="token number">3.5e-4</span><span class="token punctuation">,</span> eps<span class="token operator">=</span><span class="token number">1e-8</span><span class="token punctuation">,</span> loss_scale<span class="token operator">=</span>sens<span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>optimizer_w <span class="token operator">=</span> FTRL<span class="token punctuation">(</span>learning_rate<span class="token operator">=</span><span class="token number">5e-2</span><span class="token punctuation">,</span> params<span class="token operator">=</span>self<span class="token punctuation">.</span>weights_w<span class="token punctuation">,</span>
+                                    l1<span class="token operator">=</span><span class="token number">1e-8</span><span class="token punctuation">,</span> l2<span class="token operator">=</span><span class="token number">1e-8</span><span class="token punctuation">,</span> initial_accum<span class="token operator">=</span><span class="token number">1.0</span><span class="token punctuation">,</span> loss_scale<span class="token operator">=</span>sens<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> host_device_mix <span class="token keyword">or</span> parameter_server<span class="token punctuation">:</span>
+                self<span class="token punctuation">.</span>optimizer_w<span class="token punctuation">.</span>target <span class="token operator">=</span> <span class="token string">"CPU"</span>
+                self<span class="token punctuation">.</span>optimizer_d<span class="token punctuation">.</span>target <span class="token operator">=</span> <span class="token string">"CPU"</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>optimizer_d <span class="token operator">=</span> Adam<span class="token punctuation">(</span>
+                self<span class="token punctuation">.</span>weights_d<span class="token punctuation">,</span> learning_rate<span class="token operator">=</span><span class="token number">3.5e-4</span><span class="token punctuation">,</span> eps<span class="token operator">=</span><span class="token number">1e-8</span><span class="token punctuation">,</span> loss_scale<span class="token operator">=</span>sens<span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>optimizer_w <span class="token operator">=</span> FTRL<span class="token punctuation">(</span>learning_rate<span class="token operator">=</span><span class="token number">5e-2</span><span class="token punctuation">,</span> params<span class="token operator">=</span>self<span class="token punctuation">.</span>weights_w<span class="token punctuation">,</span>
+                                    l1<span class="token operator">=</span><span class="token number">1e-8</span><span class="token punctuation">,</span> l2<span class="token operator">=</span><span class="token number">1e-8</span><span class="token punctuation">,</span> initial_accum<span class="token operator">=</span><span class="token number">1.0</span><span class="token punctuation">,</span> loss_scale<span class="token operator">=</span>sens<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>hyper_map <span class="token operator">=</span> C<span class="token punctuation">.</span>HyperMap<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>grad_w <span class="token operator">=</span> C<span class="token punctuation">.</span>GradOperation<span class="token punctuation">(</span>get_by_list<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+                                      sens_param<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>grad_d <span class="token operator">=</span> C<span class="token punctuation">.</span>GradOperation<span class="token punctuation">(</span>get_by_list<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+                                      sens_param<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>sens <span class="token operator">=</span> sens
+        self<span class="token punctuation">.</span>loss_net_w <span class="token operator">=</span> IthOutputCell<span class="token punctuation">(</span>network<span class="token punctuation">,</span> output_index<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>loss_net_d <span class="token operator">=</span> IthOutputCell<span class="token punctuation">(</span>network<span class="token punctuation">,</span> output_index<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>loss_net_w<span class="token punctuation">.</span>set_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>loss_net_d<span class="token punctuation">.</span>set_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        self<span class="token punctuation">.</span>reducer_flag <span class="token operator">=</span> <span class="token boolean">False</span>
+        self<span class="token punctuation">.</span>grad_reducer_w <span class="token operator">=</span> <span class="token boolean">None</span>
+        self<span class="token punctuation">.</span>grad_reducer_d <span class="token operator">=</span> <span class="token boolean">None</span>
+        self<span class="token punctuation">.</span>reducer_flag <span class="token operator">=</span> parallel_mode <span class="token keyword">in</span> <span class="token punctuation">(</span>ParallelMode<span class="token punctuation">.</span>DATA_PARALLEL<span class="token punctuation">,</span>
+                                              ParallelMode<span class="token punctuation">.</span>HYBRID_PARALLEL<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>reducer_flag<span class="token punctuation">:</span>
+            mean <span class="token operator">=</span> context<span class="token punctuation">.</span>get_auto_parallel_context<span class="token punctuation">(</span><span class="token string">"gradients_mean"</span><span class="token punctuation">)</span>
+            degree <span class="token operator">=</span> context<span class="token punctuation">.</span>get_auto_parallel_context<span class="token punctuation">(</span><span class="token string">"device_num"</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>grad_reducer_w <span class="token operator">=</span> DistributedGradReducer<span class="token punctuation">(</span>self<span class="token punctuation">.</span>optimizer_w<span class="token punctuation">.</span>parameters<span class="token punctuation">,</span> mean<span class="token punctuation">,</span> degree<span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>grad_reducer_d <span class="token operator">=</span> DistributedGradReducer<span class="token punctuation">(</span>self<span class="token punctuation">.</span>optimizer_d<span class="token punctuation">.</span>parameters<span class="token punctuation">,</span> mean<span class="token punctuation">,</span> degree<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">construct</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> batch_ids<span class="token punctuation">,</span> batch_wts<span class="token punctuation">,</span> label<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">'''
+        Construct wide and deep model
+        '''</span>
+        weights_w <span class="token operator">=</span> self<span class="token punctuation">.</span>weights_w
+        weights_d <span class="token operator">=</span> self<span class="token punctuation">.</span>weights_d
+        loss_w<span class="token punctuation">,</span> loss_d <span class="token operator">=</span> self<span class="token punctuation">.</span>network<span class="token punctuation">(</span>batch_ids<span class="token punctuation">,</span> batch_wts<span class="token punctuation">,</span> label<span class="token punctuation">)</span>
+        sens_w <span class="token operator">=</span> P<span class="token punctuation">.</span>Fill<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span>P<span class="token punctuation">.</span>DType<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span>loss_w<span class="token punctuation">)</span><span class="token punctuation">,</span> P<span class="token punctuation">.</span>Shape<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span>loss_w<span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>sens<span class="token punctuation">)</span>
+        sens_d <span class="token operator">=</span> P<span class="token punctuation">.</span>Fill<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span>P<span class="token punctuation">.</span>DType<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span>loss_d<span class="token punctuation">)</span><span class="token punctuation">,</span> P<span class="token punctuation">.</span>Shape<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span>loss_d<span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>sens<span class="token punctuation">)</span>
+        grads_w <span class="token operator">=</span> self<span class="token punctuation">.</span>grad_w<span class="token punctuation">(</span>self<span class="token punctuation">.</span>loss_net_w<span class="token punctuation">,</span> weights_w<span class="token punctuation">)</span><span class="token punctuation">(</span>batch_ids<span class="token punctuation">,</span> batch_wts<span class="token punctuation">,</span>
+                                                          label<span class="token punctuation">,</span> sens_w<span class="token punctuation">)</span>
+        grads_d <span class="token operator">=</span> self<span class="token punctuation">.</span>grad_d<span class="token punctuation">(</span>self<span class="token punctuation">.</span>loss_net_d<span class="token punctuation">,</span> weights_d<span class="token punctuation">)</span><span class="token punctuation">(</span>batch_ids<span class="token punctuation">,</span> batch_wts<span class="token punctuation">,</span>
+                                                          label<span class="token punctuation">,</span> sens_d<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>reducer_flag<span class="token punctuation">:</span>
+            grads_w <span class="token operator">=</span> self<span class="token punctuation">.</span>grad_reducer_w<span class="token punctuation">(</span>grads_w<span class="token punctuation">)</span>
+            grads_d <span class="token operator">=</span> self<span class="token punctuation">.</span>grad_reducer_d<span class="token punctuation">(</span>grads_d<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> F<span class="token punctuation">.</span>depend<span class="token punctuation">(</span>loss_w<span class="token punctuation">,</span> self<span class="token punctuation">.</span>optimizer_w<span class="token punctuation">(</span>grads_w<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> F<span class="token punctuation">.</span>depend<span class="token punctuation">(</span>loss_d<span class="token punctuation">,</span>
+                                                                     self<span class="token punctuation">.</span>optimizer_d<span class="token punctuation">(</span>grads_d<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">PredictWithSigmoid</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Cell<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    Predict definition
+    """</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> network<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span>PredictWithSigmoid<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>network <span class="token operator">=</span> network
+        self<span class="token punctuation">.</span>sigmoid <span class="token operator">=</span> P<span class="token punctuation">.</span>Sigmoid<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        parallel_mode <span class="token operator">=</span> context<span class="token punctuation">.</span>get_auto_parallel_context<span class="token punctuation">(</span><span class="token string">"parallel_mode"</span><span class="token punctuation">)</span>
+        full_batch <span class="token operator">=</span> context<span class="token punctuation">.</span>get_auto_parallel_context<span class="token punctuation">(</span><span class="token string">"full_batch"</span><span class="token punctuation">)</span>
+        is_auto_parallel <span class="token operator">=</span> parallel_mode <span class="token keyword">in</span> <span class="token punctuation">(</span>ParallelMode<span class="token punctuation">.</span>SEMI_AUTO_PARALLEL<span class="token punctuation">,</span> ParallelMode<span class="token punctuation">.</span>AUTO_PARALLEL<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> is_auto_parallel <span class="token keyword">and</span> full_batch<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>sigmoid<span class="token punctuation">.</span>shard<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">construct</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> batch_ids<span class="token punctuation">,</span> batch_wts<span class="token punctuation">,</span> labels<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        logits<span class="token punctuation">,</span> _<span class="token punctuation">,</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>network<span class="token punctuation">(</span>batch_ids<span class="token punctuation">,</span> batch_wts<span class="token punctuation">)</span>
+        pred_probs <span class="token operator">=</span> self<span class="token punctuation">.</span>sigmoid<span class="token punctuation">(</span>logits<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> logits<span class="token punctuation">,</span> pred_probs<span class="token punctuation">,</span> labels<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="3-背景：推荐系统"><a href="#3-背景：推荐系统" class="headerlink" title="3.背景：推荐系统"></a>3.背景：推荐系统</h2><p><code>推荐系统（RS）</code>主要是指应用协同智能（collaborative intelligence）做推荐的技术。推荐系统的两大主流类型是<code>基于内容的推荐系统</code>和协同过滤（Collaborative Filtering）。另外还有基于知识的推荐系统（包括基于本体和基于案例的推荐系统）是一类特殊的推荐系统，这类系统更加注重知识表征和推理。</p>
+<h3 id="推荐系统流程"><a href="#推荐系统流程" class="headerlink" title="推荐系统流程"></a>推荐系统流程</h3><p>推荐系统的一个典型场景是<code>广告点击率预估</code>。在我们浏览手机的应用商店时，经常可以看到商店会给我们推荐某些应用，某些推荐的应用往往是广告主通过付费来进行推广。</p>
+<p>为了提高广告投放的准确度，广告点击率预估模型<strong>需要评价用户点击某些应用的概率，将用户最可能点击的应用进行推送</strong>，达到准确的投放广告的目的。一旦我们点击了其中的一个应用，商店就可以成功的向广告投放商进行收费，而广告主们也达到了应用推广的目的。美国著名的电影和电视节目提供商Netflix曾经发起了奖金为百万美元的推荐系统比赛，旨在提升推荐系统的准确度。在广告点击率预估的场景，性能提高了1%的模型往往可以为公司带来巨大的收入。</p>
+<p>以APP商店中的推荐系统为例，其整体流程可以如下图所示：</p>
+<ol>
+<li>给定一个查询，这个查询可能是用户相关的特征，推荐系统首先会从数据库中检索到查询相关的APP，由于APP的数量非常巨大，因此我们可以取最相关的100个检索结果作为候选APP，这一过程通常叫作<code>粗排</code>。</li>
+<li>然后将候选的100个APP送入排序模型中，此处的排序模型就是我们下面将要介绍的<code>Wide&amp;Deep</code>模型，这一过程也被叫作<code>精排</code>。</li>
+<li>排序完成后，我们可以将点击概率最高的APP放置于用户最容易注意到的地方。无论用户是否点击了我们的推荐结果，我们都可以构造一个新的日志文件。在累积了一定数量的日志文件后，就可以继续微调排序模型，提高模型的准确程度。</li>
+</ol>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/06/19/wide-deep-mo-xing/image-20250619134558888.png" alt="image-20250619134558888" style="zoom:80%;">
+
+<h3 id="Wide部分"><a href="#Wide部分" class="headerlink" title="Wide部分"></a>Wide部分</h3><p>Wide部分是一个线性网络，即<code>y = w*x</code>。</p>
+<p>其设计目的是为了记住数据中特定的特征组合方式。例如广告点击率的场景，购买了电脑主机的用户，点击显示器，键盘等物件广告的概率特别高。因此可以将用户最近是否购买了电脑作为输入模型的输入，也就是特征。假设当前Wide网络只有一个特征，<code>当该特征取1时，y = w*x可以得到y=0.9(假设w的值是0.9)，当该特征取0时，y=0。y输出值越大，会增大模型对应用户点击概率的估计。</code></p>
+<p>回到上述APP应用推荐的场景中，可以看到下面图2-1模型结构的Cross Product Transformation，就是我们的wide部分的输入。<code>Cross Product Transformation是指特征交叉</code>，即将<strong>User Installed App</strong>和<strong>Impression APP</strong>进行组合。例如用户手机已经安装了微信，且当前的待估计的APP为QQ，那么这个**组合特征就是(User Installed App&#x3D;’微信’, Impression APP&#x3D;’QQ’)**。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/06/19/wide-deep-mo-xing/image-20250619134820279.png" alt="image-20250619134820279"></p>
+<h3 id="Deep模型"><a href="#Deep模型" class="headerlink" title="Deep模型"></a>Deep模型</h3><p>Deep部分的设计是为了模型具有<code>较好的泛化能力</code>，在输入的数据没有在训练集中出现时，它依然能够保持相关性较好的输出。</p>
+<p>在下图中，Deep模型输入都是一些含义不是非常明显的特征，例如设备类型，用户统计数据等类别特征(Categorical Features)。类别特征一般属于高维特征。例如手机的种类可能存在成千上万个，因此我们通常把这些类别特征通过<code>嵌入(Embedding)的方式</code>，映射成低维空间的参数向量。这个向量可以被认为表示了原先这个类别特征的信息。对于连续特征，其数值本身就具备一定的含义，因此可以直接将其与其他嵌入向量进行拼接。在拼接完成后，可以得到大致为1200维度的向量。将其作为三层全连接层网络的输入，并且选择ReLU作为激活函数，其中每层的输出维度分别为[1024, 512, 256]。</p>
+<p>在广告点击率预估的场景中，<code>模型的输出是一个0-1之间的值</code>，表示<code>当前候选APP被点击的概率</code>。因此可以采用<code>逻辑回归函数，将Wide&amp;Deep部分的输出压缩到0~1在之间。首先，Deep部分的输出是一个256维度的向量，可以通过一个线性变换将其映射为维度为1的值，然后和Wide部分的输出进行求和，将求和后的结果输入到逻辑回归函数中。</code></p>
+<p>这个求和的过程就是结合两个部分的优点的过程。</p>
+<h2 id="4-在学习过程中遇到的疑问"><a href="#4-在学习过程中遇到的疑问" class="headerlink" title="4.在学习过程中遇到的疑问"></a>4.在学习过程中遇到的疑问</h2><ul>
+<li><code>Wide部分和Deep部分的能力有什么不同?</code><ul>
+<li>Wide部分是一个简单的宽线性模型，形如<code>y = w*x</code>这样的式子，输入样本的属性对权重的计算产生直接的影响，假如A属性取1，最后模型输出1（真实值为0），那么通过Loss来调整w权重，w就应该变为0，所以<code>Wide模型能够学习到那些直接在样本中出现过的交叉特征</code>，学习历史出现过的组合，出现频率高，给予高权重。</li>
+<li>Deep部分通过一个神经网络来逼近一个高维函数，并通过该函数来计算出那些并不直接出现在训练样本中的交叉特征，这就是Deep模型的泛化能力，包含五层全连接层的深度神经网络，能深入这个高维函数的本质规则，抽象出最核心的问题。</li>
+</ul>
+</li>
+<li>什么是交叉特征?<ul>
+<li>交叉特征就是将原本的特征进行交叉组合，<code>形成新的特征</code>，如有两个属性，一个是手机装了微信，另一个是手机装了QQ，组成新的交叉特征就是(装了微信，装了QQ)特征，该新特征为1时当且仅当两个属性都为真。</li>
+</ul>
+</li>
+</ul>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/06/19/wide-deep-mo-xing/image-20250619140040170.png" alt="image-20250619140040170" style="zoom: 80%;">
+
+<ul>
+<li><p><code>Wide和Deep模型是怎么联合输出的?</code></p>
+<ul>
+<li>公式：$P(Y&#x3D;1|x) &#x3D; \sigma(w_{\text{wide}}^T \cdot [x, \phi(x)] + w_{\text{deep}}^T \cdot a^{(l_f)} + b)$</li>
+<li>Wide模型的输出和Deep模型最后一个全连接层的输出直接加权相加（向量相加），在推荐系统的二分类场景中，Wide 和 Deep 部分的输出最终都被处理为<strong>维度相同的向量</strong>（通常是<code>[batch_size, 1]</code>），表示每个样本的预测得分。</li>
+</ul>
+  <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">construct</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> id_hldr<span class="token punctuation">,</span> wt_hldr<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># Wide部分计算</span>
+    wide_id_weight <span class="token operator">=</span> self<span class="token punctuation">.</span>wide_embeddinglookup<span class="token punctuation">(</span>id_hldr<span class="token punctuation">)</span>
+    wx <span class="token operator">=</span> self<span class="token punctuation">.</span>wide_mul<span class="token punctuation">(</span>wide_id_weight<span class="token punctuation">,</span> mask<span class="token punctuation">)</span>
+    wide_out <span class="token operator">=</span> self<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span>self<span class="token punctuation">.</span>reduce_sum<span class="token punctuation">(</span>wx<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> self<span class="token punctuation">.</span>wide_b<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    
+    <span class="token comment"># Deep部分计算</span>
+    deep_id_embs <span class="token operator">=</span> self<span class="token punctuation">.</span>deep_embeddinglookup<span class="token punctuation">(</span>id_hldr<span class="token punctuation">)</span>
+    vx <span class="token operator">=</span> self<span class="token punctuation">.</span>deep_mul<span class="token punctuation">(</span>deep_id_embs<span class="token punctuation">,</span> mask<span class="token punctuation">)</span>
+    deep_in <span class="token operator">=</span> self<span class="token punctuation">.</span>deep_reshape<span class="token punctuation">(</span>vx<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>field_size <span class="token operator">*</span> self<span class="token punctuation">.</span>emb_dim<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    deep_in <span class="token operator">=</span> self<span class="token punctuation">.</span>dense_layer_1<span class="token punctuation">(</span>deep_in<span class="token punctuation">)</span>
+    deep_in <span class="token operator">=</span> self<span class="token punctuation">.</span>dense_layer_2<span class="token punctuation">(</span>deep_in<span class="token punctuation">)</span>
+    deep_in <span class="token operator">=</span> self<span class="token punctuation">.</span>dense_layer_3<span class="token punctuation">(</span>deep_in<span class="token punctuation">)</span>
+    deep_in <span class="token operator">=</span> self<span class="token punctuation">.</span>dense_layer_4<span class="token punctuation">(</span>deep_in<span class="token punctuation">)</span>
+    deep_out <span class="token operator">=</span> self<span class="token punctuation">.</span>dense_layer_5<span class="token punctuation">(</span>deep_in<span class="token punctuation">)</span>
+    
+    <span class="token comment"># 联合输出：Wide与Deep的输出直接相加</span>
+    out <span class="token operator">=</span> wide_out <span class="token operator">+</span> deep_out
+    <span class="token keyword">return</span> out<span class="token punctuation">,</span> self<span class="token punctuation">.</span>embedding_table<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>这种向量相加本质上实现了<strong>两种预测能力的融合</strong>：<ul>
+<li><strong>Wide 部分</strong>通过交叉特征（如 “性别 &#x3D; 男 ∩ 商品 &#x3D; 电子产品”）提供对高频模式的<strong>精确记忆</strong>。</li>
+<li><strong>Deep 部分</strong>通过嵌入向量（如 “用户嵌入” 和 “商品嵌入” 的交互）挖掘特征间的<strong>潜在语义关联</strong>。</li>
+</ul>
+</li>
+<li>向量相加之后再接一个<code>sigmod激活函数</code>输出被点击的概率</li>
+</ul>
+</li>
+<li><p><code>什么是dropout?</code></p>
+<ul>
+<li>dropout随机丢弃部分神经元防止过拟合</li>
+</ul>
+</li>
+<li><p><code>什么是batch_size和epoch，它们之间的区别是什么?</code></p>
+<ul>
+<li><code>batch_size</code>：表示并行训练的样本数，<code>GPU擅长并行运算</code>，所以batch_size越大，每次并行计算的数据就越多，显存要求越高，因为要存储每层网络的输入输出和参数之类的。batch_size影响训练速度和梯度稳定性，假如过大，</li>
+<li><code>epoch</code>：表示样本的数据要重复训练多少次，控制<strong>学习轮次</strong>，影响模型对数据规律的掌握程度。</li>
+<li><strong>对模型收敛的影响</strong></li>
+<li>batch_size 影响梯度稳定性<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18P4y1j7uH/">【梯度下降】3D可视化讲解通俗易懂_哔哩哔哩_bilibili</a><ul>
+<li>小 batch_size（如 8）：每次梯度基于少量样本，波动大，可能跳出局部最优，但收敛过程更灵活。</li>
+<li>大 batch_size（如 512）：梯度基于大量样本平均，方向更稳定，但可能陷入尖锐局部最优。</li>
+</ul>
+</li>
+<li>epoch 影响学习深度<ul>
+<li>合适的 epoch 数能让模型充分学习数据规律，避免<code>欠拟合（epoch 太少）或过拟合（epoch 太多）</code>。</li>
+<li>通过验证集监控损失变化，使用<code>早停策略（如验证集损失连续 5 轮不下降则停止）。</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>什么叫做收敛稳定?</code></p>
+<ul>
+<li>在机器学习中，收敛稳定表示该网络的参数已经趋向于局部最优，损失值已经不再有明显的下降，修改权重带来的效果不在明显。这时候就可以结束训练。</li>
+</ul>
+</li>
+<li><p><code>batch_size和epoch之间的关系是什么?</code></p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://0zxm.github.io">0zxm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://0zxm.github.io/2025/06/19/wide-deep-mo-xing/">https://0zxm.github.io/2025/06/19/wide-deep-mo-xing/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://0zxm.github.io" target="_blank">0zxm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a><a class="post-meta__tags" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a></div><div class="post-share"><div class="social-share" data-image="/img/cover2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/03/08/java-ji-chu-xia/" title="Java基础下"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Java基础下</div></div><div class="info-2"><div class="info-item-1">Java课程学习</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/01/15/django-he-vue3-qian-hou-duan-fen-chi-kai-fa/" title="Django和Vue3前后端补充知识点"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-15</div><div class="info-item-2">Django和Vue3前后端补充知识点</div></div><div class="info-2"><div class="info-item-1">Django和Vue3前后端分离开发</div></div></div></a><a class="pagination-related" href="/2024/11/23/django-xue-xi/" title="Django学习"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-23</div><div class="info-item-2">Django学习</div></div><div class="info-2"><div class="info-item-1">Django框架的学习</div></div></div></a><a class="pagination-related" href="/2025/01/05/mindspore-shou-xie-shu-zi-shi-bie/" title="Mindspore手写数字识别"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-05</div><div class="info-item-2">Mindspore手写数字识别</div></div><div class="info-2"><div class="info-item-1">使用MindSpore深度学习框架，进行网络搭建、数据处理、网络训练和测试，完成MNIST手写体识别任务</div></div></div></a><a class="pagination-related" href="/2024/09/09/pyqt-kai-fa-yi-ge-ji-shi-ben/" title="pyqt开发一个记事本"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-09</div><div class="info-item-2">pyqt开发一个记事本</div></div><div class="info-2"><div class="info-item-1">构建一个功能丰富的记事本应用：深入 PyQt5</div></div></div></a><a class="pagination-related" href="/2024/11/21/python-zhong-de-import/" title="python中的import"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-21</div><div class="info-item-2">python中的import</div></div><div class="info-2"><div class="info-item-1">介绍python中的import机制及其使用方法</div></div></div></a><a class="pagination-related" href="/2025/02/15/pyqt-xie-yi-ge-dai-ban-cheng-xu/" title="pyqt写一个待办程序"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-15</div><div class="info-item-2">pyqt写一个待办程序</div></div><div class="info-2"><div class="info-item-1">构建一个功能丰富的待办应用：深入PyQt5</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">0zxm</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">59</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/0zxm"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/0zxm" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:m15813109801@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="http://0zxm.github.io" target="_blank" title="博客"><i class="fab fa-algolia" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AFWide-Deep%E6%A8%A1%E5%9E%8B"><span class="toc-text">1.什么是Wide&amp;Deep模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%80%8E%E4%B9%88%E5%9F%BA%E4%BA%8EMindSpore%E6%9D%A5%E5%AE%9E%E7%8E%B0"><span class="toc-text">2.怎么基于MindSpore来实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%83%8C%E6%99%AF%EF%BC%9A%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F"><span class="toc-text">3.背景：推荐系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%B5%81%E7%A8%8B"><span class="toc-text">推荐系统流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Wide%E9%83%A8%E5%88%86"><span class="toc-text">Wide部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deep%E6%A8%A1%E5%9E%8B"><span class="toc-text">Deep模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%9C%A8%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E7%96%91%E9%97%AE"><span class="toc-text">4.在学习过程中遇到的疑问</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/06/19/wide-deep-mo-xing/" title="Wide&amp;Deep模型"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Wide&amp;Deep模型"/></a><div class="content"><a class="title" href="/2025/06/19/wide-deep-mo-xing/" title="Wide&amp;Deep模型">Wide&amp;Deep模型</a><time datetime="2025-06-19T05:30:40.000Z" title="发表于 2025-06-19 13:30:40">2025-06-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/08/java-ji-chu-xia/" title="Java基础下"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java基础下"/></a><div class="content"><a class="title" href="/2025/03/08/java-ji-chu-xia/" title="Java基础下">Java基础下</a><time datetime="2025-03-08T03:43:21.000Z" title="发表于 2025-03-08 11:43:21">2025-03-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/08/duo-xian-cheng-e-wai-kuo-zhan/" title="Java基础之多线程"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java基础之多线程"/></a><div class="content"><a class="title" href="/2025/03/08/duo-xian-cheng-e-wai-kuo-zhan/" title="Java基础之多线程">Java基础之多线程</a><time datetime="2025-03-08T03:43:21.000Z" title="发表于 2025-03-08 11:43:21">2025-03-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/07/qian-ru-shi-xi-tong-gai-shu/" title="嵌入式系统概述"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="嵌入式系统概述"/></a><div class="content"><a class="title" href="/2025/03/07/qian-ru-shi-xi-tong-gai-shu/" title="嵌入式系统概述">嵌入式系统概述</a><time datetime="2025-03-07T06:08:48.000Z" title="发表于 2025-03-07 14:08:48">2025-03-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/05/da-shu-ju-ke-shi-hua/" title="大数据可视化"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="大数据可视化"/></a><div class="content"><a class="title" href="/2025/03/05/da-shu-ju-ke-shi-hua/" title="大数据可视化">大数据可视化</a><time datetime="2025-03-05T04:51:12.000Z" title="发表于 2025-03-05 12:51:12">2025-03-05</time></div></div></div></div></div></div><!-- 登录验证模态框--></main><footer id="footer" style="background-image: url(/img/footer.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By 0zxm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- CSS 样式--><style>#login-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  z-index:999;
+}
+
+input#password-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button#submit-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button#submit-btn:hover {
+  background-color: #45a049;
+}
+</style><!-- JavaScript 验证--><script>document.addEventListener('DOMContentLoaded', function() {
+
+  (function() {
+  // 禁用右键菜单
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    return false;
+  });
+
+  // 禁用快捷键 (F12/Ctrl+Shift+I/Ctrl+Shift+J/Ctrl+Shift+C)
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'F12' || 
+        (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+        (e.ctrlKey && e.shiftKey && e.key === 'J') ||
+        (e.ctrlKey && e.shiftKey && e.key === 'C')) {
+      e.preventDefault();
+      return false;
+    }
+  });
+  })();
+  
+
+  const modal = document.getElementById('login-modal');
+  const passwordInput = document.getElementById('password-input');
+  const submitBtn = document.getElementById('submit-btn');
+  const errorMsg = document.getElementById('error-msg');
+  const bodyWrap = document.getElementById('body-wrap');
+
+
+  // 默认显示模态框
+  modal.style.display = 'flex';
+
+  // 自动聚焦到密码输入框
+  passwordInput.focus();
+
+  submitBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    const password = passwordInput.value;
+    const correctPassword = 'D&X'; // 替换为实际密码
+
+    if (password === correctPassword) {
+      modal.style.display = 'none';
+      bodyWrap.style.opacity = 1; // 显示页面内容
+    } else {
+      passwordInput.classList.add('error');
+      errorMsg.style.display = 'block';
+      setTimeout(() => {
+        passwordInput.classList.remove('error');
+        errorMsg.style.display = 'none';
+      }, 2000);
+    }
+  });
+  // 按下 Enter 键提交
+  passwordInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      submitBtn.click();
+    }
+  });
+});</script></body></html>
