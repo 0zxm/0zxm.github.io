@@ -1,0 +1,876 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>网络信息安全和密码学 | 0zxm</title><meta name="author" content="0zxm"><meta name="copyright" content="0zxm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="网络信息安全和密码学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络信息安全和密码学">
+<meta property="og:url" content="https://0zxm.github.io/2025/03/03/wang-luo-yu-xin-xi-an-quan/index.html">
+<meta property="og:site_name" content="0zxm">
+<meta property="og:description" content="网络信息安全和密码学">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://0zxm.github.io/img/cover2.jpg">
+<meta property="article:published_time" content="2025-03-03T11:06:28.000Z">
+<meta property="article:modified_time" content="2025-07-03T00:15:36.000Z">
+<meta property="article:author" content="0zxm">
+<meta property="article:tag" content="密码学">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0zxm.github.io/img/cover2.jpg"><link rel="shortcut icon" href="/favicon.png"><link rel="canonical" href="https://0zxm.github.io/2025/03/03/wang-luo-yu-xin-xi-an-quan/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: 0zxm","link":"链接: ","source":"来源: 0zxm","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '网络信息安全和密码学',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-07-03 08:15:36'
+}</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/src/"><i class="fa-fw fas fa-cloud"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comment"></i><span> 说说</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover2.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">0zxm</span></a><a class="nav-page-title" href="/"><span class="site-name">网络信息安全和密码学</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/src/"><i class="fa-fw fas fa-cloud"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comment"></i><span> 说说</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">网络信息安全和密码学</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-03-03T11:06:28.000Z" title="发表于 2025-03-03 19:06:28">2025-03-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-03T00:15:36.000Z" title="更新于 2025-07-03 08:15:36">2025-07-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/">理论知识</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">11.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>35分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="网络安全实践和密码学原理"><a href="#网络安全实践和密码学原理" class="headerlink" title="网络安全实践和密码学原理"></a>网络安全实践和密码学原理</h1><h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><ul>
+<li><p><code>网络空间安全</code>：是指保护网络空间环境、组织和用户资产的一系列工具、政策、安全理念、安全防护措施、指导方针、风险管理方法、行动、培训、最佳实践、保证和技术的集合。</p>
+<ul>
+<li><code>组织和用户的资产</code>：包括连接的计算设备、人员、基础设施、应用、服务、通信系统系统，以及网络空间环境中的所有传输和&#x2F;或存储的信息。</li>
+<li><code>网络空间安全</code>力求确保组织和用户的资产在网络空间环境中免受相关安全风险，实现和维护安全属性。总体安全目标包括：可用性(availability) 、完整性(integrity)，包括数据真实性（ <em>authenticity</em> ）和不可否认性(nonrepudiation)、 机密性(confidentiality)</li>
+</ul>
+</li>
+<li><p><code>信息安全</code>：指保护信息的保密性、完整性和可用性。此外，还可能涉及真实性、可问责性、不可否认性和可靠性等其他属性。</p>
+</li>
+<li><p><code>网络安全</code>：保护网络及其服务免受未经授权的修改、破坏或泄露，并确保网络能够正确执行关键功能，没有产生有害副作用。</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1W14y1k7dr/">杜跃进：数据安全是数字化时代安全的基本性问题</a></p>
+<h3 id="第一章-计算机与网络安全概念"><a href="#第一章-计算机与网络安全概念" class="headerlink" title="第一章 计算机与网络安全概念"></a>第一章 计算机与网络安全概念</h3><ul>
+<li><code>计算机安全</code>：对于一个自动化的信息系统，采取保护措施确保信息系统资源(包括硬件、软件、固件、信息&#x2F;数据和通信)的完整性、可用性和保密性。</li>
+</ul>
+<p>这个定义给出了计算机安全最核心的三个关键目标：就是所谓的<code>CIA三元组</code></p>
+<ul>
+<li><p><code>保密性(Confidentiality)</code>该术语包含两个相关的概念: </p>
+<ul>
+<li>数据保密性： 确保隐私或秘密信息不向非授权者泄露，也不被非授权者使用。</li>
+<li>隐私性：确保个人能够控制或确定与其自身相关的哪些信息是可以被收集的、被保存的，这些信息可以由谁来公开以及向谁公开。</li>
+</ul>
+</li>
+<li><p><code>完整性(Integrity)</code>该术语包含两个相关的概念:</p>
+<ul>
+<li>数据完整性 确保信息和程序只能以特定和授权的方式进行改变。</li>
+<li>系统完整性 确保系统以一种正常方式来执行预定的功能，免于有意或无意的非授权操纵。</li>
+</ul>
+</li>
+<li><p><code>可用性(Availabiity)：</code>确保系统能工作迅速，对授权用户不能拒绝服务。确保及时和可靠地访问与使用信息。可用性的缺失是对信息和信息系统访问和使用的中断。</p>
+</li>
+</ul>
+<p>虽然CIA三元组对于安全目标的定义已经很清晰，但在某些安全领域中，还需要一些额外的安全概念来呈现更完整的安全定义:</p>
+<ul>
+<li><code>真实性(Authenticity)</code>：一个实体是真实性的、可被验证的和可被信任的特性。对传输信息来说，信息和信息的来源是正确的。也就是说，能够验证那个用户是否是他声称的那个人，以及系统的每个输入是否均来自可信任的信源。</li>
+<li><code>可追溯性(Accountability)</code>：这一安全目标要求实体的行为可以唯一追溯到该实体。这一属性支持不可否认性、阻止、故障隔离、入侵检测和预防、事后恢复，以及法律诉讼。因为无法得到真正安全的系统，我们必须能够追查到对安全泄露负有责任的一方。系统必须保留他们活动的记录，以允许事后的审计分析，进而跟踪安全事件或解决争执。</li>
+</ul>
+<p>下图是<code>网络与计算机安全的基本需求</code>：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250303195200737.png" alt="image-20250303195200737"></p>
+<p><strong>OSI安全架构</strong></p>
+<ul>
+<li><code>例题：ISO/OSI安全服务不包括数据过滤服务</code></li>
+</ul>
+<p>OSI安全架构主要关注安全攻击、安全机制和安全服务，它们简短地定义如下:</p>
+<ul>
+<li>安全攻击：任何危及信息系统安全的行为。</li>
+<li>安全机制：用来检测、阻止攻击或从攻击状态恢复到正常状态的过程(或实现该过程的设备)。</li>
+<li>安全服务：加强数据处理系统和信息传输的安全性的一种处理过程或通信服务，目的在于利用一种或多种安全机制进行反攻击。</li>
+</ul>
+<p><strong>安全攻击</strong></p>
+<p>安全攻击是安全威胁的具体体现</p>
+<p>安全威胁可以分为内部威胁和外部威胁，70%-80%的安全事件来自于内部。安全威胁也可以分为自然威胁和人为威胁，精心设计的人为威胁最大。人为威胁分为无意威胁(偶然事故)和有意威胁(恶意攻击)，恶意攻击分为<code>主动攻击</code>和<code>被动攻击</code></p>
+<ol>
+<li><code>被动攻击的特性是对传输进行窃听和监测。</code>攻击者的目标是获得传输的信息信息内容的泄露和流量分析都属于被动攻击。</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250303200121388.png" alt="image-20250303200121388"></p>
+<p>假如信源和信宿在网络通信的过程中，被某一中间设备窃听了信息，但是没有对数据信息更改，对于信源和信宿双方来说，信息并没有问题，能正常使用，所以难以检测。</p>
+<p><code>第二种被动攻击是流量分析</code>，它有些微妙。假设我们已使用方法隐藏了消息内容或其他信息流量，攻击者即使截获了消息也无法从消息中获得信息。<code>加密是隐藏内容的常用技巧。</code>但即使我们对消息进行了恰当的加密保护，攻击者仍具有可能获取这些消息的一些模式。攻击者可以确定通信主机的身份和位置，可以观察到传输消息的频率和长度。攻击者可以利用这些信息来判断通信的某些性质。</p>
+<p>这时候可以<code>改变传输信息的模式</code>，假设平时传输信息都是在晚上发送，并且是较小数据的信息，那么就可以在白天发送无意义字符来混淆视线</p>
+<ol start="2">
+<li><code>主动攻击包括对数据流进行修改或伪造数据流</code>，具体分为四类:伪装、重放、消息修改和拒绝服务。</li>
+</ol>
+<ul>
+<li>伪装是指某实体假装成其他实体。伪装攻击通常还包含其他形式的主动攻击。例如，截获认证信息，并在认证信息完成合法验证之后进行重放，无权限的实体就可通过冒充有权限的实体获得额外的权限。</li>
+<li>重放是指攻击者未经授权地将截获的信息再次发送。</li>
+<li>消息修改指未经授权地修改合法消息的一部分，或延迟消息的传输，或改变消息的顺序,例如,将消息“Allow John Smith to read confidential file accounts”修改为“Allow Fred Brownto read confidential file accounts”.</li>
+<li>拒绝服务阻止或禁止对通信设施的正常使用或管理。这种攻击可能针对的是具体的目标。比如，某实体可能会查禁所有发向某目的地(如安全审计服务)的消息。拒绝服务的另一种形式是破坏整个网络，或者使网络失效，或者使网络过载以降低其性能。</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250303200951941.png" alt="image-20250303200951941"></p>
+<p><strong>安全服务</strong></p>
+<p><code>X.800</code>将安全服务定义为: 在通信开放系统中，为系统或数据传输提供足够安全的协议层服务。RFC4949中给出的定义可能更清晰:安全服务是一种由系统提供的对系统资源进行特殊保护的处理或通信服务;安全服务通过安全机制来实现安全策略。</p>
+<p>X.800将这些服务分为5类共14个特定服务(参见表1.2)。下面逐类进行讨论。</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250303201650738.png" alt="image-20250303201650738" style="zoom:80%;">
+
+<p><strong>安全机制</strong></p>
+<p>表1.3列出了X.800中定义的安全机制。</p>
+<p>由表可知，这些安全机制分为两类:一类在特定的协议层实现，如TCP或应用层协议;另一类不属于任何协议层或安全服务。本书将在后文中详述这些机制，在此暂时只讨论加密机制的定义。X.800对可逆和不可逆加密机制进行了区分。可逆加密机制是一种单纯的加密算法，数据可以加密和解密。不可逆加密机制包括用于数字签名和消息认证应用中的散列算法与消息认证码。</p>
+<p>根据X.800中的定义，表14给出了安全服务和安全机制的关系</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250303201909908.png" alt="image-20250303201909908"></p>
+<h2 id="传统加密技术"><a href="#传统加密技术" class="headerlink" title="传统加密技术"></a>传统加密技术</h2><p><code>对称加密，也叫传统加密或单钥加密。</code>首先，我们来定义一些术语。原始的消息为明文，而加密后的消息为密文。从明文到密文的变换过程被称为加密;从密文到明文的变换过程被称为解密。</p>
+<ul>
+<li><code>明文</code>（palintext）：原始可理解的消息或数据，是算法的输入。</li>
+<li><code>加密算法</code>：加密算法对明文进行各种代替和变换。</li>
+<li><code>密钥</code>（key）：密钥也是加密算法的输入。密钥独立于明文和算法。</li>
+<li><code>算法</code>：根据所用的特定密钥而产生不同的输出。算法所用的确切代替和变换也依靠密钥。</li>
+<li><code>密文</code>（ciphertext）：作为算法的输出，看起来完全随机而杂乱的消息，依赖于明文和密钥。对于给定的消息，不同的密钥产生不同的密文，密文看上去是随机的数据流，并且其意义是不可理解的。</li>
+<li><code>解密算法</code>：本质上是加密算法的逆运算。输入密文和密钥，输出原始明文。</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250311114044656.png" alt="image-20250311114044656"></p>
+<blockquote>
+<p>In other words, we do not need to keep the algorithm secret; we need to keep only the key secret.</p>
+<p><code>换句话说，我们不需要对加密算法保密，我们只需要对密钥保密。</code></p>
+</blockquote>
+<h3 id="安全的密码"><a href="#安全的密码" class="headerlink" title="安全的密码"></a>安全的密码</h3><p>什么样的密码是安全的，或者说能够投入使用的?</p>
+<p>加密算法的安全性通常分为两类：</p>
+<ol>
+<li>信息论安全(无条件安全)<ul>
+<li><strong>一次一密（One-Time Pad, OTP）</strong>：这是唯一一种被证明在信息论上是绝对安全的加密算法。其原理是使用与明文长度相同的随机密钥，对每一位明文进行异或操作加密，解密时使用相同的密钥进行反向操作。只要密钥是完全随机的、只使用一次且不被泄露，那么无论攻击者拥有多少计算资源，都无法破解出明文。例如，如果攻击者截获了密文，他们无法通过任何方法推断出明文，因为每个密文都对应着无数种可能的明文，且每种可能性都存在。</li>
+</ul>
+</li>
+<li><code>计算安全</code><ul>
+<li>破译密码的代价超出密文信息的价值。</li>
+<li>破译密码的时间超出密文信息的有效生命期。</li>
+</ul>
+</li>
+</ol>
+<p><code>传统密码的安全使用要满足如下两个要求:</code></p>
+<ol>
+<li><code>加密算法必须是足够强的。</code>至少，我们希望这个算法在敌手知道它并且能够得到一个或者多个密文时也不能破译密文或计算出密钥。这个要求通常用一种更强的形式表述为:即使敌手拥有一定数量的密文和产生这些密文的明文，他(或她)也不能破译密文或发现密钥。</li>
+<li>发送者和接收者必须在某种安全的形式下获得密钥并且必须<code>保证密钥安全</code>。如果有人发现该密钥，而且知道相应的算法，那么就能解读使用该密钥加密的所有通信。</li>
+</ol>
+<h3 id="密码编码学（加密学）"><a href="#密码编码学（加密学）" class="headerlink" title="密码编码学（加密学）"></a>密码编码学（加密学）</h3><p>密码编码学具有以下三个独立特征：</p>
+<ul>
+<li>转换明文为密文的运算类型，所有的加密算法都基于两个原理:<code>代替</code>和<code>置换</code>，代替是将明文中的每个元素(如位、字母、位组或字母组等)映射成另一个元素:置换是将明文中的元素重新排列。上述运算的基本要求是不允许有信息丢失(即所有的运算是可逆的)。大多数密码体制，也称为<code>乘积密码系统</code>，都使用了多层代替和置换。</li>
+<li>所用的密钥数，如果发送方和接收方使用相同的密钥，这种密码就称为<code>对称密码</code>、单密钥密码、秘密钥密码或传统密码。如果发收双方使用不同的密钥，这种密码就称为<code>非对称密码</code>、双钥或公钥密码。</li>
+<li>处理明文的方法分组密码每次处理输入的一组元素，相应地输出一组元素。流密码则是连续地处理输入元素，每次输出一个元素。</li>
+</ul>
+<h3 id="密码分析学（解密）"><a href="#密码分析学（解密）" class="headerlink" title="密码分析学（解密）"></a>密码分析学（解密）</h3><p>攻击密码系统的典型目标是恢复使用的密钥而不是仅仅恢复出单个密文对应的明文。攻击传统的密码体制有两种通用的方法:</p>
+<ul>
+<li>密码分析学：密码分析学攻击依赖于算法的性质、明文的一般特征或某些明密文对。这种形式的攻击企图利用算法的特征来推导出特定的明文或使用的密钥。</li>
+<li><code>穷举攻击</code>：攻击者对一条密文尝试所有可能的密钥直到把它转化为可读的有意义的明文。平均而言，获得成功至少要尝试所有可能密钥的一半。</li>
+</ul>
+<p>根据攻击者对于信息的多少，将密码攻击分为几种类型：</p>
+<table>
+<thead>
+<tr>
+<th>攻击类型</th>
+<th>密码分析者已知的信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>唯密文攻击</td>
+<td>- 加密算法<br>- 密文</td>
+</tr>
+<tr>
+<td>已知明文攻击</td>
+<td>- 加密算法<br>- 密文<br>- 用（与待解的密文）同一密钥加密的一个或多个明密文对</td>
+</tr>
+<tr>
+<td>选择明文攻击</td>
+<td>- 加密算法<br>- 密文<br>- 分析者选择的明文，及对应的密文（与待解的密文使用同一密钥加密）</td>
+</tr>
+<tr>
+<td>选择密文攻击</td>
+<td>- 加密算法<br>- 密文<br>- 分析者选择的一些密文，及对应的明文（与待解的密文使用同一密钥解密）<code>自由选择密文，相当于能够使用加密机</code></td>
+</tr>
+<tr>
+<td>选择文本攻击</td>
+<td>- 加密算法<br>- 密文<br>- 分析者选择的明文，及对应的密文（与待解的密文使用同一密钥加密）<br>- 分析者选择的一些密文，及对应的明文（与待解的密文使用同一密钥解密）<code>能够访问加密机和解密机</code></td>
+</tr>
+</tbody></table>
+<p><strong>传统加密技术分为两类：</strong></p>
+<p>一类是代换技术，也叫代替加密，是将明文中的每个元素映射到其他元素的加密方式。而另一类是置换加密，并不直接改变原文的对应关系，而是重新排列元素顺序。</p>
+<p><strong>例题：</strong></p>
+<ol>
+<li><strong>利用了密文统计特性的攻击是（ ）</strong></li>
+</ol>
+<ul>
+<li><strong>选项</strong>：A. 差分密码分析；B. 线性密码分析；C. 暴力攻击；D. 中间人攻击</li>
+<li><strong>答案</strong>：B</li>
+<li><strong>解析</strong>：线性密码分析（B）通过分析明文、密文和密钥的线性关系，利用密文统计偏差破解密码；差分密码分析（A）基于明文差异与密文差异的关系，二者均属于统计攻击。暴力攻击（C）穷举所有密钥，中间人攻击（D）伪造身份介入通信。</li>
+</ul>
+<h3 id="代替加密"><a href="#代替加密" class="headerlink" title="代替加密"></a>代替加密</h3><p>代替技术是将<code>明文字母替换成其他字母、数字或符号的方法</code>。如果把明文看成是二进制序列的话，那么代替就是用密文位串来代替明文位串。</p>
+<h4 id="凯撒密码Caesar"><a href="#凯撒密码Caesar" class="headerlink" title="凯撒密码Caesar"></a>凯撒密码Caesar</h4><p>凯撒密码的机制很简单，<code>就是对于明文中的每个字母，使用字母表的后三位来替换</code>，得到加密后的密文。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250311132738506.png" alt="image-20250311132738506"></p>
+<p>凯撒密码的三个重要特性是我们可以采用穷举攻击分析方法：</p>
+<ul>
+<li><code>密钥只有25个</code>，既字母表向后移的位数</li>
+<li><code>已知加密和解密算法</code></li>
+<li>验证性解密后，<code>容易判别出明文信息是否是想要的</code></li>
+</ul>
+<h4 id="单表替换"><a href="#单表替换" class="headerlink" title="单表替换"></a>单表替换</h4><p><code>Caesar密码仅有25种可能的密钥，是远不够安全的。</code>通过允许任意代替(不是按照偏移量对应，而是任意选择），密钥空间将会急剧增大。在继续之前，我们先定义术语置换。有限元素的集合S的置换是S的所有元素的有序排列且每个元素只出现一次。例如，如果S&#x3D;{a，b，c}，则S有6个置换{abc，acb，bac，bca，cab，cba}</p>
+<p>如果密文行是<code>26个字母的任意置换</code>，那么就有26!或大于4x10种可能的密钥（因为第一个元素有26种选择方式，第二个有25种方式……），这比DES的密钥空间要大10个数量级，好像可以抵挡穷举攻击了。这种方法被称为单表代替。</p>
+<p>但是这样的方法虽然能抵挡穷举攻击，但是无法阻止密码分析攻击，因为根据语法和语言的特性（单词的使用频率，字母的使用频率），攻击者还是能够通过分析从而得到“缺口”：</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250311135013145.png" alt="image-20250311135013145" style="zoom:80%;">
+
+<p><code>单表代替密码较容易被攻破，因为它带有原始字母使用频率的一些统计学特征</code>。一种对策是对<code>每个字母提供多种代替</code>，称为同音词(就像一个读音可以代表多个单词的同音词一样)，一个明文单元也可以变换成不同的密文单元。比如字母e可以替换成16，74，35，和21，循环或随机地选取其中一个同音词即可。如果对每个明文元素(字母)分配的密文元素(如数字等)的个数与此明文元素(字母)的使用频率成一定比例关系，那么使用频率信息就完全被破坏了。</p>
+<p>然而，即使采用了同音词方法，明文中的每个元素仅仅只对密文中的一个元素产生影响，多字母语法模式(比如双字母音节)仍然残留在密文中，从而使得密码分析相对简单。有两种主要的方法可以减少代替密码里明文结构在密文中的残留度:一种是对明文中的多个字母一起加密;另一种是采用多表代替密码。每一种我们都会简单地提及。</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250311172624137.png" alt="image-20250311172624137" style="zoom:80%;">
+
+<h4 id="多字母替换之Playfair"><a href="#多字母替换之Playfair" class="headerlink" title="多字母替换之Playfair"></a>多字母替换之Playfair</h4><p>Playfair算法一次对两个字母进行加密操作。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250311174024769.png" alt="image-20250311174024769"></p>
+<p>解密过程与加密类似，但方向相反：</p>
+<ol>
+<li><strong>同一行的字母</strong>：用它们左边的字母代替。</li>
+<li><strong>同一列的字母</strong>：用它们上面的字母代替。</li>
+<li><strong>不同行不同列的字母</strong>：同样形成矩形，用同一行另一顶点的字母代替。</li>
+</ol>
+<p>本质是将两个字母（ac）替换成另两个字母 de（忽略中间的替换规则，即使根据两个明文字母的不同位置选择不同规则，也只是多常数级操作穷举，多四种情况），将25个字母按某种规律填入矩阵中。有26×26个字母对，所以要根据音节频率来识别出对应的字母对要困难得多。</p>
+<p>但是，根据<code>William Friedman</code>在1942年指出其安全性很低，主要原因有如下：</p>
+<ul>
+<li><strong>密钥空间相对较小</strong>：Playfair密码的密钥空间为25!（约10^26），虽然比单表代替密码的密钥空间大，但在现代计算能力面前，仍然存在被暴力破解的风险。</li>
+<li><strong>保留双字母组合模式</strong>：Playfair密码对双字母进行加密，虽然破坏了单字母的频率信息，但双字母组合的频率模式仍然可能保留，攻击者可以通过分析双字母组合的频率来破解密码。</li>
+</ul>
+<h4 id="Hill密码"><a href="#Hill密码" class="headerlink" title="Hill密码"></a>Hill密码</h4><p><code>Hill密码能抵御频率分析攻击，不能抵御已知明文攻击</code></p>
+<ul>
+<li><strong>频率分析抵抗性</strong>：Hill 密码基于矩阵线性变换，将多个明文字符映射为密文字符，能打破单字母的频率分布规律，因此抵抗传统的单字母频率分析。</li>
+<li><strong>已知明文攻8击脆弱性</strong>：若攻击者获取一组明文-密文对，可通过线性代数求解矩阵逆元来破解密钥，因此无法抵御已知明文攻击。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1UU4y1M73o">逆矩阵知识</a></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20250311185125.png" alt="微信图片_20250311185125"></p>
+<h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><p>在 Hill 密码中,<code>明文 &quot;AB&quot; 加密后为 &quot;CD&quot; ,密钥矩阵2×2</code>,求密钥矩阵(模26, A&#x3D;0)。</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/bffa6c9631a0952a4b843f0253b64e8.jpg" alt="bffa6c9631a0952a4b843f0253b64e8" style="zoom: 50%;">
+
+<h4 id="多表代替之Vigenere"><a href="#多表代替之Vigenere" class="headerlink" title="多表代替之Vigenère"></a>多表代替之Vigenère</h4><p>对简单单表代替的改进方法是在明文消息中采用不同的单表代替。这种方法一般称之为<code>多表代替密码。</code>所有这些方法都有以下的共同特征:</p>
+<ol>
+<li><code>采用相关的单表代替规则集。</code></li>
+<li><code>密钥决定给定变换的具体规则。</code></li>
+</ol>
+<p>Vigenère密码是一种多表代替密码，由意大利密码学家<code>Blaise de Vigenère</code>在19世纪提出。它的代替规则集由 <code>26个Caesar</code> 密码的代替表组成，其中每一个代替表是对明文字母表移位<code>0~25</code>次后得到的代替单表。每个密码由一个密钥字母来表示，这个密钥字母用来代替明文字母a，故移位3次的Caesar 密码由密钥值d来代表。</p>
+<ul>
+<li><strong>密钥生成</strong>：选择一个关键词作为密钥，密钥的长度通常与明文相同或循环使用。</li>
+<li><strong>加密过程</strong>: 明文第一个字母s，密钥第一个字母为c表示将s对应到后移两位的凯撒密码表，以此类推</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250311192444752.png" alt="image-20250311192444752"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250311193124591.png" alt="image-20250311193124591"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250311193220063.png" alt="image-20250311193220063"></p>
+<p><code>加密一条消息需要与消息一样长的密钥。</code>通常，密钥是一个密钥词的重复，例如一个长度为15的明文需要加密，选定的密钥词是apple，那么需要重复3次。</p>
+<p>这样的特性导致了其漏洞的产生（<code>如果两个相同的明文序列之间的距离是密钥词长度的整数倍,那么产生的密文序列也是相同的</code>），假设我们加密后的密文中相隔两处出现了“QWE”，中间的间隔就可以推断出密钥词的长度从而进行穷举。</p>
+<p><strong>Vernam密码</strong></p>
+<p>以上的密码都有可能通过密钥和明文之间的分布特征来破译，那么选择一种密钥无关明文的加密方式就是一种可能性的尝试。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250311193622496.png" alt="image-20250311193622496"></p>
+<h4 id="一次一密"><a href="#一次一密" class="headerlink" title="一次一密"></a>一次一密</h4><p>一次一密的最重要的特点是：<code>密钥完全随机</code></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250311193954028.png" alt="image-20250311193954028"></p>
+<h3 id="置换加密"><a href="#置换加密" class="headerlink" title="置换加密"></a>置换加密</h3><p>置换密码是将明文之间进行置换，最简单的例子就是<code>栅栏技术</code>，按照对角线的顺序写出明文，按行的顺序读出作为密文。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250311194216294.png" alt="image-20250311194216294"></p>
+<p>但是这种技巧很容易被密码分析者察觉，于是有了矩阵打乱的加密技巧</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250311194648125.png" alt="image-20250311194648125"></p>
+<h3 id="轮转机"><a href="#轮转机" class="headerlink" title="轮转机"></a>轮转机</h3><p><code>轮转机（Rotor Machine）</code>是一种用于加密和解密信息的机电设备，它在20世纪的密码学中扮演了重要角色，特别是在第二次世界大战期间的恩尼格玛密码机（Enigma machine）中得到了广泛应用。轮转机通过一系列可旋转的转子（rotors）来实现多轮的替换和移位操作，从而提供复杂的加密变换。下面是对轮转机的总结：</p>
+<p><strong>基本原理</strong></p>
+<ul>
+<li><strong>转子结构</strong>：轮转机的核心是多个可旋转的转子，每个转子本质上是一个<code>替换表</code>，将输入的字母映射到另一个字母。转子可以旋转，从而改变其内部的替换对应关系。</li>
+<li><strong>多轮替换</strong>：明文通过多个转子进行逐层替换，每个转子提供一层替换操作，增加了加密的复杂性。</li>
+<li><strong>周期性变化</strong>：转子在每次加密操作后会旋转一定的位置，使得加密变换具有周期性变化，进一步提高了加密的安全性。</li>
+</ul>
+<p><strong>工作过程</strong></p>
+<ol>
+<li><strong>明文输入</strong>：用户输入明文字符。</li>
+<li><strong>转子替换</strong>：明文字符通过第一个转子进行替换，得到一个中间结果。</li>
+<li><strong>反射器处理</strong>：中间结果通过反射器（reflector）进行进一步替换，反射器的作用是确保加密和解密过程的一致性。</li>
+<li><strong>逆向替换</strong>：反射器处理后的结果通过转子的逆向替换，最终得到密文字符。</li>
+<li><strong>转子旋转</strong>：每次加密操作后，转子会按照一定的规则旋转，为下一次加密做准备。</li>
+</ol>
+<p><strong>安全性特点</strong></p>
+<ul>
+<li><strong>复杂替换</strong>：多层转子的替换操作使得加密过程非常复杂，难以通过简单的频率分析来破解。</li>
+<li><strong>动态变化</strong>：转子的旋转使得加密变换动态变化，增加了破解的难度。</li>
+<li><strong>密钥空间大</strong>：转子的初始位置、转子的排列顺序以及反射器的配置等都构成密钥的一部分，提供了较大的密钥空间。</li>
+</ul>
+<p><strong>优缺点</strong></p>
+<ul>
+<li><strong>优点</strong>：轮转机提供了比单表代替密码更高的安全性，其复杂的机械结构和多轮替换使得密码分析更加困难。</li>
+<li><strong>缺点</strong>：轮转机的机械结构相对复杂，容易出现故障。此外，其加密安全性依赖于转子的设计和密钥的管理，如果这些方面存在漏洞，仍然可能被破解。</li>
+</ul>
+<p><strong>历史意义与影响</strong></p>
+<p>轮转机，尤其是恩尼格玛密码机，在密码学史上具有重要地位。它代表了机械加密技术的一个高峰，其复杂性和安全性在当时是非常先进的。然而，随着计算技术的发展和密码分析方法的进步，轮转机逐渐被更先进的电子和计算机加密技术所取代。</p>
+<p>轮转机的出现和发展为现代密码学奠定了基础，其设计理念和工作原理对后续的加密算法和密码学理论产生了深远的影响。</p>
+<h3 id="隐写术"><a href="#隐写术" class="headerlink" title="隐写术"></a>隐写术</h3><p>严格意义上来说，<code>隐写术并不属于加密的一种技术</code>，而是属于保障信息安全（隐藏明文信息的一种）。</p>
+<p>有两种办法可用来隐藏明文信息。</p>
+<ul>
+<li><code>隐写术</code>，它可以隐藏信息的存在;</li>
+<li>而密码学则是通过对文本信息的不同转换而实现信息的对外<code>不可读</code></li>
+</ul>
+<p>经典的例子是一段极其平常的文字中，每一句的首字母连在一起就拼成了隐藏的信息。</p>
+<p>在历史上还出现过其他的隐写术技术：</p>
+<ul>
+<li>字符标记： 选择一些印刷字母或打字机打出的文本，用铅笔在其上书写一遍。这些标记需要做得在一般场合下辨认不出，除非将纸张按某个角度对着亮光看。</li>
+<li>不可见墨水： 有些物质用来书写后不留下可见痕迹，除非加热或加之以某种化学物质。</li>
+<li>针刺： 在某些字母上刺上小的针孔，这一般是分辨不出来的，除非对着光线。</li>
+<li>打字机的色带校正; 用黑色的色带在行之间打印。用这种色带打印后的东西只在强光下可见。</li>
+</ul>
+<h2 id="分组密码-DES"><a href="#分组密码-DES" class="headerlink" title="分组密码-DES"></a>分组密码-DES</h2><p><code>流密码的加密速度通常快于分组密码</code> - 流密码逐位加密，无需分组填充，速度通常更快。</p>
+<h3 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h3><ol>
+<li>任何分组密码都能转换成流密码使用。</li>
+</ol>
+<ul>
+<li><strong>答案</strong>：×</li>
+<li><strong>解析</strong>：虽然分组密码和流密码都是常见的加密方式，但并非任何分组密码都能简单地转换成流密码使用。分组密码按固定长度的分组进行加密，而流密码是逐位或逐字节加密，它们的加密模式和原理存在差异，有些分组密码转换为流密码可能会面临效率、安全性等问题。</li>
+</ul>
+<ol start="2">
+<li>哈希函数的输出长度固定，且无法从输出反推输入。</li>
+</ol>
+<ul>
+<li><strong>答案</strong>：√</li>
+<li><strong>解析</strong>：哈希函数的一个重要特性就是其输出长度是固定的，并且具有单向性，即从哈希值很难反向推导出原始输入。这使得哈希函数在数据完整性校验、数字签名等领域有广泛应用。</li>
+</ul>
+<ol start="3">
+<li>对 x 位哈希函数，寻找一条原像期望尝试 $2^{x}$ 次。</li>
+</ol>
+<ul>
+<li><strong>答案</strong>：×</li>
+<li><strong>解析</strong>：对 x 位哈希函数，根据哈希函数的特性和概率计算，寻找一条原像期望尝试次数约为 $2^{x-1}$ 次，而不是$2^{x}$次。</li>
+</ul>
+<ol start="4">
+<li><strong>CTR 第 i 块密钥流计算式：$S_i &#x3D; E_K(IV + ___)$。</strong></li>
+</ol>
+<ul>
+<li><strong>答案</strong>：i（或计数器值）</li>
+<li><strong>解析</strong>：CTR（计数器）模式中，初始向量（IV）与计数器值（如i）组合后作为分组密码的输入，生成的密文块即为密钥流。计数器每块递增 1，确保不同块的密钥流不同，避免重复加密导致的安全漏洞。</li>
+</ul>
+<ol start="5">
+<li>分组密码的雪崩效应是指:</li>
+</ol>
+<ul>
+<li><strong>选项</strong>：A. 明文微小变化导致密文显著变化；B. 密钥微小变化导致密文显著变化；C. 以上都是；D. 以上都不是</li>
+<li><strong>答案</strong>：C</li>
+<li><strong>解析</strong>：雪崩效应要求明文或密钥的微小变化（如 1 位翻转）会导致密文大幅改变，这是分组密码的重要安全特性。AES、DES 等算法均通过多轮变换实现该效应。</li>
+</ul>
+<ol start="6">
+<li>DES 的分组长度，有效密钥长度，迭代轮数分别是</li>
+</ol>
+<ul>
+<li>解答: 分组长度64    有效密钥56    迭代轮数16</li>
+</ul>
+<h3 id="两大设计原则"><a href="#两大设计原则" class="headerlink" title="两大设计原则"></a>两大设计原则</h3><p>克劳德·香农在1945年的论文《密码学的数学理论》中提出，分组密码学的两大设计原则分别是：混淆和扩散</p>
+<ul>
+<li><code>混淆</code>：通过非线性变换模糊明文与密文、密钥之间的统计关系，例如<code>AES的S盒</code>通过字节替换提供非线性特性。</li>
+<li><code>扩散</code>：将明文的统计特性扩散到密文中，使每个密文位受多个明文位影响，例如<code>AES</code>的<code>MixColumns</code>操作通过矩阵乘法实现字节间的扩散。</li>
+</ul>
+<h3 id="Feistel密码结构"><a href="#Feistel密码结构" class="headerlink" title="Feistel密码结构"></a>Feistel密码结构</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Drifter_Galaxy/article/details/107702084">第十九讲 Feistel密码结构-CSDN博客</a></p>
+<ul>
+<li>Feistel 是密码设计的一个结构,而DES就是采用这种结构设计的一个密码产品｡</li>
+<li>Feistel 中要求轮函数F必须可逆</li>
+</ul>
+<h3 id="DES加密"><a href="#DES加密" class="headerlink" title="DES加密"></a>DES加密</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/bcbobo21cn/article/details/108115023">DES算法S盒学习-CSDN博客</a></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250616224002292.png" alt="image-20250616224002292"></p>
+<p>DES 密钥 64 位中 8 位为奇偶校验，<code>有效密钥长度 56 位</code>。</p>
+<p><strong>例题：</strong></p>
+<ol>
+<li><strong>2DES 有 112bits 密钥，足以抗穷举攻击，但因中间人攻击存在，故没被选为 DES 的替代算法。</strong></li>
+</ol>
+<ul>
+<li><strong>答案</strong>：×</li>
+<li><strong>解析</strong>：2DES 虽然名义上有 112 位密钥，但由于中途相遇攻击，其有效密钥长度大大缩短，不能有效抵抗穷举攻击。它没被选为 DES 替代算法主要是因为安全性不足，而非题目中所说的情况。</li>
+</ul>
+<ol start="2">
+<li>DES加密算法S盒<code>输入 6 位，输出 4 位</code></li>
+</ol>
+<h2 id="有限域"><a href="#有限域" class="headerlink" title="有限域"></a>有限域</h2><p><code>群、环和域</code>都是数学理论中的一个分支–即抽象代数或称为近世代数的基本元素。</p>
+<p>在抽象代数中，我们关心的是其元素能进行代数运算的集合，也就是说，可以通过很多种方法，使集合上的两个元素运算后得到集合中的第三个元素。这些运算方法都遵守特殊的规则，而这些规则又能确定集合的性质。</p>
+<h3 id="什么是群"><a href="#什么是群" class="headerlink" title="什么是群"></a>什么是群</h3><p>在抽象代数中，<code>操作符·</code>具有一般性:可以指加法，乘法，或某些其他的数学运算。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250414185106393.png" alt="image-20250414185106393"></p>
+<blockquote>
+<p>例如：{Z, 加法}就是一个群，下面进行证明：（Z表示整数）</p>
+<ul>
+<li><code>封闭性</code>：任何两个正数a，b相加的结果都属于正数</li>
+<li><code>结合律</code>：任意正数a+(b+c) &#x3D; (a+b)+c</li>
+<li><code>单位元</code>：很容易看出，0就是该群的单位元，任意数+0都等于本身</li>
+<li><code>逆元</code>：对于任意正数，其相反数就是逆元，相加等于单位元0</li>
+</ul>
+<p>{Z, 乘法}就不是一个群，因为不满足A4性质</p>
+<p>很容易看出，单位元是1，因为任何数×1都等于本身</p>
+<p>但是，对于一个正数a，要使<code>a × a’ = 1</code>，a’ 需要等于a的倒数，但是因为a属于整数，倒数不一定属于整数，所以不满足</p>
+</blockquote>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250414192427888.png" alt="image-20250414192427888"></p>
+<p>置换群比较抽象，可以看下面两个文章理解、</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/462190239">群论5：置换群和循环群 - 知乎</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/260378483">群论(3): 置换群 - 知乎</a></p>
+<h3 id="有限群和无限群"><a href="#有限群和无限群" class="headerlink" title="有限群和无限群"></a>有限群和无限群</h3><p>如果一个群的元素是有限的，则该群称为<code>有限群，并且群的阶就等于群中元素的个数</code>。否则,称该群为无限群。</p>
+<h3 id="交换群"><a href="#交换群" class="headerlink" title="交换群"></a>交换群</h3><p><code>(A5)交换律</code>：对于G中任意的元素a、b，都有<code>a·b=b·a</code>成立。</p>
+<blockquote>
+<p><code>加法运算</code>下的<code>整数</code>集合(包括正整数、负整数和零)是一个交换群。乘法运算下的非零<code>实数</code>集合是一个交换群。前面例子中的集合S,是一个群，但对于n&gt;2，它不是交换群。</p>
+</blockquote>
+<h3 id="循环群"><a href="#循环群" class="headerlink" title="循环群"></a>循环群</h3><p><code>在群中将幂运算定义为对元素进行重复对应运算的操作</code>，如在{Z, 加法}群中，a的三次幂表示a+a+a，而且，定义a的0次幂作为单位元<code>e</code>，并且a的-n次幂&#x3D;(a’)的n次幂，其中a‘是a在群内的逆元素。如果群中的每一个元素都是一个固定元素a(a∈G)的幂，即a的k次幂(k为整数)，则称群G是循环群。我们认为元素a生成了群G，或者说a是群G的生成元。</p>
+<p>循环群总是交换群，它可能是有限群或无限群。</p>
+<blockquote>
+<p><code>整数的加法群是一个无限循环群</code>，它由1生成。在这种情况下，幂被解释为用加法合成的，因此n是1的n次幂。</p>
+</blockquote>
+<h3 id="什么是环"><a href="#什么是环" class="headerlink" title="什么是环"></a>什么是环</h3><p>环是群上再加限制条件的集合</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250414194147736.png" alt="image-20250414194147736"></p>
+<h3 id="什么是域"><a href="#什么是域" class="headerlink" title="什么是域"></a>什么是域</h3><p>域F，有时记为 {F，+，×}，是有两个二元运算的集合，这两个二元运算分别称为加法和乘法，且对于F中的任意元素a、b、c满足以下公理:</p>
+<ol>
+<li>(A1-M6) F是一个整环：也就是说F满足从A1到A5以及从M1到M6的所有原则。</li>
+<li>(M7) 乘法逆元：对于F中的任意元素a(除0以外),F中都存在一个元素a的-1次使得<code>aa^-1 = (a^-1)a = 1</code>成立。</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250414194754381.png" alt="image-20250414194754381"></p>
+<h3 id="有限域GF-p"><a href="#有限域GF-p" class="headerlink" title="有限域GF(p)"></a>有限域GF(p)</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250414195905303.png" alt="image-20250414195905303"></p>
+<ul>
+<li><code>有限域的阶必须是素数的n次方</code></li>
+<li>所以GF(10)不存在</li>
+</ul>
+<p>题目：</p>
+<ul>
+<li>GF(2⁸)的元素是次数≤7 的多项式，最高次为 7 次</li>
+</ul>
+<h3 id="多项式运算"><a href="#多项式运算" class="headerlink" title="多项式运算"></a>多项式运算</h3><p>我们只讨论单变元多项式,且可把多项式运算分为三种:</p>
+<ul>
+<li>使用代数基本规则的普通多项式运算。</li>
+<li>系数运算是模p运算的多项式运算，即系数在 GF(p) 中。</li>
+<li>系数在 GF(p) 中，且多项式被定义为模一个n次多项式 m(x) 的多项式运算</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20250414200627.jpg" alt="微信图片_20250414200627"></p>
+<h2 id="高级加密标准AES"><a href="#高级加密标准AES" class="headerlink" title="高级加密标准AES"></a>高级加密标准AES</h2><ul>
+<li>AES在<code>GF(2^8)</code>上使用的本原多项式是<code>x^8 + x^4 + x^3 + x + 1</code></li>
+<li>当<code>密钥长度分别为128，192，256bit</code>时，AES加密需要10，12，14轮</li>
+</ul>
+<ol>
+<li>AES 支持 128&#x2F;192&#x2F;256 位密钥；分组长度固定 128 位。</li>
+</ol>
+<ul>
+<li><strong>答案</strong>：√</li>
+<li><strong>解析</strong>：AES（高级加密标准）规定了支持 128 位、192 位和 256 位的密钥长度，同时其分组长度固定为 128 位，以确保加密的安全性和一致性。</li>
+</ul>
+<ol start="2">
+<li>AES MixColumns 使用的矩阵在域 (GF(2^8)) 上行列式为 ___</li>
+</ol>
+<ul>
+<li><strong>答案</strong>：3（或 0x03）</li>
+</ul>
+<ol start="3">
+<li>比较AES几种加密的方式</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>安全性特点</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>ECB（电子密码本）</strong></td>
+<td>- 明文分组独立加密，相同明文生成相同密文，易暴露数据模式（如图片加密时出现重复图案）。 - 不抵抗选择明文攻击，安全性最低。</td>
+<td>仅适用于短数据（如密钥），实际应用中极少使用。</td>
+</tr>
+<tr>
+<td><strong>CBC（密码分组链接）</strong></td>
+<td>- 前一组密文与当前明文异或后加密，消除明文模式，安全性较高。 - 需初始向量（IV），且 IV 必须唯一，否则易受攻击。</td>
+<td>常用加密模式，如磁盘加密、VPN 隧道，但加密效率受分组依赖限制。</td>
+</tr>
+<tr>
+<td><strong>CTR（计数器）</strong></td>
+<td>- 将计数器值与密钥加密生成密钥流，与明文异或，无需填充，支持<code>并行计算</code>，效率高。</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="公钥密码学-非对称密码学"><a href="#公钥密码学-非对称密码学" class="headerlink" title="公钥密码学(非对称密码学)"></a>公钥密码学(非对称密码学)</h2><p>非对称密码常常是指含有两个密钥的算法: <code>公钥</code>和<code>私钥</code>。从公钥中推出私钥在计算上不可行的。</p>
+<p><code>任何人能通过公钥加密原文，但是无法通过公钥解密，只能通过私钥才能获得正确的结果</code></p>
+<p><strong>例题：</strong></p>
+<ol>
+<li>非对称加密中每个用户管理密钥数为：</li>
+</ol>
+<p>在非对称加密中，每个用户通常有一对密钥：一个公钥和一个私钥。公钥可以公开，而私钥必须保密。因此，每个用户实际需要管理 <strong>2 个密钥</strong>（公钥和私钥）。所以正确答案是 <strong>B. 2 个</strong>。</p>
+<ol start="2">
+<li>数字信封结合了对称加密和非对称加密，用于解决：</li>
+</ol>
+<p>数字信封主要用于解决 <strong>密钥分发</strong> 的问题。它通过非对称加密保护对称密钥，确保只有特定的接收方可以解密并使用对称密钥来解密数据。因此，正确答案是 <strong>C. 密钥分发</strong>。</p>
+<h3 id="公钥密码体制"><a href="#公钥密码体制" class="headerlink" title="公钥密码体制"></a>公钥密码体制</h3><p>公钥密码体制有6个组成部分:</p>
+<ul>
+<li><code>明文</code>：算法的输入。它们是可读信息或数据</li>
+<li><code>加密算法</code>：加密算法对明文进行各种转换。</li>
+<li><code>公钥和私钥</code>：算法的输入。这对密钥中一个用于加密，一个用于解密。加密算法执行的变换依赖于公钥或者私钥。</li>
+<li><code>密文</code>：算法的输出。它依赖于明文和密钥，对给定的消息，不同的密钥产生的密文不同</li>
+<li><code>解密算法</code>：该算法接收密文和相应的密钥，并产生原始的明文。</li>
+</ul>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250428202551011.png" alt="image-20250428202551011" style="zoom:80%;">
+
+<h3 id="公钥密码对算法的要求"><a href="#公钥密码对算法的要求" class="headerlink" title="公钥密码对算法的要求"></a>公钥密码对算法的要求</h3><p>公钥密码的性质决定了需要有这样特点的算法：</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250428204006750.png" alt="image-20250428204006750" style="zoom:80%;">
+
+<h3 id="RSA加密算法"><a href="#RSA加密算法" class="headerlink" title="RSA加密算法"></a>RSA加密算法</h3><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1XP4y1A7Ui/">RSA加密过程</a></p>
+<p><code>RSA体制</code>是一种分组密码，其明文和密文均是<code>0</code>至某n-1之间的整数，通常n的大小为1024位二进制数或309位十进制数，也就是说n小于$2^{1024}$。</p>
+<p><strong>算法过程</strong></p>
+<p>RSA 算法使用乘方运算，明文以分组为单位进行加密，每个分组的二进制值均小于n，对于每个明文和密文分组，加密和解密的过程都如下：</p>
+<p>加密过程<br>$$<br>C &#x3D; M^e \mod n<br>$$<br>解密过程<br>$$<br>M &#x3D; C^d \mod n &#x3D; (M^e)^d \mod n &#x3D; M^{ed} \mod n<br>$$<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250428205711733.png" alt="image-20250428205711733"></p>
+<p><strong>简化计算</strong></p>
+<p>因为<code>RSA算法</code>的核心是大整数之间的幂运算和mod运算，当数字过大的时候，需要计算的量就十分的庞大，需要简化计算提高效率</p>
+<ul>
+<li><strong>模算术里的求幂运算</strong>：$$ [(a \bmod n)\times(b \bmod n)]\bmod n&#x3D;(a\times b)\bmod n $$ </li>
+<li><strong>高次幂计算优化</strong>：例如计算 $x^{16}$，直接依次相乘需 15 次乘法。但若重复计算中间结果的平方（$x^2$、$x^4$、$x^8$、$x^{16}$），仅需 4 次乘法即可完成。</li>
+<li><strong>模运算下的指数拆分</strong>：对于 $x^{11} \bmod n$，将指数 11 拆分为 $1 + 2 + 8$，即 $x^{11} &#x3D; x \cdot x^2 \cdot x^8$。先分别计算 $x \bmod n$、$x^2 \bmod n$、$x^8 \bmod n$，再利用模运算性质 $[(a \bmod n) \times (b \bmod n)] \bmod n &#x3D; (a \times b) \bmod n$，计算 $[(x \bmod n) \times (x^2 \bmod n) \times (x^8 \bmod n)] \bmod n$。通过这种方式，减少运算次数，提升计算效率，尤其在处理 RSA 中较大指数时，该策略能有效降低计算复杂度。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/holly_Z_P_F/article/details/85197424">米勒-拉宾素性检验(MillerRabbin)算法详解_米勒拉宾素性检验-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/349360074">【朝夕的ACM笔记】数论-Miller Rabin素数判定 - 知乎</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43872728/article/details/107289833">欧几里得与扩展欧几里得算法解析-CSDN博客</a></p>
+<h4 id="例题-2"><a href="#例题-2" class="headerlink" title="例题"></a>例题</h4><ol>
+<li>下列不是对称加密算法的是（ ）</li>
+</ol>
+<ul>
+<li><strong>选项</strong>：A.AES；B.SM4；C.RSA；D.ChaCha20</li>
+<li><strong>解析</strong>：RSA 是非对称加密算法，其他均为对称算法。</li>
+<li><strong>答案</strong>：C</li>
+</ul>
+<ol start="2">
+<li>不是对称加密算法优点的是</li>
+</ol>
+<p>对称加密算法的优点包括：</p>
+<ul>
+<li>A. 效率高：对称加密通常比非对称加密更高效。</li>
+<li>C. 适合加密大量数据：对称加密算法适合加密大量数据，因为其速度快。</li>
+<li>D. 速度快：对称加密算法的加解密速度快。</li>
+</ul>
+<p>而 B. 密钥管理简单 并不是对称加密算法的优点，因为对称加密需要安全地分发和管理密钥，密钥管理相对复杂。因此，<strong>B 是正确答案</strong>。</p>
+<h3 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h3><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/03/wang-luo-yu-xin-xi-an-quan/image-20250701225746033.png" alt="image-20250701225746033" style="zoom:80%;">
+
+
+
+<h3 id="裴蜀定理"><a href="#裴蜀定理" class="headerlink" title="裴蜀定理"></a>裴蜀定理</h3><p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86">https://baike.baidu.com/item/%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86</a></p>
+<p><strong>例题：</strong>存在x,y使得21x+25y&#x3D;1吗?</p>
+<p>根据裴蜀定理，如果 a、b 是整数，且 gcd (a, b) &#x3D; d，那么对于任意的整数 x、y，ax + by 都一定是 d 的倍数；反之，一定存在整数 x、y，使得 ax + by &#x3D; d。因为 gcd (25, 21) &#x3D; 1 ，所以存在整数 x 和 y 使得 25x + 21y &#x3D; 1。</p>
+<h3 id="概率性加密算法"><a href="#概率性加密算法" class="headerlink" title="概率性加密算法"></a>概率性加密算法</h3><p>ElGamal加密算法在加密过程中，每次加密相同的明文会产生不同的密文，因为它使用了随机数 k。这种特性使得它具有概率性，增加了密码分析的难度。</p>
+<p>ElGamal加密算法在加密过程中，不能使用同一个随机数，使用同一个随机数的后果是<code>攻击者可以利用两次加密的密文和已知的部分信息（如明文的某些特征），通过数学计算获取私钥，从而破解密文，严重影响加密的安全性。</code></p>
+<p><strong>例题：</strong></p>
+<p>随机数质量常常用两大指标来衡量：随机性和不可预测性</p>
+<h2 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h2><p>首先，理解什么是hash函数?</p>
+<p>Hash函数H将可变长度的数据块M作为输入，产生**固定长度的Hash值 **h &#x3D; H(M)。</p>
+<p>称M是h的<strong>原像</strong>。因为H是多对一的映射，所以对于任意给定的Hash值h，对应有多个原像。如果满足x≠y且H(x)&#x3D;H(y)，则称为<strong>碰撞</strong>。</p>
+<ul>
+<li>哈希碰撞：不同的输入值经过哈希算法的计算，输出了同样的值，这就是hash碰撞</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32076957/article/details/126828651">深入理解哈希函数：安全性、碰撞与应用-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/block2016/p/5623902.html">密码学Hash函数 - block2016 - 博客园</a></p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%94%9F%E6%97%A5%E6%82%96%E8%AE%BA/2715290">生日悖论_百度百科</a></p>
+<p><strong>例题：</strong></p>
+<ol>
+<li>生日攻击针对哈希“碰撞”而非哈希“原像”	<strong>答案</strong>：√</li>
+</ol>
+<ul>
+<li><strong>解析</strong>：生日攻击的原理是基于概率统计中的生日问题，通过寻找哈希函数输出值相同（即碰撞）的不同输入，来达到攻击目的。它并不关注找到与给定哈希值对应的原始输入（原像），而是利用碰撞来伪造消息等进行攻击。</li>
+</ul>
+<ol start="2">
+<li>分组加密算法和哈希函数最大的不同是可逆性    <strong>答案</strong>：√</li>
+</ol>
+<ul>
+<li><strong>解析</strong>：分组加密算法需要具备可逆性，即能够根据密文和密钥解出明文；而 Hash 函数是单向函数，从哈希值无法还原出原始输入数据，这是二者在实现过程中的最大区别。</li>
+</ul>
+<ol start="3">
+<li>安全哈希算法 SHA-1 的输出长度为 160 位</li>
+<li>生日攻击的复杂度约为 $2^{ℓ&#x2F;2}$，其中 ℓ 为哈希值的长度</li>
+<li>MD5 算法的主要安全问题是存在高效的碰撞攻击</li>
+<li>针对哈希函数的碰撞抗性主要通过生日攻击来实现，因此选项 C 是正确答案</li>
+<li>d</li>
+</ol>
+<h2 id="消息验证码"><a href="#消息验证码" class="headerlink" title="消息验证码"></a>消息验证码</h2><ol>
+<li>消息认证码需要使用密钥，而哈希函数不需要。</li>
+</ol>
+<ul>
+<li><strong>答案</strong>：√</li>
+<li><strong>解析</strong>：消息认证码（MAC）是带密钥的哈希函数，通过使用共享密钥对消息进行计算得到认证码，用于验证消息的完整性和来源真实性；而普通哈希函数计算时不需要密钥，只是对输入数据进行固定长度的哈希值计算。</li>
+</ul>
+<ol start="2">
+<li>MAC 既能鉴别数据源又能校验完整性。</li>
+</ol>
+<ul>
+<li><strong>答案</strong>：√</li>
+<li><strong>解析</strong>：消息认证码（MAC）利用共享密钥对消息进行计算生成认证码，接收方使用相同密钥重新计算 MAC 并与接收到的 MAC 对比。如果二者相同，既能证明消息在传输过程中未被篡改（校验完整性），又能说明消息来自持有相同密钥的合法发送方（鉴别数据源）。</li>
+</ul>
+<ol start="3">
+<li>关于 MAC 的描述，它不提供机密性保护</li>
+</ol>
+<h2 id="数字证书"><a href="#数字证书" class="headerlink" title="数字证书"></a>数字证书</h2><p><strong>例题：</strong></p>
+<ol>
+<li>数字证书不得在公网上公开。	<strong>答案</strong>：×</li>
+</ol>
+<ul>
+<li><strong>解析</strong>：数字证书的有效期是由证书颁发机构（CA）设定的，而不是证书持有者。CA 在颁发证书时，会根据自身的策略和相关标准，确定证书的有效期限，以保证证书的安全性和可靠性。</li>
+</ul>
+<ol start="2">
+<li>数字证书的有效期由证书持有者自行设定。	<strong>答案</strong>：×</li>
+</ol>
+<ul>
+<li><strong>解析</strong>：数字证书的有效期是由证书颁发机构（CA）设定的，而不是证书持有者。CA 在颁发证书时，会根据自身的策略和相关标准，确定证书的有效期限，以保证证书的安全性和可靠性。</li>
+</ul>
+<ol start="3">
+<li>数字签名标准（DSS）推荐使用的哈希算法是 SHA-1</li>
+<li>数字签名不具备的特性是机密性，因此选项 C 是正确答案。</li>
+</ol>
+<h3 id="其余期末例题"><a href="#其余期末例题" class="headerlink" title="其余期末例题"></a>其余期末例题</h3><p><strong>VPN “隧道模式” 会封装原 IP 首部实现地址隐藏。</strong></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://0zxm.github.io">0zxm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://0zxm.github.io/2025/03/03/wang-luo-yu-xin-xi-an-quan/">https://0zxm.github.io/2025/03/03/wang-luo-yu-xin-xi-an-quan/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://0zxm.github.io" target="_blank">0zxm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a></div><div class="post-share"><div class="social-share" data-image="/img/cover2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/03/04/ji-suan-ji-tu-xing-xue-he-xu-ni-xian-shi/" title="计算机图形学和虚拟现实"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">计算机图形学和虚拟现实</div></div><div class="info-2"><div class="info-item-1">计算机图形学和虚拟现实课程笔记</div></div></div></a><a class="pagination-related" href="/2025/02/15/pyqt-xie-yi-ge-dai-ban-cheng-xu/" title="pyqt写一个待办程序"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">pyqt写一个待办程序</div></div><div class="info-2"><div class="info-item-1">构建一个功能丰富的待办应用：深入PyQt5</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">0zxm</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/0zxm"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/0zxm" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:m15813109801@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="http://0zxm.github.io" target="_blank" title="博客"><i class="fab fa-algolia" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E8%B7%B5%E5%92%8C%E5%AF%86%E7%A0%81%E5%AD%A6%E5%8E%9F%E7%90%86"><span class="toc-text">网络安全实践和密码学原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%A7%88"><span class="toc-text">概览</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%A6%82%E5%BF%B5"><span class="toc-text">第一章 计算机与网络安全概念</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E5%8A%A0%E5%AF%86%E6%8A%80%E6%9C%AF"><span class="toc-text">传统加密技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E7%9A%84%E5%AF%86%E7%A0%81"><span class="toc-text">安全的密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%BC%96%E7%A0%81%E5%AD%A6%EF%BC%88%E5%8A%A0%E5%AF%86%E5%AD%A6%EF%BC%89"><span class="toc-text">密码编码学（加密学）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E5%88%86%E6%9E%90%E5%AD%A6%EF%BC%88%E8%A7%A3%E5%AF%86%EF%BC%89"><span class="toc-text">密码分析学（解密）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E6%9B%BF%E5%8A%A0%E5%AF%86"><span class="toc-text">代替加密</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%AF%E6%92%92%E5%AF%86%E7%A0%81Caesar"><span class="toc-text">凯撒密码Caesar</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E8%A1%A8%E6%9B%BF%E6%8D%A2"><span class="toc-text">单表替换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E5%AD%97%E6%AF%8D%E6%9B%BF%E6%8D%A2%E4%B9%8BPlayfair"><span class="toc-text">多字母替换之Playfair</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hill%E5%AF%86%E7%A0%81"><span class="toc-text">Hill密码</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-text">例题</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E8%A1%A8%E4%BB%A3%E6%9B%BF%E4%B9%8BVigenere"><span class="toc-text">多表代替之Vigenère</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E6%AC%A1%E4%B8%80%E5%AF%86"><span class="toc-text">一次一密</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%AE%E6%8D%A2%E5%8A%A0%E5%AF%86"><span class="toc-text">置换加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AE%E8%BD%AC%E6%9C%BA"><span class="toc-text">轮转机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E5%86%99%E6%9C%AF"><span class="toc-text">隐写术</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81-DES"><span class="toc-text">分组密码-DES</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="toc-text">例题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E5%A4%A7%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="toc-text">两大设计原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Feistel%E5%AF%86%E7%A0%81%E7%BB%93%E6%9E%84"><span class="toc-text">Feistel密码结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DES%E5%8A%A0%E5%AF%86"><span class="toc-text">DES加密</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E9%99%90%E5%9F%9F"><span class="toc-text">有限域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BE%A4"><span class="toc-text">什么是群</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E9%99%90%E7%BE%A4%E5%92%8C%E6%97%A0%E9%99%90%E7%BE%A4"><span class="toc-text">有限群和无限群</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E6%8D%A2%E7%BE%A4"><span class="toc-text">交换群</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E7%BE%A4"><span class="toc-text">循环群</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%8E%AF"><span class="toc-text">什么是环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%9F%9F"><span class="toc-text">什么是域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E9%99%90%E5%9F%9FGF-p"><span class="toc-text">有限域GF(p)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E8%BF%90%E7%AE%97"><span class="toc-text">多项式运算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E5%8A%A0%E5%AF%86%E6%A0%87%E5%87%86AES"><span class="toc-text">高级加密标准AES</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E9%92%A5%E5%AF%86%E7%A0%81%E5%AD%A6-%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%AF%86%E7%A0%81%E5%AD%A6"><span class="toc-text">公钥密码学(非对称密码学)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AC%E9%92%A5%E5%AF%86%E7%A0%81%E4%BD%93%E5%88%B6"><span class="toc-text">公钥密码体制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AC%E9%92%A5%E5%AF%86%E7%A0%81%E5%AF%B9%E7%AE%97%E6%B3%95%E7%9A%84%E8%A6%81%E6%B1%82"><span class="toc-text">公钥密码对算法的要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RSA%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="toc-text">RSA加密算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98-2"><span class="toc-text">例题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0"><span class="toc-text">欧拉函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86"><span class="toc-text">裴蜀定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E7%8E%87%E6%80%A7%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="toc-text">概率性加密算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95"><span class="toc-text">哈希算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%AA%8C%E8%AF%81%E7%A0%81"><span class="toc-text">消息验证码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6"><span class="toc-text">数字证书</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BD%99%E6%9C%9F%E6%9C%AB%E4%BE%8B%E9%A2%98"><span class="toc-text">其余期末例题</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/06/25/framwork-kuang-jia-xue-xi/" title="Django REST framwork框架学习"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Django REST framwork框架学习"/></a><div class="content"><a class="title" href="/2025/06/25/framwork-kuang-jia-xue-xi/" title="Django REST framwork框架学习">Django REST framwork框架学习</a><time datetime="2025-06-25T13:09:01.000Z" title="发表于 2025-06-25 21:09:01">2025-06-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/19/wide-deep-mo-xing/" title="Wide&amp;Deep模型"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Wide&amp;Deep模型"/></a><div class="content"><a class="title" href="/2025/06/19/wide-deep-mo-xing/" title="Wide&amp;Deep模型">Wide&amp;Deep模型</a><time datetime="2025-06-19T05:30:40.000Z" title="发表于 2025-06-19 13:30:40">2025-06-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/08/java-ji-chu-xia/" title="Java基础下"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java基础下"/></a><div class="content"><a class="title" href="/2025/03/08/java-ji-chu-xia/" title="Java基础下">Java基础下</a><time datetime="2025-03-08T03:43:21.000Z" title="发表于 2025-03-08 11:43:21">2025-03-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/08/duo-xian-cheng-e-wai-kuo-zhan/" title="Java基础之多线程"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java基础之多线程"/></a><div class="content"><a class="title" href="/2025/03/08/duo-xian-cheng-e-wai-kuo-zhan/" title="Java基础之多线程">Java基础之多线程</a><time datetime="2025-03-08T03:43:21.000Z" title="发表于 2025-03-08 11:43:21">2025-03-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/07/qian-ru-shi-xi-tong-gai-shu/" title="嵌入式系统概述"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="嵌入式系统概述"/></a><div class="content"><a class="title" href="/2025/03/07/qian-ru-shi-xi-tong-gai-shu/" title="嵌入式系统概述">嵌入式系统概述</a><time datetime="2025-03-07T06:08:48.000Z" title="发表于 2025-03-07 14:08:48">2025-03-07</time></div></div></div></div></div></div><!-- 登录验证模态框--></main><footer id="footer" style="background-image: url(/img/footer.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By 0zxm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- CSS 样式--><style>#login-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  z-index:999;
+}
+
+input#password-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button#submit-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button#submit-btn:hover {
+  background-color: #45a049;
+}
+</style><!-- JavaScript 验证--><script>document.addEventListener('DOMContentLoaded', function() {
+
+  (function() {
+  // 禁用右键菜单
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    return false;
+  });
+
+  // 禁用快捷键 (F12/Ctrl+Shift+I/Ctrl+Shift+J/Ctrl+Shift+C)
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'F12' || 
+        (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+        (e.ctrlKey && e.shiftKey && e.key === 'J') ||
+        (e.ctrlKey && e.shiftKey && e.key === 'C')) {
+      e.preventDefault();
+      return false;
+    }
+  });
+  })();
+  
+
+  const modal = document.getElementById('login-modal');
+  const passwordInput = document.getElementById('password-input');
+  const submitBtn = document.getElementById('submit-btn');
+  const errorMsg = document.getElementById('error-msg');
+  const bodyWrap = document.getElementById('body-wrap');
+
+
+  // 默认显示模态框
+  modal.style.display = 'flex';
+
+  // 自动聚焦到密码输入框
+  passwordInput.focus();
+
+  submitBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    const password = passwordInput.value;
+    const correctPassword = 'D&X'; // 替换为实际密码
+
+    if (password === correctPassword) {
+      modal.style.display = 'none';
+      bodyWrap.style.opacity = 1; // 显示页面内容
+    } else {
+      passwordInput.classList.add('error');
+      errorMsg.style.display = 'block';
+      setTimeout(() => {
+        passwordInput.classList.remove('error');
+        errorMsg.style.display = 'none';
+      }, 2000);
+    }
+  });
+  // 按下 Enter 键提交
+  passwordInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      submitBtn.click();
+    }
+  });
+});</script></body></html>

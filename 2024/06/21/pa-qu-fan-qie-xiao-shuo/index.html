@@ -1,0 +1,578 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>爬取番茄小说 | 0zxm</title><meta name="author" content="0zxm"><meta name="copyright" content="0zxm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="破解字体加密,爬取番茄小说网的小说">
+<meta property="og:type" content="article">
+<meta property="og:title" content="爬取番茄小说">
+<meta property="og:url" content="https://0zxm.github.io/2024/06/21/pa-qu-fan-qie-xiao-shuo/index.html">
+<meta property="og:site_name" content="0zxm">
+<meta property="og:description" content="破解字体加密,爬取番茄小说网的小说">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://0zxm.github.io/img/cover2.jpg">
+<meta property="article:published_time" content="2024-06-21T03:52:38.000Z">
+<meta property="article:modified_time" content="2024-10-26T14:10:14.000Z">
+<meta property="article:author" content="0zxm">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="MD5加密">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0zxm.github.io/img/cover2.jpg"><link rel="shortcut icon" href="/favicon.png"><link rel="canonical" href="https://0zxm.github.io/2024/06/21/pa-qu-fan-qie-xiao-shuo/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: 0zxm","link":"链接: ","source":"来源: 0zxm","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '爬取番茄小说',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-10-26 22:10:14'
+}</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/src/"><i class="fa-fw fas fa-cloud"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comment"></i><span> 说说</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover2.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">0zxm</span></a><a class="nav-page-title" href="/"><span class="site-name">爬取番茄小说</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/src/"><i class="fa-fw fas fa-cloud"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comment"></i><span> 说说</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">爬取番茄小说</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-06-21T03:52:38.000Z" title="发表于 2024-06-21 11:52:38">2024-06-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-10-26T14:10:14.000Z" title="更新于 2024-10-26 22:10:14">2024-10-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="本文用于纪录爬取番茄小说过程中遇到的困难和解决措施"><a href="#本文用于纪录爬取番茄小说过程中遇到的困难和解决措施" class="headerlink" title="本文用于纪录爬取番茄小说过程中遇到的困难和解决措施"></a>本文用于纪录爬取番茄小说过程中遇到的困难和解决措施</h2><p>首先找到我想要的小说第一章</p>
+<h4 id="1-找网络接口"><a href="#1-找网络接口" class="headerlink" title="1.找网络接口"></a>1.找网络接口</h4><p>右键检查,清空网络日志,刷新,找到6893843740742386183document类型请求标头URL确实是<a target="_blank" rel="noopener" href="https://fanqienovel.com/reader/6893843740742386183,%E6%B2%A1%E6%9C%89%E5%81%9A%E5%85%B6%E4%BB%96%E6%8E%AA%E6%96%BD,%E6%89%80%E4%BB%A5%E7%9B%B4%E6%8E%A5%E7%94%A8requests%E5%BA%93%E4%BC%AA%E8%A3%85%E8%AE%BF%E9%97%AE,%E8%BF%99%E4%B8%80%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B">https://fanqienovel.com/reader/6893843740742386183,没有做其他措施,所以直接用requests库伪装访问,这一部分代码如下</a></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2024/06/21/pa-qu-fan-qie-xiao-shuo/06/21/pa-qu-fan-qie-xiao-shuo/image-20240126232926232-1706330347599-1.png"></p>
+<blockquote>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># cap01_url = 'https://fanqienovel.com/reader/6893843740742386183?enter_from=reader'</span>
+<span class="token comment"># cap02_url = 'https://fanqienovel.com/reader/6893843740834660878?enter_from=reader'</span>
+<span class="token comment"># cap03_url = 'https://fanqienovel.com/reader/6893843740910158344?enter_from=reader'</span>
+观察发现<span class="token punctuation">,</span>网页之间并没有直接关联
+
+<span class="token keyword">import</span> requests
+
+cap01_url <span class="token operator">=</span> <span class="token string">'https://fanqienovel.com/reader/6893843740742386183?enter_from=reader'</span>
+<span class="token comment"># cap02_url = 'https://fanqienovel.com/reader/6893843740834660878?enter_from=reader'</span>
+<span class="token comment"># cap03_url = 'https://fanqienovel.com/reader/6893843740910158344?enter_from=reader'</span>
+
+
+headers <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">'User-Agent'</span><span class="token punctuation">:</span>
+            <span class="token string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0'</span><span class="token punctuation">&#125;</span>
+
+response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token operator">=</span>cap01_url<span class="token punctuation">,</span> headers<span class="token operator">=</span>headers<span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>text<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="2-接下来就使用xpath提取数据了"><a href="#2-接下来就使用xpath提取数据了" class="headerlink" title="2.接下来就使用xpath提取数据了"></a>2.接下来就使用xpath提取数据了</h4><p>“””先不要管乱码问题待会解决”””</p>
+<p>通过观察层级结构,我们使用xpath语法  &#x2F;&#x2F;div[@class&#x3D;”muye-reader-content noselect”]&#x2F;div&#x2F;&#x2F;p   获得文章内容,</p>
+<p>同时保存了章节标题  &#x2F;&#x2F;h1[@class &#x3D; “muye-reader-title”],先把这一部分内容获取到</p>
+<blockquote>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">tree <span class="token operator">=</span> etree<span class="token punctuation">.</span>HTML<span class="token punctuation">(</span>response<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+
+title <span class="token operator">=</span> tree<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string">'//h1[@class = "muye-reader-title"]/text()'</span><span class="token punctuation">)</span>
+
+content_tags <span class="token operator">=</span> tree<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string">'//div[@class="muye-reader-content noselect"]/div//p/text()'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>content_tags<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> content_tag <span class="token keyword">in</span> content_tags<span class="token punctuation">:</span>
+ <span class="token keyword">print</span><span class="token punctuation">(</span>content_tag<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">type</span><span class="token punctuation">(</span>title<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+</blockquote>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2024/06/21/pa-qu-fan-qie-xiao-shuo/06/21/pa-qu-fan-qie-xiao-shuo/image-20240126220945788.png" alt="image-20240126220945788"></p>
+<p>获取内容如图,具有乱码</p>
+<p>通过对网页结构分析,发现文字有一些超出了编码范围,于是可以推断出,字体暗藏玄机,找到网页字体文件后,下载到本地,用Fontforge打开,发现只从e3e8到e55b有文字,所以可以得出番茄使用了两套字体加载文本内容,当字符超出一定范围,就使用另一种</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2024/06/21/pa-qu-fan-qie-xiao-shuo/06/21/pa-qu-fan-qie-xiao-shuo/image-20240126221219344.png" alt="image-20240126221219344"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2024/06/21/pa-qu-fan-qie-xiao-shuo/06/21/pa-qu-fan-qie-xiao-shuo/image-20240126221529195.png" alt="image-20240126221529195"></p>
+<p>于是这一段代码为:</p>
+<blockquote>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">CODE_ST <span class="token operator">=</span> <span class="token number">58344</span>  <span class="token comment"># 十六进制e3e8的十进制</span>
+CODE_ED <span class="token operator">=</span> <span class="token number">58715</span>  <span class="token comment"># 十六进制e55b的十进制</span>
+charset <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'D'</span><span class="token punctuation">,</span> <span class="token string">'在'</span><span class="token punctuation">,</span> <span class="token string">'主'</span><span class="token punctuation">,</span> <span class="token string">'特'</span><span class="token punctuation">,</span> <span class="token string">'家'</span><span class="token punctuation">,</span> <span class="token string">'军'</span><span class="token punctuation">,</span> <span class="token string">'然'</span><span class="token punctuation">,</span> <span class="token string">'表'</span><span class="token punctuation">,</span> <span class="token string">'场'</span><span class="token punctuation">,</span> <span class="token string">'4'</span><span class="token punctuation">,</span> <span class="token string">'要'</span><span class="token punctuation">,</span> <span class="token string">'只'</span><span class="token punctuation">,</span> <span class="token string">'v'</span><span class="token punctuation">,</span> <span class="token string">'和'</span><span class="token punctuation">,</span> <span class="token string">'?'</span><span class="token punctuation">,</span> <span class="token string">'6'</span><span class="token punctuation">,</span> <span class="token string">'别'</span><span class="token punctuation">,</span> <span class="token string">'还'</span><span class="token punctuation">,</span> <span class="token string">'g'</span><span class="token punctuation">,</span>
+        <span class="token string">'现'</span><span class="token punctuation">,</span> <span class="token string">'儿'</span><span class="token punctuation">,</span> <span class="token string">'岁'</span><span class="token punctuation">,</span> <span class="token string">'?'</span><span class="token punctuation">,</span> <span class="token string">'?'</span><span class="token punctuation">,</span> <span class="token string">'此'</span><span class="token punctuation">,</span> <span class="token string">'象'</span><span class="token punctuation">,</span> <span class="token string">'月'</span><span class="token punctuation">,</span> <span class="token string">'3'</span><span class="token punctuation">,</span> <span class="token string">'出'</span><span class="token punctuation">,</span> <span class="token string">'战'</span><span class="token punctuation">,</span> <span class="token string">'工'</span><span class="token punctuation">,</span> <span class="token string">'相'</span><span class="token punctuation">,</span> <span class="token string">'o'</span><span class="token punctuation">,</span> <span class="token string">'男'</span><span class="token punctuation">,</span> <span class="token string">'首'</span><span class="token punctuation">,</span> <span class="token string">'失'</span><span class="token punctuation">,</span> <span class="token string">'世'</span><span class="token punctuation">,</span> <span class="token string">'F'</span><span class="token punctuation">,</span>
+        <span class="token string">'都'</span><span class="token punctuation">,</span> <span class="token string">'平'</span><span class="token punctuation">,</span> <span class="token string">'文'</span><span class="token punctuation">,</span> <span class="token string">'什'</span><span class="token punctuation">,</span> <span class="token string">'V'</span><span class="token punctuation">,</span> <span class="token string">'O'</span><span class="token punctuation">,</span> <span class="token string">'将'</span><span class="token punctuation">,</span> <span class="token string">'真'</span><span class="token punctuation">,</span> <span class="token string">'T'</span><span class="token punctuation">,</span> <span class="token string">'那'</span><span class="token punctuation">,</span> <span class="token string">'当'</span><span class="token punctuation">,</span> <span class="token string">'?'</span><span class="token punctuation">,</span> <span class="token string">'会'</span><span class="token punctuation">,</span> <span class="token string">'立'</span><span class="token punctuation">,</span> <span class="token string">'些'</span><span class="token punctuation">,</span> <span class="token string">'u'</span><span class="token punctuation">,</span> <span class="token string">'是'</span><span class="token punctuation">,</span> <span class="token string">'十'</span><span class="token punctuation">,</span> <span class="token string">'张'</span><span class="token punctuation">,</span>
+        <span class="token string">'学'</span><span class="token punctuation">,</span> <span class="token string">'气'</span><span class="token punctuation">,</span> <span class="token string">'大'</span><span class="token punctuation">,</span> <span class="token string">'爱'</span><span class="token punctuation">,</span> <span class="token string">'两'</span><span class="token punctuation">,</span> <span class="token string">'命'</span><span class="token punctuation">,</span> <span class="token string">'全'</span><span class="token punctuation">,</span> <span class="token string">'后'</span><span class="token punctuation">,</span> <span class="token string">'东'</span><span class="token punctuation">,</span> <span class="token string">'性'</span><span class="token punctuation">,</span> <span class="token string">'通'</span><span class="token punctuation">,</span> <span class="token string">'被'</span><span class="token punctuation">,</span> <span class="token string">'1'</span><span class="token punctuation">,</span> <span class="token string">'它'</span><span class="token punctuation">,</span> <span class="token string">'乐'</span><span class="token punctuation">,</span> <span class="token string">'接'</span><span class="token punctuation">,</span> <span class="token string">'而'</span><span class="token punctuation">,</span> <span class="token string">'感'</span><span class="token punctuation">,</span>
+        <span class="token string">'车'</span><span class="token punctuation">,</span> <span class="token string">'山'</span><span class="token punctuation">,</span> <span class="token string">'公'</span><span class="token punctuation">,</span> <span class="token string">'了'</span><span class="token punctuation">,</span> <span class="token string">'常'</span><span class="token punctuation">,</span> <span class="token string">'以'</span><span class="token punctuation">,</span> <span class="token string">'何'</span><span class="token punctuation">,</span> <span class="token string">'可'</span><span class="token punctuation">,</span> <span class="token string">'话'</span><span class="token punctuation">,</span> <span class="token string">'先'</span><span class="token punctuation">,</span> <span class="token string">'p'</span><span class="token punctuation">,</span> <span class="token string">'i'</span><span class="token punctuation">,</span> <span class="token string">'叫'</span><span class="token punctuation">,</span> <span class="token string">'轻'</span><span class="token punctuation">,</span> <span class="token string">'M'</span><span class="token punctuation">,</span> <span class="token string">'士'</span><span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">,</span> <span class="token string">'着'</span><span class="token punctuation">,</span> <span class="token string">'变'</span><span class="token punctuation">,</span>
+        <span class="token string">'尔'</span><span class="token punctuation">,</span> <span class="token string">'快'</span><span class="token punctuation">,</span> <span class="token string">'l'</span><span class="token punctuation">,</span> <span class="token string">'个'</span><span class="token punctuation">,</span> <span class="token string">'说'</span><span class="token punctuation">,</span> <span class="token string">'少'</span><span class="token punctuation">,</span> <span class="token string">'色'</span><span class="token punctuation">,</span> <span class="token string">'里'</span><span class="token punctuation">,</span> <span class="token string">'安'</span><span class="token punctuation">,</span> <span class="token string">'花'</span><span class="token punctuation">,</span> <span class="token string">'远'</span><span class="token punctuation">,</span> <span class="token string">'7'</span><span class="token punctuation">,</span> <span class="token string">'难'</span><span class="token punctuation">,</span> <span class="token string">'师'</span><span class="token punctuation">,</span> <span class="token string">'放'</span><span class="token punctuation">,</span> <span class="token string">'t'</span><span class="token punctuation">,</span> <span class="token string">'报'</span><span class="token punctuation">,</span> <span class="token string">'认'</span><span class="token punctuation">,</span>
+        <span class="token string">'面'</span><span class="token punctuation">,</span> <span class="token string">'道'</span><span class="token punctuation">,</span> <span class="token string">'S'</span><span class="token punctuation">,</span> <span class="token string">'?'</span><span class="token punctuation">,</span> <span class="token string">'克'</span><span class="token punctuation">,</span> <span class="token string">'地'</span><span class="token punctuation">,</span> <span class="token string">'度'</span><span class="token punctuation">,</span> <span class="token string">'I'</span><span class="token punctuation">,</span> <span class="token string">'好'</span><span class="token punctuation">,</span> <span class="token string">'机'</span><span class="token punctuation">,</span> <span class="token string">'U'</span><span class="token punctuation">,</span> <span class="token string">'民'</span><span class="token punctuation">,</span> <span class="token string">'写'</span><span class="token punctuation">,</span> <span class="token string">'把'</span><span class="token punctuation">,</span> <span class="token string">'万'</span><span class="token punctuation">,</span> <span class="token string">'同'</span><span class="token punctuation">,</span> <span class="token string">'水'</span><span class="token punctuation">,</span> <span class="token string">'新'</span><span class="token punctuation">,</span> <span class="token string">'没'</span><span class="token punctuation">,</span>
+        <span class="token string">'书'</span><span class="token punctuation">,</span> <span class="token string">'电'</span><span class="token punctuation">,</span> <span class="token string">'吃'</span><span class="token punctuation">,</span> <span class="token string">'像'</span><span class="token punctuation">,</span> <span class="token string">'斯'</span><span class="token punctuation">,</span> <span class="token string">'5'</span><span class="token punctuation">,</span> <span class="token string">'为'</span><span class="token punctuation">,</span> <span class="token string">'y'</span><span class="token punctuation">,</span> <span class="token string">'白'</span><span class="token punctuation">,</span> <span class="token string">'几'</span><span class="token punctuation">,</span> <span class="token string">'日'</span><span class="token punctuation">,</span> <span class="token string">'教'</span><span class="token punctuation">,</span> <span class="token string">'看'</span><span class="token punctuation">,</span> <span class="token string">'但'</span><span class="token punctuation">,</span> <span class="token string">'第'</span><span class="token punctuation">,</span> <span class="token string">'加'</span><span class="token punctuation">,</span> <span class="token string">'候'</span><span class="token punctuation">,</span> <span class="token string">'作'</span><span class="token punctuation">,</span>
+        <span class="token string">'上'</span><span class="token punctuation">,</span> <span class="token string">'拉'</span><span class="token punctuation">,</span> <span class="token string">'住'</span><span class="token punctuation">,</span> <span class="token string">'有'</span><span class="token punctuation">,</span> <span class="token string">'法'</span><span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">,</span> <span class="token string">'事'</span><span class="token punctuation">,</span> <span class="token string">'应'</span><span class="token punctuation">,</span> <span class="token string">'位'</span><span class="token punctuation">,</span> <span class="token string">'利'</span><span class="token punctuation">,</span> <span class="token string">'你'</span><span class="token punctuation">,</span> <span class="token string">'声'</span><span class="token punctuation">,</span> <span class="token string">'身'</span><span class="token punctuation">,</span> <span class="token string">'国'</span><span class="token punctuation">,</span> <span class="token string">'问'</span><span class="token punctuation">,</span> <span class="token string">'马'</span><span class="token punctuation">,</span> <span class="token string">'女'</span><span class="token punctuation">,</span> <span class="token string">'他'</span><span class="token punctuation">,</span>
+        <span class="token string">'Y'</span><span class="token punctuation">,</span> <span class="token string">'比'</span><span class="token punctuation">,</span> <span class="token string">'父'</span><span class="token punctuation">,</span> <span class="token string">'x'</span><span class="token punctuation">,</span> <span class="token string">'A'</span><span class="token punctuation">,</span> <span class="token string">'H'</span><span class="token punctuation">,</span> <span class="token string">'N'</span><span class="token punctuation">,</span> <span class="token string">'s'</span><span class="token punctuation">,</span> <span class="token string">'X'</span><span class="token punctuation">,</span> <span class="token string">'边'</span><span class="token punctuation">,</span> <span class="token string">'美'</span><span class="token punctuation">,</span> <span class="token string">'对'</span><span class="token punctuation">,</span> <span class="token string">'所'</span><span class="token punctuation">,</span> <span class="token string">'金'</span><span class="token punctuation">,</span> <span class="token string">'活'</span><span class="token punctuation">,</span> <span class="token string">'回'</span><span class="token punctuation">,</span> <span class="token string">'意'</span><span class="token punctuation">,</span> <span class="token string">'到'</span><span class="token punctuation">,</span> <span class="token string">'z'</span><span class="token punctuation">,</span>
+        <span class="token string">'从'</span><span class="token punctuation">,</span> <span class="token string">'j'</span><span class="token punctuation">,</span> <span class="token string">'知'</span><span class="token punctuation">,</span> <span class="token string">'又'</span><span class="token punctuation">,</span> <span class="token string">'内'</span><span class="token punctuation">,</span> <span class="token string">'因'</span><span class="token punctuation">,</span> <span class="token string">'点'</span><span class="token punctuation">,</span> <span class="token string">'Q'</span><span class="token punctuation">,</span> <span class="token string">'三'</span><span class="token punctuation">,</span> <span class="token string">'定'</span><span class="token punctuation">,</span> <span class="token string">'8'</span><span class="token punctuation">,</span> <span class="token string">'R'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'正'</span><span class="token punctuation">,</span> <span class="token string">'或'</span><span class="token punctuation">,</span> <span class="token string">'夫'</span><span class="token punctuation">,</span> <span class="token string">'向'</span><span class="token punctuation">,</span> <span class="token string">'德'</span><span class="token punctuation">,</span> <span class="token string">'听'</span><span class="token punctuation">,</span>
+        <span class="token string">'更'</span><span class="token punctuation">,</span> <span class="token string">'?'</span><span class="token punctuation">,</span> <span class="token string">'得'</span><span class="token punctuation">,</span> <span class="token string">'告'</span><span class="token punctuation">,</span> <span class="token string">'并'</span><span class="token punctuation">,</span> <span class="token string">'本'</span><span class="token punctuation">,</span> <span class="token string">'q'</span><span class="token punctuation">,</span> <span class="token string">'过'</span><span class="token punctuation">,</span> <span class="token string">'记'</span><span class="token punctuation">,</span> <span class="token string">'L'</span><span class="token punctuation">,</span> <span class="token string">'让'</span><span class="token punctuation">,</span> <span class="token string">'打'</span><span class="token punctuation">,</span> <span class="token string">'f'</span><span class="token punctuation">,</span> <span class="token string">'人'</span><span class="token punctuation">,</span> <span class="token string">'就'</span><span class="token punctuation">,</span> <span class="token string">'者'</span><span class="token punctuation">,</span> <span class="token string">'去'</span><span class="token punctuation">,</span> <span class="token string">'原'</span><span class="token punctuation">,</span> <span class="token string">'满'</span><span class="token punctuation">,</span>
+        <span class="token string">'体'</span><span class="token punctuation">,</span> <span class="token string">'做'</span><span class="token punctuation">,</span> <span class="token string">'经'</span><span class="token punctuation">,</span> <span class="token string">'K'</span><span class="token punctuation">,</span> <span class="token string">'走'</span><span class="token punctuation">,</span> <span class="token string">'如'</span><span class="token punctuation">,</span> <span class="token string">'孩'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'G'</span><span class="token punctuation">,</span> <span class="token string">'给'</span><span class="token punctuation">,</span> <span class="token string">'使'</span><span class="token punctuation">,</span> <span class="token string">'物'</span><span class="token punctuation">,</span> <span class="token string">'?'</span><span class="token punctuation">,</span> <span class="token string">'最'</span><span class="token punctuation">,</span> <span class="token string">'笑'</span><span class="token punctuation">,</span> <span class="token string">'部'</span><span class="token punctuation">,</span> <span class="token string">'?'</span><span class="token punctuation">,</span> <span class="token string">'员'</span><span class="token punctuation">,</span> <span class="token string">'等'</span><span class="token punctuation">,</span>
+        <span class="token string">'受'</span><span class="token punctuation">,</span> <span class="token string">'k'</span><span class="token punctuation">,</span> <span class="token string">'行'</span><span class="token punctuation">,</span> <span class="token string">'一'</span><span class="token punctuation">,</span> <span class="token string">'条'</span><span class="token punctuation">,</span> <span class="token string">'果'</span><span class="token punctuation">,</span> <span class="token string">'动'</span><span class="token punctuation">,</span> <span class="token string">'光'</span><span class="token punctuation">,</span> <span class="token string">'门'</span><span class="token punctuation">,</span> <span class="token string">'头'</span><span class="token punctuation">,</span> <span class="token string">'见'</span><span class="token punctuation">,</span> <span class="token string">'往'</span><span class="token punctuation">,</span> <span class="token string">'自'</span><span class="token punctuation">,</span> <span class="token string">'解'</span><span class="token punctuation">,</span> <span class="token string">'成'</span><span class="token punctuation">,</span> <span class="token string">'处'</span><span class="token punctuation">,</span> <span class="token string">'天'</span><span class="token punctuation">,</span> <span class="token string">'能'</span><span class="token punctuation">,</span>
+        <span class="token string">'于'</span><span class="token punctuation">,</span> <span class="token string">'名'</span><span class="token punctuation">,</span> <span class="token string">'其'</span><span class="token punctuation">,</span> <span class="token string">'发'</span><span class="token punctuation">,</span> <span class="token string">'总'</span><span class="token punctuation">,</span> <span class="token string">'母'</span><span class="token punctuation">,</span> <span class="token string">'的'</span><span class="token punctuation">,</span> <span class="token string">'死'</span><span class="token punctuation">,</span> <span class="token string">'手'</span><span class="token punctuation">,</span> <span class="token string">'入'</span><span class="token punctuation">,</span> <span class="token string">'路'</span><span class="token punctuation">,</span> <span class="token string">'进'</span><span class="token punctuation">,</span> <span class="token string">'心'</span><span class="token punctuation">,</span> <span class="token string">'来'</span><span class="token punctuation">,</span> <span class="token string">'h'</span><span class="token punctuation">,</span> <span class="token string">'时'</span><span class="token punctuation">,</span> <span class="token string">'力'</span><span class="token punctuation">,</span> <span class="token string">'多'</span><span class="token punctuation">,</span>
+        <span class="token string">'开'</span><span class="token punctuation">,</span> <span class="token string">'己'</span><span class="token punctuation">,</span> <span class="token string">'许'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'至'</span><span class="token punctuation">,</span> <span class="token string">'由'</span><span class="token punctuation">,</span> <span class="token string">'很'</span><span class="token punctuation">,</span> <span class="token string">'界'</span><span class="token punctuation">,</span> <span class="token string">'n'</span><span class="token punctuation">,</span> <span class="token string">'小'</span><span class="token punctuation">,</span> <span class="token string">'与'</span><span class="token punctuation">,</span> <span class="token string">'Z'</span><span class="token punctuation">,</span> <span class="token string">'想'</span><span class="token punctuation">,</span> <span class="token string">'代'</span><span class="token punctuation">,</span> <span class="token string">'么'</span><span class="token punctuation">,</span> <span class="token string">'分'</span><span class="token punctuation">,</span> <span class="token string">'生'</span><span class="token punctuation">,</span> <span class="token string">'口'</span><span class="token punctuation">,</span>
+        <span class="token string">'再'</span><span class="token punctuation">,</span> <span class="token string">'妈'</span><span class="token punctuation">,</span> <span class="token string">'望'</span><span class="token punctuation">,</span> <span class="token string">'次'</span><span class="token punctuation">,</span> <span class="token string">'西'</span><span class="token punctuation">,</span> <span class="token string">'风'</span><span class="token punctuation">,</span> <span class="token string">'种'</span><span class="token punctuation">,</span> <span class="token string">'带'</span><span class="token punctuation">,</span> <span class="token string">'J'</span><span class="token punctuation">,</span> <span class="token string">'?'</span><span class="token punctuation">,</span> <span class="token string">'实'</span><span class="token punctuation">,</span> <span class="token string">'情'</span><span class="token punctuation">,</span> <span class="token string">'才'</span><span class="token punctuation">,</span> <span class="token string">'这'</span><span class="token punctuation">,</span> <span class="token string">'?'</span><span class="token punctuation">,</span> <span class="token string">'E'</span><span class="token punctuation">,</span> <span class="token string">'我'</span><span class="token punctuation">,</span> <span class="token string">'神'</span><span class="token punctuation">,</span> <span class="token string">'格'</span><span class="token punctuation">,</span>
+        <span class="token string">'长'</span><span class="token punctuation">,</span> <span class="token string">'觉'</span><span class="token punctuation">,</span> <span class="token string">'间'</span><span class="token punctuation">,</span> <span class="token string">'年'</span><span class="token punctuation">,</span> <span class="token string">'眼'</span><span class="token punctuation">,</span> <span class="token string">'无'</span><span class="token punctuation">,</span> <span class="token string">'不'</span><span class="token punctuation">,</span> <span class="token string">'亲'</span><span class="token punctuation">,</span> <span class="token string">'关'</span><span class="token punctuation">,</span> <span class="token string">'结'</span><span class="token punctuation">,</span> <span class="token string">'0'</span><span class="token punctuation">,</span> <span class="token string">'友'</span><span class="token punctuation">,</span> <span class="token string">'信'</span><span class="token punctuation">,</span> <span class="token string">'下'</span><span class="token punctuation">,</span> <span class="token string">'却'</span><span class="token punctuation">,</span> <span class="token string">'重'</span><span class="token punctuation">,</span> <span class="token string">'己'</span><span class="token punctuation">,</span> <span class="token string">'老'</span><span class="token punctuation">,</span>
+        <span class="token string">'2'</span><span class="token punctuation">,</span> <span class="token string">'音'</span><span class="token punctuation">,</span> <span class="token string">'字'</span><span class="token punctuation">,</span> <span class="token string">'m'</span><span class="token punctuation">,</span> <span class="token string">'呢'</span><span class="token punctuation">,</span> <span class="token string">'明'</span><span class="token punctuation">,</span> <span class="token string">'之'</span><span class="token punctuation">,</span> <span class="token string">'前'</span><span class="token punctuation">,</span> <span class="token string">'高'</span><span class="token punctuation">,</span> <span class="token string">'P'</span><span class="token punctuation">,</span> <span class="token string">'B'</span><span class="token punctuation">,</span> <span class="token string">'目'</span><span class="token punctuation">,</span> <span class="token string">'太'</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">,</span> <span class="token string">'9'</span><span class="token punctuation">,</span> <span class="token string">'起'</span><span class="token punctuation">,</span> <span class="token string">'稜'</span><span class="token punctuation">,</span> <span class="token string">'她'</span><span class="token punctuation">,</span> <span class="token string">'也'</span><span class="token punctuation">,</span>
+        <span class="token string">'W'</span><span class="token punctuation">,</span> <span class="token string">'用'</span><span class="token punctuation">,</span> <span class="token string">'方'</span><span class="token punctuation">,</span> <span class="token string">'子'</span><span class="token punctuation">,</span> <span class="token string">'英'</span><span class="token punctuation">,</span> <span class="token string">'每'</span><span class="token punctuation">,</span> <span class="token string">'理'</span><span class="token punctuation">,</span> <span class="token string">'便'</span><span class="token punctuation">,</span> <span class="token string">'西'</span><span class="token punctuation">,</span> <span class="token string">'数'</span><span class="token punctuation">,</span> <span class="token string">'期'</span><span class="token punctuation">,</span> <span class="token string">'中'</span><span class="token punctuation">,</span> <span class="token string">'C'</span><span class="token punctuation">,</span> <span class="token string">'外'</span><span class="token punctuation">,</span> <span class="token string">'样'</span><span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'海'</span><span class="token punctuation">,</span> <span class="token string">'们'</span><span class="token punctuation">,</span>
+        <span class="token string">'任'</span><span class="token punctuation">]</span>
+
+<span class="token keyword">def</span> <span class="token function">interpreter</span><span class="token punctuation">(</span>cc<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 原字符减去e338获取到另一套字体的该编码字符</span>
+ bias <span class="token operator">=</span> cc <span class="token operator">-</span> CODE_ST
+ <span class="token keyword">if</span> charset<span class="token punctuation">[</span>bias<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'?'</span><span class="token punctuation">:</span>  <span class="token comment"># 特殊处理</span>
+     <span class="token keyword">return</span> <span class="token builtin">chr</span><span class="token punctuation">(</span>cc<span class="token punctuation">)</span>
+ <span class="token keyword">return</span> charset<span class="token punctuation">[</span>bias<span class="token punctuation">]</span>
+
+
+<span class="token comment"># 获取小说章节</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>title<span class="token punctuation">)</span>
+content <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> content_tag <span class="token keyword">in</span> content_tags<span class="token punctuation">:</span>
+ para <span class="token operator">=</span> <span class="token string">''</span>
+ <span class="token keyword">for</span> char <span class="token keyword">in</span> content_tag<span class="token punctuation">:</span>
+     cc <span class="token operator">=</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>char<span class="token punctuation">)</span>
+     <span class="token keyword">if</span> CODE_ST <span class="token operator">&lt;=</span> cc <span class="token operator">&lt;=</span> CODE_ED<span class="token punctuation">:</span>
+         ch <span class="token operator">=</span> interpreter<span class="token punctuation">(</span>cc<span class="token punctuation">)</span>
+         para <span class="token operator">+=</span> ch
+     <span class="token keyword">else</span><span class="token punctuation">:</span>
+         para <span class="token operator">+=</span> char  <span class="token comment"># 这里应该是拼接字符，而不是其ASCII码</span>
+ content<span class="token punctuation">.</span>append<span class="token punctuation">(</span>para<span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> para <span class="token keyword">in</span> content<span class="token punctuation">:</span>
+ fp<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">'    '</span><span class="token punctuation">)</span>
+ fp<span class="token punctuation">.</span>write<span class="token punctuation">(</span>para<span class="token punctuation">)</span>
+ fp<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<p>到这按理说应该去找底部下一章节按钮的超链接,但是番茄给我们反爬了,没有有用信息</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">只能去网络接口里面找,在点击下一张之后,发现网络请求中有一个请求返回的json数据不仅有内容还有下一页的**ItemID**,所以解析获得,然后拼接到本身url(替换原本的id,  *注意:原本的url里面的参数可以删去部分,不影响返回,最后的url是这样*https://fanqienovel.com/api/reader/full?itemId=6893843740834660878)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>注意,经过实验下一张的编号是itemId,而不是nextitemId</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2024/06/21/pa-qu-fan-qie-xiao-shuo/06/21/pa-qu-fan-qie-xiao-shuo/image-20240126232926232-1706330347599-1.png"></p>
+<blockquote>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">cap01_url <span class="token operator">=</span> <span class="token string">'https://fanqienovel.com/api/reader/full?itemId=6893843740834660878'</span>
+<span class="token comment"># cap02_url = 'https://fanqienovel.com/reader/6893843740834660878?enter_from=reader'</span>
+<span class="token comment"># cap03_url = 'https://fanqienovel.com/reader/6893843740910158344?enter_from=reader'</span>
+
+fp <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'人类不死以后.txt'</span><span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+
+headers <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">'User-Agent'</span><span class="token punctuation">:</span>
+            <span class="token string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0'</span><span class="token punctuation">&#125;</span>
+
+response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token operator">=</span>cap01_url<span class="token punctuation">,</span> headers<span class="token operator">=</span>headers<span class="token punctuation">)</span>
+
+data <span class="token operator">=</span> response<span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+json_obj <span class="token operator">=</span> response<span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 解析JSON数据为Python字典</span>
+
+next_id <span class="token operator">=</span> json_obj<span class="token punctuation">[</span><span class="token string">'data'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'chapterData'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'nextItemId'</span><span class="token punctuation">]</span> <span class="token comment"># 解嵌套</span>
+
+next_url <span class="token operator">=</span> <span class="token string">'https://fanqienovel.com/api/reader/full?itemId='</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>next_id<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<p>到此,所以需要的信息已经爬完了,只需要处理循环逻辑,保存文件就行</p>
+<p>最后全部代码如下,做了一些修改</p>
+<blockquote>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">"""
+# Time: 2024/1/22/22:59
+# Theme: 爬虫程序
+# Author: 0zxm
+# E-mail: m15813109801@163.com
+# Dependencies: urllib.request, lxml
+"""
+import requests
+from lxml import etree
+
+CODE_ST = 58344  # 十六进制e3e8的十进制
+CODE_ED = 58715  # 十六进制e55b的十进制
+charset = ['D', '在', '主', '特', '家', '军', '然', '表', '场', '4', '要', '只', 'v', '和', '?', '6', '别', '还', 'g',
+     '现', '儿', '岁', '?', '?', '此', '象', '月', '3', '出', '战', '工', '相', 'o', '男', '首', '失', '世', 'F',
+     '都', '平', '文', '什', 'V', 'O', '将', '真', 'T', '那', '当', '?', '会', '立', '些', 'u', '是', '十', '张',
+     '学', '气', '大', '爱', '两', '命', '全', '后', '东', '性', '通', '被', '1', '它', '乐', '接', '而', '感',
+     '车', '山', '公', '了', '常', '以', '何', '可', '话', '先', 'p', 'i', '叫', '轻', 'M', '士', 'w', '着', '变',
+     '尔', '快', 'l', '个', '说', '少', '色', '里', '安', '花', '远', '7', '难', '师', '放', 't', '报', '认',
+     '面', '道', 'S', '?', '克', '地', '度', 'I', '好', '机', 'U', '民', '写', '把', '万', '同', '水', '新', '没',
+     '书', '电', '吃', '像', '斯', '5', '为', 'y', '白', '几', '日', '教', '看', '但', '第', '加', '候', '作',
+     '上', '拉', '住', '有', '法', 'r', '事', '应', '位', '利', '你', '声', '身', '国', '问', '马', '女', '他',
+     'Y', '比', '父', 'x', 'A', 'H', 'N', 's', 'X', '边', '美', '对', '所', '金', '活', '回', '意', '到', 'z',
+     '从', 'j', '知', '又', '内', '因', '点', 'Q', '三', '定', '8', 'R', 'b', '正', '或', '夫', '向', '德', '听',
+     '更', '?', '得', '告', '并', '本', 'q', '过', '记', 'L', '让', '打', 'f', '人', '就', '者', '去', '原', '满',
+     '体', '做', '经', 'K', '走', '如', '孩', 'c', 'G', '给', '使', '物', '?', '最', '笑', '部', '?', '员', '等',
+     '受', 'k', '行', '一', '条', '果', '动', '光', '门', '头', '见', '往', '自', '解', '成', '处', '天', '能',
+     '于', '名', '其', '发', '总', '母', '的', '死', '手', '入', '路', '进', '心', '来', 'h', '时', '力', '多',
+     '开', '己', '许', 'd', '至', '由', '很', '界', 'n', '小', '与', 'Z', '想', '代', '么', '分', '生', '口',
+     '再', '妈', '望', '次', '西', '风', '种', '带', 'J', '?', '实', '情', '才', '这', '?', 'E', '我', '神', '格',
+     '长', '觉', '间', '年', '眼', '无', '不', '亲', '关', '结', '0', '友', '信', '下', '却', '重', '己', '老',
+     '2', '音', '字', 'm', '呢', '明', '之', '前', '高', 'P', 'B', '目', '太', 'e', '9', '起', '稜', '她', '也',
+     'W', '用', '方', '子', '英', '每', '理', '便', '西', '数', '期', '中', 'C', '外', '样', 'a', '海', '们',
+     '任']
+
+
+# 解析章节加密内容
+def interpreter(cc):  # 原字符减去e338获取到另一套字体的该编码字符
+bias = cc - CODE_ST
+if charset[bias] == '?':  # 特殊处理
+  return chr(cc)
+return charset[bias]
+
+
+cap_url = 'https://fanqienovel.com/api/reader/full?itemId=6893843740742386183'
+cap02_url = 'https://fanqienovel.com/reader/6893843740910158344'
+# cap02_url = 'https://fanqienovel.com/reader/6893843740834660878?enter_from=reader'
+# cap03_url = 'https://fanqienovel.com/reader/6893843740910158344?enter_from=reader'
+
+fp = open('人类不死以后.txt', 'a', encoding='utf-8')
+
+headers = &#123;'User-Agent':
+         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0'&#125;
+
+"""第一章爬取"""
+content_url = 'http://fanqienovel.com/reader/6893843740742386183'
+response = requests.get(url=content_url, headers=headers)
+tree = etree.HTML(response.text)
+
+title = tree.xpath('//h1[@class = "muye-reader-title"]/text()')
+fp.write(title[0] + '\n')
+
+content_tags = tree.xpath('//div[@class="muye-reader-content noselect"]/div//p/text()')
+# 获取小说章节
+# print(title)
+content = []
+for content_tag in content_tags:
+para = ''
+for char in content_tag:
+  cc = ord(char)
+  if CODE_ST &lt;= cc &lt;= CODE_ED:
+      ch = interpreter(cc)
+      para += ch
+  else:
+      para += char  # 这里应该是拼接字符，而不是其ASCII码
+content.append(para)
+
+# print(content)
+print('正在下载第1章')
+for para in content:
+fp.write('    ')
+fp.write(para)
+fp.write('\n')
+
+index = 1
+while True:
+# TODO:获取下一章节ID
+response = requests.get(url=cap_url, headers=headers)
+
+data = response.json()
+
+json_obj = response.json()  # 解析JSON数据为Python字典
+
+next_id = json_obj['data']['chapterData']['nextItemId']  # 解嵌套
+
+next_id_url = 'https://fanqienovel.com/api/reader/full?itemId=' + str(next_id)
+
+next_content_url = 'http://fanqienovel.com/reader/' + str(next_id)
+
+# print(next_id_url)
+
+cap_url = next_id_url  # 迭代更新获取下一章id的url
+
+# TODO:获取每章节内容
+response = requests.get(url=next_content_url, headers=headers)
+
+tree = etree.HTML(response.text)
+
+title = tree.xpath('//h1[@class = "muye-reader-title"]/text()')
+fp.write(title[0] + '\n')
+
+content_tags = tree.xpath('//div[@class="muye-reader-content noselect"]/div//p/text()')
+
+# print(len(content_tags))
+
+# 获取小说章节
+content = []
+for content_tag in content_tags:
+  para = ''
+  for char in content_tag:
+      cc = ord(char)
+      if CODE_ST &lt;= cc &lt;= CODE_ED:
+          ch = interpreter(cc)
+          para += ch
+      else:
+          para += char  # 这里应该是拼接字符，而不是其ASCII码
+  content.append(para)
+
+# print(content)
+index += 1
+
+for para in content:
+  fp.write('    ')
+  fp.write(para)
+  fp.write('\n')
+print('正在下载第' + str(index) + '章')
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2024/06/21/pa-qu-fan-qie-xiao-shuo/06/21/pa-qu-fan-qie-xiao-shuo/image-20240127095944844-1706320789213-1.png" alt="image-20240127095944844"></p>
+<p>特别鸣谢</p>
+<p>在写程序的时候,参考了一些文章,感谢</p>
+<p>参考链接:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_61248085/article/details/134538792">python爬虫番茄小说CSDN博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Pj41197rh">https://www.bilibili.com/video/BV1Pj41197rh</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://0zxm.github.io">0zxm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://0zxm.github.io/2024/06/21/pa-qu-fan-qie-xiao-shuo/">https://0zxm.github.io/2024/06/21/pa-qu-fan-qie-xiao-shuo/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://0zxm.github.io" target="_blank">0zxm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a><a class="post-meta__tags" href="/tags/MD5%E5%8A%A0%E5%AF%86/">MD5加密</a></div><div class="post-share"><div class="social-share" data-image="/img/cover2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/06/21/qt-zuo-yi-ge-biao-bai-xiao-cheng-xu/" title="qt做一个表白小程序"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">qt做一个表白小程序</div></div><div class="info-2"><div class="info-item-1">使用Qt(c++)框架开发一个图形化界面程序</div></div></div></a><a class="pagination-related" href="/2024/06/21/hexo-da-jian-bo-ke/" title="hexo搭建博客"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">hexo搭建博客</div></div><div class="info-2"><div class="info-item-1">搭建博客的问题和解决措施</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/01/15/django-he-vue3-qian-hou-duan-fen-chi-kai-fa/" title="Django和Vue3前后端补充知识点"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-15</div><div class="info-item-2">Django和Vue3前后端补充知识点</div></div><div class="info-2"><div class="info-item-1">Django和Vue3前后端分离开发</div></div></div></a><a class="pagination-related" href="/2024/11/23/django-xue-xi/" title="Django学习"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-23</div><div class="info-item-2">Django学习</div></div><div class="info-2"><div class="info-item-1">Django框架的学习</div></div></div></a><a class="pagination-related" href="/2025/01/05/mindspore-shou-xie-shu-zi-shi-bie/" title="Mindspore手写数字识别"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-05</div><div class="info-item-2">Mindspore手写数字识别</div></div><div class="info-2"><div class="info-item-1">使用MindSpore深度学习框架，进行网络搭建、数据处理、网络训练和测试，完成MNIST手写体识别任务</div></div></div></a><a class="pagination-related" href="/2025/06/19/wide-deep-mo-xing/" title="Wide&amp;Deep模型"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-19</div><div class="info-item-2">Wide&amp;Deep模型</div></div><div class="info-2"><div class="info-item-1">机器学习大作业实现过程的笔记</div></div></div></a><a class="pagination-related" href="/2025/06/25/framwork-kuang-jia-xue-xi/" title="Django REST framwork框架学习"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-25</div><div class="info-item-2">Django REST framwork框架学习</div></div><div class="info-2"><div class="info-item-1">Django拓展框架Django-REST-framwork的简单笔记</div></div></div></a><a class="pagination-related" href="/2025/02/15/pyqt-xie-yi-ge-dai-ban-cheng-xu/" title="pyqt写一个待办程序"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-15</div><div class="info-item-2">pyqt写一个待办程序</div></div><div class="info-2"><div class="info-item-1">构建一个功能丰富的待办应用：深入PyQt5</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">0zxm</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/0zxm"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/0zxm" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:m15813109801@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="http://0zxm.github.io" target="_blank" title="博客"><i class="fab fa-algolia" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E6%96%87%E7%94%A8%E4%BA%8E%E7%BA%AA%E5%BD%95%E7%88%AC%E5%8F%96%E7%95%AA%E8%8C%84%E5%B0%8F%E8%AF%B4%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E5%9B%B0%E9%9A%BE%E5%92%8C%E8%A7%A3%E5%86%B3%E6%8E%AA%E6%96%BD"><span class="toc-text">本文用于纪录爬取番茄小说过程中遇到的困难和解决措施</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%89%BE%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%8F%A3"><span class="toc-text">1.找网络接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%8E%A5%E4%B8%8B%E6%9D%A5%E5%B0%B1%E4%BD%BF%E7%94%A8xpath%E6%8F%90%E5%8F%96%E6%95%B0%E6%8D%AE%E4%BA%86"><span class="toc-text">2.接下来就使用xpath提取数据了</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/06/25/framwork-kuang-jia-xue-xi/" title="Django REST framwork框架学习"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Django REST framwork框架学习"/></a><div class="content"><a class="title" href="/2025/06/25/framwork-kuang-jia-xue-xi/" title="Django REST framwork框架学习">Django REST framwork框架学习</a><time datetime="2025-06-25T13:09:01.000Z" title="发表于 2025-06-25 21:09:01">2025-06-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/19/wide-deep-mo-xing/" title="Wide&amp;Deep模型"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Wide&amp;Deep模型"/></a><div class="content"><a class="title" href="/2025/06/19/wide-deep-mo-xing/" title="Wide&amp;Deep模型">Wide&amp;Deep模型</a><time datetime="2025-06-19T05:30:40.000Z" title="发表于 2025-06-19 13:30:40">2025-06-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/08/java-ji-chu-xia/" title="Java基础下"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java基础下"/></a><div class="content"><a class="title" href="/2025/03/08/java-ji-chu-xia/" title="Java基础下">Java基础下</a><time datetime="2025-03-08T03:43:21.000Z" title="发表于 2025-03-08 11:43:21">2025-03-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/08/duo-xian-cheng-e-wai-kuo-zhan/" title="Java基础之多线程"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java基础之多线程"/></a><div class="content"><a class="title" href="/2025/03/08/duo-xian-cheng-e-wai-kuo-zhan/" title="Java基础之多线程">Java基础之多线程</a><time datetime="2025-03-08T03:43:21.000Z" title="发表于 2025-03-08 11:43:21">2025-03-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/07/qian-ru-shi-xi-tong-gai-shu/" title="嵌入式系统概述"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="嵌入式系统概述"/></a><div class="content"><a class="title" href="/2025/03/07/qian-ru-shi-xi-tong-gai-shu/" title="嵌入式系统概述">嵌入式系统概述</a><time datetime="2025-03-07T06:08:48.000Z" title="发表于 2025-03-07 14:08:48">2025-03-07</time></div></div></div></div></div></div><!-- 登录验证模态框--></main><footer id="footer" style="background-image: url(/img/footer.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By 0zxm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- CSS 样式--><style>#login-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  z-index:999;
+}
+
+input#password-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button#submit-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button#submit-btn:hover {
+  background-color: #45a049;
+}
+</style><!-- JavaScript 验证--><script>document.addEventListener('DOMContentLoaded', function() {
+
+  (function() {
+  // 禁用右键菜单
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    return false;
+  });
+
+  // 禁用快捷键 (F12/Ctrl+Shift+I/Ctrl+Shift+J/Ctrl+Shift+C)
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'F12' || 
+        (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+        (e.ctrlKey && e.shiftKey && e.key === 'J') ||
+        (e.ctrlKey && e.shiftKey && e.key === 'C')) {
+      e.preventDefault();
+      return false;
+    }
+  });
+  })();
+  
+
+  const modal = document.getElementById('login-modal');
+  const passwordInput = document.getElementById('password-input');
+  const submitBtn = document.getElementById('submit-btn');
+  const errorMsg = document.getElementById('error-msg');
+  const bodyWrap = document.getElementById('body-wrap');
+
+
+  // 默认显示模态框
+  modal.style.display = 'flex';
+
+  // 自动聚焦到密码输入框
+  passwordInput.focus();
+
+  submitBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    const password = passwordInput.value;
+    const correctPassword = 'D&X'; // 替换为实际密码
+
+    if (password === correctPassword) {
+      modal.style.display = 'none';
+      bodyWrap.style.opacity = 1; // 显示页面内容
+    } else {
+      passwordInput.classList.add('error');
+      errorMsg.style.display = 'block';
+      setTimeout(() => {
+        passwordInput.classList.remove('error');
+        errorMsg.style.display = 'none';
+      }, 2000);
+    }
+  });
+  // 按下 Enter 键提交
+  passwordInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      submitBtn.click();
+    }
+  });
+});</script></body></html>

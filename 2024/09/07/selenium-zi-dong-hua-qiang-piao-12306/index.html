@@ -1,0 +1,590 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>selenium自动化抢票12306 | 0zxm</title><meta name="author" content="0zxm"><meta name="copyright" content="0zxm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="自动化脚本模拟浏览器抢票">
+<meta property="og:type" content="article">
+<meta property="og:title" content="selenium自动化抢票12306">
+<meta property="og:url" content="https://0zxm.github.io/2024/09/07/selenium-zi-dong-hua-qiang-piao-12306/index.html">
+<meta property="og:site_name" content="0zxm">
+<meta property="og:description" content="自动化脚本模拟浏览器抢票">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://0zxm.github.io/img/cover1.jpg">
+<meta property="article:published_time" content="2024-09-06T16:24:13.000Z">
+<meta property="article:modified_time" content="2025-05-06T05:36:26.000Z">
+<meta property="article:author" content="0zxm">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="自动化">
+<meta property="article:tag" content="selenium">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0zxm.github.io/img/cover1.jpg"><link rel="shortcut icon" href="/favicon.png"><link rel="canonical" href="https://0zxm.github.io/2024/09/07/selenium-zi-dong-hua-qiang-piao-12306/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: 0zxm","link":"链接: ","source":"来源: 0zxm","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'selenium自动化抢票12306',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-05-06 13:36:26'
+}</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/src/"><i class="fa-fw fas fa-cloud"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comment"></i><span> 说说</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover1.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">0zxm</span></a><a class="nav-page-title" href="/"><span class="site-name">selenium自动化抢票12306</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/src/"><i class="fa-fw fas fa-cloud"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comment"></i><span> 说说</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">selenium自动化抢票12306</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-09-06T16:24:13.000Z" title="发表于 2024-09-07 00:24:13">2024-09-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-06T05:36:26.000Z" title="更新于 2025-05-06 13:36:26">2025-05-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="自动化抢票-12306"><a href="#自动化抢票-12306" class="headerlink" title="自动化抢票 12306"></a>自动化抢票 12306</h3><h4 id="1-明确需求"><a href="#1-明确需求" class="headerlink" title="1. 明确需求"></a>1. 明确需求</h4><p><strong>明确采集的网站以及数据内容</strong></p>
+<ul>
+<li><strong>网址</strong>: <a target="_blank" rel="noopener" href="https://kyfw.12306.cn/otn/leftTicket/init">https://kyfw.12306.cn/otn/leftTicket/init</a></li>
+<li><strong>数据</strong>: 车次相关信息</li>
+</ul>
+<h4 id="2-抓包分析"><a href="#2-抓包分析" class="headerlink" title="2. 抓包分析"></a>2. 抓包分析</h4><p><strong>通过浏览器开发者工具分析对应的数据位置</strong></p>
+<ul>
+<li><strong>打开开发者工具</strong><ul>
+<li>F12 或鼠标右键点击检查</li>
+</ul>
+</li>
+<li><strong>刷新网页</strong><ul>
+<li>点击下一页&#x2F;下滑网页页面&#x2F;点击搜索&#x2F;查询按钮</li>
+<li>让网页相关数据内容加载出来 (整个网站数据内容重新加载一遍)</li>
+</ul>
+</li>
+<li><strong>通过关键字搜索找到对应数据位置</strong><ul>
+<li>需要什么数据就搜什么</li>
+</ul>
+</li>
+</ul>
+<p><strong>数据包地址</strong>: <a target="_blank" rel="noopener" href="https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=2024-09-06&leftTicketDTO.from_station=IZQ&leftTicketDTO.to_station=SNQ&purpose_codes=ADULT">https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=2024-09-06&amp;leftTicketDTO.from_station=IZQ&amp;leftTicketDTO.to_station=SNQ&amp;purpose_codes=ADULT</a></p>
+<h4 id="3-代码实现步骤"><a href="#3-代码实现步骤" class="headerlink" title="3. 代码实现步骤"></a>3. 代码实现步骤</h4><h5 id="1-发送请求"><a href="#1-发送请求" class="headerlink" title="1. 发送请求"></a>1. 发送请求</h5><p><strong>模拟浏览器对于 url 地址发送请求</strong></p>
+<ul>
+<li><p><strong>模拟浏览器</strong></p>
+<ul>
+<li>可以直接复制，使用请求标头中参数内容</li>
+<li>去哪里找: 开发者工具 -&gt; 网络 -&gt; 点击对应数据包 -&gt; 标头 -&gt; 请求标头(参数)</li>
+<li>怎么写: 使用字典接受数据内容 (构建完整的键值对)</li>
+</ul>
+</li>
+<li><p><strong>请求网址</strong></p>
+<ul>
+<li>通过抓包分析找到链接地址，直接复制即可</li>
+</ul>
+</li>
+<li><p><strong>发送请求</strong></p>
+<ul>
+<li>使用第三方模块: requests<ul>
+<li>安装 requests 模块<ul>
+<li>win+r 输入 cmd 点击确定，输入安装命令: <code>pip install requests</code></li>
+</ul>
+</li>
+<li>导入 requests 模块</li>
+<li>请求方法: 开发者工具 -&gt; 网络 -&gt; 点击对应数据包 -&gt; 标头 -&gt; 常规</li>
+<li>GET 请求参数: 查询参数 (直接在链接中就有)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-获取数据"><a href="#2-获取数据" class="headerlink" title="2. 获取数据"></a>2. 获取数据</h5><p><strong>获取服务器返回响应数据</strong></p>
+<ul>
+<li>12306 的请求参数并不是简单的中文字符，而是对应的三字编码，我们需要找到对应的编码<ul>
+<li>对网页分析发现，在一个 js 文件中可以获取</li>
+<li>在页面最后有 <code>https://kyfw.12306.cn/otn/resources/js/framework/station_name.js</code> 链接</li>
+</ul>
+</li>
+</ul>
+<h5 id="3-解析数据"><a href="#3-解析数据" class="headerlink" title="3. 解析数据"></a>3. 解析数据</h5><p><strong>提取我们需要的数据内容: 车次相关内容</strong></p>
+<h5 id="4-保存数据"><a href="#4-保存数据" class="headerlink" title="4. 保存数据"></a>4. 保存数据</h5><ul>
+<li>字典取值<ul>
+<li>键值对取值: 根据冒号左边的内容 [“键”, 提取冒号右边的内容 [“值”]]</li>
+</ul>
+</li>
+</ul>
+<p>当然，下面我将重点介绍每个步骤的关键点，并附上相应的代码片段。</p>
+<h3 id="1-获取站点编码"><a href="#1-获取站点编码" class="headerlink" title="1. 获取站点编码"></a>1. 获取站点编码</h3><p>关键点：从 12306 的 JS 文件中解析站点的三字码。</p>
+<p>代码片段：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">get_station_codes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    code_url <span class="token operator">=</span> <span class="token string">"https://kyfw.12306.cn/otn/resources/js/framework/station_name.js"</span>
+    response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>code_url<span class="token punctuation">)</span>
+    code_data <span class="token operator">=</span> response<span class="token punctuation">.</span>text<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span>  <span class="token comment"># 优化：去除尾部的双引号和换行符</span>
+    list_code <span class="token operator">=</span> code_data<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"|"</span><span class="token punctuation">)</span>
+    station_codes <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span><span class="token builtin">zip</span><span class="token punctuation">(</span>list_code<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">,</span> list_code<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 优化：直接跳过索引获取站点名称和代码</span>
+    <span class="token keyword">return</span> station_codes<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-用户输入"><a href="#2-用户输入" class="headerlink" title="2. 用户输入"></a>2. 用户输入</h3><p>关键点：提示用户输入起始站、终点站和出发日期，然后转换为 12306 需要的编码。</p>
+<p>代码片段：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">get_user_input</span><span class="token punctuation">(</span>code_dic<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    from_station <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"输入起始站：\n"</span><span class="token punctuation">)</span>
+    to_station <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"输入终点站：\n"</span><span class="token punctuation">)</span>
+    time <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"输入时间，例如：2024-09-18:\n"</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> code_dic<span class="token punctuation">.</span>get<span class="token punctuation">(</span>from_station<span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">,</span> code_dic<span class="token punctuation">.</span>get<span class="token punctuation">(</span>to_station<span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">,</span> time<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-获取火车票信息"><a href="#3-获取火车票信息" class="headerlink" title="3. 获取火车票信息"></a>3. 获取火车票信息</h3><p>关键点：构建请求 URL，模拟浏览器发送 HTTP 请求获取数据。</p>
+<p>代码片段：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">get_train_info</span><span class="token punctuation">(</span>from_station<span class="token punctuation">,</span> to_station<span class="token punctuation">,</span> time<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    train_url <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>time<span class="token punctuation">&#125;</span></span><span class="token string">&amp;leftTicketDTO.from_station=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>from_station<span class="token punctuation">&#125;</span></span><span class="token string">&amp;leftTicketDTO.to_station=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>to_station<span class="token punctuation">&#125;</span></span><span class="token string">&amp;purpose_codes=ADULT"</span></span>
+    headers <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">"User-Agent"</span><span class="token punctuation">:</span> <span class="token string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"</span>
+    <span class="token punctuation">&#125;</span>
+    response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token operator">=</span>train_url<span class="token punctuation">,</span> headers<span class="token operator">=</span>headers<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> response<span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="4-打印火车票信息"><a href="#4-打印火车票信息" class="headerlink" title="4. 打印火车票信息"></a>4. 打印火车票信息</h3><p>关键点：解析服务器返回的 JSON 数据，并使用<code>PrettyTable</code>格式化输出。</p>
+<p>代码片段：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">print_train_info</span><span class="token punctuation">(</span>json_data<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    table <span class="token operator">=</span> PrettyTable<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    table<span class="token punctuation">.</span>field_names <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'车次'</span><span class="token punctuation">,</span> <span class="token string">'出发时间'</span><span class="token punctuation">,</span> <span class="token string">'到达时间'</span><span class="token punctuation">,</span> <span class="token string">'历时'</span><span class="token punctuation">,</span> <span class="token string">'一等座'</span><span class="token punctuation">,</span> <span class="token string">'二等座'</span><span class="token punctuation">,</span> <span class="token string">'特等座'</span><span class="token punctuation">]</span>
+    <span class="token keyword">if</span> json_data<span class="token punctuation">[</span><span class="token string">'httpstatus'</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">200</span><span class="token punctuation">:</span>
+        result <span class="token operator">=</span> json_data<span class="token punctuation">[</span><span class="token string">'data'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'result'</span><span class="token punctuation">]</span>
+        <span class="token keyword">for</span> item <span class="token keyword">in</span> result<span class="token punctuation">:</span>
+            details <span class="token operator">=</span> item<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'|'</span><span class="token punctuation">)</span>
+            table<span class="token punctuation">.</span>add_row<span class="token punctuation">(</span><span class="token punctuation">[</span>details<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">30</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">32</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>table<span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"获取响应数据失败,状态码为</span><span class="token interpolation"><span class="token punctuation">&#123;</span>json_data<span class="token punctuation">[</span><span class="token string">'httpstatus'</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="5-Selenium-自动化"><a href="#5-Selenium-自动化" class="headerlink" title="5. Selenium 自动化"></a>5. Selenium 自动化</h3><p>关键点：使用 Selenium 模拟用户在网页上的操作，如填写表单、点击按钮等。</p>
+<p>代码片段：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 获取站点编码</span>
+    code_dic <span class="token operator">=</span> get_station_codes<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 获取用户输入</span>
+    from_station_code<span class="token punctuation">,</span> to_station_code<span class="token punctuation">,</span> time <span class="token operator">=</span> get_user_input<span class="token punctuation">(</span>code_dic<span class="token punctuation">)</span>
+
+    <span class="token comment"># 使用Selenium打开网页</span>
+    browser <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Edge<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    browser<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'https://kyfw.12306.cn/otn/leftTicket/init'</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 填写查询表单</span>
+    start_station <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#fromStationText'</span><span class="token punctuation">)</span>
+    start_station<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span><span class="token string">"广州南"</span><span class="token punctuation">)</span>
+    start_station<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span>Keys<span class="token punctuation">.</span>ENTER<span class="token punctuation">)</span>
+
+    end_station <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#toStationText'</span><span class="token punctuation">)</span>
+    end_station<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span><span class="token string">"韶关"</span><span class="token punctuation">)</span>
+    end_station<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span>Keys<span class="token punctuation">.</span>ENTER<span class="token punctuation">)</span>
+
+    date <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#train_date'</span><span class="token punctuation">)</span>
+    date<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span><span class="token string">"2024-09-18"</span><span class="token punctuation">)</span>
+    date<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span>Keys<span class="token punctuation">.</span>ENTER<span class="token punctuation">)</span>
+
+    <span class="token comment"># 点击查询</span>
+    browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#query_ticket'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 等待查询结果</span>
+    t<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>  <span class="token comment"># 优化：使用更明确的等待条件</span>
+
+    <span class="token comment"># 处理查询结果</span>
+    <span class="token comment"># 省略：根据实际情况处理查询结果</span>
+
+    <span class="token comment"># 关闭浏览器</span>
+    browser<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="6-完整代码"><a href="#6-完整代码" class="headerlink" title="6. 完整代码"></a>6. 完整代码</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># coding=gbk</span>
+<span class="token keyword">import</span> time <span class="token keyword">as</span> t
+<span class="token keyword">import</span> requests
+<span class="token keyword">from</span> selenium <span class="token keyword">import</span> webdriver
+<span class="token keyword">from</span> selenium<span class="token punctuation">.</span>webdriver<span class="token punctuation">.</span>common<span class="token punctuation">.</span>by <span class="token keyword">import</span> By
+<span class="token keyword">from</span> selenium<span class="token punctuation">.</span>webdriver<span class="token punctuation">.</span>common<span class="token punctuation">.</span>keys <span class="token keyword">import</span> Keys
+<span class="token keyword">from</span> prettytable <span class="token keyword">import</span> PrettyTable
+<span class="token keyword">import</span> re
+
+<span class="token comment"># 获取站点对应的三字码</span>
+<span class="token keyword">def</span> <span class="token function">get_station_codes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    code_url <span class="token operator">=</span> <span class="token string">"https://kyfw.12306.cn/otn/resources/js/framework/station_name.js"</span>
+    response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>code_url<span class="token punctuation">)</span>
+    code_data <span class="token operator">=</span> response<span class="token punctuation">.</span>text<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span>  <span class="token comment"># 优化：去除尾部的双引号和换行符</span>
+    list_code <span class="token operator">=</span> code_data<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"|"</span><span class="token punctuation">)</span>
+    station_codes <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span><span class="token builtin">zip</span><span class="token punctuation">(</span>list_code<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">,</span> list_code<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 优化：直接跳过索引获取站点名称和代码</span>
+    <span class="token keyword">return</span> station_codes
+
+<span class="token comment"># 用户输入起始站、终点站和时间，转化为编码</span>
+<span class="token keyword">def</span> <span class="token function">get_user_input</span><span class="token punctuation">(</span>code_dic<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    from_station <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"输入起始站：\n"</span><span class="token punctuation">)</span>
+    to_station <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"输入终点站：\n"</span><span class="token punctuation">)</span>
+    time <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"输入时间，例如：2024-09-18:\n"</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> code_dic<span class="token punctuation">.</span>get<span class="token punctuation">(</span>from_station<span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">,</span> code_dic<span class="token punctuation">.</span>get<span class="token punctuation">(</span>to_station<span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">,</span> time
+
+<span class="token comment"># 获取火车票信息</span>
+<span class="token keyword">def</span> <span class="token function">get_train_info</span><span class="token punctuation">(</span>from_station<span class="token punctuation">,</span> to_station<span class="token punctuation">,</span> time<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    train_url <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>time<span class="token punctuation">&#125;</span></span><span class="token string">&amp;leftTicketDTO.from_station=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>from_station<span class="token punctuation">&#125;</span></span><span class="token string">&amp;leftTicketDTO.to_station=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>to_station<span class="token punctuation">&#125;</span></span><span class="token string">&amp;purpose_codes=ADULT"</span></span>
+    headers <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">"User-Agent"</span><span class="token punctuation">:</span> <span class="token string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"</span>
+    <span class="token punctuation">&#125;</span>
+    response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token operator">=</span>train_url<span class="token punctuation">,</span> headers<span class="token operator">=</span>headers<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> response<span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 打印火车票信息</span>
+<span class="token keyword">def</span> <span class="token function">print_train_info</span><span class="token punctuation">(</span>json_data<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    table <span class="token operator">=</span> PrettyTable<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    table<span class="token punctuation">.</span>field_names <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'车次'</span><span class="token punctuation">,</span> <span class="token string">'出发时间'</span><span class="token punctuation">,</span> <span class="token string">'到达时间'</span><span class="token punctuation">,</span> <span class="token string">'历时'</span><span class="token punctuation">,</span> <span class="token string">'一等座'</span><span class="token punctuation">,</span> <span class="token string">'二等座'</span><span class="token punctuation">,</span> <span class="token string">'特等座'</span><span class="token punctuation">]</span>
+    <span class="token keyword">if</span> json_data<span class="token punctuation">[</span><span class="token string">'httpstatus'</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">200</span><span class="token punctuation">:</span>
+        result <span class="token operator">=</span> json_data<span class="token punctuation">[</span><span class="token string">'data'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'result'</span><span class="token punctuation">]</span>
+        <span class="token keyword">for</span> item <span class="token keyword">in</span> result<span class="token punctuation">:</span>
+            details <span class="token operator">=</span> item<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'|'</span><span class="token punctuation">)</span>
+            table<span class="token punctuation">.</span>add_row<span class="token punctuation">(</span><span class="token punctuation">[</span>details<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">30</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">]</span><span class="token punctuation">,</span> details<span class="token punctuation">[</span><span class="token number">32</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>table<span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"获取响应数据失败,状态码为</span><span class="token interpolation"><span class="token punctuation">&#123;</span>json_data<span class="token punctuation">[</span><span class="token string">'httpstatus'</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+
+<span class="token comment"># 主函数</span>
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 获取站点编码</span>
+    code_dic <span class="token operator">=</span> get_station_codes<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 获取用户输入</span>
+    from_station<span class="token punctuation">,</span> to_station<span class="token punctuation">,</span> time <span class="token operator">=</span> get_user_input<span class="token punctuation">(</span>code_dic<span class="token punctuation">)</span>
+
+    <span class="token comment"># 获取火车票信息</span>
+    json_data <span class="token operator">=</span> get_train_info<span class="token punctuation">(</span>from_station<span class="token punctuation">,</span> to_station<span class="token punctuation">,</span> time<span class="token punctuation">)</span>
+
+    <span class="token comment"># 打印火车票信息</span>
+    print_train_info<span class="token punctuation">(</span>json_data<span class="token punctuation">)</span>
+
+    <span class="token comment"># 使用Selenium打开网页</span>
+    browser <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Edge<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    browser<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'https://kyfw.12306.cn/otn/leftTicket/init?linktypeid=dc'</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 填写查询表单</span>
+    start_station <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#fromStationText'</span><span class="token punctuation">)</span>
+    start_station<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    start_station<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span><span class="token string">"广州南"</span><span class="token punctuation">)</span>
+    start_station<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span>Keys<span class="token punctuation">.</span>ENTER<span class="token punctuation">)</span>
+
+    end_station <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#toStationText'</span><span class="token punctuation">)</span>
+    end_station<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    end_station<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span><span class="token string">"韶关"</span><span class="token punctuation">)</span>
+    end_station<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span>Keys<span class="token punctuation">.</span>ENTER<span class="token punctuation">)</span>
+
+    date <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#train_date'</span><span class="token punctuation">)</span>
+    date<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    date<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span><span class="token string">"2024-09-18"</span><span class="token punctuation">)</span>
+    date<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span>Keys<span class="token punctuation">.</span>ENTER<span class="token punctuation">)</span>
+
+    <span class="token comment"># 点击查询</span>
+    browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#query_ticket'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 等待查询结果</span>
+    t<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>  <span class="token comment"># 优化：使用更明确的等待条件</span>
+
+    <span class="token comment"># 处理查询结果</span>
+    elements <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_elements<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#queryLeftTable tr:nth-child(7) .btn72'</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> elements<span class="token punctuation">:</span>
+        elements<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 扫码登陆</span>
+    saoma <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#login > div.login-box > ul > li.login-hd-account > a'</span><span class="token punctuation">)</span>
+    saoma<span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    t<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>  <span class="token comment"># 优化：使用更明确的等待条件</span>
+
+    <span class="token comment"># 登录操作</span>
+    J_userName <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#J-userName'</span><span class="token punctuation">)</span>
+    J_userName<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    J_userName<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span><span class="token string">"Ozxmss"</span><span class="token punctuation">)</span>
+
+    J_password <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#J-password'</span><span class="token punctuation">)</span>
+    J_password<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    J_password<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span><span class="token string">"123456789"</span><span class="token punctuation">)</span>
+
+    J_loginmodalBtn <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#J-login'</span><span class="token punctuation">)</span>
+    J_loginmodalBtn<span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 点击预订</span>
+    browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#normalPassenger_0'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    t<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#dialog_xsertcj_cancel'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 修改成人票</span>
+    ticket_type_select <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#ticketType_1'</span><span class="token punctuation">)</span>
+    ticket_type_select<span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 选择成人票</span>
+    adult_ticket_option <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#ticketType_1 > option[value="1"]'</span><span class="token punctuation">)</span>
+    adult_ticket_option<span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    t<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#submitOrder_id'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    qr_submit_id <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> <span class="token string">'#qr_submit_id'</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> qr_submit_id<span class="token punctuation">:</span>
+        qr_submit_id<span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"输入任意字符后回车继续..."</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 关闭浏览器</span>
+    browser<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    main<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://0zxm.github.io">0zxm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://0zxm.github.io/2024/09/07/selenium-zi-dong-hua-qiang-piao-12306/">https://0zxm.github.io/2024/09/07/selenium-zi-dong-hua-qiang-piao-12306/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://0zxm.github.io" target="_blank">0zxm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a><a class="post-meta__tags" href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</a><a class="post-meta__tags" href="/tags/selenium/">selenium</a></div><div class="post-share"><div class="social-share" data-image="/img/cover1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/09/09/pyqt-kai-fa-yi-ge-ji-shi-ben/" title="pyqt开发一个记事本"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">pyqt开发一个记事本</div></div><div class="info-2"><div class="info-item-1">构建一个功能丰富的记事本应用：深入 PyQt5</div></div></div></a><a class="pagination-related" href="/2024/09/03/shu-ju-wa-jue/" title="数据挖掘"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">数据挖掘</div></div><div class="info-2"><div class="info-item-1">数据挖掘课程笔记</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/01/15/django-he-vue3-qian-hou-duan-fen-chi-kai-fa/" title="Django和Vue3前后端补充知识点"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-15</div><div class="info-item-2">Django和Vue3前后端补充知识点</div></div><div class="info-2"><div class="info-item-1">Django和Vue3前后端分离开发</div></div></div></a><a class="pagination-related" href="/2024/11/23/django-xue-xi/" title="Django学习"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-23</div><div class="info-item-2">Django学习</div></div><div class="info-2"><div class="info-item-1">Django框架的学习</div></div></div></a><a class="pagination-related" href="/2025/01/05/mindspore-shou-xie-shu-zi-shi-bie/" title="Mindspore手写数字识别"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-05</div><div class="info-item-2">Mindspore手写数字识别</div></div><div class="info-2"><div class="info-item-1">使用MindSpore深度学习框架，进行网络搭建、数据处理、网络训练和测试，完成MNIST手写体识别任务</div></div></div></a><a class="pagination-related" href="/2025/06/19/wide-deep-mo-xing/" title="Wide&amp;Deep模型"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-19</div><div class="info-item-2">Wide&amp;Deep模型</div></div><div class="info-2"><div class="info-item-1">机器学习大作业实现过程的笔记</div></div></div></a><a class="pagination-related" href="/2025/06/25/framwork-kuang-jia-xue-xi/" title="Django REST framwork框架学习"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-25</div><div class="info-item-2">Django REST framwork框架学习</div></div><div class="info-2"><div class="info-item-1">Django拓展框架Django-REST-framwork的简单笔记</div></div></div></a><a class="pagination-related" href="/2025/02/15/pyqt-xie-yi-ge-dai-ban-cheng-xu/" title="pyqt写一个待办程序"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-15</div><div class="info-item-2">pyqt写一个待办程序</div></div><div class="info-2"><div class="info-item-1">构建一个功能丰富的待办应用：深入PyQt5</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">0zxm</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/0zxm"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/0zxm" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:m15813109801@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="http://0zxm.github.io" target="_blank" title="博客"><i class="fab fa-algolia" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8A%A2%E7%A5%A8-12306"><span class="toc-text">自动化抢票 12306</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%98%8E%E7%A1%AE%E9%9C%80%E6%B1%82"><span class="toc-text">1. 明确需求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90"><span class="toc-text">2. 抓包分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4"><span class="toc-text">3. 代码实现步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82"><span class="toc-text">1. 发送请求</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-text">2. 获取数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E8%A7%A3%E6%9E%90%E6%95%B0%E6%8D%AE"><span class="toc-text">3. 解析数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE"><span class="toc-text">4. 保存数据</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%8E%B7%E5%8F%96%E7%AB%99%E7%82%B9%E7%BC%96%E7%A0%81"><span class="toc-text">1. 获取站点编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5"><span class="toc-text">2. 用户输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%8E%B7%E5%8F%96%E7%81%AB%E8%BD%A6%E7%A5%A8%E4%BF%A1%E6%81%AF"><span class="toc-text">3. 获取火车票信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%89%93%E5%8D%B0%E7%81%AB%E8%BD%A6%E7%A5%A8%E4%BF%A1%E6%81%AF"><span class="toc-text">4. 打印火车票信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Selenium-%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="toc-text">5. Selenium 自动化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="toc-text">6. 完整代码</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/06/25/framwork-kuang-jia-xue-xi/" title="Django REST framwork框架学习"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Django REST framwork框架学习"/></a><div class="content"><a class="title" href="/2025/06/25/framwork-kuang-jia-xue-xi/" title="Django REST framwork框架学习">Django REST framwork框架学习</a><time datetime="2025-06-25T13:09:01.000Z" title="发表于 2025-06-25 21:09:01">2025-06-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/19/wide-deep-mo-xing/" title="Wide&amp;Deep模型"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Wide&amp;Deep模型"/></a><div class="content"><a class="title" href="/2025/06/19/wide-deep-mo-xing/" title="Wide&amp;Deep模型">Wide&amp;Deep模型</a><time datetime="2025-06-19T05:30:40.000Z" title="发表于 2025-06-19 13:30:40">2025-06-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/08/java-ji-chu-xia/" title="Java基础下"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java基础下"/></a><div class="content"><a class="title" href="/2025/03/08/java-ji-chu-xia/" title="Java基础下">Java基础下</a><time datetime="2025-03-08T03:43:21.000Z" title="发表于 2025-03-08 11:43:21">2025-03-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/08/duo-xian-cheng-e-wai-kuo-zhan/" title="Java基础之多线程"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java基础之多线程"/></a><div class="content"><a class="title" href="/2025/03/08/duo-xian-cheng-e-wai-kuo-zhan/" title="Java基础之多线程">Java基础之多线程</a><time datetime="2025-03-08T03:43:21.000Z" title="发表于 2025-03-08 11:43:21">2025-03-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/07/qian-ru-shi-xi-tong-gai-shu/" title="嵌入式系统概述"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="嵌入式系统概述"/></a><div class="content"><a class="title" href="/2025/03/07/qian-ru-shi-xi-tong-gai-shu/" title="嵌入式系统概述">嵌入式系统概述</a><time datetime="2025-03-07T06:08:48.000Z" title="发表于 2025-03-07 14:08:48">2025-03-07</time></div></div></div></div></div></div><!-- 登录验证模态框--></main><footer id="footer" style="background-image: url(/img/footer.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By 0zxm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- CSS 样式--><style>#login-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  z-index:999;
+}
+
+input#password-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button#submit-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button#submit-btn:hover {
+  background-color: #45a049;
+}
+</style><!-- JavaScript 验证--><script>document.addEventListener('DOMContentLoaded', function() {
+
+  (function() {
+  // 禁用右键菜单
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    return false;
+  });
+
+  // 禁用快捷键 (F12/Ctrl+Shift+I/Ctrl+Shift+J/Ctrl+Shift+C)
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'F12' || 
+        (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+        (e.ctrlKey && e.shiftKey && e.key === 'J') ||
+        (e.ctrlKey && e.shiftKey && e.key === 'C')) {
+      e.preventDefault();
+      return false;
+    }
+  });
+  })();
+  
+
+  const modal = document.getElementById('login-modal');
+  const passwordInput = document.getElementById('password-input');
+  const submitBtn = document.getElementById('submit-btn');
+  const errorMsg = document.getElementById('error-msg');
+  const bodyWrap = document.getElementById('body-wrap');
+
+
+  // 默认显示模态框
+  modal.style.display = 'flex';
+
+  // 自动聚焦到密码输入框
+  passwordInput.focus();
+
+  submitBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    const password = passwordInput.value;
+    const correctPassword = 'D&X'; // 替换为实际密码
+
+    if (password === correctPassword) {
+      modal.style.display = 'none';
+      bodyWrap.style.opacity = 1; // 显示页面内容
+    } else {
+      passwordInput.classList.add('error');
+      errorMsg.style.display = 'block';
+      setTimeout(() => {
+        passwordInput.classList.remove('error');
+        errorMsg.style.display = 'none';
+      }, 2000);
+    }
+  });
+  // 按下 Enter 键提交
+  passwordInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      submitBtn.click();
+    }
+  });
+});</script></body></html>
