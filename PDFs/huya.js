@@ -21,6 +21,17 @@ const timer = setInterval(() => {
   if (el && $) {
     $(el).data("data").status = 9;
     console.log("✅ 限制解除成功！！！");
+    // 底部自动消失Toast提示
+      let toast = realDocument.createElement('div');
+      toast.innerText = '✅ 画质限制解除成功！！！';
+      toast.style.cssText = `
+    position:fixed;top:50px;left:50%;transform:translate(-50%,-50%);
+    padding:12px 24px;background:rgba(0,0,0,0.7);color:white;
+    border-radius:6px;z-index:9999;
+`;
+      realDocument.body.appendChild(toast);
+      setTimeout(()=>toast.remove(),2500);
+
     clearInterval(timer);
   }
 }, 300);
